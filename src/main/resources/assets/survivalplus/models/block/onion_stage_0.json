@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "survivalplus:blocks/onion_stage_0"
+    }
+}

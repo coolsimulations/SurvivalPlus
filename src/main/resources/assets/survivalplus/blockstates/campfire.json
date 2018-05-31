@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "burning=true,facing=north": { "model": "survivalplus:campfire" },
+        "burning=false,facing=north": { "model": "survivalplus:campfire" },
+        "burning=true,facing=south": { "model": "survivalplus:campfire", "y": 180 },
+        "burning=false,facing=south": { "model": "survivalplus:campfire", "y": 180 },
+        "burning=true,facing=west":  { "model": "survivalplus:campfire", "y": 270 },
+        "burning=false,facing=west":  { "model": "survivalplus:campfire", "y": 270 },
+        "burning=true,facing=east":  { "model": "survivalplus:campfire", "y": 90 },
+        "burning=false,facing=east":  { "model": "survivalplus:campfire", "y": 90 }
+    }
+}

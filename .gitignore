@@ -1,0 +1,19 @@
+/build/
+/bin/
+/libs/
+/src/main/resources/assets/biomesoplenty/textures/
+/src/main/resources/assets/forge/textures/
+/src/main/resources/assets/galacticraftcore/textures/
+/src/main/resources/assets/galacticraftplanets/textures/
+/src/main/resources/assets/ic2/textures/
+/src/main/resources/assets/minecraft/textures/
+/eclipse/
+/run/
+/.gradle/
+/.settings/
+/.classpath/
+/.project/
+*.launch
+
+#OS generated files
+*.DS_Store

@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "survivalplus:items/titanium_axe"
+    }
+}
