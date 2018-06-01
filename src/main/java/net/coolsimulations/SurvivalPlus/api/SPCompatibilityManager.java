@@ -21,13 +21,13 @@ public class SPCompatibilityManager {
     public static final String TE_MODID = "thermalexpansion";
     public static final String GCCORE_MODID = "galacticraftcore";
     public static final String GCPLANETS_MODID = "galacticraftplanets";
-    public static final String PROJECTE_MODID = "projecte";
-    public static final String JEI_MODID = "jei";
-    public static final String IC2_MODID = "ic2";
+    public static final String PROJECTE_MODID = "ProjectE";
+    public static final String JEI_MODID = "JEI";
+    public static final String IC2_MODID = "IC2";
     public static final String BCRAFTCORE_MODID = "buildcraftcore";
     public static final String APPENG_MODID = "appliedenergistics2";
     public static final String PNEUMATICCRAFT_MODID = "pneumaticcraft";
-    public static final String BOP_MODID = "biomesoplenty";
+    public static final String BOP_MODID = "BiomesOPlenty";
     public static final String BASEMETALS_MODID = "basemetals";
     public static final String FLOURPOWER_MODID = "flourpower";
     public static final String WOODENBUCKET_MODID = "woodenbucket";

@@ -19,13 +19,13 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandWak extends CommandBase{
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		
 		return "wak";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender sender) {
 		
 		return "sp.commands.wak.usage";
 	}
@@ -47,7 +47,7 @@ public class CommandWak extends CommandBase{
 			}else {
 				TextComponentTranslation wak = new TextComponentTranslation("sp.commands.wak.display", new Object[] {sender.getDisplayName(), entityplayer.getDisplayName()});
 				wak.getStyle().setColor(TextFormatting.DARK_RED);
-				server.getPlayerList().sendMessage(wak);
+				server.getPlayerList().sendChatMsg(wak);
 			}
 		}
 		
@@ -70,9 +70,9 @@ public class CommandWak extends CommandBase{
     }
     
     @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
     {
-        return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
+        return getListOfStringsMatchingLastWord(args, server.getAllUsernames());
     }
 
 }

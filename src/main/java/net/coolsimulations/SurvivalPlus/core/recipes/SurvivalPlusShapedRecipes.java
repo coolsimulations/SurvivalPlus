@@ -1,8 +1,5 @@
 package net.coolsimulations.SurvivalPlus.core.recipes;
 
-import com.polegamers.flourpower.config.ConfigHandler;
-import com.polegamers.flourpower.item.ItemFlourPower;
-
 import micdoodle8.mods.galacticraft.core.GCBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
@@ -15,6 +12,8 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+
+import com.polegamers.flourpower.config.ConfigHandler;
 
 public class SurvivalPlusShapedRecipes {
 	
@@ -153,8 +152,8 @@ public class SurvivalPlusShapedRecipes {
 	
 	if(SPCompatibilityManager.isFlourPowerLoaded() && ConfigHandler.enableCakeRecipe) {
 		
-		addRecipe(new ItemStack(SPBlocks.sponge_cake), new Object[]{"PMP","SES","FFF", 'M', Items.MILK_BUCKET, 'P', Blocks.SPONGE, 'S', Items.SUGAR, 'E', "egg", 'F', new ItemStack(ItemFlourPower.itemFlour)});
-		addRecipe(new ItemStack(SPBlocks.cheese_cake), new Object[]{"CMC","SES","FFF", 'M', Items.MILK_BUCKET, 'C', "foodCheese", 'S', Items.SUGAR, 'E', "egg", 'F', new ItemStack(ItemFlourPower.itemFlour)});
+		addRecipe(new ItemStack(SPBlocks.sponge_cake), new Object[]{"PMP","SES","FFF", 'M', Items.MILK_BUCKET, 'P', Blocks.SPONGE, 'S', Items.SUGAR, 'E', "egg", 'F', "flour"});
+		addRecipe(new ItemStack(SPBlocks.cheese_cake), new Object[]{"CMC","SES","FFF", 'M', Items.MILK_BUCKET, 'C', "foodCheese", 'S', Items.SUGAR, 'E', "egg", 'F', "flour"});
 		
 	}else {
 		

@@ -20,13 +20,13 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandMourn extends CommandBase{
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		
 		return "mourn";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender sender) {
 		
 		return "sp.commands.mourn.usage";
 	}
@@ -48,7 +48,7 @@ public class CommandMourn extends CommandBase{
             }else {
             	TextComponentTranslation mourns = new TextComponentTranslation("sp.commands.mourn.display", new Object[] {sender.getDisplayName(), entityplayer.getDisplayName()});
            		mourns.getStyle().setColor(TextFormatting.DARK_AQUA);
-            	server.getPlayerList().sendMessage(mourns);
+            	server.getPlayerList().sendChatMsg(mourns);
             }
         }
 	}
@@ -66,9 +66,9 @@ public class CommandMourn extends CommandBase{
     }
     
     @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
     {
-        return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
+        return getListOfStringsMatchingLastWord(args, server.getAllUsernames());
     }
 
 }

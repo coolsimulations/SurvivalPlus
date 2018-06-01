@@ -16,13 +16,13 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandWail extends CommandBase{
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		
 		return "wail";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender sender) {
 		
 		return "sp.commands.wail.usage";
 	}
@@ -37,7 +37,7 @@ public class CommandWail extends CommandBase{
         } else {
         	TextComponentTranslation wail = new TextComponentTranslation("sp.commands.wail.display", new Object[] {sender.getDisplayName()});
         	wail.getStyle().setColor(TextFormatting.AQUA);
-        	server.getPlayerList().sendMessage(wail);
+        	server.getPlayerList().sendChatMsg(wail);
         }
 		
 	}
@@ -55,7 +55,7 @@ public class CommandWail extends CommandBase{
     }
     
     @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
     {
         return getListOfStringsMatchingLastWord(args);
     }

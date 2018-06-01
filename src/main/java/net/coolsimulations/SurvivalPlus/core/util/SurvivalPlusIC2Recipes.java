@@ -50,7 +50,7 @@ public class SurvivalPlusIC2Recipes {
 		cutterhard.setInteger("hardness", 3);
 		
 		ItemStack hvCable = IC2Items.getItem("cable", "type:iron,insulation:0");
-		hvCable.setCount(16);
+		hvCable.stackSize = 16;
    		
    		//Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(SPBlocks.titanium_ore)), null, false, new ItemStack(SPItems.crushed_titanium_ore, 2));
 
@@ -101,12 +101,6 @@ public class SurvivalPlusIC2Recipes {
 		Recipes.metalformerCutting.addRecipe(Recipes.inputFactory.forOreDict("plateTitanium"), null, false, hvCable);
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("plateTitanium"), null, false, new ItemStack(SPItems.titanium_casing, 2));
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"), null, false, new ItemStack(SPItems.titanium_plate));
-		
-		if(SPCompatibilityManager.isBopLoaded()) {
-			
-			Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(BOPBlocks.white_sandstone)), null, false, new ItemStack(BOPBlocks.white_sand));
-			Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(BOPBlocks.white_sand, 4)), null, false, new ItemStack(BOPBlocks.white_sandstone));
-		}
 		
     }
 }

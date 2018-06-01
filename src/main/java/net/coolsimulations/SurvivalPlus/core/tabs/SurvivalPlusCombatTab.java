@@ -2,7 +2,7 @@ package net.coolsimulations.SurvivalPlus.core.tabs;
 
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 
 public class SurvivalPlusCombatTab extends CreativeTabs{
 
@@ -11,8 +11,8 @@ public class SurvivalPlusCombatTab extends CreativeTabs{
 	}
 
 	@Override
-	public ItemStack getTabIconItem() {
-		return new ItemStack(SPItems.titanium_sword);
+	public Item getTabIconItem() {
+		return SPItems.titanium_sword;
 	}
 
 }

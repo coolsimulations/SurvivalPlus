@@ -19,13 +19,13 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandIndeed extends CommandBase{
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		
 		return "indeed";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender sender) {
 		
 		return "sp.commands.indeed.usage";
 	}
@@ -47,14 +47,14 @@ public class CommandIndeed extends CommandBase{
             }else {
             	TextComponentTranslation indeed = new TextComponentTranslation("sp.commands.indeed.display1", new Object[] {sender.getDisplayName(), entityplayer.getDisplayName()});
         		indeed.getStyle().setColor(TextFormatting.DARK_GREEN);
-        		server.getPlayerList().sendMessage(indeed);
+        		server.getPlayerList().sendChatMsg(indeed);
             }
         }
         else
         {
         	TextComponentTranslation indeed = new TextComponentTranslation("sp.commands.indeed.display2", new Object[] {sender.getDisplayName()});
     		indeed.getStyle().setColor(TextFormatting.DARK_GREEN);
-    		server.getPlayerList().sendMessage(indeed);
+    		server.getPlayerList().sendChatMsg(indeed);
         }
 	}
 
@@ -71,9 +71,9 @@ public class CommandIndeed extends CommandBase{
     }
     
     @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
     {
-        return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
+        return getListOfStringsMatchingLastWord(args, server.getAllUsernames());
     }
 
 }

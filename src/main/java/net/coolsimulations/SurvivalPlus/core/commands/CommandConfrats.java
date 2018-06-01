@@ -18,13 +18,13 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandConfrats extends CommandBase{
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		
 		return "confrats";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender sender) {
 		
 		return "sp.commands.confrats.usage";
 	}
@@ -46,7 +46,7 @@ public class CommandConfrats extends CommandBase{
             }else {
             	TextComponentTranslation confrats = new TextComponentTranslation("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
             	confrats.getStyle().setColor(TextFormatting.YELLOW);
-            	server.getPlayerList().sendMessage(confrats);
+            	server.getPlayerList().sendChatMsg(confrats);
             }
         }
 		
@@ -65,9 +65,9 @@ public class CommandConfrats extends CommandBase{
     }
 
 	@Override
-	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
+	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
 		
-		return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
+		return getListOfStringsMatchingLastWord(args, server.getAllUsernames());
 	}
 
 }

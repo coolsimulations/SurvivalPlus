@@ -24,13 +24,13 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandSleep extends CommandBase{
 	
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		
 		return "sleep";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender sender) {
 		
 		return "sp.commands.sleep.usage";
 	}
@@ -39,25 +39,25 @@ public class CommandSleep extends CommandBase{
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
     	
 		TextComponentTranslation dimension = null;
-		if(!SPCompatibilityManager.isGCLoaded() && sender.getCommandSenderEntity().world.provider.getDimension() == 0) {
+		if(!SPCompatibilityManager.isGCLoaded() && sender.getCommandSenderEntity().worldObj.provider.getDimension() == 0) {
     		dimension = new TextComponentTranslation("createWorld.customize.preset.overworld", new Object[] {});
     	}
-    	if(SPCompatibilityManager.isGCLoaded() && sender.getCommandSenderEntity().world.provider.getDimension() == ConfigManagerCore.idDimensionOverworld) {
+    	if(SPCompatibilityManager.isGCLoaded() && sender.getCommandSenderEntity().worldObj.provider.getDimension() == ConfigManagerCore.idDimensionOverworld) {
     		dimension = new TextComponentTranslation("dimension.overworld.name", new Object[] {});
     	}
     	
     	if(SPCompatibilityManager.isGCLoaded()) {
-    		if(sender.getCommandSenderEntity().world.provider.getDimension() == ConfigManagerCore.idDimensionMoon) {
+    		if(sender.getCommandSenderEntity().worldObj.provider.getDimension() == ConfigManagerCore.idDimensionMoon) {
     			dimension = new TextComponentTranslation("dimension.moon.name", new Object[] {});
     		}
     	}
     	
     	if(SPCompatibilityManager.isGCPLoaded()) {
-    		if(sender.getCommandSenderEntity().world.provider.getDimension() == ConfigManagerMars.dimensionIDMars) {
+    		if(sender.getCommandSenderEntity().worldObj.provider.getDimension() == ConfigManagerMars.dimensionIDMars) {
     			dimension = new TextComponentTranslation("planet.mars", new Object[] {});
-    		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == ConfigManagerAsteroids.dimensionIDAsteroids) {
+    		} else if(sender.getCommandSenderEntity().worldObj.provider.getDimension() == ConfigManagerAsteroids.dimensionIDAsteroids) {
     			dimension = new TextComponentTranslation("planet.asteroids", new Object[] {});
-    		}else if(sender.getCommandSenderEntity().world.provider.getDimension() == ConfigManagerVenus.dimensionIDVenus) {
+    		}else if(sender.getCommandSenderEntity().worldObj.provider.getDimension() == ConfigManagerVenus.dimensionIDVenus) {
     			dimension = new TextComponentTranslation("Venus", new Object[] {});
     		}
     	}
@@ -68,83 +68,83 @@ public class CommandSleep extends CommandBase{
         }
         else if(args.length == 1)
         {
-        	if(!sender.getCommandSenderEntity().world.provider.isDaytime()) {
+        	if(!sender.getCommandSenderEntity().worldObj.provider.isDaytime()) {
         		Entity entityplayer = getEntity(server, sender, args[0]);
-        		EntityPlayer player = Minecraft.getMinecraft().player;
+        		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
         		if (entityplayer == sender)
         		{
         			if(sender instanceof EntityPlayer && player.isPlayerSleeping()) {
         				
         				if(dimension == null) {
-        					TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display3", new Object[] {sender.getDisplayName(), sender.getCommandSenderEntity().world.provider.getDimension()});
+        					TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display3", new Object[] {sender.getDisplayName(), sender.getCommandSenderEntity().worldObj.provider.getDimension()});
 							sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-							server.getPlayerList().sendMessage(sleep);
+							server.getPlayerList().sendChatMsg(sleep);
         				}
         				else {
         					TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display3", new Object[] {sender.getDisplayName(), dimension});
 							sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-							server.getPlayerList().sendMessage(sleep);
+							server.getPlayerList().sendChatMsg(sleep);
         				}
         			} else {
         				TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display4", new Object[] {sender.getDisplayName(), dimension});
 						sleep.getStyle().setColor(TextFormatting.RED);
-						sender.sendMessage(sleep);
+						sender.addChatMessage(sleep);
         			}
         		}else {
-        			if(entityplayer.world.provider.getDimension() == sender.getCommandSenderEntity().world.provider.getDimension()) {
+        			if(entityplayer.worldObj.provider.getDimension() == sender.getCommandSenderEntity().worldObj.provider.getDimension()) {
         				
-        				if(sender.getCommandSenderEntity().world.provider.getDimension() == -1 || sender.getCommandSenderEntity().world.provider.getDimension() == 1) {
+        				if(sender.getCommandSenderEntity().worldObj.provider.getDimension() == -1 || sender.getCommandSenderEntity().worldObj.provider.getDimension() == 1) {
         					TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.invalid", new Object[] {});
         					invalid.getStyle().setColor(TextFormatting.RED);
-        					sender.sendMessage(invalid);
+        					sender.addChatMessage(invalid);
         				} else {
         					if(dimension == null) {
-        						TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display1", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName(), sender.getCommandSenderEntity().world.provider.getDimension()});
+        						TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display1", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName(), sender.getCommandSenderEntity().worldObj.provider.getDimension()});
         						sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-        						server.getPlayerList().sendMessage(sleep);
+        						server.getPlayerList().sendChatMsg(sleep);
         					} else {
         						TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display1", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName(), dimension});
         						sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-        						server.getPlayerList().sendMessage(sleep);
+        						server.getPlayerList().sendChatMsg(sleep);
         					}
         				}
         			} else{
         				TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.dimension", new Object[] {});
     					invalid.getStyle().setColor(TextFormatting.RED);
-    					sender.sendMessage(invalid);
+    					sender.addChatMessage(invalid);
         			}
         		}
         	} else {
         		TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.night", new Object[] {});
         		invalid.getStyle().setColor(TextFormatting.RED);
-        		sender.sendMessage(invalid);
+        		sender.addChatMessage(invalid);
         	}
         }
         else
         {
-        	if(!sender.getCommandSenderEntity().world.provider.isDaytime()) {
+        	if(!sender.getCommandSenderEntity().worldObj.provider.isDaytime()) {
         		
-        		if(sender.getCommandSenderEntity().world.provider.getDimension() == -1 || sender.getCommandSenderEntity().world.provider.getDimension() == 1) {
+        		if(sender.getCommandSenderEntity().worldObj.provider.getDimension() == -1 || sender.getCommandSenderEntity().worldObj.provider.getDimension() == 1) {
         			TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.invalid", new Object[] {});
         			invalid.getStyle().setColor(TextFormatting.RED);
-        			sender.sendMessage(invalid);
+        			sender.addChatMessage(invalid);
         		} else
         		{
         			if(dimension == null) {
-        				TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display2", new Object[] {sender.getDisplayName(), sender.getCommandSenderEntity().world.provider.getDimension()});
+        				TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display2", new Object[] {sender.getDisplayName(), sender.getCommandSenderEntity().worldObj.provider.getDimension()});
     					sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-    					server.getPlayerList().sendMessage(sleep);
+    					server.getPlayerList().sendChatMsg(sleep);
         			} else {
         				TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display2", new Object[] {sender.getDisplayName(), dimension});
     					sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-    					server.getPlayerList().sendMessage(sleep);
+    					server.getPlayerList().sendChatMsg(sleep);
         			}
         		}
         	}
         	 else {
          		TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.night", new Object[] {});
          		invalid.getStyle().setColor(TextFormatting.RED);
-         		sender.sendMessage(invalid);
+         		sender.addChatMessage(invalid);
          	}
         }
 	}
@@ -162,9 +162,9 @@ public class CommandSleep extends CommandBase{
     }
     
     @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
     {
-        return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
+        return getListOfStringsMatchingLastWord(args, server.getAllUsernames());
     }
 
 }

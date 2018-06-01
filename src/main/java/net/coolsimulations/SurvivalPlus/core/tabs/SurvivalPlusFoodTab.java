@@ -2,7 +2,7 @@ package net.coolsimulations.SurvivalPlus.core.tabs;
 
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 
 public class SurvivalPlusFoodTab extends CreativeTabs{
 
@@ -11,8 +11,8 @@ public class SurvivalPlusFoodTab extends CreativeTabs{
 	}
 
 	@Override
-	public ItemStack getTabIconItem() {
-		return new ItemStack(SPItems.apple_pie);
+	public Item getTabIconItem() {
+		return SPItems.apple_pie;
 	}
 
 }

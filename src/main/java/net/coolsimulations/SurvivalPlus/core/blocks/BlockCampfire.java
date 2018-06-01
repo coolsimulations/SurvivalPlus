@@ -2,6 +2,8 @@ package net.coolsimulations.SurvivalPlus.core.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.block.Block;
@@ -16,8 +18,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
@@ -37,8 +39,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -325,7 +325,7 @@ public class BlockCampfire extends Block{
      * Called when the block is right clicked by a player.
      */
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
     	ItemStack itemStackIn = playerIn.getHeldItem(hand);
     	Item item = itemStackIn.getItem();
@@ -362,11 +362,11 @@ public class BlockCampfire extends Block{
     		if(!playerIn.capabilities.isCreativeMode){
     			if (ItemStack.areItemStacksEqual(playerIn.getHeldItemOffhand(), itemStackIn))
     			{
-    				playerIn.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
+    				playerIn.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Blocks.AIR));
     			}
     			else
     			{
-    				playerIn.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
+    				playerIn.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Blocks.AIR));
     			}
     		}
 		}
@@ -418,7 +418,7 @@ public class BlockCampfire extends Block{
     		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(false)), 3);
     		worldIn.playSound(null, pos, SoundEvents.BLOCK_GRAVEL_STEP, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F);
     		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
-    		if(itemStackIn.getCount() == 1) {
+    		if(itemStackIn.stackSize == 1) {
     			if (ItemStack.areItemStacksEqual(playerIn.getHeldItemOffhand(), itemStackIn))
     			{
     				playerIn.setHeldItem(EnumHand.OFF_HAND, new ItemStack(SPItems.charcoal_bucket));
@@ -427,8 +427,8 @@ public class BlockCampfire extends Block{
     			{
    					playerIn.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(SPItems.charcoal_bucket));
    				}
-    		} else  if(itemStackIn.getCount() >= 2){
-    			itemStackIn.shrink(1);
+    		} else  if(itemStackIn.stackSize >= 2){
+    			--itemStackIn.stackSize;
     			boolean flag = playerIn.inventory.addItemStackToInventory(new ItemStack(SPItems.charcoal_bucket));
     			if(!flag) {
     				playerIn.dropItem(new ItemStack(SPItems.charcoal_bucket), false);
@@ -472,7 +472,7 @@ public class BlockCampfire extends Block{
     
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-    	EntityPlayer playerIn = Minecraft.getMinecraft().player;;
+    	EntityPlayer playerIn = Minecraft.getMinecraft().thePlayer;
     	//defaultSmoke
         double d0 = (double)pos.getX() + rand.nextDouble();
         double d1 = (double)pos.getY() + rand.nextDouble() * 0.5D + 0.5D;
@@ -511,7 +511,7 @@ public class BlockCampfire extends Block{
      * IBlockstate
      */
     @Override
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, ItemStack stack)
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }

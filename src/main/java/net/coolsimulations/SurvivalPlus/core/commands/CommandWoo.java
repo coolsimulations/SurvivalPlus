@@ -18,13 +18,13 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandWoo extends CommandBase{
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		
 		return "woo";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender sender) {
 		
 		return "sp.commands.woo.usage";
 	}
@@ -39,7 +39,7 @@ public class CommandWoo extends CommandBase{
         } else {
         	TextComponentTranslation woo = new TextComponentTranslation("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
         	woo.getStyle().setColor(TextFormatting.BLUE);
-        	server.getPlayerList().sendMessage(woo);
+        	server.getPlayerList().sendChatMsg(woo);
         }
 		
 	}
@@ -57,7 +57,7 @@ public class CommandWoo extends CommandBase{
     }
     
     @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
     {
         return getListOfStringsMatchingLastWord(args);
     }

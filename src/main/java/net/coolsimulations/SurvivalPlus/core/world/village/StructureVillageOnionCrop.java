@@ -50,9 +50,9 @@ public class StructureVillageOnionCrop extends StructureVillagePieces.Village
     /**
      * (abstract) Helper method to read subclass data from NBT
      */
-    protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
+    protected void readStructureFromNBT(NBTTagCompound tagCompound)
     {
-        super.readStructureFromNBT(tagCompound, p_143011_2_);
+        super.readStructureFromNBT(tagCompound);
         this.cropTypeA = Block.getBlockById(tagCompound.getInteger("CA"));
         this.cropTypeB = Block.getBlockById(tagCompound.getInteger("CB"));
     }
@@ -112,12 +112,12 @@ public class StructureVillageOnionCrop extends StructureVillagePieces.Village
         {
             int j = ((BlockCrops)this.cropTypeA).getMaxAge();
             int k = j / 3;
-            this.setBlockState(worldIn, this.cropTypeA.getStateFromMeta(MathHelper.getInt(randomIn, k, j)), 1, 1, i, structureBoundingBoxIn);
-            this.setBlockState(worldIn, this.cropTypeA.getStateFromMeta(MathHelper.getInt(randomIn, k, j)), 2, 1, i, structureBoundingBoxIn);
+            this.setBlockState(worldIn, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(randomIn, k, j)), 1, 1, i, structureBoundingBoxIn);
+            this.setBlockState(worldIn, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(randomIn, k, j)), 2, 1, i, structureBoundingBoxIn);
             int l = ((BlockCrops)this.cropTypeB).getMaxAge();
             int i1 = l / 3;
-            this.setBlockState(worldIn, this.cropTypeB.getStateFromMeta(MathHelper.getInt(randomIn, i1, l)), 4, 1, i, structureBoundingBoxIn);
-            this.setBlockState(worldIn, this.cropTypeB.getStateFromMeta(MathHelper.getInt(randomIn, i1, l)), 5, 1, i, structureBoundingBoxIn);
+            this.setBlockState(worldIn, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(randomIn, i1, l)), 4, 1, i, structureBoundingBoxIn);
+            this.setBlockState(worldIn, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(randomIn, i1, l)), 5, 1, i, structureBoundingBoxIn);
         }
 
         for (int j1 = 0; j1 < 9; ++j1)

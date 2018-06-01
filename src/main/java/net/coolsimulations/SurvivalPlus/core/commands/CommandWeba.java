@@ -22,13 +22,13 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandWeba extends CommandBase{
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		
 		return "weba";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender sender) {
 		
 		return "sp.commands.weba.usage";
 	}
@@ -43,7 +43,7 @@ public class CommandWeba extends CommandBase{
 		else if(args.length == 1)
 		{
 			EntityPlayer entityplayer = getPlayer(server, sender, args[0]);
-			EntityPlayer player = Minecraft.getMinecraft().player;
+			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 			
 			if (entityplayer == sender)
 			{
@@ -51,7 +51,7 @@ public class CommandWeba extends CommandBase{
 			}else {
 				TextComponentTranslation weba = new TextComponentTranslation("sp.commands.weba.display", new Object[] {sender.getDisplayName(), entityplayer.getDisplayName()});
 				weba.getStyle().setColor(TextFormatting.GOLD);
-				server.getPlayerList().sendMessage(weba);
+				server.getPlayerList().sendChatMsg(weba);
 			}
 		}
 		
@@ -70,9 +70,9 @@ public class CommandWeba extends CommandBase{
     }
     
     @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
     {
-        return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
+        return getListOfStringsMatchingLastWord(args, server.getAllUsernames());
     }
 
 }

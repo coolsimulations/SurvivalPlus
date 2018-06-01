@@ -18,13 +18,13 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandSmiley extends CommandBase{
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		
 		return ":)";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender sender) {
 		
 		return "sp.commands.smiley.usage";
 	}
@@ -39,7 +39,7 @@ public class CommandSmiley extends CommandBase{
         } else {
         	TextComponentTranslation smiley = new TextComponentTranslation("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
 			smiley.getStyle().setColor(TextFormatting.GREEN);
-        	server.getPlayerList().sendMessage(smiley);
+        	server.getPlayerList().sendChatMsg(smiley);
         }
 		
 	}
@@ -57,7 +57,7 @@ public class CommandSmiley extends CommandBase{
     }
     
     @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
     {
         return getListOfStringsMatchingLastWord(args);
     }
