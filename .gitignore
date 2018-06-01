@@ -12,7 +12,7 @@
 /.gradle/
 /.settings/
 /.classpath/
-/.project/
+.project/
 *.launch
 
 #OS generated files
