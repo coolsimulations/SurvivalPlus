@@ -33,6 +33,7 @@ public class SurvivalPlusShapelessRecipes {
 	addShapelessOreRecipe(new ItemStack(SPItems.rabbit_pie), new ItemStack(Items.COOKED_RABBIT), "egg", new ItemStack(Items.SUGAR));
 	addShapelessOreRecipe(new ItemStack(SPItems.vegetable_pie), new ItemStack(Items.BEETROOT), "cropCarrot", "cropOnion", "egg", new ItemStack(Items.SUGAR));
 	addShapelessOreRecipe(new ItemStack(SPItems.cheese_cupcake, 7), "cupPaper", "cupPaper", "cupPaper", "cupPaper", "cupPaper", "cupPaper", "cupPaper", "foodCheesecake");
+	addShapelessOreRecipe(new ItemStack(SPItems.sponge_cupcake, 7), "cupPaper", "cupPaper", "cupPaper", "cupPaper", "cupPaper", "cupPaper", "cupPaper", "foodSpongecake");
 	addShapelessOreRecipe(new ItemStack(SPItems.cheese_bread), new Object[] {Items.BREAD, "foodCheese"});
 
 	}
