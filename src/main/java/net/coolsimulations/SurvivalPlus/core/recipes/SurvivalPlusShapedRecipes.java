@@ -25,13 +25,9 @@ public class SurvivalPlusShapedRecipes {
 	addRecipe(new ItemStack(SPBlocks.bronze_block), new Object[]{"BBB","BBB","BBB", 'B', "ingotBronze"});
 	addRecipe(new ItemStack(SPBlocks.titanium_block), new Object[]{"TTT","TTT","TTT", 'T', "ingotTitanium"});
 	GameRegistry.addRecipe(new ItemStack(SPItems.cheese, 6), new Object[]{"MMM", 'M', Items.MILK_BUCKET});
-	
-<<<<<<< HEAD
-	addRecipe(new ItemStack(SPBlocks.campfire), new Object[]{"S S","WWW","   ", 'S', "stickWood", 'W', "logWood"});
-	addRecipe(new ItemStack(SPBlocks.campfire), new Object[]{"   ","S S","WWW", 'S', "stickWood", 'W', "logWood"});
-=======
+
 	addRecipe(new ItemStack(SPBlocks.campfire), new Object[]{"S S","WWW", 'S', "stickWood", 'W', "logWood"});
->>>>>>> 56bd8bad81f789036d017e9d4785df60c82bf9ee
+
 	addRecipe(new ItemStack(SPItems.paper_cup, 7), new Object[]{"P P"," P ", 'P', "paper"});
 	addRecipe(new ItemStack(SPItems.bronze_ingot), new Object[]{"BBB","BBB", "BBB", 'B', "nuggetBronze"});
 	addRecipe(new ItemStack(SPItems.titanium_ingot), new Object[]{"BBB","BBB", "BBB", 'B', "nuggetTitanium"});
