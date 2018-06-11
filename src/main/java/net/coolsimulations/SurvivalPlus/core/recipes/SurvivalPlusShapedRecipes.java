@@ -141,7 +141,7 @@ public class SurvivalPlusShapedRecipes {
 	
 	if(SPConfig.enableSponge) {
 		
-		addRecipe(new ItemStack(Blocks.SPONGE), new Object[]{"CWC","WGW","CWC", 'G', "ingotGold", 'C', "foodCheese", 'W', new ItemStack(Blocks.WOOL, 1, 4)});
+		addRecipe(new ItemStack(Blocks.SPONGE), new Object[]{"CWC","WGW","CWC", 'G', "nuggetGold", 'C', "foodCheese", 'W', new ItemStack(Blocks.WOOL, 1, 4)});
 	}
 	
 	if(SPCompatibilityManager.isGCLoaded() && SPConfig.enableCheeseBlock) {
