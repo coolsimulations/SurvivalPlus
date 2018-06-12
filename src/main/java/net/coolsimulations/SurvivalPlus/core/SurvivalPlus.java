@@ -132,7 +132,7 @@ public class SurvivalPlus {
         {
         SurvivalPlusIC2Recipes.init();
         }else{
-        		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(SPItems.bronze_ingot), "ingotCopper", "ingotCopper", "ingotCopper", "ingotTin");
+        		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(SPItems.bronze_ingot, 3), "ingotCopper", "ingotCopper", "ingotCopper", "ingotTin");
         }
 			
 	}
