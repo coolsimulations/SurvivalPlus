@@ -14,6 +14,7 @@ import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusShapelessRecipes;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -47,24 +48,10 @@ public class SurvivalPlusAPIRecipes {
 	private static void addIndustrialCraft2Recipes()
     {
 		
-		//These recipes are added so that you can used BOP dirt and grass to makes these
-		addRecipe(IC2Items.getItem("te", "terraformer"), new Object []{"GTG", "DAD", "GDG", 'G', "dustGlowstone", 'T', IC2Items.getItem("tfbp", "blank"), 'A', IC2Items.getItem("resource", "advanced_machine"), 'D', "dirt"});
-		addRecipe(IC2Items.getItem("te", "recycler"), new Object []{" G ", "DCD", "IDI", 'G', "dustGlowstone", 'C', IC2Items.getItem("te", "compressor"), 'I', "ingotIron", 'D', "dirt"});
-		addRecipe(IC2Items.getItem("tfbp", "flatification"), new Object []{" D ", "DTD", " D ", 'T', IC2Items.getItem("tfbp", "blank"), 'D', "dirt"});
-		if (SPCompatibilityManager.isBopLoaded()){
-			GameRegistry.addRecipe(IC2Items.getItem("crafting", "plant_ball"), new Object []{"GGG", "G G", "GGG", 'G', new ItemStack(BOPBlocks.plant_0, 1, 0)});
-			GameRegistry.addRecipe(IC2Items.getItem("crafting", "plant_ball"), new Object []{"GGG", "G G", "GGG", 'G', new ItemStack(BOPBlocks.plant_0, 1, 1)});
-			GameRegistry.addRecipe(IC2Items.getItem("crafting", "plant_ball"), new Object []{"GGG", "G G", "GGG", 'G', new ItemStack(BOPBlocks.plant_0, 1, 7)});
-			GameRegistry.addRecipe(IC2Items.getItem("crafting", "plant_ball"), new Object []{"GGG", "G G", "GGG", 'G', new ItemStack(BOPBlocks.plant_0, 1, 8)});
-			GameRegistry.addRecipe(IC2Items.getItem("crafting", "plant_ball"), new Object []{"GGG", "G G", "GGG", 'G', new ItemStack(BOPBlocks.plant_0, 1, 13)});
-			GameRegistry.addRecipe(IC2Items.getItem("crafting", "plant_ball"), new Object []{"GGG", "G G", "GGG", 'G', new ItemStack(BOPBlocks.plant_0, 1, 14)});
-			GameRegistry.addRecipe(IC2Items.getItem("crafting", "plant_ball"), new Object []{"GGG", "G G", "GGG", 'G', new ItemStack(BOPBlocks.plant_1)});
-		}
-		
 		addRecipe(new ItemStack(SPItems.titanium_dust), new Object []{"CCC", "CCC", "CCC", 'C', "dustTinyTitanium"});
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(SPItems.titanium_casing, 2), new Object []{"plateTitanium", "craftingToolForgeHammer"});
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(SPItems.titanium_plate), new Object []{"ingotTitanium", "craftingToolForgeHammer"});
-		addRecipe(IC2Items.getItem("cable", "type:glass,insulation:0"), new Object []{"GGG", "ETE", "GGG", 'G', "blockGlass", 'T', "dustTitanium", 'E', IC2Items.getItem("dust", "energium")});
+		addRecipe(IC2Items.getItem("cable", "type:glass,insulation:0"), new Object []{"GGG", "ETE", "GGG", 'G', Blocks.GLASS, 'T', "dustTitanium", 'E', IC2Items.getItem("dust", "energium")});
 		
 		removeCraftingRecipe(IC2Items.getItem("te", "blast_furnace"));
 		addRecipe(IC2Items.getItem("te", "blast_furnace"), new Object []{"CTC", "TMT", "CHC", 'T', "casingTitanium", 'C', IC2Items.getItem("casing", "iron"), 'M', IC2Items.getItem("resource", "machine"), 'H', IC2Items.getItem("crafting", "heat_conductor")});
