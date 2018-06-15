@@ -80,7 +80,7 @@ public class SurvivalPlusAPIRecipes {
 		}
 		}
 		
-		if(SPCompatibilityManager.isGCLoaded()){
+		if(SPCompatibilityManager.isGCLoaded() && !SPConfig.enableReplaceBOPRecipe){
 			GameRegistry.addShapelessRecipe(new ItemStack(BOPItems.terrestrial_artifact), new Object[] {new ItemStack(BOPBlocks.gem_ore, 1), new ItemStack(BOPBlocks.gem_ore, 3), new ItemStack(BOPBlocks.gem_ore, 7), new ItemStack(BOPBlocks.gem_ore, 2), new ItemStack(BOPBlocks.gem_ore, 5), new ItemStack(GCItems.itemBasicMoon, 1, 2), new ItemStack(BOPBlocks.gem_ore, 4), new ItemStack(Blocks.EMERALD_ORE)});
 		}
 		
