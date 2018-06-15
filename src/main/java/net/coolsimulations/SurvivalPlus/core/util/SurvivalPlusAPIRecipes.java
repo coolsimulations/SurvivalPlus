@@ -75,10 +75,13 @@ public class SurvivalPlusAPIRecipes {
 		if(SPConfig.enableReplaceBOPRecipe){
 		removeCraftingRecipe(new ItemStack(BOPItems.terrestrial_artifact));
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(BOPItems.terrestrial_artifact), new Object[] {"gemRuby", "gemTopaz", "gemAmber", "gemPeridot", "gemMalachite", "gemSapphire", "gemTanzanite", "gemEmerald"});
+		if(SPCompatibilityManager.isGCLoaded()){
+			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(BOPItems.terrestrial_artifact), new Object[] {"gemRuby", "gemTopaz", "gemAmber", "gemPeridot", "gemMalachite", new ItemStack(GCItems.itemBasicMoon, 1, 2), "gemTanzanite", "gemEmerald"});
+		}
 		}
 		
 		if(SPCompatibilityManager.isGCLoaded()){
-			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(BOPItems.terrestrial_artifact), new Object[] {"gemRuby", "gemTopaz", "gemAmber", "gemPeridot", "gemMalachite", new ItemStack(GCItems.itemBasicMoon, 1, 2), "gemTanzanite", "gemEmerald"});
+			GameRegistry.addShapelessRecipe(new ItemStack(BOPItems.terrestrial_artifact), new Object[] {new ItemStack(BOPBlocks.gem_ore, 1), new ItemStack(BOPBlocks.gem_ore, 3), new ItemStack(BOPBlocks.gem_ore, 7), new ItemStack(BOPBlocks.gem_ore, 2), new ItemStack(BOPBlocks.gem_ore, 5), new ItemStack(GCItems.itemBasicMoon, 1, 2), new ItemStack(BOPBlocks.gem_ore, 4), new ItemStack(Blocks.EMERALD_ORE)});
 		}
 		
 		removeCraftingRecipe(new ItemStack(BOPItems.white_dye, 2));
