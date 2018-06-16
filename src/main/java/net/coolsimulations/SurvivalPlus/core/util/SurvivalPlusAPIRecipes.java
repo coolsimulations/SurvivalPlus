@@ -47,11 +47,13 @@ public class SurvivalPlusAPIRecipes {
 	
 	private static void addIndustrialCraft2Recipes()
     {
+		ItemStack cable = IC2Items.getItem("cable", "type:glass,insulation:0");
+		cable.setCount(6);
 		
 		addRecipe(new ItemStack(SPItems.titanium_dust), new Object []{"CCC", "CCC", "CCC", 'C', "dustTinyTitanium"});
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(SPItems.titanium_casing, 2), new Object []{"plateTitanium", "craftingToolForgeHammer"});
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(SPItems.titanium_plate), new Object []{"ingotTitanium", "craftingToolForgeHammer"});
-		addRecipe(IC2Items.getItem("cable", "type:glass,insulation:0"), new Object []{"GGG", "ETE", "GGG", 'G', Blocks.GLASS, 'T', "dustTitanium", 'E', IC2Items.getItem("dust", "energium")});
+		addRecipe(cable, new Object []{"GGG", "ETE", "GGG", 'G', Blocks.GLASS, 'T', "dustTitanium", 'E', IC2Items.getItem("dust", "energium")});
 		
 		removeCraftingRecipe(IC2Items.getItem("te", "blast_furnace"));
 		addRecipe(IC2Items.getItem("te", "blast_furnace"), new Object []{"CTC", "TMT", "CHC", 'T', "casingTitanium", 'C', IC2Items.getItem("casing", "iron"), 'M', IC2Items.getItem("resource", "machine"), 'H', IC2Items.getItem("crafting", "heat_conductor")});
