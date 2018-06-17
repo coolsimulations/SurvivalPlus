@@ -144,11 +144,6 @@ public class SurvivalPlusShapedRecipes {
 		addRecipe(new ItemStack(Blocks.SPONGE), new Object[]{"CWC","WGW","CWC", 'G', "nuggetGold", 'C', "foodCheese", 'W', new ItemStack(Blocks.WOOL, 1, 4)});
 	}
 	
-	if(SPCompatibilityManager.isGCLoaded() && SPConfig.enableCheeseBlock) {
-		
-		addRecipe(new ItemStack(GCBlocks.cheeseBlock), new Object[]{"CCC","CMC","CCC", 'M', Items.MILK_BUCKET, 'C', "foodCheese"});
-	}
-	
 	if(SPCompatibilityManager.isFlourPowerLoaded() && ConfigHandler.enableCakeRecipe) {
 		
 		addRecipe(new ItemStack(SPBlocks.sponge_cake), new Object[]{"PMP","SES","FFF", 'M', Items.MILK_BUCKET, 'P', Blocks.SPONGE, 'S', Items.SUGAR, 'E', "egg", 'F', new ItemStack(ItemFlourPower.itemFlour)});

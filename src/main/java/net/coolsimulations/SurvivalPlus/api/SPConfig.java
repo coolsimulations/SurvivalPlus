@@ -5,7 +5,6 @@ import net.minecraftforge.common.config.Configuration;
 public class SPConfig {
 	
     public static boolean enableSponge;
-    public static boolean enableCheeseBlock;
     public static boolean enableReplaceBOPRecipe;
     public static boolean disableCopperOreGen;
     public static boolean disableTinOreGen;
