@@ -55,21 +55,6 @@ public class SurvivalPlusAPIRecipes {
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(SPItems.titanium_plate), new Object []{"ingotTitanium", "craftingToolForgeHammer"});
 		addRecipe(cable, new Object []{"GGG", "ETE", "GGG", 'G', Blocks.GLASS, 'T', "dustTitanium", 'E', IC2Items.getItem("dust", "energium")});
 		
-		removeCraftingRecipe(IC2Items.getItem("te", "blast_furnace"));
-		addRecipe(IC2Items.getItem("te", "blast_furnace"), new Object []{"CTC", "TMT", "CHC", 'T', "casingTitanium", 'C', IC2Items.getItem("casing", "iron"), 'M', IC2Items.getItem("resource", "machine"), 'H', IC2Items.getItem("crafting", "heat_conductor")});
-		removeCraftingRecipe(IC2Items.getItem("te", "steam_generator"));
-		addRecipe(IC2Items.getItem("te", "steam_generator"), new Object []{"CTC", "TBT", "CHC", 'T', "casingTitanium", 'C', IC2Items.getItem("casing", "iron"), 'B', IC2Items.getItem("crafting", "copper_boiler"), 'H', IC2Items.getItem("crafting", "heat_conductor")});
-		removeCraftingRecipe(IC2Items.getItem("te", "electric_heat_generator"));
-		addRecipe(IC2Items.getItem("te", "electric_heat_generator"), new Object []{"CRC", "TET", "CHC", 'T', "casingTitanium", 'R', new ItemStack(IC2Items.getItem("re_battery").getItem(), 1, OreDictionary.WILDCARD_VALUE), 'C', IC2Items.getItem("casing", "iron"), 'E', "circuitBasic", 'H', IC2Items.getItem("crafting", "heat_conductor")});
-		removeCraftingRecipe(IC2Items.getItem("te", "rt_generator"));
-		addRecipe(IC2Items.getItem("te", "rt_generator"), new Object []{"CTC", "TRT", "CGC", 'T', "casingTitanium", 'R', IC2Items.getItem("te", "reactor_chamber"), 'C', IC2Items.getItem("casing", "iron"), 'G', IC2Items.getItem("te", "generator")});
-		removeCraftingRecipe(IC2Items.getItem("te", "rt_heat_generator"));
-		addRecipe(IC2Items.getItem("te", "rt_heat_generator"), new Object []{"CTC", "TRT", "CHC", 'T', "casingTitanium", 'R', IC2Items.getItem("te", "reactor_chamber"), 'C', IC2Items.getItem("casing", "iron"), 'H', IC2Items.getItem("crafting", "heat_conductor")});
-		removeCraftingRecipe(IC2Items.getItem("drill"));
-		addRecipe(IC2Items.getItem("drill"), new Object []{" P ", "PPP", "TUT", 'P', "plateIron", 'T', "plateTitanium", 'U', IC2Items.getItem("crafting", "power_unit")});
-		removeCraftingRecipe(IC2Items.getItem("chainsaw"));
-		addRecipe(IC2Items.getItem("chainsaw"), new Object []{" PP", "TPP", "UT ", 'P', "plateIron", 'T', "plateTitanium", 'U', IC2Items.getItem("crafting", "power_unit")});
-		
     }
 	
 	private static void addSPItemsRecipes() {
