@@ -149,11 +149,10 @@ public class SurvivalPlusShapedRecipes {
 		addRecipe(new ItemStack(SPBlocks.sponge_cake), new Object[]{"PMP","SES","FFF", 'M', Items.MILK_BUCKET, 'P', Blocks.SPONGE, 'S', Items.SUGAR, 'E', "egg", 'F', "flour"});
 		addRecipe(new ItemStack(SPBlocks.cheese_cake), new Object[]{"CMC","SES","FFF", 'M', Items.MILK_BUCKET, 'C', "foodCheese", 'S', Items.SUGAR, 'E', "egg", 'F', "flour"});
 		
-	}else {
-		
-		addRecipe(new ItemStack(SPBlocks.sponge_cake), new Object[]{"PMP","SES","WWW", 'M', Items.MILK_BUCKET, 'P', Blocks.SPONGE, 'S', Items.SUGAR, 'E', "egg", 'W', "cropWheat"});
-		addRecipe(new ItemStack(SPBlocks.cheese_cake), new Object[]{"CMC","SES","WWW", 'M', Items.MILK_BUCKET, 'C', "foodCheese", 'S', Items.SUGAR, 'E', "egg", 'W', "cropWheat"});
 	}
+	
+	addRecipe(new ItemStack(SPBlocks.sponge_cake), new Object[]{"PMP","SES","WWW", 'M', Items.MILK_BUCKET, 'P', Blocks.SPONGE, 'S', Items.SUGAR, 'E', "egg", 'W', "cropWheat"});
+	addRecipe(new ItemStack(SPBlocks.cheese_cake), new Object[]{"CMC","SES","WWW", 'M', Items.MILK_BUCKET, 'C', "foodCheese", 'S', Items.SUGAR, 'E', "egg", 'W', "cropWheat"});
 	
 	}
 	
