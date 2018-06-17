@@ -1,0 +1,32 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "sponge_cake",
+  "pattern": [
+    "PMP",
+    "SES",
+    "FFF"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:sponge",
+      "data": 0
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "E": {
+      "type": "forge:ore_dict",
+      "ore": "egg"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "F": {
+      "type": "forge:ore_dict",
+      "ore": "flour"
+    }
+  },
+  "result": {
+    "item": "survivalplus:sponge_cake"
+  }
+}

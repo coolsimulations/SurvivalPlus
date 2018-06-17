@@ -1,0 +1,22 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "cardboard",
+  "pattern": [
+    "SSS",
+    "SDS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "survivalplus:cardboard"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "dyePurple"
+    }
+  },
+  "result": {
+    "item": "survivalplus:cardboard_purple",
+    "count": 8
+  }
+}

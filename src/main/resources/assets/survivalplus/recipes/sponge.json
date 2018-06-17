@@ -1,0 +1,26 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "CWC",
+    "WGW",
+    "CWC"
+  ],
+  "key": {
+    "C": {
+      "type": "forge:ore_dict",
+      "ore": "foodCheese"
+    },
+    "W": {
+      "item": "minecraft:wool",
+      "data": 4
+    },
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetGold"
+    }
+  },
+  "result": {
+    "item": "minecraft:sponge",
+    "data": 0
+  }
+}

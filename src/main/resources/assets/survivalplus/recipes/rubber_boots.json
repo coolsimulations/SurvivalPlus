@@ -1,0 +1,16 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "woodRubber"
+    }
+  },
+  "result": {
+    "item": "survivalplus:rubber_boots"
+  }
+}

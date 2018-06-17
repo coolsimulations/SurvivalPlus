@@ -1,0 +1,16 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "ingotTitanium"
+    }
+  },
+  "result": {
+    "item": "survivalplus:titanium_boots"
+  }
+}

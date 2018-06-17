@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "biomesoplenty:log_1",
+      "data": 5
+    }
+  },
+  "result": {
+    "item": "survivalplus:magic_helmet"
+  }
+}

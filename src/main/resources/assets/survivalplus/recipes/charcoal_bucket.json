@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:coal",
+      "data": 1
+    },
+    {
+      "item": "minecraft:coal",
+      "data": 1
+    },
+    {
+      "item": "minecraft:coal",
+      "data": 1
+    },
+    {
+      "item": "minecraft:bucket",
+      "data": 0
+    }
+  ],
+  "result": {
+    "item": "survivalplus:charcoal_bucket"
+  }
+}

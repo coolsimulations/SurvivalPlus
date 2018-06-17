@@ -1,0 +1,26 @@
+{
+  "type": "forge:ore_shapeless",
+  "group": "bronze_ingot",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotCopper"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotTin"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotTin"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotTin"
+    }
+  ],
+  "result": {
+    "item": "survivalplus:bronze_ingot",
+    "count": 3
+  }
+}

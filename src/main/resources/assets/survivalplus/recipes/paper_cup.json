@@ -1,0 +1,17 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "P P",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "paper"
+    }
+  },
+  "result": {
+    "item": "survivalplus:paper_cup",
+    "count": 7
+  }
+}

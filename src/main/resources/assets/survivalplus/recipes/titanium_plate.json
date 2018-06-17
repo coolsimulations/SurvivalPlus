@@ -1,0 +1,16 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotTitanium"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "craftingToolForgeHammer"
+    }
+  ],
+  "result": {
+    "item": "survivalplus:titanium_plate"
+  }
+}

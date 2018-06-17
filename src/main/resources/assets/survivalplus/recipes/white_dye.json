@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "white_dye",
+  "ingredients": [
+    {
+      "item": "survivalplus:raw_onion",
+      "data": 0
+    }
+  ],
+  "result": {
+    "item": "survivalplus:white_dye",
+    "count": 2
+  }
+}

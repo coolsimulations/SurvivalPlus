@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "biomesoplenty:log_1",
+      "data": 7
+    }
+  },
+  "result": {
+    "item": "survivalplus:palm_chestplate"
+  }
+}

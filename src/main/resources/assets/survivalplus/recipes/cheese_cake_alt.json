@@ -1,0 +1,32 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "cheese_cake",
+  "pattern": [
+    "CMC",
+    "SES",
+    "FFF"
+  ],
+  "key": {
+    "C": {
+      "type": "forge:ore_dict",
+      "ore": "foodCheese"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "E": {
+      "type": "forge:ore_dict",
+      "ore": "egg"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "F": {
+      "type": "forge:ore_dict",
+      "ore": "flour"
+    }
+  },
+  "result": {
+    "item": "survivalplus:cheese_cake"
+  }
+}

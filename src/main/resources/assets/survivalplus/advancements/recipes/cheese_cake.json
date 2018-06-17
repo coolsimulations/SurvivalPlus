@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "survivalplus:cheese_cake",
+      "survivalplus:cheese_cake_alt"
+    ]
+  },
+  "criteria": {
+    "has_cheese": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "foodCheese"
+          }
+        ]
+      }
+    },
+    "has_egg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "egg"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "survivalplus:cheese_cake",
+        "recipe": "survivalplus:cheese_cake_alt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cheese",
+      "has_egg",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "cupPaper"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "cupPaper"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "cupPaper"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "cupPaper"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "cupPaper"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "cupPaper"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "cupPaper"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "foodCheesecake"
+    }
+  ],
+  "result": {
+    "item": "survivalplus:cheese_cupcake",
+    "count": 7
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "foodApplebaked"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "egg"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "item": "survivalplus:apple_pie"
+  }
+}

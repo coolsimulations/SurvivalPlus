@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "biomesoplenty:log_0",
+      "data": 6
+    }
+  },
+  "result": {
+    "item": "survivalplus:umbran_chestplate"
+  }
+}

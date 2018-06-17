@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "campfire",
+  "pattern": [
+    "S S",
+    "WRR"
+  ],
+  "key": {
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "woodRubber"
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    }
+  },
+  "result": {
+    "item": "survivalplus:campfire"
+  }
+}

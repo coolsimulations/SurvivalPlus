@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "biomesoplenty:log_2",
+      "data": 6
+    }
+  },
+  "result": {
+    "item": "survivalplus:pine_leggings"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    " X",
+    "X "
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "ingotBronze"
+    }
+  },
+  "result": {
+    "item": "survivalplus:bronze_shears"
+  }
+}

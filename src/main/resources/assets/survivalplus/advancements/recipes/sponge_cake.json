@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "survivalplus:sponge_cake",
+      "survivalplus:sponge_cake_alt"
+    ]
+  },
+  "criteria": {
+    "has_sponge": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:sponge",
+            "data": 0
+          }
+        ]
+      }
+    },
+    "has_egg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "egg"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "survivalplus:sponge_cake",
+        "recipe": "survivalplus:sponge_cake_alt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sponge",
+      "has_egg",
+      "has_the_recipe"
+    ]
+  ]
+}
