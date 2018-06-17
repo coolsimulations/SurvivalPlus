@@ -4,14 +4,13 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class SurvivalPlusItems {
 	
@@ -24,7 +23,7 @@ public class SurvivalPlusItems {
 		SPItems.bronze_nugget = new Item().setUnlocalizedName("bronze_nugget").setRegistryName("bronze_nugget").setCreativeTab(SurvivalPlus.tabMaterials);
 		SPItems.titanium_ingot = new Item().setUnlocalizedName("titanium_ingot").setRegistryName("titanium_ingot").setCreativeTab(SurvivalPlus.tabMaterials);
 		SPItems.titanium_nugget = new Item().setUnlocalizedName("titanium_nugget").setRegistryName("titanium_nugget").setCreativeTab(SurvivalPlus.tabMaterials);
-		SPItems.charcoal_bucket = new Item().setUnlocalizedName("charcoal_bucket").setRegistryName("charcoal_bucket").setMaxStackSize(1).setCreativeTab(SurvivalPlus.tabMaterials);
+		SPItems.charcoal_bucket = new Item().setUnlocalizedName("charcoal_bucket").setRegistryName("charcoal_bucket").setMaxStackSize(1).setContainerItem(Items.BUCKET).setCreativeTab(SurvivalPlus.tabMaterials);
 		SPItems.paper_cup = new Item().setUnlocalizedName("paper_cup").setRegistryName("paper_cup").setCreativeTab(SurvivalPlus.tabMaterials);
 		SPItems.white_dye = new Item().setUnlocalizedName("white_dye").setRegistryName("white_dye").setCreativeTab(SurvivalPlus.tabMaterials);
 		
@@ -43,26 +42,26 @@ public class SurvivalPlusItems {
 	}
 	public static void register()
 	{
-		GameRegistry.register(SPItems.tin_ingot);
-		GameRegistry.register(SPItems.copper_ingot);
-		GameRegistry.register(SPItems.onion_seeds);
-		GameRegistry.register(SPItems.bronze_ingot);
-		GameRegistry.register(SPItems.bronze_nugget);
-		GameRegistry.register(SPItems.titanium_ingot);
-		GameRegistry.register(SPItems.titanium_nugget);
-		GameRegistry.register(SPItems.charcoal_bucket);
-		GameRegistry.register(SPItems.paper_cup);
-		GameRegistry.register(SPItems.white_dye);
+		registerItem(SPItems.tin_ingot);
+		registerItem(SPItems.copper_ingot);
+		registerItem(SPItems.onion_seeds);
+		registerItem(SPItems.bronze_ingot);
+		registerItem(SPItems.bronze_nugget);
+		registerItem(SPItems.titanium_ingot);
+		registerItem(SPItems.titanium_nugget);
+		registerItem(SPItems.charcoal_bucket);
+		registerItem(SPItems.paper_cup);
+		registerItem(SPItems.white_dye);
 
 		if (SPCompatibilityManager.isIc2Loaded())
         {
-			GameRegistry.register(SPItems.crushed_titanium_ore);
-			GameRegistry.register(SPItems.titanium_dust);
-			GameRegistry.register(SPItems.purified_titanium_ore);
-			GameRegistry.register(SPItems.tiny_titanium_pile);
-			GameRegistry.register(SPItems.titanium_plate);
-			GameRegistry.register(SPItems.titanium_dense_plate);
-			GameRegistry.register(SPItems.titanium_casing);
+			registerItem(SPItems.crushed_titanium_ore);
+			registerItem(SPItems.titanium_dust);
+			registerItem(SPItems.purified_titanium_ore);
+			registerItem(SPItems.tiny_titanium_pile);
+			registerItem(SPItems.titanium_plate);
+			registerItem(SPItems.titanium_dense_plate);
+			registerItem(SPItems.titanium_casing);
         }
 	}
 
@@ -93,8 +92,21 @@ public class SurvivalPlusItems {
 		
 	}
 	
+	public static void registerItem(Item item) {
+		
+		SurvivalPlus.ITEMS.add(item);
+	}
+	
+	public static void registerItems(IForgeRegistry<Item> registry) {
+		
+	for (Item item : SurvivalPlus.ITEMS)
+    {
+        registry.register(item);
+    	}
+	}
+	
 	public static void registerRender(Item item)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
 }

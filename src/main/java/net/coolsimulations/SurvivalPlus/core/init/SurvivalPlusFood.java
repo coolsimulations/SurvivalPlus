@@ -10,7 +10,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemAppleGold;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSoup;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class SurvivalPlusFood {
 	
@@ -39,25 +41,38 @@ public class SurvivalPlusFood {
 	}
 	public static void register()
 	{
-		GameRegistry.register(SPItems.apple_pie);
-		GameRegistry.register(SPItems.beef_pie);
-		GameRegistry.register(SPItems.pork_pie);
-		GameRegistry.register(SPItems.chicken_pie);
-		GameRegistry.register(SPItems.mutton_pie);
-		GameRegistry.register(SPItems.rabbit_pie);
-		GameRegistry.register(SPItems.vegetable_pie);
-		GameRegistry.register(SPItems.raw_onion);
-		GameRegistry.register(SPItems.onion_soup);
-		GameRegistry.register(SPItems.fried_egg);
-		GameRegistry.register(SPItems.roast_carrot);
-		GameRegistry.register(SPItems.cheese);
-		GameRegistry.register(SPItems.cheese_bread);
-		GameRegistry.register(SPItems.melted_cheese_bread);
-		GameRegistry.register(SPItems.cupcake);
-		GameRegistry.register(SPItems.cheese_cupcake);
-		GameRegistry.register(SPItems.sponge_cupcake);
-		GameRegistry.register(SPItems.baked_apple);
-		GameRegistry.register(SPItems.fried_onion);
+		registerItem(SPItems.apple_pie);
+		registerItem(SPItems.beef_pie);
+		registerItem(SPItems.pork_pie);
+		registerItem(SPItems.chicken_pie);
+		registerItem(SPItems.mutton_pie);
+		registerItem(SPItems.rabbit_pie);
+		registerItem(SPItems.vegetable_pie);
+		registerItem(SPItems.raw_onion);
+		registerItem(SPItems.onion_soup);
+		registerItem(SPItems.fried_egg);
+		registerItem(SPItems.roast_carrot);
+		registerItem(SPItems.cheese);
+		registerItem(SPItems.cheese_bread);
+		registerItem(SPItems.melted_cheese_bread);
+		registerItem(SPItems.cupcake);
+		registerItem(SPItems.cheese_cupcake);
+		registerItem(SPItems.sponge_cupcake);
+		registerItem(SPItems.baked_apple);
+		registerItem(SPItems.fried_onion);
+	}
+	
+	public static void registerItem(Item item) {
+		
+		SurvivalPlus.ITEMS_FOOD.add(item);
+	}
+
+	public static void registerItems(IForgeRegistry<Item> registry) {
+	
+	for (Item item : SurvivalPlus.ITEMS_FOOD)
+    {
+        registry.register(item);
+    	}
 	}
 	
 	public static void registerRenders()
@@ -85,7 +100,7 @@ public class SurvivalPlusFood {
 	}
 	public static void registerRender(Item item)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
 
 }

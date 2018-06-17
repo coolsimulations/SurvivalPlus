@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.client.IModGuiFactory;
+import net.minecraftforge.fml.client.IModGuiFactory.RuntimeOptionCategoryElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
 
 public class SurvivalPlusConfigGUI implements IModGuiFactory {
@@ -26,19 +27,7 @@ public class SurvivalPlusConfigGUI implements IModGuiFactory {
     }
 
     @Override
-    public Class<? extends GuiScreen> mainConfigGuiClass()
-    {
-        return SPConfigGUI.class;
-    }
-
-    @Override
     public Set<RuntimeOptionCategoryElement> runtimeGuiCategories()
-    {
-        return null;
-    }
-
-    @Override
-    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element)
     {
         return null;
     }

@@ -118,90 +118,90 @@ public class BOPArmor {
 	
 	public static void register()
 	{
-		GameRegistry.register(SPItems.cherry_helmet);
-		GameRegistry.register(SPItems.cherry_chestplate);
-		GameRegistry.register(SPItems.cherry_leggings);
-		GameRegistry.register(SPItems.cherry_boots);
+		SurvivalPlusArmor.registerItem(SPItems.cherry_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.cherry_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.cherry_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.cherry_boots);
 		
-		GameRegistry.register(SPItems.dead_helmet);
-		GameRegistry.register(SPItems.dead_chestplate);
-		GameRegistry.register(SPItems.dead_leggings);
-		GameRegistry.register(SPItems.dead_boots);
+		SurvivalPlusArmor.registerItem(SPItems.dead_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.dead_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.dead_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.dead_boots);
 		
-		GameRegistry.register(SPItems.ebony_helmet);
-		GameRegistry.register(SPItems.ebony_chestplate);
-		GameRegistry.register(SPItems.ebony_leggings);
-		GameRegistry.register(SPItems.ebony_boots);
+		SurvivalPlusArmor.registerItem(SPItems.ebony_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.ebony_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.ebony_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.ebony_boots);
 		
-		GameRegistry.register(SPItems.ethereal_helmet);
-		GameRegistry.register(SPItems.ethereal_chestplate);
-		GameRegistry.register(SPItems.ethereal_leggings);
-		GameRegistry.register(SPItems.ethereal_boots);
+		SurvivalPlusArmor.registerItem(SPItems.ethereal_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.ethereal_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.ethereal_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.ethereal_boots);
 
-		GameRegistry.register(SPItems.eucalyptus_helmet);
-		GameRegistry.register(SPItems.eucalyptus_chestplate);
-		GameRegistry.register(SPItems.eucalyptus_leggings);
-		GameRegistry.register(SPItems.eucalyptus_boots);
+		SurvivalPlusArmor.registerItem(SPItems.eucalyptus_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.eucalyptus_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.eucalyptus_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.eucalyptus_boots);
 
-		GameRegistry.register(SPItems.fir_helmet);
-		GameRegistry.register(SPItems.fir_chestplate);
-		GameRegistry.register(SPItems.fir_leggings);
-		GameRegistry.register(SPItems.fir_boots);
+		SurvivalPlusArmor.registerItem(SPItems.fir_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.fir_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.fir_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.fir_boots);
 
-		GameRegistry.register(SPItems.hellbark_helmet);
-		GameRegistry.register(SPItems.hellbark_chestplate);
-		GameRegistry.register(SPItems.hellbark_leggings);
-		GameRegistry.register(SPItems.hellbark_boots);
+		SurvivalPlusArmor.registerItem(SPItems.hellbark_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.hellbark_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.hellbark_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.hellbark_boots);
 
-		GameRegistry.register(SPItems.jacaranda_helmet);
-		GameRegistry.register(SPItems.jacaranda_chestplate);
-		GameRegistry.register(SPItems.jacaranda_leggings);
-		GameRegistry.register(SPItems.jacaranda_boots);
+		SurvivalPlusArmor.registerItem(SPItems.jacaranda_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.jacaranda_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.jacaranda_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.jacaranda_boots);
 
-		GameRegistry.register(SPItems.magic_helmet);
-		GameRegistry.register(SPItems.magic_chestplate);
-		GameRegistry.register(SPItems.magic_leggings);
-		GameRegistry.register(SPItems.magic_boots);
+		SurvivalPlusArmor.registerItem(SPItems.magic_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.magic_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.magic_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.magic_boots);
 
-		GameRegistry.register(SPItems.mahogany_helmet);
-		GameRegistry.register(SPItems.mahogany_chestplate);
-		GameRegistry.register(SPItems.mahogany_leggings);
-		GameRegistry.register(SPItems.mahogany_boots);
+		SurvivalPlusArmor.registerItem(SPItems.mahogany_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.mahogany_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.mahogany_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.mahogany_boots);
 		
-		GameRegistry.register(SPItems.mangrove_helmet);
-		GameRegistry.register(SPItems.mangrove_chestplate);
-		GameRegistry.register(SPItems.mangrove_leggings);
-		GameRegistry.register(SPItems.mangrove_boots);
+		SurvivalPlusArmor.registerItem(SPItems.mangrove_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.mangrove_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.mangrove_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.mangrove_boots);
 
-		GameRegistry.register(SPItems.palm_helmet);
-		GameRegistry.register(SPItems.palm_chestplate);
-		GameRegistry.register(SPItems.palm_leggings);
-		GameRegistry.register(SPItems.palm_boots);
+		SurvivalPlusArmor.registerItem(SPItems.palm_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.palm_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.palm_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.palm_boots);
 
-		GameRegistry.register(SPItems.pine_helmet);
-		GameRegistry.register(SPItems.pine_chestplate);
-		GameRegistry.register(SPItems.pine_leggings);
-		GameRegistry.register(SPItems.pine_boots);
+		SurvivalPlusArmor.registerItem(SPItems.pine_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.pine_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.pine_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.pine_boots);
 
-		GameRegistry.register(SPItems.redwood_helmet);
-		GameRegistry.register(SPItems.redwood_chestplate);
-		GameRegistry.register(SPItems.redwood_leggings);
-		GameRegistry.register(SPItems.redwood_boots);
+		SurvivalPlusArmor.registerItem(SPItems.redwood_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.redwood_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.redwood_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.redwood_boots);
 
-		GameRegistry.register(SPItems.sacred_oak_helmet);
-		GameRegistry.register(SPItems.sacred_oak_chestplate);
-		GameRegistry.register(SPItems.sacred_oak_leggings);
-		GameRegistry.register(SPItems.sacred_oak_boots);
+		SurvivalPlusArmor.registerItem(SPItems.sacred_oak_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.sacred_oak_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.sacred_oak_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.sacred_oak_boots);
 
-		GameRegistry.register(SPItems.umbran_helmet);
-		GameRegistry.register(SPItems.umbran_chestplate);
-		GameRegistry.register(SPItems.umbran_leggings);
-		GameRegistry.register(SPItems.umbran_boots);
+		SurvivalPlusArmor.registerItem(SPItems.umbran_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.umbran_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.umbran_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.umbran_boots);
 
-		GameRegistry.register(SPItems.willow_helmet);
-		GameRegistry.register(SPItems.willow_chestplate);
-		GameRegistry.register(SPItems.willow_leggings);
-		GameRegistry.register(SPItems.willow_boots);
+		SurvivalPlusArmor.registerItem(SPItems.willow_helmet);
+		SurvivalPlusArmor.registerItem(SPItems.willow_chestplate);
+		SurvivalPlusArmor.registerItem(SPItems.willow_leggings);
+		SurvivalPlusArmor.registerItem(SPItems.willow_boots);
 	}
 	
 	public static void registerRenders()

@@ -10,9 +10,11 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class SurvivalPlusArmor {
 	
@@ -90,48 +92,48 @@ public class SurvivalPlusArmor {
 	}
 	public static void register()
 	{
-		GameRegistry.register(SPItems.bronze_helmet);
-		GameRegistry.register(SPItems.bronze_chestplate);
-		GameRegistry.register(SPItems.bronze_leggings);
-		GameRegistry.register(SPItems.bronze_boots);
-		GameRegistry.register(SPItems.stone_helmet);
-		GameRegistry.register(SPItems.stone_chestplate);
-		GameRegistry.register(SPItems.stone_leggings);
-		GameRegistry.register(SPItems.stone_boots);
-		GameRegistry.register(SPItems.titanium_helmet);
-		GameRegistry.register(SPItems.titanium_chestplate);
-		GameRegistry.register(SPItems.titanium_leggings);
-		GameRegistry.register(SPItems.titanium_boots);
-		GameRegistry.register(SPItems.oak_helmet);
-		GameRegistry.register(SPItems.oak_chestplate);
-		GameRegistry.register(SPItems.oak_leggings);
-		GameRegistry.register(SPItems.oak_boots);
-		GameRegistry.register(SPItems.spruce_helmet);
-		GameRegistry.register(SPItems.spruce_chestplate);
-		GameRegistry.register(SPItems.spruce_leggings);
-		GameRegistry.register(SPItems.spruce_boots);
-		GameRegistry.register(SPItems.birch_helmet);
-		GameRegistry.register(SPItems.birch_chestplate);
-		GameRegistry.register(SPItems.birch_leggings);
-		GameRegistry.register(SPItems.birch_boots);
-		GameRegistry.register(SPItems.jungle_helmet);
-		GameRegistry.register(SPItems.jungle_chestplate);
-		GameRegistry.register(SPItems.jungle_leggings);
-		GameRegistry.register(SPItems.jungle_boots);
-		GameRegistry.register(SPItems.acacia_helmet);
-		GameRegistry.register(SPItems.acacia_chestplate);
-		GameRegistry.register(SPItems.acacia_leggings);
-		GameRegistry.register(SPItems.acacia_boots);
-		GameRegistry.register(SPItems.dark_oak_helmet);
-		GameRegistry.register(SPItems.dark_oak_chestplate);
-		GameRegistry.register(SPItems.dark_oak_leggings);
-		GameRegistry.register(SPItems.dark_oak_boots);
+		registerItem(SPItems.bronze_helmet);
+		registerItem(SPItems.bronze_chestplate);
+		registerItem(SPItems.bronze_leggings);
+		registerItem(SPItems.bronze_boots);
+		registerItem(SPItems.stone_helmet);
+		registerItem(SPItems.stone_chestplate);
+		registerItem(SPItems.stone_leggings);
+		registerItem(SPItems.stone_boots);
+		registerItem(SPItems.titanium_helmet);
+		registerItem(SPItems.titanium_chestplate);
+		registerItem(SPItems.titanium_leggings);
+		registerItem(SPItems.titanium_boots);
+		registerItem(SPItems.oak_helmet);
+		registerItem(SPItems.oak_chestplate);
+		registerItem(SPItems.oak_leggings);
+		registerItem(SPItems.oak_boots);
+		registerItem(SPItems.spruce_helmet);
+		registerItem(SPItems.spruce_chestplate);
+		registerItem(SPItems.spruce_leggings);
+		registerItem(SPItems.spruce_boots);
+		registerItem(SPItems.birch_helmet);
+		registerItem(SPItems.birch_chestplate);
+		registerItem(SPItems.birch_leggings);
+		registerItem(SPItems.birch_boots);
+		registerItem(SPItems.jungle_helmet);
+		registerItem(SPItems.jungle_chestplate);
+		registerItem(SPItems.jungle_leggings);
+		registerItem(SPItems.jungle_boots);
+		registerItem(SPItems.acacia_helmet);
+		registerItem(SPItems.acacia_chestplate);
+		registerItem(SPItems.acacia_leggings);
+		registerItem(SPItems.acacia_boots);
+		registerItem(SPItems.dark_oak_helmet);
+		registerItem(SPItems.dark_oak_chestplate);
+		registerItem(SPItems.dark_oak_leggings);
+		registerItem(SPItems.dark_oak_boots);
 		
 		if (OreDictionary.getOres("woodRubber").size() > 0) {
-			GameRegistry.register(SPItems.rubber_helmet);
-			GameRegistry.register(SPItems.rubber_chestplate);
-			GameRegistry.register(SPItems.rubber_leggings);
-			GameRegistry.register(SPItems.rubber_boots);
+			registerItem(SPItems.rubber_helmet);
+			registerItem(SPItems.rubber_chestplate);
+			registerItem(SPItems.rubber_leggings);
+			registerItem(SPItems.rubber_boots);
 		}
 		
 		if(SPCompatibilityManager.isBopLoaded()){
@@ -190,9 +192,23 @@ public class SurvivalPlusArmor {
 		}
 
 	}
+	
+	public static void registerItem(Item item) {
+		
+		SurvivalPlus.ITEMS_ARMOR.add(item);
+	}
+	
+	public static void registerItems(IForgeRegistry<Item> registry) {
+		
+	for (Item item : SurvivalPlus.ITEMS_ARMOR)
+    {
+        registry.register(item);
+    	}
+	}
+	
 	public static void registerRender(Item item)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
 
 }

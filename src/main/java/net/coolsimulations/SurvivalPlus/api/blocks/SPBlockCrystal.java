@@ -17,22 +17,25 @@ public class SPBlockCrystal extends Block{
 			super(Material.GLASS);
 			this.setHardness(1.0F);
 			this.setResistance(1.0F);
-			this.setLightOpacity(16);
+			this.setLightOpacity(0);
 			this.setLightLevel(0.4375F);
 			this.setHarvestLevel("pickaxe", 0);
 			this.blockSoundType = SoundType.GLASS;
 			
 		}
 		
+		@Override
 		public boolean isOpaqueCube(IBlockState state) {
 			return false;
 		}
 		
+		@Override
 		public boolean isFullCube(IBlockState state)
 		{
 			return false;
 		}
 		
+		@Override
 		public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	    {
 	        return Crystal_AABB;

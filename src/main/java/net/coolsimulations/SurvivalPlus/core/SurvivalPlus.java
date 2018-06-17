@@ -1,9 +1,10 @@
 package net.coolsimulations.SurvivalPlus.core;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
-import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandConfrats;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandIndeed;
@@ -25,8 +26,6 @@ import net.coolsimulations.SurvivalPlus.core.proxy.CommonProxy;
 import net.coolsimulations.SurvivalPlus.core.recipes.ButcherVillagerTradeHandler;
 import net.coolsimulations.SurvivalPlus.core.recipes.FarmerVillagerTradeHandler;
 import net.coolsimulations.SurvivalPlus.core.recipes.SmithVillagerTradeHandler;
-import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusShapedRecipes;
-import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusShapelessRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusSmeltingRecipes;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusBlocksTab;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusCombatTab;
@@ -38,11 +37,11 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusOreDict;
 import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnionCrop;
 import net.coolsimulations.SurvivalPlus.core.world.village.VillageOnionCropHandler;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -74,6 +73,12 @@ public class SurvivalPlus {
 	public static final CreativeTabs tabGem = new SurvivalPlusGemTab();
 	public static final CreativeTabs tabCombat = new SurvivalPlusCombatTab();
 	public static final CreativeTabs tabTools = new SurvivalPlusToolsTab();
+	
+	public static final List<Item> ITEMS = new ArrayList<Item>();
+	public static final List<Item> ITEMS_FOOD = new ArrayList<Item>();
+	public static final List<Item> ITEMS_ARMOR = new ArrayList<Item>();
+	public static final List<Item> ITEMS_TOOLS = new ArrayList<Item>();
+	public static final List<Block> BLOCKS = new ArrayList<Block>();
 		
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -101,7 +106,6 @@ public class SurvivalPlus {
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
-		SurvivalPlusOreDict.PreInit();
 	}
 	
 	@EventHandler
@@ -110,8 +114,6 @@ public class SurvivalPlus {
 		System.out.println("Init");
 		
 		proxy.init();
-		SurvivalPlusShapedRecipes.register();
-		SurvivalPlusShapelessRecipes.register();
 		SurvivalPlusSmeltingRecipes.register();
 		GameRegistry.registerFuelHandler(new FuelHandler());
 		
@@ -131,8 +133,6 @@ public class SurvivalPlus {
         if (SPCompatibilityManager.isIc2Loaded())
         {
         SurvivalPlusIC2Recipes.init();
-        }else{
-        		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(SPItems.bronze_ingot), "ingotCopper", "ingotCopper", "ingotCopper", "ingotTin");
         }
 			
 	}

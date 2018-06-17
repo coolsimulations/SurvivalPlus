@@ -11,8 +11,10 @@ import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class SurvivalPlusTools {
 	
@@ -52,19 +54,19 @@ public class SurvivalPlusTools {
 	
 	public static void register()
 	{
-		GameRegistry.register(SPItems.bronze_pickaxe);
-		GameRegistry.register(SPItems.bronze_axe);
-		GameRegistry.register(SPItems.bronze_shovel);
-		GameRegistry.register(SPItems.bronze_hoe);
-		GameRegistry.register(SPItems.bronze_sword);
-		GameRegistry.register(SPItems.bronze_shears);
+		registerItem(SPItems.bronze_pickaxe);
+		registerItem(SPItems.bronze_axe);
+		registerItem(SPItems.bronze_shovel);
+		registerItem(SPItems.bronze_hoe);
+		registerItem(SPItems.bronze_sword);
+		registerItem(SPItems.bronze_shears);
 		
-		GameRegistry.register(SPItems.titanium_pickaxe);
-		GameRegistry.register(SPItems.titanium_axe);
-		GameRegistry.register(SPItems.titanium_shovel);
-		GameRegistry.register(SPItems.titanium_hoe);
-		GameRegistry.register(SPItems.titanium_sword);
-		GameRegistry.register(SPItems.titanium_shears);
+		registerItem(SPItems.titanium_pickaxe);
+		registerItem(SPItems.titanium_axe);
+		registerItem(SPItems.titanium_shovel);
+		registerItem(SPItems.titanium_hoe);
+		registerItem(SPItems.titanium_sword);
+		registerItem(SPItems.titanium_shears);
 
 		
 	}
@@ -87,8 +89,22 @@ public class SurvivalPlusTools {
 
 		
 	}
+	
+	public static void registerItem(Item item) {
+		
+		SurvivalPlus.ITEMS_TOOLS.add(item);
+	}
+	
+	public static void registerItems(IForgeRegistry<Item> registry) {
+		
+	for (Item item : SurvivalPlus.ITEMS_TOOLS)
+    {
+        registry.register(item);
+    	}
+	}
+	
 	public static void registerRender(Item item)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
 }

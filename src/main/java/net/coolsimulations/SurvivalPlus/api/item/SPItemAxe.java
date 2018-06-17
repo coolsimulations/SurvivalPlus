@@ -21,14 +21,14 @@ public class SPItemAxe extends ItemTool {
     public SPItemAxe(Item.ToolMaterial material, float damage, float speed)
     {
         super(material, EFFECTIVE_ON);
-        this.damageVsEntity = damage;
+        this.attackDamage = damage;
         this.attackSpeed = speed;
     }
     
     public float getStrVsBlock(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
-        return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
+        return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getDestroySpeed(stack, state) : this.efficiency;
     }
  
 }
