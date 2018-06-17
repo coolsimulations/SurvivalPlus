@@ -55,12 +55,6 @@ public class SurvivalPlusConfig {
 	            SPConfig.enableSponge = prop.getBoolean(false);
 	            propOrder.add(prop.getName());
 	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_RECIPES, "Enable Galacticraft Cheese Block Recipe", false);
-	            prop.setComment("If this is enabled, galacticraft cheese blocks can be crafted with any cheese with the Ore Dictionary value foodCheese. By default this is set to false as to make cheese blocks rarer and a sign of status.");
-	            prop.setLanguageKey("sp.configgui.enable_cheese_block");
-	            SPConfig.enableCheeseBlock = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
 	            prop = config.get(SPReference.CONFIG_CATEGORY_COMPATIBILITY, "Enable Replace BOP Terrestrial Artifact Recipe", false);
 	            prop.setComment("If this is enable and Biomes O' Plenty are played with, the crafting recipe for the Terrestrial Artifact can use SurvivalPlus's ruby, topaz, and sapphire. By default this is set to false as the idea of the Terrestrial Artifact is that you need to go to all BOP biomes to find the needed gems, whereas SurvivalPlus gems generate everywhere.");
 	            prop.setLanguageKey("sp.configgui.enable_Replace_BOP_Recipe");
