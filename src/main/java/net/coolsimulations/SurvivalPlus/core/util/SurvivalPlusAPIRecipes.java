@@ -84,7 +84,7 @@ public class SurvivalPlusAPIRecipes {
 		}
 		
 		if(SPCompatibilityManager.isGCLoaded() && !SPConfig.enableReplaceBOPRecipe){
-			GameRegistry.addShapelessRecipe(new ItemStack(BOPItems.terrestrial_artifact), new Object[] {new ItemStack(BOPBlocks.gem_ore, 1), new ItemStack(BOPBlocks.gem_ore, 3), new ItemStack(BOPBlocks.gem_ore, 7), new ItemStack(BOPBlocks.gem_ore, 2), new ItemStack(BOPBlocks.gem_ore, 5), new ItemStack(GCItems.itemBasicMoon, 1, 2), new ItemStack(BOPBlocks.gem_ore, 4), new ItemStack(Blocks.EMERALD_ORE)});
+			GameRegistry.addShapelessRecipe(new ItemStack(BOPItems.terrestrial_artifact), new Object[] {new ItemStack(BOPItems.gem, 1, 1), new ItemStack(BOPItems.gem, 1, 3), new ItemStack(BOPItems.gem, 1, 7), new ItemStack(BOPItems.gem, 1, 2), new ItemStack(BOPItems.gem, 1, 5), new ItemStack(GCItems.itemBasicMoon, 1, 2), new ItemStack(BOPItems.gem, 1, 4), new ItemStack(Items.EMERALD)});
 		}
 		
 		removeCraftingRecipe(new ItemStack(BOPItems.white_dye, 2));
