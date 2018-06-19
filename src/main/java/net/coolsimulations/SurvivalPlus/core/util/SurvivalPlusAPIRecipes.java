@@ -48,7 +48,7 @@ public class SurvivalPlusAPIRecipes {
 	private static void addIndustrialCraft2Recipes()
     {
 		ItemStack cable = IC2Items.getItem("cable", "type:glass,insulation:0");
-		cable.setCount(6);
+		cable.stackSize = 6;
 		
 		addRecipe(new ItemStack(SPItems.titanium_dust), new Object []{"CCC", "CCC", "CCC", 'C', "dustTinyTitanium"});
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(SPItems.titanium_casing, 2), new Object []{"plateTitanium", "craftingToolForgeHammer"});
