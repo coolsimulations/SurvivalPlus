@@ -28,10 +28,20 @@ public class SurvivalPlusItems {
 		SPItems.paper_cup = new Item().setUnlocalizedName("paper_cup").setRegistryName("paper_cup").setCreativeTab(SurvivalPlus.tabMaterials);
 		SPItems.white_dye = new Item().setUnlocalizedName("white_dye").setRegistryName("white_dye").setCreativeTab(SurvivalPlus.tabMaterials);
 		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		{
+			SPItems.titanium_dust = new Item().setUnlocalizedName("titanium_dust").setRegistryName("titanium_dust").setCreativeTab(SurvivalPlus.tabMaterials);
+		}
+		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
+		{
+			SPItems.copper_dust = new Item().setUnlocalizedName("copper_dust").setRegistryName("copper_dust").setCreativeTab(SurvivalPlus.tabMaterials);
+			SPItems.tin_dust = new Item().setUnlocalizedName("tin_dust").setRegistryName("tin_dust").setCreativeTab(SurvivalPlus.tabMaterials);
+		}
+		
         if (SPCompatibilityManager.isIc2Loaded())
         {
         	SPItems.crushed_titanium_ore = new Item().setUnlocalizedName("crushed_titanium_ore").setRegistryName("crushed_titanium_ore").setCreativeTab(SurvivalPlus.tabMaterials);
-        	SPItems.titanium_dust = new Item().setUnlocalizedName("titanium_dust").setRegistryName("titanium_dust").setCreativeTab(SurvivalPlus.tabMaterials);
         	SPItems.purified_titanium_ore = new Item().setUnlocalizedName("purified_titanium_ore").setRegistryName("purified_titanium_ore").setCreativeTab(SurvivalPlus.tabMaterials);
         	SPItems.tiny_titanium_pile = new Item().setUnlocalizedName("tiny_titanium_pile").setRegistryName("tiny_titanium_pile").setCreativeTab(SurvivalPlus.tabMaterials);
         	SPItems.titanium_plate = new Item().setUnlocalizedName("titanium_plate").setRegistryName("titanium_plate").setCreativeTab(SurvivalPlus.tabMaterials);
@@ -53,11 +63,21 @@ public class SurvivalPlusItems {
 		GameRegistry.register(SPItems.charcoal_bucket);
 		GameRegistry.register(SPItems.paper_cup);
 		GameRegistry.register(SPItems.white_dye);
+		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		{
+			GameRegistry.register(SPItems.titanium_dust);
+		}
+		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
+		{
+			GameRegistry.register(SPItems.copper_dust);
+			GameRegistry.register(SPItems.tin_dust);
+		}
 
 		if (SPCompatibilityManager.isIc2Loaded())
         {
 			GameRegistry.register(SPItems.crushed_titanium_ore);
-			GameRegistry.register(SPItems.titanium_dust);
 			GameRegistry.register(SPItems.purified_titanium_ore);
 			GameRegistry.register(SPItems.tiny_titanium_pile);
 			GameRegistry.register(SPItems.titanium_plate);
@@ -80,10 +100,20 @@ public class SurvivalPlusItems {
 		registerRender(SPItems.paper_cup);
 		registerRender(SPItems.white_dye);
 		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		{
+			registerRender(SPItems.titanium_dust);
+		}
+		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
+		{
+			registerRender(SPItems.copper_dust);
+			registerRender(SPItems.tin_dust);
+		}
+		
 		if (SPCompatibilityManager.isIc2Loaded())
         {
 			registerRender(SPItems.crushed_titanium_ore);
-			registerRender(SPItems.titanium_dust);
 			registerRender(SPItems.purified_titanium_ore);
 			registerRender(SPItems.tiny_titanium_pile);
 			registerRender(SPItems.titanium_plate);

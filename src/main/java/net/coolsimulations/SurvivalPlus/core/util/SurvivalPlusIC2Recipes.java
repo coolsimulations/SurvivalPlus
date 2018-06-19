@@ -37,7 +37,6 @@ public class SurvivalPlusIC2Recipes {
     	
     	GameRegistry.addSmelting(SPItems.crushed_titanium_ore, new ItemStack(SPItems.titanium_ingot), 0.7F);
    		GameRegistry.addSmelting(SPItems.purified_titanium_ore, new ItemStack(SPItems.titanium_ingot), 0.7F);
-   		GameRegistry.addSmelting(SPItems.titanium_dust, new ItemStack(SPItems.titanium_ingot), 3.0F);
     	
     	GameRegistry.addSmelting(IC2Items.getItem("dust", "bronze"), new ItemStack(SPItems.bronze_ingot), 0.7F);
     	
