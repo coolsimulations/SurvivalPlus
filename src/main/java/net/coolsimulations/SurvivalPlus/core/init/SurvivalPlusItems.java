@@ -27,10 +27,20 @@ public class SurvivalPlusItems {
 		SPItems.paper_cup = new Item().setUnlocalizedName("paper_cup").setRegistryName("paper_cup").setCreativeTab(SurvivalPlus.tabMaterials);
 		SPItems.white_dye = new Item().setUnlocalizedName("white_dye").setRegistryName("white_dye").setCreativeTab(SurvivalPlus.tabMaterials);
 		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		{
+			SPItems.titanium_dust = new Item().setUnlocalizedName("titanium_dust").setRegistryName("titanium_dust").setCreativeTab(SurvivalPlus.tabMaterials);
+		}
+		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
+		{
+			SPItems.copper_dust = new Item().setUnlocalizedName("copper_dust").setRegistryName("copper_dust").setCreativeTab(SurvivalPlus.tabMaterials);
+			SPItems.tin_dust = new Item().setUnlocalizedName("tin_dust").setRegistryName("tin_dust").setCreativeTab(SurvivalPlus.tabMaterials);
+		}
+		
         if (SPCompatibilityManager.isIc2Loaded())
         {
         	SPItems.crushed_titanium_ore = new Item().setUnlocalizedName("crushed_titanium_ore").setRegistryName("crushed_titanium_ore").setCreativeTab(SurvivalPlus.tabMaterials);
-        	SPItems.titanium_dust = new Item().setUnlocalizedName("titanium_dust").setRegistryName("titanium_dust").setCreativeTab(SurvivalPlus.tabMaterials);
         	SPItems.purified_titanium_ore = new Item().setUnlocalizedName("purified_titanium_ore").setRegistryName("purified_titanium_ore").setCreativeTab(SurvivalPlus.tabMaterials);
         	SPItems.tiny_titanium_pile = new Item().setUnlocalizedName("tiny_titanium_pile").setRegistryName("tiny_titanium_pile").setCreativeTab(SurvivalPlus.tabMaterials);
         	SPItems.titanium_plate = new Item().setUnlocalizedName("titanium_plate").setRegistryName("titanium_plate").setCreativeTab(SurvivalPlus.tabMaterials);
@@ -52,16 +62,27 @@ public class SurvivalPlusItems {
 		registerItem(SPItems.charcoal_bucket);
 		registerItem(SPItems.paper_cup);
 		registerItem(SPItems.white_dye);
+		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		{
+			registerItem(SPItems.titanium_dust);
+		}
+		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
+		{
+			registerItem(SPItems.copper_dust);
+			registerItem(SPItems.tin_dust);
+		}
 
 		if (SPCompatibilityManager.isIc2Loaded())
         {
 			registerItem(SPItems.crushed_titanium_ore);
-			registerItem(SPItems.titanium_dust);
 			registerItem(SPItems.purified_titanium_ore);
 			registerItem(SPItems.tiny_titanium_pile);
 			registerItem(SPItems.titanium_plate);
 			registerItem(SPItems.titanium_dense_plate);
 			registerItem(SPItems.titanium_casing);
+
         }
 	}
 
@@ -79,10 +100,20 @@ public class SurvivalPlusItems {
 		registerRender(SPItems.paper_cup);
 		registerRender(SPItems.white_dye);
 		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		{
+			registerRender(SPItems.titanium_dust);
+		}
+		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
+		{
+			registerRender(SPItems.copper_dust);
+			registerRender(SPItems.tin_dust);
+		}
+		
 		if (SPCompatibilityManager.isIc2Loaded())
         {
 			registerRender(SPItems.crushed_titanium_ore);
-			registerRender(SPItems.titanium_dust);
 			registerRender(SPItems.purified_titanium_ore);
 			registerRender(SPItems.tiny_titanium_pile);
 			registerRender(SPItems.titanium_plate);

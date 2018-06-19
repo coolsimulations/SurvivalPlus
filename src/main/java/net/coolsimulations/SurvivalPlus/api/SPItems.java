@@ -22,7 +22,7 @@ public class SPItems {
 	public static Item white_dye;
 	
 	/**
-	 * These are the IndustrialCraft 2 Items referred to in SurvivalPlusItems
+	 * These are the IndustrialCraft 2 and SimpleGrinders Items referred to in SurvivalPlusItems
 	 */
 	public static Item crushed_titanium_ore;
 	public static Item titanium_dust;
@@ -31,6 +31,8 @@ public class SPItems {
 	public static Item titanium_plate;
 	public static Item titanium_dense_plate;
 	public static Item titanium_casing;
+	public static Item copper_dust;
+	public static Item tin_dust;
 	
 	/**
 	 * These are the food Items referred to in SurvivalPlusFood

@@ -10,16 +10,13 @@ import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
-import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import biomesoplenty.api.block.BOPBlocks;
-import biomesoplenty.api.item.BOPItems;
+
+import com.rumaruka.simplegrinder.Init.GrinderRecipes;
 
 public class SurvivalPlusAPIRecipes {
 	
@@ -33,6 +30,16 @@ public class SurvivalPlusAPIRecipes {
         
         if(SPCompatibilityManager.isGCLoaded()) {
         	SurvivalPlusAPIRecipes.addGCItemsRecipes();
+        }
+        
+        if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded()) {
+        	
+        	GameRegistry.addSmelting(SPItems.copper_dust, new ItemStack(SPItems.copper_ingot), 3.0F);
+			GameRegistry.addSmelting(SPItems.tin_dust, new ItemStack(SPItems.tin_ingot), 3.0F);
+        }
+        
+        if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) {
+        	GameRegistry.addSmelting(SPItems.titanium_dust, new ItemStack(SPItems.titanium_ingot), 3.0F);
         }
     }
 	
@@ -65,8 +72,6 @@ public class SurvivalPlusAPIRecipes {
 		}
 		
 	}
-	
-	
 	
     @SuppressWarnings("unchecked")
     public static void addRecipe(ItemStack result, Object[] obj)
