@@ -17,6 +17,7 @@ public class SPCompatibilityManager {
     private static boolean modBaseMetalsLoaded;
     private static boolean modFlourPowerLoaded;
     private static boolean modWoodenBucketLoaded;
+    private static boolean modSimpleGrinderLoaded;
     
     public static final String TE_MODID = "thermalexpansion";
     public static final String GCCORE_MODID = "galacticraftcore";
@@ -32,6 +33,7 @@ public class SPCompatibilityManager {
     public static final String FLOURPOWER_MODID = "flourpower";
     public static final String WOODENBUCKET_MODID = "woodenbucket";
     public static final String VEFLUIDS_MODID = "vefluids";
+    public static final String SIMPLEGRINDER_MODID = "simplegrinder";
     
     public static void checkForCompatibleMods(){
 
@@ -100,6 +102,11 @@ public class SPCompatibilityManager {
         {
             SPCompatibilityManager.modWoodenBucketLoaded = true;
         }
+        
+        if (Loader.isModLoaded(SIMPLEGRINDER_MODID))
+        {
+            SPCompatibilityManager.modSimpleGrinderLoaded = true;
+        }
     }
 
     public static boolean isIc2Loaded()
@@ -165,6 +172,11 @@ public class SPCompatibilityManager {
     public static boolean isWoodenBucketLoaded()
     {
         return SPCompatibilityManager.modWoodenBucketLoaded;
+    }
+    
+    public static boolean isSimpleGrinderLoaded()
+    {
+        return SPCompatibilityManager.modSimpleGrinderLoaded;
     }
 
 }

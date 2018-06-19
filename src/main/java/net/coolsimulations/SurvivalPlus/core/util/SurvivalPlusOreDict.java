@@ -30,8 +30,16 @@ public class SurvivalPlusOreDict {
 		
 		OreDictionary.registerOre("dyeWhite", new ItemStack(SPItems.white_dye));
 		
-		if(SPCompatibilityManager.isIc2Loaded()) {
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) {
 			OreDictionary.registerOre("dustTitanium", new ItemStack(SPItems.titanium_dust));
+		}
+		
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded()) {
+			OreDictionary.registerOre("dustCopper", new ItemStack(SPItems.copper_dust));
+			OreDictionary.registerOre("dustTin", new ItemStack(SPItems.tin_dust));
+		}
+		
+		if(SPCompatibilityManager.isIc2Loaded()) {
 			OreDictionary.registerOre("crushedTitanium", new ItemStack(SPItems.crushed_titanium_ore));	
 			OreDictionary.registerOre("crushedPurifiedTitanium", new ItemStack(SPItems.purified_titanium_ore));
 			OreDictionary.registerOre("dustTinyTitanium", new ItemStack(SPItems.tiny_titanium_pile));
