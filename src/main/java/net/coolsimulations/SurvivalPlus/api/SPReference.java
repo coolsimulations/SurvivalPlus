@@ -7,13 +7,9 @@ public class SPReference {
 	public static final String ACCEPTED_VERSIONS = "[1.10, 1.10.2]";
 	public static final String CLIENT_PROXY_CLASS = "net.coolsimulations.SurvivalPlus.core.proxy.ClientProxy";
 	public static final String SERVER_PROXY_CLASS = "net.coolsimulations.SurvivalPlus.core.proxy.ServerProxy";
-<<<<<<< HEAD
+
 	public static final String DEPENDENCIES_FORGE = "required-after:Forge@[12.18.3.2511,);";
-	public static final String DEPENDENCIES = DEPENDENCIES_FORGE + "after:" + SPCompatibilityManager.JEI_MODID +"@[3.14.7,);after:" + SPCompatibilityManager.PROJECTE_MODID +"@[1.10.2-PE1.3.0,);after:" + SPCompatibilityManager.GCCORE_MODID +"@[4.0.0,);after:" + SPCompatibilityManager.GCPLANETS_MODID + "@[4.0.0,);after:" + SPCompatibilityManager.IC2_MODID + "@[2.6.234-ex110,);after:" + SPCompatibilityManager.BOP_MODID + "@[5.0.0,);after:" + SPCompatibilityManager.BASEMETALS_MODID + "@[2.4.0,);after:" + SPCompatibilityManager.FLOURPOWER_MODID + "@[1.9.4-0.0.3,);";
-=======
-	public static final String DEPENDENCIES_FORGE = "required-after:forge@[13.20.0.2288,);";
-	public static final String DEPENDENCIES = DEPENDENCIES_FORGE + "after:" + SPCompatibilityManager.JEI_MODID +"@[4.5.1,);after:" + SPCompatibilityManager.PROJECTE_MODID +"@[1.11.2-PE0.0.0,);after:" + SPCompatibilityManager.GCCORE_MODID +"@[4.0.0,);after:" + SPCompatibilityManager.GCPLANETS_MODID + "@[4.0.0,);after:" + SPCompatibilityManager.IC2_MODID + "@[2.7.81-ex111,);after:" + SPCompatibilityManager.BOP_MODID + "@[6.2.0.2254,);after:" + SPCompatibilityManager.BASEMETALS_MODID + "@[2.4.0,);after:" + SPCompatibilityManager.FLOURPOWER_MODID + "@[1.11-0.0.3-2,);after:" + SPCompatibilityManager.SIMPLEGRINDER_MODID + "@[3.122.R1112,);";
->>>>>>> 9a3f561... Added Support for Simple Grinder Mod
+	public static final String DEPENDENCIES = DEPENDENCIES_FORGE + "after:" + SPCompatibilityManager.JEI_MODID +"@[3.14.7,);after:" + SPCompatibilityManager.PROJECTE_MODID +"@[1.10.2-PE1.3.0,);after:" + SPCompatibilityManager.GCCORE_MODID +"@[4.0.0,);after:" + SPCompatibilityManager.GCPLANETS_MODID + "@[4.0.0,);after:" + SPCompatibilityManager.IC2_MODID + "@[2.6.234-ex110,);after:" + SPCompatibilityManager.BOP_MODID + "@[5.0.0,);after:" + SPCompatibilityManager.BASEMETALS_MODID + "@[2.4.0,);after:" + SPCompatibilityManager.FLOURPOWER_MODID + "@[1.9.4-0.0.3,);after:" + SPCompatibilityManager.SIMPLEGRINDER_MODID + "@[2.095.R1102,);";
 
 	public static final String SURVIVALPLUS_CONFIG_FILE = "SurvivalPlus/SurvivalPlus.conf";
 	public static final String CONFIG_CATEGORY_RECIPES = "recipes";

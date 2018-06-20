@@ -25,6 +25,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.item.BOPItems;
@@ -227,13 +228,13 @@ public class SurvivalPlusAPIRecipes {
 		} else {
 			
 			ItemStack copper = IC2Items.getItem("dust", "copper");
-			copper.setCount(ConfigHandler.getIronDustOutput());
+			copper.stackSize = ConfigHandler.getIronDustOutput();
 			
 			ItemStack tin = IC2Items.getItem("dust", "tin");
-			tin.setCount(ConfigHandler.getIronDustOutput());
+			tin.stackSize = ConfigHandler.getIronDustOutput();
 			
 			ItemStack lead = IC2Items.getItem("dust", "lead");
-			lead.setCount(ConfigHandler.getIronDustOutput());
+			lead.stackSize = ConfigHandler.getIronDustOutput();
 			
 			GrinderRecipes.instance().addSmeltingRecipeForBlock(SPBlocks.copper_ore, copper, 0.5F);
 			GrinderRecipes.instance().addSmeltingRecipeForBlock(SPBlocks.tin_ore, tin, 0.5F);
@@ -271,7 +272,6 @@ public class SurvivalPlusAPIRecipes {
 		}
 		
 		if(SPCompatibilityManager.isBopLoaded()) {
-			GrinderRecipes.instance().addSmeltingRecipeForBlock(BOPBlocks.white_sandstone, new ItemStack(BOPBlocks.white_sand,ConfigHandler.getSandstoneSandOutput()), 0.6F);
 			GrinderRecipes.instance().addSmeltingRecipeForBlock(BOPBlocks.log_0, new ItemStack(ItemsCore.wood_chips, ConfigHandler.getWoodChipsOutput()), 0.5F);
 			GrinderRecipes.instance().addSmeltingRecipeForBlock(BOPBlocks.log_1, new ItemStack(ItemsCore.wood_chips, ConfigHandler.getWoodChipsOutput()), 0.5F);
 			GrinderRecipes.instance().addSmeltingRecipeForBlock(BOPBlocks.log_2, new ItemStack(ItemsCore.wood_chips, ConfigHandler.getWoodChipsOutput()), 0.5F);
@@ -287,13 +287,120 @@ public class SurvivalPlusAPIRecipes {
 			GrinderRecipes.instance().addSmeltingRecipeForBlock(SPBlocks.topaz, new ItemStack(BOPItems.gem, ConfigHandler.getEmeraldOutput(), 3), 1.0F);
 			GrinderRecipes.instance().addSmeltingRecipeForBlock(SPBlocks.ruby, new ItemStack(BOPItems.gem, ConfigHandler.getEmeraldOutput(), 1), 1.0F);
 			GrinderRecipes.instance().addSmeltingRecipeForBlock(SPBlocks.sapphire, new ItemStack(BOPItems.gem, ConfigHandler.getEmeraldOutput(), 6), 1.0F);
+			GrinderRecipes.instance().addSmelting(SPItems.cherry_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.cherry_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.cherry_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.cherry_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.dead_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.dead_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.dead_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.dead_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.ebony_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.ebony_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.ebony_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.ebony_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.ethereal_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.ethereal_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.ethereal_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.ethereal_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.eucalyptus_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.eucalyptus_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.eucalyptus_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.eucalyptus_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.fir_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.fir_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.fir_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.fir_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.hellbark_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.hellbark_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.hellbark_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.hellbark_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.jacaranda_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.jacaranda_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.jacaranda_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.jacaranda_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.magic_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.magic_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.magic_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.magic_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.mahogany_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.mahogany_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.mahogany_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.mahogany_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.mangrove_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.mangrove_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.mangrove_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.mangrove_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.palm_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.palm_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.palm_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.palm_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.pine_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.pine_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.pine_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.pine_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.redwood_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.redwood_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.redwood_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.redwood_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.sacred_oak_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.sacred_oak_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.sacred_oak_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.sacred_oak_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.umbran_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.umbran_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.umbran_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.umbran_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.willow_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.willow_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.willow_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.willow_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
 		}
 		
 		if(SPCompatibilityManager.isFlourPowerLoaded()) {
 			GrinderRecipes.instance().addSmelting(Items.WHEAT, new ItemStack(ItemFlourPower.itemFlour, 1), 1.0F);
 		}
 		
+		if(OreDictionary.getOres("woodRubber").size() > 0) {
+			GrinderRecipes.instance().addSmelting(SPItems.rubber_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.rubber_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.rubber_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+			GrinderRecipes.instance().addSmelting(SPItems.rubber_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+		}
+		
 		GrinderRecipes.instance().addSmeltingRecipeForBlock(SPBlocks.titanium_ore, new ItemStack(SPItems.titanium_dust,ConfigHandler.getGoldDustOutput()), 2.0F);
+		GrinderRecipes.instance().addSmelting(SPItems.titanium_helmet, new ItemStack(SPItems.titanium_dust, 5), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.titanium_chestplate, new ItemStack(SPItems.titanium_dust, 8), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.titanium_leggings, new ItemStack(SPItems.titanium_dust, 7), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.titanium_boots, new ItemStack(SPItems.titanium_dust, 4), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.stone_helmet, new ItemStack(Blocks.COBBLESTONE, 5), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.stone_chestplate, new ItemStack(Blocks.COBBLESTONE, 8), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.stone_leggings, new ItemStack(Blocks.COBBLESTONE, 7), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.stone_boots, new ItemStack(Blocks.COBBLESTONE, 4), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.oak_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.oak_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.oak_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.oak_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.spruce_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.spruce_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.spruce_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.spruce_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.birch_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.birch_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.birch_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.birch_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.jungle_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.jungle_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.jungle_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.jungle_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.acacia_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.acacia_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.acacia_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.acacia_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.dark_oak_helmet, new ItemStack(ItemsCore.wood_chips, 5), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.dark_oak_chestplate, new ItemStack(ItemsCore.wood_chips, 8), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.dark_oak_leggings, new ItemStack(ItemsCore.wood_chips, 7), 0.5F);
+		GrinderRecipes.instance().addSmelting(SPItems.dark_oak_boots, new ItemStack(ItemsCore.wood_chips, 4), 0.5F);
 	}
 	
 	
