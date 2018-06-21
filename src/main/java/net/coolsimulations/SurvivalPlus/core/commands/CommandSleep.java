@@ -9,7 +9,6 @@ import micdoodle8.mods.galacticraft.planets.asteroids.ConfigManagerAsteroids;
 import micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars;
 import micdoodle8.mods.galacticraft.planets.venus.ConfigManagerVenus;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
-import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -70,7 +69,7 @@ public class CommandSleep extends CommandBase{
         {
         	if(!sender.getCommandSenderEntity().world.provider.isDaytime()) {
         		Entity entityplayer = getEntity(server, sender, args[0]);
-        		EntityPlayer player = Minecraft.getMinecraft().player;
+        		EntityPlayer player = this.getPlayer(server, sender, args[0]);
         		if (entityplayer == sender)
         		{
         			if(sender instanceof EntityPlayer && player.isPlayerSleeping()) {
