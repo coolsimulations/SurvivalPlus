@@ -13,10 +13,8 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
@@ -37,8 +35,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -353,12 +349,12 @@ public class BlockCampfire extends Block{
     	
     	if(!worldIn.isRemote && item == Items.FLINT_AND_STEEL && state.getValue(BURNING) == false && !canDie(worldIn, pos)) {
     		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(true)), 3);
-    		worldIn.playSound(null, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F);
+    		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F, false);
     		itemStackIn.damageItem(1, playerIn);
 		}
     	else if(!worldIn.isRemote && item == Items.FIRE_CHARGE && state.getValue(BURNING) == false && !canDie(worldIn, pos)) {
     		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(true)), 3);
-    		worldIn.playSound(null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F);
+    		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F, false);
     		if(!playerIn.capabilities.isCreativeMode){
     			if (ItemStack.areItemStacksEqual(playerIn.getHeldItemOffhand(), itemStackIn))
     			{
@@ -372,7 +368,7 @@ public class BlockCampfire extends Block{
 		}
     	else if(!worldIn.isRemote && item == Items.LAVA_BUCKET && state.getValue(BURNING) == false) {
     		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(true)), 3);
-    		worldIn.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F);
+    		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F, false);
     		if(!playerIn.capabilities.isCreativeMode){
     			if (ItemStack.areItemStacksEqual(playerIn.getHeldItemOffhand(), itemStackIn))
     			{
@@ -386,7 +382,7 @@ public class BlockCampfire extends Block{
     	}
     	else if(!worldIn.isRemote && item == Items.WATER_BUCKET && state.getValue(BURNING) == true) {
     		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(false)), 3);
-    		worldIn.playSound(null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F);
+    		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F, false);
     		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
     		if(!playerIn.capabilities.isCreativeMode){
     			if (ItemStack.areItemStacksEqual(playerIn.getHeldItemOffhand(), itemStackIn))
@@ -401,7 +397,7 @@ public class BlockCampfire extends Block{
     	}
     	else if(!worldIn.isRemote && item == water_bottle && state.getValue(BURNING) == true) {
     		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(false)), 3);
-    		worldIn.playSound(null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F);
+    		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F, false);
     		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
     		if(!playerIn.capabilities.isCreativeMode){
     			if (ItemStack.areItemStacksEqual(playerIn.getHeldItemOffhand(), itemStackIn))
@@ -416,7 +412,7 @@ public class BlockCampfire extends Block{
     	}
     	else if(!worldIn.isRemote && item == Items.BUCKET && state.getValue(BURNING) == true && !playerIn.capabilities.isCreativeMode) {
     		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(false)), 3);
-    		worldIn.playSound(null, pos, SoundEvents.BLOCK_GRAVEL_STEP, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F);
+    		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_GRAVEL_STEP, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F, false);
     		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
     		if(itemStackIn.getCount() == 1) {
     			if (ItemStack.areItemStacksEqual(playerIn.getHeldItemOffhand(), itemStackIn))
@@ -439,7 +435,7 @@ public class BlockCampfire extends Block{
     	if(fluid != null) {
     		if(!worldIn.isRemote && fluid == FluidRegistry.getFluidName(FluidRegistry.LAVA) && state.getValue(BURNING) == false) {
     			worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(true)), 3);
-        		worldIn.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F);
+        		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F, false);
         		if(!playerIn.capabilities.isCreativeMode){
         			itemStackIn.getTagCompound().removeTag("Fluid");
         			itemStackIn.getTagCompound().removeTag("Amount");
@@ -449,7 +445,7 @@ public class BlockCampfire extends Block{
         	}
     		else if(!worldIn.isRemote && fluid == FluidRegistry.getFluidName(FluidRegistry.WATER) && state.getValue(BURNING) == true) {
         		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(false)), 3);
-        		worldIn.playSound(null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F);
+        		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F, false);
         		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
         		if(!playerIn.capabilities.isCreativeMode){
         			itemStackIn.getTagCompound().removeTag("Fluid");
@@ -472,7 +468,6 @@ public class BlockCampfire extends Block{
     
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-    	EntityPlayer playerIn = Minecraft.getMinecraft().player;;
     	//defaultSmoke
         double d0 = (double)pos.getX() + rand.nextDouble();
         double d1 = (double)pos.getY() + rand.nextDouble() * 0.5D + 0.5D;
@@ -480,7 +475,7 @@ public class BlockCampfire extends Block{
     	
     	if (canDie(worldIn, pos) && state.getValue(BURNING) == true) {
     		worldIn.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(false)), 3);
-    		worldIn.playSound(playerIn, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
+    		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, rand.nextFloat() * 0.4F + 0.8F, false);
     		worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
     	}
     	
