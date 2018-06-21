@@ -76,4 +76,20 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+
+task packApi(type: Jar, dependsOn: "classes") {
+	// Jar will always be updated
+	outputs.upToDateWhen {false}
+	// Set the jar's base name
+	baseName = "SurvivalPlus-API"
+	
+	from (sourceSets.main.allSource) {
+		// Add necessary files, remove unnecessary ones.
+		includes.addAll('net/coolsimulations/SurvivalPlus/api/**')
+		excludes.addAll('net/coolsimulations/SurvivalPlus/core/**')
+		excludes.addAll('**/*.info')
+		excludes.addAll('assets')
+	}
+}
+
 }
