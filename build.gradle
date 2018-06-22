@@ -10,7 +10,6 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-
 def mcVersion = "1.10.2"
 def spVersion = "0.1.0"
 version = "${mcVersion}-${spVersion}"
@@ -77,19 +76,31 @@ processResources {
         exclude 'mcmod.info'
     }
 
-task packApi(type: Jar, dependsOn: "classes") {
+task packApi(type: Jar) {
 	// Jar will always be updated
 	outputs.upToDateWhen {false}
 	// Set the jar's base name
 	baseName = "SurvivalPlus-API"
 	
-	from (sourceSets.main.allSource) {
+	from (sourceSets.main.allJava) {
 		// Add necessary files, remove unnecessary ones.
 		includes.addAll('net/coolsimulations/SurvivalPlus/api/**')
 		excludes.addAll('net/coolsimulations/SurvivalPlus/core/**')
 		excludes.addAll('**/*.info')
 		excludes.addAll('assets')
 	}
+
+	from (sourceSets.main.output) {
+		// Add necessary files, remove unnecessary ones.
+		includes.addAll('net/coolsimulations/SurvivalPlus/api/**')
+		excludes.addAll('net/coolsimulations/SurvivalPlus/core/**')
+		excludes.addAll('**/*.info')
+		excludes.addAll('assets')
+	}
+}
+
+reobf {
+    packApi { }
 }
 
 }
