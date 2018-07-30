@@ -228,6 +228,271 @@ public class FuelHandler implements IFuelHandler{
 				return 1200;
 		}
 		
+		if(SPCompatibilityManager.isForestryLoaded()) {
+			
+			if(fuel.getItem() == SPItems.desert_acacia_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.desert_acacia_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.desert_acacia_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.desert_acacia_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.balsa_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.balsa_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.balsa_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.balsa_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.baobab_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.baobab_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.baobab_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.baobab_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.cherry_helmet_forestry)
+				return 1500;
+			if(fuel.getItem() == SPItems.cherry_chestplate_forestry)
+				return 2400;
+			if(fuel.getItem() == SPItems.cherry_leggings_forestry)
+				return 2100;
+			if(fuel.getItem() == SPItems.cherry_boots_forestry)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.chestnut_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.chestnut_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.chestnut_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.chestnut_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.citrus_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.citrus_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.citrus_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.citrus_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.cocobolo_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.cocobolo_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.cocobolo_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.cocobolo_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.ebony_helmet_forestry)
+				return 1500;
+			if(fuel.getItem() == SPItems.ebony_chestplate_forestry)
+				return 2400;
+			if(fuel.getItem() == SPItems.ebony_leggings_forestry)
+				return 2100;
+			if(fuel.getItem() == SPItems.ebony_boots_forestry)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.giant_sequoia_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.giant_sequoia_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.giant_sequoia_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.giant_sequoia_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.greenheart_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.greenheart_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.greenheart_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.greenheart_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.ipe_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.ipe_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.ipe_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.ipe_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.kapok_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.kapok_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.kapok_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.kapok_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.larch_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.larch_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.larch_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.larch_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.lime_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.lime_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.lime_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.lime_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.mahoe_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.mahoe_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.mahoe_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.mahoe_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.mahogany_helmet_forestry)
+				return 1500;
+			if(fuel.getItem() == SPItems.mahogany_chestplate_forestry)
+				return 2400;
+			if(fuel.getItem() == SPItems.mahogany_leggings_forestry)
+				return 2100;
+			if(fuel.getItem() == SPItems.mahogany_boots_forestry)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.maple_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.maple_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.maple_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.maple_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.padauk_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.padauk_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.padauk_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.padauk_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.palm_helmet_forestry)
+				return 1500;
+			if(fuel.getItem() == SPItems.palm_chestplate_forestry)
+				return 2400;
+			if(fuel.getItem() == SPItems.palm_leggings_forestry)
+				return 2100;
+			if(fuel.getItem() == SPItems.palm_boots_forestry)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.papaya_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.papaya_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.papaya_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.papaya_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.pine_helmet_forestry)
+				return 1500;
+			if(fuel.getItem() == SPItems.pine_chestplate_forestry)
+				return 2400;
+			if(fuel.getItem() == SPItems.pine_leggings_forestry)
+				return 2100;
+			if(fuel.getItem() == SPItems.pine_boots_forestry)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.plum_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.plum_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.plum_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.plum_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.poplar_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.poplar_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.poplar_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.poplar_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.sequoia_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.sequoia_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.sequoia_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.sequoia_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.teak_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.teak_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.teak_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.teak_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.walnut_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.walnut_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.walnut_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.walnut_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.wenge_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.wenge_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.wenge_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.wenge_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.willow_helmet_forestry)
+				return 1500;
+			if(fuel.getItem() == SPItems.willow_chestplate_forestry)
+				return 2400;
+			if(fuel.getItem() == SPItems.willow_leggings_forestry)
+				return 2100;
+			if(fuel.getItem() == SPItems.willow_boots_forestry)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.zebrawood_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.zebrawood_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.zebrawood_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.zebrawood_boots)
+				return 1200;
+			
+		}
+		
 		if(fuel.getItem() == SPItems.paper_cup)
 
 		if(fuel.getItem() == SPItems.charcoal_bucket)
