@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "forestry:logs.4",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "survivalplus:palm_boots_forestry"
+  }
+}

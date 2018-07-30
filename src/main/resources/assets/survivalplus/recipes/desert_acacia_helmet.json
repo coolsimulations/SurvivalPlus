@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "forestry:logs.0",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "survivalplus:desert_acacia_helmet"
+  }
+}

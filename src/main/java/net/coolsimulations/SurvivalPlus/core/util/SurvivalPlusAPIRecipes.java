@@ -11,12 +11,13 @@ import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import com.rumaruka.simplegrinder.Init.GrinderRecipes;
 
 public class SurvivalPlusAPIRecipes {
 	
@@ -26,6 +27,10 @@ public class SurvivalPlusAPIRecipes {
         if (SPCompatibilityManager.isIc2Loaded())
         {
             SurvivalPlusAPIRecipes.addIndustrialCraft2Recipes();
+        }
+        
+        if(SPCompatibilityManager.isForestryLoaded()) {
+        	SurvivalPlusAPIRecipes.addForestryItemsRecipes();
         }
         
         if(SPCompatibilityManager.isGCLoaded()) {
@@ -71,6 +76,18 @@ public class SurvivalPlusAPIRecipes {
 			GameRegistry.addSmelting(new ItemStack(VenusBlocks.venusBlock, 1, 11), new ItemStack(SPItems.tin_ingot), 1.0F);
 		}
 		
+	}
+	
+	private static void addForestryItemsRecipes() {
+		
+		Block resources = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.FORESTRY_MODID, "resources"));
+		Item ingotCopper = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.FORESTRY_MODID, "ingot_copper"));
+		Item ingotTin = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.FORESTRY_MODID, "ingot_tin"));
+		
+		removeFurnaceRecipe(new ItemStack(ingotCopper));
+		removeFurnaceRecipe(new ItemStack(ingotTin));
+		GameRegistry.addSmelting(new ItemStack(resources, 1, 1), new ItemStack(SPItems.copper_ingot), 0.7F);
+		GameRegistry.addSmelting(new ItemStack(resources, 1, 2), new ItemStack(SPItems.tin_ingot), 0.7F);
 	}
 	
     @SuppressWarnings("unchecked")

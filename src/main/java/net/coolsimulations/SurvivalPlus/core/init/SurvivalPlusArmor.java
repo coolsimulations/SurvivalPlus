@@ -2,8 +2,8 @@ package net.coolsimulations.SurvivalPlus.core.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -89,6 +89,10 @@ public class SurvivalPlusArmor {
 			BOPArmor.init();
 		}
 		
+		if(SPCompatibilityManager.isForestryLoaded()){
+			ForestryArmor.init();
+		}
+		
 	}
 	public static void register()
 	{
@@ -138,6 +142,10 @@ public class SurvivalPlusArmor {
 		
 		if(SPCompatibilityManager.isBopLoaded()){
 			BOPArmor.register();
+		}
+		
+		if(SPCompatibilityManager.isForestryLoaded()){
+			ForestryArmor.register();
 		}
 	}
 	
@@ -189,6 +197,10 @@ public class SurvivalPlusArmor {
 		
 		if(SPCompatibilityManager.isBopLoaded()){
 			BOPArmor.registerRenders();
+		}
+		
+		if(SPCompatibilityManager.isForestryLoaded()){
+			ForestryArmor.registerRenders();
 		}
 
 	}

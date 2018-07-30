@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "forestry:logs.6",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "survivalplus:giant_sequoia_helmet"
+  }
+}

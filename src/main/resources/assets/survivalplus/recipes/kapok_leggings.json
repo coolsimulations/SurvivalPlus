@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "forestry:logs.2",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "survivalplus:kapok_leggings"
+  }
+}

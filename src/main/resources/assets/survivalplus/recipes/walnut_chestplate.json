@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "forestry:logs.3",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "survivalplus:walnut_chestplate"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "forestry:logs.2",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "survivalplus:mahogany_boots_forestry"
+  }
+}

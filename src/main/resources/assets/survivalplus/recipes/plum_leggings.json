@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "forestry:logs.5",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "survivalplus:plum_leggings"
+  }
+}

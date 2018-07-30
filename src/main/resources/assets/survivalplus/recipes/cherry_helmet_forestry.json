@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "forestry:logs.3",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "survivalplus:cherry_helmet_forestry"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "forestry:logs.7",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "survivalplus:zebrawood_boots"
+  }
+}

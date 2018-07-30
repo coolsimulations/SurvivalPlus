@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "forestry:logs.2",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "survivalplus:ebony_helmet_forestry"
+  }
+}

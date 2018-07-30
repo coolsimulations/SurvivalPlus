@@ -12,7 +12,7 @@ public class SPReference {
 	public static final String DEPENDENCIES_FORGE = "required-after:forge@[13.20.0.2288,);";
 
 	public static final String DEPENDENCIES_ADDON = DEPENDENCIES_FORGE + "required-after:" + MOD_ID + "@[" + VERSION + ",);";
-	public static final String DEPENDENCIES = DEPENDENCIES_FORGE + "after:" + SPCompatibilityManager.JEI_MODID +"@[4.5.1,);after:" + SPCompatibilityManager.PROJECTE_MODID +"@[1.11.2-PE0.0.0,);after:" + SPCompatibilityManager.GCCORE_MODID +"@[4.0.1.174,);after:" + SPCompatibilityManager.GCPLANETS_MODID + "@[4.0.1.174,);after:" + SPCompatibilityManager.IC2_MODID + "@[2.7.81-ex111,);after:" + SPCompatibilityManager.BOP_MODID + "@[6.2.0.2254,);after:" + SPCompatibilityManager.BASEMETALS_MODID + "@[2.4.0,);after:" + SPCompatibilityManager.FLOURPOWER_MODID + "@[1.11-0.0.3-2,);after:" + SPCompatibilityManager.SIMPLEGRINDER_MODID + ";";
+	public static final String DEPENDENCIES = DEPENDENCIES_FORGE + "after:" + SPCompatibilityManager.JEI_MODID +"@[4.5.1,);after:" + SPCompatibilityManager.PROJECTE_MODID +"@[1.11.2-PE0.0.0,);after:" + SPCompatibilityManager.GCCORE_MODID +"@[4.0.1.174,);after:" + SPCompatibilityManager.GCPLANETS_MODID + "@[4.0.1.174,);after:" + SPCompatibilityManager.IC2_MODID + "@[2.7.81-ex111,);after:" + SPCompatibilityManager.BOP_MODID + "@[6.2.0.2254,);after:" + SPCompatibilityManager.BASEMETALS_MODID + "@[2.4.0,);after:" + SPCompatibilityManager.FLOURPOWER_MODID + "@[1.11-0.0.3-2,);after:" + SPCompatibilityManager.SIMPLEGRINDER_MODID + ";after:" + SPCompatibilityManager.FORESTRY_MODID + "@[5.8.0.319,)";
 
 	public static final String SURVIVALPLUS_CONFIG_FILE = "SurvivalPlus/SurvivalPlus.conf";
 	public static final String CONFIG_CATEGORY_RECIPES = "recipes";
