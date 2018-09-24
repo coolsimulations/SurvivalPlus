@@ -360,6 +360,23 @@ sp.commands.weba.display=* %s is delighted to see %s and welcomes them back with
 sp.commands.note.usage=/note <private message>
 sp.commands.note.display=* You made this note: %s
 
+achievement.sp.install=SurvivalPlus Installation
+achievement.sp.install.desc=Download and Install SurvivalPlus
+achievement.sp.install.display1=coolsim thanks you for downloading SurvivalPlus!
+achievement.sp.install.display2=Be sure to check out the offical SurvivalPlus Add-ons on CurseForge!
+achievement.sp.cheese=Cheese Conquers All!
+achievement.sp.cheese.desc=Craft Cheese 
+achievement.sp.cardboard=The Strongest Material of Them All
+achievement.sp.cardboard.desc=Construct Cardboard from eight sticks
+achievement.sp.cheesebread=The Ultimate Food of Power!
+achievement.sp.cheesebread.desc=Smelt Cheese Bread into its melted form
+achievement.sp.cheesecake=Cake, But Cheese Flavoured!
+achievement.sp.cheesecake.desc=Wheat, sugar, milk, eggs and CHEESE!
+achievement.sp.campfire=Unlimited Power!
+achievement.sp.campfire.desc=Light a Campfire
+achievement.sp.cupcake=Would you like a cupcake?
+achievement.sp.cupcake.desc=Craft a Cheese Cupcake
+
 sp.configgui.title=SurvivalPlus Config
 sp.configgui.enable_sponge=Enable Sponge Recipe
 sp.configgui.enable_cheese_block=Enable Galacticraft Cheese Block Recipe

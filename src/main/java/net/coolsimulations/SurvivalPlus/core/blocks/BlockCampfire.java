@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import net.coolsimulations.SurvivalPlus.api.SPAchievements;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.block.Block;
@@ -354,6 +355,9 @@ public class BlockCampfire extends Block{
     		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(true)), 3);
     		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F, false);
     		itemStackIn.damageItem(1, playerIn);
+    		if(!playerIn.hasAchievement(SPAchievements.achievementCampfire)) {
+    			playerIn.addStat(SPAchievements.achievementCampfire);
+    		}
 		}
     	else if(!worldIn.isRemote && item == Items.FIRE_CHARGE && state.getValue(BURNING) == false && !canDie(worldIn, pos)) {
     		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(true)), 3);
@@ -368,6 +372,9 @@ public class BlockCampfire extends Block{
     				playerIn.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Blocks.AIR));
     			}
     		}
+    		if(!playerIn.hasAchievement(SPAchievements.achievementCampfire)) {
+    			playerIn.addStat(SPAchievements.achievementCampfire);
+    		}
 		}
     	else if(!worldIn.isRemote && item == Items.LAVA_BUCKET && state.getValue(BURNING) == false) {
     		worldIn.setBlockState(pos, state.withProperty(FACING, iblockstate.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(true)), 3);
@@ -381,6 +388,9 @@ public class BlockCampfire extends Block{
     			{
     				playerIn.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(Items.BUCKET));
     			}
+    		}
+    		if(!playerIn.hasAchievement(SPAchievements.achievementCampfire)) {
+    			playerIn.addStat(SPAchievements.achievementCampfire);
     		}
     	}
     	else if(!worldIn.isRemote && item == Items.WATER_BUCKET && state.getValue(BURNING) == true) {
@@ -444,6 +454,9 @@ public class BlockCampfire extends Block{
         			itemStackIn.getTagCompound().removeTag("Amount");
     				//IFluidHandler handler = FluidUtil.getFluidHandler(itemStackIn);
     				//handler.drain(1000, true);
+        		}
+        		if(!playerIn.hasAchievement(SPAchievements.achievementCampfire)) {
+        			playerIn.addStat(SPAchievements.achievementCampfire);
         		}
         	}
     		else if(!worldIn.isRemote && fluid == FluidRegistry.getFluidName(FluidRegistry.WATER) && state.getValue(BURNING) == true) {
