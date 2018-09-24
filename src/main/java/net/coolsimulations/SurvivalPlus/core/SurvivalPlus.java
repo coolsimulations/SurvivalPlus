@@ -1,6 +1,8 @@
 package net.coolsimulations.SurvivalPlus.core;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
@@ -16,6 +18,7 @@ import net.coolsimulations.SurvivalPlus.core.commands.CommandWeba;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWoo;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
 import net.coolsimulations.SurvivalPlus.core.init.FuelHandler;
+import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusAchievements;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusBlocks;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
@@ -43,6 +46,7 @@ import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnion
 import net.coolsimulations.SurvivalPlus.core.world.village.VillageOnionCropHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -74,6 +78,8 @@ public class SurvivalPlus {
 	public static final CreativeTabs tabGem = new SurvivalPlusGemTab();
 	public static final CreativeTabs tabCombat = new SurvivalPlusCombatTab();
 	public static final CreativeTabs tabTools = new SurvivalPlusToolsTab();
+	
+	public static List<Achievement> achievements = new ArrayList<Achievement>();
 		
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -102,6 +108,8 @@ public class SurvivalPlus {
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
 		SurvivalPlusOreDict.PreInit();
+		SurvivalPlusAchievements.regsiterAchievements();
+		SurvivalPlusAchievements.registerPage();
 	}
 	
 	@EventHandler
