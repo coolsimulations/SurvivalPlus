@@ -1,0 +1,28 @@
+{
+    "display": {
+        "icon": {
+            "item": "survivalplus:cheese_cake"
+        },
+        "title": {
+            "translate": "advancements.sp.cheesecake"
+        },
+        "description": {
+            "translate": "advancements.sp.cheesecake.desc"
+        }
+    },
+    "parent": "survivalplus:survivalplus/cheese",
+    "criteria": {
+        "cheesecake": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "type": "forge:ore_dict",
+                        "ore": "foodCheesecake"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [["cheesecake"]]
+}

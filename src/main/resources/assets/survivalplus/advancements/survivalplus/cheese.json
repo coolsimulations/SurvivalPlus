@@ -1,0 +1,28 @@
+{
+    "display": {
+        "icon": {
+            "item": "survivalplus:cheese"
+        },
+        "title": {
+            "translate": "advancements.sp.cheese"
+        },
+        "description": {
+            "translate": "advancements.sp.cheese.desc"
+        }
+    },
+    "parent": "survivalplus:survivalplus/install",
+    "criteria": {
+        "cheese": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "type": "forge:ore_dict",
+                        "ore": "foodCheese"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [["cheese"]]
+}

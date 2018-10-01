@@ -1,0 +1,28 @@
+{
+    "display": {
+        "icon": {
+            "item": "survivalplus:melted_cheese_bread"
+        },
+        "title": {
+            "translate": "advancements.sp.cheesebread"
+        },
+        "description": {
+            "translate": "advancements.sp.cheesebread.desc"
+        }
+    },
+    "parent": "survivalplus:survivalplus/cheese",
+    "criteria": {
+        "cheesebread": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "type": "forge:ore_dict",
+                        "ore": "foodMeltedCheesebread"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [["cheesebread"]]
+}

@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "survivalplus:bronze_block"
+        },
+        "title": {
+            "translate": "advancements.sp.install"
+        },
+        "description": {
+            "translate": "advancements.sp.install.desc"
+        }
+    },
+    "parent": "survivalplus:survivalplus/root",
+    "criteria": {
+        "tick": {
+            "trigger": "minecraft:tick"
+        }
+    },
+    "requirements": [["tick"]]
+}

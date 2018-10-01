@@ -11,13 +11,19 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 public class SurvivalPlusEventHandler {
@@ -29,6 +35,27 @@ public class SurvivalPlusEventHandler {
         {
             SurvivalPlusConfig.syncConfig(false);
         }
+    }
+	
+	@SubscribeEvent
+	public void onplayerLogin(PlayerLoggedInEvent event)
+    {
+		EntityPlayerMP player = (EntityPlayerMP) event.player;
+		NBTTagCompound entityData = player.getEntityData();
+		
+		if(!entityData.getBoolean("sp.firstJoin")) {
+			
+			entityData.setBoolean("sp.firstJoin", true);
+		
+			if(!player.world.isRemote) {
+        		
+        		TextComponentTranslation installInfo = new TextComponentTranslation("advancements.sp.install.display1");
+        		installInfo.getStyle().setColor(TextFormatting.GOLD);
+        		installInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("advancements.sp.install.display2")));
+				player.sendMessage(installInfo);
+        		
+        	}
+		}
     }
 	
 	@SubscribeEvent
