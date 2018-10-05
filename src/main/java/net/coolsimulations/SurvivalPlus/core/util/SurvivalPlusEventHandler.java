@@ -18,6 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -52,10 +53,15 @@ public class SurvivalPlusEventHandler {
         		TextComponentTranslation installInfo = new TextComponentTranslation("advancements.sp.install.display1");
         		installInfo.getStyle().setColor(TextFormatting.GOLD);
         		installInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("advancements.sp.install.display2")));
+            	installInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://minecraft.curseforge/projects/survivalplus"));
 				player.sendMessage(installInfo);
         		
         	}
 		}
+		
+		if(SurvivalPlusUpdateHandler.isOld == true && SPConfig.disableUpdateCheck == false) {
+        	player.sendMessage(SurvivalPlusUpdateHandler.updateInfo);
+        }
     }
 	
 	@SubscribeEvent
