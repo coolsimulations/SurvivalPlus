@@ -1,4 +1,5 @@
 death.fell.accident.generic=%1$s has been smooshed
+sp.name=SurvivalPlus
 
 itemGroup.tabMaterials=Survival Plus Materials
 itemGroup.tabBlocks=Survival Plus Blocks
@@ -377,6 +378,10 @@ achievement.sp.campfire.desc=Light a Campfire
 achievement.sp.cupcake=Would you like a cupcake?
 achievement.sp.cupcake.desc=Craft a Cheese Cupcake
 
+sp.update.display1=This is an old version of %s! Version %s is now avaliable!
+sp.update.display2=Please click to download!
+sp.update.display3=%s no longer supports Minecraft Version %s! Please update to a newer Minecraft Version for more features!
+
 sp.configgui.title=SurvivalPlus Config
 sp.configgui.enable_sponge=Enable Sponge Recipe
 sp.configgui.enable_cheese_block=Enable Galacticraft Cheese Block Recipe
@@ -394,3 +399,4 @@ sp.configgui.disable_IC2_Credit_EMC=Disable IC2 Industrial Credit EMC Value
 sp.configgui.enable_Replace_BOP_Recipe=Enable Replace BOP Terrestrial Artifact Recipe
 sp.configgui.disable_wak_Command=Disable the Wak Command
 sp.configgui.op_wak_command=Define the Permission Level of the Wak Command
+sp.configgui.op_wak_command=Disable the Update Checker Message

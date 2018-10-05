@@ -42,6 +42,7 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusOreDict;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnionCrop;
 import net.coolsimulations.SurvivalPlus.core.world.village.VillageOnionCropHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -59,7 +60,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
-@Mod(modid = SPReference.MOD_ID, name = SPReference.MOD_NAME, version = SPReference.VERSION, acceptedMinecraftVersions = SPReference.ACCEPTED_VERSIONS, dependencies = SPReference.DEPENDENCIES, guiFactory = "net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfigGUI")
+@Mod(modid = SPReference.MOD_ID, name = SPReference.MOD_NAME, version = SPReference.VERSION, acceptedMinecraftVersions = SPReference.ACCEPTED_VERSIONS, dependencies = SPReference.DEPENDENCIES, guiFactory = "net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfigGUI", updateJSON = "http://www.coolsimulations.net/mcmods/survivalplus/versionchecker.json")
 public class SurvivalPlus {
 	
 	@SidedProxy(clientSide = SPReference.CLIENT_PROXY_CLASS, serverSide = SPReference.SERVER_PROXY_CLASS)
@@ -87,6 +88,7 @@ public class SurvivalPlus {
 		System.out.println("Pre Init");
 		SPCompatibilityManager.checkForCompatibleMods();
 		SurvivalPlusConfig.init(new File(event.getModConfigurationDirectory(), SPReference.SURVIVALPLUS_CONFIG_FILE));
+		SurvivalPlusUpdateHandler.init();
     	MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
 		
 		SurvivalPlusBlocks.init();

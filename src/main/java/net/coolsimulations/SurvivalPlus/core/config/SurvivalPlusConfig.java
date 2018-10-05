@@ -117,6 +117,11 @@ public class SurvivalPlusConfig {
 	            SPConfig.opWak = prop.getInt(0);
 	            propOrder.add(prop.getName());
 	            
+	            prop = config.get(SPReference.CONFIG_CATEGORY_COMMAND, "Disable SurvivalPlus Update Checker Message", false);
+	            prop.setLanguageKey("sp.configgui.update_check");
+	            SPConfig.disableUpdateCheck = prop.getBoolean(false);
+	            propOrder.add(prop.getName());
+	            
 	            if (config.hasChanged())
 	            {
 	                config.save();

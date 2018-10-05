@@ -1,14 +1,16 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
 import net.coolsimulations.SurvivalPlus.api.SPAchievements;
-import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -42,9 +44,14 @@ public class SurvivalPlusEventHandler {
             	TextComponentTranslation installInfo = new TextComponentTranslation("achievement.sp.install.display1");
             	installInfo.getStyle().setColor(TextFormatting.GOLD);
             	installInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("achievement.sp.install.display2")));
+            	installInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://minecraft.curseforge/projects/survivalplus"));
 				player.sendMessage(installInfo);
             	
             }
+        }
+        
+        if(SurvivalPlusUpdateHandler.isOld == true && SPConfig.disableUpdateCheck == false) {
+        	player.sendMessage(SurvivalPlusUpdateHandler.updateInfo);
         }
     }
 	
