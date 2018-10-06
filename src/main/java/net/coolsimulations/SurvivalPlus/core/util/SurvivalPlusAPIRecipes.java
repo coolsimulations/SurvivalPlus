@@ -490,7 +490,7 @@ public class SurvivalPlusAPIRecipes {
 		Item ingot = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "ingot"));
 		Item nugget = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "nugget"));
 		Block oreMetal = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "ore_metal"));
-		Block oreMetalPoor = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "ore_metal_poor"));
+		Block generic = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "generic"));
 		
 		removeFurnaceRecipe(new ItemStack(ingot, 1, 1));
 		GameRegistry.addSmelting(new ItemStack(oreMetal), new ItemStack(SPItems.copper_ingot), 1.0F);
@@ -500,6 +500,12 @@ public class SurvivalPlusAPIRecipes {
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 2), new Object[] {"ingotCopper"});
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 3), new Object[] {"ingotTin"});
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 6), new Object[] {"ingotBronze"});
+		removeCraftingRecipe(new ItemStack(ingot, 1, 1));
+		removeCraftingRecipe(new ItemStack(ingot, 1, 2));
+		removeCraftingRecipe(new ItemStack(ingot, 1, 5));
+		removeCraftingRecipe(new ItemStack(generic, 1, 11));
+		removeCraftingRecipe(new ItemStack(generic, 1, 1));
+		removeCraftingRecipe(new ItemStack(generic));
 		addRecipe(new ItemStack(SPItems.copper_ingot), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 2)});
 		addRecipe(new ItemStack(SPItems.tin_ingot), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 3)});
 		addRecipe(new ItemStack(SPItems.bronze_ingot), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 6)});
