@@ -497,6 +497,13 @@ public class SurvivalPlusAPIRecipes {
 		removeFurnaceRecipe(new ItemStack(ingot, 1, 2));
 		GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 1), new ItemStack(SPItems.tin_ingot), 1.0F);
 		
+		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 2), new Object[] {"ingotCopper"});
+		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 3), new Object[] {"ingotTin"});
+		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 6), new Object[] {"ingotBronze"});
+		addRecipe(new ItemStack(SPItems.copper_ingot), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 2)});
+		addRecipe(new ItemStack(SPItems.tin_ingot), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 3)});
+		addRecipe(new ItemStack(SPItems.bronze_ingot), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 6)});
+		
 		if(SPCompatibilityManager.isIc2Loaded()) {
 			
 			removeFurnaceRecipe(new ItemStack(ingot, 1, 3));
