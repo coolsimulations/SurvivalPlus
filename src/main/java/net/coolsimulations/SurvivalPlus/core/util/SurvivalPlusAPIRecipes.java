@@ -66,6 +66,10 @@ public class SurvivalPlusAPIRecipes {
         if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) {
         	GameRegistry.addSmelting(SPItems.titanium_dust, new ItemStack(SPItems.titanium_ingot), 3.0F);
         }
+        
+        if(SPCompatibilityManager.isRailcraftLoaded()) {
+        	SurvivalPlusAPIRecipes.addRailcraftItemsRecipes();
+        }
     }
 	
 	private static void addIndustrialCraft2Recipes()
@@ -202,11 +206,6 @@ public class SurvivalPlusAPIRecipes {
 			GameRegistry.addSmelting(new ItemStack(VenusBlocks.venusBlock, 1, 7), new ItemStack(SPItems.copper_ingot), 1.0F);
 			GameRegistry.addSmelting(new ItemStack(MarsBlocks.marsBlock, 1, 1), new ItemStack(SPItems.tin_ingot), 0.5F);
 			GameRegistry.addSmelting(new ItemStack(VenusBlocks.venusBlock, 1, 11), new ItemStack(SPItems.tin_ingot), 1.0F);
-			
-			if(SPCompatibilityManager.isIc2Loaded()) {
-				removeFurnaceRecipe(new ItemStack(VenusItems.basicItem, 1, 1));
-				GameRegistry.addSmelting(new ItemStack(VenusBlocks.venusBlock, 1, 8), IC2Items.getItem("ingot", "lead"), 1.0F);
-			}
 		}
 		
 	}
@@ -484,6 +483,27 @@ public class SurvivalPlusAPIRecipes {
 		removeFurnaceRecipe(new ItemStack(ingotTin));
 		GameRegistry.addSmelting(new ItemStack(resources, 1, 1), new ItemStack(SPItems.copper_ingot), 0.7F);
 		GameRegistry.addSmelting(new ItemStack(resources, 1, 2), new ItemStack(SPItems.tin_ingot), 0.7F);
+	}
+	
+	private static void addRailcraftItemsRecipes() {
+		
+		Item ingot = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "ingot"));
+		Item nugget = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "nugget"));
+		Block oreMetal = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "ore_metal"));
+		Block oreMetalPoor = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "ore_metal_poor"));
+		
+		removeFurnaceRecipe(new ItemStack(ingot, 1, 1));
+		GameRegistry.addSmelting(new ItemStack(oreMetal), new ItemStack(SPItems.copper_ingot), 1.0F);
+		removeFurnaceRecipe(new ItemStack(ingot, 1, 2));
+		GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 1), new ItemStack(SPItems.tin_ingot), 1.0F);
+		
+		if(SPCompatibilityManager.isIc2Loaded()) {
+			
+			removeFurnaceRecipe(new ItemStack(ingot, 1, 3));
+			GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 2), IC2Items.getItem("ingot", "lead"), 1.0F);
+			removeFurnaceRecipe(new ItemStack(ingot, 1, 4));
+			GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 3), IC2Items.getItem("ingot", "silver"), 1.0F);
+		}
 	}
 	
 	

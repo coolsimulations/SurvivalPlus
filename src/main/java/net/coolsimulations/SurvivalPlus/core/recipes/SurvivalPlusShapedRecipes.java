@@ -139,6 +139,16 @@ public class SurvivalPlusShapedRecipes {
 		addRecipe(new ItemStack(SPItems.rubber_boots), new Object[]{"B B","B B", 'B', "woodRubber"});
 	}
 	
+	if (OreDictionary.getOres("nuggetCopper").size() > 0) {
+		
+		addRecipe(new ItemStack(SPItems.copper_ingot), new Object[]{"BBB","BBB", "BBB", 'B', "nuggetCopper"});
+	}
+	
+	if (OreDictionary.getOres("nuggetTin").size() > 0) {
+		
+		addRecipe(new ItemStack(SPItems.tin_ingot), new Object[]{"BBB","BBB", "BBB", 'B', "nuggetTin"});
+	}
+	
 	if(SPConfig.enableSponge) {
 		
 		addRecipe(new ItemStack(Blocks.SPONGE), new Object[]{"CWC","WGW","CWC", 'G', "nuggetGold", 'C', "foodCheese", 'W', new ItemStack(Blocks.WOOL, 1, 4)});
