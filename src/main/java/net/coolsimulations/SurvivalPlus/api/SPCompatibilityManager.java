@@ -19,6 +19,7 @@ public class SPCompatibilityManager {
     private static boolean modWoodenBucketLoaded;
     private static boolean modSimpleGrinderLoaded;
     private static boolean modForestryLoaded;
+    private static boolean modRailcraftLoaded;
     
     public static final String TE_MODID = "thermalexpansion";
     public static final String GCCORE_MODID = "galacticraftcore";
@@ -36,6 +37,7 @@ public class SPCompatibilityManager {
     public static final String VEFLUIDS_MODID = "vefluids";
     public static final String SIMPLEGRINDER_MODID = "simplegrinder";
     public static final String FORESTRY_MODID = "forestry";
+    public static final String RAILCRAFT_MODID = "railcraft";
     
     public static void checkForCompatibleMods(){
 
@@ -114,6 +116,11 @@ public class SPCompatibilityManager {
         {
             SPCompatibilityManager.modForestryLoaded = true;
         }
+        
+        if (Loader.isModLoaded(RAILCRAFT_MODID))
+        {
+            SPCompatibilityManager.modRailcraftLoaded = true;
+        }
     }
 
     public static boolean isIc2Loaded()
@@ -189,6 +196,11 @@ public class SPCompatibilityManager {
     public static boolean isForestryLoaded()
     {
         return SPCompatibilityManager.modForestryLoaded;
+    }
+    
+    public static boolean isRailcraftLoaded()
+    {
+        return SPCompatibilityManager.modRailcraftLoaded;
     }
 
 }
