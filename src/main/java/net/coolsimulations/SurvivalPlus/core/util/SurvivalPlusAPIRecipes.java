@@ -125,6 +125,12 @@ public class SurvivalPlusAPIRecipes {
 			GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 2), IC2Items.getItem("ingot", "lead"), 1.0F);
 			removeFurnaceRecipe(new ItemStack(ingot, 1, 4));
 			GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 3), IC2Items.getItem("ingot", "silver"), 1.0F);
+			/**removeCraftingRecipe(new ItemStack(ingot, 1, 3));
+			removeCraftingRecipe(new ItemStack(ingot, 1, 4));
+			removeCraftingRecipe(new ItemStack(generic, 1, 10));
+			removeCraftingRecipe(new ItemStack(generic, 1, 2));
+			addRecipe(IC2Items.getItem("ingot", "lead"), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 4)});
+			addRecipe(IC2Items.getItem("ingot", "silver"), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 5)});**/
 		}
 	}
 	
