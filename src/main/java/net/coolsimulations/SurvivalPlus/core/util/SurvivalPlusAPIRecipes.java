@@ -730,9 +730,30 @@ public class SurvivalPlusAPIRecipes {
 		removeFurnaceRecipe(new ItemStack(ingot, 1, 2));
 		GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 1), new ItemStack(SPItems.tin_ingot), 1.0F);
 		
-		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 2), new Object[] {"ingotCopper"});
-		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 3), new Object[] {"ingotTin"});
-		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 6), new Object[] {"ingotBronze"});
+		if (OreDictionary.getOres("ingotSteel").size() > 0) {
+			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 1), new Object[] {"ingotSteel"});
+		}
+		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 2), new Object[] {"ingotCopper"});
+		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 3), new Object[] {"ingotTin"});
+		if (OreDictionary.getOres("ingotLead").size() > 0) {
+			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 4), new Object[] {"ingotLead"});
+		}
+		if (OreDictionary.getOres("ingotSilver").size() > 0) {
+			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 5), new Object[] {"ingotSilver"});
+		}
+		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 6), new Object[] {"ingotBronze"});
+		if (OreDictionary.getOres("ingotNickel").size() > 0) {
+			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 7), new Object[] {"ingotNickel"});
+		}
+		if (OreDictionary.getOres("ingotInvar").size() > 0) {
+			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 8), new Object[] {"ingotInvar"});
+		}
+		if (OreDictionary.getOres("ingotZinc").size() > 0) {
+			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 9), new Object[] {"ingotZinc"});
+		}
+		if (OreDictionary.getOres("ingotBrass").size() > 0) {
+			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 10), new Object[] {"ingotBrass"});
+		}
 		removeCraftingRecipe(new ItemStack(ingot, 1, 1));
 		removeCraftingRecipe(new ItemStack(ingot, 9, 1));
 		removeCraftingRecipe(new ItemStack(ingot, 1, 2));
