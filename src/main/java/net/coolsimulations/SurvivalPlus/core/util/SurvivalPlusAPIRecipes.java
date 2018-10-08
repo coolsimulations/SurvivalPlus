@@ -110,8 +110,12 @@ public class SurvivalPlusAPIRecipes {
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 3), new Object[] {"ingotTin"});
 		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 1, 6), new Object[] {"ingotBronze"});
 		removeCraftingRecipe(new ItemStack(ingot, 1, 1));
+		removeCraftingRecipe(new ItemStack(ingot, 9, 1));
 		removeCraftingRecipe(new ItemStack(ingot, 1, 2));
+		removeCraftingRecipe(new ItemStack(ingot, 9, 2));
 		removeCraftingRecipe(new ItemStack(ingot, 1, 5));
+		removeCraftingRecipe(new ItemStack(ingot, 9, 5));
+		removeCraftingRecipe(new ItemStack(ingot, 4, 5));
 		removeCraftingRecipe(new ItemStack(generic, 1, 11));
 		removeCraftingRecipe(new ItemStack(generic, 1, 1));
 		removeCraftingRecipe(new ItemStack(generic));
@@ -126,7 +130,9 @@ public class SurvivalPlusAPIRecipes {
 			removeFurnaceRecipe(new ItemStack(ingot, 1, 4));
 			GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 3), IC2Items.getItem("ingot", "silver"), 1.0F);
 			/**removeCraftingRecipe(new ItemStack(ingot, 1, 3));
+			removeCraftingRecipe(new ItemStack(ingot, 9, 3));
 			removeCraftingRecipe(new ItemStack(ingot, 1, 4));
+			removeCraftingRecipe(new ItemStack(ingot, 9, 4));
 			removeCraftingRecipe(new ItemStack(generic, 1, 10));
 			removeCraftingRecipe(new ItemStack(generic, 1, 2));
 			addRecipe(IC2Items.getItem("ingot", "lead"), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 4)});
