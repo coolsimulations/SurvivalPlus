@@ -39,7 +39,7 @@ public class CommandSleep extends CommandBase{
     	
 		TextComponentTranslation dimension = null;
 		if(!SPCompatibilityManager.isGCLoaded() && sender.getCommandSenderEntity().worldObj.provider.getDimension() == 0) {
-    		dimension = new TextComponentTranslation("createWorld.customize.preset.overworld", new Object[] {});
+    		dimension = new TextComponentTranslation("Overworld", new Object[] {});
     	}
     	if(SPCompatibilityManager.isGCLoaded() && sender.getCommandSenderEntity().worldObj.provider.getDimension() == ConfigManagerCore.idDimensionOverworld) {
     		dimension = new TextComponentTranslation("dimension.overworld.name", new Object[] {});
