@@ -1,12 +1,12 @@
 death.fell.accident.generic=%1$s has been smooshed
 sp.name=SurvivalPlus
 
-itemGroup.tabMaterials=Survival Plus Materials
-itemGroup.tabBlocks=Survival Plus Blocks
-itemGroup.tabFood=Survival Plus Foodstuffs
-itemGroup.tabGem=Survival Plus Gems
-itemGroup.tabCombat=Survival Plus Combat
-itemGroup.tabTools=Survival Plus Tools
+itemGroup.tabMaterials=SurvivalPlus Materials
+itemGroup.tabBlocks=SurvivalPlus Blocks
+itemGroup.tabFood=SurvivalPlus Foodstuffs
+itemGroup.tabGem=SurvivalPlus Gems
+itemGroup.tabCombat=SurvivalPlus Combat
+itemGroup.tabTools=SurvivalPlus Tools
 
 item.tin_ingot.name=Tin Ingot
 item.copper_ingot.name=Copper Ingot
