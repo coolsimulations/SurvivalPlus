@@ -15,25 +15,25 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class SurvivalPlusFood {
 	
 	public static void init(){
-		SPItems.apple_pie = new ItemFood(8, 4.8F, false).setUnlocalizedName("apple_pie").setRegistryName("apple_pie").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.beef_pie = new ItemFood(10, 5.0F, true).setUnlocalizedName("beef_pie").setRegistryName("beef_pie").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.pork_pie = new ItemFood(10, 5.0F, true).setUnlocalizedName("pork_pie").setRegistryName("pork_pie").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.chicken_pie = new ItemFood(8, 4.8F, true).setUnlocalizedName("chicken_pie").setRegistryName("chicken_pie").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.mutton_pie = new ItemFood(8, 4.8F, true).setUnlocalizedName("mutton_pie").setRegistryName("mutton_pie").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.rabbit_pie = new ItemFood(8, 4.8F, true).setUnlocalizedName("rabbit_pie").setRegistryName("rabbit_pie").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.vegetable_pie = new ItemFood(7, 4.8F, false).setUnlocalizedName("vegetable_pie").setRegistryName("vegetable_pie").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.apple_pie = new ItemFood(8, 0.75F, false).setUnlocalizedName("apple_pie").setRegistryName("apple_pie").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.beef_pie = new ItemFood(10, 0.95F, true).setUnlocalizedName("beef_pie").setRegistryName("beef_pie").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.pork_pie = new ItemFood(10, 0.95F, true).setUnlocalizedName("pork_pie").setRegistryName("pork_pie").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.chicken_pie = new ItemFood(8, 0.75F, true).setUnlocalizedName("chicken_pie").setRegistryName("chicken_pie").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.mutton_pie = new ItemFood(8, 0.75F, true).setUnlocalizedName("mutton_pie").setRegistryName("mutton_pie").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.rabbit_pie = new ItemFood(8, 0.75F, true).setUnlocalizedName("rabbit_pie").setRegistryName("rabbit_pie").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.vegetable_pie = new ItemFood(7, 1.0F, false).setUnlocalizedName("vegetable_pie").setRegistryName("vegetable_pie").setCreativeTab(SurvivalPlus.tabFood);
 		SPItems.raw_onion = new SPItemFoodEffect(2, 1.0F, false, MobEffects.NAUSEA, 300).setUnlocalizedName("raw_onion").setRegistryName("raw_onion").setCreativeTab(SurvivalPlus.tabFood);
 		SPItems.onion_soup = new ItemSoup(10).setUnlocalizedName("onion_soup").setRegistryName("onion_soup").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.fried_egg = new ItemFood(2, 2.0F, false).setUnlocalizedName("fried_egg").setRegistryName("fried_egg").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.roast_carrot = new ItemFood(5, 1.5F, false).setUnlocalizedName("roast_carrot").setRegistryName("roast_carrot").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.fried_egg = new ItemFood(2, 1.0F, false).setUnlocalizedName("fried_egg").setRegistryName("fried_egg").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.roast_carrot = new ItemFood(5, 0.5F, false).setUnlocalizedName("roast_carrot").setRegistryName("roast_carrot").setCreativeTab(SurvivalPlus.tabFood);
 		SPItems.cheese = new ItemFood(3, 1.0F, false).setUnlocalizedName("cheese").setRegistryName("cheese").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.cheese_bread = new ItemFood(9, 6.5F, false).setUnlocalizedName("cheese_bread").setRegistryName("cheese_bread").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.melted_cheese_bread = new ItemFood(11, 7.5F, false).setUnlocalizedName("melted_cheese_bread").setRegistryName("melted_cheese_bread").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.cheese_bread = new ItemFood(9, 0.9F, false).setUnlocalizedName("cheese_bread").setRegistryName("cheese_bread").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.melted_cheese_bread = new ItemFood(11, 1.0F, false).setUnlocalizedName("melted_cheese_bread").setRegistryName("melted_cheese_bread").setCreativeTab(SurvivalPlus.tabFood);
 		SPItems.cupcake = new ItemFood(2, 0.1F, false).setUnlocalizedName("cupcake").setRegistryName("cupcake").setCreativeTab(SurvivalPlus.tabFood);
 		SPItems.cheese_cupcake = new ItemFood(3, 0.2F, false).setUnlocalizedName("cheese_cupcake").setRegistryName("cheese_cupcake").setCreativeTab(SurvivalPlus.tabFood);
 		SPItems.sponge_cupcake = new ItemFood(2, 0.1F, false).setUnlocalizedName("sponge_cupcake").setRegistryName("sponge_cupcake").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.baked_apple = new ItemFood(6, 3.0F, false).setUnlocalizedName("baked_apple").setRegistryName("baked_apple").setCreativeTab(SurvivalPlus.tabFood);
-		SPItems.fried_onion = new ItemFood(4, 1.5F, false).setUnlocalizedName("fried_onion").setRegistryName("fried_onion").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.baked_apple = new ItemFood(6, 0.5F, false).setUnlocalizedName("baked_apple").setRegistryName("baked_apple").setCreativeTab(SurvivalPlus.tabFood);
+		SPItems.fried_onion = new ItemFood(4, 0.8F, false).setUnlocalizedName("fried_onion").setRegistryName("fried_onion").setCreativeTab(SurvivalPlus.tabFood);
 		
 		//(hunger) x * 0.5 = a hearts (Max 20)
 	}
