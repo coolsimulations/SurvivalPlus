@@ -36,8 +36,8 @@ public class SurvivalPlusOreGenerator implements IWorldGenerator{
 	
 	public SurvivalPlusOreGenerator() {
 		copper_ore = new WorldGenMinable(SPBlocks.copper_ore.getDefaultState(), 8);
-		tin_ore = new WorldGenMinable(SPBlocks.copper_ore.getDefaultState(), 8);
-		titanium_ore = new WorldGenMinable(SPBlocks.copper_ore.getDefaultState(), 4);
+		tin_ore = new WorldGenMinable(SPBlocks.tin_ore.getDefaultState(), 8);
+		titanium_ore = new WorldGenMinable(SPBlocks.titanium_ore.getDefaultState(), 4);
 		
 		amethyst = new WorldGenMinable(SPBlocks.amethyst.getDefaultState(), 3, new SPNetherGeneratorPredicate());
 		ruby = new WorldGenMinable(SPBlocks.ruby.getDefaultState(), 3, new SPNetherGeneratorPredicate());
