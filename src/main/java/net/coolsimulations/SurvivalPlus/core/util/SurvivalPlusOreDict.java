@@ -123,12 +123,6 @@ public class SurvivalPlusOreDict {
 		OreDictionary.registerOre("blockCardboardYellow", new ItemStack(SPBlocks.cardboard_yellow));
 		
 		OreDictionary.registerOre("blockCampfire", new ItemStack(SPBlocks.campfire));
-		
-		if(SPCompatibilityManager.isGCLoaded()) {
-			
-			OreDictionary.registerOre("foodCheese", new ItemStack(GCItems.cheeseCurd));
-			
-		}
 
 	}
 
