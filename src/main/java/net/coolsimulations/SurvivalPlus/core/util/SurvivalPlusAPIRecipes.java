@@ -17,6 +17,7 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.core.init.BOPArmor;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusShapelessRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -26,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -33,6 +35,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.item.BOPItems;
 
+import com.google.common.collect.Lists;
 import com.polegamers.flourpower.item.ItemFlourPower;
 import com.rumaruka.simplegrinder.Core.ConfigHandler;
 import com.rumaruka.simplegrinder.Init.GrinderRecipes;
@@ -103,90 +106,23 @@ public class SurvivalPlusAPIRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(SPItems.white_dye, 2), new Object[]{new ItemStack(BOPBlocks.flower_0, 1, 9)});
 		GameRegistry.addShapelessRecipe(new ItemStack(SPItems.white_dye, 2), new Object[]{new ItemStack(BOPBlocks.flower_0, 1, 14)});
 		
-		GameRegistry.addRecipe(new ItemStack(SPItems.cherry_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.cherry_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_0, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.cherry_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.cherry_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 5)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.dead_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_4, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.dead_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_4, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.dead_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_4, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.dead_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_4, 1, 5)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.ebony_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ebony_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_3, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ebony_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ebony_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 6)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.ethereal_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ethereal_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_1, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ethereal_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ethereal_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 4)});
-
-		GameRegistry.addRecipe(new ItemStack(SPItems.eucalyptus_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.eucalyptus_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_3, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.eucalyptus_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.eucalyptus_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 7)});
-
-		GameRegistry.addRecipe(new ItemStack(SPItems.fir_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.fir_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_0, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.fir_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.fir_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 7)});
-
-		GameRegistry.addRecipe(new ItemStack(SPItems.hellbark_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.hellbark_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_2, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.hellbark_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.hellbark_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 7)});
-
-		GameRegistry.addRecipe(new ItemStack(SPItems.jacaranda_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.jacaranda_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_3, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.jacaranda_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.jacaranda_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 4)});
-
-		GameRegistry.addRecipe(new ItemStack(SPItems.magic_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.magic_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_1, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.magic_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.magic_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 5)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahogany_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahogany_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_3, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahogany_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahogany_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_3, 1, 5)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.mangrove_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mangrove_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_1, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mangrove_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mangrove_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 6)});
-
-		GameRegistry.addRecipe(new ItemStack(SPItems.palm_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.palm_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_1, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.palm_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.palm_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_1, 1, 7)});
-
-		GameRegistry.addRecipe(new ItemStack(SPItems.pine_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.pine_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_2, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.pine_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.pine_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 6)});
-
-		GameRegistry.addRecipe(new ItemStack(SPItems.redwood_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.redwood_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_2, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.redwood_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.redwood_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 4)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.sacred_oak_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.sacred_oak_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_0, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.sacred_oak_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.sacred_oak_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 4)});
-
-		GameRegistry.addRecipe(new ItemStack(SPItems.umbran_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.umbran_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_0, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.umbran_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.umbran_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_0, 1, 6)});
-
-		GameRegistry.addRecipe(new ItemStack(SPItems.willow_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.willow_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(BOPBlocks.log_2, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.willow_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.willow_boots), new Object[]{"B B","B B", 'B', new ItemStack(BOPBlocks.log_2, 1, 5)});
+		addArmorRecipe(SPItems.cherry, new ItemStack(BOPBlocks.log_0, 1, 5));
+		addArmorRecipe(SPItems.dead, new ItemStack(BOPBlocks.log_4, 1, 5));
+		addArmorRecipe(SPItems.ebony, new ItemStack(BOPBlocks.log_3, 1, 6));
+		addArmorRecipe(SPItems.ethereal, new ItemStack(BOPBlocks.log_1, 1, 4));
+		addArmorRecipe(SPItems.eucalyptus, new ItemStack(BOPBlocks.log_3, 1, 7));
+		addArmorRecipe(SPItems.fir, new ItemStack(BOPBlocks.log_0, 1, 7));
+		addArmorRecipe(SPItems.hellbark, new ItemStack(BOPBlocks.log_2, 1, 7));
+		addArmorRecipe(SPItems.jacaranda, new ItemStack(BOPBlocks.log_3, 1, 4));
+		addArmorRecipe(SPItems.magic, new ItemStack(BOPBlocks.log_1, 1, 5));
+		addArmorRecipe(SPItems.mahogany, new ItemStack(BOPBlocks.log_3, 1, 5));
+		addArmorRecipe(SPItems.mangrove, new ItemStack(BOPBlocks.log_1, 1, 6));
+		addArmorRecipe(SPItems.palm, new ItemStack(BOPBlocks.log_1, 1, 7));
+		addArmorRecipe(SPItems.pine, new ItemStack(BOPBlocks.log_2, 1, 6));
+		addArmorRecipe(SPItems.redwood, new ItemStack(BOPBlocks.log_2, 1, 4));
+		addArmorRecipe(SPItems.sacred_oak, new ItemStack(BOPBlocks.log_0, 1, 4));
+		addArmorRecipe(SPItems.umbran, new ItemStack(BOPBlocks.log_0, 1, 6));
+		addArmorRecipe(SPItems.willow, new ItemStack(BOPBlocks.log_2, 1, 5));
 	}
 	
 	private static void addGCItemsRecipes() {
@@ -335,150 +271,35 @@ public class SurvivalPlusAPIRecipes {
 		Item ingotCopper = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.FORESTRY_MODID, "ingot_copper"));
 		Item ingotTin = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.FORESTRY_MODID, "ingot_tin"));
 		
-		GameRegistry.addRecipe(new ItemStack(SPItems.desert_acacia_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs0, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.desert_acacia_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs0, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.desert_acacia_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs0, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.desert_acacia_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs0, 1, 2)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.balsa_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs2, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.balsa_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs2, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.balsa_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs2, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.balsa_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs2, 1, 3)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.baobab_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs1, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.baobab_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs1, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.baobab_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs1, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.baobab_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs1, 1, 2)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.cherry_helmet_forestry), new Object[]{"BBB","B B", 'B', new ItemStack(logs3, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.cherry_chestplate_forestry), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs3, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.cherry_leggings_forestry), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs3, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.cherry_boots_forestry), new Object[]{"B B","B B", 'B', new ItemStack(logs3, 1, 3)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.chestnut_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.chestnut_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.chestnut_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.chestnut_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs1)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.citrus_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs5, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.citrus_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs5, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.citrus_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs5, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.citrus_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs5, 1, 3)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.cocobolo_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs6, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.cocobolo_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs6, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.cocobolo_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs6, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.cocobolo_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs6, 1, 3)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.ebony_helmet_forestry), new Object[]{"BBB","B B", 'B', new ItemStack(logs2, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ebony_chestplate_forestry), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs2, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ebony_leggings_forestry), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs2, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ebony_boots_forestry), new Object[]{"B B","B B", 'B', new ItemStack(logs2, 1, 1)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.giant_sequoia_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.giant_sequoia_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.giant_sequoia_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs6)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.giant_sequoia_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs6)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.greenheart_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs3, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.greenheart_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs3, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.greenheart_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs3, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.greenheart_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs3, 1, 2)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.ipe_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs6, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ipe_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs6, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ipe_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs6, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.ipe_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs6, 1, 1)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.kapok_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.kapok_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.kapok_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.kapok_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs2)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.larch_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs0)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.larch_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs0)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.larch_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs0)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.larch_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs0)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.lime_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs0, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.lime_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs0, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.lime_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs0, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.lime_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs0, 1, 3)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahoe_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahoe_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahoe_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs4)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahoe_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs4)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahogany_helmet_forestry), new Object[]{"BBB","B B", 'B', new ItemStack(logs2, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahogany_chestplate_forestry), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs2, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahogany_leggings_forestry), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs2, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.mahogany_boots_forestry), new Object[]{"B B","B B", 'B', new ItemStack(logs2, 1, 2)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.maple_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs5, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.maple_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs5, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.maple_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs5, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.maple_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs5, 1, 2)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.padauk_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs6, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.padauk_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs6, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.padauk_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs6, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.padauk_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs6, 1, 2)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.palm_helmet_forestry), new Object[]{"BBB","B B", 'B', new ItemStack(logs4, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.palm_chestplate_forestry), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs4, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.palm_leggings_forestry), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs4, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.palm_boots_forestry), new Object[]{"B B","B B", 'B', new ItemStack(logs4, 1, 2)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.papaya_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs4, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.papaya_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs4, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.papaya_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs4, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.papaya_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs4, 1, 3)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.pine_helmet_forestry), new Object[]{"BBB","B B", 'B', new ItemStack(logs5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.pine_chestplate_forestry), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.pine_leggings_forestry), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs5)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.pine_boots_forestry), new Object[]{"B B","B B", 'B', new ItemStack(logs5)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.plum_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs5, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.plum_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs5, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.plum_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs5, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.plum_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs5, 1, 1)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.poplar_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs4, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.poplar_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs4, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.poplar_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs4, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.poplar_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs4, 1, 1)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.sequoia_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs1, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.sequoia_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs1, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.sequoia_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs1, 1, 3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.sequoia_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs1, 1, 3)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.teak_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs0, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.teak_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs0, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.teak_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs0, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.teak_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs0, 1, 1)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.walnut_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs3, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.walnut_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs3, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.walnut_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs3, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.walnut_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs3, 1, 1)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.wenge_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs1, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.wenge_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs1, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.wenge_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs1, 1, 1)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.wenge_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs1, 1, 1)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.willow_helmet_forestry), new Object[]{"BBB","B B", 'B', new ItemStack(logs3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.willow_chestplate_forestry), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.willow_leggings_forestry), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs3)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.willow_boots_forestry), new Object[]{"B B","B B", 'B', new ItemStack(logs3)});
-		
-		GameRegistry.addRecipe(new ItemStack(SPItems.zebrawood_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(logs7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.zebrawood_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(logs7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.zebrawood_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(logs7)});
-		GameRegistry.addRecipe(new ItemStack(SPItems.zebrawood_boots), new Object[]{"B B","B B", 'B', new ItemStack(logs7)});
+		addArmorRecipe(SPItems.desert_acacia, new ItemStack(logs0, 1, 2));
+		addArmorRecipe(SPItems.balsa, new ItemStack(logs2, 1, 3));
+		addArmorRecipe(SPItems.baobab, new ItemStack(logs1, 1, 2));
+		addArmorRecipe(SPItems.cherry_forestry, new ItemStack(logs3, 1, 3));
+		addArmorRecipe(SPItems.chestnut, new ItemStack(logs1));
+		addArmorRecipe(SPItems.citrus, new ItemStack(logs5, 1, 3));
+		addArmorRecipe(SPItems.cocobolo, new ItemStack(logs6, 1, 3));
+		addArmorRecipe(SPItems.ebony_forestry, new ItemStack(logs2, 1, 1));
+		addArmorRecipe(SPItems.giant_sequoia, new ItemStack(logs6));
+		addArmorRecipe(SPItems.greenheart, new ItemStack(logs3, 1, 2));
+		addArmorRecipe(SPItems.ipe, new ItemStack(logs6, 1, 1));
+		addArmorRecipe(SPItems.kapok, new ItemStack(logs2));
+		addArmorRecipe(SPItems.larch, new ItemStack(logs0));
+		addArmorRecipe(SPItems.lime, new ItemStack(logs0, 1, 3));
+		addArmorRecipe(SPItems.mahoe, new ItemStack(logs4));
+		addArmorRecipe(SPItems.mahogany_forestry, new ItemStack(logs2, 1, 2));
+		addArmorRecipe(SPItems.maple, new ItemStack(logs5, 1, 2));
+		addArmorRecipe(SPItems.padauk, new ItemStack(logs6, 1, 2));
+		addArmorRecipe(SPItems.palm_forestry, new ItemStack(logs4, 1, 2));
+		addArmorRecipe(SPItems.papaya, new ItemStack(logs4, 1, 3));
+		addArmorRecipe(SPItems.pine_forestry, new ItemStack(logs5));
+		addArmorRecipe(SPItems.plum, new ItemStack(logs5, 1, 1));
+		addArmorRecipe(SPItems.poplar, new ItemStack(logs4, 1, 1));
+		addArmorRecipe(SPItems.sequoia, new ItemStack(logs1, 1, 3));
+		addArmorRecipe(SPItems.teak, new ItemStack(logs0, 1, 1));
+		addArmorRecipe(SPItems.walnut, new ItemStack(logs3, 1, 1));
+		addArmorRecipe(SPItems.wenge, new ItemStack(logs1, 1, 1));
+		addArmorRecipe(SPItems.willow_forestry, new ItemStack(logs1, 1, 1));
+		addArmorRecipe(SPItems.zebrawood, new ItemStack(logs7));
 		
 		removeFurnaceRecipe(new ItemStack(ingotCopper));
 		removeFurnaceRecipe(new ItemStack(ingotTin));
@@ -558,6 +379,14 @@ public class SurvivalPlusAPIRecipes {
     public static void addRecipe(ItemStack result, Object[] obj)
     {
         CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(result, obj));
+    }
+    
+    public static void addArmorRecipe(NonNullList<ItemStack> result, ItemStack material)
+    {
+    	GameRegistry.addRecipe(result.get(0), new Object[]{"BBB","B B", 'B', material});
+		GameRegistry.addRecipe(result.get(1), new Object[]{"B B","BBB","BBB", 'B', material});
+		GameRegistry.addRecipe(result.get(2), new Object[]{"BBB","B B","B B", 'B', material});
+		GameRegistry.addRecipe(result.get(3), new Object[]{"B B","B B", 'B', material});
     }
     
     public static void removeFurnaceRecipe (ItemStack resultItem)

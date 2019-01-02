@@ -1,5 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.recipes;
 
+import biomesoplenty.api.block.BOPBlocks;
+
 import com.polegamers.flourpower.config.ConfigHandler;
 import com.polegamers.flourpower.item.ItemFlourPower;
 
@@ -12,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -66,15 +69,9 @@ public class SurvivalPlusShapedRecipes {
 	addRecipe(new ItemStack(SPBlocks.cardboard_pink, 8), new Object[]{"SSS","SBS","SSS", 'S', SPBlocks.cardboard, 'B', "dyePink"});
 	addRecipe(new ItemStack(SPBlocks.cardboard_brown, 8), new Object[]{"SSS","SBS","SSS", 'S', SPBlocks.cardboard, 'B', "dyeBrown"});
 	
-	addRecipe(new ItemStack(SPItems.stone_helmet), new Object[]{"BBB","B B", 'B', "stone"});
-	addRecipe(new ItemStack(SPItems.stone_chestplate), new Object[]{"B B","BBB","BBB", 'B', "stone"});
-	addRecipe(new ItemStack(SPItems.stone_leggings), new Object[]{"BBB","B B","B B", 'B', "stone"});
-	addRecipe(new ItemStack(SPItems.stone_boots), new Object[]{"B B","B B", 'B', "stone"});
+	addArmorRecipe(SPItems.stone, "stone");
 	
-	addRecipe(new ItemStack(SPItems.titanium_helmet), new Object[]{"BBB","B B", 'B', "ingotTitanium"});
-	addRecipe(new ItemStack(SPItems.titanium_chestplate), new Object[]{"B B","BBB","BBB", 'B', "ingotTitanium"});
-	addRecipe(new ItemStack(SPItems.titanium_leggings), new Object[]{"BBB","B B","B B", 'B', "ingotTitanium"});
-	addRecipe(new ItemStack(SPItems.titanium_boots), new Object[]{"B B","B B", 'B', "ingotTitanium"});
+	addArmorRecipe(SPItems.titanium, "ingotTitanium");
 	
 	addRecipe(new ItemStack(SPItems.titanium_pickaxe), new Object[]{"BBB"," S "," S ", 'B', "ingotTitanium", 'S', "stickWood"});
 	addRecipe(new ItemStack(SPItems.titanium_axe), new Object[]{"BB","BS"," S", 'B', "ingotTitanium", 'S', "stickWood"});
@@ -94,49 +91,20 @@ public class SurvivalPlusShapedRecipes {
 	addRecipe(new ItemStack(SPItems.bronze_sword), new Object[]{"B","B","S", 'B', "ingotBronze", 'S', "stickWood"});
 	addRecipe(new ItemStack(SPItems.bronze_shears), new Object[]{" B","B ", 'B', "ingotBronze"});
 	
-	addRecipe(new ItemStack(SPItems.bronze_helmet), new Object[]{"BBB","B B", 'B', "ingotBronze"});
-	addRecipe(new ItemStack(SPItems.bronze_chestplate), new Object[]{"B B","BBB","BBB", 'B', "ingotBronze"});
-	addRecipe(new ItemStack(SPItems.bronze_leggings), new Object[]{"BBB","B B","B B", 'B', "ingotBronze"});
-	addRecipe(new ItemStack(SPItems.bronze_boots), new Object[]{"B B","B B", 'B', "ingotBronze"});
+	addArmorRecipe(SPItems.bronze, "ingotBronze");
 	addRecipe(new ItemStack(SPItems.bronze_shears), new Object[]{" B","B ", 'B', "ingotBronze"});
 	
-	GameRegistry.addRecipe(new ItemStack(SPItems.oak_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(Blocks.LOG, 1, 0)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.oak_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(Blocks.LOG, 1, 0)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.oak_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(Blocks.LOG, 1, 0)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.oak_boots), new Object[]{"B B","B B", 'B', new ItemStack(Blocks.LOG, 1, 0)});
-	
-	GameRegistry.addRecipe(new ItemStack(SPItems.spruce_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(Blocks.LOG, 1, 1)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.spruce_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(Blocks.LOG, 1, 1)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.spruce_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(Blocks.LOG, 1, 1)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.spruce_boots), new Object[]{"B B","B B", 'B', new ItemStack(Blocks.LOG, 1, 1)});
-	
-	GameRegistry.addRecipe(new ItemStack(SPItems.birch_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(Blocks.LOG, 1, 2)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.birch_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(Blocks.LOG, 1, 2)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.birch_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(Blocks.LOG, 1, 2)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.birch_boots), new Object[]{"B B","B B", 'B', new ItemStack(Blocks.LOG, 1, 2)});
-	
-	GameRegistry.addRecipe(new ItemStack(SPItems.jungle_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(Blocks.LOG, 1, 3)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.jungle_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(Blocks.LOG, 1, 3)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.jungle_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(Blocks.LOG, 1, 3)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.jungle_boots), new Object[]{"B B","B B", 'B', new ItemStack(Blocks.LOG, 1, 3)});
-	
-	GameRegistry.addRecipe(new ItemStack(SPItems.acacia_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(Blocks.LOG2, 1, 0)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.acacia_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(Blocks.LOG2, 1, 0)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.acacia_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(Blocks.LOG2, 1, 0)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.acacia_boots), new Object[]{"B B","B B", 'B', new ItemStack(Blocks.LOG2, 1, 0)});
-		
-	GameRegistry.addRecipe(new ItemStack(SPItems.dark_oak_helmet), new Object[]{"BBB","B B", 'B', new ItemStack(Blocks.LOG2, 1, 1)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.dark_oak_chestplate), new Object[]{"B B","BBB","BBB", 'B', new ItemStack(Blocks.LOG2, 1, 1)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.dark_oak_leggings), new Object[]{"BBB","B B","B B", 'B', new ItemStack(Blocks.LOG2, 1, 1)});
-	GameRegistry.addRecipe(new ItemStack(SPItems.dark_oak_boots), new Object[]{"B B","B B", 'B', new ItemStack(Blocks.LOG2, 1, 1)});
+	addArmorRecipe(SPItems.oak, new ItemStack(Blocks.LOG, 1, 0));
+	addArmorRecipe(SPItems.spruce, new ItemStack(Blocks.LOG, 1, 1));
+	addArmorRecipe(SPItems.birch, new ItemStack(Blocks.LOG, 1, 2));
+	addArmorRecipe(SPItems.jungle, new ItemStack(Blocks.LOG, 1, 3));
+	addArmorRecipe(SPItems.acacia, new ItemStack(Blocks.LOG2, 1, 0));
+	addArmorRecipe(SPItems.dark_oak, new ItemStack(Blocks.LOG2, 1, 1));
 	
 	if (OreDictionary.getOres("woodRubber").size() > 0) {
 		
 		RubberCampfireRecipes();
-		addRecipe(new ItemStack(SPItems.rubber_helmet), new Object[]{"BBB","B B", 'B', "woodRubber"});
-		addRecipe(new ItemStack(SPItems.rubber_chestplate), new Object[]{"B B","BBB","BBB", 'B', "woodRubber"});
-		addRecipe(new ItemStack(SPItems.rubber_leggings), new Object[]{"BBB","B B","B B", 'B', "woodRubber"});
-		addRecipe(new ItemStack(SPItems.rubber_boots), new Object[]{"B B","B B", 'B', "woodRubber"});
+		addArmorRecipe(SPItems.rubber, "woodRubber");
 	}
 	
 	if (OreDictionary.getOres("nuggetCopper").size() > 0) {
@@ -178,6 +146,22 @@ public class SurvivalPlusShapedRecipes {
 		addRecipe(new ItemStack(SPBlocks.campfire), new Object[]{"S S","RWW", 'S', "stickWood", 'R', "woodRubber", 'W', "logWood"});
 		
 	}
+	
+	public static void addArmorRecipe(NonNullList<ItemStack> result, ItemStack material)
+    {
+    	GameRegistry.addRecipe(result.get(0), new Object[]{"BBB","B B", 'B', material});
+		GameRegistry.addRecipe(result.get(1), new Object[]{"B B","BBB","BBB", 'B', material});
+		GameRegistry.addRecipe(result.get(2), new Object[]{"BBB","B B","B B", 'B', material});
+		GameRegistry.addRecipe(result.get(3), new Object[]{"B B","B B", 'B', material});
+    }
+	
+	public static void addArmorRecipe(NonNullList<ItemStack> result, String material)
+    {
+    	addRecipe(result.get(0), new Object[]{"BBB","B B", 'B', material});
+		addRecipe(result.get(1), new Object[]{"B B","BBB","BBB", 'B', material});
+		addRecipe(result.get(2), new Object[]{"BBB","B B","B B", 'B', material});
+		addRecipe(result.get(3), new Object[]{"B B","B B", 'B', material});
+    }
 	
     @SuppressWarnings("unchecked")
     public static void addRecipe(ItemStack result, Object[] obj)
