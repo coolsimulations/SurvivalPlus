@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandConfrats;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandIndeed;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandMourn;
@@ -69,12 +70,15 @@ public class SurvivalPlus {
         return instance;
     }
 	
-	public static final CreativeTabs tabMaterials = new SurvivalPlusMaterialsTab();
-	public static final CreativeTabs tabBlocks = new SurvivalPlusBlocksTab();
-	public static final CreativeTabs tabFood = new SurvivalPlusFoodTab();
-	public static final CreativeTabs tabGem = new SurvivalPlusGemTab();
-	public static final CreativeTabs tabCombat = new SurvivalPlusCombatTab();
-	public static final CreativeTabs tabTools = new SurvivalPlusToolsTab();
+	public void CreativeTabs() {
+		
+		SPTabs.tabMaterials = new SurvivalPlusMaterialsTab();
+		SPTabs.tabBlocks = new SurvivalPlusMaterialsTab();
+		SPTabs.tabFood = new SurvivalPlusFoodTab();
+		SPTabs.tabGem = new SurvivalPlusGemTab();
+		SPTabs.tabCombat = new SurvivalPlusCombatTab();
+		SPTabs.tabTools = new SurvivalPlusToolsTab();
+	}
 	
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	public static final List<Item> ITEMS_FOOD = new ArrayList<Item>();
@@ -90,6 +94,8 @@ public class SurvivalPlus {
 		SurvivalPlusConfig.init(new File(event.getModConfigurationDirectory(), SPReference.SURVIVALPLUS_CONFIG_FILE));
 		SurvivalPlusUpdateHandler.init();
     	MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
+    	
+    	CreativeTabs();
 		
 		SurvivalPlusBlocks.init();
 		SurvivalPlusBlocks.register();

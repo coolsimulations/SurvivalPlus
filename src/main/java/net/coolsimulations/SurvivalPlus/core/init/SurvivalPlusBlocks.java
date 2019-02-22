@@ -2,6 +2,7 @@ package net.coolsimulations.SurvivalPlus.core.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystal;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockMetal;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockOre;
@@ -24,41 +25,41 @@ public class SurvivalPlusBlocks {
 	
 	public static void init()
 	{
-		SPBlocks.copper_block = new SPBlockMetal(0).setUnlocalizedName("copper_block").setRegistryName("copper_block").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.tin_block = new SPBlockMetal(0).setUnlocalizedName("tin_block").setRegistryName("tin_block").setCreativeTab(SurvivalPlus.tabBlocks);
+		SPBlocks.copper_block = new SPBlockMetal(0).setUnlocalizedName("copper_block").setRegistryName("copper_block").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.tin_block = new SPBlockMetal(0).setUnlocalizedName("tin_block").setRegistryName("tin_block").setCreativeTab(SPTabs.tabBlocks);
 		SPBlocks.onion = new BlockOnionCrop().setUnlocalizedName("onion").setRegistryName("onion");
-		SPBlocks.cheese_cake = new BlockCheeseCake().setUnlocalizedName("cheese_cake").setRegistryName("cheese_cake").setCreativeTab(SurvivalPlus.tabFood);
-		SPBlocks.sponge_cake = new BlockSpongeCake().setUnlocalizedName("sponge_cake").setRegistryName("sponge_cake").setCreativeTab(SurvivalPlus.tabFood); 
-		SPBlocks.copper_ore = new SPBlockOre(1).setUnlocalizedName("copper_ore").setRegistryName("copper_ore").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.tin_ore = new SPBlockOre(1).setUnlocalizedName("tin_ore").setRegistryName("tin_ore").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.amethyst = new SPBlockCrystal().setUnlocalizedName("amethyst").setRegistryName("amethyst").setCreativeTab(SurvivalPlus.tabGem);
-		SPBlocks.ruby = new SPBlockCrystal().setUnlocalizedName("ruby").setRegistryName("ruby").setCreativeTab(SurvivalPlus.tabGem);
-		SPBlocks.bronze_block = new SPBlockMetal(1).setUnlocalizedName("bronze_block").setRegistryName("bronze_block").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.titanium_block = new SPBlockMetal(2).setUnlocalizedName("titanium_block").setRegistryName("titanium_block").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.titanium_ore = new SPBlockOre(2).setUnlocalizedName("titanium_ore").setRegistryName("titanium_ore").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.pearl = new SPBlockCrystal().setUnlocalizedName("pearl").setRegistryName("pearl").setCreativeTab(SurvivalPlus.tabGem);
-		SPBlocks.topaz = new SPBlockCrystal().setUnlocalizedName("topaz").setRegistryName("topaz").setCreativeTab(SurvivalPlus.tabGem);
-		SPBlocks.sapphire = new SPBlockCrystal().setUnlocalizedName("sapphire").setRegistryName("sapphire").setCreativeTab(SurvivalPlus.tabGem);
-		SPBlocks.spinel = new SPBlockCrystal().setUnlocalizedName("spinel").setRegistryName("spinel").setCreativeTab(SurvivalPlus.tabGem);
-		SPBlocks.cardboard = new BlockCardboard().setUnlocalizedName("cardboard").setRegistryName("cardboard").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_white = new BlockCardboard().setUnlocalizedName("cardboard_white").setRegistryName("cardboard_white").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_light_grey = new BlockCardboard().setUnlocalizedName("cardboard_light_grey").setRegistryName("cardboard_light_grey").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_grey = new BlockCardboard().setUnlocalizedName("cardboard_grey").setRegistryName("cardboard_grey").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_black = new BlockCardboard().setUnlocalizedName("cardboard_black").setRegistryName("cardboard_black").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_red = new BlockCardboard().setUnlocalizedName("cardboard_red").setRegistryName("cardboard_red").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_orange = new BlockCardboard().setUnlocalizedName("cardboard_orange").setRegistryName("cardboard_orange").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_yellow = new BlockCardboard().setUnlocalizedName("cardboard_yellow").setRegistryName("cardboard_yellow").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_lime = new BlockCardboard().setUnlocalizedName("cardboard_lime").setRegistryName("cardboard_lime").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_green = new BlockCardboard().setUnlocalizedName("cardboard_green").setRegistryName("cardboard_green").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_light_blue = new BlockCardboard().setUnlocalizedName("cardboard_light_blue").setRegistryName("cardboard_light_blue").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_cyan = new BlockCardboard().setUnlocalizedName("cardboard_cyan").setRegistryName("cardboard_cyan").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_blue = new BlockCardboard().setUnlocalizedName("cardboard_blue").setRegistryName("cardboard_blue").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_purple = new BlockCardboard().setUnlocalizedName("cardboard_purple").setRegistryName("cardboard_purple").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_magenta = new BlockCardboard().setUnlocalizedName("cardboard_magenta").setRegistryName("cardboard_magenta").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_pink = new BlockCardboard().setUnlocalizedName("cardboard_pink").setRegistryName("cardboard_pink").setCreativeTab(SurvivalPlus.tabBlocks);
-		SPBlocks.cardboard_brown = new BlockCardboard().setUnlocalizedName("cardboard_brown").setRegistryName("cardboard_brown").setCreativeTab(SurvivalPlus.tabBlocks);
+		SPBlocks.cheese_cake = new BlockCheeseCake().setUnlocalizedName("cheese_cake").setRegistryName("cheese_cake").setCreativeTab(SPTabs.tabFood);
+		SPBlocks.sponge_cake = new BlockSpongeCake().setUnlocalizedName("sponge_cake").setRegistryName("sponge_cake").setCreativeTab(SPTabs.tabFood); 
+		SPBlocks.copper_ore = new SPBlockOre(1).setUnlocalizedName("copper_ore").setRegistryName("copper_ore").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.tin_ore = new SPBlockOre(1).setUnlocalizedName("tin_ore").setRegistryName("tin_ore").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.amethyst = new SPBlockCrystal().setUnlocalizedName("amethyst").setRegistryName("amethyst").setCreativeTab(SPTabs.tabGem);
+		SPBlocks.ruby = new SPBlockCrystal().setUnlocalizedName("ruby").setRegistryName("ruby").setCreativeTab(SPTabs.tabGem);
+		SPBlocks.bronze_block = new SPBlockMetal(1).setUnlocalizedName("bronze_block").setRegistryName("bronze_block").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.titanium_block = new SPBlockMetal(2).setUnlocalizedName("titanium_block").setRegistryName("titanium_block").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.titanium_ore = new SPBlockOre(2).setUnlocalizedName("titanium_ore").setRegistryName("titanium_ore").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.pearl = new SPBlockCrystal().setUnlocalizedName("pearl").setRegistryName("pearl").setCreativeTab(SPTabs.tabGem);
+		SPBlocks.topaz = new SPBlockCrystal().setUnlocalizedName("topaz").setRegistryName("topaz").setCreativeTab(SPTabs.tabGem);
+		SPBlocks.sapphire = new SPBlockCrystal().setUnlocalizedName("sapphire").setRegistryName("sapphire").setCreativeTab(SPTabs.tabGem);
+		SPBlocks.spinel = new SPBlockCrystal().setUnlocalizedName("spinel").setRegistryName("spinel").setCreativeTab(SPTabs.tabGem);
+		SPBlocks.cardboard = new BlockCardboard().setUnlocalizedName("cardboard").setRegistryName("cardboard").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_white = new BlockCardboard().setUnlocalizedName("cardboard_white").setRegistryName("cardboard_white").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_light_grey = new BlockCardboard().setUnlocalizedName("cardboard_light_grey").setRegistryName("cardboard_light_grey").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_grey = new BlockCardboard().setUnlocalizedName("cardboard_grey").setRegistryName("cardboard_grey").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_black = new BlockCardboard().setUnlocalizedName("cardboard_black").setRegistryName("cardboard_black").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_red = new BlockCardboard().setUnlocalizedName("cardboard_red").setRegistryName("cardboard_red").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_orange = new BlockCardboard().setUnlocalizedName("cardboard_orange").setRegistryName("cardboard_orange").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_yellow = new BlockCardboard().setUnlocalizedName("cardboard_yellow").setRegistryName("cardboard_yellow").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_lime = new BlockCardboard().setUnlocalizedName("cardboard_lime").setRegistryName("cardboard_lime").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_green = new BlockCardboard().setUnlocalizedName("cardboard_green").setRegistryName("cardboard_green").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_light_blue = new BlockCardboard().setUnlocalizedName("cardboard_light_blue").setRegistryName("cardboard_light_blue").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_cyan = new BlockCardboard().setUnlocalizedName("cardboard_cyan").setRegistryName("cardboard_cyan").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_blue = new BlockCardboard().setUnlocalizedName("cardboard_blue").setRegistryName("cardboard_blue").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_purple = new BlockCardboard().setUnlocalizedName("cardboard_purple").setRegistryName("cardboard_purple").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_magenta = new BlockCardboard().setUnlocalizedName("cardboard_magenta").setRegistryName("cardboard_magenta").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_pink = new BlockCardboard().setUnlocalizedName("cardboard_pink").setRegistryName("cardboard_pink").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.cardboard_brown = new BlockCardboard().setUnlocalizedName("cardboard_brown").setRegistryName("cardboard_brown").setCreativeTab(SPTabs.tabBlocks);
 				
-		SPBlocks.campfire = new BlockCampfire(false).setUnlocalizedName("campfire").setRegistryName("campfire").setCreativeTab(SurvivalPlus.tabBlocks);
+		SPBlocks.campfire = new BlockCampfire(false).setUnlocalizedName("campfire").setRegistryName("campfire").setCreativeTab(SPTabs.tabBlocks);
 	}
 	
 	public static void register()
