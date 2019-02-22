@@ -1,6 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemAxe;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemHoe;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemPickaxe;
@@ -33,20 +34,20 @@ public class SurvivalPlusTools {
 	{
 
 		SPItems.bronzeToolMaterial = EnumHelper.addToolMaterial("bronzeToolMaterial", 2, 350, 5.0F, 1.5F, 7);
-		SPItems.bronze_pickaxe = new SPItemPickaxe(SPItems.bronzeToolMaterial).setUnlocalizedName("bronze_pickaxe").setRegistryName("bronze_pickaxe").setCreativeTab(SurvivalPlus.tabTools);
-		SPItems.bronze_axe = new SPItemAxe(SPItems.bronzeToolMaterial, 7, -3.1F).setUnlocalizedName("bronze_axe").setRegistryName("bronze_axe").setCreativeTab(SurvivalPlus.tabTools);
-		SPItems.bronze_shovel = new SPItemShovel(SPItems.bronzeToolMaterial).setUnlocalizedName("bronze_shovel").setRegistryName("bronze_shovel").setCreativeTab(SurvivalPlus.tabTools);
-		SPItems.bronze_hoe = new SPItemHoe(SPItems.bronzeToolMaterial).setUnlocalizedName("bronze_hoe").setRegistryName("bronze_hoe").setCreativeTab(SurvivalPlus.tabTools);
-		SPItems.bronze_sword = new SPItemSword(SPItems.bronzeToolMaterial).setUnlocalizedName("bronze_sword").setRegistryName("bronze_sword").setCreativeTab(SurvivalPlus.tabCombat);
-		SPItems.bronze_shears = new SPItemShears(179).setUnlocalizedName("bronze_shears").setRegistryName("bronze_shears").setCreativeTab(SurvivalPlus.tabTools);
+		SPItems.bronze_pickaxe = new SPItemPickaxe(SPItems.bronzeToolMaterial).setUnlocalizedName("bronze_pickaxe").setRegistryName("bronze_pickaxe").setCreativeTab(SPTabs.tabTools);
+		SPItems.bronze_axe = new SPItemAxe(SPItems.bronzeToolMaterial, 7, -3.1F).setUnlocalizedName("bronze_axe").setRegistryName("bronze_axe").setCreativeTab(SPTabs.tabTools);
+		SPItems.bronze_shovel = new SPItemShovel(SPItems.bronzeToolMaterial).setUnlocalizedName("bronze_shovel").setRegistryName("bronze_shovel").setCreativeTab(SPTabs.tabTools);
+		SPItems.bronze_hoe = new SPItemHoe(SPItems.bronzeToolMaterial).setUnlocalizedName("bronze_hoe").setRegistryName("bronze_hoe").setCreativeTab(SPTabs.tabTools);
+		SPItems.bronze_sword = new SPItemSword(SPItems.bronzeToolMaterial).setUnlocalizedName("bronze_sword").setRegistryName("bronze_sword").setCreativeTab(SPTabs.tabCombat);
+		SPItems.bronze_shears = new SPItemShears(179).setUnlocalizedName("bronze_shears").setRegistryName("bronze_shears").setCreativeTab(SPTabs.tabTools);
 		
 		SPItems.titaniumToolMaterial = EnumHelper.addToolMaterial("titaniumToolMaterial", 2, 432, 7.0F, 2.5F, 17);
-		SPItems.titanium_pickaxe = new SPItemPickaxe(SPItems.titaniumToolMaterial).setUnlocalizedName("titanium_pickaxe").setRegistryName("titanium_pickaxe").setCreativeTab(SurvivalPlus.tabTools);
-		SPItems.titanium_axe = new SPItemAxe(SPItems.titaniumToolMaterial, 8.0F, -3.0F).setUnlocalizedName("titanium_axe").setRegistryName("titanium_axe").setCreativeTab(SurvivalPlus.tabTools);
-		SPItems.titanium_shovel = new SPItemShovel(SPItems.titaniumToolMaterial).setUnlocalizedName("titanium_shovel").setRegistryName("titanium_shovel").setCreativeTab(SurvivalPlus.tabTools);
-		SPItems.titanium_hoe = new SPItemHoe(SPItems.titaniumToolMaterial).setUnlocalizedName("titanium_hoe").setRegistryName("titanium_hoe").setCreativeTab(SurvivalPlus.tabTools);
-		SPItems.titanium_sword = new SPItemSword(SPItems.titaniumToolMaterial).setUnlocalizedName("titanium_sword").setRegistryName("titanium_sword").setCreativeTab(SurvivalPlus.tabCombat);
-		SPItems.titanium_shears = new SPItemShears(298).setUnlocalizedName("titanium_shears").setRegistryName("titanium_shears").setCreativeTab(SurvivalPlus.tabTools);
+		SPItems.titanium_pickaxe = new SPItemPickaxe(SPItems.titaniumToolMaterial).setUnlocalizedName("titanium_pickaxe").setRegistryName("titanium_pickaxe").setCreativeTab(SPTabs.tabTools);
+		SPItems.titanium_axe = new SPItemAxe(SPItems.titaniumToolMaterial, 8.0F, -3.0F).setUnlocalizedName("titanium_axe").setRegistryName("titanium_axe").setCreativeTab(SPTabs.tabTools);
+		SPItems.titanium_shovel = new SPItemShovel(SPItems.titaniumToolMaterial).setUnlocalizedName("titanium_shovel").setRegistryName("titanium_shovel").setCreativeTab(SPTabs.tabTools);
+		SPItems.titanium_hoe = new SPItemHoe(SPItems.titaniumToolMaterial).setUnlocalizedName("titanium_hoe").setRegistryName("titanium_hoe").setCreativeTab(SPTabs.tabTools);
+		SPItems.titanium_sword = new SPItemSword(SPItems.titaniumToolMaterial).setUnlocalizedName("titanium_sword").setRegistryName("titanium_sword").setCreativeTab(SPTabs.tabCombat);
+		SPItems.titanium_shears = new SPItemShears(298).setUnlocalizedName("titanium_shears").setRegistryName("titanium_shears").setCreativeTab(SPTabs.tabTools);
 
 	}
 	
