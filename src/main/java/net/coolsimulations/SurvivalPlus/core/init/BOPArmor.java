@@ -193,10 +193,10 @@ public class BOPArmor {
 		SPItems.umbran.add(3, new ItemStack(SPItems.umbran_boots));
 
 		SPItems.willowArmorMaterial = EnumHelper.addArmorMaterial("willow", SPReference.MOD_ID + ":" +  "willow", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F);
-		SPItems.willow_helmet = new SPItemArmor(SPItems.umbranArmorMaterial, 0, EntityEquipmentSlot.HEAD, "willow_helmet", "stickWood").setUnlocalizedName("willow_helmet").setRegistryName("willow_helmet").setCreativeTab(SPTabs.tabCombat);
-		SPItems.willow_chestplate = new SPItemArmor(SPItems.umbranArmorMaterial, 0, EntityEquipmentSlot.CHEST, "willow_chestplate", "stickWood").setUnlocalizedName("willow_chestplate").setRegistryName("willow_chestplate").setCreativeTab(SPTabs.tabCombat);
-		SPItems.willow_leggings = new SPItemArmor(SPItems.umbranArmorMaterial, 0, EntityEquipmentSlot.LEGS, "willow_leggings", "stickWood").setUnlocalizedName("willow_leggings").setRegistryName("willow_leggings").setCreativeTab(SPTabs.tabCombat);
-		SPItems.willow_boots = new SPItemArmor(SPItems.umbranArmorMaterial, 0, EntityEquipmentSlot.FEET, "willow_boots", "stickWood").setUnlocalizedName("willow_boots").setRegistryName("willow_boots").setCreativeTab(SPTabs.tabCombat);
+		SPItems.willow_helmet = new SPItemArmor(SPItems.willowArmorMaterial, 0, EntityEquipmentSlot.HEAD, "willow_helmet", "stickWood").setUnlocalizedName("willow_helmet").setRegistryName("willow_helmet").setCreativeTab(SPTabs.tabCombat);
+		SPItems.willow_chestplate = new SPItemArmor(SPItems.willowArmorMaterial, 0, EntityEquipmentSlot.CHEST, "willow_chestplate", "stickWood").setUnlocalizedName("willow_chestplate").setRegistryName("willow_chestplate").setCreativeTab(SPTabs.tabCombat);
+		SPItems.willow_leggings = new SPItemArmor(SPItems.willowArmorMaterial, 0, EntityEquipmentSlot.LEGS, "willow_leggings", "stickWood").setUnlocalizedName("willow_leggings").setRegistryName("willow_leggings").setCreativeTab(SPTabs.tabCombat);
+		SPItems.willow_boots = new SPItemArmor(SPItems.willowArmorMaterial, 0, EntityEquipmentSlot.FEET, "willow_boots", "stickWood").setUnlocalizedName("willow_boots").setRegistryName("willow_boots").setCreativeTab(SPTabs.tabCombat);
 		SPItems.willow = NonNullList.create();
 		SPItems.willow.add(0, new ItemStack(SPItems.willow_helmet));
 		SPItems.willow.add(1, new ItemStack(SPItems.willow_chestplate));
