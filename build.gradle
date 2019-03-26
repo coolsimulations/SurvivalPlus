@@ -99,8 +99,18 @@ task packApi(type: Jar) {
 	}
 }
 
+task packDev(type: Jar) {
+    from sourceSets.main.output
+    from sourceSets.main.allJava
+    baseName = "SurvivalPlus-Dev"
+    version = "${project.version}"
+
+    println(defaultTasks)
+}
+
 reobf {
     packApi { }
+    packDev { }
 }
 
 }
