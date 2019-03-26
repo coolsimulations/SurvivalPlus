@@ -1,6 +1,6 @@
-<p align="center"><img src="https://raw.githubusercontent.com/coolsimulations/SurvivalPlus/master/src/main/resources/assets/survivalplus/textures/gui/logo.png"></p>
+<p align="center"><img src="https://coolsimulations.net/wp-content/uploads/2019/03/survivalplus_logo_HD.png"></p>
 
-*[SurvivalPlus]*(https://minecraft.curseforge.com/projects/survivalplus) is a **Minecraft mod** that enhances the vanilla survival experience of Minecraft whilst interacting with other mods to create seamless gameplay.
+*[SurvivalPlus](https://minecraft.curseforge.com/projects/survivalplus)* is a **Minecraft mod** that enhances the vanilla survival experience of Minecraft whilst interacting with other mods to create seamless gameplay.
 
 -----------------
 
