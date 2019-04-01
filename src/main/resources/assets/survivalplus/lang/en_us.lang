@@ -358,8 +358,8 @@ sp.commands.sleep.dimension=You can only tell others in the same dimension to sl
 sp.commands.weba.usage=/weba <player>
 sp.commands.weba.sameTarget=You can't welcome yourself back!
 sp.commands.weba.display=* %s is delighted to see %s and welcomes them back with a warm greeting!
-sp.commands.note.usage=/note <private message>
-sp.commands.note.display=* You made this note: %s
+sp.commands.emportant.usage=/emportant <message>
+sp.commands.emportant.display=* %s has an emportant message to announce to everyone: %s
 
 advancements.sp.root=SurvivalPlus
 advancements.sp.root.desc=Enhanced Survival Experience
