@@ -19,13 +19,13 @@ import net.minecraft.util.text.TextFormatting;
 public class CommandEmportant extends CommandBase{
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		
 		return "emportant";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender sender) {
 		
 		return "sp.commands.emportant.usage";
 	}
@@ -45,7 +45,7 @@ public class CommandEmportant extends CommandBase{
            	TextComponentTranslation emportant = new TextComponentTranslation("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), itextcomponent.createCopy()});
            	emportant.getStyle().setColor(TextFormatting.BLUE);
            	emportant.getStyle().setBold(true);
-           	server.getPlayerList().sendMessage(emportant);
+           	server.getPlayerList().sendChatMsg(emportant);
         }
 		
 	}
@@ -63,7 +63,7 @@ public class CommandEmportant extends CommandBase{
     }
 
 	@Override
-	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
+	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
 		
 		return getListOfStringsMatchingLastWord(args);
 	}
