@@ -9,6 +9,7 @@ import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandConfrats;
+import net.coolsimulations.SurvivalPlus.core.commands.CommandEmportant;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandIndeed;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandMourn;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandSleep;
@@ -165,6 +166,7 @@ public class SurvivalPlus {
 		event.registerServerCommand(new CommandMourn());
 		event.registerServerCommand(new CommandSleep());
 		event.registerServerCommand(new CommandWeba());
+		event.registerServerCommand(new CommandEmportant());
 		
 	}
 }
