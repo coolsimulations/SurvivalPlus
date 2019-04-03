@@ -33,7 +33,7 @@ public class CommandEmportant extends CommandBase{
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		
-		if (args.length < 2)
+		if (args.length == 0)
         {
             throw new WrongUsageException("sp.commands.emportant.usage", new Object[0]);
         }
