@@ -401,4 +401,4 @@ sp.configgui.disable_IC2_Credit_EMC=Disable IC2 Industrial Credit EMC Value
 sp.configgui.enable_Replace_BOP_Recipe=Enable Replace BOP Terrestrial Artifact Recipe
 sp.configgui.disable_wak_Command=Disable the Wak Command
 sp.configgui.op_wak_command=Define the Permission Level of the Wak Command
-sp.configgui.op_wak_command=Disable the Update Checker Message
+sp.configgui.update_check=Disable SurvivalPlus Update Checker Message
