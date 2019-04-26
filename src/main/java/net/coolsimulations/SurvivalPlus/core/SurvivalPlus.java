@@ -74,7 +74,7 @@ public class SurvivalPlus {
 	public void CreativeTabs() {
 		
 		SPTabs.tabMaterials = new SurvivalPlusMaterialsTab();
-		SPTabs.tabBlocks = new SurvivalPlusMaterialsTab();
+		SPTabs.tabBlocks = new SurvivalPlusBlocksTab();
 		SPTabs.tabFood = new SurvivalPlusFoodTab();
 		SPTabs.tabGem = new SurvivalPlusGemTab();
 		SPTabs.tabCombat = new SurvivalPlusCombatTab();
