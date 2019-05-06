@@ -1,4 +1,15 @@
 death.fell.accident.generic=%1$s has been smooshed
+death.fell.accident.ladder=%1$s fell off a ladder and was smooshed
+death.fell.accident.vines=%1$s fell off some vines and was smooshed
+death.fell.accident.water=%1$s fell out of the water and was smooshed
+death.fell.accident.generic=%1$s has been smooshed
+death.fell.killer=%1$s was doomed to smoosh
+death.fell.assist=%1$s was doomed to smoosh by %2$s
+death.fell.assist.item=%1$s was doomed to smoosh by %2$s using %3$s
+death.fell.finish=%1$s smooshed and was finished by %2$s
+death.fell.finish.item=%1$s smooshed and was finished by %2$s using %3$s
+death.attack.fall=%1$s has been smooshed
+death.attack.fall.player=%1$s has been smooshed whilst trying to escape %2$s
 sp.name=SurvivalPlus
 
 itemGroup.tabMaterials=SurvivalPlus Materials
