@@ -67,84 +67,98 @@ public class CommandSleep extends CommandBase{
         }
         else if(args.length == 1)
         {
-        	if(!sender.getCommandSenderEntity().world.provider.isDaytime()) {
-        		Entity entityplayer = getEntity(server, sender, args[0]);
-        		EntityPlayer player = this.getPlayer(server, sender, args[0]);
-        		if (entityplayer == sender)
-        		{
-        			if(sender instanceof EntityPlayer && player.isPlayerSleeping()) {
-        				
-        				if(dimension == null) {
-        					TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display3", new Object[] {sender.getDisplayName(), sender.getCommandSenderEntity().world.provider.getDimension()});
-							sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-							server.getPlayerList().sendMessage(sleep);
-        				}
-        				else {
-        					TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display3", new Object[] {sender.getDisplayName(), dimension});
-							sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-							server.getPlayerList().sendMessage(sleep);
-        				}
-        			} else {
-        				TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display4", new Object[] {sender.getDisplayName(), dimension});
-						sleep.getStyle().setColor(TextFormatting.RED);
-						sender.sendMessage(sleep);
-        			}
-        		}else {
-        			if(entityplayer.world.provider.getDimension() == sender.getCommandSenderEntity().world.provider.getDimension()) {
-        				
-        				if(sender.getCommandSenderEntity().world.provider.getDimension() == -1 || sender.getCommandSenderEntity().world.provider.getDimension() == 1) {
-        					TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.invalid", new Object[] {});
-        					invalid.getStyle().setColor(TextFormatting.RED);
-        					sender.sendMessage(invalid);
-        				} else {
-        					if(dimension == null) {
-        						TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display1", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName(), sender.getCommandSenderEntity().world.provider.getDimension()});
-        						sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-        						server.getPlayerList().sendMessage(sleep);
-        					} else {
-        						TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display1", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName(), dimension});
-        						sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-        						server.getPlayerList().sendMessage(sleep);
-        					}
-        				}
-        			} else{
-        				TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.dimension", new Object[] {});
-    					invalid.getStyle().setColor(TextFormatting.RED);
-    					sender.sendMessage(invalid);
-        			}
-        		}
+        	if(sender.getCommandSenderEntity().world.provider.getDimension() == 1){
+        		TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.invalid", new Object[] {});
+    			invalid.getStyle().setColor(TextFormatting.RED);
+    			sender.sendMessage(invalid);
+        		
         	} else {
-        		TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.night", new Object[] {});
-        		invalid.getStyle().setColor(TextFormatting.RED);
-        		sender.sendMessage(invalid);
+        		if(!sender.getCommandSenderEntity().world.provider.isDaytime()) {
+        			Entity entityplayer = getEntity(server, sender, args[0]);
+        			EntityPlayer player = this.getPlayer(server, sender, args[0]);
+        			if (entityplayer == sender)
+        			{
+        				if(sender instanceof EntityPlayer && player.isPlayerSleeping()) {
+        				
+        					if(dimension == null) {
+        						TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display3", new Object[] {sender.getDisplayName(), sender.getCommandSenderEntity().world.provider.getDimension()});
+								sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
+								server.getPlayerList().sendMessage(sleep);
+        					}
+        					else {
+        						TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display3", new Object[] {sender.getDisplayName(), dimension});
+								sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
+								server.getPlayerList().sendMessage(sleep);
+        					}
+        				} else {
+        					TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display4", new Object[] {sender.getDisplayName(), dimension});
+							sleep.getStyle().setColor(TextFormatting.RED);
+							sender.sendMessage(sleep);
+        				}
+        			}else {
+        				if(entityplayer.world.provider.getDimension() == sender.getCommandSenderEntity().world.provider.getDimension()) {
+        				
+        					if(sender.getCommandSenderEntity().world.provider.getDimension() == -1 || sender.getCommandSenderEntity().world.provider.getDimension() == 1) {
+        						TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.invalid", new Object[] {});
+        						invalid.getStyle().setColor(TextFormatting.RED);
+        						sender.sendMessage(invalid);
+        					} else {
+        						if(dimension == null) {
+        							TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display1", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName(), sender.getCommandSenderEntity().world.provider.getDimension()});
+        							sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
+        							server.getPlayerList().sendMessage(sleep);
+        						} else {
+        							TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display1", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName(), dimension});
+        							sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
+        							server.getPlayerList().sendMessage(sleep);
+        						}
+        					}
+        				} else{
+        					TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.dimension", new Object[] {});
+    						invalid.getStyle().setColor(TextFormatting.RED);
+    						sender.sendMessage(invalid);
+        				}
+        			}
+        		} else {
+        			TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.night", new Object[] {});
+        			invalid.getStyle().setColor(TextFormatting.RED);
+        			sender.sendMessage(invalid);
+        		}
         	}
         }
         else
         {
-        	if(!sender.getCommandSenderEntity().world.provider.isDaytime()) {
+        	if(sender.getCommandSenderEntity().world.provider.getDimension() == 1){
+        		TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.invalid", new Object[] {});
+    			invalid.getStyle().setColor(TextFormatting.RED);
+    			sender.sendMessage(invalid);
         		
-        		if(sender.getCommandSenderEntity().world.provider.getDimension() == -1 || sender.getCommandSenderEntity().world.provider.getDimension() == 1) {
-        			TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.invalid", new Object[] {});
-        			invalid.getStyle().setColor(TextFormatting.RED);
-        			sender.sendMessage(invalid);
-        		} else
-        		{
-        			if(dimension == null) {
-        				TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display2", new Object[] {sender.getDisplayName(), sender.getCommandSenderEntity().world.provider.getDimension()});
-    					sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-    					server.getPlayerList().sendMessage(sleep);
-        			} else {
-        				TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display2", new Object[] {sender.getDisplayName(), dimension});
-    					sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
-    					server.getPlayerList().sendMessage(sleep);
+        	} else {
+        		if(!sender.getCommandSenderEntity().world.provider.isDaytime()) {
+        		
+        			if(sender.getCommandSenderEntity().world.provider.getDimension() == -1 || sender.getCommandSenderEntity().world.provider.getDimension() == 1) {
+        				TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.invalid", new Object[] {});
+        				invalid.getStyle().setColor(TextFormatting.RED);
+        				sender.sendMessage(invalid);
+        			} else
+        			{
+        				if(dimension == null) {
+        					TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display2", new Object[] {sender.getDisplayName(), sender.getCommandSenderEntity().world.provider.getDimension()});
+    						sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
+    						server.getPlayerList().sendMessage(sleep);
+        				} else {
+        					TextComponentTranslation sleep = new TextComponentTranslation("sp.commands.sleep.display2", new Object[] {sender.getDisplayName(), dimension});
+    						sleep.getStyle().setColor(TextFormatting.LIGHT_PURPLE);
+    						server.getPlayerList().sendMessage(sleep);
+        				}
         			}
         		}
+        	 	else {
+         			TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.night", new Object[] {});
+         			invalid.getStyle().setColor(TextFormatting.RED);
+         			sender.sendMessage(invalid);
+         		}
         	}
-        	 else {
-         		TextComponentTranslation invalid = new TextComponentTranslation("sp.commands.sleep.night", new Object[] {});
-         		invalid.getStyle().setColor(TextFormatting.RED);
-         		sender.sendMessage(invalid);
-         	}
         }
 	}
 
