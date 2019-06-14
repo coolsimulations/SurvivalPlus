@@ -13,7 +13,6 @@ public class ClientProxy implements CommonProxy{
 	@Override
 	public void init(){
 		GameRegistry.registerWorldGenerator(new SurvivalPlusOreGenerator(), 1);
-		//WorldRegister.MainRegistery();
 		SurvivalPlusBlocks.registerRenders();
 		SurvivalPlusItems.registerRenders();
 		SurvivalPlusFood.registerRenders();
