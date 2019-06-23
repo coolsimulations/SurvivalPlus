@@ -15,7 +15,6 @@ public class SPConfig {
     public static boolean disableSapphireGen;
     public static boolean disablePearlGen;
     public static boolean disableSpinelGen;
-    public static boolean disableWak;
     public static int opWak;
     public static boolean disableUpdateCheck;
 

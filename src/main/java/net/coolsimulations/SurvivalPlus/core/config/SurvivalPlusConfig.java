@@ -106,11 +106,6 @@ public class SurvivalPlusConfig {
 	            SPConfig.disableSpinelGen = prop.getBoolean(false);
 	            propOrder.add(prop.getName());
 	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_COMMAND, "Disable Wak Command", false);
-	            prop.setLanguageKey("sp.configgui.disable_wak_command");
-	            SPConfig. disableWak = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
 	            prop = config.get(SPReference.CONFIG_CATEGORY_COMMAND, "Define Wak Command Permission Level", 0);
 	            prop.setComment("If this is set to 0 anyone can use the Wak Command. If set above 4 then it will return 4.");
 	            prop.setLanguageKey("sp.configgui.op_wak_command");
