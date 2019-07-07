@@ -11,8 +11,8 @@
       "ore": "foodCheese"
     },
     "W": {
-      "item": "minecraft:wool",
-      "data": 4
+      "type": "forge:ore_dict",
+      "ore": "woolYellow"
     },
     "G": {
       "type": "forge:ore_dict",
