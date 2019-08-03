@@ -32,7 +32,9 @@
       "survivalplus:cardboard_magenta",
       "survivalplus:cardboard_magenta_alt",
       "survivalplus:cardboard_brown",
-      "survivalplus:cardboard_brown_alt"
+      "survivalplus:cardboard_brown_alt",
+      "survivalplus:cardboard_pink",
+      "survivalplus:cardboard_pink_alt"
     ]
   },
   "criteria": {
@@ -81,7 +83,9 @@
         "recipe": "survivalplus:cardboard_magenta",
         "recipe": "survivalplus:cardboard_magenta_alt",
         "recipe": "survivalplus:cardboard_brown",
-        "recipe": "survivalplus:cardboard_brown_alt"
+        "recipe": "survivalplus:cardboard_brown_alt",
+        "recipe": "survivalplus:cardboard_pink",
+        "recipe": "survivalplus:cardboard_pink_alt"
       }
     }
   },
