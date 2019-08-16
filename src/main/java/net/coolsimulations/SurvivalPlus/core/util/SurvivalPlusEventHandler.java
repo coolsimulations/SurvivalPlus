@@ -53,7 +53,7 @@ public class SurvivalPlusEventHandler {
         		TextComponentTranslation installInfo = new TextComponentTranslation("advancements.sp.install.display1");
         		installInfo.getStyle().setColor(TextFormatting.GOLD);
         		installInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("advancements.sp.install.display2")));
-            	installInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://minecraft.curseforge/projects/survivalplus"));
+            	installInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
 				player.sendMessage(installInfo);
         		
         	}
