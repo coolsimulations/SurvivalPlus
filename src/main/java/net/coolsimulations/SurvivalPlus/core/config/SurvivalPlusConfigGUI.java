@@ -1,4 +1,4 @@
-package net.coolsimulations.SurvivalPlus.core.config;
+/**package net.coolsimulations.SurvivalPlus.core.config;
 
 import java.util.Set;
 
@@ -44,3 +44,4 @@ public class SurvivalPlusConfigGUI implements IModGuiFactory {
 	}
 
 }
+**/

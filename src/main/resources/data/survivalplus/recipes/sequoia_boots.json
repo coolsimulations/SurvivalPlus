@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_boots",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "tag": "forestry:sequoia_logs"
+    }
+  },
+  "result": {
+    "item": "survivalplus:sequoia_boots"
+  }
+}

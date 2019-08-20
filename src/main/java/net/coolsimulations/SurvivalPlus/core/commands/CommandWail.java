@@ -1,63 +1,26 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.command.CommandBase;
-import net.minecraft.command.CommandException;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.WrongUsageException;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.Commands;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
-public class CommandWail extends CommandBase{
+public class CommandWail {
 
-	@Override
-	public String getName() {
-		
-		return "wail";
+	public static void register(CommandDispatcher<CommandSource> dispatcher) {
+		dispatcher.register(Commands.literal("wail")
+				.requires(s -> s.hasPermissionLevel(0))
+				.executes(wail -> wail(wail.getSource())));
 	}
 
-	@Override
-	public String getUsage(ICommandSender sender) {
-		
-		return "sp.commands.wail.usage";
-	}
+	private static int wail(CommandSource sender) {
 
-	@Override
-	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-		
-		if (args.length >= 1)
-        {
-            throw new WrongUsageException("sp.commands.wail.usage", new Object[0]);
-            
-        } else {
-        	TextComponentTranslation wail = new TextComponentTranslation("sp.commands.wail.display", new Object[] {sender.getDisplayName()});
-        	wail.getStyle().setColor(TextFormatting.AQUA);
-        	server.getPlayerList().sendMessage(wail);
-        }
-		
-	}
+		TextComponentTranslation wail = new TextComponentTranslation("sp.commands.wail.display", new Object[] {sender.getDisplayName()});
+		wail.getStyle().setColor(TextFormatting.AQUA);
+		sender.getServer().getPlayerList().sendMessage(wail);
 
-	@Override
-	public int getRequiredPermissionLevel() {
-		
-		return 0;
+		return Command.SINGLE_SUCCESS;
 	}
-	
-    @Override
-    public boolean checkPermission(MinecraftServer server, ICommandSender sender)
-    {
-        return true;
-    }
-    
-    @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
-    {
-        return getListOfStringsMatchingLastWord(args);
-    }
-
 }

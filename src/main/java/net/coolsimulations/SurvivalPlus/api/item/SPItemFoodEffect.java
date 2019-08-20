@@ -9,8 +9,8 @@ import net.minecraft.potion.PotionEffect;
 
 public class SPItemFoodEffect extends ItemFood{
 
-	public SPItemFoodEffect(int amount, float saturation, boolean isWolfFood, Potion effect, int probability) {
-		super(amount, saturation, isWolfFood);
+	public SPItemFoodEffect(int amount, float saturation, boolean isWolfFood, Potion effect, int probability, Properties properties) {
+		super(amount, saturation, isWolfFood, properties);
 		PotionEffect potioneffct = new PotionEffect(effect, probability, 1);
 		this.setPotionEffect(potioneffct, probability);
 		

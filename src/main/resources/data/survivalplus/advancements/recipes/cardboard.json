@@ -1,0 +1,97 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "survivalplus:cardboard",
+      "survivalplus:cardboard_white",
+      "survivalplus:cardboard_white_alt",
+      "survivalplus:cardboard_light_grey",
+      "survivalplus:cardboard_light_grey_alt",
+      "survivalplus:cardboard_grey",
+      "survivalplus:cardboard_grey_alt",
+      "survivalplus:cardboard_black",
+      "survivalplus:cardboard_black_alt",
+      "survivalplus:cardboard_red",
+      "survivalplus:cardboard_red_alt",
+      "survivalplus:cardboard_orange",
+      "survivalplus:cardboard_orange_alt",
+      "survivalplus:cardboard_yellow",
+      "survivalplus:cardboard_yellow_alt",
+      "survivalplus:cardboard_lime",
+      "survivalplus:cardboard_lime_alt",
+      "survivalplus:cardboard_green",
+      "survivalplus:cardboard_green_alt",
+      "survivalplus:cardboard_light_blue",
+      "survivalplus:cardboard_light_blue_alt",
+      "survivalplus:cardboard_cyan",
+      "survivalplus:cardboard_cyan_alt",
+      "survivalplus:cardboard_blue",
+      "survivalplus:cardboard_blue_alt",
+      "survivalplus:cardboard_purple",
+      "survivalplus:cardboard_purple_alt",
+      "survivalplus:cardboard_magenta",
+      "survivalplus:cardboard_magenta_alt",
+      "survivalplus:cardboard_brown",
+      "survivalplus:cardboard_brown_alt",
+      "survivalplus:cardboard_pink",
+      "survivalplus:cardboard_pink_alt"
+    ]
+  },
+  "criteria": {
+    "has_stick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:rods/wooden"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "survivalplus:cardboard",
+        "recipe": "survivalplus:cardboard_white",
+        "recipe": "survivalplus:cardboard_white_alt",
+        "recipe": "survivalplus:cardboard_light_grey",
+        "recipe": "survivalplus:cardboard_light_grey_alt",
+        "recipe": "survivalplus:cardboard_grey",
+        "recipe": "survivalplus:cardboard_grey_alt",
+        "recipe": "survivalplus:cardboard_black",
+        "recipe": "survivalplus:cardboard_black_alt",
+        "recipe": "survivalplus:cardboard_black",
+        "recipe": "survivalplus:cardboard_red",
+        "recipe": "survivalplus:cardboard_red_alt",
+        "recipe": "survivalplus:cardboard_orange",
+        "recipe": "survivalplus:cardboard_orange_alt",
+        "recipe": "survivalplus:cardboard_yellow",
+        "recipe": "survivalplus:cardboard_yellow_alt",
+        "recipe": "survivalplus:cardboard_lime",
+        "recipe": "survivalplus:cardboard_lime_alt",
+        "recipe": "survivalplus:cardboard_green",
+        "recipe": "survivalplus:cardboard_green_alt",
+        "recipe": "survivalplus:cardboard_light_blue",
+        "recipe": "survivalplus:cardboard_light_blue_alt",
+        "recipe": "survivalplus:cardboard_cyan",
+        "recipe": "survivalplus:cardboard_cyan_alt",
+        "recipe": "survivalplus:cardboard_blue",
+        "recipe": "survivalplus:cardboard_blue_alt",
+        "recipe": "survivalplus:cardboard_purple",
+        "recipe": "survivalplus:cardboard_purple_alt",
+        "recipe": "survivalplus:cardboard_magenta",
+        "recipe": "survivalplus:cardboard_magenta_alt",
+        "recipe": "survivalplus:cardboard_brown",
+        "recipe": "survivalplus:cardboard_brown_alt",
+        "recipe": "survivalplus:cardboard_pink",
+        "recipe": "survivalplus:cardboard_pink_alt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stick",
+      "has_the_recipe"
+    ]
+  ]
+}

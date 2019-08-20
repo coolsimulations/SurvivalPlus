@@ -13,53 +13,56 @@ import net.coolsimulations.SurvivalPlus.core.blocks.BlockCheeseCake;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockOnionCrop;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockSpongeCake;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class SurvivalPlusBlocks {
 	
 	public static void init()
 	{
-		SPBlocks.copper_block = new SPBlockMetal(0).setUnlocalizedName("copper_block").setRegistryName("copper_block").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.tin_block = new SPBlockMetal(0).setUnlocalizedName("tin_block").setRegistryName("tin_block").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.onion = new BlockOnionCrop().setUnlocalizedName("onion").setRegistryName("onion");
-		SPBlocks.cheese_cake = new BlockCheeseCake().setUnlocalizedName("cheese_cake").setRegistryName("cheese_cake").setCreativeTab(SPTabs.tabFood);
-		SPBlocks.sponge_cake = new BlockSpongeCake().setUnlocalizedName("sponge_cake").setRegistryName("sponge_cake").setCreativeTab(SPTabs.tabFood); 
-		SPBlocks.copper_ore = new SPBlockOre(1).setUnlocalizedName("copper_ore").setRegistryName("copper_ore").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.tin_ore = new SPBlockOre(1).setUnlocalizedName("tin_ore").setRegistryName("tin_ore").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.amethyst = new SPBlockCrystal().setUnlocalizedName("amethyst").setRegistryName("amethyst").setCreativeTab(SPTabs.tabGem);
-		SPBlocks.ruby = new SPBlockCrystal().setUnlocalizedName("ruby").setRegistryName("ruby").setCreativeTab(SPTabs.tabGem);
-		SPBlocks.bronze_block = new SPBlockMetal(1).setUnlocalizedName("bronze_block").setRegistryName("bronze_block").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.titanium_block = new SPBlockMetal(2).setUnlocalizedName("titanium_block").setRegistryName("titanium_block").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.titanium_ore = new SPBlockOre(2).setUnlocalizedName("titanium_ore").setRegistryName("titanium_ore").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.pearl = new SPBlockCrystal().setUnlocalizedName("pearl").setRegistryName("pearl").setCreativeTab(SPTabs.tabGem);
-		SPBlocks.topaz = new SPBlockCrystal().setUnlocalizedName("topaz").setRegistryName("topaz").setCreativeTab(SPTabs.tabGem);
-		SPBlocks.sapphire = new SPBlockCrystal().setUnlocalizedName("sapphire").setRegistryName("sapphire").setCreativeTab(SPTabs.tabGem);
-		SPBlocks.spinel = new SPBlockCrystal().setUnlocalizedName("spinel").setRegistryName("spinel").setCreativeTab(SPTabs.tabGem);
-		SPBlocks.cardboard = new BlockCardboard().setUnlocalizedName("cardboard").setRegistryName("cardboard").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_white = new BlockCardboard().setUnlocalizedName("cardboard_white").setRegistryName("cardboard_white").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_light_grey = new BlockCardboard().setUnlocalizedName("cardboard_light_grey").setRegistryName("cardboard_light_grey").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_grey = new BlockCardboard().setUnlocalizedName("cardboard_grey").setRegistryName("cardboard_grey").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_black = new BlockCardboard().setUnlocalizedName("cardboard_black").setRegistryName("cardboard_black").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_red = new BlockCardboard().setUnlocalizedName("cardboard_red").setRegistryName("cardboard_red").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_orange = new BlockCardboard().setUnlocalizedName("cardboard_orange").setRegistryName("cardboard_orange").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_yellow = new BlockCardboard().setUnlocalizedName("cardboard_yellow").setRegistryName("cardboard_yellow").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_lime = new BlockCardboard().setUnlocalizedName("cardboard_lime").setRegistryName("cardboard_lime").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_green = new BlockCardboard().setUnlocalizedName("cardboard_green").setRegistryName("cardboard_green").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_light_blue = new BlockCardboard().setUnlocalizedName("cardboard_light_blue").setRegistryName("cardboard_light_blue").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_cyan = new BlockCardboard().setUnlocalizedName("cardboard_cyan").setRegistryName("cardboard_cyan").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_blue = new BlockCardboard().setUnlocalizedName("cardboard_blue").setRegistryName("cardboard_blue").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_purple = new BlockCardboard().setUnlocalizedName("cardboard_purple").setRegistryName("cardboard_purple").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_magenta = new BlockCardboard().setUnlocalizedName("cardboard_magenta").setRegistryName("cardboard_magenta").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_pink = new BlockCardboard().setUnlocalizedName("cardboard_pink").setRegistryName("cardboard_pink").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.cardboard_brown = new BlockCardboard().setUnlocalizedName("cardboard_brown").setRegistryName("cardboard_brown").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.copper_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_0).setRegistryName("copper_block");
+		SPBlocks.tin_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_0).setRegistryName("tin_block");
+		SPBlocks.onion = new BlockOnionCrop().setRegistryName("onion");
+		SPBlocks.cheese_cake = new BlockCheeseCake().setRegistryName("cheese_cake");
+		SPBlocks.sponge_cake = new BlockSpongeCake().setRegistryName("sponge_cake");
+		SPBlocks.copper_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1).setRegistryName("copper_ore");
+		SPBlocks.tin_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1).setRegistryName("tin_ore");
+		SPBlocks.amethyst = new SPBlockCrystal().setRegistryName("amethyst");
+		SPBlocks.ruby = new SPBlockCrystal().setRegistryName("ruby");
+		SPBlocks.bronze_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_1).setRegistryName("bronze_block");
+		SPBlocks.titanium_block = new SPBlockOre(SPBlockOre.Resource.TIER_2).setRegistryName("titanium_block");
+		SPBlocks.titanium_ore = new SPBlockMetal(SPBlockMetal.Resource.TIER_2).setRegistryName("titanium_ore");
+		SPBlocks.pearl = new SPBlockCrystal().setRegistryName("pearl");
+		SPBlocks.topaz = new SPBlockCrystal().setRegistryName("topaz");
+		SPBlocks.sapphire = new SPBlockCrystal().setRegistryName("sapphire");
+		SPBlocks.spinel = new SPBlockCrystal().setRegistryName("spinel");
+		SPBlocks.cardboard = new BlockCardboard().setRegistryName("cardboard");
+		SPBlocks.cardboard_white = new BlockCardboard().setRegistryName("cardboard_white");
+		SPBlocks.cardboard_light_grey = new BlockCardboard().setRegistryName("cardboard_light_grey");
+		SPBlocks.cardboard_grey = new BlockCardboard().setRegistryName("cardboard_grey");
+		SPBlocks.cardboard_black = new BlockCardboard().setRegistryName("cardboard_black");
+		SPBlocks.cardboard_red = new BlockCardboard().setRegistryName("cardboard_red");
+		SPBlocks.cardboard_orange = new BlockCardboard().setRegistryName("cardboard_orange");
+		SPBlocks.cardboard_yellow = new BlockCardboard().setRegistryName("cardboard_yellow");
+		SPBlocks.cardboard_lime = new BlockCardboard().setRegistryName("cardboard_lime");
+		SPBlocks.cardboard_green = new BlockCardboard().setRegistryName("cardboard_green");
+		SPBlocks.cardboard_light_blue = new BlockCardboard().setRegistryName("cardboard_light_blue");
+		SPBlocks.cardboard_cyan = new BlockCardboard().setRegistryName("cardboard_cyan");
+		SPBlocks.cardboard_blue = new BlockCardboard().setRegistryName("cardboard_blue");
+		SPBlocks.cardboard_purple = new BlockCardboard().setRegistryName("cardboard_purple");
+		SPBlocks.cardboard_magenta = new BlockCardboard().setRegistryName("cardboard_magenta");
+		SPBlocks.cardboard_pink = new BlockCardboard().setRegistryName("cardboard_pink");
+		SPBlocks.cardboard_brown = new BlockCardboard().setRegistryName("cardboard_brown");
 				
-		SPBlocks.campfire = new BlockCampfire(false).setUnlocalizedName("campfire").setRegistryName("campfire").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.campfire = new BlockCampfire(false).setRegistryName("campfire");
 	}
 	
 	public static void register()
@@ -101,63 +104,20 @@ public class SurvivalPlusBlocks {
 		registerBlock(SPBlocks.campfire);
 	}
 	
-	public static void registerRenders()
-	{
-		registerRender(SPBlocks.copper_block);
-		registerRender(SPBlocks.tin_block);
-		registerRender(SPBlocks.onion);
-		registerRender(SPBlocks.copper_ore);
-		registerRender(SPBlocks.tin_ore);
-		registerRender(SPBlocks.amethyst);
-		registerRender(SPBlocks.bronze_block);
-		registerRender(SPBlocks.titanium_block);
-		registerRender(SPBlocks.titanium_ore);
-		registerRender(SPBlocks.ruby);
-		registerRender(SPBlocks.cheese_cake);
-		registerRender(SPBlocks.sponge_cake);
-		registerRender(SPBlocks.pearl);
-		registerRender(SPBlocks.topaz);
-		registerRender(SPBlocks.sapphire);
-		registerRender(SPBlocks.spinel);
-		registerRender(SPBlocks.cardboard);
-		registerRender(SPBlocks.cardboard_white);
-		registerRender(SPBlocks.cardboard_light_grey);
-		registerRender(SPBlocks.cardboard_grey);
-		registerRender(SPBlocks.cardboard_black);
-		registerRender(SPBlocks.cardboard_red);
-		registerRender(SPBlocks.cardboard_orange);
-		registerRender(SPBlocks.cardboard_yellow);
-		registerRender(SPBlocks.cardboard_lime);
-		registerRender(SPBlocks.cardboard_green);
-		registerRender(SPBlocks.cardboard_light_blue);
-		registerRender(SPBlocks.cardboard_cyan);
-		registerRender(SPBlocks.cardboard_blue);
-		registerRender(SPBlocks.cardboard_purple);
-		registerRender(SPBlocks.cardboard_magenta);
-		registerRender(SPBlocks.cardboard_pink);
-		registerRender(SPBlocks.cardboard_brown);
-		
-		registerRender(SPBlocks.campfire);
-	}
-	
 	public static void registerBlock(Block block) {
 		
-		SurvivalPlus.ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
-		SurvivalPlus.BLOCKS.add(block);
+		ItemBlock itemBlock;
+		if(block == SPBlocks.amethyst || block == SPBlocks.ruby || block == SPBlocks.pearl || block == SPBlocks.topaz || block == SPBlocks.sapphire || block == SPBlocks.spinel) {
+			itemBlock = new ItemBlock(block, new Item.Properties().group(SPTabs.tabGem));	
+		} else if(block == SPBlocks.onion) {
+			itemBlock = new ItemBlock(block, new Item.Properties());
+		} else if(block == SPBlocks.cheese_cake || block == SPBlocks.sponge_cake) {
+			itemBlock = new ItemBlock(block, new Item.Properties().group(SPTabs.tabFood));
+		} else {
+			itemBlock = new ItemBlock(block, new Item.Properties().group(SPTabs.tabBlocks));
+		}
+		itemBlock.setRegistryName(block.getRegistryName());
+		ForgeRegistries.BLOCKS.register(block);
+		ForgeRegistries.ITEMS.register(itemBlock);
 	}
-	
-	public static void registerBlocks(IForgeRegistry<Block> registry) {
-		
-	for (Block block: SurvivalPlus.BLOCKS)
-    {
-        registry.register(block);
-    	}
-	}
-	
-	public static void registerRender(Block block)
-	{
-		Item item = Item.getItemFromBlock(block);
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
-	}
-	
 }

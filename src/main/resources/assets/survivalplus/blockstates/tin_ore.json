@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": {"model": "survivalplus:tin_ore"}
-     }
+        "": { "model": "survivalplus:block/tin_ore" }
+    }
 }

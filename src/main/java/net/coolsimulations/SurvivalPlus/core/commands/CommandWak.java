@@ -1,78 +1,53 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
+import com.mojang.brigadier.CommandDispatcher;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
-import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerNotFoundException;
-import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.Commands;
+import net.minecraft.command.arguments.EntityArgument;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
-public class CommandWak extends CommandBase{
+import java.util.Collection;
+import java.util.Iterator;
 
-	@Override
-	public String getName() {
-		
-		return "wak";
+public class CommandWak {
+
+	public static void register(CommandDispatcher<CommandSource> dispatcher) {
+		dispatcher.register(Commands.literal("wak")
+				.then(Commands.argument("targets", EntityArgument.multiplePlayers())
+						.requires(s -> s.hasPermissionLevel(getRequiredPermissionLevel()))
+						.executes(wak -> wak(wak.getSource(), EntityArgument.getPlayers(wak, "targets")))));
 	}
 
-	@Override
-	public String getUsage(ICommandSender sender) {
-		
-		return "sp.commands.wak.usage";
-	}
+	private static int wak(CommandSource sender, Collection<EntityPlayerMP> players) {
+		Iterator var3 = players.iterator();
 
-	@Override
-	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-		
-		if (args.length == 0 || args.length >=2)
-        {
-            throw new WrongUsageException("sp.commands.wak.usage", new Object[0]);
-        }
-		else if(args.length == 1)
-		{
-			EntityPlayer entityplayer = getPlayer(server, sender, args[0]);
-			
-			if (entityplayer == sender)
-			{
-				throw new PlayerNotFoundException("sp.commands.wak.sameTarget", new Object[0]);
+		while(var3.hasNext()) {
+			EntityPlayerMP entityplayer = (EntityPlayerMP)var3.next();
+
+			if(entityplayer == sender.getEntity()) {
+
+				throw new CommandException(new TextComponentTranslation("sp.commands.wak.sameTarget"));
+
 			}else {
-				TextComponentTranslation wak = new TextComponentTranslation("sp.commands.wak.display", new Object[] {sender.getDisplayName(), entityplayer.getDisplayName()});
+				TextComponentTranslation wak = new TextComponentTranslation("sp.commands.wak.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
 				wak.getStyle().setColor(TextFormatting.DARK_RED);
-				server.getPlayerList().sendMessage(wak);
+				sender.getServer().getPlayerList().sendMessage(wak);
 			}
 		}
-		
+
+		return players.size();
 	}
 
-	@Override
-	public int getRequiredPermissionLevel() {
-		
-		if(SPConfig.opWak > 4) {
+	public static int getRequiredPermissionLevel() {
+
+		if(SPConfig.opWak.get() > 4) {
 			return 4;
 		} else {
-			return SPConfig.opWak;
+			return SPConfig.opWak.get();
 		}
 	}
-	
-    @Override
-    public boolean checkPermission(MinecraftServer server, ICommandSender sender)
-    {
-        return true;
-    }
-    
-    @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
-    {
-        return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
-    }
-
 }

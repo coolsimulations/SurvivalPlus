@@ -1,7 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import ic2.api.item.IC2Items;
-import ic2.api.recipe.Recipes;
+//import ic2.api.item.IC2Items;
+//import ic2.api.recipe.Recipes;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
@@ -9,18 +9,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import biomesoplenty.api.block.BOPBlocks;
+//import biomesoplenty.api.block.BOPBlocks;
 
 public class SurvivalPlusIC2Recipes {
 	
-	private static NBTTagCompound orewash;
+	/**private static NBTTagCompound orewash;
 	private static NBTTagCompound centerf;
-	private static NBTTagCompound cutterhard;
+	private static NBTTagCompound cutterhard;**/
 
 	public static void init()
     {
         
-       	SurvivalPlusAPIRecipes.removeFurnaceRecipe(IC2Items.getItem("ingot", "copper"));
+       	/**SurvivalPlusAPIRecipes.removeFurnaceRecipe(IC2Items.getItem("ingot", "copper"));
        	SurvivalPlusAPIRecipes.removeFurnaceRecipe(IC2Items.getItem("ingot", "tin"));
        	SurvivalPlusAPIRecipes.removeFurnaceRecipe(IC2Items.getItem("ingot", "bronze"));
        	//removeCraftingRecipe(IC2Items.getItem("dust", "bronze"));
@@ -105,7 +105,7 @@ public class SurvivalPlusIC2Recipes {
 			
 			Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(BOPBlocks.white_sandstone)), null, false, new ItemStack(BOPBlocks.white_sand));
 			Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(BOPBlocks.white_sand, 4)), null, false, new ItemStack(BOPBlocks.white_sandstone));
-		}
+		}**/
 		
     }
 }

@@ -1,54 +1,43 @@
 package net.coolsimulations.SurvivalPlus.core.blocks;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.pathfinding.PathType;
+import net.minecraft.state.IProperty;
+import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockCheeseCake extends Block
 {
-    public static final PropertyInteger BITES = PropertyInteger.create("bites", 0, 6);
-    protected static final AxisAlignedBB[] CAKE_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.1875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.3125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.4375D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.5625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.6875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.8125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D)};
+    public static final IntegerProperty BITES;
+    protected static final VoxelShape[] CAKE_AABB;
 
     public BlockCheeseCake()
     {
-    	super(Material.CAKE);
-		this.setHardness(0.5F);
-		this.setResistance(2.5F);
-		this.blockSoundType = SoundType.CLOTH;
-    	this.setDefaultState(this.blockState.getBaseState().withProperty(BITES, Integer.valueOf(0)));
-        this.setTickRandomly(true);
+    	super(Properties.create(Material.CAKE).hardnessAndResistance(0.5F).sound(SoundType.CLOTH));
+        this.setDefaultState((this.stateContainer.getBaseState()).with(BITES, 0));
     }
 
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return CAKE_AABB[((Integer)state.getValue(BITES)).intValue()];
-    }
-
-    @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos)
-    {
-        return state.getCollisionBoundingBox(worldIn, pos);
+    public VoxelShape getShape(IBlockState state, IBlockReader source, BlockPos pos) {
+        return CAKE_AABB[(Integer)state.get(BITES)];
     }
 
     public boolean isFullCube(IBlockState state)
@@ -64,105 +53,66 @@ public class BlockCheeseCake extends Block
         return false;
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        this.eatCake(worldIn, pos, state, playerIn);
-        return true;
-    }
-
-    private void eatCake(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
-    {
-        if (player.canEat(false))
-        {
-            player.addStat(StatList.CAKE_SLICES_EATEN);
-            player.getFoodStats().addStats(3, 0.2F);
-            int i = ((Integer)state.getValue(BITES)).intValue();
-
-            if (i < 6)
-            {
-                worldIn.setBlockState(pos, state.withProperty(BITES, Integer.valueOf(i + 1)), 3);
-            }
-            else
-            {
-                worldIn.setBlockToAir(pos);
-            }
+    public boolean onBlockActivated(IBlockState state, World worldIn, BlockPos pos, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (!worldIn.isRemote) {
+            return this.eatCake(worldIn, pos, state, playerIn);
+        } else {
+            ItemStack itemstack = playerIn.getHeldItem(hand);
+            return this.eatCake(worldIn, pos, state, playerIn) || itemstack.isEmpty();
         }
     }
 
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
-    {
-        return super.canPlaceBlockAt(worldIn, pos) ? this.canBlockStay(worldIn, pos) : false;
-    }
+    private boolean eatCake(IWorld worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+        if (!player.canEat(false)) {
+            return false;
+        } else {
+            player.addStat(StatList.EAT_CAKE_SLICE);
+            player.getFoodStats().addStats(2, 0.1F);
+            int bites = (Integer)state.get(BITES);
+            if (bites < 6) {
+                worldIn.setBlockState(pos, (IBlockState)state.with(BITES, bites + 1), 3);
+            } else {
+                worldIn.removeBlock(pos);
+            }
 
-    /**
-     * Called when a neighboring block was changed and marks that this state should perform any checks during a neighbor
-     * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
-     * block, etc.
-     */
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
-    {
-        if (!this.canBlockStay(worldIn, pos))
-        {
-            worldIn.setBlockToAir(pos);
+            return true;
         }
     }
 
-    private boolean canBlockStay(World worldIn, BlockPos pos)
-    {
-        return worldIn.getBlockState(pos.down()).getMaterial().isSolid();
+    public IBlockState updatePostPlacement(IBlockState state, EnumFacing side, IBlockState blockState, IWorld worldIn, BlockPos pos, BlockPos blockPos) {
+        return side == EnumFacing.DOWN && !state.isValidPosition(worldIn, pos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(state, side, blockState, worldIn, pos, blockPos);
     }
 
-    /**
-     * Returns the quantity of items to drop on block destruction.
-     */
-    public int quantityDropped(Random random)
-    {
-        return 0;
+    public boolean isValidPosition(IBlockState state, IWorldReaderBase readerBase, BlockPos pos) {
+        return readerBase.getBlockState(pos.down()).getMaterial().isSolid();
     }
 
-    /**
-     * Get the Item that this Block should drop when harvested.
-     */
-    @Nullable
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return null;
+    public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int amount) {
+        return Items.AIR;
     }
 
-    /**
-     * Convert the given metadata into a BlockState for this Block
-     */
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(BITES, Integer.valueOf(meta));
+    protected void fillStateContainer(StateContainer.Builder<Block, IBlockState> stateBuilder) {
+        stateBuilder.add(new IProperty[]{BITES});
     }
 
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
+    public int getComparatorInputOverride(IBlockState state, World worldIn, BlockPos pos) {
+        return (7 - (Integer)state.get(BITES)) * 2;
     }
 
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
-    public int getMetaFromState(IBlockState state)
-    {
-        return ((Integer)state.getValue(BITES)).intValue();
-    }
-
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[] {BITES});
-    }
-
-    public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
-    {
-        return (7 - ((Integer)blockState.getValue(BITES)).intValue()) * 2;
-    }
-
-    public boolean hasComparatorInputOverride(IBlockState state)
-    {
+    public boolean hasComparatorInputOverride(IBlockState state) {
         return true;
+    }
+
+    public BlockFaceShape getBlockFaceShape(IBlockReader reader, IBlockState state, BlockPos pos, EnumFacing side) {
+        return BlockFaceShape.UNDEFINED;
+    }
+
+    public boolean allowsMovement(IBlockState state, IBlockReader reader, BlockPos pos, PathType type) {
+        return false;
+    }
+
+    static {
+        BITES = BlockStateProperties.BITES_0_6;
+        CAKE_AABB = new VoxelShape[]{Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(3.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(5.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(7.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(9.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(11.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(13.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D)};
     }
 }

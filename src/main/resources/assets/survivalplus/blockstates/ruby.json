@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": {"model": "survivalplus:ruby"}
+        "": { "model": "survivalplus:block/ruby" }
      }
 }

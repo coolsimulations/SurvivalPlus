@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cardboard",
+  "pattern": [
+    "SSS",
+    "SDS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "survivalplus:cardboard"
+    },
+    "D": {
+      "tag": "forge:dyes/light_blue"
+    }
+  },
+  "result": {
+    "item": "survivalplus:cardboard_light_blue",
+    "count": 8
+  }
+}

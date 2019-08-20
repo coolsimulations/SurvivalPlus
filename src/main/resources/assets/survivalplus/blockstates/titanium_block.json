@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": {"model": "survivalplus:titanium_block"}
-     }
+        "": { "model": "survivalplus:block/titanium_block" }
+    }
 }

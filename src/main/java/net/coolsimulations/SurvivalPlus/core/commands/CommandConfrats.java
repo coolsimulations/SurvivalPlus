@@ -1,73 +1,43 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.command.CommandBase;
+import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandException;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerNotFoundException;
-import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.Commands;
+import net.minecraft.command.arguments.EntityArgument;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
-public class CommandConfrats extends CommandBase{
+import java.util.Collection;
+import java.util.Iterator;
 
-	@Override
-	public String getName() {
-		
-		return "confrats";
+public class CommandConfrats {
+
+	public static void register(CommandDispatcher<CommandSource> dispatcher) {
+		dispatcher.register(Commands.literal("confrats")
+				.then(Commands.argument("targets", EntityArgument.multiplePlayers())
+						.requires(s -> s.hasPermissionLevel(0))
+						.executes(confrats -> confrats(confrats.getSource(), EntityArgument.getPlayers(confrats, "targets")))));
 	}
 
-	@Override
-	public String getUsage(ICommandSender sender) {
-		
-		return "sp.commands.confrats.usage";
-	}
+	private static int confrats(CommandSource sender, Collection<EntityPlayerMP> players) {
+		Iterator var3 = players.iterator();
 
-	@Override
-	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-		
-		if (args.length == 0 || args.length >=2)
-        {
-            throw new WrongUsageException("sp.commands.confrats.usage", new Object[0]);
-        }
-        else
-        {
-        	EntityPlayer entityplayer = getPlayer(server, sender, args[0]);
-        	
-        	if (entityplayer == sender)
-            {
-                throw new PlayerNotFoundException("sp.commands.confrats.sameTarget", new Object[0]);
-            }else {
-            	TextComponentTranslation confrats = new TextComponentTranslation("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
-            	confrats.getStyle().setColor(TextFormatting.YELLOW);
-            	server.getPlayerList().sendMessage(confrats);
-            }
-        }
-		
-	}
+		while(var3.hasNext()) {
+			EntityPlayerMP entityplayer = (EntityPlayerMP)var3.next();
 
-	@Override
-	public int getRequiredPermissionLevel() {
-		
-		return 0;
-	}
-	
-    @Override
-    public boolean checkPermission(MinecraftServer server, ICommandSender sender)
-    {
-        return true;
-    }
+			if(entityplayer == sender.getEntity()) {
 
-	@Override
-	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
-		
-		return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
-	}
+				throw new CommandException(new TextComponentTranslation("sp.commands.confrats.sameTarget"));
 
+			}else {
+				TextComponentTranslation confrats = new TextComponentTranslation("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
+				confrats.getStyle().setColor(TextFormatting.YELLOW);
+				sender.getServer().getPlayerList().sendMessage(confrats);
+			}
+		}
+
+		return players.size();
+	}
 }

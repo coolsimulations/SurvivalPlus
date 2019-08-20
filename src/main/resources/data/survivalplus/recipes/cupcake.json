@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:cups/paper"
+    },
+    {
+      "tag": "forge:cups/paper"
+    },
+    {
+      "tag": "forge:cups/paper"
+    },
+    {
+      "tag": "forge:cups/paper"
+    },
+    {
+      "tag": "forge:cups/paper"
+    },
+    {
+      "tag": "forge:cups/paper"
+    },
+    {
+      "tag": "forge:cups/paper"
+    },
+    {
+      "item": "minecraft:cake"
+    }
+  ],
+  "result": {
+    "item": "survivalplus:cupcake",
+    "count": 7
+  }
+}

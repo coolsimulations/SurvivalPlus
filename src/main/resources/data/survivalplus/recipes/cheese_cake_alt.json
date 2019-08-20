@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cheese_cake",
+  "pattern": [
+    "CMC",
+    "SES",
+    "FFF"
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:food/cheese"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "F": {
+      "tag": "forge:food/flour"
+    }
+  },
+  "result": {
+    "item": "survivalplus:cheese_cake"
+  }
+}

@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": {"model": "survivalplus:topaz"}
+        "": { "model": "survivalplus:block/topaz" }
      }
 }

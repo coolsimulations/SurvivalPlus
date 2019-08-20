@@ -9,7 +9,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.versions.forge.ForgeVersion;
 
 public class SurvivalPlusUpdateHandler {
 	
@@ -20,7 +20,7 @@ public class SurvivalPlusUpdateHandler {
 	public static void init() {
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus/versionchecker112.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus/versionchecker113.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersion = s.next();
             s.close();
@@ -37,7 +37,7 @@ public class SurvivalPlusUpdateHandler {
 				TextComponentString sp = new TextComponentString(SPReference.MOD_NAME);
 				sp.getStyle().setColor(TextFormatting.BLUE);
 				
-				TextComponentString MCVersion = new TextComponentString(MinecraftForge.MC_VERSION);
+				TextComponentString MCVersion = new TextComponentString(ForgeVersion.getVersion());
 				MCVersion.getStyle().setColor(TextFormatting.BLUE);
 				
 				updateInfo = new TextComponentTranslation("sp.update.display3", new Object[] {sp, MCVersion});

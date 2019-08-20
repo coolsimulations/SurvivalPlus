@@ -1,143 +1,100 @@
 package net.coolsimulations.SurvivalPlus.core.config;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
-import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.minecraftforge.common.config.ConfigElement;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.client.config.IConfigElement;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.FMLRelaunchLog;
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.config.ModConfig;
 
-import org.apache.logging.log4j.Level;
-
+import org.apache.commons.lang3.tuple.Pair;
 
 public class SurvivalPlusConfig {
-	
-	static Configuration config;
-	
-	public static void init(File file)
-    {
-        config = new Configuration(file);
-        syncConfig(true);
-    }
-	
-    public static void forceSave()
-    {
-    	config.save();
-    }
-	
-	 public static void syncConfig(boolean load)
-	    {
-	        List<String> propOrder = new ArrayList<String>();
+	public static class Common {
 
-	        try
-	        {
-	            Property prop;
+		Common(final ForgeConfigSpec.Builder builder) {
+			builder.comment("Common config settings")
+					.push("common");
 
-	            if (!config.isChild)
-	            {
-	                if (load)
-	                {
-	                    config.load();
-	                }
-	            }
-	            
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_RECIPES, "Enable Sponge Recipe", false);
-	            prop.setComment("If this is enabled, sponge can be crafted with a combination of gold ingots, yellow wool and cheese. By default this is set to false as to make sponge cake rarer.");
-	            prop.setLanguageKey("sp.configgui.enable_sponge");
-	            SPConfig.enableSponge = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_COMPATIBILITY, "Enable Replace BOP Terrestrial Artifact Recipe", false);
-	            prop.setComment("If this is enable and Biomes O' Plenty are played with, the crafting recipe for the Terrestrial Artifact can use SurvivalPlus's ruby, topaz, and sapphire. By default this is set to false as the idea of the Terrestrial Artifact is that you need to go to all BOP biomes to find the needed gems, whereas SurvivalPlus gems generate everywhere.");
-	            prop.setLanguageKey("sp.configgui.enable_Replace_BOP_Recipe");
-	            SPConfig.enableReplaceBOPRecipe = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_GENERATION, "Disable SurvivalPlus Copper Ore Gen", false);
-	            prop.setLanguageKey("sp.configgui.disable_copper_ore_gen");
-	            SPConfig.disableCopperOreGen = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_GENERATION, "Disable SurvivalPlus Tin Ore Gen", false);
-	            prop.setLanguageKey("sp.configgui.disable_tin_ore_gen");
-	            SPConfig.disableTinOreGen = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_GENERATION, "Disable SurvivalPlus Titanium Ore Gen", false);
-	            prop.setLanguageKey("sp.configgui.disable_titanium_ore_gen");
-	            SPConfig. disableTitaniumOreGen = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_GENERATION, "Disable SurvivalPlus Amethyst Gen", false);
-	            prop.setLanguageKey("sp.configgui.disable_amethyst_gen");
-	            SPConfig.disableAmethystGen = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_GENERATION, "Disable SurvivalPlus Ruby Gen", false);
-	            prop.setLanguageKey("sp.configgui.disable_ruby_gen");
-	            SPConfig.disableRubyGen = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_GENERATION, "Disable SurvivalPlus Topaz Gen", false);
-	            prop.setLanguageKey("sp.configgui.disable_topaz_gen");
-	            SPConfig.disableTopazGen = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_GENERATION, "Disable SurvivalPlus Sapphire Gen", false);
-	            prop.setLanguageKey("sp.configgui.disable_sapphire_gen");
-	            SPConfig.disableSapphireGen = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_GENERATION, "Disable SurvivalPlus Pearl Gen", false);
-	            prop.setLanguageKey("sp.configgui.disable_pearl_gen");
-	            SPConfig.disablePearlGen = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_GENERATION, "Disable SurvivalPlus Spinel Gen", false);
-	            prop.setLanguageKey("sp.configgui.disable_spinel_gen");
-	            SPConfig.disableSpinelGen = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_COMMAND, "Define Wak Command Permission Level", 0);
-	            prop.setComment("If this is set to 0 anyone can use the Wak Command. If set above 4 then it will return 4.");
-	            prop.setLanguageKey("sp.configgui.op_wak_command");
-	            SPConfig.opWak = prop.getInt(0);
-	            propOrder.add(prop.getName());
-	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_COMMAND, "Disable SurvivalPlus Update Checker Message", false);
-	            prop.setLanguageKey("sp.configgui.update_check");
-	            SPConfig.disableUpdateCheck = prop.getBoolean(false);
-	            propOrder.add(prop.getName());
-	            
-	            if (config.hasChanged())
-	            {
-	                config.save();
-	            }
-	            
-	        }
-	        catch (final Exception e)
-	        {
-	        	FMLRelaunchLog.log(SPReference.MOD_NAME, Level.ERROR, ("Problem loading SurvivalPlus config (\"SurvivalPlus.conf\")"));
-	            e.printStackTrace();
-	        }
-	    }
-	 
-	 public static List<IConfigElement> getConfigElements()
-	    {
-	        List<IConfigElement> list = new ArrayList<IConfigElement>();
-	        list.addAll(new ConfigElement(config.getCategory(SPReference.CONFIG_CATEGORY_RECIPES)).getChildElements());
-	        list.addAll(new ConfigElement(config.getCategory(SPReference.CONFIG_CATEGORY_COMPATIBILITY)).getChildElements());
-	        list.addAll(new ConfigElement(config.getCategory(SPReference.CONFIG_CATEGORY_GENERATION)).getChildElements());
-	        list.addAll(new ConfigElement(config.getCategory(SPReference.CONFIG_CATEGORY_COMMAND)).getChildElements());
-	        return list;
-	    }
+			SPConfig.enableSponge = builder
+					.comment("If this is enabled, sponge can be crafted with a combination of gold ingots, yellow wool and cheese. By default this is set to false as to make sponge cake rarer.")
+					.translation("sp.configgui.enable_sponge")
+					.define("enableSponge", false);
+			
+			SPConfig.enableReplaceBOPRecipe = builder
+					.comment("If this is enable and Biomes O' Plenty are played with, the crafting recipe for the Terrestrial Artifact can use SurvivalPlus's ruby, topaz, and sapphire. By default this is set to false as the idea of the Terrestrial Artifact is that you need to go to all BOP biomes to find the needed gems, whereas SurvivalPlus gems generate everywhere.")
+					.translation("sp.configgui.enable_Replace_BOP_Recipe")
+					.define("enableReplaceBOPRecipe", false);
+			
+			SPConfig.disableCopperOreGen = builder
+					.comment("Disable SurvivalPlus Copper Ore Gen")
+					.translation("sp.configgui.disable_copper_ore_gen")
+					.define("disableCopperOreGen", false);
+			
+			SPConfig.disableTinOreGen = builder
+					.comment("Disable SurvivalPlus Tin Ore Gen")
+					.translation("sp.configgui.disable_tin_ore_gen")
+					.define("disableTinOreGen", false);
+			
+			SPConfig.disableTitaniumOreGen = builder
+					.comment("Disable SurvivalPlus Titanium Ore Gen")
+					.translation("sp.configgui.disable_titanium_ore_gen")
+					.define("disableTitaniumOreGen", false);
+			
+			SPConfig.disableAmethystGen = builder
+					.comment("Disable SurvivalPlus Amethyst Gen")
+					.translation("sp.configgui.disable_amethyst_gen")
+					.define("disableAmethystGen", false);
+			
+			SPConfig.disableRubyGen = builder
+					.comment("Disable SurvivalPlus Ruby Gen")
+					.translation("sp.configgui.disable_ruby_gen")
+					.define("disableRubyGen", false);
+			
+			SPConfig.disableTopazGen = builder
+					.comment("Disable SurvivalPlus Topaz Gen")
+					.translation("sp.configgui.disable_topaz_gen")
+					.define("disableTopazGen", false);
+			
+			SPConfig.disableSapphireGen = builder
+					.comment("Disable SurvivalPlus Sapphire Gen")
+					.translation("sp.configgui.disable_sapphire_gen")
+					.define("disableSapphireGen", false);
+			
+			
+			SPConfig.disablePearlGen = builder
+					.comment("Disable SurvivalPlus Pearl Gen")
+					.translation("sp.configgui.disable_pearl_gen")
+					.define("disablePearlGen", false);
+			
+			SPConfig.disableSpinelGen = builder
+					.comment("Disable SurvivalPlus Spinel Gen")
+					.translation("sp.configgui.disable_spinel_gen")
+					.define("disableSpinelGen", false);
+			
+			SPConfig.opWak = builder
+					.comment("If this is set to 0 anyone can use the Wak Command. If set above 4 then it will return 4.")
+					.translation("sp.configgui.op_wak_command")
+					.defineInRange("opWak", 0, 0, 4);
+			
+			SPConfig.disableUpdateCheck = builder
+					.comment("Disable SurvivalPlus Update Checker Message")
+					.translation("sp.configgui.update_check")
+					.define("disableUpdateCheck", false);
 
+
+			builder.pop();
+		}
+	}
+
+	private static final ForgeConfigSpec commonSpec;
+	public static final Common COMMON;
+
+	static {
+		final Pair<Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Common::new);
+		commonSpec = specPair.getRight();
+		COMMON = specPair.getLeft();
+	}
+
+	public static void register(final ModLoadingContext context) {
+		context.registerConfig(ModConfig.Type.COMMON, commonSpec);
+	}
 }

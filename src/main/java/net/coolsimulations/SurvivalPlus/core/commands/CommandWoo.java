@@ -1,65 +1,26 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.command.CommandBase;
-import net.minecraft.command.CommandException;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerNotFoundException;
-import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.Commands;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
-public class CommandWoo extends CommandBase{
+public class CommandWoo {
 
-	@Override
-	public String getName() {
-		
-		return "woo";
+	public static void register(CommandDispatcher<CommandSource> dispatcher) {
+		dispatcher.register(Commands.literal("woo")
+		.requires(s -> s.hasPermissionLevel(0))
+		.executes(woo -> woo(woo.getSource())));
 	}
 
-	@Override
-	public String getUsage(ICommandSender sender) {
-		
-		return "sp.commands.woo.usage";
-	}
+	private static int woo(CommandSource sender) {
 
-	@Override
-	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-		
-		if (args.length >= 1)
-        {
-            throw new WrongUsageException("sp.commands.woo.usage", new Object[0]);
-            
-        } else {
-        	TextComponentTranslation woo = new TextComponentTranslation("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
-        	woo.getStyle().setColor(TextFormatting.BLUE);
-        	server.getPlayerList().sendMessage(woo);
-        }
-		
-	}
+		TextComponentTranslation woo = new TextComponentTranslation("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
+		woo.getStyle().setColor(TextFormatting.BLUE);
+		sender.getServer().getPlayerList().sendMessage(woo);
 
-	@Override
-	public int getRequiredPermissionLevel() {
-		
-		return 0;
+		return Command.SINGLE_SUCCESS;
 	}
-	
-    @Override
-    public boolean checkPermission(MinecraftServer server, ICommandSender sender)
-    {
-        return true;
-    }
-    
-    @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
-    {
-        return getListOfStringsMatchingLastWord(args);
-    }
-
 }

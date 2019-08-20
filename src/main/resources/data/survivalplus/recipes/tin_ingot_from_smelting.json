@@ -1,0 +1,9 @@
+{
+  "type": "smelting",
+  "ingredient": {
+    "tag": "forge:ores/tin"
+  },
+  "result": "survivalplus:tin_ingot",
+  "experience": 0.7,
+  "cookingtime": 200
+}

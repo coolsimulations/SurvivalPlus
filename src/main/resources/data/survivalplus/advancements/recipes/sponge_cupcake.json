@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "survivalplus:sponge_cupcake"
+    ]
+  },
+  "criteria": {
+      "has_cup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:cups/paper"
+          }
+        ]
+      }
+    },
+    "has_cake": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:food/cake/sponge"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "survivalplus:sponge_cupcake"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cup",
+      "has_cake",
+      "has_the_recipe"
+    ]
+  ]
+}

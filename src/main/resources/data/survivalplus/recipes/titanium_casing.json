@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:plates/titanium"
+    },
+    {
+      "tag": "ic2:crafting/tool/forge/hammer"
+    }
+  ],
+  "result": {
+    "item": "survivalplus:titanium_casing",
+    "count": 2
+  }
+}

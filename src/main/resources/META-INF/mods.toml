@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="[25,]"
+issueTrackerURL="http://github.com/coolsimulations/survivalplus/issues/"
+logoFile="logo.png"
+
+[[mods]]
+    modId="survivalplus"
+    version="${version}"
+    updateJSONURL="https://coolsimulations.net/mcmods/survivalplus/versionchecker.json"
+    displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus"
+    displayName="SurvivalPlus"
+    credits="To leviofpower, Jessen_House, and exostealth79 who have all played a vital part in testing this mod throughout its development"
+    authors="coolsim"
+    description='''
+    SurvivalPlus enhances the vanilla survival experience of Minecraft whilst interacting with other mods to create seamless gameplay.
+    '''
+[[dependencies.survivalplus]]
+    modId="forge"
+    mandatory=true
+    versionRange="[25,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.survivalplus]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.13.2]"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.survivalplus]]
+    modId="biomesoplenty"
+    mandatory=false
+    versionRange="[8.0.0.146]"
+    ordering="BEFORE"
+    side="BOTH"
+[[dependencies.survivalplus]]
+    modId="biomesoplentyextras"
+    mandatory=false
+    versionRange="[1.0.0]"
+    ordering="BEFORE"
+    side="BOTH"
+    

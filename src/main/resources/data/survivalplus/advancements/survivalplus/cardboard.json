@@ -1,0 +1,27 @@
+{
+    "display": {
+        "icon": {
+            "item": "survivalplus:cardboard"
+        },
+        "title": {
+            "translate": "advancements.sp.cardboard"
+        },
+        "description": {
+            "translate": "advancements.sp.cardboard.desc"
+        }
+    },
+    "parent": "survivalplus:survivalplus/install",
+    "criteria": {
+        "cardboard": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "forge:cardboard"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [["cardboard"]]
+}

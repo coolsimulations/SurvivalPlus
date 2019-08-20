@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sponge_cake",
+  "pattern": [
+    "PMP",
+    "SES",
+    "FFF"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:sponge"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "F": {
+      "tag": "forge:food/flour"
+    }
+  },
+  "result": {
+    "item": "survivalplus:sponge_cake"
+  }
+}

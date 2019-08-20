@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": {"model": "survivalplus:copper_ore"}
-     }
+        "": { "model": "survivalplus:block/copper_ore" }
+    }
 }

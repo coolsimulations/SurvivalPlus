@@ -1,6 +1,6 @@
 package net.coolsimulations.SurvivalPlus.core.proxy;
 
-public class ServerProxy implements CommonProxy{
+public class ServerProxy extends CommonProxy{
 
 	@Override
 	public void init() {

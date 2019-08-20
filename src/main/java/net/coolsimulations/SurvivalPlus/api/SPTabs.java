@@ -1,14 +1,14 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemGroup;
 
 public class SPTabs {
 	
-	public static CreativeTabs tabMaterials = null;
-	public static CreativeTabs tabBlocks = null;
-	public static CreativeTabs tabFood = null;
-	public static CreativeTabs tabGem = null;
-	public static CreativeTabs tabCombat = null;
-	public static CreativeTabs tabTools = null;
+	public static ItemGroup tabMaterials = null;
+	public static ItemGroup tabBlocks = null;
+	public static ItemGroup tabFood = null;
+	public static ItemGroup tabGem = null;
+	public static ItemGroup tabCombat = null;
+	public static ItemGroup tabTools = null;
 
 }

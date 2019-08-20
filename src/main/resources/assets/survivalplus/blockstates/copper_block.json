@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": {"model": "survivalplus:copper_block"}
-     }
+        "": { "model": "survivalplus:block/copper_block" }
+    }
 }

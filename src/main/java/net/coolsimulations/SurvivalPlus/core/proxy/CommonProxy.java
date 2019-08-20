@@ -1,7 +1,11 @@
 package net.coolsimulations.SurvivalPlus.core.proxy;
 
-public interface CommonProxy {
+public class CommonProxy {
 	
-	public void init();
+	public CommonProxy() {
+
+    }
+	
+	public void init() {}
 	 
 }

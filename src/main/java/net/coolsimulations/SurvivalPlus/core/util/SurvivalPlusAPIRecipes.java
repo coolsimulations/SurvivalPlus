@@ -1,6 +1,6 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import ic2.api.item.IC2Items;
+/**import ic2.api.item.IC2Items;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -18,14 +18,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.OreDictionary;**/
 
 public class SurvivalPlusAPIRecipes {
 	
 	public static void loadRecipes()
     {
 
-        if (SPCompatibilityManager.isIc2Loaded())
+        /**if (SPCompatibilityManager.isIc2Loaded())
         {
             SurvivalPlusAPIRecipes.addIndustrialCraft2Recipes();
         }
@@ -50,10 +50,10 @@ public class SurvivalPlusAPIRecipes {
         
         if(SPCompatibilityManager.isRailcraftLoaded()) {
         	SurvivalPlusAPIRecipes.addRailcraftItemsRecipes();
-        }
+        }**/
     }
 	
-	private static void addIndustrialCraft2Recipes()
+	/**private static void addIndustrialCraft2Recipes()
     {
 		ItemStack cable = IC2Items.getItem("cable", "type:glass,insulation:0");
 		cable.setCount(6);
@@ -107,58 +107,12 @@ public class SurvivalPlusAPIRecipes {
 		removeFurnaceRecipe(new ItemStack(ingot, 1, 2));
 		GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 1), new ItemStack(SPItems.tin_ingot), 1.0F);
 		
-		/**if (OreDictionary.getOres("ingotSteel").size() > 0) {
-			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 1), new Object[] {"ingotSteel"});
-		}
-		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 2), new Object[] {"ingotCopper"});
-		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 3), new Object[] {"ingotTin"});
-		if (OreDictionary.getOres("ingotLead").size() > 0) {
-			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 4), new Object[] {"ingotLead"});
-		}
-		if (OreDictionary.getOres("ingotSilver").size() > 0) {
-			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 5), new Object[] {"ingotSilver"});
-		}
-		SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 6), new Object[] {"ingotBronze"});
-		if (OreDictionary.getOres("ingotNickel").size() > 0) {
-			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 7), new Object[] {"ingotNickel"});
-		}
-		if (OreDictionary.getOres("ingotInvar").size() > 0) {
-			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 8), new Object[] {"ingotInvar"});
-		}
-		if (OreDictionary.getOres("ingotZinc").size() > 0) {
-			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 9), new Object[] {"ingotZinc"});
-		}
-		if (OreDictionary.getOres("ingotBrass").size() > 0) {
-			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 10), new Object[] {"ingotBrass"});
-		}
-		removeCraftingRecipe(new ItemStack(ingot, 1, 1));
-		removeCraftingRecipe(new ItemStack(ingot, 9, 1));
-		removeCraftingRecipe(new ItemStack(ingot, 1, 2));
-		removeCraftingRecipe(new ItemStack(ingot, 9, 2));
-		removeCraftingRecipe(new ItemStack(ingot, 1, 5));
-		removeCraftingRecipe(new ItemStack(ingot, 9, 5));
-		removeCraftingRecipe(new ItemStack(ingot, 4, 5));
-		removeCraftingRecipe(new ItemStack(generic, 1, 11));
-		removeCraftingRecipe(new ItemStack(generic, 1, 1));
-		removeCraftingRecipe(new ItemStack(generic));
-		addRecipe(new ItemStack(SPItems.copper_ingot), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 2)});
-		addRecipe(new ItemStack(SPItems.tin_ingot), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 3)});
-		addRecipe(new ItemStack(SPItems.bronze_ingot), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 6)});**/
-		
 		if(SPCompatibilityManager.isIc2Loaded()) {
 			
 			removeFurnaceRecipe(new ItemStack(ingot, 1, 3));
 			GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 2), IC2Items.getItem("ingot", "lead"), 1.0F);
 			removeFurnaceRecipe(new ItemStack(ingot, 1, 4));
 			GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 3), IC2Items.getItem("ingot", "silver"), 1.0F);
-			/**removeCraftingRecipe(new ItemStack(ingot, 1, 3));
-			removeCraftingRecipe(new ItemStack(ingot, 9, 3));
-			removeCraftingRecipe(new ItemStack(ingot, 1, 4));
-			removeCraftingRecipe(new ItemStack(ingot, 9, 4));
-			removeCraftingRecipe(new ItemStack(generic, 1, 10));
-			removeCraftingRecipe(new ItemStack(generic, 1, 2));
-			addRecipe(IC2Items.getItem("ingot", "lead"), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 4)});
-			addRecipe(IC2Items.getItem("ingot", "silver"), new Object []{"BBB", "BBB", "BBB", 'B', new ItemStack(nugget, 1, 5)});**/
 		}
 	}
 	
@@ -183,6 +137,6 @@ public class SurvivalPlusAPIRecipes {
 	public static ItemStack getIndustrialCraftItem(String name)
 	{
 		return IC2Items.getItem(name, null);
-	}
+	}**/
 
 }

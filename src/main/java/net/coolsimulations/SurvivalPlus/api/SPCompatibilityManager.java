@@ -1,6 +1,6 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.ModList;
 
 public class SPCompatibilityManager {
 	
@@ -14,6 +14,7 @@ public class SPCompatibilityManager {
     private static boolean modAppEngLoaded;
     private static boolean modPneumaticCraftLoaded;
     private static boolean modBopLoaded;
+    private static boolean modBopExtrasLoaded;
     private static boolean modBaseMetalsLoaded;
     private static boolean modFlourPowerLoaded;
     private static boolean modWoodenBucketLoaded;
@@ -31,6 +32,7 @@ public class SPCompatibilityManager {
     public static final String APPENG_MODID = "appliedenergistics2";
     public static final String PNEUMATICCRAFT_MODID = "pneumaticcraft";
     public static final String BOP_MODID = "biomesoplenty";
+    public static final String BOPEXTRAS_MODID = "biomesoplentyextras";
     public static final String BASEMETALS_MODID = "basemetals";
     public static final String FLOURPOWER_MODID = "flourpower";
     public static final String WOODENBUCKET_MODID = "woodenbucket";
@@ -41,83 +43,88 @@ public class SPCompatibilityManager {
     
     public static void checkForCompatibleMods(){
 
-        if (Loader.isModLoaded(TE_MODID))
+        if (ModList.get().isLoaded(TE_MODID))
         {
             SPCompatibilityManager.modTELoaded = true;
         }
     	
-    	if (Loader.isModLoaded(GCCORE_MODID))
+    	if (ModList.get().isLoaded(GCCORE_MODID))
     	{
     		SPCompatibilityManager.modGCLoaded = true;
     	}
     	
-    	if (Loader.isModLoaded(GCPLANETS_MODID))
+    	if (ModList.get().isLoaded(GCPLANETS_MODID))
     	{
     		SPCompatibilityManager.modGCPLoaded = true;
     	}
     	
-    	if (Loader.isModLoaded(PROJECTE_MODID))
+    	if (ModList.get().isLoaded(PROJECTE_MODID))
     	{
     		SPCompatibilityManager.modProjectELoaded = true;
     	}
     	
-    	if (Loader.isModLoaded(JEI_MODID))
+    	if (ModList.get().isLoaded(JEI_MODID))
     	{
     		SPCompatibilityManager.modJeiLoaded = true;
     	}
 
-        if (Loader.isModLoaded(IC2_MODID))
+        if (ModList.get().isLoaded(IC2_MODID))
         {
             SPCompatibilityManager.modIc2Loaded = true;
         }
         
 
-        if (Loader.isModLoaded(BCRAFTCORE_MODID))
+        if (ModList.get().isLoaded(BCRAFTCORE_MODID))
         {
             SPCompatibilityManager.modBCraftLoaded = true;
         }
 
-        if (Loader.isModLoaded(APPENG_MODID))
+        if (ModList.get().isLoaded(APPENG_MODID))
         {
             SPCompatibilityManager.modAppEngLoaded = true;
         }
 
-        if (Loader.isModLoaded(PNEUMATICCRAFT_MODID))
+        if (ModList.get().isLoaded(PNEUMATICCRAFT_MODID))
         {
             SPCompatibilityManager.modPneumaticCraftLoaded = true;
         }
         
-        if (Loader.isModLoaded(BOP_MODID))
+        if (ModList.get().isLoaded(BOP_MODID))
         {
             SPCompatibilityManager.modBopLoaded = true;
         }
         
-        if (Loader.isModLoaded(BASEMETALS_MODID))
+        if (ModList.get().isLoaded(BOPEXTRAS_MODID))
+        {
+            SPCompatibilityManager.modBopExtrasLoaded = true;
+        }
+        
+        if (ModList.get().isLoaded(BASEMETALS_MODID))
         {
             SPCompatibilityManager.modBaseMetalsLoaded = true;
         }
         
-        if (Loader.isModLoaded(FLOURPOWER_MODID))
+        if (ModList.get().isLoaded(FLOURPOWER_MODID))
         {
             SPCompatibilityManager.modFlourPowerLoaded = true;
         }
         
-        if (Loader.isModLoaded(WOODENBUCKET_MODID) && Loader.isModLoaded(VEFLUIDS_MODID))
+        if (ModList.get().isLoaded(WOODENBUCKET_MODID) && ModList.get().isLoaded(VEFLUIDS_MODID))
         {
             SPCompatibilityManager.modWoodenBucketLoaded = true;
         }
         
-        if (Loader.isModLoaded(SIMPLEGRINDER_MODID))
+        if (ModList.get().isLoaded(SIMPLEGRINDER_MODID))
         {
             SPCompatibilityManager.modSimpleGrinderLoaded = true;
         }
         
-        if (Loader.isModLoaded(FORESTRY_MODID))
+        if (ModList.get().isLoaded(FORESTRY_MODID))
         {
             SPCompatibilityManager.modForestryLoaded = true;
         }
         
-        if (Loader.isModLoaded(RAILCRAFT_MODID))
+        if (ModList.get().isLoaded(RAILCRAFT_MODID))
         {
             SPCompatibilityManager.modRailcraftLoaded = true;
         }
@@ -171,6 +178,11 @@ public class SPCompatibilityManager {
     public static boolean isBopLoaded()
     {
         return SPCompatibilityManager.modBopLoaded;
+    }
+    
+    public static boolean isBopExtrasLoaded()
+    {
+        return SPCompatibilityManager.modBopExtrasLoaded;
     }
     
     public static boolean isBaseMetalsLoaded()

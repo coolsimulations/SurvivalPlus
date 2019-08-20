@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": {"model": "survivalplus:cardboard_brown"}
+        "": { "model": "survivalplus:block/cardboard_brown" }
      }
 }

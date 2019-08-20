@@ -1,79 +1,57 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.command.CommandBase;
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandException;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.command.PlayerNotFoundException;
-import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.Commands;
+import net.minecraft.command.arguments.EntityArgument;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
-public class CommandIndeed extends CommandBase{
+import java.util.Collection;
+import java.util.Iterator;
 
-	@Override
-	public String getName() {
-		
-		return "indeed";
+public class CommandIndeed {
+
+	public static void register(CommandDispatcher<CommandSource> dispatcher) {
+		dispatcher.register(Commands.literal("indeed")
+				.then(Commands.argument("targets", EntityArgument.multiplePlayers())
+						.requires(s -> s.hasPermissionLevel(0))
+						.executes(indeed -> indeed(indeed.getSource(), EntityArgument.getPlayers(indeed, "targets")))));
+
+		dispatcher.register(Commands.literal("indeed")
+				.requires(s -> s.hasPermissionLevel(0))
+				.executes(indeed -> indeedSingle(indeed.getSource())));
 	}
 
-	@Override
-	public String getUsage(ICommandSender sender) {
-		
-		return "sp.commands.indeed.usage";
+	private static int indeed(CommandSource sender, Collection<EntityPlayerMP> players) {
+		Iterator var3 = players.iterator();
+
+		while (var3.hasNext()) {
+			EntityPlayerMP entityplayer = (EntityPlayerMP) var3.next();
+
+			if (entityplayer == sender.getEntity()) {
+
+				throw new CommandException(new TextComponentTranslation("sp.commands.indeed.sameTarget"));
+
+			} else {
+				TextComponentTranslation indeed = new TextComponentTranslation("sp.commands.indeed.display1", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
+				indeed.getStyle().setColor(TextFormatting.DARK_GREEN);
+				sender.getServer().getPlayerList().sendMessage(indeed);
+			}
+		}
+
+		return players.size();
 	}
 
-	@Override
-	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-		
-		if (args.length >= 2)
-        {
-            throw new WrongUsageException("sp.commands.indeed.usage", new Object[0]);
-        }
-        else if(args.length == 1)
-        {
-        	Entity entityplayer = getEntity(server, sender, args[0]);
-        	
-        	if (entityplayer == sender)
-            {
-                throw new PlayerNotFoundException("sp.commands.indeed.sameTarget", new Object[0]);
-            }else {
-            	TextComponentTranslation indeed = new TextComponentTranslation("sp.commands.indeed.display1", new Object[] {sender.getDisplayName(), entityplayer.getDisplayName()});
-        		indeed.getStyle().setColor(TextFormatting.DARK_GREEN);
-        		server.getPlayerList().sendMessage(indeed);
-            }
-        }
-        else
-        {
-        	TextComponentTranslation indeed = new TextComponentTranslation("sp.commands.indeed.display2", new Object[] {sender.getDisplayName()});
-    		indeed.getStyle().setColor(TextFormatting.DARK_GREEN);
-    		server.getPlayerList().sendMessage(indeed);
-        }
-	}
+	private static int indeedSingle(CommandSource sender) {
 
-	@Override
-	public int getRequiredPermissionLevel() {
-		
-		return 0;
-	}
-	
-    @Override
-    public boolean checkPermission(MinecraftServer server, ICommandSender sender)
-    {
-        return true;
-    }
-    
-    @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
-    {
-        return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
-    }
+		TextComponentTranslation indeed = new TextComponentTranslation("sp.commands.indeed.display2", new Object[]{sender.getDisplayName()});
+		indeed.getStyle().setColor(TextFormatting.DARK_GREEN);
+		sender.getServer().getPlayerList().sendMessage(indeed);
 
+		return Command.SINGLE_SUCCESS;
+	}
 }

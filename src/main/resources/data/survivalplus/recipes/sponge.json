@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CWC",
+    "WGW",
+    "CWC"
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:food/cheese"
+    },
+    "W": {
+      "item": "minecraft:yellow_wool"
+    },
+    "G": {
+      "tag": "forge:nuggets/gold"
+    }
+  },
+  "result": {
+    "item": "minecraft:sponge"
+  }
+}

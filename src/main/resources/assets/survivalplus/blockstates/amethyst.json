@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": {"model": "survivalplus:amethyst"}
+        "": { "model": "survivalplus:block/amethyst" }
      }
 }

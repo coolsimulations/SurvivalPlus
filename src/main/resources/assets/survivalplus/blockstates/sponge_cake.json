@@ -1,12 +1,12 @@
 {
     "variants": {
-        "bites=0": { "model": "survivalplus:sponge_cake_uneaten" },
-        "bites=1": { "model": "survivalplus:sponge_cake_slice1" },
-        "bites=2": { "model": "survivalplus:sponge_cake_slice2" },
-        "bites=3": { "model": "survivalplus:sponge_cake_slice3" },
-        "bites=4": { "model": "survivalplus:sponge_cake_slice4" },
-        "bites=5": { "model": "survivalplus:sponge_cake_slice5" },
-        "bites=6": { "model": "survivalplus:sponge_cake_slice6" },
-        "bites=7": { "model": "survivalplus:sponge_cake_slice7" }
+        "bites=0": { "model": "survivalplus:block/sponge_cake_uneaten" },
+        "bites=1": { "model": "survivalplus:block/sponge_cake_slice1" },
+        "bites=2": { "model": "survivalplus:block/sponge_cake_slice2" },
+        "bites=3": { "model": "survivalplus:block/sponge_cake_slice3" },
+        "bites=4": { "model": "survivalplus:block/sponge_cake_slice4" },
+        "bites=5": { "model": "survivalplus:block/sponge_cake_slice5" },
+        "bites=6": { "model": "survivalplus:block/sponge_cake_slice6" },
+        "bites=7": { "model": "survivalplus:block/sponge_cake_slice7" }
     }
 }

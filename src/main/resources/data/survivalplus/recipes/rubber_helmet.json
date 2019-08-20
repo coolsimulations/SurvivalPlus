@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_helmet",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "tag": "ic2:rubber_logs"
+    }
+  },
+  "result": {
+    "item": "survivalplus:rubber_helmet"
+  }
+}

@@ -1,6 +1,6 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import moze_intel.projecte.api.ProjectEAPI;
+//import moze_intel.projecte.api.ProjectEAPI;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.init.Blocks;
@@ -11,8 +11,7 @@ public class SurvivalPlusEMCValues {
 	
 	
 	public static void init(){
-		
-			ProjectEAPI.getEMCProxy().registerCustomEMC(new ItemStack(SPItems.titanium_ingot), 2048);
+		/**	ProjectEAPI.getEMCProxy().registerCustomEMC(new ItemStack(SPItems.titanium_ingot), 2048);
     		ProjectEAPI.getEMCProxy().registerCustomEMC("ingotTitanium", 2048);
     		ProjectEAPI.getEMCProxy().registerCustomEMC("foodOnion", 64);
     		ProjectEAPI.getEMCProxy().registerCustomEMC("seedOnion", 32);
@@ -44,7 +43,7 @@ public class SurvivalPlusEMCValues {
     		//EMC Values for OreDicts
     		ProjectEAPI.getEMCProxy().registerCustomEMC("grass", 1);
     		ProjectEAPI.getEMCProxy().registerCustomEMC("dirt", 1);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("sand", 1);
+    		ProjectEAPI.getEMCProxy().registerCustomEMC("sand", 1);**/
 	}
 
 }

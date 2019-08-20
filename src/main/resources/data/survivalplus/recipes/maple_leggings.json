@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_leggings",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "tag": "forestry:maple_logs"
+    }
+  },
+  "result": {
+    "item": "survivalplus:maple_leggings"
+  }
+}
