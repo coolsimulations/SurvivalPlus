@@ -15,7 +15,10 @@
            "campfire": {
                "trigger": "minecraft:placed_block",
                "conditions": {
-                   "tag": "forge:campfire"
+                    "block": "survivalplus:campfire",
+        				"item": {
+          				"item": "survivalplus:campfire"
+        				}
                }
            }
        },
