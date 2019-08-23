@@ -9,7 +9,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
-import net.minecraftforge.versions.forge.ForgeVersion;
+import net.minecraftforge.versions.mcp.MCPVersion;
 
 public class SurvivalPlusUpdateHandler {
 	
@@ -37,7 +37,7 @@ public class SurvivalPlusUpdateHandler {
 				TextComponentString sp = new TextComponentString(SPReference.MOD_NAME);
 				sp.getStyle().setColor(TextFormatting.BLUE);
 				
-				TextComponentString MCVersion = new TextComponentString(ForgeVersion.getVersion());
+				TextComponentString MCVersion = new TextComponentString(MCPVersion.getMCVersion());
 				MCVersion.getStyle().setColor(TextFormatting.BLUE);
 				
 				updateInfo = new TextComponentTranslation("sp.update.display3", new Object[] {sp, MCVersion});
