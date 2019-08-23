@@ -6,7 +6,7 @@ import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class SPConfig {
 	
-    public static BooleanValue enableSponge;
+    //public static BooleanValue enableSponge;
     public static BooleanValue enableReplaceBOPRecipe;
     public static BooleanValue disableCopperOreGen;
     public static BooleanValue disableTinOreGen;

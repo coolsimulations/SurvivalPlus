@@ -14,10 +14,10 @@ public class SurvivalPlusConfig {
 			builder.comment("Common config settings")
 					.push("common");
 
-			SPConfig.enableSponge = builder
+			/**SPConfig.enableSponge = builder
 					.comment("If this is enabled, sponge can be crafted with a combination of gold ingots, yellow wool and cheese. By default this is set to false as to make sponge cake rarer.")
 					.translation("sp.configgui.enable_sponge")
-					.define("enableSponge", false);
+					.define("enableSponge", false);**/
 			
 			SPConfig.enableReplaceBOPRecipe = builder
 					.comment("If this is enable and Biomes O' Plenty are played with, the crafting recipe for the Terrestrial Artifact can use SurvivalPlus's ruby, topaz, and sapphire. By default this is set to false as the idea of the Terrestrial Artifact is that you need to go to all BOP biomes to find the needed gems, whereas SurvivalPlus gems generate everywhere.")
