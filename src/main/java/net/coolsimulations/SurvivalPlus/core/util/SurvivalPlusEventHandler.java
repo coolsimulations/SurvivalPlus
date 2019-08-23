@@ -1,23 +1,18 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
-import net.minecraftforge.common.crafting.RecipeType;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.registries.IForgeRegistryEntry;
-import net.minecraftforge.registries.IForgeRegistryModifiable;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 
 public class SurvivalPlusEventHandler {
 	
