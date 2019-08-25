@@ -1,0 +1,9 @@
+{
+  "type": "smelting",
+  "ingredient": {
+    "item": "survivalplus:titanium_dust"
+  },
+  "result": "survivalplus:titanium_ingot",
+  "experience": 0.7,
+  "cookingtime": 200
+}
