@@ -38,7 +38,7 @@ public class BlockCardboard extends Block{
 		@Override
 		public int getLightValue(IBlockState p_getLightValue_1_) {
 			
-			return 16;
+			return 0;
 		}
 		
 		@Override
