@@ -63,7 +63,7 @@ public class SurvivalPlus {
         return instance;
     }
 	
-	public void CreativeTabs() {
+	/**public void regsiterCreativeTabs() {
 		
 		SPTabs.tabMaterials = new SurvivalPlusMaterialsTab(ItemGroup.GROUPS.length, "tabMaterials");
 		SPTabs.tabBlocks = new SurvivalPlusBlocksTab(ItemGroup.GROUPS.length, "tabBlocks");
@@ -71,7 +71,7 @@ public class SurvivalPlus {
 		SPTabs.tabGem = new SurvivalPlusGemTab(ItemGroup.GROUPS.length, "tabGem");
 		SPTabs.tabCombat = new SurvivalPlusCombatTab(ItemGroup.GROUPS.length, "tabCombat");
 		SPTabs.tabTools = new SurvivalPlusToolsTab(ItemGroup.GROUPS.length, "tabTools");
-	}
+	}**/
 	
 	@SubscribeEvent
 	public static void serverLoad(FMLServerStartingEvent event) {
@@ -97,7 +97,7 @@ public class SurvivalPlus {
     		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::setupEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::serverLoad);
-		CreativeTabs();
+		//CreativeTabs();
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
 
 		SmithVillagerTradeHandler.init();
