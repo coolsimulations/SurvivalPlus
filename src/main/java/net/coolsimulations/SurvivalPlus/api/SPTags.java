@@ -21,13 +21,6 @@ public class SPTags
     	public static final Tag<Block> ORES_TIN = tag("ores/tin");
     	public static final Tag<Block> ORES_TITANIUM = tag("ores/titanium");
     	
-    	public static final Tag<Block> GEMS_AMETHYST = tag("gems/amethyst");
-    	public static final Tag<Block> GEMS_RUBY = tag("gems/ruby");
-    	public static final Tag<Block> GEMS_SAPPHIRE = tag("gems/sapphire");
-    	public static final Tag<Block> GEMS_TOPAZ = tag("gems/topaz");
-    	public static final Tag<Block> GEMS_SPINEL = tag("gems/spinel");
-    	public static final Tag<Block> GEMS_PEARL = tag("gems/pearl");
-    	
     	public static final Tag<Block> CARDBOARD = tag("cardboard");
     	public static final Tag<Block> CARDBOARD_PLAIN = tag("cardboard/plain");
     	public static final Tag<Block> CARDBOARD_BLACK = tag("cardboard/blue");
@@ -63,6 +56,13 @@ public class SPTags
     	
     	public static final Tag<Item> NUGGETS_BRONZE = tag("nuggets/bronze");
     	public static final Tag<Item> NUGGETS_TITANIUM = tag("nuggets/titanium");
+    	
+    	public static final Tag<Item> GEMS_AMETHYST = tag("gems/amethyst");
+    	public static final Tag<Item> GEMS_RUBY = tag("gems/ruby");
+    	public static final Tag<Item> GEMS_SAPPHIRE = tag("gems/sapphire");
+    	public static final Tag<Item> GEMS_TOPAZ = tag("gems/topaz");
+    	public static final Tag<Item> GEMS_SPINEL = tag("gems/spinel");
+    	public static final Tag<Item> GEMS_PEARL = tag("gems/pearl");
     	
     	public static final Tag<Item> DYES_WHITE = tag("dyes/white");
     	
