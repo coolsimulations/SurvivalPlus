@@ -57,7 +57,7 @@ minecraft {
         data {
             workingDirectory project.file('run')
 
-            args '--mod', 'suevivalplus', '--all', '--output', file('src/generated/resources/')
+            args '--mod', 'survivalplus', '--all', '--output', file('src/generated/resources/')
 
             mods {
                 survivalplus {
