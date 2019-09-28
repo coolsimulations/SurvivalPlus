@@ -1,7 +1,7 @@
 {
   "type": "smelting",
   "ingredient": {
-    "item": "minecraft:carrot"
+    "tag": "forge:crops/carrot"
   },
   "result": "survivalplus:roast_carrot",
   "experience": 0.35,

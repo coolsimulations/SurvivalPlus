@@ -1,19 +1,24 @@
 package net.coolsimulations.SurvivalPlus.api.blocks;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTier;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
 public class SPBlockOre extends Block{
 	
 	public final Resource resource;
+	public final Boolean experience;
 	
 	/**
 	 * @param harvestLevel Harvest level:
@@ -25,31 +30,51 @@ public class SPBlockOre extends Block{
      *     Anything higher than 3 will revert to 3
 	 */
 	
-	public SPBlockOre(Resource resource) {
+	public SPBlockOre(Resource resource, Boolean dropsXP) {
 		super(Properties.create(Material.ROCK).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()));
 		this.resource = resource;
+		this.experience = dropsXP;
 	}
 	
 	@Override
-	public ToolType getHarvestTool(IBlockState state) {
+	public ToolType getHarvestTool(BlockState state) {
 		return ToolType.PICKAXE;
 	}
 	
 	@Override
-    public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune)
-    {
-        return this;
-    }
+	public void spawnAdditionalDrops(BlockState state, World world, BlockPos pos, ItemStack stack) {
+		super.spawnAdditionalDrops(state, world, pos, stack);
+	}
 	
 	@Override
-	public int getHarvestLevel(IBlockState state) {
+	public int getHarvestLevel(BlockState state) {
 		return resource.harvestLevel;
 	}
 	
 	@Override
-	public int getLightValue(IBlockState p_getLightValue_1_) {
+	public int getLightValue(BlockState p_getLightValue_1_) {
 		
 		return 0;
+	}
+	
+	protected int getExperience(Random random) {
+		if(experience) {
+			if (resource == Resource.TIER_0) {
+				return MathHelper.nextInt(random, 0, 2);
+			} else if (resource == Resource.TIER_1) {
+				return MathHelper.nextInt(random, 2, 5);
+			} else if (resource == Resource.TIER_2) {
+				return MathHelper.nextInt(random, 3, 7);
+			} else {
+				return resource == Resource.TIER_3 ? MathHelper.nextInt(random, 3, 7) : 0;
+			}
+		}
+		return 0;
+	}
+	
+	@Override
+	public int getExpDrop(BlockState state, IWorldReader reader, BlockPos pos, int p_getExpDrop_4_, int amount) {
+		return amount == 0 ? this.getExperience(this.RANDOM) : 0;
 	}
 	
 	public enum Resource {

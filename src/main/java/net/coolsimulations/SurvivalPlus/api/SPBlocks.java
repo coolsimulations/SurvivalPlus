@@ -41,6 +41,4 @@ public class SPBlocks {
 	public static Block cardboard_pink;
 	public static Block cardboard_brown;
 	
-	public static Block campfire;
-	
 }

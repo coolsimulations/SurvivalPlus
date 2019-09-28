@@ -22,7 +22,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:egg"
+            "tag": "forge:eggs"
           }
         ]
       }

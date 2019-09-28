@@ -4,9 +4,9 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
-import net.minecraft.init.Items;
+import net.minecraft.item.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSeeds;
+import net.minecraft.item.BlockNamedItem;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SurvivalPlusItems {
@@ -15,14 +15,13 @@ public class SurvivalPlusItems {
 		
 		SPItems.tin_ingot = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("tin_ingot");
 		SPItems.copper_ingot = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("copper_ingot");
-		SPItems.onion_seeds = new ItemSeeds(SPBlocks.onion, new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("onion_seeds");
+		SPItems.onion_seeds = new BlockNamedItem(SPBlocks.onion, new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("onion_seeds");
 		SPItems.bronze_ingot = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("bronze_ingot");
 		SPItems.bronze_nugget = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("bronze_nugget");
 		SPItems.titanium_ingot = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_ingot");
 		SPItems.titanium_nugget = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_nugget");
 		SPItems.charcoal_bucket = new Item(new Item.Properties().group(SPTabs.tabMaterials).maxStackSize(1).containerItem(Items.BUCKET)).setRegistryName("charcoal_bucket");
 		SPItems.paper_cup = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("paper_cup");
-		SPItems.white_dye = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("white_dye");
 		
 		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
 		{
@@ -58,7 +57,6 @@ public class SurvivalPlusItems {
 		registerItem(SPItems.titanium_nugget);
 		registerItem(SPItems.charcoal_bucket);
 		registerItem(SPItems.paper_cup);
-		registerItem(SPItems.white_dye);
 		
 		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
 		{

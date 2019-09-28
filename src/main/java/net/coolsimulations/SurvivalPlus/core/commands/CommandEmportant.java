@@ -5,7 +5,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 public class CommandEmportant {
@@ -19,7 +19,7 @@ public class CommandEmportant {
 
 	private static int emportant(CommandSource sender, String announcement) {
 
-		TextComponentTranslation emportant = new TextComponentTranslation("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), announcement});
+		TranslationTextComponent emportant = new TranslationTextComponent("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), announcement});
 		emportant.getStyle().setColor(TextFormatting.BLUE);
 		emportant.getStyle().setBold(true);
 		sender.getServer().getPlayerList().sendMessage(emportant);

@@ -22,9 +22,6 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.coolsimulations.SurvivalPlus.core.proxy.ClientProxy;
 import net.coolsimulations.SurvivalPlus.core.proxy.CommonProxy;
-import net.coolsimulations.SurvivalPlus.core.recipes.ButcherVillagerTradeHandler;
-import net.coolsimulations.SurvivalPlus.core.recipes.FarmerVillagerTradeHandler;
-import net.coolsimulations.SurvivalPlus.core.recipes.SmithVillagerTradeHandler;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusBlocksTab;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusCombatTab;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusFoodTab;
@@ -40,13 +37,13 @@ import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnionCrop;
 import net.coolsimulations.SurvivalPlus.core.world.village.VillageOnionCropHandler;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.world.gen.feature.structure.StructureIO;
+//import net.minecraft.world.gen.feature.structure.StructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
+//import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -62,16 +59,6 @@ public class SurvivalPlus {
     {
         return instance;
     }
-	
-	/**public void regsiterCreativeTabs() {
-		
-		SPTabs.tabMaterials = new SurvivalPlusMaterialsTab(ItemGroup.GROUPS.length, "tabMaterials");
-		SPTabs.tabBlocks = new SurvivalPlusBlocksTab(ItemGroup.GROUPS.length, "tabBlocks");
-		SPTabs.tabFood = new SurvivalPlusFoodTab(ItemGroup.GROUPS.length, "tabFood");
-		SPTabs.tabGem = new SurvivalPlusGemTab(ItemGroup.GROUPS.length, "tabGem");
-		SPTabs.tabCombat = new SurvivalPlusCombatTab(ItemGroup.GROUPS.length, "tabCombat");
-		SPTabs.tabTools = new SurvivalPlusToolsTab(ItemGroup.GROUPS.length, "tabTools");
-	}**/
 	
 	@SubscribeEvent
 	public static void serverLoad(FMLServerStartingEvent event) {
@@ -97,12 +84,7 @@ public class SurvivalPlus {
     		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::setupEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::serverLoad);
-		//CreativeTabs();
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
-
-		SmithVillagerTradeHandler.init();
-		FarmerVillagerTradeHandler.init();
-		ButcherVillagerTradeHandler.init();
 		
 		SurvivalPlusBlocks.init();
 		SurvivalPlusBlocks.register();
@@ -111,8 +93,8 @@ public class SurvivalPlus {
 		SurvivalPlusFood.init();
 		SurvivalPlusFood.register();
 		
-		VillagerRegistry.instance().registerVillageCreationHandler(new VillageOnionCropHandler());
-		StructureIO.registerStructureComponent(StructureVillageOnionCrop.class, SPReference.MOD_ID + ":onionCropFieldStructure");
+		//VillagerRegistry.instance().registerVillageCreationHandler(new VillageOnionCropHandler());  //temp till forge pull request #6142 is resolved
+		//StructureIO.registerStructureComponent(StructureVillageOnionCrop.class, SPReference.MOD_ID + ":onionCropFieldStructure");  //temp till forge pull request #6142 is resolved
 		
 		SurvivalPlusArmor.init();
 		SurvivalPlusArmor.register();

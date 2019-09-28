@@ -14,7 +14,7 @@
       "item": "minecraft:sugar"
     },
     "E": {
-      "item": "minecraft:egg"
+      "tag": "forge:eggs"
     },
     "M": {
       "item": "minecraft:milk_bucket"

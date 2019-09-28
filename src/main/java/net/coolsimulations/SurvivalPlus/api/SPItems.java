@@ -1,7 +1,6 @@
 package net.coolsimulations.SurvivalPlus.api;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTier;
 import net.minecraft.util.NonNullList;
@@ -20,7 +19,6 @@ public class SPItems {
 	public static Item onion_seeds;
 	public static Item charcoal_bucket;
 	public static Item paper_cup;
-	public static Item white_dye;
 	
 	/**
 	 * These are the IndustrialCraft 2 and SimpleGrinders Items referred to in SurvivalPlusItems

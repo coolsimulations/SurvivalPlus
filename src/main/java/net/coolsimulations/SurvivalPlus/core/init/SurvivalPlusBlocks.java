@@ -7,7 +7,6 @@ import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystal;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockMetal;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockOre;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
-import net.coolsimulations.SurvivalPlus.core.blocks.BlockCampfire;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboard;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCheeseCake;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockOnionCrop;
@@ -18,7 +17,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.BlockItem;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -33,12 +32,12 @@ public class SurvivalPlusBlocks {
 		SPBlocks.onion = new BlockOnionCrop().setRegistryName("onion");
 		SPBlocks.cheese_cake = new BlockCheeseCake().setRegistryName("cheese_cake");
 		SPBlocks.sponge_cake = new BlockSpongeCake().setRegistryName("sponge_cake");
-		SPBlocks.copper_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1).setRegistryName("copper_ore");
-		SPBlocks.tin_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1).setRegistryName("tin_ore");
+		SPBlocks.copper_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1, false).setRegistryName("copper_ore");
+		SPBlocks.tin_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1, false).setRegistryName("tin_ore");
 		SPBlocks.amethyst = new SPBlockCrystal().setRegistryName("amethyst");
 		SPBlocks.ruby = new SPBlockCrystal().setRegistryName("ruby");
 		SPBlocks.bronze_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_1).setRegistryName("bronze_block");
-		SPBlocks.titanium_block = new SPBlockOre(SPBlockOre.Resource.TIER_2).setRegistryName("titanium_block");
+		SPBlocks.titanium_block = new SPBlockOre(SPBlockOre.Resource.TIER_2, false).setRegistryName("titanium_block");
 		SPBlocks.titanium_ore = new SPBlockMetal(SPBlockMetal.Resource.TIER_2).setRegistryName("titanium_ore");
 		SPBlocks.pearl = new SPBlockCrystal().setRegistryName("pearl");
 		SPBlocks.topaz = new SPBlockCrystal().setRegistryName("topaz");
@@ -61,8 +60,7 @@ public class SurvivalPlusBlocks {
 		SPBlocks.cardboard_magenta = new BlockCardboard().setRegistryName("cardboard_magenta");
 		SPBlocks.cardboard_pink = new BlockCardboard().setRegistryName("cardboard_pink");
 		SPBlocks.cardboard_brown = new BlockCardboard().setRegistryName("cardboard_brown");
-				
-		SPBlocks.campfire = new BlockCampfire(false).setRegistryName("campfire");
+		
 	}
 	
 	public static void register()
@@ -100,24 +98,22 @@ public class SurvivalPlusBlocks {
 		registerBlock(SPBlocks.cardboard_magenta);
 		registerBlock(SPBlocks.cardboard_pink);
 		registerBlock(SPBlocks.cardboard_brown);
-		
-		registerBlock(SPBlocks.campfire);
 	}
 	
 	public static void registerBlock(Block block) {
 		
-		ItemBlock itemBlock;
+		BlockItem BlockItem;
 		if(block == SPBlocks.amethyst || block == SPBlocks.ruby || block == SPBlocks.pearl || block == SPBlocks.topaz || block == SPBlocks.sapphire || block == SPBlocks.spinel) {
-			itemBlock = new ItemBlock(block, new Item.Properties().group(SPTabs.tabGem));	
+			BlockItem = new BlockItem(block, new Item.Properties().group(SPTabs.tabGem));	
 		} else if(block == SPBlocks.onion) {
-			itemBlock = new ItemBlock(block, new Item.Properties());
+			BlockItem = new BlockItem(block, new Item.Properties());
 		} else if(block == SPBlocks.cheese_cake || block == SPBlocks.sponge_cake) {
-			itemBlock = new ItemBlock(block, new Item.Properties().group(SPTabs.tabFood));
+			BlockItem = new BlockItem(block, new Item.Properties().group(SPTabs.tabFood));
 		} else {
-			itemBlock = new ItemBlock(block, new Item.Properties().group(SPTabs.tabBlocks));
+			BlockItem = new BlockItem(block, new Item.Properties().group(SPTabs.tabBlocks));
 		}
-		itemBlock.setRegistryName(block.getRegistryName());
+		BlockItem.setRegistryName(block.getRegistryName());
 		ForgeRegistries.BLOCKS.register(block);
-		ForgeRegistries.ITEMS.register(itemBlock);
+		ForgeRegistries.ITEMS.register(BlockItem);
 	}
 }

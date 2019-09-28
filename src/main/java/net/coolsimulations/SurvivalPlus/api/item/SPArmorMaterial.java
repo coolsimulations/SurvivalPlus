@@ -5,8 +5,8 @@ import java.util.function.Supplier;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTags;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
@@ -208,11 +208,11 @@ public enum SPArmorMaterial implements IArmorMaterial {
         this.name = name;
 }
     
-    public int getDurability(EntityEquipmentSlot slotIn) {
+    public int getDurability(EquipmentSlotType slotIn) {
         return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
     }
 
-    public int getDamageReductionAmount(EntityEquipmentSlot slotIn) {
+    public int getDamageReductionAmount(EquipmentSlotType slotIn) {
         return this.damageReductionAmountArray[slotIn.getIndex()];
     }
 

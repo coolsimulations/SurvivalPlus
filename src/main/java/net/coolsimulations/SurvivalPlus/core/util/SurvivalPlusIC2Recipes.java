@@ -5,17 +5,17 @@ package net.coolsimulations.SurvivalPlus.core.util;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 //import biomesoplenty.api.block.BOPBlocks;
 
 public class SurvivalPlusIC2Recipes {
 	
-	/**private static NBTTagCompound orewash;
-	private static NBTTagCompound centerf;
-	private static NBTTagCompound cutterhard;**/
+	/**private static CompoundNBT orewash;
+	private static CompoundNBT centerf;
+	private static CompoundNBT cutterhard;**/
 
 	public static void init()
     {
@@ -40,12 +40,12 @@ public class SurvivalPlusIC2Recipes {
     	
     	GameRegistry.addSmelting(IC2Items.getItem("dust", "bronze"), new ItemStack(SPItems.bronze_ingot), 0.7F);
     	
-    	orewash = new NBTTagCompound();
+    	orewash = new CompoundNBT();
 		orewash.setInteger("amount", 1000);
 		
-		centerf = new NBTTagCompound();
+		centerf = new CompoundNBT();
 		centerf.setInteger("minHeat", 1500);
-		cutterhard = new NBTTagCompound();
+		cutterhard = new CompoundNBT();
 		cutterhard.setInteger("hardness", 3);
 		
 		ItemStack hvCable = IC2Items.getItem("cable", "type:iron,insulation:0");

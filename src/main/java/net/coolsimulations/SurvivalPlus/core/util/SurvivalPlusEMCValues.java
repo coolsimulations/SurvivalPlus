@@ -3,8 +3,8 @@ package net.coolsimulations.SurvivalPlus.core.util;
 //import moze_intel.projecte.api.ProjectEAPI;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
 import net.minecraft.item.ItemStack;
 
 public class SurvivalPlusEMCValues {

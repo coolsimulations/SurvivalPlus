@@ -35,7 +35,6 @@
   "item.survivalplus.tin_dust": "Tin Dust",
   "item.survivalplus.charcoal_bucket": "Bucket of Charcoal",
   "item.survivalplus.paper_cup": "Paper Cup",
-  "item.survivalplus.white_dye": "White Dye",
 
   "item.survivalplus.apple_pie": "Apple Pie",
   "item.survivalplus.beef_pie": "Beef Pie",
@@ -91,9 +90,6 @@
   "block.survivalplus.cardboard_magenta": "Magenta Cardboard",
   "block.survivalplus.cardboard_pink": "Pink Cardboard",
   "block.survivalplus.cardboard_brown": "Brown Cardboard",
-
-  "block.survivalplus.campfire": "Campfire",
-  "container.campfire": "Campfire",
 
   "item.survivalplus.bronze_helmet": "Bronze Helmet",
   "item.survivalplus.bronze_chestplate": "Bronze Chestplate",

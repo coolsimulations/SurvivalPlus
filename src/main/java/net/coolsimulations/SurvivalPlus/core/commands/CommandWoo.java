@@ -4,7 +4,7 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 public class CommandWoo {
@@ -17,7 +17,7 @@ public class CommandWoo {
 
 	private static int woo(CommandSource sender) {
 
-		TextComponentTranslation woo = new TextComponentTranslation("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
+		TranslationTextComponent woo = new TranslationTextComponent("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
 		woo.getStyle().setColor(TextFormatting.BLUE);
 		sender.getServer().getPlayerList().sendMessage(woo);
 

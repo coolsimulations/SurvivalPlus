@@ -1,7 +1,7 @@
 {
     "display": {
         "icon": {
-            "item": "survivalplus:campfire"
+            "item": "minecraft:campfire"
         },
         "title": {
             "translate": "advancements.sp.campfire"
@@ -15,9 +15,9 @@
            "campfire": {
                "trigger": "minecraft:placed_block",
                "conditions": {
-                    "block": "survivalplus:campfire",
+                    "block": "minecraft:campfire",
         				"item": {
-          				"item": "survivalplus:campfire"
+          				"item": "minecraft:campfire"
         				}
                }
            }

@@ -5,7 +5,7 @@
       "tag": "forge:food/baked/apple"
     },
     {
-      "item": "minecraft:egg"
+      "tag": "forge:eggs"
     },
     {
       "item": "minecraft:sugar"

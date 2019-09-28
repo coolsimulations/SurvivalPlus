@@ -5,8 +5,8 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Collection;
@@ -16,23 +16,23 @@ public class CommandConfrats {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("confrats")
-				.then(Commands.argument("targets", EntityArgument.multiplePlayers())
+				.then(Commands.argument("targets", EntityArgument.players())
 						.requires(s -> s.hasPermissionLevel(0))
 						.executes(confrats -> confrats(confrats.getSource(), EntityArgument.getPlayers(confrats, "targets")))));
 	}
 
-	private static int confrats(CommandSource sender, Collection<EntityPlayerMP> players) {
+	private static int confrats(CommandSource sender, Collection<ServerPlayerEntity> players) {
 		Iterator var3 = players.iterator();
 
 		while(var3.hasNext()) {
-			EntityPlayerMP entityplayer = (EntityPlayerMP)var3.next();
+			ServerPlayerEntity entityplayer = (ServerPlayerEntity)var3.next();
 
 			if(entityplayer == sender.getEntity()) {
 
-				throw new CommandException(new TextComponentTranslation("sp.commands.confrats.sameTarget"));
+				throw new CommandException(new TranslationTextComponent("sp.commands.confrats.sameTarget"));
 
 			}else {
-				TextComponentTranslation confrats = new TextComponentTranslation("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
+				TranslationTextComponent confrats = new TranslationTextComponent("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
 				confrats.getStyle().setColor(TextFormatting.YELLOW);
 				sender.getServer().getPlayerList().sendMessage(confrats);
 			}

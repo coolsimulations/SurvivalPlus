@@ -4,7 +4,7 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 public class CommandSmiley {
@@ -17,7 +17,7 @@ public class CommandSmiley {
 
 	private static int smiley(CommandSource sender) {
 
-		TextComponentTranslation smiley = new TextComponentTranslation("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
+		TranslationTextComponent smiley = new TranslationTextComponent("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
 		smiley.getStyle().setColor(TextFormatting.GREEN);
 		sender.getServer().getPlayerList().sendMessage(smiley);
 

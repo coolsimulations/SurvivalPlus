@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:carrot"
+            "tag": "forge:crops/carrot"
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:beetroot"
+            "tag": "forge:crops/beetroot"
           }
         ]
       }

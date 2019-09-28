@@ -1,7 +1,7 @@
 {
   "type": "smelting",
   "ingredient": {
-    "item": "minecraft:egg"
+    "tag": "forge:eggs"
   },
   "result": "survivalplus:fried_egg",
   "experience": 0.35,

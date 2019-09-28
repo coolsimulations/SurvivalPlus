@@ -3,8 +3,9 @@ package net.coolsimulations.SurvivalPlus.api.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTier;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
@@ -25,23 +26,22 @@ public class SPBlockMetal extends Block{
 	}
 	
 	@Override
-	public ToolType getHarvestTool(IBlockState state) {
+	public ToolType getHarvestTool(BlockState state) {
 		return ToolType.PICKAXE;
 	}
 	
 	@Override
-    public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune)
-    {
-        return this;
-    }
+	public void spawnAdditionalDrops(BlockState state, World world, BlockPos pos, ItemStack stack) {
+		super.spawnAdditionalDrops(state, world, pos, stack);
+	}
 	
 	@Override
-	public int getHarvestLevel(IBlockState state) {
+	public int getHarvestLevel(BlockState state) {
 		return resource.harvestLevel;
 	}
 	
 	@Override
-	public int getLightValue(IBlockState p_getLightValue_1_) {
+	public int getLightValue(BlockState p_getLightValue_1_) {
 		
 		return 0;
 	}
