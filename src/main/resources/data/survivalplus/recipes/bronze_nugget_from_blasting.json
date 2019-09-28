@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": [
+    {
+      "item": "survivalplus:bronze_pickaxe"
+    },
+    {
+      "item": "survivalplus:bronze_shears"
+    },
+    {
+      "item": "survivalplus:bronze_shovel"
+    },
+    {
+      "item": "survivalplus:bronze_axe"
+    },
+    {
+      "item": "survivalplus:bronze_hoe"
+    },
+    {
+      "item": "survivalplus:bronze_sword"
+    },
+    {
+      "item": "survivalplus:bronze_helmet"
+    },
+    {
+      "item": "survivalplus:bronze_chestplate"
+    },
+    {
+      "item": "survivalplus:bronze_leggings"
+    },
+    {
+      "item": "survivalplus:bronze_boots"
+    }
+  ],
+  "result": "survivalplus:bronze_nugget",
+  "experience": 0.1,
+  "cookingtime": 100
+}
