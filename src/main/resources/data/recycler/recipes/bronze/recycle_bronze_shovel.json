@@ -1,0 +1,14 @@
+{
+  "type": "recycler:blasting_recycling",
+  "ingredient": {
+    "item": "survivalplus:bronze_shovel"
+  },
+  "results": [
+    "survivalplus:bronze_ingot",
+    {
+      "item": "survivalplus:bronze_nugget",
+      "count": 9
+    }
+  ],
+  "max_output": 1
+}

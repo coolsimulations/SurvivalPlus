@@ -38,4 +38,10 @@ logoFile="logo.png"
     versionRange="[1.0.0]"
     ordering="BEFORE"
     side="BOTH"
+    [[dependencies.survivalplus]]
+    modId="recycler"
+    mandatory=false
+    versionRange="[1.0.0]"
+    ordering="BEFORE"
+    side="BOTH"
     

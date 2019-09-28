@@ -19,6 +19,7 @@ public class SPCompatibilityManager {
     private static boolean modFlourPowerLoaded;
     private static boolean modWoodenBucketLoaded;
     private static boolean modSimpleGrinderLoaded;
+    private static boolean modRecyclerLoaded;
     private static boolean modForestryLoaded;
     private static boolean modRailcraftLoaded;
     
@@ -38,6 +39,7 @@ public class SPCompatibilityManager {
     public static final String WOODENBUCKET_MODID = "woodenbucket";
     public static final String VEFLUIDS_MODID = "vefluids";
     public static final String SIMPLEGRINDER_MODID = "simplegrinder";
+    public static final String RECYCLER_MODID = "recycler";
     public static final String FORESTRY_MODID = "forestry";
     public static final String RAILCRAFT_MODID = "railcraft";
     
@@ -117,6 +119,11 @@ public class SPCompatibilityManager {
         if (ModList.get().isLoaded(SIMPLEGRINDER_MODID))
         {
             SPCompatibilityManager.modSimpleGrinderLoaded = true;
+        }
+        
+        if (ModList.get().isLoaded(RECYCLER_MODID))
+        {
+            SPCompatibilityManager.modRecyclerLoaded = true;
         }
         
         if (ModList.get().isLoaded(FORESTRY_MODID))
@@ -203,6 +210,11 @@ public class SPCompatibilityManager {
     public static boolean isSimpleGrinderLoaded()
     {
         return SPCompatibilityManager.modSimpleGrinderLoaded;
+    }
+    
+    public static boolean isRecyclerLoaded()
+    {
+        return SPCompatibilityManager.modRecyclerLoaded;
     }
     
     public static boolean isForestryLoaded()
