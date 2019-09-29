@@ -34,6 +34,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReaderBase;
 import net.minecraft.world.World;
@@ -44,10 +45,26 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class BlockCampfire extends Block{
 	
-    protected static final VoxelShape CampfireSouth_AABB = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 14.0D, 8.0D, 15.0D);
-    protected static final VoxelShape CampfireNorth_AABB = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 15.0D, 8.0D, 15.0D);
-    protected static final VoxelShape CampfireEast_AABB = Block.makeCuboidShape(1.0D, 0.0D, 2.0D, 14.D, 8.0D, 15.0D);
-    protected static final VoxelShape CampfireWest_AABB = Block.makeCuboidShape(2.0D, 0.0D, 1.0D, 15.D, 8.0D, 14.D);
+	protected static final VoxelShape Campfire_Log_South_East_Bottom_AABB = Block.makeCuboidShape(10.0D, 0.0D, 2.0D, 14.0D, 4.0D, 14.0D);
+    protected static final VoxelShape Campfire_Log_South_West_Bottom_AABB = Block.makeCuboidShape(2.0D, 0.0D, 1.0D, 6.0D, 4.0D, 13.0D);
+    protected static final VoxelShape Campfire_Log_South_South_Top_AABB = Block.makeCuboidShape(2.0D, 4.0D, 14.0D, 14.0D, 8.0D, 10.0D);
+    protected static final VoxelShape Campfire_Log_South_North_Top_AABB = Block.makeCuboidShape(1.0D, 4.0D, 7.0D, 13.0D, 8.0D, 3.0D);
+    protected static final VoxelShape CampfireSouth_AABB = VoxelShapes.or(Campfire_Log_South_East_Bottom_AABB, VoxelShapes.or(Campfire_Log_South_West_Bottom_AABB, VoxelShapes.or(Campfire_Log_South_South_Top_AABB, Campfire_Log_South_North_Top_AABB)));
+    protected static final VoxelShape Campfire_Log_North_East_Bottom_AABB = Block.makeCuboidShape(10.0D, 0.0D, 3.0D, 14.0D, 4.0D, 15.0D);
+    protected static final VoxelShape Campfire_Log_North_West_Bottom_AABB = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 6.0D, 4.0D, 14.0D);
+    protected static final VoxelShape Campfire_Log_North_South_Top_AABB = Block.makeCuboidShape(3.0D, 4.0D, 13.0D, 15.0D, 8.0D, 9.0D);
+    protected static final VoxelShape Campfire_Log_North_North_Top_AABB = Block.makeCuboidShape(2.0D, 4.0D, 6.0D, 14.0D, 8.0D, 2.0D);
+    protected static final VoxelShape CampfireNorth_AABB = VoxelShapes.or(Campfire_Log_North_East_Bottom_AABB, VoxelShapes.or(Campfire_Log_North_West_Bottom_AABB, VoxelShapes.or(Campfire_Log_North_South_Top_AABB, Campfire_Log_North_North_Top_AABB)));
+    protected static final VoxelShape Campfire_Log_East_East_Top_AABB = Block.makeCuboidShape(10.0D, 4.0D, 2.0D, 14.0D, 8.0D, 14.0D);
+    protected static final VoxelShape Campfire_Log_East_West_Top_AABB = Block.makeCuboidShape(3.0D, 4.0D, 3.0D, 7.0D, 8.0D, 15.0D);
+    protected static final VoxelShape Campfire_Log_East_South_Bottom_AABB = Block.makeCuboidShape(1.0D, 0.0D, 14.0D, 13.0D, 4.0D, 10.0D);
+    protected static final VoxelShape Campfire_Log_East_North_Bottom_AABB = Block.makeCuboidShape(2.0D, 0.0D, 6.0D, 14.0D, 4.0D, 2.0D);
+    protected static final VoxelShape CampfireEast_AABB = VoxelShapes.or(Campfire_Log_East_East_Top_AABB, VoxelShapes.or(Campfire_Log_East_West_Top_AABB, VoxelShapes.or(Campfire_Log_East_South_Bottom_AABB, Campfire_Log_East_North_Bottom_AABB)));
+    protected static final VoxelShape Campfire_Log_West_East_Top_AABB = Block.makeCuboidShape(9.0D, 4.0D, 1.0D, 13.0D, 8.0D, 13.0D);
+    protected static final VoxelShape Campfire_Log_West_West_Top_AABB = Block.makeCuboidShape(2.0D, 4.0D, 2.0D, 6.0D, 8.0D, 14.0D);
+    protected static final VoxelShape Campfire_Log_West_South_Bottom_AABB = Block.makeCuboidShape(2.0D, 0.0D, 14.0D, 14.0D, 4.0D, 10.0D);
+    protected static final VoxelShape Campfire_Log_West_North_Bottom_AABB = Block.makeCuboidShape(3.0D, 0.0D, 6.0D, 15.0D, 4.0D, 2.0D);
+    protected static final VoxelShape CampfireWest_AABB = VoxelShapes.or(Campfire_Log_West_East_Top_AABB, VoxelShapes.or(Campfire_Log_West_West_Top_AABB, VoxelShapes.or(Campfire_Log_West_South_Bottom_AABB, Campfire_Log_West_North_Bottom_AABB)));
 	public static final DirectionProperty FACING = BlockHorizontal.HORIZONTAL_FACING;
 	public static final BooleanProperty BURNING = BooleanProperty.create("burning");
 
