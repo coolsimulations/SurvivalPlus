@@ -19,6 +19,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
@@ -28,7 +30,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
-import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 
@@ -111,23 +112,28 @@ public class SurvivalPlusEventHandler {
 			ItemStack itemStackIn = entityplayer.getHeldItem(event.getHand());
 		    	Item item = itemStackIn.getItem();
 		    	if(state.get(CampfireBlock.LIT) && item == Items.BUCKET  && !entityplayer.abilities.isCreativeMode) {
+		    		event.getWorld().setBlockState(event.getPos(), state.with(CampfireBlock.LIT, false));
+		    		if (event.getWorld().isRemote()) {
+						for (int i = 0; i < 20; ++i) {
+							CampfireBlock.func_220098_a(event.getWorld(), event.getPos(), (Boolean) state.get(CampfireBlock.SIGNAL_FIRE),true);
+						}
+					} else {
+						event.getWorld().playSound((PlayerEntity) null, event.getPos(), SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					}
 		    		if(itemStackIn.getCount() == 1) {
 		        		if (ItemStack.areItemStacksEqual(entityplayer.getHeldItemOffhand(), itemStackIn))
 		        		{
 		        			entityplayer.setHeldItem(Hand.OFF_HAND, new ItemStack(SPItems.charcoal_bucket));
-		        			event.getWorld().setBlockState(event.getPos(), state.with(CampfireBlock.LIT, false));
 		        		}
 		        		else
 		        		{
 		        			entityplayer.setHeldItem(Hand.MAIN_HAND, new ItemStack(SPItems.charcoal_bucket));
-		        			event.getWorld().setBlockState(event.getPos(), state.with(CampfireBlock.LIT, false));
 		       			}
 		        	} else  if(itemStackIn.getCount() >= 2){
 		        		itemStackIn.shrink(1);
 		        		boolean flag = entityplayer.inventory.addItemStackToInventory(new ItemStack(SPItems.charcoal_bucket));
 		        		if(!flag) {
 		        			entityplayer.dropItem(new ItemStack(SPItems.charcoal_bucket), false);
-		        			event.getWorld().setBlockState(event.getPos(), state.with(CampfireBlock.LIT, false));
 		        		}		
 		        	}
 		    	}
