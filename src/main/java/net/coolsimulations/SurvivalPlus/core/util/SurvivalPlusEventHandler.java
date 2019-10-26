@@ -2,6 +2,7 @@ package net.coolsimulations.SurvivalPlus.core.util;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
+import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
@@ -10,6 +11,8 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusBlocks;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -44,9 +47,18 @@ public class SurvivalPlusEventHandler {
 		EntityPlayerMP player = (EntityPlayerMP) event.player;
 		NBTTagCompound entityData = player.getEntityData();
 		
-		if(!entityData.getBoolean("sp.firstJoin")) {
+		AdvancementManager manager = player.getServer().getAdvancementManager();
+		Advancement install = manager.getAdvancement(new ResourceLocation(SPReference.MOD_ID, SPReference.MOD_ID + "/install"));
+		
+		boolean isDone = false;
+		
+		if(install !=null && player.getAdvancements().getProgress(install).hasProgress()) {
+			isDone = true;
+		}
+		
+		if(!entityData.getBoolean("sp.firstJoin") && !isDone) {
 			
-			entityData.setBoolean("sp.firstJoin", true);
+			entityData.setBoolean("sp.firstJoin", true); 
 		
 			if(!player.world.isRemote) {
         		
@@ -61,6 +73,7 @@ public class SurvivalPlusEventHandler {
 		
 		if(SurvivalPlusUpdateHandler.isOld == true && SPConfig.disableUpdateCheck == false) {
         	player.sendMessage(SurvivalPlusUpdateHandler.updateInfo);
+        	player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo);
         }
     }
 	
