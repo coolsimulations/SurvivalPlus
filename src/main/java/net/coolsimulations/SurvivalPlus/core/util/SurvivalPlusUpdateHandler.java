@@ -14,8 +14,10 @@ import net.minecraftforge.versions.mcp.MCPVersion;
 public class SurvivalPlusUpdateHandler {
 	
 	private static String latestVersion;
+	private static String latestVersionInfo;
 	public static boolean isOld = false;
 	public static TextComponentTranslation updateInfo = null;
+	public static TextComponentString updateVersionInfo = null;
 	
 	public static void init() {
 		
@@ -27,6 +29,15 @@ public class SurvivalPlusUpdateHandler {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+		
+		try {
+            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus/updateinfo113.txt");
+            Scanner s = new Scanner(url.openStream());
+            latestVersionInfo = s.nextLine();
+            s.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }		
 		
 		if(latestVersion != null) {
 			
@@ -63,6 +74,17 @@ public class SurvivalPlusUpdateHandler {
 				
 				updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("sp.update.display2")));
 				updateInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
+				
+				if(latestVersionInfo != null) {
+					
+					updateVersionInfo = new TextComponentString(latestVersionInfo);
+					updateVersionInfo.getStyle().setColor(TextFormatting.DARK_AQUA);
+					updateVersionInfo.getStyle().setBold(true);
+					
+					updateVersionInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("sp.update.display2")));
+					updateVersionInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
+					
+				}
 				
 			}
 			
