@@ -6,6 +6,8 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -19,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.TextFormatting;
@@ -50,7 +53,16 @@ public class SurvivalPlusEventHandler {
 		ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
 		CompoundNBT entityData = player.getPersistentData();
 		
-		if(!entityData.getBoolean("sp.firstJoin")) {
+		AdvancementManager manager = player.getServer().getAdvancementManager();
+		Advancement install = manager.getAdvancement(new ResourceLocation(SPReference.MOD_ID, SPReference.MOD_ID + "/install"));
+		
+		boolean isDone = false;
+		
+		if(install !=null && player.getAdvancements().getProgress(install).hasProgress()) {
+			isDone = true;
+		}
+		
+		if(!entityData.getBoolean("sp.firstJoin") && !isDone) {
 			
 			entityData.putBoolean("sp.firstJoin", true);
 		
@@ -61,12 +73,20 @@ public class SurvivalPlusEventHandler {
         		installInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("advancements.sp.install.display2")));
             	installInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
 				player.sendMessage(installInfo);
-        		
+				
+				TranslationTextComponent installTextureInfo = new TranslationTextComponent("sp.install_texture.display");
+				installTextureInfo.getStyle().setColor(TextFormatting.YELLOW);
+				installTextureInfo.getStyle().setBold(true);
+				installTextureInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2")));
+				installTextureInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/texture-packs/survivalplus"));
+				player.sendMessage(installTextureInfo);
+
         	}
 		}
 		
 		if(SurvivalPlusUpdateHandler.isOld == true && SPConfig.disableUpdateCheck.get() == false) {
         	player.sendMessage(SurvivalPlusUpdateHandler.updateInfo);
+        	player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo);
         }
     }
 	
