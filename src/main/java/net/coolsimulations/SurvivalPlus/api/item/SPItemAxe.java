@@ -1,5 +1,6 @@
 package net.coolsimulations.SurvivalPlus.api.item;
 
+import java.util.List;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
@@ -13,22 +14,35 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class SPItemAxe extends ItemTool {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(new Block[] {Blocks.PLANKS, Blocks.BOOKSHELF, Blocks.LOG, Blocks.LOG2, Blocks.CHEST, Blocks.PUMPKIN, Blocks.LIT_PUMPKIN, Blocks.MELON_BLOCK, Blocks.LADDER, Blocks.WOODEN_BUTTON, Blocks.WOODEN_PRESSURE_PLATE});
+    public final String oreDictionary;
     
-    public SPItemAxe(Item.ToolMaterial material, float damage, float speed)
+    public SPItemAxe(Item.ToolMaterial material, float damage, float speed, String oreDictionary)
     {
         super(material, EFFECTIVE_ON);
         this.attackDamage = damage;
         this.attackSpeed = speed;
+        this.oreDictionary = oreDictionary;
     }
     
     public float getStrVsBlock(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
         return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getDestroySpeed(stack, state) : this.efficiency;
+    }
+    
+    @Override
+    public boolean getIsRepairable(ItemStack tool, ItemStack stack)
+    {
+    	List<ItemStack> acceptableItems = OreDictionary.getOres(oreDictionary);
+    	for(ItemStack i : acceptableItems ){
+    		if(ItemStack.areItemsEqual(i, stack) && this.oreDictionary != null) return true;
+    	}
+    	return false;
     }
  
 }

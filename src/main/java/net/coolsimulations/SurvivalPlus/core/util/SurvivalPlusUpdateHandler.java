@@ -45,7 +45,7 @@ public class SurvivalPlusUpdateHandler {
 				
 				isOld = true;
 				
-				TextComponentString sp = new TextComponentString(SPReference.MOD_NAME);
+				TextComponentTranslation sp = new TextComponentTranslation("sp.name");
 				sp.getStyle().setColor(TextFormatting.BLUE);
 				
 				TextComponentString MCVersion = new TextComponentString(MinecraftForge.MC_VERSION);
@@ -63,7 +63,7 @@ public class SurvivalPlusUpdateHandler {
 				
 				isOld = true;
 				
-				TextComponentString sp = new TextComponentString(SPReference.MOD_NAME);
+				TextComponentTranslation sp = new TextComponentTranslation("sp.name");
 				sp.getStyle().setColor(TextFormatting.BLUE);
 				
 				TextComponentString version = new TextComponentString(latestVersion);

@@ -334,6 +334,17 @@ item.titanium_hoe.name=Titanium Hoe
 item.titanium_sword.name=Titanium Sword
 item.titanium_shears.name=Titanium Shears
 
+item.hammertime.itemhammerbronze.name=Bronze Hammer
+item.hammertime.itemhammertitanium.name=Titanium Hammer
+item.hammertime.itemshovelbronze.name=Bronze Spade
+item.hammertime.itemshoveltitanium.name=Titanium Spade
+item.hammertime.itemaxebronze.name=Bronze Axe
+item.hammertime.itemaxetitanium.name=Titanium Axe
+item.hammertime.itemsicklebronze.name=Bronze Sickle
+item.hammertime.itemsickletitanium.name=Titanium Sickle
+
+item.lumberaxeDesh.name=Desh Lumberaxe
+
 death.attack.boiled_water=%1$s was scorched to death
 death.attack.boiled_water.player=%1$s was scorched to death whilst trying to escape %2$s
 
@@ -394,6 +405,11 @@ sp.update.display1=This is an old version of %s! Version %s is now available!
 sp.update.display2=Please click to download!
 sp.update.display3=%s no longer supports Minecraft Version %s! Please update to a newer Minecraft Version for more features!
 
+sp.coolsim.creator=[SurvivalPlus Creator]
+sp.coolsim.joined=coolsim the grand creator of SurvivalPlus joined the game
+sp.coolsim.left=coolsim the grand creator of SurvivalPlus left the game
+sp.coolsim.error=coolsim has been killed too many times in a row and thus has not dropped a head!
+
 sp.configgui.title=SurvivalPlus Config
 sp.configgui.enable_sponge=Enable Sponge Recipe
 sp.configgui.enable_cheese_block=Enable Galacticraft Cheese Block Recipe
@@ -411,3 +427,4 @@ sp.configgui.disable_IC2_Credit_EMC=Disable IC2 Industrial Credit EMC Value
 sp.configgui.enable_Replace_BOP_Recipe=Enable Replace BOP Terrestrial Artifact Recipe
 sp.configgui.op_wak_command=Define the Permission Level of the Wak Command
 sp.configgui.update_check=Disable SurvivalPlus Update Checker Message
+sp.configgui.sun_audio=Disable Sounds Played Through sun.audio

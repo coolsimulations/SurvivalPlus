@@ -117,6 +117,11 @@ public class SurvivalPlusConfig {
 	            SPConfig.disableUpdateCheck = prop.getBoolean(false);
 	            propOrder.add(prop.getName());
 	            
+	            prop = config.get(SPReference.CONFIG_CATEGORY_COMPATIBILITY, "Disable Sounds Played Through sun.audio", false);
+	            prop.setLanguageKey("sp.configgui.sun_audio");
+	            SPConfig.disableSunAudio = prop.getBoolean(false);
+	            propOrder.add(prop.getName());
+	            
 	            if (config.hasChanged())
 	            {
 	                config.save();

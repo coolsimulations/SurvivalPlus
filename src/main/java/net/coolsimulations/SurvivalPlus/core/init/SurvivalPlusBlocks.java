@@ -25,18 +25,18 @@ public class SurvivalPlusBlocks {
 	
 	public static void init()
 	{
-		SPBlocks.copper_block = new SPBlockMetal(0).setUnlocalizedName("copper_block").setRegistryName("copper_block").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.tin_block = new SPBlockMetal(0).setUnlocalizedName("tin_block").setRegistryName("tin_block").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.copper_block = new SPBlockMetal(0, true).setUnlocalizedName("copper_block").setRegistryName("copper_block").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.tin_block = new SPBlockMetal(0, true).setUnlocalizedName("tin_block").setRegistryName("tin_block").setCreativeTab(SPTabs.tabBlocks);
 		SPBlocks.onion = new BlockOnionCrop().setUnlocalizedName("onion").setRegistryName("onion");
 		SPBlocks.cheese_cake = new BlockCheeseCake().setUnlocalizedName("cheese_cake").setRegistryName("cheese_cake").setCreativeTab(SPTabs.tabFood);
 		SPBlocks.sponge_cake = new BlockSpongeCake().setUnlocalizedName("sponge_cake").setRegistryName("sponge_cake").setCreativeTab(SPTabs.tabFood); 
-		SPBlocks.copper_ore = new SPBlockOre(1).setUnlocalizedName("copper_ore").setRegistryName("copper_ore").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.tin_ore = new SPBlockOre(1).setUnlocalizedName("tin_ore").setRegistryName("tin_ore").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.copper_ore = new SPBlockOre(1, false).setUnlocalizedName("copper_ore").setRegistryName("copper_ore").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.tin_ore = new SPBlockOre(1, false).setUnlocalizedName("tin_ore").setRegistryName("tin_ore").setCreativeTab(SPTabs.tabBlocks);
 		SPBlocks.amethyst = new SPBlockCrystal().setUnlocalizedName("amethyst").setRegistryName("amethyst").setCreativeTab(SPTabs.tabGem);
 		SPBlocks.ruby = new SPBlockCrystal().setUnlocalizedName("ruby").setRegistryName("ruby").setCreativeTab(SPTabs.tabGem);
-		SPBlocks.bronze_block = new SPBlockMetal(1).setUnlocalizedName("bronze_block").setRegistryName("bronze_block").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.titanium_block = new SPBlockMetal(2).setUnlocalizedName("titanium_block").setRegistryName("titanium_block").setCreativeTab(SPTabs.tabBlocks);
-		SPBlocks.titanium_ore = new SPBlockOre(2).setUnlocalizedName("titanium_ore").setRegistryName("titanium_ore").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.bronze_block = new SPBlockMetal(1, true).setUnlocalizedName("bronze_block").setRegistryName("bronze_block").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.titanium_block = new SPBlockMetal(2, true).setUnlocalizedName("titanium_block").setRegistryName("titanium_block").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.titanium_ore = new SPBlockOre(2, false).setUnlocalizedName("titanium_ore").setRegistryName("titanium_ore").setCreativeTab(SPTabs.tabBlocks);
 		SPBlocks.pearl = new SPBlockCrystal().setUnlocalizedName("pearl").setRegistryName("pearl").setCreativeTab(SPTabs.tabGem);
 		SPBlocks.topaz = new SPBlockCrystal().setUnlocalizedName("topaz").setRegistryName("topaz").setCreativeTab(SPTabs.tabGem);
 		SPBlocks.sapphire = new SPBlockCrystal().setUnlocalizedName("sapphire").setRegistryName("sapphire").setCreativeTab(SPTabs.tabGem);

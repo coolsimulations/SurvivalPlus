@@ -74,6 +74,10 @@ public class SPItems {
 	public static Item titanium_sword;
 	public static Item titanium_shears;
 	public static Item.ToolMaterial titaniumToolMaterial;
+	public static Item bronze_lumberaxe;
+	public static Item titanium_lumberaxe;
+	public static Item desh_lumberaxe;
+	public static Item steel_lumberaxe;
 	
 	/**
 	 * These are the armor Items referred to in SurvivalPlusArmor along with the corresponding ArmorMaterial and Armor ItemStack List
