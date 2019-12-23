@@ -4,6 +4,7 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
+import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
@@ -17,12 +18,12 @@ public class SurvivalPlusItems {
 	
 	public static void init() {
 		
-		SPItems.tin_ingot = new Item().setUnlocalizedName("tin_ingot").setRegistryName("tin_ingot").setCreativeTab(SPTabs.tabMaterials);
-		SPItems.copper_ingot = new Item().setUnlocalizedName("copper_ingot").setRegistryName("copper_ingot").setCreativeTab(SPTabs.tabMaterials);
+		SPItems.tin_ingot = new SPItemIngot(true).setUnlocalizedName("tin_ingot").setRegistryName("tin_ingot").setCreativeTab(SPTabs.tabMaterials);
+		SPItems.copper_ingot = new SPItemIngot(true).setUnlocalizedName("copper_ingot").setRegistryName("copper_ingot").setCreativeTab(SPTabs.tabMaterials);
 		SPItems.onion_seeds = new ItemSeeds(SPBlocks.onion, Blocks.FARMLAND).setUnlocalizedName("onion_seeds").setRegistryName("onion_seeds").setCreativeTab(SPTabs.tabMaterials);
-		SPItems.bronze_ingot = new Item().setUnlocalizedName("bronze_ingot").setRegistryName("bronze_ingot").setCreativeTab(SPTabs.tabMaterials);
+		SPItems.bronze_ingot = new SPItemIngot(true).setUnlocalizedName("bronze_ingot").setRegistryName("bronze_ingot").setCreativeTab(SPTabs.tabMaterials);
 		SPItems.bronze_nugget = new Item().setUnlocalizedName("bronze_nugget").setRegistryName("bronze_nugget").setCreativeTab(SPTabs.tabMaterials);
-		SPItems.titanium_ingot = new Item().setUnlocalizedName("titanium_ingot").setRegistryName("titanium_ingot").setCreativeTab(SPTabs.tabMaterials);
+		SPItems.titanium_ingot = new SPItemIngot(true).setUnlocalizedName("titanium_ingot").setRegistryName("titanium_ingot").setCreativeTab(SPTabs.tabMaterials);
 		SPItems.titanium_nugget = new Item().setUnlocalizedName("titanium_nugget").setRegistryName("titanium_nugget").setCreativeTab(SPTabs.tabMaterials);
 		SPItems.charcoal_bucket = new Item().setUnlocalizedName("charcoal_bucket").setRegistryName("charcoal_bucket").setMaxStackSize(1).setContainerItem(Items.BUCKET).setCreativeTab(SPTabs.tabMaterials);
 		SPItems.paper_cup = new Item().setUnlocalizedName("paper_cup").setRegistryName("paper_cup").setCreativeTab(SPTabs.tabMaterials);
