@@ -5,7 +5,7 @@ death.fell.accident.generic=%1$s 押しつぶされた
 death.fell.killer=%1$s 潰す運命にあった
 death.fell.assist=%1$s は %2$s 押しつぶされたする運命にありました
 death.fell.assist.item=%1$s は %2$s の %3$s 押しつぶされたする運命にありました
-death.fell.finish=押しつぶされたそして %2$s までに終了しました
+death.fell.finish=%1$s は押しつぶされたそして %2$s までに終了しました
 death.fell.finish.item=%1$s が粉砕され %3$s を使用して %2$s に終了しました
 death.attack.fall=%1$s 押しつぶされた
 death.attack.fall.player=%1$s は %2$s を脱出しようとしているときに粉砕されました
@@ -401,12 +401,12 @@ advancements.sp.cupcake.desc=チーズカップケーキをクラフトしまし
 
 sp.update.display1=これは%sの古いバージョンです！ バージョン%sが利用可能になりました！
 sp.update.display2=クリックしてダウンロードしてください！
-sp.update.display3=%sはMinecraftバージョン%sをサポートしなくなりました！ より多くの機能については、新しいMinecraftバージョンに更新してください！
+sp.update.display3=%sはMinecraftバージョン%sをサポートしなくなりました！ より多くの機能については新しいMinecraftバージョンに更新してください！
 
 sp.coolsim.creator=[サバイバルプラス作成者]
 sp.coolsim.joined=サバイバルプラスのグランドクリエイターであるcoolsimがゲームに参加しました
 sp.coolsim.left=サバイバルプラスの大作者であるcoolsimがゲームを去りました
-sp.coolsim.error=coolsimは連続して何度も殺されたため、頭を落としていません！
+sp.coolsim.error=coolsimは連続して何度も殺されたため頭を落としていません！
 
 sp.configgui.title=サバイバルプラス構成
 sp.configgui.enable_sponge=スポンジレシピを有効にする
