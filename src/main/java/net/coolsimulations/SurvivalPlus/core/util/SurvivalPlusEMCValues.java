@@ -1,49 +1,100 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-//import moze_intel.projecte.api.ProjectEAPI;
-import net.coolsimulations.SurvivalPlus.api.SPConfig;
-import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
-public class SurvivalPlusEMCValues {
+import javax.annotation.Nonnull;
+
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+
+import moze_intel.projecte.api.mapper.EMCMapper;
+import moze_intel.projecte.api.mapper.IEMCMapper;
+import moze_intel.projecte.api.mapper.collector.IMappingCollector;
+import moze_intel.projecte.api.nss.NSSItem;
+import moze_intel.projecte.api.nss.NormalizedSimpleStack;
+import net.coolsimulations.SurvivalPlus.api.SPBlocks;
+import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
+import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.api.SPTags;
+import net.minecraft.resources.IResourceManager;
+
+@EMCMapper
+public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, Long> {
 	
+	private static final Map<NormalizedSimpleStack, Long> customEmcValues = new HashMap();
+	
+	@Override
+	public String getName() {
+		return "SurvivalPlusMapper";
+	}
+	
+	@Override
+	public String getDescription() {
+		return "Adds EMC Values to SurvivalPlus Items.";
+	}
 	
 	public static void init(){
-		/**	ProjectEAPI.getEMCProxy().registerCustomEMC(new ItemStack(SPItems.titanium_ingot), 2048);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("ingotTitanium", 2048);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("foodOnion", 64);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("seedOnion", 32);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC(new ItemStack(SPItems.raw_onion), 64);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("gemAmethyst", 512);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("gemRuby", 512);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("gemTopaz", 512);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("gemSapphire", 512);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("gemPearl", 2048);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("gemSpinel", 2048);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC(new ItemStack(Items.WATER_BUCKET), 769);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC(new ItemStack(Items.LAVA_BUCKET), 833);
+		
+		//SurvivalPlus Tags haven't been working in 1.13 or 1.14, however they do work in SurvivalPlus Lightsabers so I'm assuming that it order of loading related
+		//So these lines below do not work, but leaving them there in case other mods tags work 
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_COPPER), 55);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_TIN), 256);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_TITANIUM), 2048);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.CROPS_ONION), 64);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.SEEDS_ONION), 32);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_AMETHYST), 512);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_RUBY), 512);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_TOPAZ), 512);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SAPPHIRE), 512);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_PEARL), 2048);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SPINEL), 2048);
+		
+		registerCustomEMC(NSSItem.createItem(SPItems.copper_ingot), 55);
+		registerCustomEMC(NSSItem.createItem(SPItems.tin_ingot), 256);
+		registerCustomEMC(NSSItem.createItem(SPItems.titanium_ingot), 2048);
+		registerCustomEMC(NSSItem.createItem(SPItems.raw_onion), 64);
+		registerCustomEMC(NSSItem.createItem(SPItems.onion_seeds), 32);
+		registerCustomEMC(NSSItem.createItem(SPBlocks.amethyst), 512);
+		registerCustomEMC(NSSItem.createItem(SPBlocks.ruby), 512);
+		registerCustomEMC(NSSItem.createItem(SPBlocks.topaz), 512);
+		registerCustomEMC(NSSItem.createItem(SPBlocks.sapphire), 512);
+		registerCustomEMC(NSSItem.createItem(SPBlocks.pearl), 2048);
+		registerCustomEMC(NSSItem.createItem(SPBlocks.spinel), 2048);
     		
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("crushedTitanium", 1024);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("crushedPurifiedTitanium", 1024);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("dustTitanium", 1024);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("dustTinyTitanium", (int) 113.7);
+		if (SPCompatibilityManager.isIc2Loaded()) {
+			
+			registerCustomEMC(NSSItem.createItem(SPItems.crushed_titanium_ore), 1024);
+			registerCustomEMC(NSSItem.createItem(SPItems.purified_titanium_ore), 1024);
+			registerCustomEMC(NSSItem.createItem(SPItems.titanium_dust), 1024);
+			registerCustomEMC(NSSItem.createItem(SPItems.tiny_titanium_pile), (long) 113.7);
+		}
     		
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("crushedAluminum", 128);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("crushedPurifiedAluminum", 128);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("dustAluminum", 128);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("dustTinyAluminum", (int) 14.2);
-    		
-    		if(SPConfig.enableSponge) {
+    		/**if(SPConfig.enableSponge) {
     			
     			ProjectEAPI.getEMCProxy().registerCustomEMC(new ItemStack(Blocks.SPONGE), 2496);
-    		}
-    		
-    		//EMC Values for OreDicts
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("grass", 1);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("dirt", 1);
-    		ProjectEAPI.getEMCProxy().registerCustomEMC("sand", 1);**/
+    		}**/
 	}
 
+	public static void registerCustomEMC(@Nonnull NormalizedSimpleStack stack, long emcValue) {
+		customEmcValues.put(stack, emcValue);
+	}
+
+	public static void unregisterNSS(@Nonnull NormalizedSimpleStack stack) {
+		customEmcValues.remove(stack);
+	}
+
+	@Override
+	public void addMappings(IMappingCollector<NormalizedSimpleStack, Long> mapper, CommentedFileConfig config, IResourceManager resourceManager) {
+		
+		Iterator var4 = customEmcValues.entrySet().iterator();
+
+		while (var4.hasNext()) {
+			Entry<NormalizedSimpleStack, Long> entry = (Entry) var4.next();
+			NormalizedSimpleStack normStack = (NormalizedSimpleStack) entry.getKey();
+			long value = (Long) entry.getValue();
+			mapper.setValueBefore(normStack, value);
+		}
+	}
 }

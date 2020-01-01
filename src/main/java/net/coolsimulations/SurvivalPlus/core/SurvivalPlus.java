@@ -28,7 +28,9 @@ import net.coolsimulations.SurvivalPlus.core.recipes.SmithVillagerTradeHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusHammerTime;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnionCrop;
@@ -112,6 +114,14 @@ public class SurvivalPlus {
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
+		
+		if(SPCompatibilityManager.isHammerTimeLoaded()) {
+			SurvivalPlusHammerTime.init();
+		}
+		
+		if(SPCompatibilityManager.isLumberjackLoaded()) {
+			SurvivalPlusLumberjack.init();
+		}
 		
 		if (SPCompatibilityManager.isProjectELoaded())
         {

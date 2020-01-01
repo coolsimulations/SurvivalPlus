@@ -10,6 +10,7 @@
   "death.fell.finish.item": "%1$s smooshed and was finished by %2$s using %3$s",
   "death.attack.fall": "%1$s has been smooshed",
   "death.attack.fall.player": "%1$s has been smooshed whilst trying to escape %2$s",
+  "sp.name": "SurvivalPlus",
   
   "itemGroup.tabMaterials": "SurvivalPlus Materials",
   "itemGroup.tabBlocks": "SurvivalPlus Blocks",
@@ -332,6 +333,17 @@
   "item.survivalplus.titanium_hoe": "Titanium Hoe",
   "item.survivalplus.titanium_sword": "Titanium Sword",
   "item.survivalplus.titanium_shears": "Titanium Shears",
+  
+  "item.hammertime.itemhammerbronze": "Bronze Hammer",
+  "item.hammertime.itemhammertitanium": "Titanium Hammer",
+  "item.hammertime.itemshovelbronze": "Bronze Spade",
+  "item.hammertime.itemshoveltitanium": "Titanium Spade",
+  "item.hammertime.itemaxebronze": "Bronze Axe",
+  "item.hammertime.itemaxetitanium": "Titanium Axe",
+  "item.hammertime.itemsicklebronze": "Bronze Sickle",
+  "item.hammertime.itemsickletitanium": "Titanium Sickle",
+  
+  "item.lumberjack.lumberaxeDesh": "Desh Lumberaxe",
 
   "death.attack.boiled_water": "%1$s was scorched to death",
   "death.attack.boiled_water.player": "%1$s was scorched to death whilst trying to escape %2$s",
@@ -393,6 +405,11 @@
   "sp.update.display2": "Please click to download!",
   "sp.update.display3": "%s no longer supports Minecraft Version %s! Please update to a newer Minecraft Version for more features!",
   "sp.install_texture.display": "Make sure your using the SurvivalPlus Resource Pack!",
+  
+  "sp.coolsim.creator": "[SurvivalPlus Creator]",
+  "sp.coolsim.joined": "coolsim the grand creator of SurvivalPlus joined the game",
+  "sp.coolsim.left": "coolsim the grand creator of SurvivalPlus left the game",
+  "sp.coolsim.error": "coolsim has been killed too many times in a row and thus has not dropped a head!",
 
   "sp.configgui.title": "SurvivalPlus Config",
   "sp.configgui.enable_sponge": "Enable Sponge Recipe",
@@ -411,5 +428,6 @@
   "sp.configgui.enable_Replace_BOP_Recipe": "Enable Replace BOP Terrestrial Artifact Recipe",
   "sp.configgui.disable_wak_Command": "Disable the Wak Command",
   "sp.configgui.op_wak_command": "Define the Permission Level of the Wak Command",
-  "sp.configgui.update_check": "Disable SurvivalPlus Update Checker Message"
+  "sp.configgui.update_check": "Disable SurvivalPlus Update Checker Message",
+  "sp.configgui.sun_audio": "Disable Sounds Played Through sun.audio"
 }

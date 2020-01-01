@@ -21,6 +21,8 @@ public class SPCompatibilityManager {
     private static boolean modSimpleGrinderLoaded;
     private static boolean modForestryLoaded;
     private static boolean modRailcraftLoaded;
+    private static boolean modLumberjackLoaded;
+    private static boolean modHammerTimeLoaded;
     
     public static final String TE_MODID = "thermalexpansion";
     public static final String GCCORE_MODID = "galacticraftcore";
@@ -40,6 +42,8 @@ public class SPCompatibilityManager {
     public static final String SIMPLEGRINDER_MODID = "simplegrinder";
     public static final String FORESTRY_MODID = "forestry";
     public static final String RAILCRAFT_MODID = "railcraft";
+    public static final String LUMBERJACK_MODID = "lumberjack";
+    public static final String HAMMER_TIME_MODID = "hammertime";
     
     public static void checkForCompatibleMods(){
 
@@ -128,6 +132,17 @@ public class SPCompatibilityManager {
         {
             SPCompatibilityManager.modRailcraftLoaded = true;
         }
+        
+        if (ModList.get().isLoaded(LUMBERJACK_MODID))
+        {
+            SPCompatibilityManager.modLumberjackLoaded = true;
+        }
+        
+        if (ModList.get().isLoaded(HAMMER_TIME_MODID))
+        {
+            SPCompatibilityManager.modHammerTimeLoaded = true;
+        }
+
     }
 
     public static boolean isIc2Loaded()
@@ -213,6 +228,17 @@ public class SPCompatibilityManager {
     public static boolean isRailcraftLoaded()
     {
         return SPCompatibilityManager.modRailcraftLoaded;
+    }    
+    
+    public static boolean isLumberjackLoaded()
+    {
+        return SPCompatibilityManager.modLumberjackLoaded;
     }
+    
+    public static boolean isHammerTimeLoaded()
+    {
+        return SPCompatibilityManager.modHammerTimeLoaded;
+    }
+
 
 }

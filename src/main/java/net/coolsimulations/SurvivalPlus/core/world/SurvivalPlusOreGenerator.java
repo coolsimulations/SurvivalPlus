@@ -2,6 +2,7 @@ package net.coolsimulations.SurvivalPlus.core.world;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
+import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystal;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
@@ -31,7 +32,7 @@ public class SurvivalPlusOreGenerator {
 					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(BlockMatcher.forBlock(Blocks.NETHERRACK), SPBlocks.sapphire.getDefaultState(), 3), biome.COUNT_RANGE, new CountRangeConfig(10, 1, 0, 255)));
 				}
 			} else if(biome instanceof OceanBiome || biome instanceof DeepOceanBiome || biome instanceof ColdOceanBiome || biome instanceof DeepColdOceanBiome || biome instanceof DeepWarmOceanBiome || biome instanceof WarmOceanBiome || biome instanceof DeepLukewarmOceanBiome || biome instanceof LukewarmOceanBiome || biome instanceof DeepFrozenOceanBiome || biome instanceof FrozenOceanBiome && !SPConfig.disablePearlGen.get()) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(BlockMatcher.forBlock(Blocks.GRAVEL), SPBlocks.pearl.getDefaultState(), 3), biome.COUNT_RANGE, new CountRangeConfig(4, 20, 0, 63)));
+				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(BlockMatcher.forBlock(Blocks.GRAVEL), SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3), biome.COUNT_RANGE, new CountRangeConfig(4, 20, 0, 63)));
 
 			} else if(biome instanceof MushroomFieldsBiome && !SPConfig.disableSpinelGen.get()) {
 				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(MinableConfig.IS_ROCK, SPBlocks.spinel.getDefaultState(), 3), biome.COUNT_RANGE, new CountRangeConfig(2, 1, 0, 5)));
