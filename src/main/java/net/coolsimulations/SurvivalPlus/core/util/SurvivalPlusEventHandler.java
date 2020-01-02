@@ -1,6 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
 import java.util.List;
+import java.util.UUID;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
@@ -20,21 +21,27 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.common.BasicTrade;
+import net.minecraftforge.event.ServerChatEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class SurvivalPlusEventHandler {
 	
@@ -173,7 +180,116 @@ public class SurvivalPlusEventHandler {
 		if(SPCompatibilityManager.isIc2Loaded()) {
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "bronze_ingot_alt2"));
 		}
+		
+				if(SPCompatibilityManager.isHammerTimeLoaded()) {
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxediamond"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxegold"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxeiron"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxestone"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxewood"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammerdiamond"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammergold"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammeriron"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammerstone"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammerwood"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshoveldiamond"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshovelgold"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshoveliron"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshovelstone"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshovelwood"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklediamond"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklegold"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsickleiron"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklestone"));
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklewood"));
+		}
         
     }**/
+	
+	@SubscribeEvent
+	public void coolsimChat(ServerChatEvent event) {
+		
+		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
+		coolsim.getStyle().setColor(TextFormatting.GOLD);
+		
+		if(event.getUsername().equals("coolsim")) {
+			event.setComponent(new StringTextComponent(coolsim.getFormattedText() + " <" + event.getUsername() + "> " + event.getMessage()));
+		}
+	}
+	
+	@SubscribeEvent
+	public void coolsimReceivedChat(ClientChatReceivedEvent event) {
+		
+		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
+		coolsim.getStyle().setColor(TextFormatting.GOLD);
+		
+		TranslationTextComponent playerJoined = new TranslationTextComponent("multiplayer.player.joined", new Object[] {"coolsim"});
+		playerJoined.getStyle().setColor(TextFormatting.YELLOW);
+		
+		TranslationTextComponent playerLeft = new TranslationTextComponent("multiplayer.player.left", new Object[] {"coolsim"});
+		playerLeft.getStyle().setColor(TextFormatting.YELLOW);
+		
+		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined");
+		coolsimJoined.getStyle().setColor(TextFormatting.YELLOW);
+		
+		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left");
+		coolsimLeft.getStyle().setColor(TextFormatting.YELLOW);
+		
+		if(event.getMessage().getFormattedText().equals(playerJoined.getFormattedText())) {
+			event.setMessage(coolsimJoined);
+		}
+		
+		if(event.getMessage().getFormattedText().equals(playerLeft.getFormattedText())) {
+			event.setMessage(coolsimLeft);
+		}
+		
+		if(event.getMessage().getFormattedText().startsWith("[coolsim]")) {
+			event.setMessage(new StringTextComponent(event.getMessage().getFormattedText().replaceFirst("\\[", coolsim.getFormattedText() + " [")));
+		}
+	}
+
+	@SubscribeEvent
+	public void coolsimDeath(LivingDeathEvent event) {
+
+		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().getDisplayName().getFormattedText().equals("coolsim") && event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
+
+			ServerPlayerEntity attacker = (ServerPlayerEntity) event.getSource().getTrueSource();
+			ItemStack coolsimHead = getcoolsimHead();
+
+			if(coolsimHead != null) {
+				ItemHandlerHelper.giveItemToPlayer(attacker, coolsimHead);
+			} else {
+				TranslationTextComponent error = new TranslationTextComponent("sp.coolsim.error");
+				error.getStyle().setColor(TextFormatting.RED);
+				attacker.sendMessage(error);
+			}
+		}
+
+	}
+	
+	public static ItemStack getcoolsimHead()
+	  {
+		String texture = "eyJ0aW1lc3RhbXAiOjE1NzYxMTM5OTc5ODUsInByb2ZpbGVJZCI6IjU0NDgxMjU3N2I2ZDRjOGU4YWFjY2E2Zjg2NGUxNDEyIiwicHJvZmlsZU5hbWUiOiJjb29sc2ltIiwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzdmMDkwM2QxOGMyZTE4YmQzYzBiMDk5YmIzZGFkNmVjYTQ2ZDBjMzdkZjJkM2FlMjljYzAwOWYwN2I5OTM3NmYifX19";
+	    String id = new UUID(texture.hashCode(), texture.hashCode()).toString();
+	    
+	    ItemStack playerhead = new ItemStack(Items.PLAYER_HEAD);
+	    
+	    TranslationTextComponent headName = new TranslationTextComponent("block.minecraft.player_head.named", new Object[] {"coolsim"});
+	    headName.getStyle().setItalic(true);
+	    CompoundNBT skullOwner = new CompoundNBT();
+	    skullOwner.putString("Id", id);
+	    CompoundNBT properties = new CompoundNBT();
+	    ListNBT textures = new ListNBT();
+	    CompoundNBT tex = new CompoundNBT();
+	    tex.putString("Value", texture);
+	    textures.add(tex);
+	    properties.put("textures", textures);
+	    skullOwner.put("Properties", properties);
+	    playerhead.setTagInfo("SkullOwner", skullOwner);
+	    playerhead.setDisplayName(headName);
+	    
+	    return playerhead;
+	  }
+
 
 }

@@ -9,20 +9,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTier;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
 public class SPBlockMetal extends Block{
 	
 	public final Resource resource;
+	public final Boolean beacon;
 	
 	/**
 	 * @param metalTier accepts SPBlockMetal.Resouce
 	 */
 	
-	public SPBlockMetal(Resource resource) {
+	public SPBlockMetal(Resource resource, boolean isBeaconMetal) {
 		super(Properties.create(Material.IRON).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()));
 		this.resource = resource;
+		this.beacon = isBeaconMetal;
 	}
 	
 	@Override
@@ -45,6 +48,13 @@ public class SPBlockMetal extends Block{
 		
 		return 0;
 	}
+	
+	@Override
+	public boolean isBeaconBase(BlockState state, IWorldReader world, BlockPos pos, BlockPos beacon)
+    {
+		return this.beacon;
+    }
+
 	
 	public enum Resource {
 		TIER_0(1, 4.0F, 10.0F, SoundType.METAL, ItemTier.IRON),

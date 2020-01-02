@@ -45,7 +45,7 @@ public class SurvivalPlusUpdateHandler {
 				
 				isOld = true;
 				
-				StringTextComponent sp = new StringTextComponent(SPReference.MOD_NAME);
+				TranslationTextComponent sp = new TranslationTextComponent("sp.name");
 				sp.getStyle().setColor(TextFormatting.BLUE);
 				
 				StringTextComponent MCVersion = new StringTextComponent(MCPVersion.getMCVersion());
@@ -63,7 +63,7 @@ public class SurvivalPlusUpdateHandler {
 				
 				isOld = true;
 				
-				StringTextComponent sp = new StringTextComponent(SPReference.MOD_NAME);
+				TranslationTextComponent sp = new TranslationTextComponent("sp.name");
 				sp.getStyle().setColor(TextFormatting.BLUE);
 				
 				StringTextComponent version = new StringTextComponent(latestVersion);

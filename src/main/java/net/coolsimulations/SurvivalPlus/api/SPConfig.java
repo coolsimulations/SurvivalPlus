@@ -19,5 +19,6 @@ public class SPConfig {
     public static BooleanValue disableSpinelGen;
     public static IntValue opWak;
     public static BooleanValue disableUpdateCheck;
+    public static BooleanValue disableSunAudio;
 
 }

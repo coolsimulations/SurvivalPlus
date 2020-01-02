@@ -4,21 +4,22 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
-import net.minecraft.item.Items;
-import net.minecraft.item.Item;
+import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
 import net.minecraft.item.BlockNamedItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SurvivalPlusItems {
 	
 	public static void init() {
 		
-		SPItems.tin_ingot = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("tin_ingot");
-		SPItems.copper_ingot = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("copper_ingot");
+		SPItems.tin_ingot = new SPItemIngot(true).setRegistryName("tin_ingot");
+		SPItems.copper_ingot = new SPItemIngot(true).setRegistryName("copper_ingot");
 		SPItems.onion_seeds = new BlockNamedItem(SPBlocks.onion, new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("onion_seeds");
-		SPItems.bronze_ingot = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("bronze_ingot");
+		SPItems.bronze_ingot = new SPItemIngot(true).setRegistryName("bronze_ingot");
 		SPItems.bronze_nugget = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("bronze_nugget");
-		SPItems.titanium_ingot = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_ingot");
+		SPItems.titanium_ingot = new SPItemIngot(true).setRegistryName("titanium_ingot");
 		SPItems.titanium_nugget = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_nugget");
 		SPItems.charcoal_bucket = new Item(new Item.Properties().group(SPTabs.tabMaterials).maxStackSize(1).containerItem(Items.BUCKET)).setRegistryName("charcoal_bucket");
 		SPItems.paper_cup = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("paper_cup");

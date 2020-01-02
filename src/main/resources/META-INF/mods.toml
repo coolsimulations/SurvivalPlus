@@ -5,7 +5,7 @@ logoFile="logo.png"
 
 [[mods]]
     modId="survivalplus"
-    version="0.1.1"
+    version="0.1.2"
     updateJSONURL="https://coolsimulations.net/mcmods/survivalplus/versionchecker.json"
     displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus"
     displayName="SurvivalPlus"
@@ -38,10 +38,22 @@ logoFile="logo.png"
     versionRange="[1.0.0]"
     ordering="BEFORE"
     side="BOTH"
-    [[dependencies.survivalplus]]
+[[dependencies.survivalplus]]
     modId="recycler"
     mandatory=false
     versionRange="[1.0.0]"
+    ordering="BEFORE"
+    side="BOTH"
+[[dependencies.survivalplus]]
+    modId="projecte"
+    mandatory=false
+    versionRange="[1.0.0]"
+    ordering="BEFORE"
+    side="BOTH"
+[[dependencies.survivalplus]]
+    modId="lumberjack"
+    mandatory=false
+    versionRange="[2.0.0]"
     ordering="BEFORE"
     side="BOTH"
     
