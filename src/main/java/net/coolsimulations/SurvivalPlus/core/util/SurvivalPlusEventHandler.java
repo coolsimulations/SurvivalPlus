@@ -6,13 +6,25 @@ import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementManager;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockCarvedPumpkin;
+import net.minecraft.block.BlockTripWire;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
@@ -21,6 +33,8 @@ import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -79,6 +93,55 @@ public class SurvivalPlusEventHandler {
         	player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo);
         }
     }
+	
+	@SubscribeEvent
+	public void rightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
+		IBlockState state = event.getWorld().getBlockState(event.getPos());
+		
+		EntityPlayer entityplayer = event.getEntityPlayer();
+		ItemStack itemStackIn = entityplayer.getHeldItem(event.getHand());
+    		Item item = itemStackIn.getItem();
+    		ItemStack itemStackIn1 = itemStackIn.copy();
+	
+		if(block == Blocks.PUMPKIN) {
+			
+			if (item instanceof ItemShears && item != Items.SHEARS) {
+				if (!event.getWorld().isRemote) {
+					EnumFacing facing = event.getFace().getAxis() == Axis.Y
+							? entityplayer.getHorizontalFacing().getOpposite()
+							: event.getFace();
+					event.getWorld().playSound((EntityPlayer) null, event.getPos(), SoundEvents.BLOCK_PUMPKIN_CARVE,
+							SoundCategory.BLOCKS, 1.0F, 1.0F);
+					event.getWorld().setBlockState(event.getPos(), (IBlockState) Blocks.CARVED_PUMPKIN.getDefaultState()
+							.with(BlockCarvedPumpkin.FACING, facing), 11);
+					EntityItem eneityitem = new EntityItem(event.getWorld(),
+							(double) event.getPos().getX() + 0.5D + (double) facing.getXOffset() * 0.65D,
+							(double) event.getPos().getY() + 0.1D,
+							(double) event.getPos().getZ() + 0.5D + (double) facing.getZOffset() * 0.65D,
+							new ItemStack(Items.PUMPKIN_SEEDS, 4));
+					eneityitem.motionX = 0.05D * (double) facing.getXOffset() + event.getWorld().rand.nextDouble() * 0.02D;
+					eneityitem.motionY = 0.05D;
+					eneityitem.motionZ = 0.05D * (double) facing.getZOffset() + event.getWorld().rand.nextDouble() * 0.02D;
+					event.getWorld().spawnEntity(eneityitem);
+					itemStackIn.damageItem(1, entityplayer);
+				}
+		      }
+		}
+	}
+	
+	@SubscribeEvent
+	public void tripWireBreak(BreakEvent event) {
+	
+		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
+		IBlockState state = event.getWorld().getBlockState(event.getPos());
+	
+		EntityPlayer entityplayer = event.getPlayer();
+	
+		if (block instanceof BlockTripWire && !event.getWorld().isRemote() && !entityplayer.getHeldItemMainhand().isEmpty() && entityplayer.getHeldItemMainhand().getItem() instanceof ItemShears && entityplayer.getHeldItemMainhand().getItem() != Items.SHEARS) {
+			event.getWorld().setBlockState(event.getPos(), state.with(BlockTripWire.DISARMED, Boolean.valueOf(true)), 4);
+		}
+	}
 	/**@SubscribeEvent
     public static <T extends IForgeRegistryEntry<T>> void registerRecipes(RegistryEvent.Register<T> event)
     {
