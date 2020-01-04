@@ -13,6 +13,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
+import net.minecraft.block.CarvedPumpkinBlock;
+import net.minecraft.block.TripWireBlock;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,8 +23,10 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -39,6 +44,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
+import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -129,15 +135,15 @@ public class SurvivalPlusEventHandler {
 	}
 	
 	@SubscribeEvent
-	public void campireEvent(PlayerInteractEvent.RightClickBlock event) {
+	public void rightClickBlock(PlayerInteractEvent.RightClickBlock event) {
 		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
 		BlockState state = event.getWorld().getBlockState(event.getPos());
 		
 		PlayerEntity entityplayer = event.getPlayer();
+		ItemStack itemStackIn = entityplayer.getHeldItem(event.getHand());
+		Item item = itemStackIn.getItem();
 		
-		if(block == Blocks.CAMPFIRE) {
-			ItemStack itemStackIn = entityplayer.getHeldItem(event.getHand());
-		    	Item item = itemStackIn.getItem();
+		if(block instanceof CampfireBlock) {
 		    	if(state.get(CampfireBlock.LIT) && item == Items.BUCKET  && !entityplayer.abilities.isCreativeMode) {
 		    		event.getWorld().setBlockState(event.getPos(), state.with(CampfireBlock.LIT, false));
 		    		if (event.getWorld().isRemote()) {
@@ -164,6 +170,37 @@ public class SurvivalPlusEventHandler {
 		        		}		
 		        	}
 		    	}
+		}
+
+		if(block == Blocks.PUMPKIN) {
+
+			if (item instanceof ShearsItem && item != Items.SHEARS) {
+				if (!event.getWorld().isRemote) {
+					Direction direction = event.getFace();
+					Direction direction1 = direction.getAxis() == Direction.Axis.Y ? entityplayer.getHorizontalFacing().getOpposite() : direction;
+					event.getWorld().playSound((PlayerEntity)null, event.getPos(), SoundEvents.BLOCK_PUMPKIN_CARVE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					event.getWorld().setBlockState(event.getPos(), Blocks.CARVED_PUMPKIN.getDefaultState().with(CarvedPumpkinBlock.FACING, direction1), 11);
+					ItemEntity itementity = new ItemEntity(event.getWorld(), (double)event.getPos().getX() + 0.5D + (double)direction1.getXOffset() * 0.65D, (double)event.getPos().getY() + 0.1D, (double)event.getPos().getZ() + 0.5D + (double)direction1.getZOffset() * 0.65D, new ItemStack(Items.PUMPKIN_SEEDS, 4));
+					itementity.setMotion(0.05D * (double)direction1.getXOffset() + event.getWorld().rand.nextDouble() * 0.02D, 0.05D, 0.05D * (double)direction1.getZOffset() + event.getWorld().rand.nextDouble() * 0.02D);
+					event.getWorld().addEntity(itementity);
+					itemStackIn.damageItem(1, entityplayer, (livingentity) -> {
+						livingentity.sendBreakAnimation(event.getHand());
+					});
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void tripWireBreak(BreakEvent event) {
+
+		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
+		BlockState state = event.getWorld().getBlockState(event.getPos());
+
+		PlayerEntity entityplayer = event.getPlayer();
+
+		if (block instanceof TripWireBlock && !event.getWorld().isRemote() && !entityplayer.getHeldItemMainhand().isEmpty() && entityplayer.getHeldItemMainhand().getItem() instanceof ShearsItem && entityplayer.getHeldItemMainhand().getItem() != Items.SHEARS) {
+			event.getWorld().setBlockState(event.getPos(), state.with(TripWireBlock.DISARMED, Boolean.valueOf(true)), 4);
 		}
 	}
 	
