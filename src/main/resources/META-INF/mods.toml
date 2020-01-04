@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[28,]"
+loaderVersion="[30,]"
 issueTrackerURL="http://github.com/coolsimulations/survivalplus/issues/"
 logoFile="logo.png"
 
@@ -17,19 +17,19 @@ logoFile="logo.png"
 [[dependencies.survivalplus]]
     modId="forge"
     mandatory=true
-    versionRange="[28,)"
+    versionRange="[30,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.4]"
+    versionRange="[1.15.1]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="biomesoplenty"
     mandatory=false
-    versionRange="[9.0.0.253]"
+    versionRange="[10.0.0.294]"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.survivalplus]]

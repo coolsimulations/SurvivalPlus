@@ -35,32 +35,32 @@ public class SurvivalPlusOreGenerator {
 		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
 			if (biome == Biomes.NETHER) {
 				if(!SPConfig.disableAmethystGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NETHERRACK, SPBlocks.amethyst.getDefaultState(), 3), Placement.COUNT_RANGE, new CountRangeConfig(10, 1, 0, 255)));
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.amethyst.getDefaultState(), 3)).func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(10, 1, 0, 255))));
 				}
 				if(!SPConfig.disableRubyGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NETHERRACK, SPBlocks.ruby.getDefaultState(), 3), Placement.COUNT_RANGE, new CountRangeConfig(10, 1, 0, 255)));
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.ruby.getDefaultState(), 3)).func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(10, 1, 0, 255))));
 				}
 				if(!SPConfig.disableTopazGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NETHERRACK, SPBlocks.topaz.getDefaultState(), 3), Placement.COUNT_RANGE, new CountRangeConfig(10, 1, 0, 255)));
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.topaz.getDefaultState(), 3)).func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(10, 1, 0, 255))));
 				}
 				if(!SPConfig.disableSapphireGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NETHERRACK, SPBlocks.sapphire.getDefaultState(), 3), Placement.COUNT_RANGE, new CountRangeConfig(10, 1, 0, 255)));
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.sapphire.getDefaultState(), 3)).func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(10, 1, 0, 255))));
 				}
 			} else if(biome instanceof OceanBiome || biome instanceof DeepOceanBiome || biome instanceof ColdOceanBiome || biome instanceof DeepColdOceanBiome || biome instanceof DeepWarmOceanBiome || biome instanceof WarmOceanBiome || biome instanceof DeepLukewarmOceanBiome || biome instanceof LukewarmOceanBiome || biome instanceof DeepFrozenOceanBiome || biome instanceof FrozenOceanBiome && !SPConfig.disablePearlGen.get()) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.create("gravel", "gravel", new SPGravelGeneratorPredicate()), SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3), Placement.COUNT_RANGE, new CountRangeConfig(4, 20, 0, 63)));
+				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.func_225566_b_(new OreFeatureConfig(FillerBlockType.create("gravel", "gravel", new SPGravelGeneratorPredicate()), SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3)).func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(4, 20, 0, 63))));
 
 			} else if(biome instanceof MushroomFieldsBiome && !SPConfig.disableSpinelGen.get()) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, SPBlocks.spinel.getDefaultState(), 3), Placement.COUNT_RANGE, new CountRangeConfig(2, 1, 0, 5)));
+				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.spinel.getDefaultState(), 3)).func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(2, 1, 0, 5))));
 
 			} else {
 				if(!SPConfig.disableCopperOreGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, SPBlocks.copper_ore.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(20, 1, 0, 54)));
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.copper_ore.getDefaultState(), 8)).func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(20, 1, 0, 54))));
 				}
 				if(!SPConfig.disableTinOreGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, SPBlocks.tin_ore.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(20, 1, 0, 54)));
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.tin_ore.getDefaultState(), 8)).func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(20, 1, 0, 54))));
 				}
 				if(!SPConfig.disableTitaniumOreGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, SPBlocks.titanium_ore.getDefaultState(), 4), Placement.COUNT_RANGE, new CountRangeConfig(5, 1, 0, 25)));
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.titanium_ore.getDefaultState(), 4)).func_227228_a_(Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(5, 1, 0, 25))));
 				}
 			}
 		}

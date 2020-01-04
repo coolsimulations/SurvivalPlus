@@ -1,44 +1,63 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementManager;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
+import net.minecraft.block.CarvedPumpkinBlock;
+import net.minecraft.block.TripWireBlock;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
+import net.minecraft.entity.passive.BeeEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.tileentity.BeehiveTileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
+import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -129,15 +148,16 @@ public class SurvivalPlusEventHandler {
 	}
 	
 	@SubscribeEvent
-	public void campireEvent(PlayerInteractEvent.RightClickBlock event) {
+	public void rightClickBlock(PlayerInteractEvent.RightClickBlock event) {
 		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
 		BlockState state = event.getWorld().getBlockState(event.getPos());
 		
 		PlayerEntity entityplayer = event.getPlayer();
+		ItemStack itemStackIn = entityplayer.getHeldItem(event.getHand());
+    		Item item = itemStackIn.getItem();
+    		ItemStack itemStackIn1 = itemStackIn.copy();
 		
-		if(block == Blocks.CAMPFIRE) {
-			ItemStack itemStackIn = entityplayer.getHeldItem(event.getHand());
-		    	Item item = itemStackIn.getItem();
+		if(block instanceof CampfireBlock) {
 		    	if(state.get(CampfireBlock.LIT) && item == Items.BUCKET  && !entityplayer.abilities.isCreativeMode) {
 		    		event.getWorld().setBlockState(event.getPos(), state.with(CampfireBlock.LIT, false));
 		    		if (event.getWorld().isRemote()) {
@@ -164,6 +184,84 @@ public class SurvivalPlusEventHandler {
 		        		}		
 		        	}
 		    	}
+		}
+		
+		if(block == Blocks.PUMPKIN) {
+			
+			if (item instanceof ShearsItem && item != Items.SHEARS) {
+		         if (!event.getWorld().isRemote) {
+		            Direction direction = event.getFace();
+		            Direction direction1 = direction.getAxis() == Direction.Axis.Y ? entityplayer.getHorizontalFacing().getOpposite() : direction;
+		            event.getWorld().playSound((PlayerEntity)null, event.getPos(), SoundEvents.BLOCK_PUMPKIN_CARVE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		            event.getWorld().setBlockState(event.getPos(), Blocks.CARVED_PUMPKIN.getDefaultState().with(CarvedPumpkinBlock.FACING, direction1), 11);
+		            ItemEntity itementity = new ItemEntity(event.getWorld(), (double)event.getPos().getX() + 0.5D + (double)direction1.getXOffset() * 0.65D, (double)event.getPos().getY() + 0.1D, (double)event.getPos().getZ() + 0.5D + (double)direction1.getZOffset() * 0.65D, new ItemStack(Items.PUMPKIN_SEEDS, 4));
+		            itementity.setMotion(0.05D * (double)direction1.getXOffset() + event.getWorld().rand.nextDouble() * 0.02D, 0.05D, 0.05D * (double)direction1.getZOffset() + event.getWorld().rand.nextDouble() * 0.02D);
+		            event.getWorld().addEntity(itementity);
+		            itemStackIn.damageItem(1, entityplayer, (livingentity) -> {
+		            	livingentity.sendBreakAnimation(event.getHand());
+		            });
+		         }
+		      }
+		}
+		
+		if(block instanceof BeehiveBlock) {
+			int level = state.get(BeehiveBlock.field_226873_c_);
+		    boolean flag = false;
+		      
+			if (level >= 5 && item instanceof ShearsItem && item != Items.SHEARS) {
+	            event.getWorld().playSound(entityplayer, entityplayer.func_226277_ct_(), entityplayer.func_226278_cu_(), entityplayer.func_226281_cx_(), SoundEvents.field_226133_ah_, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+	            BeehiveBlock.func_226878_a_(event.getWorld(), event.getPos());
+	            itemStackIn.damageItem(1, entityplayer, (livingentity) -> {livingentity.sendBreakAnimation(event.getHand());});
+	            flag = true;
+	         }
+			
+			if (flag) {
+		         if (!CampfireBlock.func_226914_b_(event.getWorld(), event.getPos(), 5)) {
+		            if (func_226882_d_(event.getWorld(), event.getPos())) {
+		            		func_226881_b_(event.getWorld(), event.getPos());
+		            }
+
+		            ((BeehiveBlock) block).func_226877_a_(event.getWorld(), state, event.getPos(), entityplayer, BeehiveTileEntity.State.EMERGENCY);
+		         } else {
+		            ((BeehiveBlock) block).func_226876_a_(event.getWorld(), state, event.getPos());
+		            if (entityplayer instanceof ServerPlayerEntity) {
+		               CriteriaTriggers.field_229863_J_.func_226695_a_((ServerPlayerEntity)entityplayer, event.getPos(), itemStackIn1);
+		            }
+		         }
+		      }
+		}
+		
+	}
+	
+	@SubscribeEvent
+	public void tripWireBreak(BreakEvent event) {
+
+		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
+		BlockState state = event.getWorld().getBlockState(event.getPos());
+
+		PlayerEntity entityplayer = event.getPlayer();
+
+		if (block instanceof TripWireBlock && !event.getWorld().isRemote() && !entityplayer.getHeldItemMainhand().isEmpty() && entityplayer.getHeldItemMainhand().getItem() instanceof ShearsItem && entityplayer.getHeldItemMainhand().getItem() != Items.SHEARS) {
+			event.getWorld().setBlockState(event.getPos(), state.with(TripWireBlock.DISARMED, Boolean.valueOf(true)), 4);
+		}
+	}
+	
+	@SubscribeEvent
+	public void golemHealth(EntityInteract event) {
+		ItemStack itemstack = event.getItemStack();
+		Item item = itemstack.getItem();
+		Random rand = new Random();
+		if(event.getTarget() instanceof IronGolemEntity) {
+			if (((LivingEntity) event.getTarget()).getHealth() < ((LivingEntity) event.getTarget()).getMaxHealth()) {
+				if(item instanceof SPItemIngot && ((SPItemIngot) item).healsGolem()) {
+					((LivingEntity) event.getTarget()).heal(((SPItemIngot) item).getGolemHealth());
+					float f1 = 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
+					((LivingEntity) event.getTarget()).playSound(SoundEvents.field_226143_fP_, 1.0F, f1);
+					if (!event.getPlayer().abilities.isCreativeMode) {
+						itemstack.shrink(1);
+					}
+				}
+			}
 		}
 	}
 	
@@ -290,6 +388,31 @@ public class SurvivalPlusEventHandler {
 	    
 	    return playerhead;
 	  }
+	
+	private void func_226881_b_(World p_226881_1_, BlockPos p_226881_2_) {
+		List<BeeEntity> list = p_226881_1_.getEntitiesWithinAABB(BeeEntity.class, (new AxisAlignedBB(p_226881_2_)).grow(8.0D, 6.0D, 8.0D));
+		if (!list.isEmpty()) {
+			List<PlayerEntity> list1 = p_226881_1_.getEntitiesWithinAABB(PlayerEntity.class, (new AxisAlignedBB(p_226881_2_)).grow(8.0D, 6.0D, 8.0D));
+			int i = list1.size();
+
+			for(BeeEntity beeentity : list) {
+				if (beeentity.getAttackTarget() == null) {
+					beeentity.func_226391_a_(list1.get(p_226881_1_.rand.nextInt(i)));
+				}
+			}
+		}
+
+	}
+
+	private boolean func_226882_d_(World p_226882_1_, BlockPos p_226882_2_) {
+		TileEntity tileentity = p_226882_1_.getTileEntity(p_226882_2_);
+		if (tileentity instanceof BeehiveTileEntity) {
+			BeehiveTileEntity beehivetileentity = (BeehiveTileEntity)tileentity;
+			return !beehivetileentity.func_226969_f_();
+		} else {
+			return false;
+		}
+	}
 
 
 }
