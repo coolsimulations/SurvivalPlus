@@ -103,8 +103,6 @@ public class SurvivalPlusEventHandler {
 				TranslationTextComponent installTextureInfo = new TranslationTextComponent("sp.install_texture.display");
 				installTextureInfo.getStyle().setColor(TextFormatting.YELLOW);
 				installTextureInfo.getStyle().setBold(true);
-				installTextureInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2")));
-				installTextureInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/texture-packs/survivalplus"));
 				player.sendMessage(installTextureInfo);
 
         	}
