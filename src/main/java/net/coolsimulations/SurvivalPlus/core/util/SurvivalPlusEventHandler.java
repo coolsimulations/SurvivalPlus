@@ -59,19 +59,9 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 public class SurvivalPlusEventHandler {
-	
-	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent event)
-    {
-        if (event.getModID().equals(SPReference.MOD_ID))
-        {
-            //SurvivalPlusConfig.syncConfig(false);
-        }
-    }
 	
 	@SubscribeEvent
 	public void onplayerLogin(PlayerEvent.PlayerLoggedInEvent event)
