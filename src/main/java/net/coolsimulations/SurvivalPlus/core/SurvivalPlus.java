@@ -40,13 +40,13 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusHammerTime;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusJER;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLighting;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusOreDict;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnionCrop;
 import net.coolsimulations.SurvivalPlus.core.world.village.VillageOnionCropHandler;
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
@@ -127,6 +127,16 @@ public class SurvivalPlus {
 			SurvivalPlusLumberjack.init();
 		}
 		
+		if (SPCompatibilityManager.isDynamicLightsLoaded())
+        {
+    			SurvivalPlusLighting.initDynamicLights(event);;
+        }
+		
+		if (SPCompatibilityManager.isSELLoaded())
+        {
+    			SurvivalPlusLighting.initSmoothEntityLight(event);;
+        }
+		
 	}
 	
 	@EventHandler
@@ -141,6 +151,11 @@ public class SurvivalPlus {
 		if (SPCompatibilityManager.isProjectELoaded())
         {
     		SurvivalPlusEMCValues.init();
+        }
+		
+		if (SPCompatibilityManager.isJerLoaded())
+        {
+    			SurvivalPlusJER.init();
         }
 
 	}

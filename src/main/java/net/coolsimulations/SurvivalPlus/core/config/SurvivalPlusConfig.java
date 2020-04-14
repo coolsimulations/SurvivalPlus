@@ -122,6 +122,11 @@ public class SurvivalPlusConfig {
 	            SPConfig.disableSunAudio = prop.getBoolean(false);
 	            propOrder.add(prop.getName());
 	            
+	            prop = config.get(SPReference.CONFIG_CATEGORY_COMMAND, "Disable SurvivalPlus Thank You Message", false);
+	            prop.setLanguageKey("sp.configgui.disable_thanks");
+	            SPConfig.disableThanks = prop.getBoolean(false);
+	            propOrder.add(prop.getName());
+	            
 	            if (config.hasChanged())
 	            {
 	                config.save();

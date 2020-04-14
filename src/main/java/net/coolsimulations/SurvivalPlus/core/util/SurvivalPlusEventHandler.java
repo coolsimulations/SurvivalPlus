@@ -39,6 +39,7 @@ import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -70,7 +71,7 @@ public class SurvivalPlusEventHandler {
 			isDone = true;
 		}
 		
-		if(!entityData.getBoolean("sp.firstJoin") && !isDone) {
+		if(!entityData.getBoolean("sp.firstJoin") && !isDone && !SPConfig.disableThanks) {
 			
 			entityData.setBoolean("sp.firstJoin", true); 
 		
@@ -211,7 +212,8 @@ public class SurvivalPlusEventHandler {
 		coolsim.getStyle().setColor(TextFormatting.GOLD);
 		
 		if(event.getUsername().equals("coolsim")) {
-			event.setComponent(new TextComponentString(coolsim.getFormattedText() + " <" + event.getUsername() + "> " + event.getMessage()));
+			if(FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(event.getUsername()) != null)
+				event.setComponent(new TextComponentString(coolsim.getFormattedText() + " <" + FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(event.getUsername()).getDisplayName().getFormattedText() + "> " + event.getMessage()));
 		}
 	}
 	

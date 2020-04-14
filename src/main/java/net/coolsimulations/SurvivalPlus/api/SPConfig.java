@@ -18,5 +18,6 @@ public class SPConfig {
     public static int opWak;
     public static boolean disableUpdateCheck;
     public static boolean disableSunAudio;
+    public static boolean disableThanks;
 
 }
