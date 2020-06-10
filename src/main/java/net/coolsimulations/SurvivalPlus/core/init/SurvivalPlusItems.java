@@ -24,7 +24,7 @@ public class SurvivalPlusItems {
 		SPItems.charcoal_bucket = new Item(new Item.Properties().group(SPTabs.tabMaterials).maxStackSize(1).containerItem(Items.BUCKET)).setRegistryName("charcoal_bucket");
 		SPItems.paper_cup = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("paper_cup");
 		
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded())
 		{
 			SPItems.titanium_dust = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_dust");
 		}
@@ -35,9 +35,13 @@ public class SurvivalPlusItems {
 			SPItems.tin_dust = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("tin_dust");
 		}
 		
+		if(SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded())
+		{
+			SPItems.crushed_titanium_ore = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("crushed_titanium_ore");
+		}
+		
         if (SPCompatibilityManager.isIc2Loaded())
         {
-        	SPItems.crushed_titanium_ore = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("crushed_titanium_ore");
         	SPItems.purified_titanium_ore = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("purified_titanium_ore");
         	SPItems.tiny_titanium_pile = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("tiny_titanium_pile");
         	SPItems.titanium_plate = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_plate");
@@ -59,7 +63,7 @@ public class SurvivalPlusItems {
 		registerItem(SPItems.charcoal_bucket);
 		registerItem(SPItems.paper_cup);
 		
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded())
 		{
 			registerItem(SPItems.titanium_dust);
 		}
@@ -69,10 +73,14 @@ public class SurvivalPlusItems {
 			registerItem(SPItems.copper_dust);
 			registerItem(SPItems.tin_dust);
 		}
+		
+		if(SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded())
+		{
+			registerItem(SPItems.crushed_titanium_ore);
+		}
 
 		if (SPCompatibilityManager.isIc2Loaded())
         {
-			registerItem(SPItems.crushed_titanium_ore);
 			registerItem(SPItems.purified_titanium_ore);
 			registerItem(SPItems.tiny_titanium_pile);
 			registerItem(SPItems.titanium_plate);

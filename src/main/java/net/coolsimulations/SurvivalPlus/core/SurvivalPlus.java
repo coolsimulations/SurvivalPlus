@@ -2,7 +2,6 @@ package net.coolsimulations.SurvivalPlus.core;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandConfrats;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandEmportant;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandIndeed;
@@ -27,12 +26,10 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusHammerTime;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusJER;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
-import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnionCrop;
-import net.coolsimulations.SurvivalPlus.core.world.village.VillageOnionCropHandler;
-import net.minecraft.item.ItemGroup;
 //import net.minecraft.world.gen.feature.structure.StructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -111,6 +108,11 @@ public class SurvivalPlus {
         {
     			SurvivalPlusEMCValues.init();
         }
+		
+		/**if (SPCompatibilityManager.isJerLoaded())
+        {
+    			SurvivalPlusJER.init();
+        }**/
 		
 		SurvivalPlusAPIRecipes.loadRecipes();
 		

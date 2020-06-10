@@ -47,6 +47,7 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 public class SurvivalPlusEventHandler {
@@ -75,7 +76,7 @@ public class SurvivalPlusEventHandler {
 			isDone = true;
 		}
 		
-		if(!entityData.getBoolean("sp.firstJoin") && !isDone) {
+		if(!entityData.getBoolean("sp.firstJoin") && !isDone && !SPConfig.disableThanks.get()) {
 			
 			entityData.putBoolean("sp.firstJoin", true);
 		
@@ -249,6 +250,8 @@ public class SurvivalPlusEventHandler {
 		
 		if(event.getUsername().equals("coolsim")) {
 			event.setComponent(new StringTextComponent(coolsim.getFormattedText() + " <" + event.getUsername() + "> " + event.getMessage()));
+			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()) != null)
+				event.setComponent(new StringTextComponent(coolsim.getFormattedText() + " <" + ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()).getDisplayName().getFormattedText() + "> " + event.getMessage()));
 		}
 	}
 	

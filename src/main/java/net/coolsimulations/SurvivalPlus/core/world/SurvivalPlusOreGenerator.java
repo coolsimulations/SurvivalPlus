@@ -50,7 +50,7 @@ public class SurvivalPlusOreGenerator {
 				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.create("gravel", "gravel", new SPGravelGeneratorPredicate()), SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3), Placement.COUNT_RANGE, new CountRangeConfig(4, 20, 0, 63)));
 
 			} else if(biome instanceof MushroomFieldsBiome && !SPConfig.disableSpinelGen.get()) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, SPBlocks.spinel.getDefaultState(), 3), Placement.COUNT_RANGE, new CountRangeConfig(2, 1, 0, 5)));
+				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, SPBlocks.spinel.getDefaultState(), 3), Placement.COUNT_RANGE, new CountRangeConfig(2, 1, 0, 8)));
 
 			} else {
 				if(!SPConfig.disableCopperOreGen.get()) {
@@ -60,7 +60,7 @@ public class SurvivalPlusOreGenerator {
 					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, SPBlocks.tin_ore.getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(20, 1, 0, 54)));
 				}
 				if(!SPConfig.disableTitaniumOreGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, SPBlocks.titanium_ore.getDefaultState(), 4), Placement.COUNT_RANGE, new CountRangeConfig(5, 1, 0, 25)));
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, SPBlocks.titanium_ore.getDefaultState(), 4), Placement.COUNT_RANGE, new CountRangeConfig(10, 1, 0, 25)));
 				}
 			}
 		}

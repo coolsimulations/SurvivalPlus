@@ -349,7 +349,7 @@
   "sp.commands.confrats.usage": "/confrats <\u540d\u79f0>",
   "sp.commands.confrats.sameTarget": "\u4f60\u4e0d\u80fd\u606d\u559c\u81ea\u5df1\uff01",
   "sp.commands.confrats.display": "* \u795d\u8d3a%s - \u6765\u81ea%s",
-  "sp.commands.indeed.usage": "/indeed \u6216 /indeed <\u540d\u79f0>",
+  "sp.commands.indeed.usage": "/indeed [\u540d\u79f0]",
   "sp.commands.indeed.sameTarget": "\u4f60\u4e0d\u80fd\u540c\u610f\u4f60\u81ea\u5df1\uff01",
   "sp.commands.indeed.display1": "* '\u786e\u5b9e'%s\u662f\u5728\u8bf4\u4ec0\u4e48\u56e0\u4e3a\u4ed6\u4eec\u540c\u610f%s\u521a\u624d\u8bf4\u7684\uff01",
   "sp.commands.indeed.display2": "* '\u786e\u5b9e'%s\u4e4b\u6240\u4ee5\u8bf4\u8fd9\u662f\u56e0\u4e3a\u4ed6\u4eec\u540c\u610f\uff01",
@@ -365,7 +365,7 @@
   "sp.commands.mourn.usage": "/mourn <\u540d\u79f0>",
   "sp.commands.mourn.sameTarget": "\u4f60\u4e0d\u80fd\u54c0\u60bc\u81ea\u5df1\uff01",
   "sp.commands.mourn.display": "* %s\u54c0\u60bc%s\u7684\u635f\u5931\u5e76\u5927\u58f0\u54c0\u60bc\u5c24\u5176\u662f\u6ca1\u6709\u4eba...",
-  "sp.commands.sleep.usage": "/sleep \u6216 /sleep <\u540d\u79f0>",
+  "sp.commands.sleep.usage": "/sleep [\u540d\u79f0]",
   "sp.commands.sleep.sameTarget": "\u4f60\u4e0d\u80fd\u544a\u8bc9\u81ea\u5df1\u7761\u89c9\uff01",
   "sp.commands.sleep.display1": "* '\u53bb\u7761\u89c9%s\uff01 \u8bf7...' \u662f%s\u5728\u7ef4\u5ea6%s\u4e2d\u6240\u8bf4\u7684\u3002",
   "sp.commands.sleep.display2": "* '\u53bb\u7761\u89c9\uff01 \u8bf7...' \u662f%s\u5728\u7ef4\u5ea6%s\u4e2d\u6240\u8bf4\u7684\u3002",
@@ -427,5 +427,6 @@
   "sp.configgui.disable_wak_Command": "\u5f37\u6253\u30b3\u30de\u30f3\u30c9\u3092\u7121\u52b9\u306b\u3059\u308b",
   "sp.configgui.op_wak_command": "\u5b9a\u4e49\u91cd\u51fb\u547d\u4ee4\u7684\u6743\u9650\u7ea7\u522b",
   "sp.configgui.update_check": "\u7981\u7528\u751f\u5b58\u52a0\u66f4\u65b0\u68c0\u67e5\u5668\u6d88\u606f",
-  "sp.configgui.sun_audio": "\u7981\u7528\u901a\u8fc7sun.audio\u64ad\u653e\u7684\u58f0\u97f3"
+  "sp.configgui.sun_audio": "\u7981\u7528\u901a\u8fc7sun.audio\u64ad\u653e\u7684\u58f0\u97f3",
+  "sp.configgui.disable_thanks": "\u7981\u7528\u751f\u5b58\u52a0\u8c22\u8c22\u6d88\u606f"
 }

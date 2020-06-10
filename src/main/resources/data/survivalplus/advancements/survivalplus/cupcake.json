@@ -17,7 +17,7 @@
             "conditions": {
                 "items": [
                     {
-                        "tag": "forge:food/cupcake"
+                        "tag": "forge:food/cupcake/cheese"
                     }
                 ]
             }

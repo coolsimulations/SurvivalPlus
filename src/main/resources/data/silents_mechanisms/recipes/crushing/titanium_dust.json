@@ -1,0 +1,18 @@
+{
+    "type": "silents_mechanisms:crushing",
+    "process_time": 300,
+    "ingredient": {
+        "item": "survivalplus:crushed_titanium_ore"
+    },
+    "results": [
+        {
+            "item": "survivalplus:titanium_dust",
+            "count": 1
+        },
+        {
+            "item": "survivalplus:titanium_dust",
+            "count": 1,
+            "chance": 0.1
+        }
+    ]
+}

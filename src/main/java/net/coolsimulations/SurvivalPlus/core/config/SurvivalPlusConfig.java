@@ -85,6 +85,11 @@ public class SurvivalPlusConfig {
 					.translation("sp.configgui.sun_audio")
 					.define("disableSunAudio", false);
 
+			SPConfig.disableThanks = builder
+					.comment("Disable SurvivalPlus Thank You Message")
+					.translation("sp.configgui.disable_thanks")
+					.define("disableThanks", false);
+
 
 			builder.pop();
 		}
