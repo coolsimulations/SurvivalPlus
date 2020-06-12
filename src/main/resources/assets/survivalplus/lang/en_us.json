@@ -34,6 +34,7 @@
   "item.survivalplus.titanium_casing": "Titanium Item Casing",
   "item.survivalplus.copper_dust": "Copper Dust",
   "item.survivalplus.tin_dust": "Tin Dust",
+  "item.survivalplus.titanium_chunks": "Titanium Chunks",
   "item.survivalplus.charcoal_bucket": "Bucket of Charcoal",
   "item.survivalplus.paper_cup": "Paper Cup",
 
@@ -347,7 +348,7 @@
   "sp.commands.confrats.usage": "/confrats <player>",
   "sp.commands.confrats.sameTarget": "You can't confrat yourself!",
   "sp.commands.confrats.display": "* Confrats to %s - From %s",
-  "sp.commands.indeed.usage": "/indeed OR /indeed <player>",
+  "sp.commands.indeed.usage": "/indeed [player]",
   "sp.commands.indeed.sameTarget": "You can't agree with yourself!",
   "sp.commands.indeed.display1": "* 'Indeed' is what %s says because they agree with what %s just said!",
   "sp.commands.indeed.display2": "* 'Indeed' is what %s says because they agree!",
@@ -363,7 +364,7 @@
   "sp.commands.mourn.usage": "/mourn <player>",
   "sp.commands.mourn.sameTarget": "You can't mourn yourself!",
   "sp.commands.mourn.display": "* %s mourns the loss of %s and wails loudly to no one in particular...",
-  "sp.commands.sleep.usage": "/sleep OR /sleep <player>",
+  "sp.commands.sleep.usage": "/sleep [player]",
   "sp.commands.sleep.sameTarget": "You can't tell yourself to sleep!",
   "sp.commands.sleep.display1": "* 'GO TO SLEEP %s! Please...' is what %s says in dimension %s.",
   "sp.commands.sleep.display2": "* 'GO TO SLEEP! Please...' is what %s says in dimension %s.",
@@ -425,5 +426,6 @@
   "sp.configgui.disable_wak_Command": "Disable the Wak Command",
   "sp.configgui.op_wak_command": "Define the Permission Level of the Wak Command",
   "sp.configgui.update_check": "Disable SurvivalPlus Update Checker Message",
-  "sp.configgui.sun_audio": "Disable Sounds Played Through sun.audio"
+  "sp.configgui.sun_audio": "Disable Sounds Played Through sun.audio",
+  "sp.configgui.disable_thanks": "Disable SurvivalPlus Thank You Message"
 }

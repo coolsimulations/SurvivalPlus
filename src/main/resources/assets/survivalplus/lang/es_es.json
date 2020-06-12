@@ -34,6 +34,7 @@
   "item.survivalplus.titanium_casing": "Carcasa para Objetos de Titanio",
   "item.survivalplus.copper_dust": "Polvo de Cobre",
   "item.survivalplus.tin_dust": "Polvo de Esta\u00f1o",
+  "item.survivalplus.titanium_chunks": "Trozos de Titanio",
   "item.survivalplus.charcoal_bucket": "Cubo con Carb\u00f3n vegetal",
   "item.survivalplus.paper_cup": "Copa de Papel",
 
@@ -346,7 +347,7 @@
   "sp.commands.confrats.usage": "/confrats <jugador>",
   "sp.commands.confrats.sameTarget": "¡No puedes confrat a ti mismo!",
   "sp.commands.confrats.display": "* Confrats a %s - de %s",
-  "sp.commands.indeed.usage": "/indeed O /indeed <jugador>",
+  "sp.commands.indeed.usage": "/indeed [jugador]",
   "sp.commands.indeed.sameTarget": "¡No puedes estar de acuerdo contigo mismo!",
   "sp.commands.indeed.display1": "* ¡'De hecho' es lo que dice %s porque est\u00e1n de acuerdo con lo que %s acaba de decir!",
   "sp.commands.indeed.display2": "* ¡'De hecho' es lo que %s dice porque est\u00e1n de acuerdo!",
@@ -362,7 +363,7 @@
   "sp.commands.mourn.usage": "/mourn <jugador>",
   "sp.commands.mourn.sameTarget": "¡No puedes llorar a ti mismo!",
   "sp.commands.mourn.display": "* %s llora la p\u00e9rdida de %s y no llora a nadie en particular...",
-  "sp.commands.sleep.usage": "/sleep O /sleep <jugador>",
+  "sp.commands.sleep.usage": "/sleep [jugador]",
   "sp.commands.sleep.sameTarget": "¡No puedes decirte que duermas!",
   "sp.commands.sleep.display1": "* 'VE A DORMIR %s! Por favor...' es lo que dice %s en la dimensi\u00f3n %s.",
   "sp.commands.sleep.display2": "* '¡VE A DORMIR! Por favor...' es lo que dice %s en la dimensi\u00f3n %s.",
@@ -418,5 +419,6 @@
   "sp.configgui.enable_Replace_BOP_Recipe": "Habilitar Reemplazar Receta de Artefacto Terrestre BOP",
   "sp.configgui.op_wak_command": "Definir el Nivel de Permiso del Comando Wak",
   "sp.configgui.update_check": "Desactivar el Mensaje del Comprobador de Actualizaciones de SupervivenciaM\u00e1s",
-  "sp.configgui.sun_audio": "Desactivar los Sonidos Reproducidos a Trav\u00e9s de sun.audio"
+  "sp.configgui.sun_audio": "Desactivar los Sonidos Reproducidos a Trav\u00e9s de sun.audio",
+  "sp.configgui.disable_thanks": "Desactivar SupervivenciaM\u00e1s Mensaje de Agradecimiento"
 }

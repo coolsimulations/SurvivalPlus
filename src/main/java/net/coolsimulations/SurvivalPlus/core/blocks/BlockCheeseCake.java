@@ -14,6 +14,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
@@ -40,32 +41,38 @@ public class BlockCheeseCake extends Block
     public VoxelShape getShape(BlockState state, IBlockReader source, BlockPos pos, ISelectionContext context) {
         return CAKE_AABB[(Integer)state.get(BITES)];
     }
+    
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand, BlockRayTraceResult ray) {
+        if (worldIn.isRemote) {
+			ItemStack lvt_7_1_ = playerIn.getHeldItem(hand);
+			if (this.eatCake(worldIn, pos, state, playerIn) == ActionResultType.SUCCESS) {
+				return ActionResultType.SUCCESS;
+			}
 
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand, BlockRayTraceResult ray) {
-        if (!worldIn.isRemote) {
-            return this.eatCake(worldIn, pos, state, playerIn);
-        } else {
-            ItemStack itemstack = playerIn.getHeldItem(hand);
-            return this.eatCake(worldIn, pos, state, playerIn) || itemstack.isEmpty();
-        }
+			if (lvt_7_1_.isEmpty()) {
+				return ActionResultType.CONSUME;
+			}
+		}
+
+		return this.eatCake(worldIn, pos, state, playerIn);
     }
+    
+    private ActionResultType eatCake(IWorld world, BlockPos pos, BlockState state, PlayerEntity player) {
+		if (!player.canEat(false)) {
+			return ActionResultType.PASS;
+		} else {
+			player.addStat(Stats.EAT_CAKE_SLICE);
+			player.getFoodStats().addStats(2, 0.1F);
+			int bites = (Integer) state.get(BITES);
+			if (bites < 6) {
+				world.setBlockState(pos, (BlockState) state.with(BITES, bites + 1), 3);
+			} else {
+				world.removeBlock(pos, false);
+			}
 
-    private boolean eatCake(IWorld worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!player.canEat(false)) {
-            return false;
-        } else {
-            player.addStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodStats().addStats(2, 0.1F);
-            int bites = (Integer)state.get(BITES);
-            if (bites < 6) {
-                worldIn.setBlockState(pos, (BlockState)state.with(BITES, bites + 1), 3);
-            } else {
-                worldIn.removeBlock(pos, false);
-            }
-
-            return true;
-        }
-    }
+			return ActionResultType.SUCCESS;
+		}
+	}
 
     public BlockState updatePostPlacement(BlockState state, Direction side, BlockState blockState, IWorld worldIn, BlockPos pos, BlockPos blockPos) {
         return side == Direction.DOWN && !state.isValidPosition(worldIn, pos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(state, side, blockState, worldIn, pos, blockPos);

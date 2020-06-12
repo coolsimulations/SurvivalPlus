@@ -59,6 +59,7 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 public class SurvivalPlusEventHandler {
@@ -78,7 +79,7 @@ public class SurvivalPlusEventHandler {
 			isDone = true;
 		}
 		
-		if(!entityData.getBoolean("sp.firstJoin") && !isDone) {
+		if(!entityData.getBoolean("sp.firstJoin") && !isDone && !SPConfig.disableThanks.get()) {
 			
 			entityData.putBoolean("sp.firstJoin", true);
 		
@@ -150,7 +151,7 @@ public class SurvivalPlusEventHandler {
 		    		event.getWorld().setBlockState(event.getPos(), state.with(CampfireBlock.LIT, false));
 		    		if (event.getWorld().isRemote()) {
 						for (int i = 0; i < 20; ++i) {
-							CampfireBlock.func_220098_a(event.getWorld(), event.getPos(), (Boolean) state.get(CampfireBlock.SIGNAL_FIRE),true);
+							CampfireBlock.spawnSmokeParticles(event.getWorld(), event.getPos(), (Boolean) state.get(CampfireBlock.SIGNAL_FIRE),true);
 						}
 					} else {
 						event.getWorld().playSound((PlayerEntity) null, event.getPos(), SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -193,27 +194,27 @@ public class SurvivalPlusEventHandler {
 		}
 		
 		if(block instanceof BeehiveBlock) {
-			int level = state.get(BeehiveBlock.field_226873_c_);
+			int level = state.get(BeehiveBlock.HONEY_LEVEL);
 		    boolean flag = false;
 		      
 			if (level >= 5 && item instanceof ShearsItem && item != Items.SHEARS) {
-	            event.getWorld().playSound(entityplayer, entityplayer.func_226277_ct_(), entityplayer.func_226278_cu_(), entityplayer.func_226281_cx_(), SoundEvents.field_226133_ah_, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-	            BeehiveBlock.func_226878_a_(event.getWorld(), event.getPos());
+	            event.getWorld().playSound(entityplayer, entityplayer.getPosX(), entityplayer.getPosY(), entityplayer.getPosZ(), SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+	            BeehiveBlock.dropHoneyComb(event.getWorld(), event.getPos());
 	            itemStackIn.damageItem(1, entityplayer, (livingentity) -> {livingentity.sendBreakAnimation(event.getHand());});
 	            flag = true;
 	         }
 			
 			if (flag) {
-		         if (!CampfireBlock.func_226914_b_(event.getWorld(), event.getPos(), 5)) {
-		            if (func_226882_d_(event.getWorld(), event.getPos())) {
-		            		func_226881_b_(event.getWorld(), event.getPos());
+		         if (!CampfireBlock.isLitCampfireInRange(event.getWorld(), event.getPos(), 5)) {
+		            if (hasBees(event.getWorld(), event.getPos())) {
+		            		angerNearbyBees(event.getWorld(), event.getPos());
 		            }
 
-		            ((BeehiveBlock) block).func_226877_a_(event.getWorld(), state, event.getPos(), entityplayer, BeehiveTileEntity.State.EMERGENCY);
+		            ((BeehiveBlock) block).takeHoney(event.getWorld(), state, event.getPos(), entityplayer, BeehiveTileEntity.State.EMERGENCY);
 		         } else {
-		            ((BeehiveBlock) block).func_226876_a_(event.getWorld(), state, event.getPos());
+		            ((BeehiveBlock) block).takeHoney(event.getWorld(), state, event.getPos());
 		            if (entityplayer instanceof ServerPlayerEntity) {
-		               CriteriaTriggers.field_229863_J_.func_226695_a_((ServerPlayerEntity)entityplayer, event.getPos(), itemStackIn1);
+		               CriteriaTriggers.SAFELY_HARVEST_HONEY.test((ServerPlayerEntity)entityplayer, event.getPos(), itemStackIn1);
 		            }
 		         }
 		      }
@@ -299,7 +300,8 @@ public class SurvivalPlusEventHandler {
 		coolsim.getStyle().setColor(TextFormatting.GOLD);
 		
 		if(event.getUsername().equals("coolsim")) {
-			event.setComponent(new StringTextComponent(coolsim.getFormattedText() + " <" + event.getUsername() + "> " + event.getMessage()));
+			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()) != null)
+				event.setComponent(new StringTextComponent(coolsim.getFormattedText() + " <" + ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()).getDisplayName().getFormattedText() + "> " + event.getMessage()));
 		}
 	}
 	
@@ -377,26 +379,26 @@ public class SurvivalPlusEventHandler {
 	    return playerhead;
 	  }
 	
-	private void func_226881_b_(World p_226881_1_, BlockPos p_226881_2_) {
-		List<BeeEntity> list = p_226881_1_.getEntitiesWithinAABB(BeeEntity.class, (new AxisAlignedBB(p_226881_2_)).grow(8.0D, 6.0D, 8.0D));
+	private void angerNearbyBees(World world, BlockPos pos) {
+		List<BeeEntity> list = world.getEntitiesWithinAABB(BeeEntity.class, (new AxisAlignedBB(pos)).grow(8.0D, 6.0D, 8.0D));
 		if (!list.isEmpty()) {
-			List<PlayerEntity> list1 = p_226881_1_.getEntitiesWithinAABB(PlayerEntity.class, (new AxisAlignedBB(p_226881_2_)).grow(8.0D, 6.0D, 8.0D));
+			List<PlayerEntity> list1 = world.getEntitiesWithinAABB(PlayerEntity.class, (new AxisAlignedBB(pos)).grow(8.0D, 6.0D, 8.0D));
 			int i = list1.size();
 
 			for(BeeEntity beeentity : list) {
 				if (beeentity.getAttackTarget() == null) {
-					beeentity.func_226391_a_(list1.get(p_226881_1_.rand.nextInt(i)));
+					beeentity.setBeeAttacker(list1.get(world.rand.nextInt(i)));
 				}
 			}
 		}
 
 	}
 
-	private boolean func_226882_d_(World p_226882_1_, BlockPos p_226882_2_) {
-		TileEntity tileentity = p_226882_1_.getTileEntity(p_226882_2_);
+	private boolean hasBees(World world, BlockPos pos) {
+		TileEntity tileentity = world.getTileEntity(pos);
 		if (tileentity instanceof BeehiveTileEntity) {
 			BeehiveTileEntity beehivetileentity = (BeehiveTileEntity)tileentity;
-			return !beehivetileentity.func_226969_f_();
+			return !beehivetileentity.hasNoBees();
 		} else {
 			return false;
 		}

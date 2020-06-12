@@ -20,5 +20,6 @@ public class SPConfig {
     public static IntValue opWak;
     public static BooleanValue disableUpdateCheck;
     public static BooleanValue disableSunAudio;
+    public static BooleanValue disableThanks;
 
 }
