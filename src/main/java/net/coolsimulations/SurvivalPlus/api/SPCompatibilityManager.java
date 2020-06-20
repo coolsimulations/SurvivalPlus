@@ -27,6 +27,7 @@ public class SPCompatibilityManager {
 	private static boolean modBetterCombatLoaded;
 	private static boolean modDynamicLightsLoaded;
 	private static boolean modSmoothEntityLightLoaded;
+	private static boolean modMrCrayfishGunModLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -52,6 +53,7 @@ public class SPCompatibilityManager {
 	public static final String BETTER_COMBAT_MODID = "bettercombatmod";
 	public static final String DYNAMIC_LIGHTS_MODID = "dynamiclights";
 	public static final String SMOOTH_ENTITY_LIGHT_MODID = "sel";
+	public static final String MRCRAYFISH_GUN_MOD_MODID = "cgm";
 
 	public static void checkForCompatibleMods(){
 
@@ -170,6 +172,11 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modSmoothEntityLightLoaded = true;
 		}
+		
+		if (Loader.isModLoaded(MRCRAYFISH_GUN_MOD_MODID))
+		{
+			SPCompatibilityManager.modMrCrayfishGunModLoaded = true;
+		}
 	}
 
 	public static boolean isIc2Loaded()
@@ -285,6 +292,11 @@ public class SPCompatibilityManager {
 	public static boolean isSELLoaded()
 	{
 		return SPCompatibilityManager.modSmoothEntityLightLoaded;
+	}
+	
+	public static boolean isCGMLoaded()
+	{
+		return SPCompatibilityManager.modMrCrayfishGunModLoaded;
 	}
 
 }

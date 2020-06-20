@@ -403,6 +403,9 @@ sp.update.display1=¡Esta es una versión antigua de %s! ¡La Versión %s ya est
 sp.update.display2=¡Por favor haga clic para descargar!
 sp.update.display3=¡%s ya no es compatible con Minecraft Versión %s! ¡Actualiza a una versión más nueva de Minecraft para obtener más funciones!
 
+sp.discord.display1=Haga Clic Aquí Para Unirse al Servidor Oficial de Discord Para: 
+sp.discord.display2=Haga Clic Para Unirse!
+
 sp.coolsim.creator=[SupervivenciaMás Creador]
 sp.coolsim.joined=coolsim el gran creador de SupervivenciaMás se unió al juego
 sp.coolsim.left=coolsim el gran creador de SupervivenciaMás dejó el juego

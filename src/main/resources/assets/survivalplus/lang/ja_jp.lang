@@ -403,6 +403,9 @@ sp.update.display1=これは%sの古いバージョンです！ バージョン%
 sp.update.display2=クリックしてダウンロードしてください！
 sp.update.display3=%sはMinecraftバージョン%sをサポートしなくなりました！ より多くの機能については新しいMinecraftバージョンに更新してください！
 
+sp.discord.display1=公式の不和サーバーに参加するには、ここをクリックしてください: 
+sp.discord.display2=クリックして参加！
+
 sp.coolsim.creator=[サバイバルプラス作成者]
 sp.coolsim.joined=サバイバルプラスのグランドクリエイターであるcoolsimがゲームに参加しました
 sp.coolsim.left=サバイバルプラスの大作者であるcoolsimがゲームを去りました

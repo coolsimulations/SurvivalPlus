@@ -403,6 +403,9 @@ sp.update.display1=这是%s的旧版本！ 版本%s现已可用！
 sp.update.display2=请点击下载！
 sp.update.display3=%s不再支持Minecraft版本%s！ 请更新到较新的Minecraft版本以获取更多功能！
 
+sp.discord.display1=单击此处加入正式的Discord服务器以进行： 
+sp.discord.display2=点击加入！
+
 sp.coolsim.creator=[生存加创作者]
 sp.coolsim.joined=coolsim生存加的伟大创造者加入了游戏
 sp.coolsim.left=coolsim生存加的伟大创造者离开了游戏
