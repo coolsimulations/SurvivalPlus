@@ -34,6 +34,7 @@
   "item.survivalplus.titanium_casing": "Titanium Item Casing",
   "item.survivalplus.copper_dust": "Copper Dust",
   "item.survivalplus.tin_dust": "Tin Dust",
+  "item.survivalplus.titanium_chunks": "Titanium Chunks",
   "item.survivalplus.charcoal_bucket": "Bucket of Charcoal",
   "item.survivalplus.paper_cup": "Paper Cup",
 
@@ -401,6 +402,9 @@
   "sp.update.display2": "Please click to download!",
   "sp.update.display3": "%s no longer supports Minecraft Version %s! Please update to a newer Minecraft Version for more features!",
   "sp.install_texture.display": "Make sure the 'Mod Resources' Resource Pack is the highest pack!",
+  
+  "sp.discord.display1": "Click Here to Join the Official Discord Server for: ",
+  "sp.discord.display2": "Click to Join!",
   
   "sp.coolsim.creator": "[SurvivalPlus Creator]",
   "sp.coolsim.joined": "coolsim the grand creator of SurvivalPlus joined the game",

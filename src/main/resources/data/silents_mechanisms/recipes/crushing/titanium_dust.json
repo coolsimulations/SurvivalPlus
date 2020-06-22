@@ -2,7 +2,7 @@
     "type": "silents_mechanisms:crushing",
     "process_time": 300,
     "ingredient": {
-        "item": "survivalplus:crushed_titanium_ore"
+        "item": "survivalplus:titanium_chunks"
     },
     "results": [
         {

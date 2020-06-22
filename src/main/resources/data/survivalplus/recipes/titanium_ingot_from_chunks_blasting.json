@@ -1,7 +1,7 @@
 {
   "type": "minecraft:blasting",
   "ingredient": {
-    "item": "survivalplus:crushed_titanium_ore"
+    "item": "survivalplus:titanium_chunks"
   },
   "result": "survivalplus:titanium_ingot",
   "experience": 0.7,

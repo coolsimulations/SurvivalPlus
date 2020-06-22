@@ -21,7 +21,7 @@ public class SPItems {
 	public static Item paper_cup;
 	
 	/**
-	 * These are the IndustrialCraft 2 and SimpleGrinders Items referred to in SurvivalPlusItems
+	 * These are the IndustrialCraft 2, SimpleGrinders and Silent Mechanisms Items referred to in SurvivalPlusItems
 	 */
 	public static Item crushed_titanium_ore;
 	public static Item titanium_dust;
@@ -32,6 +32,7 @@ public class SPItems {
 	public static Item titanium_casing;
 	public static Item copper_dust;
 	public static Item tin_dust;
+	public static Item titanium_chunks;
 	
 	/**
 	 * These are the food Items referred to in SurvivalPlusFood

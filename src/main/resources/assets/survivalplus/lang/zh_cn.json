@@ -34,6 +34,7 @@
   "item.survivalplus.titanium_casing": "\u949b\u8d28\u5916\u58f3",
   "item.survivalplus.copper_dust": "\u94dc\u7c89",
   "item.survivalplus.tin_dust": "\u9521\u7c89",
+  "item.survivalplus.titanium_chunks": "\u949b\u5757",
   "item.survivalplus.charcoal_bucket": "\u6728\u70ad\u6876",
   "item.survivalplus.paper_cup": "\u7eb8\u676f",
   "item.survivalplus.white_dye": "\u767d\u8272\u67d3\u6599",
@@ -403,6 +404,9 @@
   "sp.update.display2": "\u8bf7\u70b9\u51fb\u4e0b\u8f7d\uff01",
   "sp.update.display3": "%s\u4e0d\u518d\u652f\u6301Minecraft\u7248\u672c%s\uff01\u0020\u8bf7\u66f4\u65b0\u5230\u8f83\u65b0\u7684Minecraft\u7248\u672c\u4ee5\u83b7\u53d6\u66f4\u591a\u529f\u80fd\uff01",
   "sp.install_texture.display": "\u786e\u4fdd'Mod Resources'\u8d44\u6e90\u5305\u662f\u6700\u9ad8\u7684\u5305\uff01",
+  
+  "sp.discord.display1": "\u5355\u51fb\u6b64\u5904\u52a0\u5165\u6b63\u5f0f\u7684Discord\u670d\u52a1\u5668\u4ee5\u8fdb\u884c: ",
+  "sp.discord.display2": "\u70b9\u51fb\u52a0\u5165\uff01",
   
   "sp.coolsim.creator": "[\u751f\u5b58\u52a0\u521b\u4f5c\u8005]",
   "sp.coolsim.joined": "coolsim\u751f\u5b58\u52a0\u7684\u4f1f\u5927\u521b\u9020\u8005\u52a0\u5165\u4e86\u6e38\u620f",
