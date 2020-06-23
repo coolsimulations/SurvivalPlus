@@ -12,7 +12,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:food/cheese"
+            "tag": "forge:cheese"
           }
         ]
       }
