@@ -27,6 +27,7 @@ public class SPCompatibilityManager {
 	private static boolean modJerLoaded;
 	private static boolean modSwordBlockingLoaded;
 	private static boolean modSilentMechanismsLoaded;
+	private static boolean modMrCrayfishGunModLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -52,6 +53,7 @@ public class SPCompatibilityManager {
 	public static final String JER_MODID = "jeresources";
 	public static final String SWORD_BLOCKING_MODID = "swordblockingcombat";
 	public static final String SILENT_MECHANISMS_MODID = "silents_mechanisms";
+	public static final String MRCRAYFISH_GUN_MOD_MODID = "cgm";
 
 	public static void checkForCompatibleMods(){
 
@@ -155,7 +157,7 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modHammerTimeLoaded = true;
 		}
-		
+
 		if (ModList.get().isLoaded(JER_MODID))
 		{
 			SPCompatibilityManager.modJerLoaded = true;
@@ -165,12 +167,16 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modSwordBlockingLoaded = true;
 		}
-		
+
 		if (ModList.get().isLoaded(SILENT_MECHANISMS_MODID))
 		{
 			SPCompatibilityManager.modSilentMechanismsLoaded = true;
 		}
 
+		if (ModList.get().isLoaded(MRCRAYFISH_GUN_MOD_MODID))
+		{
+			SPCompatibilityManager.modMrCrayfishGunModLoaded = true;
+		}
 	}
 
 	public static boolean isIc2Loaded()
@@ -272,7 +278,7 @@ public class SPCompatibilityManager {
 	{
 		return SPCompatibilityManager.modHammerTimeLoaded;
 	}
-	
+
 	public static boolean isJerLoaded()
 	{
 		return SPCompatibilityManager.modJerLoaded;
@@ -282,10 +288,15 @@ public class SPCompatibilityManager {
 	{
 		return SPCompatibilityManager.modSwordBlockingLoaded;
 	}
-	
+
 	public static boolean isSilentMechanismsLoaded()
 	{
 		return SPCompatibilityManager.modSilentMechanismsLoaded;
+	}
+
+	public static boolean isCGMLoaded()
+	{
+		return SPCompatibilityManager.modMrCrayfishGunModLoaded;
 	}
 
 }

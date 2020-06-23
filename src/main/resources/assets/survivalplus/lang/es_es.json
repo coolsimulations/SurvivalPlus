@@ -401,6 +401,9 @@
   "sp.update.display2": "¡Por favor haga clic para descargar!",
   "sp.update.display3": "¡%s ya no es compatible con Minecraft Versi\u00f3n %s! ¡Actualiza a una versi\u00f3n m\u00e1s nueva de Minecraft para obtener m\u00e1s funciones!",
   "sp.install_texture.display": "¡Aseg\u00farese de que el Paquetes de Recursos 'Mod Resources' sea el m\u00e1s alto el Paquetes!",
+  
+  "sp.discord.display1": "Haga Clic Aqu\u00ed Para Unirse al Servidor Oficial de Discord Para: ",
+  "sp.discord.display2": "Haga Clic Para Unirse!",
 
   "sp.configgui.title": "SupervivenciaM\u00e1s Configuraci\u00f3n",
   "sp.configgui.enable_sponge": "Habilitar Receta de Esponja",

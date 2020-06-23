@@ -7,7 +7,7 @@
   ],
   "key": {
     "C": {
-      "tag": "forge:food/cheese"
+      "tag": "forge:cheese"
     },
     "W": {
       "item": "minecraft:yellow_wool"

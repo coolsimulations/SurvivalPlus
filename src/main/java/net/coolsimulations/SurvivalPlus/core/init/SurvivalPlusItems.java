@@ -34,7 +34,7 @@ public class SurvivalPlusItems {
 			SPItems.copper_dust = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("copper_dust");
 			SPItems.tin_dust = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("tin_dust");
 		}
-		
+
 		if(SPCompatibilityManager.isSilentMechanismsLoaded())
 		{
 			SPItems.titanium_chunks = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_chunks");
@@ -74,7 +74,7 @@ public class SurvivalPlusItems {
 			registerItem(SPItems.copper_dust);
 			registerItem(SPItems.tin_dust);
 		}
-		
+
 		if(SPCompatibilityManager.isSilentMechanismsLoaded())
 		{
 			registerItem(SPItems.titanium_chunks);

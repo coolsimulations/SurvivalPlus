@@ -8,7 +8,7 @@
   ],
   "key": {
     "C": {
-      "tag": "forge:food/cheese"
+      "tag": "forge:cheese"
     },
     "S": {
       "item": "minecraft:sugar"

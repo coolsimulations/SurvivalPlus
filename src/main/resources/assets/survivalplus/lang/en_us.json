@@ -403,6 +403,9 @@
   "sp.update.display3": "%s no longer supports Minecraft Version %s! Please update to a newer Minecraft Version for more features!",
   "sp.install_texture.display": "Make sure the 'Mod Resources' Resource Pack is the highest pack!",
   
+  "sp.discord.display1": "Click Here to Join the Official Discord Server for: ",
+  "sp.discord.display2": "Click to Join!",
+  
   "sp.coolsim.creator": "[SurvivalPlus Creator]",
   "sp.coolsim.joined": "coolsim the grand creator of SurvivalPlus joined the game",
   "sp.coolsim.left": "coolsim the grand creator of SurvivalPlus left the game",
