@@ -8,8 +8,8 @@ import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystal;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.ColdOceanBiome;
+import net.minecraft.world.biome.CrimsonForestBiome;
 import net.minecraft.world.biome.DeepColdOceanBiome;
 import net.minecraft.world.biome.DeepFrozenOceanBiome;
 import net.minecraft.world.biome.DeepLukewarmOceanBiome;
@@ -18,8 +18,11 @@ import net.minecraft.world.biome.DeepWarmOceanBiome;
 import net.minecraft.world.biome.FrozenOceanBiome;
 import net.minecraft.world.biome.LukewarmOceanBiome;
 import net.minecraft.world.biome.MushroomFieldsBiome;
+import net.minecraft.world.biome.NetherWastesBiome;
 import net.minecraft.world.biome.OceanBiome;
+import net.minecraft.world.biome.SoulSandBiome;
 import net.minecraft.world.biome.WarmOceanBiome;
+import net.minecraft.world.biome.WarpedForestBiome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
@@ -33,7 +36,7 @@ public class SurvivalPlusOreGenerator {
 	public static void generateOres() {
 
 		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
-			if (biome == Biomes.NETHER) {
+			if (biome instanceof CrimsonForestBiome || biome instanceof NetherWastesBiome || biome instanceof SoulSandBiome || biome instanceof WarpedForestBiome) {
 				if(!SPConfig.disableAmethystGen.get()) {
 					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.amethyst.getDefaultState(), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 1, 0, 255))));
 				}

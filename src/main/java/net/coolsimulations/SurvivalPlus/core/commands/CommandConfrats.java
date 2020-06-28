@@ -7,6 +7,8 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Collection;
@@ -33,8 +35,8 @@ public class CommandConfrats {
 
 			}else {
 				TranslationTextComponent confrats = new TranslationTextComponent("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
-				confrats.getStyle().setColor(TextFormatting.YELLOW);
-				sender.getServer().getPlayerList().sendMessage(confrats);
+				confrats.func_240699_a_(TextFormatting.YELLOW);
+				sender.getServer().getPlayerList().func_232641_a_(confrats, ChatType.SYSTEM, Util.field_240973_b_);
 			}
 		}
 

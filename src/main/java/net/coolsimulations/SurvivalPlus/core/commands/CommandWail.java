@@ -5,6 +5,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TextFormatting;
 
 public class CommandWail {
@@ -18,8 +20,8 @@ public class CommandWail {
 	private static int wail(CommandSource sender) {
 
 		TranslationTextComponent wail = new TranslationTextComponent("sp.commands.wail.display", new Object[] {sender.getDisplayName()});
-		wail.getStyle().setColor(TextFormatting.AQUA);
-		sender.getServer().getPlayerList().sendMessage(wail);
+		wail.func_240699_a_(TextFormatting.AQUA);
+		sender.getServer().getPlayerList().func_232641_a_(wail, ChatType.SYSTEM, Util.field_240973_b_);
 
 		return Command.SINGLE_SUCCESS;
 	}

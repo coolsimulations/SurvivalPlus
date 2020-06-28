@@ -35,6 +35,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.BeehiveTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -42,8 +43,10 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.LanguageMap;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -91,42 +94,38 @@ public class SurvivalPlusEventHandler {
 			if(!player.world.isRemote) {
 
 				TranslationTextComponent installInfo = new TranslationTextComponent("advancements.sp.install.display1");
-				installInfo.getStyle().setColor(TextFormatting.GOLD);
-				installInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("advancements.sp.install.display2")));
-				installInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
-				player.sendMessage(installInfo);
+				installInfo.func_240699_a_(TextFormatting.GOLD);
+				player.func_241151_a_(installInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("advancements.sp.install.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.field_240973_b_);
 
 				TranslationTextComponent installTextureInfo = new TranslationTextComponent("sp.install_texture.display");
-				installTextureInfo.getStyle().setColor(TextFormatting.YELLOW);
-				installTextureInfo.getStyle().setBold(true);
-				player.sendMessage(installTextureInfo);
+				installTextureInfo.func_240699_a_(TextFormatting.YELLOW);
+				installTextureInfo.func_240699_a_(TextFormatting.BOLD);
+				player.func_241151_a_(installTextureInfo, ChatType.SYSTEM, Util.field_240973_b_);
 				
 				TranslationTextComponent discord = new TranslationTextComponent("sp.discord.display1");
-				discord.getStyle().setColor(TextFormatting.DARK_GREEN);
-				discord.getStyle().setBold(true);
+				discord.func_240699_a_(TextFormatting.DARK_GREEN);
+				discord.func_240699_a_(TextFormatting.BOLD);
 				
 				for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
-					String name = LanguageMap.getInstance().translateKey(SPReference.MOD_ADDON_NAMES.get(i));
+					String name = LanguageMap.getInstance().func_230503_a_(SPReference.MOD_ADDON_NAMES.get(i));
 					
 					StringTextComponent formatted = new StringTextComponent(name);
-					formatted.getStyle().setColor(TextFormatting.BLUE);
-					formatted.getStyle().setBold(true);
+					formatted.func_240699_a_(TextFormatting.BLUE);
+					formatted.func_240699_a_(TextFormatting.BOLD);
 					
 					StringTextComponent gap = new StringTextComponent(", ");
-					gap.getStyle().setColor(TextFormatting.WHITE);
+					gap.func_240699_a_(TextFormatting.WHITE);
 					
-					discord.appendSibling(formatted);
+					discord.func_230529_a_(formatted);
 					if(i + 1 != SPReference.MOD_ADDON_NAMES.size()) {
-						discord.appendSibling(gap);
+						discord.func_230529_a_(gap);
 					}
 				}
-				discord.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.discord.display2")));
-				discord.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));
 				
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						player.sendMessage(discord);
+						player.func_241151_a_(discord.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.discord.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));}), ChatType.SYSTEM, Util.field_240973_b_);
 					}
 				}, 30000);
 			}
@@ -136,8 +135,8 @@ public class SurvivalPlusEventHandler {
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
-					player.sendMessage(SurvivalPlusUpdateHandler.updateInfo);
-					player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo);
+					player.func_241151_a_(SurvivalPlusUpdateHandler.updateInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.field_240973_b_);
+					player.func_241151_a_(SurvivalPlusUpdateHandler.updateVersionInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.field_240973_b_);
 				}
 			}, 15000);
 		}
@@ -243,7 +242,7 @@ public class SurvivalPlusEventHandler {
 			}
 
 			if (flag) {
-				if (!CampfireBlock.isLitCampfireInRange(event.getWorld(), event.getPos(), 5)) {
+				if (!CampfireBlock.func_235474_a_(event.getWorld(), event.getPos())) {
 					if (hasBees(event.getWorld(), event.getPos())) {
 						angerNearbyBees(event.getWorld(), event.getPos());
 					}
@@ -251,9 +250,6 @@ public class SurvivalPlusEventHandler {
 					((BeehiveBlock) block).takeHoney(event.getWorld(), state, event.getPos(), entityplayer, BeehiveTileEntity.State.EMERGENCY);
 				} else {
 					((BeehiveBlock) block).takeHoney(event.getWorld(), state, event.getPos());
-					if (entityplayer instanceof ServerPlayerEntity) {
-						CriteriaTriggers.SAFELY_HARVEST_HONEY.test((ServerPlayerEntity)entityplayer, event.getPos(), itemStackIn1);
-					}
 				}
 			}
 		}
@@ -335,11 +331,11 @@ public class SurvivalPlusEventHandler {
 	public void coolsimChat(ServerChatEvent event) {
 
 		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
-		coolsim.getStyle().setColor(TextFormatting.GOLD);
+		coolsim.func_240699_a_(TextFormatting.GOLD);
 
 		if(event.getUsername().equals("coolsim")) {
 			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()) != null)
-				event.setComponent(new StringTextComponent(coolsim.getFormattedText() + " <" + ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()).getDisplayName().getFormattedText() + "> " + event.getMessage()));
+				event.setComponent(new TranslationTextComponent("%s <%s> %s", new Object[] {coolsim, ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()).getDisplayName(), event.getMessage()}));
 		}
 	}
 
@@ -347,71 +343,67 @@ public class SurvivalPlusEventHandler {
 	public void coolsimReceivedChat(ClientChatReceivedEvent event) {
 
 		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
-		coolsim.getStyle().setColor(TextFormatting.GOLD);
+		coolsim.func_240699_a_(TextFormatting.GOLD);
 
 		TranslationTextComponent playerJoined = new TranslationTextComponent("multiplayer.player.joined", new Object[] {"coolsim"});
-		playerJoined.getStyle().setColor(TextFormatting.YELLOW);
+		playerJoined.func_240699_a_(TextFormatting.YELLOW);
 
 		TranslationTextComponent playerLeft = new TranslationTextComponent("multiplayer.player.left", new Object[] {"coolsim"});
-		playerLeft.getStyle().setColor(TextFormatting.YELLOW);
+		playerLeft.func_240699_a_(TextFormatting.YELLOW);
 
 		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined");
-		coolsimJoined.getStyle().setColor(TextFormatting.YELLOW);
+		coolsimJoined.func_240699_a_(TextFormatting.YELLOW);
 
 		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left");
-		coolsimLeft.getStyle().setColor(TextFormatting.YELLOW);
+		coolsimLeft.func_240699_a_(TextFormatting.YELLOW);
 
-		if(event.getMessage().getFormattedText().equals(playerJoined.getFormattedText())) {
+		if(event.getMessage().getString().equals(playerJoined.getString())) {
 			event.setMessage(coolsimJoined);
 		}
 
-		if(event.getMessage().getFormattedText().equals(playerLeft.getFormattedText())) {
+		if(event.getMessage().getString().equals(playerLeft.getString())) {
 			event.setMessage(coolsimLeft);
 		}
 
-		if(event.getMessage().getFormattedText().startsWith("[coolsim]")) {
-			event.setMessage(new StringTextComponent(event.getMessage().getFormattedText().replaceFirst("\\[", coolsim.getFormattedText() + " [")));
+		if(event.getMessage().getString().startsWith("[coolsim]")) {
+			event.setMessage(new TranslationTextComponent("%s %s", new Object[] {coolsim, event.getMessage()}));
 		}
 	}
 
 	@SubscribeEvent
 	public void coolsimDeath(LivingDeathEvent event) {
 
-		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().getDisplayName().getFormattedText().equals("coolsim") && event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
+		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().getDisplayName().getString().equals("coolsim") && event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
 
 			ServerPlayerEntity attacker = (ServerPlayerEntity) event.getSource().getTrueSource();
-			ItemStack coolsimHead = getcoolsimHead();
+			ItemStack coolsimHead = getcoolsimHead((PlayerEntity) event.getEntity());
 
 			if(coolsimHead != null) {
 				ItemHandlerHelper.giveItemToPlayer(attacker, coolsimHead);
 			} else {
 				TranslationTextComponent error = new TranslationTextComponent("sp.coolsim.error");
-				error.getStyle().setColor(TextFormatting.RED);
-				attacker.sendMessage(error);
+				error.func_240699_a_(TextFormatting.RED);
+				attacker.func_241151_a_(error, ChatType.SYSTEM, Util.field_240973_b_);
 			}
 		}
 
 	}
 
-	public static ItemStack getcoolsimHead()
+	public static ItemStack getcoolsimHead(PlayerEntity coolsim)
 	{
 		String texture = "eyJ0aW1lc3RhbXAiOjE1NzYxMTM5OTc5ODUsInByb2ZpbGVJZCI6IjU0NDgxMjU3N2I2ZDRjOGU4YWFjY2E2Zjg2NGUxNDEyIiwicHJvZmlsZU5hbWUiOiJjb29sc2ltIiwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzdmMDkwM2QxOGMyZTE4YmQzYzBiMDk5YmIzZGFkNmVjYTQ2ZDBjMzdkZjJkM2FlMjljYzAwOWYwN2I5OTM3NmYifX19";
-		String id = new UUID(texture.hashCode(), texture.hashCode()).toString();
 
 		ItemStack playerhead = new ItemStack(Items.PLAYER_HEAD);
 
 		TranslationTextComponent headName = new TranslationTextComponent("block.minecraft.player_head.named", new Object[] {"coolsim"});
-		headName.getStyle().setItalic(true);
-		CompoundNBT skullOwner = new CompoundNBT();
-		skullOwner.putString("Id", id);
+		headName.func_240699_a_(TextFormatting.ITALIC);
 		CompoundNBT properties = new CompoundNBT();
 		ListNBT textures = new ListNBT();
 		CompoundNBT tex = new CompoundNBT();
 		tex.putString("Value", texture);
 		textures.add(tex);
 		properties.put("textures", textures);
-		skullOwner.put("Properties", properties);
-		playerhead.setTagInfo("SkullOwner", skullOwner);
+		playerhead.setTagInfo("SkullOwner", NBTUtil.writeGameProfile(new CompoundNBT(), coolsim.getGameProfile()));
 		playerhead.setDisplayName(headName);
 
 		return playerhead;
@@ -425,7 +417,7 @@ public class SurvivalPlusEventHandler {
 
 			for(BeeEntity beeentity : list) {
 				if (beeentity.getAttackTarget() == null) {
-					beeentity.setBeeAttacker(list1.get(world.rand.nextInt(i)));
+					beeentity.setAttackTarget(list1.get(world.rand.nextInt(i)));
 				}
 			}
 		}

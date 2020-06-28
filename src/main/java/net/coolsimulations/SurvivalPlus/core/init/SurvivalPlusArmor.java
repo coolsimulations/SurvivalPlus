@@ -122,6 +122,26 @@ public class SurvivalPlusArmor {
 		SPItems.dark_oak.add(1, new ItemStack(SPItems.dark_oak_chestplate));
 		SPItems.dark_oak.add(2, new ItemStack(SPItems.dark_oak_leggings));
 		SPItems.dark_oak.add(3, new ItemStack(SPItems.dark_oak_boots));
+		
+		SPItems.crimson_helmet = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("crimson_helmet");
+		SPItems.crimson_chestplate = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("crimson_chestplate");
+		SPItems.crimson_leggings = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("crimson_leggings");
+		SPItems.crimson_boots = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlotType.FEET).setRegistryName("crimson_boots");
+		SPItems.crimson = NonNullList.create();
+		SPItems.crimson.add(0, new ItemStack(SPItems.crimson_helmet));
+		SPItems.crimson.add(1, new ItemStack(SPItems.crimson_chestplate));
+		SPItems.crimson.add(2, new ItemStack(SPItems.crimson_leggings));
+		SPItems.crimson.add(3, new ItemStack(SPItems.crimson_boots));
+		
+		SPItems.warped_helmet = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("warped_helmet");
+		SPItems.warped_chestplate = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("warped_chestplate");
+		SPItems.warped_leggings = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("warped_leggings");
+		SPItems.warped_boots = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlotType.FEET).setRegistryName("warped_boots");
+		SPItems.warped = NonNullList.create();
+		SPItems.warped.add(0, new ItemStack(SPItems.warped_helmet));
+		SPItems.warped.add(1, new ItemStack(SPItems.warped_chestplate));
+		SPItems.warped.add(2, new ItemStack(SPItems.warped_leggings));
+		SPItems.warped.add(3, new ItemStack(SPItems.warped_boots));
 
 		if (SPCompatibilityManager.isIc2Loaded()) {
 			
@@ -157,6 +177,8 @@ public class SurvivalPlusArmor {
 		registerItem(SPItems.jungle);
 		registerItem(SPItems.acacia);
 		registerItem(SPItems.dark_oak);
+		registerItem(SPItems.crimson);
+		registerItem(SPItems.warped);
 		
 		if (SPCompatibilityManager.isIc2Loaded()) {
 			

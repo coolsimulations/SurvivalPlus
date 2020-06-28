@@ -8,6 +8,8 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Collection;
@@ -38,8 +40,8 @@ public class CommandIndeed {
 
 			} else {
 				TranslationTextComponent indeed = new TranslationTextComponent("sp.commands.indeed.display1", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				indeed.getStyle().setColor(TextFormatting.DARK_GREEN);
-				sender.getServer().getPlayerList().sendMessage(indeed);
+				indeed.func_240699_a_(TextFormatting.DARK_GREEN);
+				sender.getServer().getPlayerList().func_232641_a_(indeed, ChatType.SYSTEM, Util.field_240973_b_);
 			}
 		}
 
@@ -49,8 +51,8 @@ public class CommandIndeed {
 	private static int indeedSingle(CommandSource sender) {
 
 		TranslationTextComponent indeed = new TranslationTextComponent("sp.commands.indeed.display2", new Object[]{sender.getDisplayName()});
-		indeed.getStyle().setColor(TextFormatting.DARK_GREEN);
-		sender.getServer().getPlayerList().sendMessage(indeed);
+		indeed.func_240699_a_(TextFormatting.DARK_GREEN);
+		sender.getServer().getPlayerList().func_232641_a_(indeed, ChatType.SYSTEM, Util.field_240973_b_);
 
 		return Command.SINGLE_SUCCESS;
 	}

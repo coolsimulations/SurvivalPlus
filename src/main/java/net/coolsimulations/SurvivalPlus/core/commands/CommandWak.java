@@ -8,6 +8,8 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Collection;
@@ -34,8 +36,8 @@ public class CommandWak {
 
 			}else {
 				TranslationTextComponent wak = new TranslationTextComponent("sp.commands.wak.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				wak.getStyle().setColor(TextFormatting.DARK_RED);
-				sender.getServer().getPlayerList().sendMessage(wak);
+				wak.func_240699_a_(TextFormatting.DARK_RED);
+				sender.getServer().getPlayerList().func_232641_a_(wak, ChatType.SYSTEM, Util.field_240973_b_);
 			}
 		}
 

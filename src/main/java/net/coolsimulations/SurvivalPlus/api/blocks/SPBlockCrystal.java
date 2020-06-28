@@ -7,12 +7,11 @@ import net.minecraft.block.ILiquidContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.IProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
@@ -47,7 +46,7 @@ public class SPBlockCrystal extends Block implements IBucketPickupHandler, ILiqu
 
 		
 		public SPBlockCrystal() {
-			super(Properties.create(Material.GLASS).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.GLASS).lightValue(7));
+			super(Properties.create(Material.GLASS).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.GLASS).func_235838_a_((p_235464_0_) -> {return 7;}));
 			this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, false));
 			
 		}
@@ -84,13 +83,13 @@ public class SPBlockCrystal extends Block implements IBucketPickupHandler, ILiqu
 
 		@Override
 		public BlockState getStateForPlacement(BlockItemUseContext context) {
-			IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+			FluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
 			return this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER));
 		}
 		
 		@Override
 		protected void fillStateContainer(Builder<Block, BlockState> state) {
-			state.add(new IProperty[]{WATERLOGGED});
+			state.add(WATERLOGGED);
 		}
 
 		@Override
@@ -99,7 +98,7 @@ public class SPBlockCrystal extends Block implements IBucketPickupHandler, ILiqu
 		}
 
 		@Override
-		public boolean receiveFluid(IWorld world, BlockPos pos, BlockState state, IFluidState fluid) {
+		public boolean receiveFluid(IWorld world, BlockPos pos, BlockState state, FluidState fluid) {
 			if (!(Boolean) state.get(WATERLOGGED) && fluid.getFluid() == Fluids.WATER) {
 				if (!world.isRemote()) {
 					world.setBlockState(pos, (BlockState) state.with(WATERLOGGED, true), 3);
@@ -124,7 +123,7 @@ public class SPBlockCrystal extends Block implements IBucketPickupHandler, ILiqu
 		}
 		
 		@Override
-		public IFluidState getFluidState(BlockState state) {
+		public FluidState getFluidState(BlockState state) {
 			return (Boolean) state.get(WATERLOGGED)
 					? Fluids.WATER.getStillFluidState(false)
 					: super.getFluidState(state);

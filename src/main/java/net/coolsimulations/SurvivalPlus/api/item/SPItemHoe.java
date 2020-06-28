@@ -7,8 +7,8 @@ import net.minecraft.item.HoeItem;
 
 public class SPItemHoe extends HoeItem{
 
-	public SPItemHoe(IItemTier tier) {
-		super(tier, tier.getHarvestLevel() - 3.5F, (new Item.Properties().group(SPTabs.tabTools)));
+	public SPItemHoe(IItemTier tier, float attackDamageIn, float attackSpeedIn) {
+		super(tier, (int) attackDamageIn, attackSpeedIn, (new Item.Properties().group(SPTabs.tabTools)));
 	}
 
 }

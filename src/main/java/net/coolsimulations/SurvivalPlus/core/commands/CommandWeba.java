@@ -7,6 +7,8 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Collection;
@@ -33,8 +35,8 @@ public class CommandWeba {
 
 			}else {
 				TranslationTextComponent weba = new TranslationTextComponent("sp.commands.weba.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				weba.getStyle().setColor(TextFormatting.GOLD);
-				sender.getServer().getPlayerList().sendMessage(weba);
+				weba.func_240699_a_(TextFormatting.GOLD);
+				sender.getServer().getPlayerList().func_232641_a_(weba, ChatType.SYSTEM, Util.field_240973_b_);
 			}
 		}
 

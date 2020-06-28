@@ -23,7 +23,7 @@ public class SPBlockMetal extends Block{
 	 */
 	
 	public SPBlockMetal(Resource resource, boolean isBeaconMetal) {
-		super(Properties.create(Material.IRON).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()));
+		super(Properties.create(Material.IRON).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()).func_235838_a_((p_235464_0_) -> {return 0;}));
 		this.resource = resource;
 		this.beacon = isBeaconMetal;
 	}
@@ -41,12 +41,6 @@ public class SPBlockMetal extends Block{
 	@Override
 	public int getHarvestLevel(BlockState state) {
 		return resource.harvestLevel;
-	}
-	
-	@Override
-	public int getLightValue(BlockState p_getLightValue_1_) {
-		
-		return 0;
 	}
 	
 	@Override

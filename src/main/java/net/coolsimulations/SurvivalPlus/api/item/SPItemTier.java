@@ -1,8 +1,11 @@
 package net.coolsimulations.SurvivalPlus.api.item;
 
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.api.SPTags;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.ResourceLocation;
@@ -12,11 +15,11 @@ import java.util.function.Supplier;
 
 public enum SPItemTier implements IItemTier {
     bronzeToolMaterial(2, 350, 5.0F, 1.5F, 7, () -> {
-    	return Ingredient.fromTag(new ItemTags.Wrapper(new ResourceLocation(ForgeMod.getInstance().getModId(), "ingots/bronze")));
+    	return Ingredient.fromTag(SPTags.Items.INGOTS_BRONZE);
     }),
     //3, 731, 7f, 2.5f, 16
     titaniumToolMaterial(2, 432, 7.0F, 2.5F, 17, () -> {
-        return Ingredient.fromTag(new ItemTags.Wrapper(new ResourceLocation(ForgeMod.getInstance().getModId(), "ingots/titanium")));
+        return Ingredient.fromTag(SPTags.Items.INGOTS_TITANIUM);
     });
 
     private final int harvestLevel;

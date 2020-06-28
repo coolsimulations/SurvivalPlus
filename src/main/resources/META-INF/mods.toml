@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[31,]"
+loaderVersion="[32,]"
 issueTrackerURL="http://github.com/coolsimulations/survivalplus/issues/"
 logoFile="logo.png"
 
@@ -17,13 +17,13 @@ logoFile="logo.png"
 [[dependencies.survivalplus]]
     modId="forge"
     mandatory=true
-    versionRange="[31.2,)"
+    versionRange="[32,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.2]"
+    versionRange="[1.16.1]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]

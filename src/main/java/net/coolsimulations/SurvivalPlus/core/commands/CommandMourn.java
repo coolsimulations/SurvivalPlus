@@ -7,6 +7,8 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Collection;
@@ -33,8 +35,8 @@ public class CommandMourn {
 
 			}else {
 				TranslationTextComponent mourns = new TranslationTextComponent("sp.commands.mourn.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				mourns.getStyle().setColor(TextFormatting.DARK_AQUA);
-				sender.getServer().getPlayerList().sendMessage(mourns);
+				mourns.func_240699_a_(TextFormatting.DARK_AQUA);
+				sender.getServer().getPlayerList().func_232641_a_(mourns, ChatType.SYSTEM, Util.field_240973_b_);
 			}
 		}
 

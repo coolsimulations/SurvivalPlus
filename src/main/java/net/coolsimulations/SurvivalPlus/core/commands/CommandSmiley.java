@@ -5,6 +5,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TextFormatting;
 
 public class CommandSmiley {
@@ -18,8 +20,8 @@ public class CommandSmiley {
 	private static int smiley(CommandSource sender) {
 
 		TranslationTextComponent smiley = new TranslationTextComponent("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
-		smiley.getStyle().setColor(TextFormatting.GREEN);
-		sender.getServer().getPlayerList().sendMessage(smiley);
+		smiley.func_240699_a_(TextFormatting.GREEN);
+		sender.getServer().getPlayerList().func_232641_a_(smiley, ChatType.SYSTEM, Util.field_240973_b_);
 
 		return Command.SINGLE_SUCCESS;
 	}

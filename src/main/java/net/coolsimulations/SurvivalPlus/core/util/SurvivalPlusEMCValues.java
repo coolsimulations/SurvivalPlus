@@ -38,18 +38,19 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 	public static void init(){
 		
 		//SurvivalPlus Tags haven't been working in 1.13 or 1.14, however they do work in SurvivalPlus Lightsabers so I'm assuming that it order of loading related
-		//So these lines below do not work, but leaving them there in case other mods tags work 
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_COPPER), 55);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_TIN), 256);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_TITANIUM), 2048);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.CROPS_ONION), 64);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.SEEDS_ONION), 32);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_AMETHYST), 512);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_RUBY), 512);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_TOPAZ), 512);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SAPPHIRE), 512);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_PEARL), 2048);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SPINEL), 2048);
+		//So these lines below do not work, but leaving them there in case other mods tags work
+		//Also unsure if ProjectE will make changes to this in 1.16 due to the ITag<> stuff, so this may not work...
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_COPPER.func_230234_a_()), 55);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_TIN.func_230234_a_()), 256);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_TITANIUM.func_230234_a_()), 2048);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.CROPS_ONION.func_230234_a_()), 64);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.SEEDS_ONION.func_230234_a_()), 32);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_AMETHYST.func_230234_a_()), 512);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_RUBY.func_230234_a_()), 512);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_TOPAZ.func_230234_a_()), 512);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SAPPHIRE.func_230234_a_()), 512);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_PEARL.func_230234_a_()), 2048);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SPINEL.func_230234_a_()), 2048);
 		
 		registerCustomEMC(NSSItem.createItem(SPItems.copper_ingot), 55);
 		registerCustomEMC(NSSItem.createItem(SPItems.tin_ingot), 256);

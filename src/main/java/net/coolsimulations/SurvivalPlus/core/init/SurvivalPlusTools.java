@@ -18,14 +18,14 @@ public class SurvivalPlusTools {
 		SPItems.bronze_pickaxe = new SPItemPickaxe(SPItemTier.bronzeToolMaterial).setRegistryName("bronze_pickaxe");
 		SPItems.bronze_axe = new SPItemAxe(SPItemTier.bronzeToolMaterial, 7, -3.1F).setRegistryName("bronze_axe");
 		SPItems.bronze_shovel = new SPItemShovel(SPItemTier.bronzeToolMaterial).setRegistryName("bronze_shovel");
-		SPItems.bronze_hoe = new SPItemHoe(SPItemTier.bronzeToolMaterial).setRegistryName("bronze_hoe");
+		SPItems.bronze_hoe = new SPItemHoe(SPItemTier.bronzeToolMaterial, -1.5F, -1.5F).setRegistryName("bronze_hoe");
 		SPItems.bronze_sword = new SPItemSword(SPItemTier.bronzeToolMaterial).setRegistryName("bronze_sword");
 		SPItems.bronze_shears = new SPItemShears(179).setRegistryName("bronze_shears");
 		
 		SPItems.titanium_pickaxe = new SPItemPickaxe(SPItemTier.titaniumToolMaterial).setRegistryName("titanium_pickaxe");
 		SPItems.titanium_axe = new SPItemAxe(SPItemTier.titaniumToolMaterial, 8.0F, -3.0F).setRegistryName("titanium_axe");
 		SPItems.titanium_shovel = new SPItemShovel(SPItemTier.titaniumToolMaterial).setRegistryName("titanium_shovel");
-		SPItems.titanium_hoe = new SPItemHoe(SPItemTier.titaniumToolMaterial).setRegistryName("titanium_hoe");
+		SPItems.titanium_hoe = new SPItemHoe(SPItemTier.titaniumToolMaterial, -2.5F, -0.5F).setRegistryName("titanium_hoe");
 		SPItems.titanium_sword = new SPItemSword(SPItemTier.titaniumToolMaterial).setRegistryName("titanium_sword");
 		SPItems.titanium_shears = new SPItemShears(298).setRegistryName("titanium_shears");
 

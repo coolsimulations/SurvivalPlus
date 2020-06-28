@@ -31,7 +31,7 @@ public class SPBlockOre extends Block{
 	 */
 	
 	public SPBlockOre(Resource resource, Boolean dropsXP) {
-		super(Properties.create(Material.ROCK).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()));
+		super(Properties.create(Material.ROCK).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()).func_235838_a_((p_235464_0_) -> {return 0;}));
 		this.resource = resource;
 		this.experience = dropsXP;
 	}
@@ -49,12 +49,6 @@ public class SPBlockOre extends Block{
 	@Override
 	public int getHarvestLevel(BlockState state) {
 		return resource.harvestLevel;
-	}
-	
-	@Override
-	public int getLightValue(BlockState p_getLightValue_1_) {
-		
-		return 0;
 	}
 	
 	protected int getExperience(Random random) {

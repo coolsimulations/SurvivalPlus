@@ -9,7 +9,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.IProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.stats.Stats;
@@ -87,7 +86,7 @@ public class BlockSpongeCake extends Block
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(new IProperty[]{BITES});
+        stateBuilder.add(BITES);
     }
 
     public int getComparatorInputOverride(BlockState state, World worldIn, BlockPos pos) {

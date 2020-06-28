@@ -2,20 +2,18 @@ package net.coolsimulations.SurvivalPlus.api.item;
 
 import java.util.function.Supplier;
 
-import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTags;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.LazyValue;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.Tags;
 
 public enum SPArmorMaterial implements IArmorMaterial {
@@ -46,8 +44,14 @@ public enum SPArmorMaterial implements IArmorMaterial {
     darkOakArmorMaterial("dark_oak", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(Tags.Items.RODS_WOODEN);
     }),
+    crimsonArmorMaterial("crimson", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.fromTag(Tags.Items.RODS_WOODEN);
+    }),
+    warpedArmorMaterial("warped", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.fromTag(Tags.Items.RODS_WOODEN);
+    }),
     rubberArmorMaterial("rubber", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-    	return Ingredient.fromTag(new ItemTags.Wrapper(new ResourceLocation("minecraft", "rubber_logs")));
+    	return Ingredient.fromTag((ITag<Item>) ItemTags.makeWrapperTag("minecraft:" + "rubber_logs"));
     }),
     cherryArmorMaterial("cherry", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(Tags.Items.RODS_WOODEN);
@@ -235,6 +239,10 @@ public enum SPArmorMaterial implements IArmorMaterial {
 
     public float getToughness() {
         return this.toughness;
-}
+    }
+
+	public float func_230304_f_() {
+		return 0;
+	}
 
 }

@@ -134,6 +134,18 @@ public class SPItems {
 	public static Item dark_oak_boots;
 	//public static ItemArmor.ArmorMaterial darkOakArmorMaterial;
 	public static NonNullList<ItemStack> dark_oak;
+	public static Item crimson_helmet;
+	public static Item crimson_chestplate;
+	public static Item crimson_leggings;
+	public static Item crimson_boots;
+	//public static ItemArmor.ArmorMaterial crimsonArmorMaterial;
+	public static NonNullList<ItemStack> crimson;
+	public static Item warped_helmet;
+	public static Item warped_chestplate;
+	public static Item warped_leggings;
+	public static Item warped_boots;
+	//public static ItemArmor.ArmorMaterial warpedArmorMaterial;
+	public static NonNullList<ItemStack> warped;
 	
 	/**
 	 * These are the rubber armor Items referred to in SurvivalPlusArmor along with the corresponding ArmorMaterial and Armor ItemStack List

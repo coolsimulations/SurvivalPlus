@@ -5,6 +5,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TextFormatting;
 
 public class CommandWoo {
@@ -18,8 +20,8 @@ public class CommandWoo {
 	private static int woo(CommandSource sender) {
 
 		TranslationTextComponent woo = new TranslationTextComponent("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
-		woo.getStyle().setColor(TextFormatting.BLUE);
-		sender.getServer().getPlayerList().sendMessage(woo);
+		woo.func_240699_a_(TextFormatting.BLUE);
+		sender.getServer().getPlayerList().func_232641_a_(woo, ChatType.SYSTEM, Util.field_240973_b_);
 
 		return Command.SINGLE_SUCCESS;
 	}
