@@ -36,6 +36,7 @@ import net.minecraft.server.management.WhiteList;
 import net.minecraft.server.management.WhitelistEntry;
 //import net.minecraft.world.gen.feature.structure.StructureIO;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -60,17 +61,6 @@ public class SurvivalPlus {
 	@SubscribeEvent
 	public static void serverLoad(FMLServerStartingEvent event) {
 
-		CommandConfrats.register(event.getCommandDispatcher());
-		CommandEmportant.register(event.getCommandDispatcher());
-		CommandWoo.register(event.getCommandDispatcher());
-		CommandWak.register(event.getCommandDispatcher());
-		CommandSmiley.register(event.getCommandDispatcher());
-		CommandWail.register(event.getCommandDispatcher());
-		CommandIndeed.register(event.getCommandDispatcher());
-		CommandMourn.register(event.getCommandDispatcher());
-		CommandSleep.register(event.getCommandDispatcher());
-		CommandWeba.register(event.getCommandDispatcher());
-
 		MinecraftServer server = event.getServer();
 
 		if(server.isDedicatedServer()) {
@@ -84,15 +74,30 @@ public class SurvivalPlus {
 			}
 		}
 	}
+	
+	@SubscribeEvent
+	public static void command(RegisterCommandsEvent event) {
+		
+		CommandConfrats.register(event.getDispatcher());
+		CommandEmportant.register(event.getDispatcher());
+		CommandWoo.register(event.getDispatcher());
+		CommandWak.register(event.getDispatcher());
+		CommandSmiley.register(event.getDispatcher());
+		CommandWail.register(event.getDispatcher());
+		CommandIndeed.register(event.getDispatcher());
+		CommandMourn.register(event.getDispatcher());
+		CommandSleep.register(event.getDispatcher());
+		CommandWeba.register(event.getDispatcher());
+	}
 
 	public SurvivalPlus() {
 
 		SPCompatibilityManager.checkForCompatibleMods();
 		SurvivalPlusConfig.register(ModLoadingContext.get());
 		SurvivalPlusUpdateHandler.init();
+		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::setupEvent);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::serverLoad);
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
 
 		SurvivalPlusBlocks.init();

@@ -14,12 +14,12 @@ public class SurvivalPlusItems {
 
 	public static void init() {
 
-		SPItems.tin_ingot = new SPItemIngot(true, true, 20.0F).setRegistryName("tin_ingot");
-		SPItems.copper_ingot = new SPItemIngot(true).setRegistryName("copper_ingot");
+		SPItems.tin_ingot = new SPItemIngot(true, 20.0F).setRegistryName("tin_ingot");
+		SPItems.copper_ingot = new SPItemIngot().setRegistryName("copper_ingot");
 		SPItems.onion_seeds = new BlockNamedItem(SPBlocks.onion, new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("onion_seeds");
-		SPItems.bronze_ingot = new SPItemIngot(true).setRegistryName("bronze_ingot");
+		SPItems.bronze_ingot = new SPItemIngot().setRegistryName("bronze_ingot");
 		SPItems.bronze_nugget = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("bronze_nugget");
-		SPItems.titanium_ingot = new SPItemIngot(true, true, 50.0F).setRegistryName("titanium_ingot");
+		SPItems.titanium_ingot = new SPItemIngot(true, 50.0F).setRegistryName("titanium_ingot");
 		SPItems.titanium_nugget = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_nugget");
 		SPItems.charcoal_bucket = new Item(new Item.Properties().group(SPTabs.tabMaterials).maxStackSize(1).containerItem(Items.BUCKET)).setRegistryName("charcoal_bucket");
 		SPItems.paper_cup = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("paper_cup");

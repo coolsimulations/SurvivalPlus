@@ -27,8 +27,8 @@ public class SurvivalPlusBlocks {
 	
 	public static void init()
 	{
-		SPBlocks.copper_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_0, true).setRegistryName("copper_block");
-		SPBlocks.tin_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_0, true).setRegistryName("tin_block");
+		SPBlocks.copper_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_0).setRegistryName("copper_block");
+		SPBlocks.tin_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_0).setRegistryName("tin_block");
 		SPBlocks.onion = new BlockOnionCrop().setRegistryName("onion");
 		SPBlocks.cheese_cake = new BlockCheeseCake().setRegistryName("cheese_cake");
 		SPBlocks.sponge_cake = new BlockSpongeCake().setRegistryName("sponge_cake");
@@ -36,8 +36,8 @@ public class SurvivalPlusBlocks {
 		SPBlocks.tin_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1, false).setRegistryName("tin_ore");
 		SPBlocks.amethyst = new SPBlockCrystal().setRegistryName("amethyst");
 		SPBlocks.ruby = new SPBlockCrystal().setRegistryName("ruby");
-		SPBlocks.bronze_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_1, true).setRegistryName("bronze_block");
-		SPBlocks.titanium_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_2, true).setRegistryName("titanium_block");
+		SPBlocks.bronze_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_1).setRegistryName("bronze_block");
+		SPBlocks.titanium_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_2).setRegistryName("titanium_block");
 		SPBlocks.titanium_ore = new SPBlockOre(SPBlockOre.Resource.TIER_2, false).setRegistryName("titanium_ore");
 		SPBlocks.pearl = new SPBlockCrystal().setRegistryName("pearl");
 		SPBlocks.topaz = new SPBlockCrystal().setRegistryName("topaz");

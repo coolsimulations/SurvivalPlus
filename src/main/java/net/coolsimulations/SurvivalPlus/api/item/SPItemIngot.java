@@ -6,35 +6,20 @@ import net.minecraft.item.ItemStack;
 
 public class SPItemIngot extends Item {
 	
-	private boolean beacon;
 	private boolean golem;
 	private float health;
 	
-	public SPItemIngot(boolean isBeaconIngot, boolean healsIronGolem, float golemHealth) {
+	public SPItemIngot(boolean healsIronGolem, float golemHealth) {
 		super(new Item.Properties().group(SPTabs.tabMaterials));
-		this.beacon = isBeaconIngot;
 		this.golem = healsIronGolem;
 		this.health = golemHealth;
 	}
 	
-	public SPItemIngot(boolean isBeaconIngot) {
+	public SPItemIngot() {
 		super(new Item.Properties().group(SPTabs.tabMaterials));
-		this.beacon = isBeaconIngot;
 		this.golem = false;
 		this.health = 0.0F;
 	}
-	
-	/**
-     * Whether this Item can be used as a payment to activate the vanilla beacon.
-     *
-     * @param stack the ItemStack
-     * @return true if this Item can be used
-     */
-	@Override
-	public boolean isBeaconPayment(ItemStack stack)
-    {
-        return this.beacon;
-    }
 	
 	/**
      * Get the amount of health that will be added to the Iron Golem's Health

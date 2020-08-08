@@ -16,16 +16,14 @@ import net.minecraftforge.common.ToolType;
 public class SPBlockMetal extends Block{
 	
 	public final Resource resource;
-	public final Boolean beacon;
 	
 	/**
 	 * @param metalTier accepts SPBlockMetal.Resouce
 	 */
 	
-	public SPBlockMetal(Resource resource, boolean isBeaconMetal) {
+	public SPBlockMetal(Resource resource) {
 		super(Properties.create(Material.IRON).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()).func_235838_a_((p_235464_0_) -> {return 0;}));
 		this.resource = resource;
-		this.beacon = isBeaconMetal;
 	}
 	
 	@Override
@@ -42,13 +40,6 @@ public class SPBlockMetal extends Block{
 	public int getHarvestLevel(BlockState state) {
 		return resource.harvestLevel;
 	}
-	
-	@Override
-	public boolean isBeaconBase(BlockState state, IWorldReader world, BlockPos pos, BlockPos beacon)
-    {
-		return this.beacon;
-    }
-
 	
 	public enum Resource {
 		TIER_0(1, 4.0F, 10.0F, SoundType.METAL, ItemTier.IRON),
