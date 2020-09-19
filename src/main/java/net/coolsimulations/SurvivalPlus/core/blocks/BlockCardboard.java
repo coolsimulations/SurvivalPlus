@@ -9,6 +9,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 
 public class BlockCardboard extends Block{
@@ -23,8 +24,8 @@ public class BlockCardboard extends Block{
 	}
 
 	@Override
-	public void spawnAdditionalDrops(BlockState state, World world, BlockPos pos, ItemStack stack) {
-		super.spawnAdditionalDrops(state, world, pos, stack);
+	public void spawnAdditionalDrops(BlockState state, ServerWorld worldIn, BlockPos pos, ItemStack stack) {
+	      super.spawnAdditionalDrops(state, worldIn, pos, stack);
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 
 public class SPBlockMetal extends Block{
@@ -22,7 +23,7 @@ public class SPBlockMetal extends Block{
 	 */
 	
 	public SPBlockMetal(Resource resource) {
-		super(Properties.create(Material.IRON).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()).func_235838_a_((p_235464_0_) -> {return 0;}));
+		super(Properties.create(Material.IRON).func_235861_h_().hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()).func_235838_a_((p_235464_0_) -> {return 0;}));
 		this.resource = resource;
 	}
 	
@@ -32,8 +33,8 @@ public class SPBlockMetal extends Block{
 	}
 	
 	@Override
-	public void spawnAdditionalDrops(BlockState state, World world, BlockPos pos, ItemStack stack) {
-		super.spawnAdditionalDrops(state, world, pos, stack);
+	public void spawnAdditionalDrops(BlockState state, ServerWorld worldIn, BlockPos pos, ItemStack stack) {
+	      super.spawnAdditionalDrops(state, worldIn, pos, stack);
 	}
 	
 	@Override

@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 
 public class SPBlockOre extends Block{
@@ -31,7 +32,7 @@ public class SPBlockOre extends Block{
 	 */
 	
 	public SPBlockOre(Resource resource, Boolean dropsXP) {
-		super(Properties.create(Material.ROCK).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()).func_235838_a_((p_235464_0_) -> {return 0;}));
+		super(Properties.create(Material.ROCK).func_235861_h_().hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()).func_235838_a_((p_235464_0_) -> {return 0;}));
 		this.resource = resource;
 		this.experience = dropsXP;
 	}
@@ -42,8 +43,8 @@ public class SPBlockOre extends Block{
 	}
 	
 	@Override
-	public void spawnAdditionalDrops(BlockState state, World world, BlockPos pos, ItemStack stack) {
-		super.spawnAdditionalDrops(state, world, pos, stack);
+	public void spawnAdditionalDrops(BlockState state, ServerWorld worldIn, BlockPos pos, ItemStack stack) {
+	      super.spawnAdditionalDrops(state, worldIn, pos, stack);
 	}
 	
 	@Override

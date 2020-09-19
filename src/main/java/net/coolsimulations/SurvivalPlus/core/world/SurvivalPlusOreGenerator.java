@@ -7,75 +7,58 @@ import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystal;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.ColdOceanBiome;
-import net.minecraft.world.biome.CrimsonForestBiome;
-import net.minecraft.world.biome.DeepColdOceanBiome;
-import net.minecraft.world.biome.DeepFrozenOceanBiome;
-import net.minecraft.world.biome.DeepLukewarmOceanBiome;
-import net.minecraft.world.biome.DeepOceanBiome;
-import net.minecraft.world.biome.DeepWarmOceanBiome;
-import net.minecraft.world.biome.FrozenOceanBiome;
-import net.minecraft.world.biome.LukewarmOceanBiome;
-import net.minecraft.world.biome.MushroomFieldsBiome;
-import net.minecraft.world.biome.NetherWastesBiome;
-import net.minecraft.world.biome.OceanBiome;
-import net.minecraft.world.biome.SoulSandBiome;
-import net.minecraft.world.biome.WarmOceanBiome;
-import net.minecraft.world.biome.WarpedForestBiome;
+import net.minecraft.world.biome.Biome.Category;
+import net.minecraft.world.biome.BiomeAmbience;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
-import net.minecraft.world.gen.placement.CountRangeConfig;
+import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
 import net.minecraft.world.gen.placement.Placement;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.world.gen.placement.TopSolidRangeConfig;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
+import net.minecraftforge.common.world.MobSpawnInfoBuilder;
 
 public class SurvivalPlusOreGenerator {
+	
+    public static final RuleTest gravel = new TagMatchRuleTest(Tags.Blocks.GRAVEL);
 
-	public static void generateOres() {
+	public static void generateOres(ResourceLocation name, Biome.Climate climate, Biome.Category category, float depth, float scale, BiomeAmbience effects, BiomeGenerationSettingsBuilder gen, MobSpawnInfoBuilder spawns) {
 
-		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
-			if (biome instanceof CrimsonForestBiome || biome instanceof NetherWastesBiome || biome instanceof SoulSandBiome || biome instanceof WarpedForestBiome) {
-				if(!SPConfig.disableAmethystGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.amethyst.getDefaultState(), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 1, 0, 255))));
-				}
-				if(!SPConfig.disableRubyGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.ruby.getDefaultState(), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 1, 0, 255))));
-				}
-				if(!SPConfig.disableTopazGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.topaz.getDefaultState(), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 1, 0, 255))));
-				}
-				if(!SPConfig.disableSapphireGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.sapphire.getDefaultState(), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 1, 0, 255))));
-				}
-			} else if(biome instanceof OceanBiome || biome instanceof DeepOceanBiome || biome instanceof ColdOceanBiome || biome instanceof DeepColdOceanBiome || biome instanceof DeepWarmOceanBiome || biome instanceof WarmOceanBiome || biome instanceof DeepLukewarmOceanBiome || biome instanceof LukewarmOceanBiome || biome instanceof DeepFrozenOceanBiome || biome instanceof FrozenOceanBiome && !SPConfig.disablePearlGen.get()) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(FillerBlockType.create("gravel", "gravel", new SPGravelGeneratorPredicate()), SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(4, 20, 0, 63))));
+		if (category == Category.NETHER) {
+			if(!SPConfig.disableAmethystGen.get()) {
+				gen.func_242513_a(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.field_241883_b, SPBlocks.amethyst.getDefaultState(), 3)).withPlacement(Placement.field_242907_l.configure(new TopSolidRangeConfig(0, 0, 255))).func_242728_a().func_242731_b(3));
+			}
+			if(!SPConfig.disableRubyGen.get()) {
+				gen.func_242513_a(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.field_241883_b, SPBlocks.ruby.getDefaultState(), 3)).withPlacement(Placement.field_242907_l.configure(new TopSolidRangeConfig(0, 0, 255))).func_242728_a().func_242731_b(3));
+			}
+			if(!SPConfig.disableTopazGen.get()) {
+				gen.func_242513_a(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.field_241883_b, SPBlocks.topaz.getDefaultState(), 3)).withPlacement(Placement.field_242907_l.configure(new TopSolidRangeConfig(0, 0, 255))).func_242728_a().func_242731_b(3));
+			}
+			if(!SPConfig.disableSapphireGen.get()) {
+				gen.func_242513_a(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.field_241883_b, SPBlocks.sapphire.getDefaultState(), 3)).withPlacement(Placement.field_242907_l.configure(new TopSolidRangeConfig(0, 0, 255))).func_242728_a().func_242731_b(3));
+			}
+		} else if(category == Category.OCEAN && !SPConfig.disablePearlGen.get()) {
+			gen.func_242513_a(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(gravel, SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3)).withPlacement(Placement.field_242907_l.configure(new TopSolidRangeConfig(0, 0, 63))).func_242728_a().func_242731_b(3));
 
-			} else if(biome instanceof MushroomFieldsBiome && !SPConfig.disableSpinelGen.get()) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.spinel.getDefaultState(), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(2, 1, 0, 8))));
+		} else if(category == Category.MUSHROOM && !SPConfig.disableSpinelGen.get()) {
+			gen.func_242513_a(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.field_241882_a, SPBlocks.spinel.getDefaultState(), 3)).withPlacement(Placement.field_242907_l.configure(new TopSolidRangeConfig(0, 0, 8))).func_242728_a().func_242731_b(3));
 
-			} else {
-				if(!SPConfig.disableCopperOreGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.copper_ore.getDefaultState(), 8)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 1, 0, 54))));
-				}
-				if(!SPConfig.disableTinOreGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.tin_ore.getDefaultState(), 8)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 1, 0, 54))));
-				}
-				if(!SPConfig.disableTitaniumOreGen.get()) {
-					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.titanium_ore.getDefaultState(), 4)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 1, 0, 25))));
-				}
+		} else {
+			if(!SPConfig.disableCopperOreGen.get()) {
+				gen.func_242513_a(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.field_241882_a, SPBlocks.copper_ore.getDefaultState(), 8)).withPlacement(Placement.field_242907_l.configure(new TopSolidRangeConfig(0, 0, 54))).func_242728_a().func_242731_b(8));
+			}
+			if(!SPConfig.disableTinOreGen.get()) {
+				gen.func_242513_a(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.field_241882_a, SPBlocks.tin_ore.getDefaultState(), 8)).withPlacement(Placement.field_242907_l.configure(new TopSolidRangeConfig(0, 0, 54))).func_242728_a().func_242731_b(8));
+			}
+			if(!SPConfig.disableTitaniumOreGen.get()) {
+				gen.func_242513_a(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.field_241882_a, SPBlocks.titanium_ore.getDefaultState(), 4)).withPlacement(Placement.field_242907_l.configure(new TopSolidRangeConfig(0, 0, 25))).func_242728_a().func_242731_b(4));
 			}
 		}
-	}
-	
-	public static class SPGravelGeneratorPredicate implements Predicate<BlockState> {
-		
-		@Override
-		public boolean apply(BlockState input) {
-			return input != null && input.getBlock() == Blocks.GRAVEL;
-		}
-
 	}
 }
 

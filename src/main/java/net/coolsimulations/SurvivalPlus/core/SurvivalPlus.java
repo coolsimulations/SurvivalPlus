@@ -97,7 +97,6 @@ public class SurvivalPlus {
 		SurvivalPlusUpdateHandler.init();
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::setupEvent);
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
 
 		SurvivalPlusBlocks.init();
@@ -143,11 +142,5 @@ public class SurvivalPlus {
 			SurvivalPlusIC2Recipes.init();
 		}
 
-	}
-
-	@SubscribeEvent
-	public static void setupEvent(FMLCommonSetupEvent event) {
-
-		SurvivalPlusOreGenerator.generateOres();
 	}
 }

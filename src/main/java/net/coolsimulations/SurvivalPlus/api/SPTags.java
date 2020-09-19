@@ -7,7 +7,6 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.ITag.INamedTag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagRegistry;
-import net.minecraft.tags.TagRegistry.NamedTag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeMod;
 
@@ -15,7 +14,7 @@ public class SPTags
 {
 	public static class Blocks
 	{
-		private static final TagRegistry<Block> collection = new TagRegistry<>();
+		//private static final TagRegistry<Block> collection = new TagRegistry<>();
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_COPPER = tag("storage_blocks/copper");
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_TIN = tag("storage_blocks/tin");
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS_BRONZE = tag("storage_blocks/bronze");
@@ -53,7 +52,7 @@ public class SPTags
 
 	public static class Items
 	{
-		private static final TagRegistry<Item> collection = new TagRegistry<>();
+		//private static final TagRegistry<Item> collection = new TagRegistry<>();
 		public static final ITag.INamedTag<Item> INGOTS_COPPER = tag("ingots/copper");
 		public static final ITag.INamedTag<Item> INGOTS_TIN = tag("ingots/tin");
 		public static final ITag.INamedTag<Item> INGOTS_BRONZE = tag("ingots/bronze");

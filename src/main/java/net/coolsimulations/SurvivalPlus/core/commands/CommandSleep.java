@@ -18,6 +18,7 @@ import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 
 public class CommandSleep {
 
@@ -39,11 +40,11 @@ public class CommandSleep {
 			ServerPlayerEntity entityplayer = (ServerPlayerEntity) var3.next();
 
 			TranslationTextComponent dimension = null;
-			if (!SPCompatibilityManager.isGCLoaded() && sender.getWorld().func_234922_V_() == DimensionType.field_235999_c_) {
+			if (!SPCompatibilityManager.isGCLoaded() && sender.getWorld().func_234923_W_() == World.field_234918_g_) {
 				dimension = new TranslationTextComponent("createWorld.customize.preset.overworld", new Object[]{});
 			}
 
-			if (sender.getWorld().func_234922_V_() == DimensionType.field_236001_e_) {
+			if (sender.getWorld().func_234923_W_() == World.field_234920_i_) {
 				throw new CommandException(new TranslationTextComponent("sp.commands.sleep.invalid"));
 			} else {
 				if (!sender.getWorld().isDaytime()) {
@@ -51,7 +52,7 @@ public class CommandSleep {
 						if (sender.getEntity() instanceof PlayerEntity && ((PlayerEntity) sender.getEntity()).isSleeping()) {
 
 							if (dimension == null) {
-								TranslationTextComponent sleep = new TranslationTextComponent("sp.commands.sleep.display3", new Object[]{sender.getDisplayName(), sender.getDisplayName(), sender.getWorld().func_234922_V_().func_240901_a_()});
+								TranslationTextComponent sleep = new TranslationTextComponent("sp.commands.sleep.display3", new Object[]{sender.getDisplayName(), sender.getDisplayName(), sender.getWorld().func_234923_W_().func_240901_a_()});
 								sleep.func_240699_a_(TextFormatting.LIGHT_PURPLE);
 								sender.getServer().getPlayerList().func_232641_a_(sleep, ChatType.SYSTEM, Util.field_240973_b_);
 							} else {
@@ -63,13 +64,13 @@ public class CommandSleep {
 							throw new CommandException(new TranslationTextComponent("sp.commands.sleep.display4", new Object[]{sender.getDisplayName(), dimension}));
 						}
 					} else {
-						if (entityplayer.world.func_234922_V_() == sender.getWorld().func_234922_V_()) {
+						if (entityplayer.world.func_234923_W_() == sender.getWorld().func_234923_W_()) {
 
-							if (sender.getWorld().func_234922_V_() == DimensionType.field_236000_d_ || sender.getWorld().func_234922_V_() == DimensionType.field_236001_e_) {
+							if (sender.getWorld().func_234923_W_() == World.field_234919_h_ || sender.getWorld().func_234923_W_() == World.field_234920_i_) {
 								throw new CommandException(new TranslationTextComponent("sp.commands.sleep.invalid"));
 							} else {
 								if (dimension == null) {
-									TranslationTextComponent sleep = new TranslationTextComponent("sp.commands.sleep.display1", new Object[]{entityplayer.getDisplayName(), sender.getDisplayName(), sender.getWorld().func_234922_V_().func_240901_a_()});
+									TranslationTextComponent sleep = new TranslationTextComponent("sp.commands.sleep.display1", new Object[]{entityplayer.getDisplayName(), sender.getDisplayName(), sender.getWorld().func_234923_W_().func_240901_a_()});
 									sleep.func_240699_a_(TextFormatting.LIGHT_PURPLE);
 									sender.getServer().getPlayerList().func_232641_a_(sleep, ChatType.SYSTEM, Util.field_240973_b_);
 								} else {
@@ -94,20 +95,20 @@ public class CommandSleep {
 	private static int sleepSingle(CommandSource sender) {
 
 		TranslationTextComponent dimension = null;
-		if(!SPCompatibilityManager.isGCLoaded() && sender.getWorld().func_234922_V_() == DimensionType.field_235999_c_) {
+		if(!SPCompatibilityManager.isGCLoaded() && sender.getWorld().func_234923_W_() == World.field_234918_g_) {
 			dimension = new TranslationTextComponent("createWorld.customize.preset.overworld", new Object[] {});
 		}
 
-		if(sender.getWorld().func_234922_V_() == DimensionType.field_236001_e_) {
+		if(sender.getWorld().func_234923_W_() == World.field_234920_i_) {
 			throw new CommandException(new TranslationTextComponent("sp.commands.sleep.invalid"));
 		} else {
 			if (!sender.getWorld().isDaytime()) {
 
-				if (sender.getWorld().func_234922_V_() == DimensionType.field_236000_d_) {
+				if (sender.getWorld().func_234923_W_() == World.field_234919_h_) {
 					throw new CommandException(new TranslationTextComponent("sp.commands.sleep.invalid"));
 				} else {
 					if (dimension == null) {
-						TranslationTextComponent sleep = new TranslationTextComponent("sp.commands.sleep.display2", new Object[]{sender.getDisplayName(), sender.getWorld().func_234922_V_().func_240901_a_()});
+						TranslationTextComponent sleep = new TranslationTextComponent("sp.commands.sleep.display2", new Object[]{sender.getDisplayName(), sender.getWorld().func_234923_W_().func_240901_a_()});
 						sleep.func_240699_a_(TextFormatting.LIGHT_PURPLE);
 						sender.getServer().getPlayerList().func_232641_a_(sleep, ChatType.SYSTEM, Util.field_240973_b_);
 					} else {
