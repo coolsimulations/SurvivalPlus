@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "survivalplus:desh_mattock"
+    ]
+  },
+  "criteria": {
+    "has_desh": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galacticraftplanets:item_basic_mars",
+            "data": 2
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "survivalplus:desh_mattock"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_desh",
+      "has_the_recipe"
+    ]
+  ]
+}

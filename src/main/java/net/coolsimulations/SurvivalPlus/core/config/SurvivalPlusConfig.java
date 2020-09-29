@@ -127,6 +127,18 @@ public class SurvivalPlusConfig {
 	            SPConfig.disableThanks = prop.getBoolean(false);
 	            propOrder.add(prop.getName());
 	            
+	            prop = config.get(SPReference.CONFIG_CATEGORY_COMPATIBILITY, "Enable Emerald Tools", false);
+	            prop.setComment("Enable if SurvivalPlus Hasn't Detected any Emerald Tool Mods");
+	            prop.setLanguageKey("sp.configgui.enable_emerald_material");
+	            SPConfig.enableEmeraldMaterial = prop.getBoolean(false);
+	            propOrder.add(prop.getName());
+	            
+	            prop = config.get(SPReference.CONFIG_CATEGORY_COMPATIBILITY, "Enable Obsidian Tools", false);
+	            prop.setComment("Enable if SurvivalPlus Hasn't Detected any Obsidian Tool Mods");
+	            prop.setLanguageKey("sp.configgui.enable_obsidian_material");
+	            SPConfig.enableObsidianMaterial = prop.getBoolean(false);
+	            propOrder.add(prop.getName());
+	            
 	            if (config.hasChanged())
 	            {
 	                config.save();

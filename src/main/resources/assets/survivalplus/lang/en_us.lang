@@ -319,6 +319,14 @@ item.zebrawood_helmet.name=Zebrawood Wood Helmet
 item.zebrawood_chestplate.name=Zebrawood Wood Chestplate
 item.zebrawood_leggings.name=Zebrawood Wood Leggings
 item.zebrawood_boots.name=Zebrawood Wood Boots
+item.skyroot_helmet.name=Skyroot Wood Helmet
+item.skyroot_chestplate.name=Skyroot Wood Chestplate
+item.skyroot_leggings.name=Skyroot Wood Leggings
+item.skyroot_boots.name=Skyroot Wood Boots
+item.golden_oak_helmet.name=Golden Oak Wood Helmet
+item.golden_oak_chestplate.name=Golden Oak Wood Chestplate
+item.golden_oak_leggings.name=Golden Oak Wood Leggings
+item.golden_oak_boots.name=Golden Oak Wood Boots
 
 
 item.bronze_pickaxe.name=Bronze Pickaxe
@@ -334,6 +342,42 @@ item.titanium_hoe.name=Titanium Hoe
 item.titanium_sword.name=Titanium Sword
 item.titanium_shears.name=Titanium Shears
 
+item.bronze_shield.name=Bronze Shield
+item.bronze_shield.black.name=Black Bronze Shield
+item.bronze_shield.red.name=Red Bronze Shield
+item.bronze_shield.green.name=Green Bronze Shield
+item.bronze_shield.brown.name=Brown Bronze Shield
+item.bronze_shield.blue.name=Blue Bronze Shield
+item.bronze_shield.purple.name=Purple Bronze Shield
+item.bronze_shield.cyan.name=Cyan Bronze Shield
+item.bronze_shield.silver.name=Light Gray Bronze Shield
+item.bronze_shield.gray.name=Gray Bronze Shield
+item.bronze_shield.pink.name=Pink Bronze Shield
+item.bronze_shield.lime.name=Lime Bronze Shield
+item.bronze_shield.yellow.name=Yellow Bronze Shield
+item.bronze_shield.lightBlue.name=Light Blue Bronze Shield
+item.bronze_shield.magenta.name=Magenta Bronze Shield
+item.bronze_shield.orange.name=Orange Bronze Shield
+item.bronze_shield.white.name=White Bronze Shield
+
+item.titanium_shield.name=Titanium Shield
+item.titanium_shield.black.name=Black Titanium Shield
+item.titanium_shield.red.name=Red Titanium Shield
+item.titanium_shield.green.name=Green Titanium Shield
+item.titanium_shield.brown.name=Brown Titanium Shield
+item.titanium_shield.blue.name=Blue Titanium Shield
+item.titanium_shield.purple.name=Purple Titanium Shield
+item.titanium_shield.cyan.name=Cyan Titanium Shield
+item.titanium_shield.silver.name=Light Gray Titanium Shield
+item.titanium_shield.gray.name=Gray Titanium Shield
+item.titanium_shield.pink.name=Pink Titanium Shield
+item.titanium_shield.lime.name=Lime Titanium Shield
+item.titanium_shield.yellow.name=Yellow Titanium Shield
+item.titanium_shield.lightBlue.name=Light Blue Titanium Shield
+item.titanium_shield.magenta.name=Magenta Titanium Shield
+item.titanium_shield.orange.name=Orange Titanium Shield
+item.titanium_shield.white.name=White Titanium Shield
+
 item.hammertime.itemhammerbronze.name=Bronze Hammer
 item.hammertime.itemhammertitanium.name=Titanium Hammer
 item.hammertime.itemshovelbronze.name=Bronze Spade
@@ -344,6 +388,20 @@ item.hammertime.itemsicklebronze.name=Bronze Sickle
 item.hammertime.itemsickletitanium.name=Titanium Sickle
 
 item.lumberaxeDesh.name=Desh Lumberaxe
+item.lumberaxeAmethyst.name=Amethyst Lumberaxe
+item.lumberaxeTopaz.name=Topaz Lumberaxe
+item.lumberaxeIngot.name=Netherite Lumberaxe
+item.lumberaxeNetherite.name=Netherite Lumberaxe
+item.lumberaxeVulcanite.name=Vulcanite Lumberaxe
+item.lumberaxeCarbonado.name=Carbonado Lumberaxe
+item.lumberaxeGalaxite.name=Galaxite Lumberaxe
+
+item.titanium_knife.name=Titanium Knife
+item.titanium_mattock.name=Titanium Mattock
+item.titanium_saw.name=Titanium Saw
+item.desh_knife.name=Desh Knife
+item.desh_mattock.name=Desh Mattock
+item.desh_saw.name=Desh Saw
 
 death.attack.boiled_water=%1$s was scorched to death
 death.attack.boiled_water.player=%1$s was scorched to death whilst trying to escape %2$s
@@ -432,3 +490,5 @@ sp.configgui.op_wak_command=Define the Permission Level of the Wak Command
 sp.configgui.update_check=Disable SurvivalPlus Update Checker Message
 sp.configgui.sun_audio=Disable Sounds Played Through sun.audio
 sp.configgui.disable_thanks=Disable SurvivalPlus Thank You Message
+sp.configgui.enable_emerald_material=Enable if SurvivalPlus Hasn't Detected any Emerald Tool Mods
+sp.configgui.enable_obsidian_material=Enable if SurvivalPlus Hasn't Detected any Obsidian Tool Mods

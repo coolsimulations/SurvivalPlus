@@ -2,7 +2,8 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "survivalplus:cheese"
+      "survivalplus:cheese",
+      "survivalplus:cheese_skyroot"
     ]
   },
   "criteria": {
@@ -16,16 +17,29 @@
         ]
       }
     },
+    "has_milk_skyroot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "aether_legacy:skyroot_bucket",
+            "data": 4
+          }
+        ]
+      }
+    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "survivalplus:cheese"
+        "recipe": "survivalplus:cheese",
+        "recipe": "survivalplus:cheese_skyroot"
       }
     }
   },
   "requirements": [
     [
       "has_milk",
+      "has_milk_skyroot",
       "has_the_recipe"
     ]
   ]

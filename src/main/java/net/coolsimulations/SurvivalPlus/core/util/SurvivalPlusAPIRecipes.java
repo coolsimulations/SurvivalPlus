@@ -1,16 +1,17 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import ic2.api.item.IC2Items;
-
 import java.util.Iterator;
 import java.util.Map;
 
-import micdoodle8.mods.galacticraft.core.GCBlocks;
+import com.coliwogg.gemsmod.init.BlockInit;
+import com.coliwogg.gemsmod.init.ItemInit;
+
+import ic2.api.item.IC2Items;
 import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
-import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
+import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusSmeltingRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -18,7 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class SurvivalPlusAPIRecipes {
 	
@@ -30,26 +30,26 @@ public class SurvivalPlusAPIRecipes {
             SurvivalPlusAPIRecipes.addIndustrialCraft2Recipes();
         }
         
-        if(SPCompatibilityManager.isForestryLoaded()) {
-        	SurvivalPlusAPIRecipes.addForestryItemsRecipes();
-        }
-        
         if(SPCompatibilityManager.isGCLoaded()) {
         	SurvivalPlusAPIRecipes.addGCItemsRecipes();
         }
         
-        if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded()) {
-        	
-        	GameRegistry.addSmelting(SPItems.copper_dust, new ItemStack(SPItems.copper_ingot), 3.0F);
-			GameRegistry.addSmelting(SPItems.tin_dust, new ItemStack(SPItems.tin_ingot), 3.0F);
-        }
-        
         if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) {
+        	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("dustCopper", new ItemStack(SPItems.copper_ingot), 3.0F, true);
+        	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("dustTin", new ItemStack(SPItems.tin_ingot), 3.0F, true);
         	GameRegistry.addSmelting(SPItems.titanium_dust, new ItemStack(SPItems.titanium_ingot), 3.0F);
         }
         
         if(SPCompatibilityManager.isRailcraftLoaded()) {
         	SurvivalPlusAPIRecipes.addRailcraftItemsRecipes();
+        }
+        
+        if(SPCompatibilityManager.isTriGemsLoaded()) {
+        	SurvivalPlusAPIRecipes.addTriGemsItemsRecipes();
+        }
+        
+        if(SPCompatibilityManager.isGACLoaded()) {
+        	SurvivalPlusAPIRecipes.addGemsAndCrystalsItemsRecipes();
         }
     }
 	
@@ -66,33 +66,11 @@ public class SurvivalPlusAPIRecipes {
 		removeFurnaceRecipe(new ItemStack(GCItems.basicItem, 1, 3));
 		removeFurnaceRecipe(new ItemStack(GCItems.basicItem, 3, 3));
 		GameRegistry.addSmelting(new ItemStack(GCItems.canister, 1, 1), new ItemStack(SPItems.copper_ingot, 3), 1.0F);
-		GameRegistry.addSmelting(new ItemStack(GCBlocks.basicBlock, 1, 5), new ItemStack(SPItems.copper_ingot), 1.0F);
-		GameRegistry.addSmelting(new ItemStack(GCBlocks.blockMoon), new ItemStack(SPItems.copper_ingot), 1.0F);
 		removeFurnaceRecipe(new ItemStack(GCItems.basicItem, 1, 4));
 		removeFurnaceRecipe(new ItemStack(GCItems.basicItem, 3, 4));
 		GameRegistry.addSmelting(new ItemStack(GCItems.canister), new ItemStack(SPItems.tin_ingot, 3), 0.5F);
-		GameRegistry.addSmelting(new ItemStack(GCBlocks.basicBlock, 1, 6), new ItemStack(SPItems.tin_ingot), 0.5F);
-		GameRegistry.addSmelting(new ItemStack(GCBlocks.blockMoon, 1, 1), new ItemStack(SPItems.tin_ingot), 0.5F);
 		
-		if(SPCompatibilityManager.isGCPLoaded()) {
-			GameRegistry.addSmelting(new ItemStack(MarsBlocks.marsBlock), new ItemStack(SPItems.copper_ingot), 1.0F);
-			GameRegistry.addSmelting(new ItemStack(VenusBlocks.venusBlock, 1, 7), new ItemStack(SPItems.copper_ingot), 1.0F);
-			GameRegistry.addSmelting(new ItemStack(MarsBlocks.marsBlock, 1, 1), new ItemStack(SPItems.tin_ingot), 0.5F);
-			GameRegistry.addSmelting(new ItemStack(VenusBlocks.venusBlock, 1, 11), new ItemStack(SPItems.tin_ingot), 1.0F);
-		}
 		
-	}
-	
-	private static void addForestryItemsRecipes() {
-		
-		Block resources = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.FORESTRY_MODID, "resources"));
-		Item ingotCopper = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.FORESTRY_MODID, "ingot_copper"));
-		Item ingotTin = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.FORESTRY_MODID, "ingot_tin"));
-		
-		removeFurnaceRecipe(new ItemStack(ingotCopper));
-		removeFurnaceRecipe(new ItemStack(ingotTin));
-		GameRegistry.addSmelting(new ItemStack(resources, 1, 1), new ItemStack(SPItems.copper_ingot), 0.7F);
-		GameRegistry.addSmelting(new ItemStack(resources, 1, 2), new ItemStack(SPItems.tin_ingot), 0.7F);
 	}
 	
 	private static void addRailcraftItemsRecipes() {
@@ -101,11 +79,6 @@ public class SurvivalPlusAPIRecipes {
 		Item nugget = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "nugget"));
 		Block oreMetal = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "ore_metal"));
 		Block generic = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "generic"));
-		
-		removeFurnaceRecipe(new ItemStack(ingot, 1, 1));
-		GameRegistry.addSmelting(new ItemStack(oreMetal), new ItemStack(SPItems.copper_ingot), 1.0F);
-		removeFurnaceRecipe(new ItemStack(ingot, 1, 2));
-		GameRegistry.addSmelting(new ItemStack(oreMetal, 1, 1), new ItemStack(SPItems.tin_ingot), 1.0F);
 		
 		/**if (OreDictionary.getOres("ingotSteel").size() > 0) {
 			SurvivalPlusShapelessRecipes.addShapelessOreRecipe(new ItemStack(nugget, 9, 1), new Object[] {"ingotSteel"});
@@ -162,6 +135,36 @@ public class SurvivalPlusAPIRecipes {
 		}
 	}
 	
+	private static void addGemsAndCrystalsItemsRecipes() {
+		
+		removeFurnaceRecipe(new ItemStack(ItemInit.AMETHYST));
+		removeFurnaceRecipe(new ItemStack(ItemInit.RUBY));
+		removeFurnaceRecipe(new ItemStack(ItemInit.SAPPHIRE));;
+		removeFurnaceRecipe(new ItemStack(ItemInit.TOPAZ));
+		GameRegistry.addSmelting(BlockInit.AMETHYST_ORE, new ItemStack(SPBlocks.amethyst), 1.5F);
+		GameRegistry.addSmelting(BlockInit.RUBY_ORE, new ItemStack(SPBlocks.ruby), 1.5F);
+		GameRegistry.addSmelting(BlockInit.SAPPHIRE_ORE, new ItemStack(SPBlocks.sapphire), 1.5F);
+		GameRegistry.addSmelting(BlockInit.TOPAZ_ORE, new ItemStack(SPBlocks.topaz), 1.5F);
+	}
+	
+	private static void addTriGemsItemsRecipes() {
+		
+		Item ruby = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.TRIGEMS_MODID, "ruby"));
+		Item sapphire = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.TRIGEMS_MODID, "sapphire"));
+		Item topaz = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.TRIGEMS_MODID, "topaz"));
+		
+		Block ruby_ore = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.TRIGEMS_MODID, "ruby_ore"));
+		Block sapphire_ore = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.TRIGEMS_MODID, "sapphire_ore"));
+		Block topaz_ore = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.TRIGEMS_MODID, "topaz_ore"));
+		
+		removeFurnaceRecipe(new ItemStack(ruby));
+		removeFurnaceRecipe(new ItemStack(sapphire));
+		removeFurnaceRecipe(new ItemStack(topaz));
+		GameRegistry.addSmelting(ruby_ore, new ItemStack(SPBlocks.ruby), 0.5F);
+		GameRegistry.addSmelting(sapphire_ore, new ItemStack(SPBlocks.sapphire), 0.5F);
+		GameRegistry.addSmelting(topaz_ore, new ItemStack(SPBlocks.topaz), 0.5F);
+	}
+	
     @SuppressWarnings("unchecked")
     public static void addRecipe(ItemStack result, Object[] obj)
     {
@@ -178,11 +181,6 @@ public class SurvivalPlusAPIRecipes {
 				entries.remove(); // Remove the recipe
 			}
 		}
-	}
-	
-	public static ItemStack getIndustrialCraftItem(String name)
-	{
-		return IC2Items.getItem(name, null);
 	}
 
 }

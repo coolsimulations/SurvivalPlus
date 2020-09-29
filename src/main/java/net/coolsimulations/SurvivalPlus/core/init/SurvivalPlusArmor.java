@@ -1,24 +1,19 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
-import java.util.Collections;
-import java.util.List;
-
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -49,7 +44,7 @@ public class SurvivalPlusArmor {
 		SPItems.stone.add(2, new ItemStack(SPItems.stone_leggings));
 		SPItems.stone.add(3, new ItemStack(SPItems.stone_boots));
 		
-		SPItems.titaniumArmorMaterial = EnumHelper.addArmorMaterial("titanium", SPReference.MOD_ID + ":" +  "titanium", 20, new int[] {3, 2, 5, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F);
+		SPItems.titaniumArmorMaterial = EnumHelper.addArmorMaterial("titanium", SPReference.MOD_ID + ":" +  "titanium", 20, new int[] {3, 5, 7, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F);
 		SPItems.titanium_helmet = new SPItemArmor(SPItems.titaniumArmorMaterial, 0, EntityEquipmentSlot.HEAD, "titanium_helmet", "ingotTitanium").setUnlocalizedName("titanium_helmet").setRegistryName("titanium_helmet").setCreativeTab(SPTabs.tabCombat);
 		SPItems.titanium_chestplate = new SPItemArmor(SPItems.titaniumArmorMaterial, 0, EntityEquipmentSlot.CHEST, "titanium_chestplate", "ingotTitanium").setUnlocalizedName("titanium_chestplate").setRegistryName("titanium_chestplate").setCreativeTab(SPTabs.tabCombat);
 		SPItems.titanium_leggings = new SPItemArmor(SPItems.titaniumArmorMaterial, 0, EntityEquipmentSlot.LEGS, "titanium_leggings", "ingotTitanium").setUnlocalizedName("titanium_leggings").setRegistryName("titanium_leggings").setCreativeTab(SPTabs.tabCombat);
@@ -149,6 +144,10 @@ public class SurvivalPlusArmor {
 			ForestryArmor.init();
 		}
 		
+		if(SPCompatibilityManager.isAetherLegacyLoaded()){
+			AetherLegacyArmor.init();
+		}
+		
 	}
 	public static void register()
 	{
@@ -174,6 +173,10 @@ public class SurvivalPlusArmor {
 		
 		if(SPCompatibilityManager.isForestryLoaded()){
 			ForestryArmor.register();
+		}
+		
+		if(SPCompatibilityManager.isAetherLegacyLoaded()){
+			AetherLegacyArmor.register();
 		}
 	}
 	
@@ -201,6 +204,10 @@ public class SurvivalPlusArmor {
 		
 		if(SPCompatibilityManager.isForestryLoaded()){
 			ForestryArmor.registerRenders();
+		}
+		
+		if(SPCompatibilityManager.isAetherLegacyLoaded()){
+			AetherLegacyArmor.registerRenders();
 		}
 
 	}

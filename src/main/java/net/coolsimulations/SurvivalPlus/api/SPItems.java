@@ -66,6 +66,7 @@ public class SPItems {
 	public static Item bronze_hoe;
 	public static Item bronze_sword;
 	public static Item bronze_shears;
+	public static Item bronze_shield;
 	public static Item.ToolMaterial bronzeToolMaterial;
 	public static Item titanium_pickaxe;
 	public static Item titanium_axe;
@@ -73,11 +74,20 @@ public class SPItems {
 	public static Item titanium_hoe;
 	public static Item titanium_sword;
 	public static Item titanium_shears;
+	public static Item titanium_shield;
 	public static Item.ToolMaterial titaniumToolMaterial;
 	public static Item bronze_lumberaxe;
 	public static Item titanium_lumberaxe;
 	public static Item desh_lumberaxe;
 	public static Item steel_lumberaxe;
+	public static Item titanium_knife;
+	public static Item titanium_mattock;
+	public static Item titanium_saw;
+	public static Item desh_knife;
+	public static Item desh_mattock;
+	public static Item desh_saw;
+	public static Item.ToolMaterial emeraldToolMaterial;
+	public static Item.ToolMaterial obsidianToolMaterial;
 	
 	/**
 	 * These are the armor Items referred to in SurvivalPlusArmor along with the corresponding ArmorMaterial and Armor ItemStack List
@@ -430,5 +440,21 @@ public class SPItems {
 	public static Item zebrawood_boots;
 	public static ItemArmor.ArmorMaterial zebrawoodArmorMaterial;
 	public static NonNullList<ItemStack> zebrawood;
+	
+	/**
+	 * These are the Aether Legacy armor Items referred to in AetherLegacyArmor along with the corresponding ArmorMaterial and Armor ItemStack List
+	 */
+	public static Item skyroot_helmet;
+	public static Item skyroot_chestplate;
+	public static Item skyroot_leggings;
+	public static Item skyroot_boots;
+	public static ItemArmor.ArmorMaterial skyrootArmorMaterial;
+	public static NonNullList<ItemStack> skyroot;
+	public static Item golden_oak_helmet;
+	public static Item golden_oak_chestplate;
+	public static Item golden_oak_leggings;
+	public static Item golden_oak_boots;
+	public static ItemArmor.ArmorMaterial goldenOakArmorMaterial;
+	public static NonNullList<ItemStack> golden_oak;
 	
 }

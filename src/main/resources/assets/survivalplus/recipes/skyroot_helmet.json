@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_helmet",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "aether_legacy:aether_log",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "survivalplus:skyroot_helmet"
+  }
+}

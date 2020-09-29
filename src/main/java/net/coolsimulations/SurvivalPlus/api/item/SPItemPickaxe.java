@@ -13,6 +13,7 @@ public class SPItemPickaxe extends ItemPickaxe{
 	public SPItemPickaxe(ToolMaterial material, String oreDictionary) {
 		super(material);
 		this.oreDictionary = oreDictionary;
+		this.setHarvestLevel("pickaxe", material.getHarvestLevel());
 	}
 	
 	@Override

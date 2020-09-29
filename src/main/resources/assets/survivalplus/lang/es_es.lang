@@ -319,6 +319,14 @@ item.zebrawood_helmet.name=Casco de Cebra
 item.zebrawood_chestplate.name=Peto de Cebra
 item.zebrawood_leggings.name=Grebas de Cebra
 item.zebrawood_boots.name=Botas de Cebra
+item.skyroot_helmet.name=Casco de Raízcelestial
+item.skyroot_chestplate.name=Peto de Raízcelestial
+item.skyroot_leggings.name=Grebas de Raízcelestial
+item.skyroot_boots.name=Botas de Raízcelestial
+item.golden_oak_helmet.name=Casco de Roble Dorado
+item.golden_oak_chestplate.name=Peto de Roble Dorado
+item.golden_oak_leggings.name=Grebas de Roble Dorado
+item.golden_oak_boots.name=Botas de Roble Dorado
 
 
 item.bronze_pickaxe.name=Pico de Bronce
@@ -334,6 +342,42 @@ item.titanium_hoe.name=Azada de Titanio
 item.titanium_sword.name=Espada de Titanio
 item.titanium_shears.name=Tijeras de Titanio
 
+item.bronze_shield.name=Escudo de Bronce
+item.bronze_shield.black.name=Escudo de Bronce Negro
+item.bronze_shield.red.name=Escudo de Bronce Rojo
+item.bronze_shield.green.name=Escudo de Bronce Verde
+item.bronze_shield.brown.name=Escudo de Bronce Marrón
+item.bronze_shield.blue.name=Escudo de Bronce Azul
+item.bronze_shield.purple.name=Escudo de Bronce Morado
+item.bronze_shield.cyan.name=Escudo de Bronce Cian
+item.bronze_shield.silver.name=Escudo de Bronce gris Claro
+item.bronze_shield.gray.name=Escudo de Bronce Gris
+item.bronze_shield.pink.name=Escudo de Bronce Rosa
+item.bronze_shield.lime.name=Escudo de Bronce Lima
+item.bronze_shield.yellow.name=Escudo de Bronce Amarillo
+item.bronze_shield.lightBlue.name=Escudo de Bronce Azul Claro
+item.bronze_shield.magenta.name=Escudo de Bronce Magenta
+item.bronze_shield.orange.name=Escudo de Bronce Narania
+item.bronze_shield.white.name=Escudo de Bronce Blanco
+
+item.titanium_shield.name=Escudo de Titanio
+item.titanium_shield.black.name=Escudo de Titanio Negro
+item.titanium_shield.red.name=Escudo de Titanio Rojo
+item.titanium_shield.green.name=Escudo de Titanio Verde
+item.titanium_shield.brown.name=Escudo de Titanio Marrón
+item.titanium_shield.blue.name=Escudo de Titanio Azul
+item.titanium_shield.purple.name=Escudo de Titanio Morado
+item.titanium_shield.cyan.name=Escudo de Titanio Cian
+item.titanium_shield.silver.name=Escudo de Titanio gris Claro
+item.titanium_shield.gray.name=Escudo de Titanio Gris
+item.titanium_shield.pink.name=Escudo de Titanio Rosa
+item.titanium_shield.lime.name=Escudo de Titanio Lima
+item.titanium_shield.yellow.name=Escudo de Titanio Amarillo
+item.titanium_shield.lightBlue.name=Escudo de Titanio Azul Claro
+item.titanium_shield.magenta.name=Escudo de Titanio Magenta
+item.titanium_shield.orange.name=Escudo de Titanio Narania
+item.titanium_shield.white.name=Escudo de Titanio Blanco
+
 item.hammertime.itemhammerbronze.name=Martillo de Bronce
 item.hammertime.itemhammertitanium.name=Martillo de Titanio
 item.hammertime.itemshovelbronze.name=Pala de Bronce
@@ -342,6 +386,22 @@ item.hammertime.itemaxebronze.name=Hacha de Bronce
 item.hammertime.itemaxetitanium.name=Hacha de Titanio
 item.hammertime.itemsicklebronze.name=Hoz de Bronce
 item.hammertime.itemsickletitanium.name=Hoz de Titanio
+
+item.lumberaxeDesh.name=Hacha de Madera de Desh
+item.lumberaxeAmethyst.name=Hacha de Madera Amatista
+item.lumberaxeTopaz.name=Hacha de Madera Topacio
+item.lumberaxeIngot.name=Hacha de Madera Netherita
+item.lumberaxeNetherite.name=Hacha de Madera Netherita
+item.lumberaxeVulcanite.name=Hacha de Madera Vulcanita
+item.lumberaxeCarbonado.name=Hacha de Madera Carbonado
+item.lumberaxeGalaxite.name=Hacha de Madera Galaxita
+
+item.titanium_knife.name=Cuchillo de Titanio
+item.titanium_mattock.name=Azada Pico de Titanio
+item.titanium_saw.name=Sierra de Titanium
+item.desh_knife.name=Cuchillo de Desh
+item.desh_mattock.name=Azada Pico de Desh
+item.desh_saw.name=Sierra de Desh
 
 death.attack.boiled_water=%1$s fue quemado hasta la muerte
 death.attack.boiled_water.player=%1$s fue quemado hasta la muerte mientras huía de %2$s
@@ -430,3 +490,5 @@ sp.configgui.op_wak_command=Definir el Nivel de Permiso del Comando Wak
 sp.configgui.update_check=Desactivar el Mensaje del Comprobador de Actualizaciones de SupervivenciaMás
 sp.configgui.sun_audio=Desactivar los Sonidos Reproducidos a Través de sun.audio
 sp.configgui.disable_thanks=Desactivar SupervivenciaMás Mensaje de Agradecimiento
+sp.configgui.enable_emerald_material=Habilítelo si SupervivenciaMás no ha Detectado Ningún Mod de Herramienta Esmeralda
+sp.configgui.enable_obsidian_material=Habilítelo si SupervivenciaMás no ha Detectado Ningún Mod de Herramienta Obsidiana

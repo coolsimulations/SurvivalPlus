@@ -5,6 +5,7 @@ import ic2.api.recipe.Recipes;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusSmeltingRecipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,26 +20,18 @@ public class SurvivalPlusIC2Recipes {
 
 	public static void init()
     {
-        
-       	SurvivalPlusAPIRecipes.removeFurnaceRecipe(IC2Items.getItem("ingot", "copper"));
-       	SurvivalPlusAPIRecipes.removeFurnaceRecipe(IC2Items.getItem("ingot", "tin"));
-       	SurvivalPlusAPIRecipes.removeFurnaceRecipe(IC2Items.getItem("ingot", "bronze"));
-       	//removeCraftingRecipe(IC2Items.getItem("dust", "bronze"));
-        
-       	GameRegistry.addSmelting(IC2Items.getItem("resource", "copper_ore"), new ItemStack(SPItems.copper_ingot), 0.7F);
-    	GameRegistry.addSmelting(IC2Items.getItem("crushed", "copper"), new ItemStack(SPItems.copper_ingot), 0.7F);
-   		GameRegistry.addSmelting(IC2Items.getItem("purified", "copper"), new ItemStack(SPItems.copper_ingot), 0.7F);
-   		GameRegistry.addSmelting(IC2Items.getItem("dust", "copper"), new ItemStack(SPItems.copper_ingot), 0.7F);
+        SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("crushedCopper", new ItemStack(SPItems.copper_ingot), 0.7F, true);
+       	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("crushedPurifiedCopper", new ItemStack(SPItems.copper_ingot), 0.7F, true);
+       	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("dustCopper", new ItemStack(SPItems.copper_ingot), 0.7F, true);
+       	
+       	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("crushedTin", new ItemStack(SPItems.tin_ingot), 0.7F, true);
+       	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("crushedPurifiedTin", new ItemStack(SPItems.tin_ingot), 0.7F, true);
+       	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("dustTin", new ItemStack(SPItems.tin_ingot), 0.7F, true);
+       	
+       	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("dustBronze", new ItemStack(SPItems.bronze_ingot), 0.7F, true);
     	
-    	GameRegistry.addSmelting(IC2Items.getItem("resource", "tin_ore"), new ItemStack(SPItems.tin_ingot), 0.7F);
-   		GameRegistry.addSmelting(IC2Items.getItem("crushed", "tin"), new ItemStack(SPItems.tin_ingot), 0.7F);
-   		GameRegistry.addSmelting(IC2Items.getItem("purified", "tin"), new ItemStack(SPItems.tin_ingot), 0.7F);
-   		GameRegistry.addSmelting(IC2Items.getItem("dust", "tin"), new ItemStack(SPItems.tin_ingot), 0.7F);
-    	
-    	GameRegistry.addSmelting(SPItems.crushed_titanium_ore, new ItemStack(SPItems.titanium_ingot), 0.7F);
-   		GameRegistry.addSmelting(SPItems.purified_titanium_ore, new ItemStack(SPItems.titanium_ingot), 0.7F);
-    	
-    	GameRegistry.addSmelting(IC2Items.getItem("dust", "bronze"), new ItemStack(SPItems.bronze_ingot), 0.7F);
+       	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("crushedTitanium", new ItemStack(SPItems.titanium_ingot), 0.7F);
+       	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("crushedPurifiedTitanium", new ItemStack(SPItems.titanium_ingot), 0.7F);
     	
     	orewash = new NBTTagCompound();
 		orewash.setInteger("amount", 1000);

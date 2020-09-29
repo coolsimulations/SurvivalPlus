@@ -13,6 +13,7 @@ public class SPItemShovel extends ItemSpade{
 	public SPItemShovel(ToolMaterial material, String oreDictionary) {
 		super(material);
 		this.oreDictionary = oreDictionary;
+		this.setHarvestLevel("shovel", material.getHarvestLevel());
 	}
 	
 	@Override

@@ -8,10 +8,9 @@ import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.oredict.OreDictionary;
@@ -27,6 +26,7 @@ public class SPItemAxe extends ItemTool {
         this.attackDamage = damage;
         this.attackSpeed = speed;
         this.oreDictionary = oreDictionary;
+        this.setHarvestLevel("axe", material.getHarvestLevel());
     }
     
     public float getStrVsBlock(ItemStack stack, IBlockState state)
@@ -43,6 +43,11 @@ public class SPItemAxe extends ItemTool {
     		if(ItemStack.areItemsEqual(i, stack) && this.oreDictionary != null) return true;
     	}
     	return false;
+    }
+
+    public boolean canDisableShield(ItemStack stack, ItemStack shield, EntityLivingBase entity, EntityLivingBase attacker)
+    {
+        return stack.getItem() instanceof SPItemAxe;
     }
  
 }

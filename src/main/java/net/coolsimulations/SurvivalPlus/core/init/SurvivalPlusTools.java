@@ -1,20 +1,25 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
+import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
+import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemAxe;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemHoe;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemPickaxe;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemShears;
+import net.coolsimulations.SurvivalPlus.api.item.SPItemShield;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemShovel;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemSword;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusNoTreePunching;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class SurvivalPlusTools {
@@ -42,6 +47,7 @@ public class SurvivalPlusTools {
 		SPItems.bronze_hoe = new SPItemHoe(SPItems.bronzeToolMaterial, "ingotBronze").setUnlocalizedName("bronze_hoe").setRegistryName("bronze_hoe").setCreativeTab(SPTabs.tabTools);
 		SPItems.bronze_sword = new SPItemSword(SPItems.bronzeToolMaterial, "ingotBronze").setUnlocalizedName("bronze_sword").setRegistryName("bronze_sword").setCreativeTab(SPTabs.tabCombat);
 		SPItems.bronze_shears = new SPItemShears(179, "ingotBronze").setUnlocalizedName("bronze_shears").setRegistryName("bronze_shears").setCreativeTab(SPTabs.tabTools);
+		SPItems.bronze_shield = new SPItemShield(274, "plankWood").setUnlocalizedName("bronze_shield").setRegistryName("bronze_shield").setCreativeTab(SPTabs.tabCombat);
 		
 		SPItems.titaniumToolMaterial = EnumHelper.addToolMaterial("titaniumToolMaterial", 2, 432, 7.0F, 2.5F, 17).setRepairItem(new ItemStack(SPItems.titanium_ingot));
 		SPItems.titanium_pickaxe = new SPItemPickaxe(SPItems.titaniumToolMaterial, "ingotTitanium").setUnlocalizedName("titanium_pickaxe").setRegistryName("titanium_pickaxe").setCreativeTab(SPTabs.tabTools);
@@ -50,6 +56,16 @@ public class SurvivalPlusTools {
 		SPItems.titanium_hoe = new SPItemHoe(SPItems.titaniumToolMaterial, "ingotTitanium").setUnlocalizedName("titanium_hoe").setRegistryName("titanium_hoe").setCreativeTab(SPTabs.tabTools);
 		SPItems.titanium_sword = new SPItemSword(SPItems.titaniumToolMaterial, "ingotTitanium").setUnlocalizedName("titanium_sword").setRegistryName("titanium_sword").setCreativeTab(SPTabs.tabCombat);
 		SPItems.titanium_shears = new SPItemShears(298, "ingotTitanium").setUnlocalizedName("titanium_shears").setRegistryName("titanium_shears").setCreativeTab(SPTabs.tabTools);
+		SPItems.titanium_shield = new SPItemShield(519, "plankWood").setUnlocalizedName("titanium_shield").setRegistryName("titanium_shield").setCreativeTab(SPTabs.tabCombat);
+		
+		if(!SPCompatibilityManager.isEmeraldMatieralModsLoaded() && SPConfig.enableEmeraldMaterial)
+			SPItems.emeraldToolMaterial = EnumHelper.addToolMaterial("emeraldToolMaterial", 3, 1776, 9.0F, 3.5F, 22).setRepairItem(new ItemStack(Items.EMERALD));
+		if(!SPCompatibilityManager.isObsidianMatieralModsLoaded() && SPConfig.enableObsidianMaterial)
+			SPItems.obsidianToolMaterial = EnumHelper.addToolMaterial("obsidianToolMaterial", 3, 1820, 7.0F, 4.5F, 11).setRepairItem(new ItemStack(Blocks.OBSIDIAN));
+		
+		if(SPCompatibilityManager.isNoTreePunchingLoaded()){
+			SurvivalPlusNoTreePunching.init();
+		}
 
 	}
 	
@@ -61,6 +77,7 @@ public class SurvivalPlusTools {
 		registerItem(SPItems.bronze_hoe);
 		registerItem(SPItems.bronze_sword);
 		registerItem(SPItems.bronze_shears);
+		registerItem(SPItems.bronze_shield);
 		
 		registerItem(SPItems.titanium_pickaxe);
 		registerItem(SPItems.titanium_axe);
@@ -68,7 +85,11 @@ public class SurvivalPlusTools {
 		registerItem(SPItems.titanium_hoe);
 		registerItem(SPItems.titanium_sword);
 		registerItem(SPItems.titanium_shears);
+		registerItem(SPItems.titanium_shield);
 
+		if(SPCompatibilityManager.isNoTreePunchingLoaded()){
+			SurvivalPlusNoTreePunching.register();
+		}
 		
 	}
 	
@@ -80,6 +101,7 @@ public class SurvivalPlusTools {
 		registerRender(SPItems.bronze_hoe);
 		registerRender(SPItems.bronze_sword);
 		registerRender(SPItems.bronze_shears);
+		registerRender(SPItems.bronze_shield);
 		
 		registerRender(SPItems.titanium_pickaxe);
 		registerRender(SPItems.titanium_axe);
@@ -87,7 +109,11 @@ public class SurvivalPlusTools {
 		registerRender(SPItems.titanium_hoe);
 		registerRender(SPItems.titanium_sword);
 		registerRender(SPItems.titanium_shears);
+		registerRender(SPItems.titanium_shield);
 
+		if(SPCompatibilityManager.isNoTreePunchingLoaded()){
+			SurvivalPlusNoTreePunching.registerRenders();
+		}
 		
 	}
 	

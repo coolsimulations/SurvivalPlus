@@ -1,8 +1,12 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;
+
+import com.gildedgames.the_aether.AetherConfig;
 
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.planets.asteroids.ConfigManagerAsteroids;
@@ -27,6 +31,12 @@ public class CommandSleep extends CommandBase{
 		
 		return "sleep";
 	}
+	
+	@Override
+	public List<String> getAliases()
+    {
+        return Collections.singletonList("sloop");
+    }
 
 	@Override
 	public String getUsage(ICommandSender sender) {
@@ -58,6 +68,12 @@ public class CommandSleep extends CommandBase{
     			dimension = new TextComponentTranslation("planet.asteroids", new Object[] {});
     		}else if(sender.getCommandSenderEntity().world.provider.getDimension() == ConfigManagerVenus.dimensionIDVenus) {
     			dimension = new TextComponentTranslation("Venus", new Object[] {});
+    		}
+    	}
+    	
+    	if(SPCompatibilityManager.isAetherLegacyLoaded()) {
+    		if(sender.getCommandSenderEntity().world.provider.getDimension() == AetherConfig.dimension.aether_dimension_id) {
+    			dimension = new TextComponentTranslation("The Aether", new Object[] {});
     		}
     	}
 		

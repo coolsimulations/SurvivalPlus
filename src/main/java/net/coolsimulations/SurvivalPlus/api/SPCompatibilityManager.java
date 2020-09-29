@@ -28,6 +28,21 @@ public class SPCompatibilityManager {
 	private static boolean modDynamicLightsLoaded;
 	private static boolean modSmoothEntityLightLoaded;
 	private static boolean modMrCrayfishGunModLoaded;
+	private static boolean modReskillableLoaded;
+	private static boolean modNoTreePunchingLoaded;
+	private static boolean modGemsAndCrystalsLoaded;
+	private static boolean modPI3xEmeraldsLoaded;
+	private static boolean modTriGemsLoaded;
+	private static boolean modFancyToolsLoaded;
+	private static boolean modEmeraldAndObsidianLoaded;
+	private static boolean modObsidianArmorAndToolsLoaded;
+	private static boolean modObsidianToolsAndArmorLoaded;
+	private static boolean modNetheriteModLoaded;
+	private static boolean modVulcaniteLoaded;
+	private static boolean modCarbonadoLoaded;
+	private static boolean modGalaxiteOreLoaded;
+	private static boolean modFutureMCLoaded;
+	private static boolean modAetherLegacyLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -54,6 +69,21 @@ public class SPCompatibilityManager {
 	public static final String DYNAMIC_LIGHTS_MODID = "dynamiclights";
 	public static final String SMOOTH_ENTITY_LIGHT_MODID = "sel";
 	public static final String MRCRAYFISH_GUN_MOD_MODID = "cgm";
+	public static final String RESKILLABLE_MODID = "reskillable";
+	public static final String NO_TREE_PUNCHING_MODID = "notreepunching";
+	public static final String GEMS_AND_CRYSTALS_MODID = "gm";
+	public static final String PI3XEMERALDS_MODID = "emeralds";
+	public static final String TRIGEMS_MODID = "trigems";
+	public static final String FANCYTOOLS_MODID = "fancytools";
+	public static final String EMERALD_AND_OBSIDIAN_MODID = "emeraldobsidian";
+	public static final String OBSIDIAN_ARMOR_AND_TOOLS_MODID = "obsidiantools";
+	public static final String OBSIDIAN_TOOLS_AND_ARMOR_MODID = "ota";
+	public static final String NETHERITE_MOD_MODID = "netherite";
+	public static final String VULCANITE_MODID = "vulcanite";
+	public static final String CARBONADO_MODID = "carbonado";
+	public static final String GALAXITE_ORE_MODID = "galaxite";
+	public static final String FUTURE_MC_MODID = "futuremc";
+	public static final String AETHER_LEGACY_MODID = "aether_legacy";
 
 	public static void checkForCompatibleMods(){
 
@@ -177,6 +207,81 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modMrCrayfishGunModLoaded = true;
 		}
+		
+		if (Loader.isModLoaded(RESKILLABLE_MODID))
+		{
+			SPCompatibilityManager.modReskillableLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(NO_TREE_PUNCHING_MODID))
+		{
+			SPCompatibilityManager.modNoTreePunchingLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(GEMS_AND_CRYSTALS_MODID))
+		{
+			SPCompatibilityManager.modGemsAndCrystalsLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(PI3XEMERALDS_MODID))
+		{
+			SPCompatibilityManager.modPI3xEmeraldsLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(TRIGEMS_MODID))
+		{
+			SPCompatibilityManager.modTriGemsLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(FANCYTOOLS_MODID))
+		{
+			SPCompatibilityManager.modFancyToolsLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(EMERALD_AND_OBSIDIAN_MODID))
+		{
+			SPCompatibilityManager.modEmeraldAndObsidianLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(OBSIDIAN_ARMOR_AND_TOOLS_MODID))
+		{
+			SPCompatibilityManager.modObsidianArmorAndToolsLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(OBSIDIAN_TOOLS_AND_ARMOR_MODID))
+		{
+			SPCompatibilityManager.modObsidianToolsAndArmorLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(NETHERITE_MOD_MODID))
+		{
+			SPCompatibilityManager.modNetheriteModLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(VULCANITE_MODID))
+		{
+			SPCompatibilityManager.modVulcaniteLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(CARBONADO_MODID))
+		{
+			SPCompatibilityManager.modCarbonadoLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(GALAXITE_ORE_MODID))
+		{
+			SPCompatibilityManager.modGalaxiteOreLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(FUTURE_MC_MODID))
+		{
+			SPCompatibilityManager.modFutureMCLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(AETHER_LEGACY_MODID))
+		{
+			SPCompatibilityManager.modAetherLegacyLoaded = true;
+		}
 	}
 
 	public static boolean isIc2Loaded()
@@ -297,6 +402,91 @@ public class SPCompatibilityManager {
 	public static boolean isCGMLoaded()
 	{
 		return SPCompatibilityManager.modMrCrayfishGunModLoaded;
+	}
+	
+	public static boolean isReskillableLoaded()
+	{
+		return SPCompatibilityManager.modReskillableLoaded;
+	}
+	
+	public static boolean isNoTreePunchingLoaded()
+	{
+		return SPCompatibilityManager.modNoTreePunchingLoaded;
+	}
+	
+	public static boolean isGACLoaded()
+	{
+		return SPCompatibilityManager.modGemsAndCrystalsLoaded;
+	}
+	
+	public static boolean isPI3xLoaded()
+	{
+		return SPCompatibilityManager.modPI3xEmeraldsLoaded;
+	}
+	
+	public static boolean isTriGemsLoaded()
+	{
+		return SPCompatibilityManager.modTriGemsLoaded;
+	}
+	
+	public static boolean isFancyToolsLoaded()
+	{
+		return SPCompatibilityManager.modFancyToolsLoaded;
+	}
+	
+	public static boolean isEAOLoaded()
+	{
+		return SPCompatibilityManager.modEmeraldAndObsidianLoaded;
+	}
+	
+	public static boolean isOAATLoaded()
+	{
+		return SPCompatibilityManager.modObsidianArmorAndToolsLoaded;
+	}
+	
+	public static boolean isOTAALoaded()
+	{
+		return SPCompatibilityManager.modObsidianToolsAndArmorLoaded;
+	}
+	
+	public static boolean isEmeraldMatieralModsLoaded()
+	{
+		return isGACLoaded() || isPI3xLoaded() || isTriGemsLoaded() || isFancyToolsLoaded() || isEAOLoaded();
+	}
+	
+	public static boolean isObsidianMatieralModsLoaded()
+	{
+		return isFancyToolsLoaded() || isEAOLoaded() || isOAATLoaded() || isOTAALoaded();
+	}
+	
+	public static boolean isNetheriteModLoaded()
+	{
+		return SPCompatibilityManager.modNetheriteModLoaded;
+	}
+	
+	public static boolean isVulcaniteLoaded()
+	{
+		return SPCompatibilityManager.modVulcaniteLoaded;
+	}
+	
+	public static boolean isCarbonadoLoaded()
+	{
+		return SPCompatibilityManager.modCarbonadoLoaded;
+	}
+	
+	public static boolean isGalaxiteOreLoaded()
+	{
+		return SPCompatibilityManager.modGalaxiteOreLoaded;
+	}
+	
+	public static boolean isFutureMCLoaded()
+	{
+		return SPCompatibilityManager.modFutureMCLoaded;
+	}
+	
+	public static boolean isAetherLegacyLoaded()
+	{
+		return SPCompatibilityManager.modAetherLegacyLoaded;
 	}
 
 }

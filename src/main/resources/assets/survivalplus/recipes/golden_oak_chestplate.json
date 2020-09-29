@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_chestplate",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "aether_legacy:aether_log",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "survivalplus:golden_oak_chestplate"
+  }
+}

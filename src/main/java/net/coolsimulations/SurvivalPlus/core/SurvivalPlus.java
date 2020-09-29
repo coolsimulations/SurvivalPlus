@@ -38,13 +38,16 @@ import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusGemTab;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusMaterialsTab;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusToolsTab;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAetherLegacyRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusFutureMCRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusHammerTime;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusJER;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLighting;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusSkills;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnionCrop;
 import net.coolsimulations.SurvivalPlus.core.world.village.VillageOnionCropHandler;
@@ -140,6 +143,15 @@ public class SurvivalPlus {
 		{
 			SurvivalPlusLighting.initSmoothEntityLight(event);;
 		}
+		
+		if (SPCompatibilityManager.isReskillableLoaded())
+		{
+			SurvivalPlusSkills.initReskillable(event);
+		}
+		if (SPCompatibilityManager.isAetherLegacyLoaded())
+		{
+			MinecraftForge.EVENT_BUS.register(new SurvivalPlusAetherLegacyRecipes());
+		}
 
 	}
 
@@ -173,6 +185,10 @@ public class SurvivalPlus {
 		if (SPCompatibilityManager.isIc2Loaded())
 		{
 			SurvivalPlusIC2Recipes.init();
+		}
+		if (SPCompatibilityManager.isFutureMCLoaded())
+		{
+			SurvivalPlusFutureMCRecipes.init();
 		}
 
 	}
