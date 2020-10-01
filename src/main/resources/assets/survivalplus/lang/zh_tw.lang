@@ -1,14 +1,13 @@
-death.fell.accident.ladder=%1$s從梯子上掉下來摔死了
-death.fell.accident.vines=%1$s從一些藤蔓上掉下來摔死了
-death.fell.accident.water=%1$s從水中掉了下來並且摔死了
-death.fell.accident.generic=%1$s摔死了
-death.fell.killer=%1$s注定要摔死的
-death.fell.assist=%1$s因為%2$s注定要摔死的
-death.fell.assist.item=%1$s因為%2$s使用了%3$s注定要摔死的
-death.fell.finish=%1$s傷得太重並被%2$s完結了生命
-death.fell.finish.item=%1$s傷得太重並被%2$s用%3$s完結了生命
-death.attack.fall=%1$s是摔死了
-death.attack.fall.player=%1$s在逃離%2$s時摔死了
+death.fell.accident.ladder=%1$s從梯子上摔了下來是斯莫希德
+death.fell.accident.vines=%1$s從一些藤蔓上摔了下來並且是斯莫希德
+death.fell.accident.water=%1$s從水中掉了下來並且是斯莫希德
+death.fell.accident.generic=%1$s是斯莫希德
+death.fell.killer=%1$s注定要斯穆什死
+death.fell.assist=%1$s因為%2$s注定要斯穆什死
+death.fell.assist.item=%1$s因為%2$s使用了%3$s注定要斯穆什死
+death.fell.finish=%1$s斯穆什傷得太重並被%2$s完結了生命
+death.fell.finish.item=%1$s斯穆什傷得太重並被%2$s用%3$s完結了生命
+death.attack.fall=%1$s是斯莫希德
 sp.name=生存加
 
 itemGroup.tabMaterials=生存加材料

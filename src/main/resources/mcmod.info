@@ -7,7 +7,7 @@
   "mcversion": "${mcversion}",
   "url": "https://curseforge.com/minecraft/mc-mods/survivalplus",
   "authorList": ["coolsim"],
-  "credits": "To leviofpower, Jessen_House, and exostealth79 who have all played a vital part in testing this mod throughout its development",
+  "credits": "To leviofpower, Jessen_House, exostealth79, and TrackaDacks who have all played a vital part in testing this mod throughout its development",
   "logoFile": "assets/survivalplus/textures/gui/logo.png",
   "dependencies": []
 }
