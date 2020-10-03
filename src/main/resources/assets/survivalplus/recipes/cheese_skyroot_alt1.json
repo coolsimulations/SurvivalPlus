@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cheese",
+  "pattern": [
+    "SMM"
+  ],
+  "key": {
+    "S": {
+      "item": "aether_legacy:skyroot_bucket",
+      "data": 4
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    }
+  },
+  "result": {
+    "item": "survivalplus:cheese",
+    "count": 6
+  }
+}

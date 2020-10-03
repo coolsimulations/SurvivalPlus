@@ -3,7 +3,13 @@
   "rewards": {
     "recipes": [
       "survivalplus:cheese",
-      "survivalplus:cheese_skyroot"
+      "survivalplus:cheese_skyroot",
+      "survivalplus:cheese_skyroot_alt1",
+      "survivalplus:cheese_skyroot_alt2",
+      "survivalplus:cheese_skyroot_alt3",
+      "survivalplus:cheese_skyroot_alt4",
+      "survivalplus:cheese_skyroot_alt5",
+      "survivalplus:cheese_skyroot_alt6"
     ]
   },
   "criteria": {
@@ -32,7 +38,13 @@
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "survivalplus:cheese",
-        "recipe": "survivalplus:cheese_skyroot"
+        "recipe": "survivalplus:cheese_skyroot",
+        "recipe": "survivalplus:cheese_skyroot_alt1",
+        "recipe": "survivalplus:cheese_skyroot_alt2",
+        "recipe": "survivalplus:cheese_skyroot_alt3",
+        "recipe": "survivalplus:cheese_skyroot_alt4",
+        "recipe": "survivalplus:cheese_skyroot_alt5",
+        "recipe": "survivalplus:cheese_skyroot_alt6"
       }
     }
   },
