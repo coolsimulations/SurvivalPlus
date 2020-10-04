@@ -93,25 +93,20 @@ public class SurvivalPlusEventHandler {
 				installInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
 				player.sendMessage(installInfo);
 
-				TranslationTextComponent installTextureInfo = new TranslationTextComponent("sp.install_texture.display");
-				installTextureInfo.getStyle().setColor(TextFormatting.YELLOW);
-				installTextureInfo.getStyle().setBold(true);
-				player.sendMessage(installTextureInfo);
-				
 				TranslationTextComponent discord = new TranslationTextComponent("sp.discord.display1");
 				discord.getStyle().setColor(TextFormatting.DARK_GREEN);
 				discord.getStyle().setBold(true);
-				
+
 				for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
 					String name = LanguageMap.getInstance().translateKey(SPReference.MOD_ADDON_NAMES.get(i));
-					
+
 					StringTextComponent formatted = new StringTextComponent(name);
 					formatted.getStyle().setColor(TextFormatting.BLUE);
 					formatted.getStyle().setBold(true);
-					
+
 					StringTextComponent gap = new StringTextComponent(", ");
 					gap.getStyle().setColor(TextFormatting.WHITE);
-					
+
 					discord.appendSibling(formatted);
 					if(i + 1 != SPReference.MOD_ADDON_NAMES.size()) {
 						discord.appendSibling(gap);
@@ -119,7 +114,7 @@ public class SurvivalPlusEventHandler {
 				}
 				discord.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.discord.display2")));
 				discord.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));
-				
+
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
@@ -286,7 +281,7 @@ public class SurvivalPlusEventHandler {
 		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
 		coolsim.getStyle().setColor(TextFormatting.GOLD);
 
-		if(event.getUsername().equals("coolsim")) {
+		if(event.getPlayer().getUniqueID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
 			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()) != null)
 				event.setComponent(new StringTextComponent(coolsim.getFormattedText() + " <" + ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()).getDisplayName().getFormattedText() + "> " + event.getMessage()));
 		}
@@ -326,7 +321,7 @@ public class SurvivalPlusEventHandler {
 	@SubscribeEvent
 	public void coolsimDeath(LivingDeathEvent event) {
 
-		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().getDisplayName().getFormattedText().equals("coolsim") && event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
+		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().getUniqueID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412")) && event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
 
 			ServerPlayerEntity attacker = (ServerPlayerEntity) event.getSource().getTrueSource();
 			ItemStack coolsimHead = getcoolsimHead();

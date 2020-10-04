@@ -27,6 +27,12 @@ public class SPCompatibilityManager {
 	private static boolean modJerLoaded;
 	private static boolean modSwordBlockingLoaded;
 	private static boolean modSilentMechanismsLoaded;
+	private static boolean modGemsAndCrystalsLoaded;
+	private static boolean modTriGemsLoaded;
+	private static boolean modEmeraldAndObsidianLoaded;
+	private static boolean modObsidianArmorAndToolsLoaded;
+	private static boolean modVulcaniteLoaded;
+	private static boolean modCarbonadoLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -52,6 +58,12 @@ public class SPCompatibilityManager {
 	public static final String JER_MODID = "jeresources";
 	public static final String SWORD_BLOCKING_MODID = "swordblockingcombat";
 	public static final String SILENT_MECHANISMS_MODID = "silents_mechanisms";
+	public static final String GEMS_AND_CRYSTALS_MODID = "gemsandcrystals";
+	public static final String TRIGEMS_MODID = "trigems";
+	public static final String EMERALD_AND_OBSIDIAN_MODID = "emeraldobsidian";
+	public static final String OBSIDIAN_ARMOR_AND_TOOLS_MODID = "obsidiantools";
+	public static final String VULCANITE_MODID = "vulcanite";
+	public static final String CARBONADO_MODID = "carbonado";
 
 	public static void checkForCompatibleMods(){
 
@@ -170,6 +182,36 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modSilentMechanismsLoaded = true;
 		}
+		
+		if (ModList.get().isLoaded(GEMS_AND_CRYSTALS_MODID))
+		{
+			SPCompatibilityManager.modGemsAndCrystalsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(TRIGEMS_MODID))
+		{
+			SPCompatibilityManager.modTriGemsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(EMERALD_AND_OBSIDIAN_MODID))
+		{
+			SPCompatibilityManager.modEmeraldAndObsidianLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(OBSIDIAN_ARMOR_AND_TOOLS_MODID))
+		{
+			SPCompatibilityManager.modObsidianArmorAndToolsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(VULCANITE_MODID))
+		{
+			SPCompatibilityManager.modVulcaniteLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(CARBONADO_MODID))
+		{
+			SPCompatibilityManager.modCarbonadoLoaded = true;
+		}
 
 	}
 
@@ -286,6 +328,47 @@ public class SPCompatibilityManager {
 	public static boolean isSilentMechanismsLoaded()
 	{
 		return SPCompatibilityManager.modSilentMechanismsLoaded;
+	}
+	
+	public static boolean isGACLoaded()
+	{
+		return SPCompatibilityManager.modGemsAndCrystalsLoaded;
+	}
+	
+	public static boolean isTriGemsLoaded()
+	{
+		return SPCompatibilityManager.modTriGemsLoaded;
+	}
+	
+	public static boolean isEAOLoaded()
+	{
+		return SPCompatibilityManager.modEmeraldAndObsidianLoaded;
+	}
+	
+	public static boolean isOAATLoaded()
+	{
+		return SPCompatibilityManager.modObsidianArmorAndToolsLoaded;
+	}
+	
+	public static boolean isEmeraldMatieralModsLoaded()
+	{
+		return isGACLoaded() || isTriGemsLoaded() || isEAOLoaded();
+	}
+	
+	public static boolean isObsidianMatieralModsLoaded()
+	{
+		return isEAOLoaded() || isOAATLoaded();
+	}
+
+	
+	public static boolean isVulcaniteLoaded()
+	{
+		return SPCompatibilityManager.modVulcaniteLoaded;
+	}
+	
+	public static boolean isCarbonadoLoaded()
+	{
+		return SPCompatibilityManager.modCarbonadoLoaded;
 	}
 
 }

@@ -1,7 +1,12 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.CommandSource;
@@ -9,12 +14,9 @@ import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.dimension.DimensionType;
-
-import java.util.Collection;
-import java.util.Iterator;
 
 public class CommandSleep {
 
@@ -25,6 +27,15 @@ public class CommandSleep {
 						.executes(sleep -> sleep(sleep.getSource(), EntityArgument.getPlayers(sleep, "targets")))));
 
 		dispatcher.register(Commands.literal("sleep")
+				.requires(s -> s.hasPermissionLevel(0))
+				.executes(sleep -> sleepSingle(sleep.getSource())));
+		
+		dispatcher.register(Commands.literal("sloop")
+				.then(Commands.argument("targets", EntityArgument.players())
+						.requires(s -> s.hasPermissionLevel(0))
+						.executes(sleep -> sleep(sleep.getSource(), EntityArgument.getPlayers(sleep, "targets")))));
+
+		dispatcher.register(Commands.literal("sloop")
 				.requires(s -> s.hasPermissionLevel(0))
 				.executes(sleep -> sleepSingle(sleep.getSource())));
 	}

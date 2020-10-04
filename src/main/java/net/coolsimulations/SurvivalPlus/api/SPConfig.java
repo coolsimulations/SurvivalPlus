@@ -1,6 +1,5 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "T T",
+    "TTT",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "tag": "forge:gems/topaz"
+    }
+  },
+  "result": {
+    "item": "gemsandcrystals:topaz_chestplate",
+    "count": 1
+  }
+}

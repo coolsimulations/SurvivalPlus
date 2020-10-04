@@ -25,7 +25,7 @@ public enum SPArmorMaterial implements IArmorMaterial {
     stoneArmorMaterial("stone", 20, new int[] {1, 2, 4, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(Tags.Items.COBBLESTONE);
     }),
-    titaniumArmorMaterial("titanium", 20, new int[] {3, 2, 5, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F, () -> {
+    titaniumArmorMaterial("titanium", 20, new int[] {3, 5, 7, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F, () -> {
     	return Ingredient.fromTag(SPTags.Items.INGOTS_TITANIUM);
     }),
     oakArmorMaterial("oak", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {

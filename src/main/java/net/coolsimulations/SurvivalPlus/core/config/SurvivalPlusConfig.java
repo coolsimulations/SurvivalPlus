@@ -90,7 +90,6 @@ public class SurvivalPlusConfig {
 					.translation("sp.configgui.disable_thanks")
 					.define("disableThanks", false);
 
-
 			builder.pop();
 		}
 	}
