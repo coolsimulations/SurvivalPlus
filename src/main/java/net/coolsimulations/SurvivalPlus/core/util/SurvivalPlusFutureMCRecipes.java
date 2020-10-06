@@ -162,9 +162,13 @@ public class SurvivalPlusFutureMCRecipes {
        	}
        	
        	if(SPCompatibilityManager.isTriGemsLoaded()) {
-       		BlastFurnaceRecipes.INSTANCE.addRecipe(new ItemStack(TriGemsMod.oreRuby), new ItemStack(SPBlocks.ruby));
-    		BlastFurnaceRecipes.INSTANCE.addRecipe(new ItemStack(TriGemsMod.oreSapphire), new ItemStack(SPBlocks.sapphire));
-    		BlastFurnaceRecipes.INSTANCE.addRecipe(new ItemStack(TriGemsMod.oreTopaz), new ItemStack(SPBlocks.topaz));
+       		Item ruby = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.TRIGEMS_MODID, "ruby_ore"));
+       		Item sapphire = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.TRIGEMS_MODID, "sapphire_ore"));
+       		Item topaz = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.TRIGEMS_MODID, "topaz_ore"));
+       		
+       		BlastFurnaceRecipes.INSTANCE.addRecipe(new ItemStack(ruby), new ItemStack(SPBlocks.ruby));
+    		BlastFurnaceRecipes.INSTANCE.addRecipe(new ItemStack(sapphire), new ItemStack(SPBlocks.sapphire));
+    		BlastFurnaceRecipes.INSTANCE.addRecipe(new ItemStack(topaz), new ItemStack(SPBlocks.topaz));
        	}
     }
 	
