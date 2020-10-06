@@ -1,31 +1,22 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import com.ToMe.trigems.TriGemsMod;
 import com.coliwogg.gemsmod.init.BlockInit;
-import com.mojang.realmsclient.client.Request.Put;
 
-import forestry.api.core.ForestryAPI;
 import ic2.api.item.IC2Items;
 import micdoodle8.mods.galacticraft.core.GCItems;
-import micdoodle8.mods.galacticraft.core.fluid.ThreadFindSeal.intBucket;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusSmeltingRecipes;
 import net.insane96mcp.carbonado.init.ModItems;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import scala.reflect.internal.Trees.New;
 import thedarkcolour.futuremc.block.villagepillage.ComposterBlock;
 import thedarkcolour.futuremc.block.villagepillage.ComposterRarity;
-import thedarkcolour.futuremc.compat.crafttweaker.Composter;
-import thedarkcolour.futuremc.compat.jei.composter.ComposterRecipeCategory;
 import thedarkcolour.futuremc.recipe.campfire.CampfireRecipes;
 import thedarkcolour.futuremc.recipe.furnace.BlastFurnaceRecipes;
 import thedarkcolour.futuremc.recipe.furnace.SmokerRecipes;
