@@ -58,9 +58,9 @@ public class SurvivalPlusTools {
 		SPItems.titanium_shears = new SPItemShears(298, "ingotTitanium").setUnlocalizedName("titanium_shears").setRegistryName("titanium_shears").setCreativeTab(SPTabs.tabTools);
 		SPItems.titanium_shield = new SPItemShield(519, "plankWood").setUnlocalizedName("titanium_shield").setRegistryName("titanium_shield").setCreativeTab(SPTabs.tabCombat);
 		
-		if(!SPCompatibilityManager.isEmeraldMatieralModsLoaded() && SPConfig.enableEmeraldMaterial)
+		if(!SPCompatibilityManager.isEmeraldMaterialModsLoaded() && SPConfig.enableEmeraldMaterial)
 			SPItems.emeraldToolMaterial = EnumHelper.addToolMaterial("emeraldToolMaterial", 3, 1776, 9.0F, 3.5F, 22).setRepairItem(new ItemStack(Items.EMERALD));
-		if(!SPCompatibilityManager.isObsidianMatieralModsLoaded() && SPConfig.enableObsidianMaterial)
+		if(!SPCompatibilityManager.isObsidianMaterialModsLoaded() && SPConfig.enableObsidianMaterial)
 			SPItems.obsidianToolMaterial = EnumHelper.addToolMaterial("obsidianToolMaterial", 3, 1820, 7.0F, 4.5F, 11).setRepairItem(new ItemStack(Blocks.OBSIDIAN));
 		
 		if(SPCompatibilityManager.isNoTreePunchingLoaded()){
