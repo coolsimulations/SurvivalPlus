@@ -104,10 +104,21 @@ public class SPTags
     	public static final Tag<Item> FOOD_CAKE_SPONGE = tag("food/cake/sponge");
     	
     	public static final Tag<Item> BUCKETS = tag("buckets/charcoal");
+    	
+    	public static final Tag<Item> SHEARS = tag("shears");
+    	
+    	public static final Tag<Item> SAWS = tag(SPCompatibilityManager.NO_TREE_PUNCHING_MODID, "saws");
+    	
+    	public static final Tag<Item> KNIVES = tag(SPCompatibilityManager.NO_TREE_PUNCHING_MODID, "knives");
 
         private static Tag<Item> tag(String name)
         {
             return new ItemTags.Wrapper(new ResourceLocation(ForgeMod.getInstance().getModId(), name));
+        }
+        
+        private static Tag<Item> tag(String modid, String name)
+        {
+            return new ItemTags.Wrapper(new ResourceLocation(modid, name));
         }
     }
 }

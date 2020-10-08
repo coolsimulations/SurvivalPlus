@@ -28,6 +28,14 @@ public class SPCompatibilityManager {
 	private static boolean modSwordBlockingLoaded;
 	private static boolean modSilentMechanismsLoaded;
 	private static boolean modMrCrayfishGunModLoaded;
+	private static boolean modNoTreePunchingLoaded;
+	private static boolean modGemsAndCrystalsLoaded;
+	private static boolean modStandardMaterialsLoaded;
+	private static boolean modObsidianArmorAndToolsLoaded;
+	private static boolean modExtendedNetherBackportLoaded;
+	private static boolean modVulcaniteLoaded;
+	private static boolean modCarbonadoLoaded;
+	private static boolean modFutureMCLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -54,6 +62,14 @@ public class SPCompatibilityManager {
 	public static final String SWORD_BLOCKING_MODID = "swordblockingcombat";
 	public static final String SILENT_MECHANISMS_MODID = "silents_mechanisms";
 	public static final String MRCRAYFISH_GUN_MOD_MODID = "cgm";
+	public static final String NO_TREE_PUNCHING_MODID = "notreepunching";
+	public static final String GEMS_AND_CRYSTALS_MODID = "gemsandcrystals";
+	public static final String STANDARD_MATERIALS_MODID = "standardmaterials";
+	public static final String OBSIDIAN_ARMOR_AND_TOOLS_MODID = "obsidiantools";
+	public static final String EXTENDED_NETHER_BACKPORT_MODID = "extendednether";
+	public static final String VULCANITE_MODID = "vulcanite";
+	public static final String CARBONADO_MODID = "carbonado";
+	public static final String FUTURE_MC_MODID = "futuremc";
 
 	public static void checkForCompatibleMods(){
 
@@ -177,6 +193,46 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modMrCrayfishGunModLoaded = true;
 		}
+		
+		if (ModList.get().isLoaded(NO_TREE_PUNCHING_MODID))
+		{
+			SPCompatibilityManager.modNoTreePunchingLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(GEMS_AND_CRYSTALS_MODID))
+		{
+			SPCompatibilityManager.modGemsAndCrystalsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(STANDARD_MATERIALS_MODID))
+		{
+			SPCompatibilityManager.modStandardMaterialsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(OBSIDIAN_ARMOR_AND_TOOLS_MODID))
+		{
+			SPCompatibilityManager.modObsidianArmorAndToolsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(EXTENDED_NETHER_BACKPORT_MODID))
+		{
+			SPCompatibilityManager.modExtendedNetherBackportLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(VULCANITE_MODID))
+		{
+			SPCompatibilityManager.modVulcaniteLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(CARBONADO_MODID))
+		{
+			SPCompatibilityManager.modCarbonadoLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(FUTURE_MC_MODID))
+		{
+			SPCompatibilityManager.modFutureMCLoaded = true;
+		}
 	}
 
 	public static boolean isIc2Loaded()
@@ -297,6 +353,56 @@ public class SPCompatibilityManager {
 	public static boolean isCGMLoaded()
 	{
 		return SPCompatibilityManager.modMrCrayfishGunModLoaded;
+	}
+	
+	public static boolean isNoTreePunchingLoaded()
+	{
+		return SPCompatibilityManager.modNoTreePunchingLoaded;
+	}
+	
+	public static boolean isGACLoaded()
+	{
+		return SPCompatibilityManager.modGemsAndCrystalsLoaded;
+	}
+	
+	public static boolean isStandardMaterialsLoaded()
+	{
+		return SPCompatibilityManager.modStandardMaterialsLoaded;
+	}
+	
+	public static boolean isOAATLoaded()
+	{
+		return SPCompatibilityManager.modObsidianArmorAndToolsLoaded;
+	}
+	
+	public static boolean isEmeraldMaterialModsLoaded()
+	{
+		return isGACLoaded() || isStandardMaterialsLoaded();
+	}
+	
+	public static boolean isObsidianMaterialModsLoaded()
+	{
+		return isOAATLoaded() || isStandardMaterialsLoaded();
+	}
+	
+	public static boolean isExtendedNetherBackportLoaded()
+	{
+		return SPCompatibilityManager.modExtendedNetherBackportLoaded;
+	}
+	
+	public static boolean isVulcaniteLoaded()
+	{
+		return SPCompatibilityManager.modVulcaniteLoaded;
+	}
+	
+	public static boolean isCarbonadoLoaded()
+	{
+		return SPCompatibilityManager.modCarbonadoLoaded;
+	}
+	
+	public static boolean isFutureMCLoaded()
+	{
+		return SPCompatibilityManager.modFutureMCLoaded;
 	}
 
 }

@@ -1,14 +1,13 @@
 package net.coolsimulations.SurvivalPlus.api.item;
 
-import net.coolsimulations.SurvivalPlus.api.SPReference;
+import java.util.function.Supplier;
+
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeMod;
-
-import java.util.function.Supplier;
 
 public enum SPItemTier implements IItemTier {
     bronzeToolMaterial(2, 350, 5.0F, 1.5F, 7, () -> {

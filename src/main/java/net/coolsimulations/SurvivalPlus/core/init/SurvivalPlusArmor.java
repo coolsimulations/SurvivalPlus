@@ -1,33 +1,13 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
-import java.util.Collections;
-import java.util.List;
-
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.SPTags;
 import net.coolsimulations.SurvivalPlus.api.item.SPArmorMaterial;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
-import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
-import net.minecraft.client.Minecraft;
-import net.minecraft.data.ItemTagsProvider;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.Tags;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
-import net.minecraft.tags.TagCollection;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
 
 public class SurvivalPlusArmor {
 	
@@ -145,6 +125,29 @@ public class SurvivalPlusArmor {
 			ForestryArmor.init();
 		}
 		
+		if(SPCompatibilityManager.isExtendedNetherBackportLoaded()) {
+			
+			SPItems.crimson_helmet = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("crimson_helmet");
+			SPItems.crimson_chestplate = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("crimson_chestplate");
+			SPItems.crimson_leggings = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("crimson_leggings");
+			SPItems.crimson_boots = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlotType.FEET).setRegistryName("crimson_boots");
+			SPItems.crimson = NonNullList.create();
+			SPItems.crimson.add(0, new ItemStack(SPItems.crimson_helmet));
+			SPItems.crimson.add(1, new ItemStack(SPItems.crimson_chestplate));
+			SPItems.crimson.add(2, new ItemStack(SPItems.crimson_leggings));
+			SPItems.crimson.add(3, new ItemStack(SPItems.crimson_boots));
+			
+			SPItems.warped_helmet = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("warped_helmet");
+			SPItems.warped_chestplate = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("warped_chestplate");
+			SPItems.warped_leggings = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("warped_leggings");
+			SPItems.warped_boots = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlotType.FEET).setRegistryName("warped_boots");
+			SPItems.warped = NonNullList.create();
+			SPItems.warped.add(0, new ItemStack(SPItems.warped_helmet));
+			SPItems.warped.add(1, new ItemStack(SPItems.warped_chestplate));
+			SPItems.warped.add(2, new ItemStack(SPItems.warped_leggings));
+			SPItems.warped.add(3, new ItemStack(SPItems.warped_boots));
+		}
+		
 	}
 	public static void register()
 	{
@@ -170,6 +173,11 @@ public class SurvivalPlusArmor {
 		
 		if(SPCompatibilityManager.isForestryLoaded()){
 			ForestryArmor.register();
+		}
+		
+		if(SPCompatibilityManager.isExtendedNetherBackportLoaded()) {
+			registerItem(SPItems.crimson);
+			registerItem(SPItems.warped);
 		}
 	}
 
