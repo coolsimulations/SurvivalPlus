@@ -350,12 +350,12 @@ public class SPCompatibilityManager {
 		return SPCompatibilityManager.modObsidianArmorAndToolsLoaded;
 	}
 	
-	public static boolean isEmeraldMatieralModsLoaded()
+	public static boolean isEmeraldMaterialModsLoaded()
 	{
 		return isGACLoaded() || isTriGemsLoaded() || isEAOLoaded();
 	}
 	
-	public static boolean isObsidianMatieralModsLoaded()
+	public static boolean isObsidianMaterialModsLoaded()
 	{
 		return isEAOLoaded() || isOAATLoaded();
 	}
