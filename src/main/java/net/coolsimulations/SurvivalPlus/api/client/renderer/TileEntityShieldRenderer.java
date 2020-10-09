@@ -37,27 +37,6 @@ public class TileEntityShieldRenderer extends ItemStackTileEntityRenderer {
 	{
 		Item item = stack.getItem();
 
-		/**if (item instanceof SPItemShield) {
-			if (stack.getChildTag("BlockEntityTag") != null) {
-				this.banner.loadFromItemStack(stack, ShieldItem.getColor(stack));
-				Minecraft.getInstance().getTextureManager()
-				.bindTexture(new BannerTextures.Cache("shield_", new ResourceLocation(item.getRegistryName().getNamespace(), "textures/entity/" + item.getRegistryName().getPath() + "_base.png"), "textures/entity/shield/").getResourceLocation(this.banner.getPatternResourceLocation(), this.banner.getPatternList(), this.banner.getColorList()));
-			} else {
-				Minecraft.getInstance().getTextureManager().bindTexture(new ResourceLocation(item.getRegistryName().getNamespace(), "textures/entity/" + item.getRegistryName().getPath() + "_base_nopattern.png"));
-			}
-
-			GlStateManager.pushMatrix();
-			GlStateManager.scalef(1.0F, -1.0F, -1.0F);
-			this.modelShield.render();
-			if (stack.hasEffect()) {
-				ShieldModel var10001 = this.modelShield;
-				this.modelShield.getClass();
-				this.renderEffect(var10001::render);
-			}
-
-			GlStateManager.popMatrix();
-		}**/
-
 		if (item instanceof SPItemShield) {
 			boolean tag = stack.getChildTag("BlockEntityTag") != null;
 			matrix.push();
