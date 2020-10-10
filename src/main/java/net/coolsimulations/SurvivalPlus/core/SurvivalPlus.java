@@ -36,13 +36,11 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.WhiteList;
 import net.minecraft.server.management.WhitelistEntry;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.TextureStitchEvent;
 //import net.minecraft.world.gen.feature.structure.StructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -106,7 +104,6 @@ public class SurvivalPlus {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::setupEvent);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::serverLoad);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::registerRecipes);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::textureStitch);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::registerCutouts);
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
 
@@ -126,6 +123,8 @@ public class SurvivalPlus {
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
+		
+		proxy.init();
 
 		if(SPCompatibilityManager.isHammerTimeLoaded()) {
 			SurvivalPlusHammerTime.init();
@@ -170,18 +169,6 @@ public class SurvivalPlus {
 			if(e instanceof IRecipeSerializer<?> && !event.getRegistry().containsKey(new ResourceLocation(SPReference.MOD_ID, "crafting_special_spshielddecoration"))) {
 				event.getRegistry().register(SPShieldRecipes.CRAFTING_SPECIAL_SPSHIELD.setRegistryName(SPReference.MOD_ID, "crafting_special_spshielddecoration"));
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public static void textureStitch(TextureStitchEvent.Pre event) {
-
-		if (event.getMap().getTextureLocation() == AtlasTexture.LOCATION_BLOCKS_TEXTURE) {
-
-			event.addSprite(new ResourceLocation(SPReference.MOD_ID, "entity/bronze_shield_base"));
-			event.addSprite(new ResourceLocation(SPReference.MOD_ID, "entity/bronze_shield_base_nopattern"));
-			event.addSprite(new ResourceLocation(SPReference.MOD_ID, "entity/titanium_shield_base"));
-			event.addSprite(new ResourceLocation(SPReference.MOD_ID, "entity/titanium_shield_base_nopattern"));
 		}
 	}
 	
