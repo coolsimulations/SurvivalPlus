@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
@@ -54,11 +54,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.ServerChatEvent;
@@ -87,7 +82,7 @@ public class SurvivalPlusEventHandler {
 		Advancement install = manager.getAdvancement(new ResourceLocation(SPReference.MOD_ID, SPReference.MOD_ID + "/install"));
 
 		boolean isDone = false;
-		
+
 		Timer timer = new Timer();
 
 		if(install !=null && player.getAdvancements().getProgress(install).hasProgress()) {
@@ -104,31 +99,26 @@ public class SurvivalPlusEventHandler {
 				installInfo.func_240699_a_(TextFormatting.GOLD);
 				player.func_241151_a_(installInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("advancements.sp.install.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.field_240973_b_);
 
-				TranslationTextComponent installTextureInfo = new TranslationTextComponent("sp.install_texture.display");
-				installTextureInfo.func_240699_a_(TextFormatting.YELLOW);
-				installTextureInfo.func_240699_a_(TextFormatting.BOLD);
-				player.func_241151_a_(installTextureInfo, ChatType.SYSTEM, Util.field_240973_b_);
-				
 				TranslationTextComponent discord = new TranslationTextComponent("sp.discord.display1");
 				discord.func_240699_a_(TextFormatting.DARK_GREEN);
 				discord.func_240699_a_(TextFormatting.BOLD);
-				
+
 				for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
 					String name = LanguageMap.getInstance().func_230503_a_(SPReference.MOD_ADDON_NAMES.get(i));
-					
+
 					StringTextComponent formatted = new StringTextComponent(name);
 					formatted.func_240699_a_(TextFormatting.BLUE);
 					formatted.func_240699_a_(TextFormatting.BOLD);
-					
+
 					StringTextComponent gap = new StringTextComponent(", ");
 					gap.func_240699_a_(TextFormatting.WHITE);
-					
+
 					discord.func_230529_a_(formatted);
 					if(i + 1 != SPReference.MOD_ADDON_NAMES.size()) {
 						discord.func_230529_a_(gap);
 					}
 				}
-				
+
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
@@ -294,8 +284,8 @@ public class SurvivalPlusEventHandler {
 			}
 		}
 	}
-	
-    @SubscribeEvent(priority =  EventPriority.HIGH)
+
+	@SubscribeEvent(priority =  EventPriority.HIGH)
 	public void genOres(BiomeLoadingEvent event) {
 		SurvivalPlusOreGenerator.generateOres(event.getName(), event.getClimate(), event.getCategory(), event.getDepth(), event.getScale(), event.getEffects(), event.getGeneration(), event.getSpawns());
 	}
@@ -345,7 +335,7 @@ public class SurvivalPlusEventHandler {
 		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
 		coolsim.func_240699_a_(TextFormatting.GOLD);
 
-		if(event.getUsername().equals("coolsim")) {
+		if(event.getPlayer().getUniqueID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
 			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()) != null)
 				event.setComponent(new TranslationTextComponent("%s <%s> %s", new Object[] {coolsim, ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()).getDisplayName(), event.getMessage()}));
 		}
@@ -385,7 +375,7 @@ public class SurvivalPlusEventHandler {
 	@SubscribeEvent
 	public void coolsimDeath(LivingDeathEvent event) {
 
-		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().getDisplayName().getString().equals("coolsim") && event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
+		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().getUniqueID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412")) && event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
 
 			ServerPlayerEntity attacker = (ServerPlayerEntity) event.getSource().getTrueSource();
 			ItemStack coolsimHead = getcoolsimHead((PlayerEntity) event.getEntity());

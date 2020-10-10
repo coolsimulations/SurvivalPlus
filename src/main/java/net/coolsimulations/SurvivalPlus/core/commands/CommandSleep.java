@@ -31,6 +31,15 @@ public class CommandSleep {
 		dispatcher.register(Commands.literal("sleep")
 				.requires(s -> s.hasPermissionLevel(0))
 				.executes(sleep -> sleepSingle(sleep.getSource())));
+		
+		dispatcher.register(Commands.literal("sloop")
+				.then(Commands.argument("targets", EntityArgument.players())
+						.requires(s -> s.hasPermissionLevel(0))
+						.executes(sleep -> sleep(sleep.getSource(), EntityArgument.getPlayers(sleep, "targets")))));
+
+		dispatcher.register(Commands.literal("sloop")
+				.requires(s -> s.hasPermissionLevel(0))
+				.executes(sleep -> sleepSingle(sleep.getSource())));
 	}
 
 	private static int sleep(CommandSource sender, Collection<ServerPlayerEntity> players) {

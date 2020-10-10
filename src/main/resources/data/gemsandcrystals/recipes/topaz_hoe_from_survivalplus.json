@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TT",
+    " #",
+    " #"
+  ],
+  "key": {
+    "T": {
+      "tag": "forge:gems/topaz"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "gemsandcrystals:topaz_hoe",
+    "count": 1
+  }
+}

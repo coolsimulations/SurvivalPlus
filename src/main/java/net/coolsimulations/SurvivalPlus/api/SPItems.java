@@ -66,16 +66,21 @@ public class SPItems {
 	public static Item bronze_hoe;
 	public static Item bronze_sword;
 	public static Item bronze_shears;
+	public static Item bronze_shield;
 	public static Item titanium_pickaxe;
 	public static Item titanium_axe;
 	public static Item titanium_shovel;
 	public static Item titanium_hoe;
 	public static Item titanium_sword;
 	public static Item titanium_shears;
+	public static Item titanium_shield;
 	public static Item bronze_lumberaxe;
 	public static Item titanium_lumberaxe;
 	public static Item desh_lumberaxe;
 	public static Item steel_lumberaxe;
+	public static Item titanium_knife;
+	public static Item titanium_mattock;
+	public static Item titanium_saw;
 	
 	/**
 	 * These are the armor Items referred to in SurvivalPlusArmor along with the corresponding ArmorMaterial and Armor ItemStack List

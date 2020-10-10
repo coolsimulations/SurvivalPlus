@@ -326,7 +326,6 @@
   "item.survivalplus.zebrawood_leggings": "Grebas de Cebra",
   "item.survivalplus.zebrawood_boots": "Botas de Cebra",
 
-
   "item.survivalplus.bronze_pickaxe": "Pico de Bronce",
   "item.survivalplus.bronze_axe": "Hacha de Bronce",
   "item.survivalplus.bronze_shovel": "Pala de Bronce",
@@ -340,6 +339,42 @@
   "item.survivalplus.titanium_sword": "Espada de Titanio",
   "item.survivalplus.titanium_shears": "Tijeras de Titanio",
   
+  "item.survivalplus.bronze_shield": "Escudo de Bronce",
+  "item.survivalplus.bronze_shield.black": "Escudo de Bronce Negro",
+  "item.survivalplus.bronze_shield.red": "Escudo de Bronce Rojo",
+  "item.survivalplus.bronze_shield.green": "Escudo de Bronce Verde",
+  "item.survivalplus.bronze_shield.brown": "Escudo de Bronce Marr\u00f3n",
+  "item.survivalplus.bronze_shield.blue": "Escudo de Bronce Azul",
+  "item.survivalplus.bronze_shield.purple": "Escudo de Bronce Morado",
+  "item.survivalplus.bronze_shield.cyan": "Escudo de Bronce Cian",
+  "item.survivalplus.bronze_shield.light_gray": "Escudo de Bronce gris Claro",
+  "item.survivalplus.bronze_shield.gray": "Escudo de Bronce Gris",
+  "item.survivalplus.bronze_shield.pink": "Escudo de Bronce Rosa",
+  "item.survivalplus.bronze_shield.lime": "Escudo de Bronce Lima",
+  "item.survivalplus.bronze_shield.yellow": "Escudo de Bronce Amarillo",
+  "item.survivalplus.bronze_shield.light_blue": "Escudo de Bronce Azul Claro",
+  "item.survivalplus.bronze_shield.magenta": "Escudo de Bronce Magenta",
+  "item.survivalplus.bronze_shield.orange": "Escudo de Bronce Narania",
+  "item.survivalplus.bronze_shield.white": "Escudo de Bronce Blanco",
+
+  "item.survivalplus.titanium_shield": "Escudo de Titanio",
+  "item.survivalplus.titanium_shield.black": "Escudo de Titanio Negro",
+  "item.survivalplus.titanium_shield.red": "Escudo de Titanio Rojo",
+  "item.survivalplus.titanium_shield.green": "Escudo de Titanio Verde",
+  "item.survivalplus.titanium_shield.brown": "Escudo de Titanio Marr\u00f3n",
+  "item.survivalplus.titanium_shield.blue": "Escudo de Titanio Azul",
+  "item.survivalplus.titanium_shield.purple": "Escudo de Titanio Morado",
+  "item.survivalplus.titanium_shield.cyan": "Escudo de Titanio Cian",
+  "item.survivalplus.titanium_shield.light_gray": "Escudo de Titanio gris Claro",
+  "item.survivalplus.titanium_shield.gray": "Escudo de Titanio Gris",
+  "item.survivalplus.titanium_shield.pink": "Escudo de Titanio Rosa",
+  "item.survivalplus.titanium_shield.lime": "Escudo de Titanio Lima",
+  "item.survivalplus.titanium_shield.yellow": "Escudo de Titanio Amarillo",
+  "item.survivalplus.titanium_shield.light_blue": "Escudo de Titanio Azul Claro",
+  "item.survivalplus.titanium_shield.magenta": "Escudo de Titanio Magenta",
+  "item.survivalplus.titanium_shield.orange": "Escudo de Titanio Narania",
+  "item.survivalplus.titanium_shield.white": "Escudo de Titanio Blanco",
+  
   "item.hammertime.itemhammerbronze": "Martillo de Bronce",
   "item.hammertime.itemhammertitanium": "Martillo de Titanio",
   "item.hammertime.itemshovelbronze": "Pala de Bronce",
@@ -348,6 +383,22 @@
   "item.hammertime.itemaxetitanium": "Hacha de Titanio",
   "item.hammertime.itemsicklebronze": "Hoz de Bronce",
   "item.hammertime.itemsickletitanium": "Hoz de Titanio",
+  
+  "item.lumberjack.lumberaxeDesh": "Hacha de Madera de Desh",
+  "item.lumberjack.lumberaxeAmethyst": "Hacha de Madera Amatista",
+  "item.lumberjack.lumberaxeTopaz": "Hacha de Madera Topacio",
+  "item.lumberjack.lumberaxeIngot": "Hacha de Madera Netherita",
+  "item.lumberjack.lumberaxeNetherite": "Hacha de Madera Netherita",
+  "item.lumberjack.lumberaxeVulcanite": "Hacha de Madera Vulcanita",
+  "item.lumberjack.lumberaxeCarbonado": "Hacha de Madera Carbonado",
+  "item.lumberjack.lumberaxeGalaxite": "Hacha de Madera Galaxita",
+  
+  "item.survivalplus.titanium_knife": "Cuchillo de Titanio",
+  "item.survivalplus.titanium_mattock": "Azada Pico de Titanio",
+  "item.survivalplus.titanium_saw": "Sierra de Titanium",
+  "item.survivalplus.desh_knife": "Cuchillo de Desh",
+  "item.survivalplus.desh_mattock": "Azada Pico de Desh",
+  "item.survivalplus.desh_saw": "Sierra de Desh",
 
   "death.attack.boiled_water": "%1$s fue quemado hasta la muerte",
   "death.attack.boiled_water.player": "%1$s fue quemado hasta la muerte mientras hu\u00eda de %2$s",
@@ -412,6 +463,11 @@
   
   "sp.discord.display1": "Haga Clic Aqu\u00ed Para Unirse al Servidor Oficial de Discord Para: ",
   "sp.discord.display2": "Haga Clic Para Unirse!",
+  
+  "sp.coolsim.creator": "[SupervivenciaM\u00e1s Creador]",
+  "sp.coolsim.joined": "coolsim el gran creador de SupervivenciaM\u00e1s se uni\u00f3 al juego",
+  "sp.coolsim.left": "coolsim el gran creador de SupervivenciaM\u00e1s dej\u00f3 el juego",
+  "sp.coolsim.error": "¡coolsim ha sido asesinado demasiadas veces seguidas y por lo tanto, no se le ha ca\u00eddo la cabeza!",
 
   "sp.configgui.title": "SupervivenciaM\u00e1s Configuraci\u00f3n",
   "sp.configgui.enable_sponge": "Habilitar Receta de Esponja",
@@ -431,5 +487,7 @@
   "sp.configgui.op_wak_command": "Definir el Nivel de Permiso del Comando Wak",
   "sp.configgui.update_check": "Desactivar el Mensaje del Comprobador de Actualizaciones de SupervivenciaM\u00e1s",
   "sp.configgui.sun_audio": "Desactivar los Sonidos Reproducidos a Trav\u00e9s de sun.audio",
-  "sp.configgui.disable_thanks": "Desactivar SupervivenciaM\u00e1s Mensaje de Agradecimiento"
+  "sp.configgui.disable_thanks": "Desactivar SupervivenciaM\u00e1s Mensaje de Agradecimiento",
+  "sp.configgui.enable_emerald": "Habil\u00edtelo si SupervivenciaM\u00e1s no ha Detectado Ning\u00fan Mod de Herramienta Esmeralda",
+  "sp.configgui.enable_obsidian": "Habil\u00edtelo si SupervivenciaM\u00e1s no ha Detectado Ning\u00fan Mod de Herramienta Obsidiana"
 }

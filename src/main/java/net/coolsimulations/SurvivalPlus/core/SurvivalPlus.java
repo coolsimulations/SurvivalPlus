@@ -23,6 +23,8 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.coolsimulations.SurvivalPlus.core.proxy.ClientProxy;
 import net.coolsimulations.SurvivalPlus.core.proxy.CommonProxy;
+import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
+import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusComposterRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
@@ -30,21 +32,22 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusHammerTime;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
-import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.WhiteList;
 import net.minecraft.server.management.WhitelistEntry;
+import net.minecraft.util.ResourceLocation;
 //import net.minecraft.world.gen.feature.structure.StructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-//import net.minecraftforge.fml.common.registry.VillagerRegistry;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @Mod(value = SPReference.MOD_ID)
 @Mod.EventBusSubscriber(modid = SPReference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -96,6 +99,7 @@ public class SurvivalPlus {
 		SurvivalPlusConfig.register(ModLoadingContext.get());
 		SurvivalPlusUpdateHandler.init();
 		MinecraftForge.EVENT_BUS.register(this);
+		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(IRecipeSerializer.class, SurvivalPlus::registerRecipes);;
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
 
@@ -105,6 +109,8 @@ public class SurvivalPlus {
 		SurvivalPlusItems.register();
 		SurvivalPlusFood.init();
 		SurvivalPlusFood.register();
+		
+		SurvivalPlusComposterRecipes.init();
 
 		//VillagerRegistry.instance().registerVillageCreationHandler(new VillageOnionCropHandler());  //temp till forge pull request #6142 is resolved
 		//StructureIO.registerStructureComponent(StructureVillageOnionCrop.class, SPReference.MOD_ID + ":onionCropFieldStructure");  //temp till forge pull request #6142 is resolved
@@ -113,6 +119,8 @@ public class SurvivalPlus {
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
+		
+		proxy.init();
 
 		if(SPCompatibilityManager.isHammerTimeLoaded()) {
 			SurvivalPlusHammerTime.init();
@@ -142,5 +150,15 @@ public class SurvivalPlus {
 			SurvivalPlusIC2Recipes.init();
 		}
 
+	}
+	
+	@SubscribeEvent
+	public static void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)
+	{
+		for(IForgeRegistryEntry<?> e : event.getRegistry()) {
+			if(e instanceof IRecipeSerializer<?> && !event.getRegistry().containsKey(new ResourceLocation(SPReference.MOD_ID, "crafting_special_spshielddecoration"))) {
+				event.getRegistry().register(SPShieldRecipes.CRAFTING_SPECIAL_SPSHIELD.setRegistryName(SPReference.MOD_ID, "crafting_special_spshielddecoration"));
+			}
+		}
 	}
 }

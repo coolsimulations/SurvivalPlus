@@ -28,6 +28,12 @@ public class SPCompatibilityManager {
 	private static boolean modSwordBlockingLoaded;
 	private static boolean modSilentMechanismsLoaded;
 	private static boolean modMrCrayfishGunModLoaded;
+	private static boolean modNoTreePunchingLoaded;
+	private static boolean modGemsAndCrystalsLoaded;
+	private static boolean modStandardMaterialsLoaded;
+	private static boolean modObsidianArmorAndToolsLoaded;
+	private static boolean modSimpleEmeraldModLoaded;
+	private static boolean modEasyEmeraldToolsLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -54,6 +60,12 @@ public class SPCompatibilityManager {
 	public static final String SWORD_BLOCKING_MODID = "swordblockingcombat";
 	public static final String SILENT_MECHANISMS_MODID = "silents_mechanisms";
 	public static final String MRCRAYFISH_GUN_MOD_MODID = "cgm";
+	public static final String NO_TREE_PUNCHING_MODID = "notreepunching";
+	public static final String GEMS_AND_CRYSTALS_MODID = "gemsandcrystals";
+	public static final String STANDARD_MATERIALS_MODID = "standardmaterials";
+	public static final String OBSIDIAN_ARMOR_AND_TOOLS_MODID = "obsidiantools";
+	public static final String SIMPLE_EMERALD_MODID = "emeraldmod";
+	public static final String EASY_EMERALD_TOOLS_MODID = "easy_emerald";
 
 	public static void checkForCompatibleMods(){
 
@@ -177,6 +189,36 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modMrCrayfishGunModLoaded = true;
 		}
+		
+		if (ModList.get().isLoaded(NO_TREE_PUNCHING_MODID))
+		{
+			SPCompatibilityManager.modNoTreePunchingLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(GEMS_AND_CRYSTALS_MODID))
+		{
+			SPCompatibilityManager.modGemsAndCrystalsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(STANDARD_MATERIALS_MODID))
+		{
+			SPCompatibilityManager.modStandardMaterialsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(OBSIDIAN_ARMOR_AND_TOOLS_MODID))
+		{
+			SPCompatibilityManager.modObsidianArmorAndToolsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(SIMPLE_EMERALD_MODID))
+		{
+			SPCompatibilityManager.modSimpleEmeraldModLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(EASY_EMERALD_TOOLS_MODID))
+		{
+			SPCompatibilityManager.modEasyEmeraldToolsLoaded = true;
+		}
 	}
 
 	public static boolean isIc2Loaded()
@@ -297,6 +339,46 @@ public class SPCompatibilityManager {
 	public static boolean isCGMLoaded()
 	{
 		return SPCompatibilityManager.modMrCrayfishGunModLoaded;
+	}
+	
+	public static boolean isNoTreePunchingLoaded()
+	{
+		return SPCompatibilityManager.modNoTreePunchingLoaded;
+	}
+	
+	public static boolean isGACLoaded()
+	{
+		return SPCompatibilityManager.modGemsAndCrystalsLoaded;
+	}
+	
+	public static boolean isStandardMaterialsLoaded()
+	{
+		return SPCompatibilityManager.modStandardMaterialsLoaded;
+	}
+	
+	public static boolean isOAATLoaded()
+	{
+		return SPCompatibilityManager.modObsidianArmorAndToolsLoaded;
+	}
+	
+	public static boolean isSimpleEmeraldLoaded()
+	{
+		return SPCompatibilityManager.modSimpleEmeraldModLoaded;
+	}
+	
+	public static boolean isEasyEmeraldLoaded()
+	{
+		return SPCompatibilityManager.modEasyEmeraldToolsLoaded;
+	}
+	
+	public static boolean isEmeraldMaterialModsLoaded()
+	{
+		return isGACLoaded() || isStandardMaterialsLoaded() || isSimpleEmeraldLoaded() || isEasyEmeraldLoaded();
+	}
+	
+	public static boolean isObsidianMaterialModsLoaded()
+	{
+		return isOAATLoaded() || isStandardMaterialsLoaded();
 	}
 
 }

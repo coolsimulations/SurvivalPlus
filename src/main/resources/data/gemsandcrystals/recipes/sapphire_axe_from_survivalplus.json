@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "S#",
+    " #"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:gems/sapphire"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "gemsandcrystals:sapphire_axe",
+    "count": 1
+  }
+}
