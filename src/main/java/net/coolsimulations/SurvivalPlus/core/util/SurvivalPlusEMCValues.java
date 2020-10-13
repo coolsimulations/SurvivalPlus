@@ -17,7 +17,6 @@ import moze_intel.projecte.api.nss.NormalizedSimpleStack;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.coolsimulations.SurvivalPlus.api.SPTags;
 import net.minecraft.resources.IResourceManager;
 
 @EMCMapper
@@ -40,7 +39,7 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 		//SurvivalPlus Tags haven't been working in 1.13 or 1.14, however they do work in SurvivalPlus Lightsabers so I'm assuming that it order of loading related
 		//So these lines below do not work, but leaving them there in case other mods tags work
 		//Also unsure if ProjectE will make changes to this in 1.16 due to the ITag<> stuff, so this may not work...
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_COPPER.func_230234_a_()), 55);
+		/**registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_COPPER.func_230234_a_()), 55);
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_TIN.func_230234_a_()), 256);
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_TITANIUM.func_230234_a_()), 2048);
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.CROPS_ONION.func_230234_a_()), 64);
@@ -50,7 +49,7 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_TOPAZ.func_230234_a_()), 512);
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SAPPHIRE.func_230234_a_()), 512);
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_PEARL.func_230234_a_()), 2048);
-		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SPINEL.func_230234_a_()), 2048);
+		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SPINEL.func_230234_a_()), 2048);**/
 		
 		registerCustomEMC(NSSItem.createItem(SPItems.copper_ingot), 55);
 		registerCustomEMC(NSSItem.createItem(SPItems.tin_ingot), 256);
