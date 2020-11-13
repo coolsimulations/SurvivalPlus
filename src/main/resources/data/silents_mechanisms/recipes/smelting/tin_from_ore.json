@@ -3,7 +3,7 @@
     "ingredient": {
         "tag": "forge:ores/tin"
     },
-    "result": "minecraft:air",
+    "result": "survivalplus:tin_ingot",
     "experience": 1.0,
     "cookingtime": 200
 }

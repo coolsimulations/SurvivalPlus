@@ -5,7 +5,7 @@ logoFile="logo.png"
 
 [[mods]]
     modId="survivalplus"
-    version="0.1.4"
+    version="0.1.4b"
     updateJSONURL="https://coolsimulations.net/mcmods/survivalplus/versionchecker.json"
     displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus"
     displayName="SurvivalPlus"
