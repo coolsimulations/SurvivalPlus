@@ -20,8 +20,8 @@ public class CommandSmiley {
 	private static int smiley(CommandSource sender) {
 
 		TranslationTextComponent smiley = new TranslationTextComponent("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
-		smiley.func_240699_a_(TextFormatting.GREEN);
-		sender.getServer().getPlayerList().func_232641_a_(smiley, ChatType.SYSTEM, Util.field_240973_b_);
+		smiley.mergeStyle(TextFormatting.GREEN);
+		sender.getServer().getPlayerList().func_232641_a_(smiley, ChatType.SYSTEM, Util.DUMMY_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

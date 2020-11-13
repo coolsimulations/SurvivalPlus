@@ -37,9 +37,9 @@ public class ClientProxy extends CommonProxy{
 	public static void registerCutouts(FMLClientSetupEvent event)
 	{
 		RenderTypeLookup.setRenderLayer(SPBlocks.onion, RenderType.getCutout());
-		ItemModelsProperties.func_239418_a_(SPItems.bronze_shield, new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player) -> {
+		ItemModelsProperties.registerProperty(SPItems.bronze_shield, new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player) -> {
 	         return player != null && player.isHandActive() && player.getActiveItemStack() == stack ? 1.0F : 0.0F;});
-		ItemModelsProperties.func_239418_a_(SPItems.titanium_shield, new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player) -> {
+		ItemModelsProperties.registerProperty(SPItems.titanium_shield, new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player) -> {
 	         return player != null && player.isHandActive() && player.getActiveItemStack() == stack ? 1.0F : 0.0F;});
 	}
 	

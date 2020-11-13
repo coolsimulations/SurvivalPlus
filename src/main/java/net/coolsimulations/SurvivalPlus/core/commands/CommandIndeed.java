@@ -40,8 +40,8 @@ public class CommandIndeed {
 
 			} else {
 				TranslationTextComponent indeed = new TranslationTextComponent("sp.commands.indeed.display1", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				indeed.func_240699_a_(TextFormatting.DARK_GREEN);
-				sender.getServer().getPlayerList().func_232641_a_(indeed, ChatType.SYSTEM, Util.field_240973_b_);
+				indeed.mergeStyle(TextFormatting.DARK_GREEN);
+				sender.getServer().getPlayerList().func_232641_a_(indeed, ChatType.SYSTEM, Util.DUMMY_UUID);
 			}
 		}
 
@@ -51,8 +51,8 @@ public class CommandIndeed {
 	private static int indeedSingle(CommandSource sender) {
 
 		TranslationTextComponent indeed = new TranslationTextComponent("sp.commands.indeed.display2", new Object[]{sender.getDisplayName()});
-		indeed.func_240699_a_(TextFormatting.DARK_GREEN);
-		sender.getServer().getPlayerList().func_232641_a_(indeed, ChatType.SYSTEM, Util.field_240973_b_);
+		indeed.mergeStyle(TextFormatting.DARK_GREEN);
+		sender.getServer().getPlayerList().func_232641_a_(indeed, ChatType.SYSTEM, Util.DUMMY_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

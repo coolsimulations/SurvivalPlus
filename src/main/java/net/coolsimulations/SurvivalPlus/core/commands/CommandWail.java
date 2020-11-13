@@ -20,8 +20,8 @@ public class CommandWail {
 	private static int wail(CommandSource sender) {
 
 		TranslationTextComponent wail = new TranslationTextComponent("sp.commands.wail.display", new Object[] {sender.getDisplayName()});
-		wail.func_240699_a_(TextFormatting.AQUA);
-		sender.getServer().getPlayerList().func_232641_a_(wail, ChatType.SYSTEM, Util.field_240973_b_);
+		wail.mergeStyle(TextFormatting.AQUA);
+		sender.getServer().getPlayerList().func_232641_a_(wail, ChatType.SYSTEM, Util.DUMMY_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

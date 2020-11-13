@@ -47,7 +47,7 @@ public class SPBlockCrystal extends Block implements IBucketPickupHandler, ILiqu
 
 		
 		public SPBlockCrystal() {
-			super(Properties.create(Material.GLASS).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.GLASS).func_235838_a_((p_235464_0_) -> {return 7;}));
+			super(Properties.create(Material.GLASS).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.GLASS).setLightLevel((p_235464_0_) -> {return 7;}));
 			this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, false));
 			
 		}

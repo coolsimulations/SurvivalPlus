@@ -66,7 +66,7 @@ public class SurvivalPlusComposterRecipes {
 	
 	protected static void registerCompostableTag(INamedTag<Item> tag, float rarity) {
 		
-		for(Iterator<Item> item = tag.func_230236_b_().iterator(); item.hasNext();)
+		for(Iterator<Item> item = tag.getAllElements().iterator(); item.hasNext();)
 			registerCompostable(item.next(), rarity);
 	}
 	

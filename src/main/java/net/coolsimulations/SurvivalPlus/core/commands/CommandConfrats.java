@@ -35,8 +35,8 @@ public class CommandConfrats {
 
 			}else {
 				TranslationTextComponent confrats = new TranslationTextComponent("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
-				confrats.func_240699_a_(TextFormatting.YELLOW);
-				sender.getServer().getPlayerList().func_232641_a_(confrats, ChatType.SYSTEM, Util.field_240973_b_);
+				confrats.mergeStyle(TextFormatting.YELLOW);
+				sender.getServer().getPlayerList().func_232641_a_(confrats, ChatType.SYSTEM, Util.DUMMY_UUID);
 			}
 		}
 

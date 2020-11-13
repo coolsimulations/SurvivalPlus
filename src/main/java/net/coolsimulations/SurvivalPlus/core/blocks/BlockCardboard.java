@@ -15,7 +15,7 @@ import net.minecraftforge.common.ToolType;
 public class BlockCardboard extends Block{
 
 	public BlockCardboard() {
-		super(Properties.create(Material.WOOD).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.WOOD).func_235838_a_((p_235464_0_) -> {return 0;}));
+		super(Properties.create(Material.WOOD).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.WOOD).setLightLevel((p_235464_0_) -> {return 0;}));
 	}
 
 	@Override

@@ -36,8 +36,8 @@ public class CommandWak {
 
 			}else {
 				TranslationTextComponent wak = new TranslationTextComponent("sp.commands.wak.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				wak.func_240699_a_(TextFormatting.DARK_RED);
-				sender.getServer().getPlayerList().func_232641_a_(wak, ChatType.SYSTEM, Util.field_240973_b_);
+				wak.mergeStyle(TextFormatting.DARK_RED);
+				sender.getServer().getPlayerList().func_232641_a_(wak, ChatType.SYSTEM, Util.DUMMY_UUID);
 			}
 		}
 

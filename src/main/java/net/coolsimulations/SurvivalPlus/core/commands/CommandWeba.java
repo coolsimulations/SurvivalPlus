@@ -35,8 +35,8 @@ public class CommandWeba {
 
 			}else {
 				TranslationTextComponent weba = new TranslationTextComponent("sp.commands.weba.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				weba.func_240699_a_(TextFormatting.GOLD);
-				sender.getServer().getPlayerList().func_232641_a_(weba, ChatType.SYSTEM, Util.field_240973_b_);
+				weba.mergeStyle(TextFormatting.GOLD);
+				sender.getServer().getPlayerList().func_232641_a_(weba, ChatType.SYSTEM, Util.DUMMY_UUID);
 			}
 		}
 

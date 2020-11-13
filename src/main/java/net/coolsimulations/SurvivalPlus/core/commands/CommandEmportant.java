@@ -22,9 +22,9 @@ public class CommandEmportant {
 	private static int emportant(CommandSource sender, String announcement) {
 
 		TranslationTextComponent emportant = new TranslationTextComponent("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), announcement});
-		emportant.func_240699_a_(TextFormatting.BLUE);
-		emportant.func_240699_a_(TextFormatting.BOLD);
-		sender.getServer().getPlayerList().func_232641_a_(emportant, ChatType.SYSTEM, Util.field_240973_b_);
+		emportant.mergeStyle(TextFormatting.BLUE);
+		emportant.mergeStyle(TextFormatting.BOLD);
+		sender.getServer().getPlayerList().func_232641_a_(emportant, ChatType.SYSTEM, Util.DUMMY_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

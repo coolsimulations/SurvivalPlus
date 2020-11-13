@@ -52,8 +52,8 @@ public class TileEntityShieldRenderer extends ItemStackTileEntityRenderer {
 			this.modelShield.func_228294_b_().render(matrix, lvt_9_3_, combinedLight, combinedOverlay, 1.0F, 1.0F,
 					1.0F, 1.0F);
 			if (tag) {
-				List<Pair<BannerPattern, DyeColor>> colour = BannerTileEntity.func_230138_a_(
-						ShieldItem.getColor(stack), BannerTileEntity.func_230139_a_(stack));
+				List<Pair<BannerPattern, DyeColor>> colour = BannerTileEntity.getPatternColorData(
+						ShieldItem.getColor(stack), BannerTileEntity.getPatternData(stack));
 				BannerTileEntityRenderer.func_230180_a_(matrix, buffer, combinedLight, combinedOverlay,
 						this.modelShield.func_228293_a_(), material, false, colour);
 			} else {

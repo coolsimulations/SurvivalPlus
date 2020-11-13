@@ -96,33 +96,33 @@ public class SurvivalPlusEventHandler {
 			if(!player.world.isRemote) {
 
 				TranslationTextComponent installInfo = new TranslationTextComponent("advancements.sp.install.display1");
-				installInfo.func_240699_a_(TextFormatting.GOLD);
-				player.func_241151_a_(installInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("advancements.sp.install.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.field_240973_b_);
+				installInfo.mergeStyle(TextFormatting.GOLD);
+				player.func_241151_a_(installInfo.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("advancements.sp.install.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
 
 				TranslationTextComponent discord = new TranslationTextComponent("sp.discord.display1");
-				discord.func_240699_a_(TextFormatting.DARK_GREEN);
-				discord.func_240699_a_(TextFormatting.BOLD);
+				discord.mergeStyle(TextFormatting.DARK_GREEN);
+				discord.mergeStyle(TextFormatting.BOLD);
 
 				for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
 					String name = LanguageMap.getInstance().func_230503_a_(SPReference.MOD_ADDON_NAMES.get(i));
 
 					StringTextComponent formatted = new StringTextComponent(name);
-					formatted.func_240699_a_(TextFormatting.BLUE);
-					formatted.func_240699_a_(TextFormatting.BOLD);
+					formatted.mergeStyle(TextFormatting.BLUE);
+					formatted.mergeStyle(TextFormatting.BOLD);
 
 					StringTextComponent gap = new StringTextComponent(", ");
-					gap.func_240699_a_(TextFormatting.WHITE);
+					gap.mergeStyle(TextFormatting.WHITE);
 
-					discord.func_230529_a_(formatted);
+					discord.append(formatted);
 					if(i + 1 != SPReference.MOD_ADDON_NAMES.size()) {
-						discord.func_230529_a_(gap);
+						discord.append(gap);
 					}
 				}
 
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						player.func_241151_a_(discord.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.discord.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));}), ChatType.SYSTEM, Util.field_240973_b_);
+						player.func_241151_a_(discord.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.discord.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
 					}
 				}, 30000);
 			}
@@ -132,8 +132,8 @@ public class SurvivalPlusEventHandler {
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
-					player.func_241151_a_(SurvivalPlusUpdateHandler.updateInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.field_240973_b_);
-					player.func_241151_a_(SurvivalPlusUpdateHandler.updateVersionInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.field_240973_b_);
+					player.func_241151_a_(SurvivalPlusUpdateHandler.updateInfo.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
+					player.func_241151_a_(SurvivalPlusUpdateHandler.updateVersionInfo.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
 				}
 			}, 15000);
 		}
@@ -239,7 +239,7 @@ public class SurvivalPlusEventHandler {
 			}
 
 			if (flag) {
-				if (!CampfireBlock.func_235474_a_(event.getWorld(), event.getPos())) {
+				if (!CampfireBlock.isSmokingBlockAt(event.getWorld(), event.getPos())) {
 					if (hasBees(event.getWorld(), event.getPos())) {
 						angerNearbyBees(event.getWorld(), event.getPos());
 					}
@@ -276,7 +276,7 @@ public class SurvivalPlusEventHandler {
 				if(item instanceof SPItemIngot && ((SPItemIngot) item).healsGolem()) {
 					((LivingEntity) event.getTarget()).heal(((SPItemIngot) item).getGolemHealth());
 					float f1 = 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
-					((LivingEntity) event.getTarget()).playSound(SoundEvents.field_226143_fP_, 1.0F, f1);
+					((LivingEntity) event.getTarget()).playSound(SoundEvents.ENTITY_IRON_GOLEM_REPAIR, 1.0F, f1);
 					if (!event.getPlayer().abilities.isCreativeMode) {
 						itemstack.shrink(1);
 					}
@@ -333,7 +333,7 @@ public class SurvivalPlusEventHandler {
 	public void coolsimChat(ServerChatEvent event) {
 
 		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
-		coolsim.func_240699_a_(TextFormatting.GOLD);
+		coolsim.mergeStyle(TextFormatting.GOLD);
 
 		if(event.getPlayer().getUniqueID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
 			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()) != null)
@@ -345,19 +345,19 @@ public class SurvivalPlusEventHandler {
 	public void coolsimReceivedChat(ClientChatReceivedEvent event) {
 
 		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
-		coolsim.func_240699_a_(TextFormatting.GOLD);
+		coolsim.mergeStyle(TextFormatting.GOLD);
 
 		TranslationTextComponent playerJoined = new TranslationTextComponent("multiplayer.player.joined", new Object[] {"coolsim"});
-		playerJoined.func_240699_a_(TextFormatting.YELLOW);
+		playerJoined.mergeStyle(TextFormatting.YELLOW);
 
 		TranslationTextComponent playerLeft = new TranslationTextComponent("multiplayer.player.left", new Object[] {"coolsim"});
-		playerLeft.func_240699_a_(TextFormatting.YELLOW);
+		playerLeft.mergeStyle(TextFormatting.YELLOW);
 
 		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined");
-		coolsimJoined.func_240699_a_(TextFormatting.YELLOW);
+		coolsimJoined.mergeStyle(TextFormatting.YELLOW);
 
 		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left");
-		coolsimLeft.func_240699_a_(TextFormatting.YELLOW);
+		coolsimLeft.mergeStyle(TextFormatting.YELLOW);
 
 		if(event.getMessage().getString().equals(playerJoined.getString())) {
 			event.setMessage(coolsimJoined);
@@ -384,8 +384,8 @@ public class SurvivalPlusEventHandler {
 				ItemHandlerHelper.giveItemToPlayer(attacker, coolsimHead);
 			} else {
 				TranslationTextComponent error = new TranslationTextComponent("sp.coolsim.error");
-				error.func_240699_a_(TextFormatting.RED);
-				attacker.func_241151_a_(error, ChatType.SYSTEM, Util.field_240973_b_);
+				error.mergeStyle(TextFormatting.RED);
+				attacker.func_241151_a_(error, ChatType.SYSTEM, Util.DUMMY_UUID);
 			}
 		}
 
@@ -398,7 +398,7 @@ public class SurvivalPlusEventHandler {
 		ItemStack playerhead = new ItemStack(Items.PLAYER_HEAD);
 
 		TranslationTextComponent headName = new TranslationTextComponent("block.minecraft.player_head.named", new Object[] {"coolsim"});
-		headName.func_240699_a_(TextFormatting.ITALIC);
+		headName.mergeStyle(TextFormatting.ITALIC);
 		CompoundNBT properties = new CompoundNBT();
 		ListNBT textures = new ListNBT();
 		CompoundNBT tex = new CompoundNBT();
