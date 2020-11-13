@@ -139,6 +139,12 @@ public class SurvivalPlusConfig {
 	            SPConfig.enableObsidianMaterial = prop.getBoolean(false);
 	            propOrder.add(prop.getName());
 	            
+	            prop = config.get(SPReference.CONFIG_CATEGORY_COMPATIBILITY, "Enable Copper and Tin Smelting Recipe Replacement", true);
+	            prop.setComment("Enable if you don't want SurvivalPlus to override all copper and tin ore smelting recipes");
+	            prop.setLanguageKey("sp.configgui.enable_replace_smelting");
+	            SPConfig.enableReplaceSmelting = prop.getBoolean(true);
+	            propOrder.add(prop.getName());
+	            
 	            if (config.hasChanged())
 	            {
 	                config.save();

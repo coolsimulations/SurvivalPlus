@@ -10,6 +10,7 @@ import ic2.api.item.IC2Items;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
+import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusSmeltingRecipes;
 import net.minecraft.block.Block;
@@ -30,25 +31,30 @@ public class SurvivalPlusAPIRecipes {
             SurvivalPlusAPIRecipes.addIndustrialCraft2Recipes();
         }
         
-        if(SPCompatibilityManager.isGCLoaded()) {
+        if(SPCompatibilityManager.isGCLoaded() && SPConfig.enableReplaceSmelting) {
         	SurvivalPlusAPIRecipes.addGCItemsRecipes();
         }
         
         if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) {
-        	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("dustCopper", new ItemStack(SPItems.copper_ingot), 3.0F, true);
-        	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("dustTin", new ItemStack(SPItems.tin_ingot), 3.0F, true);
+        	if(SPConfig.enableReplaceSmelting) {
+        		SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("dustCopper", new ItemStack(SPItems.copper_ingot), 3.0F, true);
+        		SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("dustTin", new ItemStack(SPItems.tin_ingot), 3.0F, true);
+        	} else {
+        		GameRegistry.addSmelting(SPItems.copper_dust, new ItemStack(SPItems.copper_ingot), 3.0F);
+        		GameRegistry.addSmelting(SPItems.tin_dust, new ItemStack(SPItems.tin_ingot), 3.0F);
+        	}
         	GameRegistry.addSmelting(SPItems.titanium_dust, new ItemStack(SPItems.titanium_ingot), 3.0F);
         }
         
-        if(SPCompatibilityManager.isRailcraftLoaded()) {
+        if(SPCompatibilityManager.isRailcraftLoaded() && SPConfig.enableReplaceSmelting) {
         	SurvivalPlusAPIRecipes.addRailcraftItemsRecipes();
         }
         
-        if(SPCompatibilityManager.isTriGemsLoaded()) {
+        if(SPCompatibilityManager.isTriGemsLoaded() && SPConfig.enableReplaceSmelting) {
         	SurvivalPlusAPIRecipes.addTriGemsItemsRecipes();
         }
         
-        if(SPCompatibilityManager.isGACLoaded()) {
+        if(SPCompatibilityManager.isGACLoaded() && SPConfig.enableReplaceSmelting) {
         	SurvivalPlusAPIRecipes.addGemsAndCrystalsItemsRecipes();
         }
     }

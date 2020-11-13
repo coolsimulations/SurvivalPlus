@@ -491,3 +491,4 @@ sp.configgui.sun_audio=sun.audioで再生されるサウンドを無効にする
 sp.configgui.disable_thanks=サバイバルプラスありがとうメッセージを無効にする
 sp.configgui.enable_emerald_material=サバイバルプラスでエメラルドツールの改造が検出されなかった場合に有効にする
 sp.configgui.enable_obsidian_material=サバイバルプラスで黒曜石の改造が検出されなかった場合に有効にする
+sp.configgui.enable_replace_smelting=銅とスズの製錬レシピの交換を有効にする

@@ -491,3 +491,4 @@ sp.configgui.sun_audio=禁用通过sun.audio播放的声音
 sp.configgui.disable_thanks=禁用生存加谢谢消息
 sp.configgui.enable_emerald_material=如果生存加未检测到任何绿宝石工具模组则启用
 sp.configgui.enable_obsidian_material=如果生存加未检测到任何黑曜石工具模组则启用
+sp.configgui.enable_replace_smelting=启用铜和锡冶炼配方替换

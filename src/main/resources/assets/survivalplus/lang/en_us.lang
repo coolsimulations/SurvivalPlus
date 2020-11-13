@@ -492,3 +492,4 @@ sp.configgui.sun_audio=Disable Sounds Played Through sun.audio
 sp.configgui.disable_thanks=Disable SurvivalPlus Thank You Message
 sp.configgui.enable_emerald_material=Enable if SurvivalPlus Hasn't Detected any Emerald Tool Mods
 sp.configgui.enable_obsidian_material=Enable if SurvivalPlus Hasn't Detected any Obsidian Tool Mods
+sp.configgui.enable_replace_smelting=Enable Copper and Tin Smelting Recipe Replacement

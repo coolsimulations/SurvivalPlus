@@ -21,5 +21,6 @@ public class SPConfig {
     public static boolean disableThanks;
     public static boolean enableEmeraldMaterial;
     public static boolean enableObsidianMaterial;
+    public static boolean enableReplaceSmelting;
 
 }

@@ -1,6 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.recipes;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
+import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
 import net.minecraft.init.Items;
@@ -13,8 +14,13 @@ public class SurvivalPlusSmeltingRecipes {
 
 	public static void register() {
 
-		addOreDictionaryRecipe("oreCopper", new ItemStack(SPItems.copper_ingot), 0.7F, true);
-		addOreDictionaryRecipe("oreTin", new ItemStack(SPItems.tin_ingot), 0.7F, true);
+		if(SPConfig.enableReplaceSmelting) {
+			addOreDictionaryRecipe("oreCopper", new ItemStack(SPItems.copper_ingot), 0.7F, true);
+			addOreDictionaryRecipe("oreTin", new ItemStack(SPItems.tin_ingot), 0.7F, true);
+		} else {
+			GameRegistry.addSmelting(SPBlocks.copper_ore, new ItemStack(SPItems.copper_ingot), 0.7F);
+			GameRegistry.addSmelting(SPBlocks.tin_ore, new ItemStack(SPItems.tin_ingot), 0.7F);
+		}
 		GameRegistry.addSmelting(SPBlocks.titanium_ore, new ItemStack(SPItems.titanium_ingot), 1.0F);
 		addOreDictionaryRecipe("egg", new ItemStack(SPItems.fried_egg), 0.35F);
 		addOreDictionaryRecipe("cropCarrot", new ItemStack(SPItems.roast_carrot), 0.35F);

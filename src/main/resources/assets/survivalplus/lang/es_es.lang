@@ -492,3 +492,4 @@ sp.configgui.sun_audio=Desactivar los Sonidos Reproducidos a Través de sun.audi
 sp.configgui.disable_thanks=Desactivar SupervivenciaMás Mensaje de Agradecimiento
 sp.configgui.enable_emerald_material=Habilítelo si SupervivenciaMás no ha Detectado Ningún Mod de Herramienta Esmeralda
 sp.configgui.enable_obsidian_material=Habilítelo si SupervivenciaMás no ha Detectado Ningún Mod de Herramienta Obsidiana
+sp.configgui.enable_replace_smelting=Habilitar el Reemplazo de Recetas de Fundición de Cobre y Estaño
