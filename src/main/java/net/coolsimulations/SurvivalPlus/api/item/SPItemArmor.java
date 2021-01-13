@@ -1,15 +1,15 @@
 package net.coolsimulations.SurvivalPlus.api.item;
 
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Item;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
 
 public class SPItemArmor extends ArmorItem{
 	
-    public SPItemArmor(IArmorMaterial material, EquipmentSlotType equipmentSlotIn) {
-		super(material, equipmentSlotIn, (new Item.Properties()).group(SPTabs.tabCombat));
+    public SPItemArmor(ArmorMaterial material, EquipmentSlot equipmentSlotIn) {
+		super(material, equipmentSlotIn, (new FabricItemSettings()).group(SPTabs.tabCombat));
 	}
 
 }

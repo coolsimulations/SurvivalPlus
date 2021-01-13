@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_boots",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "tag": "terrestria:japanese_maple_logs"
+    }
+  },
+  "result": {
+    "item": "survivalplus:japanese_maple_boots"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "type": "smelting",
   "ingredient": {
-    "tag": "forge:crops/onion"
+    "tag": "c:onions"
   },
   "result": "survivalplus:fried_onion",
   "experience": 0.35,

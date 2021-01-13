@@ -3,7 +3,7 @@
   "group": "white_dye",
   "ingredients": [
     {
-      "tag": "forge:crops/onion"
+      "tag": "c:onions"
     }
   ],
   "result": {

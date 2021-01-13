@@ -1,339 +1,156 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementManager;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CampfireBlock;
-import net.minecraft.block.CarvedPumpkinBlock;
-import net.minecraft.block.TripWireBlock;
-import net.minecraft.util.text.translation.LanguageMap;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
+import net.coolsimulations.SurvivalPlus.api.events.EntityAccessor;
+import net.coolsimulations.SurvivalPlus.api.events.SPPlayerDeathEvent;
+import net.coolsimulations.SurvivalPlus.api.events.SPPlayerJoinEvent;
+import net.coolsimulations.SurvivalPlus.api.recipes.SPBasicTrade;
+import net.coolsimulations.SurvivalPlus.api.recipes.SPTradeRecipes;
+import net.coolsimulations.SurvivalPlus.api.recipes.SPTradeRecipes.VillagerLevel;
+import net.minecraft.advancement.Advancement;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.ShearsItem;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.util.text.event.HoverEvent;
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import net.minecraftforge.common.BasicTrade;
-import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.village.VillagerTradesEvent;
-import net.minecraftforge.event.village.WandererTradesEvent;
-import net.minecraftforge.event.world.BlockEvent.BreakEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.server.ServerAdvancementLoader;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.ClickEvent;
+import net.minecraft.text.HoverEvent;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.Language;
+import net.minecraft.village.VillagerProfession;
 
 public class SurvivalPlusEventHandler {
 
-	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent event)
-	{
-		if (event.getModID().equals(SPReference.MOD_ID))
-		{
-			//SurvivalPlusConfig.syncConfig(false);
-		}
+	public static void init() {
+
+		onplayerLogin();
+		coolsimDeath();
 	}
 
-	@SubscribeEvent
-	public void onplayerLogin(PlayerEvent.PlayerLoggedInEvent event)
+	public static void onplayerLogin()
 	{
-		ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
-		CompoundNBT entityData = player.getPersistentData();
+		SPPlayerJoinEvent.EVENT.register((player, server) -> {
 
-		AdvancementManager manager = player.getServer().getAdvancementManager();
-		Advancement install = manager.getAdvancement(new ResourceLocation(SPReference.MOD_ID, SPReference.MOD_ID + "/install"));
+			CompoundTag entityData = ((EntityAccessor) player).getPersistentData();
 
-		boolean isDone = false;
+			ServerAdvancementLoader manager = server.getAdvancementManager();
+			Advancement install = manager.get(new Identifier(SPReference.MOD_ID, SPReference.MOD_ID + "/install"));
 
-		Timer timer = new Timer();
+			boolean isDone = false;
 
-		if(install !=null && player.getAdvancements().getProgress(install).hasProgress()) {
-			isDone = true;
-		}
+			Timer timer = new Timer();
 
-		if(!entityData.getBoolean("sp.firstJoin") && !isDone && !SPConfig.disableThanks.get()) {
+			if(install !=null && player.getAdvancementTracker().getProgress(install).isAnyObtained()) {
+				isDone = true;
+			}
 
-			entityData.putBoolean("sp.firstJoin", true);
+			if(!entityData.getBoolean("sp.firstJoin") && !isDone && !SPConfig.disableThanks) {
 
-			if(!player.world.isRemote) {
+				entityData.putBoolean("sp.firstJoin", true);
 
-				TranslationTextComponent installInfo = new TranslationTextComponent("advancements.sp.install.display1");
-				installInfo.getStyle().setColor(TextFormatting.GOLD);
-				installInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("advancements.sp.install.display2")));
-				installInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
-				player.sendMessage(installInfo);
+				if(!player.world.isClient) {
 
-				TranslationTextComponent discord = new TranslationTextComponent("sp.discord.display1");
-				discord.getStyle().setColor(TextFormatting.DARK_GREEN);
-				discord.getStyle().setBold(true);
+					TranslatableText installInfo = new TranslatableText("advancements.sp.install.display1");
+					installInfo.getStyle().setColor(Formatting.GOLD);
+					installInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("advancements.sp.install.display2")));
+					installInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"));
+					player.sendMessage(installInfo);
 
-				for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
-					String name = LanguageMap.getInstance().translateKey(SPReference.MOD_ADDON_NAMES.get(i));
+					TranslatableText discord = new TranslatableText("sp.discord.display1");
+					discord.getStyle().setColor(Formatting.DARK_GREEN);
+					discord.getStyle().setBold(true);
 
-					StringTextComponent formatted = new StringTextComponent(name);
-					formatted.getStyle().setColor(TextFormatting.BLUE);
-					formatted.getStyle().setBold(true);
+					for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
+						String name = Language.getInstance().translate(SPReference.MOD_ADDON_NAMES.get(i));
 
-					StringTextComponent gap = new StringTextComponent(", ");
-					gap.getStyle().setColor(TextFormatting.WHITE);
+						LiteralText formatted = new LiteralText(name);
+						formatted.getStyle().setColor(Formatting.BLUE);
+						formatted.getStyle().setBold(true);
 
-					discord.appendSibling(formatted);
-					if(i + 1 != SPReference.MOD_ADDON_NAMES.size()) {
-						discord.appendSibling(gap);
+						LiteralText gap = new LiteralText(", ");
+						gap.getStyle().setColor(Formatting.WHITE);
+
+						discord.append(formatted);
+						if(i + 1 != SPReference.MOD_ADDON_NAMES.size()) {
+							discord.append(gap);
+						}
 					}
-				}
-				discord.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.discord.display2")));
-				discord.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));
+					discord.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.discord.display2")));
+					discord.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));
 
+					timer.schedule(new TimerTask() {
+						@Override
+						public void run() {
+							player.sendMessage(discord);
+						}
+					}, 30000);
+				}
+			}
+
+			if(SurvivalPlusUpdateHandler.isOld == true && SPConfig.disableUpdateCheck == false) {
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						player.sendMessage(discord);
+						player.sendMessage(SurvivalPlusUpdateHandler.updateInfo);
+						player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo);
 					}
-				}, 30000);
+				}, 15000);
 			}
-		}
-
-		if(SurvivalPlusUpdateHandler.isOld == true && SPConfig.disableUpdateCheck.get() == false) {
-			timer.schedule(new TimerTask() {
-				@Override
-				public void run() {
-					player.sendMessage(SurvivalPlusUpdateHandler.updateInfo);
-					player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo);
-				}
-			}, 15000);
-		}
+			return ActionResult.PASS;
+		});
 	}
 
-	@SubscribeEvent
-	public void villagerTrades(VillagerTradesEvent event) {
-		Int2ObjectMap<List<ITrade>> trades = event.getTrades();
+	public static void villagerTrades() {
 
-		if(event.getType() == VillagerProfession.BUTCHER) {
-			trades.get(3).add(new BasicTrade(2, new ItemStack(SPItems.beef_pie, 4), 16, 20));
-		}
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.BUTCHER, VillagerLevel.getIDByLevel(3), new SPBasicTrade(2, new ItemStack(SPItems.beef_pie, 4), 16, 20));
 
-		if(event.getType() == VillagerProfession.FARMER) {
-			trades.get(1).add(new BasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 2)); //temp till forge pull request #6142 is resolved
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.raw_onion, 13), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
-		}
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.FARMER, VillagerLevel.getIDByLevel(1), new SPBasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 2));
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.FARMER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.raw_onion, 13), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
 
-		if(event.getType() == VillagerProfession.ARMORER) {
-			trades.get(2).add(new BasicTrade(6, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
-		}
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(6, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
 
-		if(event.getType() == VillagerProfession.ARMORER  || event.getType() == VillagerProfession.WEAPONSMITH) {
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
-		}
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.WEAPONSMITH, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.WEAPONSMITH, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
 
+		SPTradeRecipes.addWanderingBasicRecipe(new SPBasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 20));
 	}
 
-	@SubscribeEvent
-	public void villagerTrades(WandererTradesEvent event) {
-		List<ITrade> trades = (List<ITrade>) event.getGenericTrades();
+	public static void coolsimDeath() {
+		SPPlayerDeathEvent.EVENT.register((player, source) -> {
 
-		trades.add(new BasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 20));		
-	}
+			if(player.getUuid().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412")) && source.getAttacker() instanceof ServerPlayerEntity) {
 
-	@SubscribeEvent
-	public void rightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
-		BlockState state = event.getWorld().getBlockState(event.getPos());
+				ServerPlayerEntity attacker = (ServerPlayerEntity) source.getAttacker();
+				ItemStack coolsimHead = getcoolsimHead();
 
-		PlayerEntity entityplayer = event.getPlayer();
-		ItemStack itemStackIn = entityplayer.getHeldItem(event.getHand());
-		Item item = itemStackIn.getItem();
-
-		if(block instanceof CampfireBlock) {
-			if(state.get(CampfireBlock.LIT) && item == Items.BUCKET  && !entityplayer.abilities.isCreativeMode) {
-				event.getWorld().setBlockState(event.getPos(), state.with(CampfireBlock.LIT, false));
-				if (event.getWorld().isRemote()) {
-					for (int i = 0; i < 20; ++i) {
-						CampfireBlock.func_220098_a(event.getWorld(), event.getPos(), (Boolean) state.get(CampfireBlock.SIGNAL_FIRE),true);
-					}
+				if(coolsimHead != null) {
+					dropItem(coolsimHead, attacker);
 				} else {
-					event.getWorld().playSound((PlayerEntity) null, event.getPos(), SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				}
-				if(itemStackIn.getCount() == 1) {
-					if (ItemStack.areItemStacksEqual(entityplayer.getHeldItemOffhand(), itemStackIn))
-					{
-						entityplayer.setHeldItem(Hand.OFF_HAND, new ItemStack(SPItems.charcoal_bucket));
-					}
-					else
-					{
-						entityplayer.setHeldItem(Hand.MAIN_HAND, new ItemStack(SPItems.charcoal_bucket));
-					}
-				} else  if(itemStackIn.getCount() >= 2){
-					itemStackIn.shrink(1);
-					boolean flag = entityplayer.inventory.addItemStackToInventory(new ItemStack(SPItems.charcoal_bucket));
-					if(!flag) {
-						entityplayer.dropItem(new ItemStack(SPItems.charcoal_bucket), false);
-					}		
+					TranslatableText error = new TranslatableText("sp.coolsim.error");
+					error.getStyle().setColor(Formatting.RED);
+					attacker.sendMessage(error);
 				}
 			}
-		}
 
-		if(block == Blocks.PUMPKIN) {
-
-			if (item instanceof ShearsItem && item != Items.SHEARS) {
-				if (!event.getWorld().isRemote) {
-					Direction direction = event.getFace();
-					Direction direction1 = direction.getAxis() == Direction.Axis.Y ? entityplayer.getHorizontalFacing().getOpposite() : direction;
-					event.getWorld().playSound((PlayerEntity)null, event.getPos(), SoundEvents.BLOCK_PUMPKIN_CARVE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					event.getWorld().setBlockState(event.getPos(), Blocks.CARVED_PUMPKIN.getDefaultState().with(CarvedPumpkinBlock.FACING, direction1), 11);
-					ItemEntity itementity = new ItemEntity(event.getWorld(), (double)event.getPos().getX() + 0.5D + (double)direction1.getXOffset() * 0.65D, (double)event.getPos().getY() + 0.1D, (double)event.getPos().getZ() + 0.5D + (double)direction1.getZOffset() * 0.65D, new ItemStack(Items.PUMPKIN_SEEDS, 4));
-					itementity.setMotion(0.05D * (double)direction1.getXOffset() + event.getWorld().rand.nextDouble() * 0.02D, 0.05D, 0.05D * (double)direction1.getZOffset() + event.getWorld().rand.nextDouble() * 0.02D);
-					event.getWorld().addEntity(itementity);
-					itemStackIn.damageItem(1, entityplayer, (livingentity) -> {
-						livingentity.sendBreakAnimation(event.getHand());
-					});
-				}
-			}
-		}
-	}
-
-	@SubscribeEvent
-	public void tripWireBreak(BreakEvent event) {
-
-		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
-		BlockState state = event.getWorld().getBlockState(event.getPos());
-
-		PlayerEntity entityplayer = event.getPlayer();
-
-		if (block instanceof TripWireBlock && !event.getWorld().isRemote() && !entityplayer.getHeldItemMainhand().isEmpty() && entityplayer.getHeldItemMainhand().getItem() instanceof ShearsItem && entityplayer.getHeldItemMainhand().getItem() != Items.SHEARS) {
-			event.getWorld().setBlockState(event.getPos(), state.with(TripWireBlock.DISARMED, Boolean.valueOf(true)), 4);
-		}
-	}
-
-	/**@SubscribeEvent
-    public static <T extends IForgeRegistryEntry<T>> void registerRecipes(RegistryEvent.Register<T> event)
-    {
-		IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) event.getRegistry();
-		final RecipeManager recipeManager = event.getServer().getRecipeManager();
-
-		if(!SPConfig.enableSponge.get()) {
-			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "sponge"));
-		}
-
-		if(SPCompatibilityManager.isIc2Loaded()) {
-			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "bronze_ingot_alt2"));
-		}
-
-				if(SPCompatibilityManager.isHammerTimeLoaded()) {
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxediamond"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxegold"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxeiron"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxestone"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxewood"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammerdiamond"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammergold"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammeriron"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammerstone"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammerwood"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshoveldiamond"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshovelgold"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshoveliron"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshovelstone"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshovelwood"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklediamond"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklegold"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsickleiron"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklestone"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklewood"));
-		}
-
-    }**/
-
-	@SubscribeEvent
-	public void coolsimChat(ServerChatEvent event) {
-
-		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
-		coolsim.getStyle().setColor(TextFormatting.GOLD);
-
-		if(event.getPlayer().getUniqueID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
-			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()) != null)
-				event.setComponent(new StringTextComponent(coolsim.getFormattedText() + " <" + ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()).getDisplayName().getFormattedText() + "> " + event.getMessage()));
-		}
-	}
-
-	@SubscribeEvent
-	public void coolsimReceivedChat(ClientChatReceivedEvent event) {
-
-		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
-		coolsim.getStyle().setColor(TextFormatting.GOLD);
-
-		TranslationTextComponent playerJoined = new TranslationTextComponent("multiplayer.player.joined", new Object[] {"coolsim"});
-		playerJoined.getStyle().setColor(TextFormatting.YELLOW);
-
-		TranslationTextComponent playerLeft = new TranslationTextComponent("multiplayer.player.left", new Object[] {"coolsim"});
-		playerLeft.getStyle().setColor(TextFormatting.YELLOW);
-
-		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined");
-		coolsimJoined.getStyle().setColor(TextFormatting.YELLOW);
-
-		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left");
-		coolsimLeft.getStyle().setColor(TextFormatting.YELLOW);
-
-		if(event.getMessage().getFormattedText().equals(playerJoined.getFormattedText())) {
-			event.setMessage(coolsimJoined);
-		}
-
-		if(event.getMessage().getFormattedText().equals(playerLeft.getFormattedText())) {
-			event.setMessage(coolsimLeft);
-		}
-
-		if(event.getMessage().getFormattedText().startsWith("[coolsim]")) {
-			event.setMessage(new StringTextComponent(event.getMessage().getFormattedText().replaceFirst("\\[", coolsim.getFormattedText() + " [")));
-		}
-	}
-
-	@SubscribeEvent
-	public void coolsimDeath(LivingDeathEvent event) {
-
-		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().getUniqueID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412")) && event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
-
-			ServerPlayerEntity attacker = (ServerPlayerEntity) event.getSource().getTrueSource();
-			ItemStack coolsimHead = getcoolsimHead();
-
-			if(coolsimHead != null) {
-				ItemHandlerHelper.giveItemToPlayer(attacker, coolsimHead);
-			} else {
-				TranslationTextComponent error = new TranslationTextComponent("sp.coolsim.error");
-				error.getStyle().setColor(TextFormatting.RED);
-				attacker.sendMessage(error);
-			}
-		}
+			return ActionResult.PASS;
+		});
 
 	}
 
@@ -344,22 +161,43 @@ public class SurvivalPlusEventHandler {
 
 		ItemStack playerhead = new ItemStack(Items.PLAYER_HEAD);
 
-		TranslationTextComponent headName = new TranslationTextComponent("block.minecraft.player_head.named", new Object[] {"coolsim"});
+		TranslatableText headName = new TranslatableText("block.minecraft.player_head.named", new Object[] {"coolsim"});
 		headName.getStyle().setItalic(true);
-		CompoundNBT skullOwner = new CompoundNBT();
+		CompoundTag skullOwner = new CompoundTag();
 		skullOwner.putString("Id", id);
-		CompoundNBT properties = new CompoundNBT();
-		ListNBT textures = new ListNBT();
-		CompoundNBT tex = new CompoundNBT();
+		CompoundTag properties = new CompoundTag();
+		ListTag textures = new ListTag();
+		CompoundTag tex = new CompoundTag();
 		tex.putString("Value", texture);
 		textures.add(tex);
 		properties.put("textures", textures);
 		skullOwner.put("Properties", properties);
-		playerhead.setTagInfo("SkullOwner", skullOwner);
-		playerhead.setDisplayName(headName);
+		playerhead.putSubTag("SkullOwner", skullOwner);
+		playerhead.setCustomName(headName);
 
 		return playerhead;
 	}
 
+	public static void dropItem(ItemStack stack, PlayerEntity player) {
+
+		boolean bl = player.inventory.insertStack(stack);
+		ItemEntity itemEntity;
+		if (bl && stack.isEmpty()) {
+			stack.setCount(1);
+			itemEntity = player.dropItem(stack, false);
+			if (itemEntity != null) {
+				itemEntity.setDespawnImmediately();
+			}
+
+			player.world.playSound((PlayerEntity)null, player.x, player.y, player.z, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+			player.playerContainer.sendContentUpdates();
+		} else {
+			itemEntity = player.dropItem(stack, false);
+			if (itemEntity != null) {
+				itemEntity.resetPickupDelay();
+				itemEntity.setOwner(player.getUuid());
+			}
+		}
+	}
 
 }

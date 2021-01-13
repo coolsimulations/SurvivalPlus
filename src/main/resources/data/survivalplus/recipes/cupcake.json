@@ -2,25 +2,25 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "forge:cups/paper"
+      "tag": "c:paper_cups"
     },
     {
-      "tag": "forge:cups/paper"
+      "tag": "c:paper_cups"
     },
     {
-      "tag": "forge:cups/paper"
+      "tag": "c:paper_cups"
     },
     {
-      "tag": "forge:cups/paper"
+      "tag": "c:paper_cups"
     },
     {
-      "tag": "forge:cups/paper"
+      "tag": "c:paper_cups"
     },
     {
-      "tag": "forge:cups/paper"
+      "tag": "c:paper_cups"
     },
     {
-      "tag": "forge:cups/paper"
+      "tag": "c:paper_cups"
     },
     {
       "item": "minecraft:cake"

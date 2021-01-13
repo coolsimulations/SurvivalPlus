@@ -3,16 +3,16 @@
   "group": "bronze_ingot",
   "ingredients": [
     {
-      "tag": "forge:ingots/copper"
+      "tag": "c:copper_ingots"
     },
     {
-      "tag": "forge:ingots/tin"
+      "tag": "c:tin_ingots"
     },
     {
-      "tag": "forge:ingots/tin"
+      "tag": "c:tin_ingots"
     },
     {
-      "tag": "forge:ingots/tin"
+      "tag": "c:tin_ingots"
     }
   ],
   "result": {

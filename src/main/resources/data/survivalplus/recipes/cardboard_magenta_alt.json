@@ -11,7 +11,7 @@
       "item": "survivalplus:cardboard"
     },
     "D": {
-      "tag": "forge:dyes/magenta"
+      "item": "minecraft:magenta_dye"
     }
   },
   "result": {

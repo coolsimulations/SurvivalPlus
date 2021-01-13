@@ -1,0 +1,13 @@
+
+{
+	"replace": false,
+	"values": [
+		"survivalplus:apple_pie",
+		"survivalplus:beef_pie",
+		"survivalplus:pork_pie",
+		"survivalplus:chicken_pie",
+		"survivalplus:mutton_pie",
+		"survivalplus:rabbit_pie",
+		"survivalplus:vegetable_pie"
+	]
+}

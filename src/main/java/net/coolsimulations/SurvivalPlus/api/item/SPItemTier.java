@@ -2,20 +2,19 @@ package net.coolsimulations.SurvivalPlus.api.item;
 
 import java.util.function.Supplier;
 
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.LazyLoadBase;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ForgeMod;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.tag.ItemTags;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.Lazy;
 
-public enum SPItemTier implements IItemTier {
+public enum SPItemTier implements ToolMaterial {
     bronzeToolMaterial(2, 350, 5.0F, 1.5F, 7, () -> {
-    	return Ingredient.fromTag(new ItemTags.Wrapper(new ResourceLocation(ForgeMod.getInstance().getModId(), "ingots/bronze")));
+    	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "bronze_ingots")));
     }),
     //3, 731, 7f, 2.5f, 16
     titaniumToolMaterial(2, 432, 7.0F, 2.5F, 17, () -> {
-        return Ingredient.fromTag(new ItemTags.Wrapper(new ResourceLocation(ForgeMod.getInstance().getModId(), "ingots/titanium")));
+        return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "titanium_ingots")));
     });
 
     private final int harvestLevel;
@@ -23,7 +22,7 @@ public enum SPItemTier implements IItemTier {
     private final float efficiency;
     private final float attackDamage;
     private final int enchantability;
-    private final LazyLoadBase<Ingredient> repairMaterial;
+    private final Lazy<Ingredient> repairMaterial;
 
     SPItemTier(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn) {
         this.harvestLevel = harvestLevelIn;
@@ -31,14 +30,14 @@ public enum SPItemTier implements IItemTier {
         this.efficiency = efficiencyIn;
         this.attackDamage = attackDamageIn;
         this.enchantability = enchantabilityIn;
-        this.repairMaterial = new LazyLoadBase(repairMaterialIn);
+        this.repairMaterial = new Lazy(repairMaterialIn);
     }
 
-    public int getMaxUses() {
+    public int getDurability() {
         return this.maxUses;
     }
 
-    public float getEfficiency() {
+    public float getMiningSpeed() {
         return this.efficiency;
     }
 
@@ -46,7 +45,7 @@ public enum SPItemTier implements IItemTier {
         return this.attackDamage;
     }
 
-    public int getHarvestLevel() {
+    public int getMiningLevel() {
         return this.harvestLevel;
     }
 
@@ -54,7 +53,7 @@ public enum SPItemTier implements IItemTier {
         return this.enchantability;
     }
 
-    public Ingredient getRepairMaterial() {
-        return this.repairMaterial.getValue();
+    public Ingredient getRepairIngredient() {
+        return this.repairMaterial.get();
     }
 }

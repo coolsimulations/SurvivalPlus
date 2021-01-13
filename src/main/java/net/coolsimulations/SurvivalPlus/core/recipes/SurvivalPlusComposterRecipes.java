@@ -5,11 +5,10 @@ import java.util.Iterator;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPTags;
-import net.coolsimulations.SurvivalPlus.api.item.SPItemShield;
-import net.minecraft.block.ComposterBlock;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.item.Item;
-import net.minecraft.tags.Tag;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.tag.Tag;
 
 public class SurvivalPlusComposterRecipes {
 	
@@ -29,20 +28,12 @@ public class SurvivalPlusComposterRecipes {
 		registerCompostableTag(SPTags.Items.FOOD_CHEESE, UNCOMMON);
 		registerCompostableTag(SPTags.Items.FOOD_FRIED_ONION, RARE);
 		registerCompostableTag(SPTags.Items.FOOD_ROAST_CARROT, EPIC);
-		registerCompostableTag(SPTags.Items.FOOD_PIE_APPLE, LEGENDARY);
-		registerCompostableTag(SPTags.Items.FOOD_PIE_BEEF, LEGENDARY);
-		registerCompostableTag(SPTags.Items.FOOD_PIE_CHICKEN, LEGENDARY);
-		registerCompostableTag(SPTags.Items.FOOD_PIE_MUTTON, LEGENDARY);
-		registerCompostableTag(SPTags.Items.FOOD_PIE_PORK, LEGENDARY);
-		registerCompostableTag(SPTags.Items.FOOD_PIE_RABBIT, LEGENDARY);
-		registerCompostableTag(SPTags.Items.FOOD_PIE_VEGETABLE, LEGENDARY);
+		registerCompostableTag(SPTags.Items.FOOD_PIE, LEGENDARY);
 		registerCompostableTag(SPTags.Items.FOOD_BREAD_CHEESE, LEGENDARY);
 		registerCompostableTag(SPTags.Items.FOOD_BREAD_MELTED_CHEESE, LEGENDARY);
 		registerCompostableTag(SPTags.Items.FOOD_CUPCAKE, COMMON);
-		registerCompostableTag(SPTags.Items.FOOD_CUPCAKE_CHEESE, COMMON);
-		registerCompostableTag(SPTags.Items.FOOD_CUPCAKE_SPONGE, COMMON);
-		registerCompostableTag(SPTags.Items.FOOD_CAKE_CHEESE, LEGENDARY);
-		registerCompostableTag(SPTags.Items.FOOD_CAKE_SPONGE, LEGENDARY);
+		registerCompostableTag(SPTags.Items.FOOD_CUPCAKE, COMMON);
+		registerCompostableTag(SPTags.Items.FOOD_CAKE, LEGENDARY);
 		
 		registerCompostable(SPItems.raw_onion, RARE);
 		registerCompostable(SPItems.onion_seeds, COMMON);
@@ -68,12 +59,12 @@ public class SurvivalPlusComposterRecipes {
 	
 	protected static void registerCompostableTag(Tag<Item> tag, float rarity) {
 		
-		for(Iterator<Item> item = tag.getAllElements().iterator(); item.hasNext();)
+		for(Iterator<Item> item = tag.values().iterator(); item.hasNext();)
 			registerCompostable(item.next(), rarity);
 	}
 	
-	protected static void registerCompostable(IItemProvider item, float rarity) {
-		ComposterBlock.CHANCES.put(item.asItem(), rarity);
+	protected static void registerCompostable(ItemConvertible item, float rarity) {
+		CompostingChanceRegistry.INSTANCE.add(item, rarity);
 	}
 
 }

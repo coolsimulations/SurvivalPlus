@@ -12,7 +12,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:cheese"
+            "tag": "c:cheeses"
           }
         ]
       }
@@ -22,7 +22,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:eggs"
+            "tag": "c:eggs"
           }
         ]
       }

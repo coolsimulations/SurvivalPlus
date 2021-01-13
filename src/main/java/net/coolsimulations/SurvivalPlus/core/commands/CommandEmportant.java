@@ -3,26 +3,27 @@ package net.coolsimulations.SurvivalPlus.core.commands;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.util.text.TextFormatting;
+
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 
 public class CommandEmportant {
 
-	public static void register(CommandDispatcher<CommandSource> dispatcher) {
-		dispatcher.register(Commands.literal("emportant")
-				.then(Commands.argument("message", StringArgumentType.greedyString())
+	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+		dispatcher.register(CommandManager.literal("emportant")
+				.then(CommandManager.argument("message", StringArgumentType.greedyString())
 					.requires(s -> s.hasPermissionLevel(0))
 					.executes(emportant -> emportant(emportant.getSource(), StringArgumentType.getString(emportant, "message")))));
 	}
 
-	private static int emportant(CommandSource sender, String announcement) {
+	private static int emportant(ServerCommandSource sender, String announcement) {
 
-		TranslationTextComponent emportant = new TranslationTextComponent("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), announcement});
-		emportant.getStyle().setColor(TextFormatting.BLUE);
+		TranslatableText emportant = new TranslatableText("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), announcement});
+		emportant.getStyle().setColor(Formatting.BLUE);
 		emportant.getStyle().setBold(true);
-		sender.getServer().getPlayerList().sendMessage(emportant);
+		sender.getMinecraftServer().getPlayerManager().sendToAll(emportant);
 
 		return Command.SINGLE_SUCCESS;
 	}

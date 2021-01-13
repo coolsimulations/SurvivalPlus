@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "survivalplus:cardboard",
+    "survivalplus:cardboard_black",
+    "survivalplus:cardboard_blue",
+    "survivalplus:cardboard_brown",
+    "survivalplus:cardboard_cyan",
+    "survivalplus:cardboard_green",
+    "survivalplus:cardboard_grey",
+    "survivalplus:cardboard_light_blue",
+    "survivalplus:cardboard_light_grey",
+    "survivalplus:cardboard_lime",
+    "survivalplus:cardboard_magenta",
+    "survivalplus:cardboard_orange",
+    "survivalplus:cardboard_purple",
+    "survivalplus:cardboard_red",
+    "survivalplus:cardboard_white",
+    "survivalplus:cardboard_yellow"
+  ]
+}

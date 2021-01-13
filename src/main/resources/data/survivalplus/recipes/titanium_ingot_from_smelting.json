@@ -1,7 +1,7 @@
 {
   "type": "smelting",
   "ingredient": {
-    "tag": "forge:ores/titanium"
+    "tag": "c:titanium_ores"
   },
   "result": "survivalplus:titanium_ingot",
   "experience": 1.0,

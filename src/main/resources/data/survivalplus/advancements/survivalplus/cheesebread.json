@@ -17,7 +17,7 @@
             "conditions": {
                 "items": [
                     {
-                        "tag": "forge:food/bread/melted/cheese"
+                        "tag": "c:melted_cheese_breads"
                     }
                 ]
             }

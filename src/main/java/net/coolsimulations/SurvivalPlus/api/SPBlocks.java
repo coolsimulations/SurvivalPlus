@@ -41,4 +41,9 @@ public class SPBlocks {
 	public static Block cardboard_pink;
 	public static Block cardboard_brown;
 	
+	/**
+	 * These are the Blocks referred to in SurvivalPlusBlockus
+	 */
+	public static Block onion_crate;
+	
 }

@@ -1,27 +1,28 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
-import com.mojang.brigadier.CommandDispatcher;
-import net.minecraft.command.CommandException;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.command.arguments.EntityArgument;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.util.text.TextFormatting;
-
 import java.util.Collection;
 import java.util.Iterator;
 
+import com.mojang.brigadier.CommandDispatcher;
+
+import net.minecraft.command.CommandException;
+import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
+
 public class CommandMourn {
 
-	public static void register(CommandDispatcher<CommandSource> dispatcher) {
-		dispatcher.register(Commands.literal("mourn")
-				.then(Commands.argument("targets", EntityArgument.players())
+	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+		dispatcher.register(CommandManager.literal("mourn")
+				.then(CommandManager.argument("targets", EntityArgumentType.players())
 						.requires(s -> s.hasPermissionLevel(0))
-						.executes(mourn -> mourn(mourn.getSource(), EntityArgument.getPlayers(mourn, "targets")))));
+						.executes(mourn -> mourn(mourn.getSource(), EntityArgumentType.getPlayers(mourn, "targets")))));
 	}
 
-	private static int mourn(CommandSource sender, Collection<ServerPlayerEntity> players) {
+	private static int mourn(ServerCommandSource sender, Collection<ServerPlayerEntity> players) {
 		Iterator var3 = players.iterator();
 
 		while(var3.hasNext()) {
@@ -29,12 +30,12 @@ public class CommandMourn {
 
 			if(entityplayer == sender.getEntity()) {
 
-				throw new CommandException(new TranslationTextComponent("sp.commands.mourn.sameTarget"));
+				throw new CommandException(new TranslatableText("sp.commands.mourn.sameTarget"));
 
 			}else {
-				TranslationTextComponent mourns = new TranslationTextComponent("sp.commands.mourn.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				mourns.getStyle().setColor(TextFormatting.DARK_AQUA);
-				sender.getServer().getPlayerList().sendMessage(mourns);
+				TranslatableText mourns = new TranslatableText("sp.commands.mourn.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
+				mourns.getStyle().setColor(Formatting.DARK_AQUA);
+				sender.getMinecraftServer().getPlayerManager().sendToAll(mourns);
 			}
 		}
 

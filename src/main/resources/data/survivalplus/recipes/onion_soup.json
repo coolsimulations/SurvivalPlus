@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "forge:crops/onion"
+      "tag": "c:onions"
     },
     {
-      "tag": "forge:crops/onion"
+      "tag": "c:onions"
     },
     {
       "item": "minecraft:bowl"

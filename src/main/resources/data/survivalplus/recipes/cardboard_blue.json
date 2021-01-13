@@ -8,10 +8,10 @@
   ],
   "key": {
     "S": {
-      "tag": "forge:rods/wooden"
+      "tag": "c:wood_sticks"
     },
     "D": {
-      "tag": "forge:dyes/blue"
+      "item": "minecraft:blue_dye"
     }
   },
   "result": {

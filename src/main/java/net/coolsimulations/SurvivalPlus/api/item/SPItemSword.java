@@ -1,14 +1,14 @@
 package net.coolsimulations.SurvivalPlus.api.item;
 
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolMaterial;
 
 public class SPItemSword extends SwordItem{
 
-	public SPItemSword(IItemTier tier) {
-	      super(tier, 3, -2.4F, (new Item.Properties()).group(SPTabs.tabCombat));
+	public SPItemSword(ToolMaterial tier) {
+	      super(tier, 3, -2.4F, (new FabricItemSettings()).group(SPTabs.tabCombat));
 	   }
 
 }

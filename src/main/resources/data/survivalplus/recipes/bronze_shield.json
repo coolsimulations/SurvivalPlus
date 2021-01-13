@@ -10,7 +10,7 @@
       "tag": "minecraft:planks"
     },
     "#": {
-      "tag": "forge:ingots/bronze"
+      "tag": "c:bronze_ingots"
     }
   },
   "result": {

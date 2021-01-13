@@ -1,7 +1,7 @@
 {
   "type": "minecraft:campfire_cooking",
   "ingredient": {
-    "tag": "forge:crops/carrot"
+    "tag": "c:carrots"
   },
   "result": "survivalplus:roast_carrot",
   "experience": 0.35,

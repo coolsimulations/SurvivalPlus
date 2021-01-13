@@ -1,7 +1,7 @@
 {
   "type": "smelting",
   "ingredient": {
-    "tag": "forge:food/bread/cheese"
+    "tag": "c:cheese_breads"
   },
   "result": "survivalplus:melted_cheese_bread",
   "experience": 0.4,

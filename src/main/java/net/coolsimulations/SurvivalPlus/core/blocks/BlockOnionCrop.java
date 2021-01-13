@@ -1,20 +1,21 @@
 package net.coolsimulations.SurvivalPlus.core.blocks;
 
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.IItemProvider;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.CropBlock;
+import net.minecraft.block.Material;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.sound.BlockSoundGroup;
 
-public class BlockOnionCrop extends CropsBlock{
+public class BlockOnionCrop extends CropBlock{
 	
 	public BlockOnionCrop() {
-		super(Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.CROP));
-		this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
+		super(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
+		this.setDefaultState(this.stateManager.getDefaultState().with(this.getAgeProperty(), Integer.valueOf(0)));
 	}
 
 	@Override
-	protected IItemProvider getSeedsItem() {
+	protected ItemConvertible getSeedsItem() {
 	      return SPItems.onion_seeds;
 	}
 	

@@ -1,9 +1,12 @@
 package net.coolsimulations.SurvivalPlus.core;
 
+import java.io.File;
+
 import com.mojang.authlib.GameProfile;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.api.recipes.SPTrades;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandConfrats;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandEmportant;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandIndeed;
@@ -21,86 +24,67 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusBlocks;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
-import net.coolsimulations.SurvivalPlus.core.proxy.ClientProxy;
-import net.coolsimulations.SurvivalPlus.core.proxy.CommonProxy;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusComposterRecipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
+import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusDispenserBehavior;
+import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusTrades;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusBlockus;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusHammerTime;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusShieldLib;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.WhiteList;
-import net.minecraft.server.management.WhitelistEntry;
-import net.minecraft.util.ResourceLocation;
-//import net.minecraft.world.gen.feature.structure.StructureIO;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-//import net.minecraftforge.fml.common.registry.VillagerRegistry;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.server.Whitelist;
+import net.minecraft.server.WhitelistEntry;
 
-@Mod(value = SPReference.MOD_ID)
-@Mod.EventBusSubscriber(modid = SPReference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class SurvivalPlus {
-
-	public static CommonProxy proxy = (CommonProxy) DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
-
+public class SurvivalPlus implements ModInitializer {
+	
 	private static SurvivalPlus instance;
 	public static SurvivalPlus getInstance()
 	{
 		return instance;
 	}
 
-	@SubscribeEvent
-	public static void serverLoad(FMLServerStartingEvent event) {
+	public static void onServerLoad() {
+		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
+			if(server.isDedicated()) {
 
-		CommandConfrats.register(event.getCommandDispatcher());
-		CommandEmportant.register(event.getCommandDispatcher());
-		CommandWoo.register(event.getCommandDispatcher());
-		CommandWak.register(event.getCommandDispatcher());
-		CommandSmiley.register(event.getCommandDispatcher());
-		CommandWail.register(event.getCommandDispatcher());
-		CommandIndeed.register(event.getCommandDispatcher());
-		CommandMourn.register(event.getCommandDispatcher());
-		CommandSleep.register(event.getCommandDispatcher());
-		CommandWeba.register(event.getCommandDispatcher());
-		
-		MinecraftServer server = event.getServer();
+				GameProfile gameprofile = server.getUserCache().findByName("coolsim");
+				Whitelist whitelist = server.getPlayerManager().getWhitelist();
 
-		if(server.isDedicatedServer()) {
-			
-			GameProfile gameprofile = server.getPlayerProfileCache().getGameProfileForUsername("coolsim");
-			WhiteList whitelist = server.getPlayerList().getWhitelistedPlayers();
-
-			if(server.getPlayerList().isWhiteListEnabled() && !whitelist.isWhitelisted(gameprofile) && !server.getPlayerList().getBannedPlayers().isBanned(gameprofile)) {
-				WhitelistEntry entry = new WhitelistEntry(gameprofile);
-				whitelist.addEntry(entry);
+				if(server.getPlayerManager().isWhitelistEnabled() && !whitelist.isAllowed(gameprofile) && !server.getPlayerManager().getUserBanList().contains(gameprofile)) {
+					WhitelistEntry entry = new WhitelistEntry(gameprofile);
+					whitelist.add(entry);
+				}
 			}
-		}
+		});
 	}
 
-	public SurvivalPlus() {
+	@Override
+	public void onInitialize() {
 
 		SPCompatibilityManager.checkForCompatibleMods();
-		SurvivalPlusConfig.register(ModLoadingContext.get());
+		SurvivalPlusConfig.init(new File(FabricLoader.getInstance().getConfigDir().toFile(), SPReference.MOD_ID + ".json"));
 		SurvivalPlusUpdateHandler.init();
-		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::setupEvent);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::serverLoad);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::registerRecipes);
-		MinecraftForge.EVENT_BUS.register(new FuelHandler());
+
+		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+			CommandConfrats.register(dispatcher);
+			CommandEmportant.register(dispatcher);
+			CommandWoo.register(dispatcher);
+			CommandWak.register(dispatcher);
+			CommandSmiley.register(dispatcher);
+			CommandWail.register(dispatcher);
+			CommandIndeed.register(dispatcher);
+			CommandMourn.register(dispatcher);
+			CommandSleep.register(dispatcher);
+			CommandWeba.register(dispatcher);
+		});
+		
+		onServerLoad();
 
 		SurvivalPlusBlocks.init();
 		SurvivalPlusBlocks.register();
@@ -108,59 +92,41 @@ public class SurvivalPlus {
 		SurvivalPlusItems.register();
 		SurvivalPlusFood.init();
 		SurvivalPlusFood.register();
-		
-		SurvivalPlusComposterRecipes.init();
 
-		//VillagerRegistry.instance().registerVillageCreationHandler(new VillageOnionCropHandler());  //temp till forge pull request #6142 is resolved
-		//StructureIO.registerStructureComponent(StructureVillageOnionCrop.class, SPReference.MOD_ID + ":onionCropFieldStructure");  //temp till forge pull request #6142 is resolved
+		SurvivalPlusComposterRecipes.init();
 
 		SurvivalPlusArmor.init();
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
 
-		if(SPCompatibilityManager.isHammerTimeLoaded()) {
-			SurvivalPlusHammerTime.init();
+		FuelHandler.init();
+
+		SurvivalPlusDispenserBehavior.init();
+		registerRecipes();
+		setupEvent();
+
+		SurvivalPlusEventHandler.init();
+
+		SurvivalPlusTrades.initVillagerTrades();
+		SurvivalPlusEventHandler.villagerTrades();
+		SPTrades.postInitVillagerTrades();
+		
+		if(SPCompatibilityManager.isShieldLibLoaded()) {
+			SurvivalPlusShieldLib.init();
 		}
-
-		if(SPCompatibilityManager.isLumberjackLoaded()) {
-			SurvivalPlusLumberjack.init();
-			SurvivalPlusLumberjack.register();
-			MinecraftForge.EVENT_BUS.register(new SurvivalPlusLumberjack.SPEventHandler());
+		
+		if(SPCompatibilityManager.isBlockusLoaded()) {
+			SurvivalPlusBlockus.init();
 		}
-
-		if (SPCompatibilityManager.isProjectELoaded())
-		{
-			SurvivalPlusEMCValues.init();
-		}
-
-		/**if (SPCompatibilityManager.isJerLoaded())
-        {
-    			SurvivalPlusJER.init();
-        }**/
-
-		SurvivalPlusAPIRecipes.loadRecipes();
-
-		if (SPCompatibilityManager.isIc2Loaded())
-		{
-			SurvivalPlusIC2Recipes.init();
-		}
-
-	}
-
-	@SubscribeEvent
-	public static void setupEvent(FMLCommonSetupEvent event) {
-
-		SurvivalPlusOreGenerator.generateOres();
 	}
 	
-	@SubscribeEvent
-    public static void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)
-    {
-		for(IForgeRegistryEntry<?> e : event.getRegistry()) {
-			if(e instanceof IRecipeSerializer<?> && !event.getRegistry().containsKey(new ResourceLocation(SPReference.MOD_ID, "crafting_special_spshielddecoration"))) {
-				event.getRegistry().register(SPShieldRecipes.CRAFTING_SPECIAL_SPSHIELD.setRegistryName(SPReference.MOD_ID, "crafting_special_spshielddecoration"));
-			}
-		}
-    }
+	public void setupEvent() {
+		SurvivalPlusOreGenerator.generateOres();
+	}
+
+	public void registerRecipes() {
+		RecipeSerializer.register(SPReference.MOD_ID + ":crafting_special_spshielddecoration", SPShieldRecipes.CRAFTING_SPECIAL_SPSHIELD);
+	}
+
 }

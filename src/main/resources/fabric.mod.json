@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "survivalplus",
+  "version": "${version}",
+
+  "name": "SurvivalPlus",
+  "description": "SurvivalPlus enhances the vanilla survival experience of Minecraft whilst interacting with other mods to create seamless gameplay.",
+  "authors": [
+    "coolsim"
+  ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric",
+    "sources": "http://github.com/coolsimulations/survivalplus/",
+    "issues": "http://github.com/coolsimulations/survivalplus/issues/"
+  },
+
+  "license": "All Rights Reserved",
+  "icon": "logo.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.coolsimulations.SurvivalPlus.core.SurvivalPlus"
+    ],
+    "modmenu": [
+      "net.coolsimulations.SurvivalPlus.core.config.SPConfigGUI"
+    ],
+    "rei_plugins": [
+      "net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusREI"
+    ]
+  },
+  
+  "mixins": [
+    "survivalplus.mixins.json"
+    ],
+    
+  "depends": {
+    "fabricloader": ">=0.10.8",
+    "fabric": "*",
+    "minecraft": "1.14.4"
+  },
+  
+  "suggests": {
+  	"cloth-config2": ">=1.8",
+    "roughlyenoughitems": ">=3.3.0",
+    "fabricshieldlib": ">=1.0.5",
+    "refinedmachinery": ">=1.2.1"
+  }
+}

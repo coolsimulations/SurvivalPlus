@@ -1,10 +1,9 @@
-<p align="center"><img src="https://coolsimulations.net/wp-content/uploads/2019/03/survivalplus_logo_HD.png"></p>
+# Fabric Example Mod
 
-**[SurvivalPlus](https://www.curseforge.com/minecraft/mc-mods/survivalplus)** is a **Minecraft mod** that enhances the vanilla survival experience of Minecraft whilst interacting with other mods to create seamless gameplay.
+## Setup
 
------------------
+For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
 
-**Note:** For developers, SurvivalPlus has an API as well as a Dev release, both are available on the [CurseForge](https://www.curseforge.com/minecraft/mc-mods/survivalplus) page.
-To see them in use check out the offical addons:
- * [More Than A Pickaxe](https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe)
- * [SurvivalPlus Lightsabers](https://www.curseforge.com/minecraft/mc-mods/survivalplus-lightsabers)
+## License
+
+This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.

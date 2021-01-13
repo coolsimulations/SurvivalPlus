@@ -1,6 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemAxe;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemHoe;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemPickaxe;
@@ -10,53 +11,55 @@ import net.coolsimulations.SurvivalPlus.api.item.SPItemShovel;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemSword;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.minecraft.item.Item;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public class SurvivalPlusTools {
 	
 	public static void init() 
 	{
-		SPItems.bronze_pickaxe = new SPItemPickaxe(SPItemTier.bronzeToolMaterial).setRegistryName("bronze_pickaxe");
-		SPItems.bronze_axe = new SPItemAxe(SPItemTier.bronzeToolMaterial, 7, -3.1F).setRegistryName("bronze_axe");
-		SPItems.bronze_shovel = new SPItemShovel(SPItemTier.bronzeToolMaterial).setRegistryName("bronze_shovel");
-		SPItems.bronze_hoe = new SPItemHoe(SPItemTier.bronzeToolMaterial).setRegistryName("bronze_hoe");
-		SPItems.bronze_sword = new SPItemSword(SPItemTier.bronzeToolMaterial).setRegistryName("bronze_sword");
-		SPItems.bronze_shears = new SPItemShears(179).setRegistryName("bronze_shears");
-		SPItems.bronze_shield = new SPItemShield(274).setRegistryName("bronze_shield");
+		SPItems.bronze_pickaxe = new SPItemPickaxe(SPItemTier.bronzeToolMaterial);
+		SPItems.bronze_axe = new SPItemAxe(SPItemTier.bronzeToolMaterial, 7, -3.1F);
+		SPItems.bronze_shovel = new SPItemShovel(SPItemTier.bronzeToolMaterial);
+		SPItems.bronze_hoe = new SPItemHoe(SPItemTier.bronzeToolMaterial);
+		SPItems.bronze_sword = new SPItemSword(SPItemTier.bronzeToolMaterial);
+		SPItems.bronze_shears = new SPItemShears(179);
+		SPItems.bronze_shield = new SPItemShield(274);
 		
-		SPItems.titanium_pickaxe = new SPItemPickaxe(SPItemTier.titaniumToolMaterial).setRegistryName("titanium_pickaxe");
-		SPItems.titanium_axe = new SPItemAxe(SPItemTier.titaniumToolMaterial, 8.0F, -3.0F).setRegistryName("titanium_axe");
-		SPItems.titanium_shovel = new SPItemShovel(SPItemTier.titaniumToolMaterial).setRegistryName("titanium_shovel");
-		SPItems.titanium_hoe = new SPItemHoe(SPItemTier.titaniumToolMaterial).setRegistryName("titanium_hoe");
-		SPItems.titanium_sword = new SPItemSword(SPItemTier.titaniumToolMaterial).setRegistryName("titanium_sword");
-		SPItems.titanium_shears = new SPItemShears(298).setRegistryName("titanium_shears");
-		SPItems.titanium_shield = new SPItemShield(519).setRegistryName("titanium_shield");
+		SPItems.titanium_pickaxe = new SPItemPickaxe(SPItemTier.titaniumToolMaterial);
+		SPItems.titanium_axe = new SPItemAxe(SPItemTier.titaniumToolMaterial, 8.0F, -3.0F);
+		SPItems.titanium_shovel = new SPItemShovel(SPItemTier.titaniumToolMaterial);
+		SPItems.titanium_hoe = new SPItemHoe(SPItemTier.titaniumToolMaterial);
+		SPItems.titanium_sword = new SPItemSword(SPItemTier.titaniumToolMaterial);
+		SPItems.titanium_shears = new SPItemShears(298);
+		SPItems.titanium_shield = new SPItemShield(519);
 
 	}
 	
 	public static void register()
 	{
-		registerItem(SPItems.bronze_pickaxe);
-		registerItem(SPItems.bronze_axe);
-		registerItem(SPItems.bronze_shovel);
-		registerItem(SPItems.bronze_hoe);
-		registerItem(SPItems.bronze_sword);
-		registerItem(SPItems.bronze_shears);
-		registerItem(SPItems.bronze_shield);
+		registerItem(SPItems.bronze_pickaxe, "bronze_pickaxe");
+		registerItem(SPItems.bronze_axe, "bronze_axe");
+		registerItem(SPItems.bronze_shovel, "bronze_shovel");
+		registerItem(SPItems.bronze_hoe, "bronze_hoe");
+		registerItem(SPItems.bronze_sword, "bronze_sword");
+		registerItem(SPItems.bronze_shears, "bronze_shears");
+		registerItem(SPItems.bronze_shield, "bronze_shield");
 		
-		registerItem(SPItems.titanium_pickaxe);
-		registerItem(SPItems.titanium_axe);
-		registerItem(SPItems.titanium_shovel);
-		registerItem(SPItems.titanium_hoe);
-		registerItem(SPItems.titanium_sword);
-		registerItem(SPItems.titanium_shears);
-		registerItem(SPItems.titanium_shield);
+		registerItem(SPItems.titanium_pickaxe, "titanium_pickaxe");
+		registerItem(SPItems.titanium_axe, "titanium_axe");
+		registerItem(SPItems.titanium_shovel, "titanium_shovel");
+		registerItem(SPItems.titanium_hoe, "titanium_hoe");
+		registerItem(SPItems.titanium_sword, "titanium_sword");
+		registerItem(SPItems.titanium_shears, "titanium_shears");
+		registerItem(SPItems.titanium_shield, "titanium_shield");
 
 		
 	}
 	
-	public static void registerItem(Item item) {
-		
-		 ForgeRegistries.ITEMS.register(item);
+	public static void registerItem(Item item, String registryName) {
+
+		Registry.register(Registry.ITEM, new Identifier(SPReference.MOD_ID, registryName), item);
 	}
+
 }

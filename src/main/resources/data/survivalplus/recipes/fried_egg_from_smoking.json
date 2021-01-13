@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smoking",
   "ingredient": {
-    "tag": "forge:eggs"
+    "tag": "c:eggs"
   },
   "result": "survivalplus:fried_egg",
   "experience": 0.35,

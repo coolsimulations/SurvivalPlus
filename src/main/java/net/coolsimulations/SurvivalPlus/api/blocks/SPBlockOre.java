@@ -2,61 +2,40 @@ package net.coolsimulations.SurvivalPlus.api.blocks;
 
 import java.util.Random;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tools.FabricToolTags;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.BlockState;
-import net.minecraft.item.IItemTier;
+import net.minecraft.block.Material;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTier;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.ToolMaterials;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
 
 public class SPBlockOre extends Block{
-	
+
 	public final Resource resource;
 	public final Boolean experience;
-	
+
 	/**
 	 * @param harvestLevel Harvest level:
-     *     Wood:    0
-     *     Stone:   1
-     *     Iron:    2
-     *     Diamond: 3
-     *     Gold:    0
-     *     Anything higher than 3 will revert to 3
+	 *     Wood:    0
+	 *     Stone:   1
+	 *     Iron:    2
+	 *     Diamond: 3
+	 *     Gold:    0
+	 *     Anything higher than 3 will revert to 3
 	 */
-	
+
 	public SPBlockOre(Resource resource, Boolean dropsXP) {
-		super(Properties.create(Material.ROCK).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()));
+		super(FabricBlockSettings.of(Material.STONE).hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).lightLevel(0));
 		this.resource = resource;
 		this.experience = dropsXP;
 	}
-	
-	@Override
-	public ToolType getHarvestTool(BlockState state) {
-		return ToolType.PICKAXE;
-	}
-	
-	@Override
-	public void spawnAdditionalDrops(BlockState state, World world, BlockPos pos, ItemStack stack) {
-		super.spawnAdditionalDrops(state, world, pos, stack);
-	}
-	
-	@Override
-	public int getHarvestLevel(BlockState state) {
-		return resource.harvestLevel;
-	}
-	
-	@Override
-	public int getLightValue(BlockState p_getLightValue_1_) {
-		
-		return 0;
-	}
-	
+
 	protected int getExperience(Random random) {
 		if(experience) {
 			if (resource == Resource.TIER_0) {
@@ -71,36 +50,40 @@ public class SPBlockOre extends Block{
 		}
 		return 0;
 	}
-	
+
 	@Override
-	public int getExpDrop(BlockState state, IWorldReader reader, BlockPos pos, int p_getExpDrop_4_, int amount) {
-		return amount == 0 ? this.getExperience(this.RANDOM) : 0;
-	}
-	
-	public enum Resource {
-		TIER_0(0, 3.0F, 5.0F, SoundType.STONE, ItemTier.WOOD),
-		TIER_1(1, 3.5F, 5.0F, SoundType.STONE, ItemTier.STONE),
-		TIER_2(2, 3.0F, 5.0F, SoundType.STONE, ItemTier.IRON),
-		TIER_3(3, 3.5F, 5.0F, SoundType.STONE, ItemTier.DIAMOND);
-		
-	    public final float hardness;
-	    public final float resistance;
-	    private final SoundType soundType;
-	    public final int harvestLevel;
-	    public final IItemTier itemTier;
-	    
-	    Resource(int harvestLevel, float hardness, float resistance, SoundType soundType, IItemTier itemTier) {
-	        this.hardness = hardness;
-	        this.resistance = resistance;
-	        this.soundType = soundType;
-	        this.harvestLevel = harvestLevel;
-	        this.itemTier = itemTier;
+	public void onStacksDropped(BlockState state, World world, BlockPos pos, ItemStack stack) {
+		super.onStacksDropped(state, world, pos, stack);
+		int i = this.getExperience(world.random);
+		if (i > 0) {
+			this.dropExperience(world, pos, i);
+		}
 	}
 
-		public SoundType getBlockSoundType() {
+	public enum Resource {
+		TIER_0(0, 3.0F, 5.0F, BlockSoundGroup.STONE, ToolMaterials.WOOD),
+		TIER_1(1, 3.5F, 5.0F, BlockSoundGroup.STONE, ToolMaterials.STONE),
+		TIER_2(2, 3.0F, 5.0F, BlockSoundGroup.STONE, ToolMaterials.IRON),
+		TIER_3(3, 3.5F, 5.0F, BlockSoundGroup.STONE, ToolMaterials.DIAMOND);
+
+		public final float hardness;
+		public final float resistance;
+		private final BlockSoundGroup soundType;
+		public final int harvestLevel;
+		public final ToolMaterial itemTier;
+
+		Resource(int harvestLevel, float hardness, float resistance, BlockSoundGroup soundType, ToolMaterial itemTier) {
+			this.hardness = hardness;
+			this.resistance = resistance;
+			this.soundType = soundType;
+			this.harvestLevel = harvestLevel;
+			this.itemTier = itemTier;
+		}
+
+		public BlockSoundGroup getBlockSoundType() {
 			return soundType;
 		}
-		
+
 	}
 
 }

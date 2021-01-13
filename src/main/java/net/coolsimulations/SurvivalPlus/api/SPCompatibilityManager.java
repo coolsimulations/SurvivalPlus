@@ -1,374 +1,124 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraftforge.fml.ModList;
+import net.fabricmc.loader.api.FabricLoader;
 
 public class SPCompatibilityManager {
 
-	private static boolean modTELoaded;
 	private static boolean modGCLoaded;
-	private static boolean modGCPLoaded;
-	private static boolean modProjectELoaded;
-	private static boolean modJeiLoaded;
-	private static boolean modIc2Loaded;
-	private static boolean modBCraftLoaded;
-	private static boolean modAppEngLoaded;
-	private static boolean modPneumaticCraftLoaded;
-	private static boolean modBopLoaded;
-	private static boolean modBopExtrasLoaded;
-	private static boolean modBaseMetalsLoaded;
-	private static boolean modFlourPowerLoaded;
-	private static boolean modWoodenBucketLoaded;
-	private static boolean modSimpleGrinderLoaded;
-	private static boolean modRecyclerLoaded;
-	private static boolean modForestryLoaded;
-	private static boolean modRailcraftLoaded;
-	private static boolean modLumberjackLoaded;
-	private static boolean modHammerTimeLoaded;
-	private static boolean modJerLoaded;
-	private static boolean modSwordBlockingLoaded;
-	private static boolean modSilentMechanismsLoaded;
-	private static boolean modGemsAndCrystalsLoaded;
-	private static boolean modTriGemsLoaded;
-	private static boolean modEmeraldAndObsidianLoaded;
-	private static boolean modObsidianArmorAndToolsLoaded;
-	private static boolean modVulcaniteLoaded;
-	private static boolean modCarbonadoLoaded;
+	private static boolean modShieldLibLoaded;
+	private static boolean modRefinedMachineryLoaded;
+	private static boolean modBlockusLoaded;
+	private static boolean modBambooTweaksLoaded;
+	private static boolean modBambooEverythingLoaded;
+	private static boolean modBetterBambooLoaded;
+	private static boolean modTraverseLoaded;
+	private static boolean modTerrestriaLoaded;
 
-	public static final String TE_MODID = "thermalexpansion";
-	public static final String GCCORE_MODID = "galacticraftcore";
-	public static final String GCPLANETS_MODID = "galacticraftplanets";
-	public static final String PROJECTE_MODID = "projecte";
-	public static final String JEI_MODID = "jei";
-	public static final String IC2_MODID = "ic2";
-	public static final String BCRAFTCORE_MODID = "buildcraftcore";
-	public static final String APPENG_MODID = "appliedenergistics2";
-	public static final String PNEUMATICCRAFT_MODID = "pneumaticcraft";
-	public static final String BOP_MODID = "biomesoplenty";
-	public static final String BOPEXTRAS_MODID = "biomesoplentyextras";
-	public static final String BASEMETALS_MODID = "basemetals";
-	public static final String FLOURPOWER_MODID = "flourpower";
-	public static final String WOODENBUCKET_MODID = "woodenbucket";
-	public static final String VEFLUIDS_MODID = "vefluids";
-	public static final String SIMPLEGRINDER_MODID = "simplegrinder";
-	public static final String RECYCLER_MODID = "recycler";
-	public static final String FORESTRY_MODID = "forestry";
-	public static final String RAILCRAFT_MODID = "railcraft";
-	public static final String LUMBERJACK_MODID = "lumberjack";
-	public static final String HAMMER_TIME_MODID = "hammertime";
-	public static final String JER_MODID = "jeresources";
-	public static final String SWORD_BLOCKING_MODID = "swordblockingcombat";
-	public static final String SILENT_MECHANISMS_MODID = "silents_mechanisms";
-	public static final String GEMS_AND_CRYSTALS_MODID = "gemsandcrystals";
-	public static final String TRIGEMS_MODID = "trigems";
-	public static final String EMERALD_AND_OBSIDIAN_MODID = "emeraldobsidian";
-	public static final String OBSIDIAN_ARMOR_AND_TOOLS_MODID = "obsidiantools";
-	public static final String VULCANITE_MODID = "vulcanite";
-	public static final String CARBONADO_MODID = "carbonado";
+	public static final String GCCORE_MODID = "galacticraft-rewoven";
+	public static final String FABRIC_SHIELD_LIB_MODID = "fabricshieldlib";
+	public static final String REFINED_MACHINERY_MODID = "refinedmachinery";
+	public static final String BLOCKUS_MODID = "blockus";
+	public static final String BAMBOO_TWEAKS_MODID = "bambootweaks";
+	public static final String BAMBOO_EVERYTHING_MODID = "bambooeverything";
+	public static final String BETTER_BAMBOO_MODID = "bamboomod";
+	public static final String TRAVERSE_MODID = "traverse";
+	public static final String TERRESTRIA_MODID = "terrestria";
 
 	public static void checkForCompatibleMods(){
 
-		if (ModList.get().isLoaded(TE_MODID))
-		{
-			SPCompatibilityManager.modTELoaded = true;
-		}
-
-		if (ModList.get().isLoaded(GCCORE_MODID))
+		if (FabricLoader.getInstance().isModLoaded(GCCORE_MODID))
 		{
 			SPCompatibilityManager.modGCLoaded = true;
 		}
-
-		if (ModList.get().isLoaded(GCPLANETS_MODID))
+		
+		if (FabricLoader.getInstance().isModLoaded(FABRIC_SHIELD_LIB_MODID))
 		{
-			SPCompatibilityManager.modGCPLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(PROJECTE_MODID))
-		{
-			SPCompatibilityManager.modProjectELoaded = true;
-		}
-
-		if (ModList.get().isLoaded(JEI_MODID))
-		{
-			SPCompatibilityManager.modJeiLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(IC2_MODID))
-		{
-			SPCompatibilityManager.modIc2Loaded = true;
-		}
-
-
-		if (ModList.get().isLoaded(BCRAFTCORE_MODID))
-		{
-			SPCompatibilityManager.modBCraftLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(APPENG_MODID))
-		{
-			SPCompatibilityManager.modAppEngLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(PNEUMATICCRAFT_MODID))
-		{
-			SPCompatibilityManager.modPneumaticCraftLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(BOP_MODID))
-		{
-			SPCompatibilityManager.modBopLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(BOPEXTRAS_MODID))
-		{
-			SPCompatibilityManager.modBopExtrasLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(BASEMETALS_MODID))
-		{
-			SPCompatibilityManager.modBaseMetalsLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(FLOURPOWER_MODID))
-		{
-			SPCompatibilityManager.modFlourPowerLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(WOODENBUCKET_MODID) && ModList.get().isLoaded(VEFLUIDS_MODID))
-		{
-			SPCompatibilityManager.modWoodenBucketLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(SIMPLEGRINDER_MODID))
-		{
-			SPCompatibilityManager.modSimpleGrinderLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(RECYCLER_MODID))
-		{
-			SPCompatibilityManager.modRecyclerLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(FORESTRY_MODID))
-		{
-			SPCompatibilityManager.modForestryLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(RAILCRAFT_MODID))
-		{
-			SPCompatibilityManager.modRailcraftLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(LUMBERJACK_MODID))
-		{
-			SPCompatibilityManager.modLumberjackLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(HAMMER_TIME_MODID))
-		{
-			SPCompatibilityManager.modHammerTimeLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(JER_MODID))
-		{
-			SPCompatibilityManager.modJerLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(SWORD_BLOCKING_MODID))
-		{
-			SPCompatibilityManager.modSwordBlockingLoaded = true;
+			SPCompatibilityManager.modShieldLibLoaded = true;
 		}
 		
-		if (ModList.get().isLoaded(SILENT_MECHANISMS_MODID))
+		if (FabricLoader.getInstance().isModLoaded(REFINED_MACHINERY_MODID))
 		{
-			SPCompatibilityManager.modSilentMechanismsLoaded = true;
+			SPCompatibilityManager.modRefinedMachineryLoaded = true;
 		}
 		
-		if (ModList.get().isLoaded(GEMS_AND_CRYSTALS_MODID))
+		if (FabricLoader.getInstance().isModLoaded(BLOCKUS_MODID))
 		{
-			SPCompatibilityManager.modGemsAndCrystalsLoaded = true;
+			SPCompatibilityManager.modBlockusLoaded = true;
 		}
 		
-		if (ModList.get().isLoaded(TRIGEMS_MODID))
+		if (FabricLoader.getInstance().isModLoaded(BAMBOO_TWEAKS_MODID))
 		{
-			SPCompatibilityManager.modTriGemsLoaded = true;
+			SPCompatibilityManager.modBambooTweaksLoaded = true;
 		}
 		
-		if (ModList.get().isLoaded(EMERALD_AND_OBSIDIAN_MODID))
+		if (FabricLoader.getInstance().isModLoaded(BAMBOO_EVERYTHING_MODID))
 		{
-			SPCompatibilityManager.modEmeraldAndObsidianLoaded = true;
+			SPCompatibilityManager.modBambooEverythingLoaded = true;
 		}
 		
-		if (ModList.get().isLoaded(OBSIDIAN_ARMOR_AND_TOOLS_MODID))
+		if (FabricLoader.getInstance().isModLoaded(BETTER_BAMBOO_MODID))
 		{
-			SPCompatibilityManager.modObsidianArmorAndToolsLoaded = true;
+			SPCompatibilityManager.modBetterBambooLoaded = true;
 		}
 		
-		if (ModList.get().isLoaded(VULCANITE_MODID))
+		if (FabricLoader.getInstance().isModLoaded(TRAVERSE_MODID))
 		{
-			SPCompatibilityManager.modVulcaniteLoaded = true;
+			SPCompatibilityManager.modTraverseLoaded = true;
 		}
 		
-		if (ModList.get().isLoaded(CARBONADO_MODID))
+		if (FabricLoader.getInstance().isModLoaded(TERRESTRIA_MODID))
 		{
-			SPCompatibilityManager.modCarbonadoLoaded = true;
+			SPCompatibilityManager.modTerrestriaLoaded = true;
 		}
-
-	}
-
-	public static boolean isIc2Loaded()
-	{
-		return SPCompatibilityManager.modIc2Loaded;
-	}
-
-	public static boolean isProjectELoaded()
-	{
-		return SPCompatibilityManager.modProjectELoaded;
 	}
 
 	public static boolean isGCLoaded()
 	{
 		return SPCompatibilityManager.modGCLoaded;
 	}
-
-	public static boolean isBCraftLoaded()
+	
+	public static boolean isShieldLibLoaded()
 	{
-		return SPCompatibilityManager.modBCraftLoaded;
-	}
-
-	public static boolean isTELoaded()
-	{
-		return SPCompatibilityManager.modTELoaded;
-	}
-
-	public static boolean isGCPLoaded()
-	{
-		return SPCompatibilityManager.modGCPLoaded;
-	}
-
-	public static boolean isAppEngLoaded()
-	{
-		return SPCompatibilityManager.modAppEngLoaded;
-	}
-
-	public static boolean isPneumaticCraftLoaded()
-	{
-		return SPCompatibilityManager.modPneumaticCraftLoaded;
-	}
-
-	public static boolean isJeiLoaded()
-	{
-		return SPCompatibilityManager.modJeiLoaded;
-	}
-
-	public static boolean isBopLoaded()
-	{
-		return SPCompatibilityManager.modBopLoaded;
-	}
-
-	public static boolean isBopExtrasLoaded()
-	{
-		return SPCompatibilityManager.modBopExtrasLoaded;
-	}
-
-	public static boolean isBaseMetalsLoaded()
-	{
-		return SPCompatibilityManager.modBaseMetalsLoaded;
-	}
-
-	public static boolean isFlourPowerLoaded()
-	{
-		return SPCompatibilityManager.modFlourPowerLoaded;
-	}
-
-	public static boolean isWoodenBucketLoaded()
-	{
-		return SPCompatibilityManager.modWoodenBucketLoaded;
-	}
-
-	public static boolean isSimpleGrinderLoaded()
-	{
-		return SPCompatibilityManager.modSimpleGrinderLoaded;
-	}
-
-	public static boolean isRecyclerLoaded()
-	{
-		return SPCompatibilityManager.modRecyclerLoaded;
-	}
-
-	public static boolean isForestryLoaded()
-	{
-		return SPCompatibilityManager.modForestryLoaded;
-	}
-
-	public static boolean isRailcraftLoaded()
-	{
-		return SPCompatibilityManager.modRailcraftLoaded;
-	}
-
-	public static boolean isLumberjackLoaded()
-	{
-		return SPCompatibilityManager.modLumberjackLoaded;
-	}
-
-	public static boolean isHammerTimeLoaded()
-	{
-		return SPCompatibilityManager.modHammerTimeLoaded;
-	}
-
-	public static boolean isJerLoaded()
-	{
-		return SPCompatibilityManager.modJerLoaded;
-	}
-
-	public static boolean isSwordBlockingLoaded()
-	{
-		return SPCompatibilityManager.modSwordBlockingLoaded;
+		return SPCompatibilityManager.modShieldLibLoaded;
 	}
 	
-	public static boolean isSilentMechanismsLoaded()
+	public static boolean isRefinedMachineryLoaded()
 	{
-		return SPCompatibilityManager.modSilentMechanismsLoaded;
+		return SPCompatibilityManager.modRefinedMachineryLoaded;
 	}
 	
-	public static boolean isGACLoaded()
+	public static boolean isBlockusLoaded()
 	{
-		return SPCompatibilityManager.modGemsAndCrystalsLoaded;
+		return SPCompatibilityManager.modBlockusLoaded;
 	}
 	
-	public static boolean isTriGemsLoaded()
+	public static boolean isBambooTweaksLoaded()
 	{
-		return SPCompatibilityManager.modTriGemsLoaded;
+		return SPCompatibilityManager.modBambooTweaksLoaded;
 	}
 	
-	public static boolean isEAOLoaded()
+	public static boolean isBambooEverythingLoaded()
 	{
-		return SPCompatibilityManager.modEmeraldAndObsidianLoaded;
+		return SPCompatibilityManager.modBambooEverythingLoaded;
 	}
 	
-	public static boolean isOAATLoaded()
+	public static boolean isBetterBambooLoaded()
 	{
-		return SPCompatibilityManager.modObsidianArmorAndToolsLoaded;
+		return SPCompatibilityManager.modBetterBambooLoaded;
 	}
 	
-	public static boolean isEmeraldMaterialModsLoaded()
-	{
-		return isGACLoaded() || isTriGemsLoaded() || isEAOLoaded();
+	public static boolean isBambooModsLoaded() {
+		return isBlockusLoaded() || isBambooTweaksLoaded() || isBambooEverythingLoaded() || isBetterBambooLoaded();
 	}
 	
-	public static boolean isObsidianMaterialModsLoaded()
+	public static boolean isTraverseLoaded()
 	{
-		return isEAOLoaded() || isOAATLoaded();
-	}
-
-	
-	public static boolean isVulcaniteLoaded()
-	{
-		return SPCompatibilityManager.modVulcaniteLoaded;
+		return SPCompatibilityManager.modTraverseLoaded;
 	}
 	
-	public static boolean isCarbonadoLoaded()
+	public static boolean isTerrestriaLoaded()
 	{
-		return SPCompatibilityManager.modCarbonadoLoaded;
+		return SPCompatibilityManager.modTerrestriaLoaded;
 	}
 
 }

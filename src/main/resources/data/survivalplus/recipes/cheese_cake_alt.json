@@ -8,19 +8,19 @@
   ],
   "key": {
     "C": {
-      "tag": "forge:cheese"
+      "tag": "c:cheeses"
     },
     "S": {
       "item": "minecraft:sugar"
     },
     "E": {
-      "tag": "forge:eggs"
+      "tag": "c:eggs"
     },
     "M": {
       "item": "minecraft:milk_bucket"
     },
     "F": {
-      "tag": "forge:food/flour"
+      "tag": "c:flour"
     }
   },
   "result": {

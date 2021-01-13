@@ -1,0 +1,9 @@
+
+{
+	"replace": false,
+	"values": [
+		"minecraft:shears",
+		"survivalplus:bronze_shears",
+		"survivalplus:titanium_shears"
+	]
+}

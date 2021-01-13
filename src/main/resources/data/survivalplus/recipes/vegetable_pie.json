@@ -2,16 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "forge:crops/beetroot"
+      "tag": "c:beetroots"
     },
     {
-      "tag": "forge:crops/carrot"
+      "tag": "c:carrots"
     },
     {
-      "tag": "forge:crops/onion"
+      "tag": "c:onions"
     },
     {
-      "tag": "forge:eggs"
+      "tag": "c:eggs"
     },
     {
       "item": "minecraft:sugar"

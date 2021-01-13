@@ -12,7 +12,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:nuggets/titanium",
+            "tag": "c:titanium_nuggets",
             "count": {
               "min": 9
             }

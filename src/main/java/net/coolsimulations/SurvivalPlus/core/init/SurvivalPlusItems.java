@@ -3,96 +3,54 @@ package net.coolsimulations.SurvivalPlus.core.init;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
-import net.minecraft.item.BlockNamedItem;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public class SurvivalPlusItems {
-
+	
 	public static void init() {
 
-		SPItems.tin_ingot = new SPItemIngot(true).setRegistryName("tin_ingot");
-		SPItems.copper_ingot = new SPItemIngot(true).setRegistryName("copper_ingot");
-		SPItems.onion_seeds = new BlockNamedItem(SPBlocks.onion, new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("onion_seeds");
-		SPItems.bronze_ingot = new SPItemIngot(true).setRegistryName("bronze_ingot");
-		SPItems.bronze_nugget = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("bronze_nugget");
-		SPItems.titanium_ingot = new SPItemIngot(true).setRegistryName("titanium_ingot");
-		SPItems.titanium_nugget = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_nugget");
-		SPItems.charcoal_bucket = new Item(new Item.Properties().group(SPTabs.tabMaterials).maxStackSize(1).containerItem(Items.BUCKET)).setRegistryName("charcoal_bucket");
-		SPItems.paper_cup = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("paper_cup");
-
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded())
-		{
-			SPItems.titanium_dust = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_dust");
-		}
-
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
-		{
-			SPItems.copper_dust = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("copper_dust");
-			SPItems.tin_dust = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("tin_dust");
-		}
-
-		if(SPCompatibilityManager.isSilentMechanismsLoaded())
-		{
-			SPItems.titanium_chunks = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_chunks");
-		}
-
-		if (SPCompatibilityManager.isIc2Loaded())
-		{
-			SPItems.crushed_titanium_ore = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("crushed_titanium_ore");
-			SPItems.purified_titanium_ore = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("purified_titanium_ore");
-			SPItems.tiny_titanium_pile = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("tiny_titanium_pile");
-			SPItems.titanium_plate = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_plate");
-			SPItems.titanium_dense_plate = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_dense_plate");
-			SPItems.titanium_casing = new Item(new Item.Properties().group(SPTabs.tabMaterials)).setRegistryName("titanium_casing");
-
-		}
+		SPItems.tin_ingot = new SPItemIngot(true);
+		SPItems.copper_ingot = new SPItemIngot(true);
+		SPItems.onion_seeds = new AliasedBlockItem(SPBlocks.onion, new FabricItemSettings().group(SPTabs.tabMaterials));
+		SPItems.bronze_ingot = new SPItemIngot(true);
+		SPItems.bronze_nugget = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+		SPItems.titanium_ingot = new SPItemIngot(true);
+		SPItems.titanium_nugget = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+		SPItems.charcoal_bucket = new Item(new FabricItemSettings().group(SPTabs.tabMaterials).maxCount(1).recipeRemainder(Items.BUCKET));
+		SPItems.paper_cup = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+		
+		if(SPCompatibilityManager.isRefinedMachineryLoaded())
+			SPItems.titanium_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
 
 	}
+	
 	public static void register()
 	{
-		registerItem(SPItems.tin_ingot);
-		registerItem(SPItems.copper_ingot);
-		registerItem(SPItems.onion_seeds);
-		registerItem(SPItems.bronze_ingot);
-		registerItem(SPItems.bronze_nugget);
-		registerItem(SPItems.titanium_ingot);
-		registerItem(SPItems.titanium_nugget);
-		registerItem(SPItems.charcoal_bucket);
-		registerItem(SPItems.paper_cup);
-
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded())
-		{
-			registerItem(SPItems.titanium_dust);
-		}
-
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
-		{
-			registerItem(SPItems.copper_dust);
-			registerItem(SPItems.tin_dust);
-		}
-
-		if(SPCompatibilityManager.isSilentMechanismsLoaded())
-		{
-			registerItem(SPItems.titanium_chunks);
-		}
-
-		if (SPCompatibilityManager.isIc2Loaded())
-		{
-			registerItem(SPItems.crushed_titanium_ore);
-			registerItem(SPItems.purified_titanium_ore);
-			registerItem(SPItems.tiny_titanium_pile);
-			registerItem(SPItems.titanium_plate);
-			registerItem(SPItems.titanium_dense_plate);
-			registerItem(SPItems.titanium_casing);
-
-		}
+		registerItem(SPItems.tin_ingot, "tin_ingot");
+		registerItem(SPItems.copper_ingot, "copper_ingot");
+		registerItem(SPItems.onion_seeds, "onion_seeds");
+		registerItem(SPItems.bronze_ingot, "bronze_ingot");
+		registerItem(SPItems.bronze_nugget, "bronze_nugget");
+		registerItem(SPItems.titanium_ingot, "titanium_ingot");
+		registerItem(SPItems.titanium_nugget, "titanium_nugget");
+		registerItem(SPItems.charcoal_bucket, "charcoal_bucket");
+		registerItem(SPItems.paper_cup, "paper_cup");
+		
+		if(SPCompatibilityManager.isRefinedMachineryLoaded())
+			registerItem(SPItems.titanium_dust, "titanium_dust");
 	}
-	public static void registerItem(Item item) {
+	
+	public static void registerItem(Item item, String registryName) {
 
-		ForgeRegistries.ITEMS.register(item);
+		Registry.register(Registry.ITEM, new Identifier(SPReference.MOD_ID, registryName), item);
 	}
+
 }

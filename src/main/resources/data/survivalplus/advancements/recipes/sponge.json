@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:cheese"
+            "tag": "c:cheeses"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:nuggets/gold"
+            "tag": "c:gold_nuggets"
           }
         ]
       }

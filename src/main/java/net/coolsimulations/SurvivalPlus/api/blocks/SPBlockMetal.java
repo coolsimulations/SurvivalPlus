@@ -1,17 +1,12 @@
-package net.coolsimulations.SurvivalPlus.api.blocks;
+package net.coolsimulations.SurvivalPlus.api.blocks;	
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tools.FabricToolTags;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTier;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.block.Material;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.ToolMaterials;
+import net.minecraft.sound.BlockSoundGroup;
 
 public class SPBlockMetal extends Block{
 	
@@ -23,52 +18,24 @@ public class SPBlockMetal extends Block{
 	 */
 	
 	public SPBlockMetal(Resource resource, boolean isBeaconMetal) {
-		super(Properties.create(Material.IRON).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()));
+		super(FabricBlockSettings.of(Material.METAL).hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).lightLevel(0));
 		this.resource = resource;
 		this.beacon = isBeaconMetal;
 	}
 	
-	@Override
-	public ToolType getHarvestTool(BlockState state) {
-		return ToolType.PICKAXE;
-	}
-	
-	@Override
-	public void spawnAdditionalDrops(BlockState state, World world, BlockPos pos, ItemStack stack) {
-		super.spawnAdditionalDrops(state, world, pos, stack);
-	}
-	
-	@Override
-	public int getHarvestLevel(BlockState state) {
-		return resource.harvestLevel;
-	}
-	
-	@Override
-	public int getLightValue(BlockState p_getLightValue_1_) {
-		
-		return 0;
-	}
-	
-	@Override
-	public boolean isBeaconBase(BlockState state, IWorldReader world, BlockPos pos, BlockPos beacon)
-    {
-		return this.beacon;
-    }
-
-	
 	public enum Resource {
-		TIER_0(1, 4.0F, 10.0F, SoundType.METAL, ItemTier.IRON),
-		TIER_1(2, 4.5F, 10.0F, SoundType.METAL, ItemTier.IRON),
-		TIER_2(2, 5.0F, 10.0F, SoundType.METAL, ItemTier.IRON),
-		TIER_3(3, 5.5F, 10.0F, SoundType.METAL, ItemTier.DIAMOND);
+		TIER_0(1, 4.0F, 10.0F, BlockSoundGroup.METAL, ToolMaterials.IRON),
+		TIER_1(2, 4.5F, 10.0F, BlockSoundGroup.METAL, ToolMaterials.IRON),
+		TIER_2(2, 5.0F, 10.0F, BlockSoundGroup.METAL, ToolMaterials.IRON),
+		TIER_3(3, 5.5F, 10.0F, BlockSoundGroup.METAL, ToolMaterials.DIAMOND);
 		
 	    public final float hardness;
 	    public final float resistance;
-	    private final SoundType soundType;
+	    private final BlockSoundGroup soundType;
 	    public final int harvestLevel;
-	    public final IItemTier itemTier;
+	    public final ToolMaterial itemTier;
 	    
-	    Resource(int harvestLevel, float hardness, float resistance, SoundType soundType, IItemTier itemTier) {
+	    Resource(int harvestLevel, float hardness, float resistance, BlockSoundGroup soundType, ToolMaterial itemTier) {
 	        this.hardness = hardness;
 	        this.resistance = resistance;
 	        this.soundType = soundType;
@@ -76,7 +43,7 @@ public class SPBlockMetal extends Block{
 	        this.itemTier = itemTier;
 	}
 
-		public SoundType getBlockSoundType() {
+		public BlockSoundGroup getBlockSoundType() {
 			return soundType;
 		}
 		

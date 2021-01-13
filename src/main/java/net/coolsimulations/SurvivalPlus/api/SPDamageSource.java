@@ -1,9 +1,13 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraft.util.DamageSource;
+import net.minecraft.entity.damage.DamageSource;
 
-public class SPDamageSource {
+public class SPDamageSource extends DamageSource {
 
-	public static final DamageSource BOILED_WATER = new DamageSource("boiled_water");
+	protected SPDamageSource(String name) {
+		super(name);
+	}
+
+	public static final DamageSource BOILED_WATER = new SPDamageSource("boiled_water");
 	
 }
