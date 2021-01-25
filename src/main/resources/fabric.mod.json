@@ -41,9 +41,13 @@
   },
   
   "suggests": {
-  	"cloth-config2": ">=1.8",
+    "cloth-config2": ">=1.8",
     "roughlyenoughitems": ">=3.3.0",
     "fabricshieldlib": ">=1.0.5",
-    "refinedmachinery": ">=1.2.1"
+    "refinedmachinery": ">=1.2.1",
+    "blockus": ">=1.2.0",
+    "bambootweaks": ">=1.1.0",
+    "bambooeverything": ">=1.4.0",
+    "bamboomod": ">=0.3.0"
   }
 }
