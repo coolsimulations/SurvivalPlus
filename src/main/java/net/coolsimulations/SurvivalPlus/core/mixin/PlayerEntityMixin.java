@@ -8,13 +8,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemShield;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
@@ -70,6 +73,14 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 			this.world.sendEntityStatus(this, (byte)30);
 		}
 
+	}
+	
+	@Inject(at = @At("HEAD"), method = "takeShieldHit", cancellable = true)
+	public void takeShieldHit(LivingEntity attacker, CallbackInfo info) {
+		super.takeShieldHit(attacker);
+	      if (((ItemAccessor) attacker.getMainHandStack().getItem()).canDisableShield(attacker.getMainHandStack(), this.getActiveItem(), this, attacker)) {
+	    	  (((PlayerEntity) (Object)this)).disableShield(true);
+	      }
 	}
 
 	@Shadow

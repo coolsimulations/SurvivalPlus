@@ -5,6 +5,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemShield;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -50,7 +51,7 @@ public abstract class MobEntityMixin extends LivingEntity {
 	            PlayerEntity playerEntity = (PlayerEntity)target;
 	            ItemStack itemStack = this.getMainHandStack();
 	            ItemStack itemStack2 = playerEntity.isUsingItem() ? playerEntity.getActiveItem() : ItemStack.EMPTY;
-	            if (!itemStack.isEmpty() && !itemStack2.isEmpty() && itemStack.getItem() instanceof AxeItem && itemStack2.getItem() instanceof SPItemShield) {
+	            if (!itemStack.isEmpty() && !itemStack2.isEmpty() && ((ItemAccessor) itemStack.getItem()).canDisableShield(itemStack, itemStack2, playerEntity, this) && itemStack2.getItem() instanceof SPItemShield) {
 	               float h = 0.25F + (float)EnchantmentHelper.getEfficiency(this) * 0.05F;
 	               if (this.random.nextFloat() < h) {
 	                  playerEntity.getItemCooldownManager().set(itemStack2.getItem(), 100);
