@@ -10,7 +10,8 @@
         "CampfireBlockMixin",
         "PlayerManagerMixin",
         "EntityMixin", "ServerPlayerEntityMixin",
-        "ServerPlayNetworkHandlerMixin"
+        "ServerPlayNetworkHandlerMixin",
+        "ItemMixin", "EnchantmentHelperMixin", "EnchantmentMixin"
     ],
     "client": [
     	"BuiltinModelItemRendererMixin",
