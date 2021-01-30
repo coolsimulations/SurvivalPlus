@@ -11,12 +11,18 @@
         "PlayerManagerMixin",
         "EntityMixin", "ServerPlayerEntityMixin",
         "ServerPlayNetworkHandlerMixin",
-        "ItemMixin", "EnchantmentHelperMixin", "EnchantmentMixin"
+        "ItemMixin", "EnchantmentHelperMixin", "EnchantmentMixin",
+        "LivingEntityMixin",
+        "ServerPlayerInteractionManagerMixin",
+        "ServerWorldMixin"
     ],
     "client": [
     	"BuiltinModelItemRendererMixin",
     	"BeaconScreenMixin",
-    	"InGameHudMixin"
+    	"InGameHudMixin",
+    	"ClientPlayerInteractionManagerMixin",
+    	"ClientPlayNetworkHandlerMixin",
+    	"ClientPlayerEntityMixin", "ClientWorldMixin"
     ],
     "injectors": {
         "defaultRequire": 1

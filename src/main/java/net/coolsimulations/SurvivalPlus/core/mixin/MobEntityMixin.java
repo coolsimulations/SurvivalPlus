@@ -6,7 +6,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
-import net.coolsimulations.SurvivalPlus.api.item.SPItemShield;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -32,7 +31,7 @@ public abstract class MobEntityMixin extends LivingEntity {
 	@Inject(at = @At("HEAD"), method = "getPreferredEquipmentSlot", cancellable = true)
 	private static void getPreferredEquipmentSlot(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> cir) {
 		Item item = stack.getItem();
-		if(item instanceof SPItemShield) {
+		if(((ItemAccessor) item).isShield(stack, null)) {
 			cir.setReturnValue(EquipmentSlot.OFFHAND);
 		}
 	}
@@ -51,7 +50,7 @@ public abstract class MobEntityMixin extends LivingEntity {
 	            PlayerEntity playerEntity = (PlayerEntity)target;
 	            ItemStack itemStack = this.getMainHandStack();
 	            ItemStack itemStack2 = playerEntity.isUsingItem() ? playerEntity.getActiveItem() : ItemStack.EMPTY;
-	            if (!itemStack.isEmpty() && !itemStack2.isEmpty() && ((ItemAccessor) itemStack.getItem()).canDisableShield(itemStack, itemStack2, playerEntity, this) && itemStack2.getItem() instanceof SPItemShield) {
+	            if (!itemStack.isEmpty() && !itemStack2.isEmpty() && ((ItemAccessor) itemStack.getItem()).canDisableShield(itemStack, itemStack2, playerEntity, this) && ((ItemAccessor) itemStack2.getItem()).isShield(itemStack2, this)) {
 	               float h = 0.25F + (float)EnchantmentHelper.getEfficiency(this) * 0.05F;
 	               if (this.random.nextFloat() < h) {
 	                  playerEntity.getItemCooldownManager().set(itemStack2.getItem(), 100);
