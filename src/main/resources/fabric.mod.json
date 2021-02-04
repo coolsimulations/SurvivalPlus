@@ -22,6 +22,9 @@
     "main": [
       "net.coolsimulations.SurvivalPlus.core.SurvivalPlus"
     ],
+    "client": [
+      "net.coolsimulations.SurvivalPlus.core.SurvivalPlusClient"
+    ],
     "modmenu": [
       "net.coolsimulations.SurvivalPlus.core.config.SPConfigGUI"
     ],
@@ -37,15 +40,14 @@
   "depends": {
     "fabricloader": ">=0.10.8",
     "fabric": "*",
-    "minecraft": "1.14.4"
+    "minecraft": "1.15.2"
   },
   
   "suggests": {
-    "cloth-config2": ">=1.8",
-    "roughlyenoughitems": ">=3.3.0",
+    "cloth-config2": ">=2.14.2",
+    "roughlyenoughitems": ">=3.6.21",
     "fabricshieldlib": ">=1.0.5",
-    "refinedmachinery": ">=1.2.1",
-    "blockus": ">=1.2.0",
+    "blockus": ">=1.6.0",
     "bambootweaks": ">=1.1.0",
     "bambooeverything": ">=1.4.0",
     "bamboomod": ">=0.3.0"

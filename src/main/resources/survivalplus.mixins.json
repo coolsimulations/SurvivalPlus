@@ -5,7 +5,7 @@
     "mixins": [
         "SlotPaymentMixin", "BeaconContainerMixin", "BeaconBlockEntityMixin",
         "BlockTagsMixin",
-        "SheepEntityMixin", "PumpkinBlockMixin", "TripwireBlockMixin", "EfficiencyEnchantmentMixin", "MooshroomEntityMixin", "SnowGolemEntityMixin",
+        "SheepEntityMixin", "PumpkinBlockMixin", "TripwireBlockMixin", "EfficiencyEnchantmentMixin", "MooshroomEntityMixin", "SnowGolemEntityMixin", "BeehiveBlockMixin", "IronGolemEntityMixin",
         "MobEntityMixin", "PlayerEntityMixin",
         "CampfireBlockMixin",
         "PlayerManagerMixin",

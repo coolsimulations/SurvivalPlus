@@ -30,7 +30,7 @@ public class ClientPlayerInteractionManagerMixin {
 	@Inject(at = @At("HEAD"), method = "breakBlock", cancellable = true)
 	public void breakBlock(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
 
-		if (!this.client.player.method_21701(this.client.world, pos, this.gameMode)) {
+		if (!this.client.player.canMine(this.client.world, pos, this.gameMode)) {
 			World world = this.client.world;
 			BlockState blockState = world.getBlockState(pos);
 			if (this.client.player.getMainHandStack().getItem().canMine(blockState, world, pos, this.client.player)) {

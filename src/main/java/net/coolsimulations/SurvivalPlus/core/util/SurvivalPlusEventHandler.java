@@ -48,7 +48,7 @@ public class SurvivalPlusEventHandler {
 
 			CompoundTag entityData = ((EntityAccessor) player).getPersistentData();
 
-			ServerAdvancementLoader manager = server.getAdvancementManager();
+			ServerAdvancementLoader manager = server.getAdvancementLoader();
 			Advancement install = manager.get(new Identifier(SPReference.MOD_ID, SPReference.MOD_ID + "/install"));
 
 			boolean isDone = false;
@@ -189,7 +189,7 @@ public class SurvivalPlusEventHandler {
 				itemEntity.setDespawnImmediately();
 			}
 
-			player.world.playSound((PlayerEntity)null, player.x, player.y, player.z, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+			player.world.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
 			player.playerContainer.sendContentUpdates();
 		} else {
 			itemEntity = player.dropItem(stack, false);

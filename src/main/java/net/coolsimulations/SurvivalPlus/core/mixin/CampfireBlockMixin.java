@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -22,8 +23,8 @@ import net.minecraft.world.World;
 @Mixin(CampfireBlock.class)
 public abstract class CampfireBlockMixin {
 	
-	@Inject(at = @At("HEAD"), method = "activate", cancellable = true)
-	public void activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<Boolean> cir) {
+	@Inject(at = @At("HEAD"), method = "onUse", cancellable = true)
+	public void onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
 		ItemStack itemStackIn = player.getStackInHand(hand);
 		Item item = itemStackIn.getItem();
 		

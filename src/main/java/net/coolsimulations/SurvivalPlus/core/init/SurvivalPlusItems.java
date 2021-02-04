@@ -17,12 +17,12 @@ public class SurvivalPlusItems {
 	
 	public static void init() {
 
-		SPItems.tin_ingot = new SPItemIngot(true);
+		SPItems.tin_ingot = new SPItemIngot(true, true, 20.0F);
 		SPItems.copper_ingot = new SPItemIngot(true);
 		SPItems.onion_seeds = new AliasedBlockItem(SPBlocks.onion, new FabricItemSettings().group(SPTabs.tabMaterials));
 		SPItems.bronze_ingot = new SPItemIngot(true);
 		SPItems.bronze_nugget = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
-		SPItems.titanium_ingot = new SPItemIngot(true);
+		SPItems.titanium_ingot = new SPItemIngot(true, true, 50.0F);
 		SPItems.titanium_nugget = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
 		SPItems.charcoal_bucket = new Item(new FabricItemSettings().group(SPTabs.tabMaterials).maxCount(1).recipeRemainder(Items.BUCKET));
 		SPItems.paper_cup = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));

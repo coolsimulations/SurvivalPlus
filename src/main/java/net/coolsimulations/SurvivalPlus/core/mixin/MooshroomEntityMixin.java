@@ -40,13 +40,13 @@ public abstract class MooshroomEntityMixin extends AnimalEntity {
 		int k;
 		
 		if (itemStack.getItem() instanceof ShearsItem && this.getBreedingAge() >= 0) {
-            this.world.addParticle(ParticleTypes.EXPLOSION, this.x, this.y + (double)(this.getHeight() / 2.0F), this.z, 0.0D, 0.0D, 0.0D);
+            this.world.addParticle(ParticleTypes.EXPLOSION, this.getX(), this.getY() + (double)(this.getHeight() / 2.0F), this.getZ(), 0.0D, 0.0D, 0.0D);
             if (!this.world.isClient) {
                this.remove();
                CowEntity cowEntity = (CowEntity)EntityType.COW.create(this.world);
-               cowEntity.refreshPositionAndAngles(this.x, this.y, this.z, this.yaw, this.pitch);
+               cowEntity.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.yaw, this.pitch);
                cowEntity.setHealth(this.getHealth());
-               cowEntity.field_6283 = this.field_6283;
+               cowEntity.bodyYaw = this.bodyYaw;
                if (this.hasCustomName()) {
                   cowEntity.setCustomName(this.getCustomName());
                }
@@ -54,7 +54,7 @@ public abstract class MooshroomEntityMixin extends AnimalEntity {
                this.world.spawnEntity(cowEntity);
 
                for(k = 0; k < 5; ++k) {
-                  this.world.spawnEntity(new ItemEntity(this.world, this.x, this.y + (double)this.getHeight(), this.z, new ItemStack(this.getMooshroomType().getMushroomState().getBlock())));
+                  this.world.spawnEntity(new ItemEntity(this.world, this.getX(), this.getY() + (double)this.getHeight(), this.getZ(), new ItemStack(this.getMooshroomType().getMushroomState().getBlock())));
                }
 
                itemStack.damage(1, (LivingEntity)player, (Consumer)((playerEntity) -> {
