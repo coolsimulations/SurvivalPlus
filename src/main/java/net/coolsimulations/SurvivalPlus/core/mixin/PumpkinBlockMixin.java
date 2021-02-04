@@ -32,7 +32,8 @@ public class PumpkinBlockMixin {
 	@Inject(at = @At("HEAD"), method = "activate", cancellable = true)
 	public void activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<Boolean> cir) {
 		ItemStack itemStack = player.getStackInHand(hand);
-		if (itemStack.getItem() instanceof ShearsItem) {
+		
+		if (itemStack.getItem() instanceof ShearsItem && itemStack.getItem() != Items.SHEARS) {
 			if (!world.isClient) {
 				Direction direction = hit.getSide();
 				Direction direction2 = direction.getAxis() == Direction.Axis.Y ? player.getHorizontalFacing().getOpposite() : direction;
