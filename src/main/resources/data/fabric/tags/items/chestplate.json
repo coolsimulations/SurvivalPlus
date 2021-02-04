@@ -1,0 +1,15 @@
+
+{
+	"replace": false,
+	"values": [
+		"survivalplus:bronze_chestplate",
+		"survivalplus:titanium_chestplate",
+		"survivalplus:stone_chestplate",
+		"survivalplus:oak_chestplate",
+		"survivalplus:spruce_chestplate",
+		"survivalplus:birch_chestplate",
+		"survivalplus:jungle_chestplate",
+		"survivalplus:acacia_chestplate",
+		"survivalplus:dark_oak_chestplate"
+	]
+}
