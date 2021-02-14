@@ -17,6 +17,7 @@ import moze_intel.projecte.api.nss.NormalizedSimpleStack;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.minecraft.resources.DataPackRegistries;
 import net.minecraft.resources.IResourceManager;
 
 @EMCMapper
@@ -86,7 +87,7 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 	}
 
 	@Override
-	public void addMappings(IMappingCollector<NormalizedSimpleStack, Long> mapper, CommentedFileConfig config, IResourceManager resourceManager) {
+	public void addMappings(IMappingCollector<NormalizedSimpleStack, Long> mapper, CommentedFileConfig config, DataPackRegistries registriy, IResourceManager resourceManager) {
 		
 		Iterator var4 = customEmcValues.entrySet().iterator();
 
