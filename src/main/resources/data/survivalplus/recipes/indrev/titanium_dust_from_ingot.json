@@ -1,0 +1,11 @@
+{
+  "type": "indrev:pulverize",
+  "ingredients": {
+    "tag": "c:titanium_ingots"
+  },
+  "output": {
+    "item": "survivalplus:titanium_dust",
+    "count": 1
+  },
+  "processTime": 200
+}

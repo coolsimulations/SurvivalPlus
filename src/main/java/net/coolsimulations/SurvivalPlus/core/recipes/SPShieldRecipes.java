@@ -25,8 +25,8 @@ public class SPShieldRecipes extends SpecialCraftingRecipe {
 		ItemStack itemstack = ItemStack.EMPTY;
 		ItemStack itemstack1 = ItemStack.EMPTY;
 
-		for (int i = 0; i < inv.getInvSize(); ++i) {
-			ItemStack itemstack2 = inv.getInvStack(i);
+		for (int i = 0; i < inv.size(); ++i) {
+			ItemStack itemstack2 = inv.getStack(i);
 			if (!itemstack2.isEmpty()) {
 				if (itemstack2.getItem() instanceof BannerItem) {
 					if (!itemstack1.isEmpty()) {
@@ -63,8 +63,8 @@ public class SPShieldRecipes extends SpecialCraftingRecipe {
 		ItemStack itemstack = ItemStack.EMPTY;
 		ItemStack itemstack1 = ItemStack.EMPTY;
 
-		for (int i = 0; i < inv.getInvSize(); ++i) {
-			ItemStack itemstack2 = inv.getInvStack(i);
+		for (int i = 0; i < inv.size(); ++i) {
+			ItemStack itemstack2 = inv.getStack(i);
 			if (!itemstack2.isEmpty()) {
 				if (itemstack2.getItem() instanceof BannerItem) {
 					itemstack = itemstack2;

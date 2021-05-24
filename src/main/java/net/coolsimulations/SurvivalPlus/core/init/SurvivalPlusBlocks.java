@@ -21,8 +21,8 @@ public class SurvivalPlusBlocks {
 
 	public static void init()
 	{
-		SPBlocks.copper_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_0, true);
-		SPBlocks.tin_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_0, true);
+		SPBlocks.copper_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_0);
+		SPBlocks.tin_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_0);
 		SPBlocks.onion = new BlockOnionCrop();
 		SPBlocks.cheese_cake = new BlockCheeseCake();
 		SPBlocks.sponge_cake = new BlockSpongeCake();
@@ -30,8 +30,8 @@ public class SurvivalPlusBlocks {
 		SPBlocks.tin_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1, false);
 		SPBlocks.amethyst = new SPBlockCrystal(MaterialColor.PURPLE);
 		SPBlocks.ruby = new SPBlockCrystal(MaterialColor.RED);
-		SPBlocks.bronze_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_1, true);
-		SPBlocks.titanium_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_2, true);
+		SPBlocks.bronze_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_1);
+		SPBlocks.titanium_block = new SPBlockMetal(SPBlockMetal.Resource.TIER_2);
 		SPBlocks.titanium_ore = new SPBlockOre(SPBlockOre.Resource.TIER_2, false);
 		SPBlocks.pearl = new SPBlockCrystal(MaterialColor.WHITE);
 		SPBlocks.topaz = new SPBlockCrystal(MaterialColor.YELLOW);

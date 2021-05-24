@@ -10,11 +10,11 @@ import net.minecraft.util.Lazy;
 
 public enum SPItemTier implements ToolMaterial {
     bronzeToolMaterial(2, 350, 5.0F, 1.5F, 7, () -> {
-    	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "bronze_ingots")));
+    	return Ingredient.fromTag(ItemTags.getTagGroup().getTag(new Identifier("c", "bronze_ingots")));
     }),
     //3, 731, 7f, 2.5f, 16
     titaniumToolMaterial(2, 432, 7.0F, 2.5F, 17, () -> {
-        return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "titanium_ingots")));
+        return Ingredient.fromTag(ItemTags.getTagGroup().getTag(new Identifier("c", "titanium_ingots")));
     });
 
     private final int harvestLevel;
@@ -37,7 +37,7 @@ public enum SPItemTier implements ToolMaterial {
         return this.maxUses;
     }
 
-    public float getMiningSpeed() {
+    public float getMiningSpeedMultiplier() {
         return this.efficiency;
     }
 

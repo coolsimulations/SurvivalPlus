@@ -6,7 +6,7 @@ import net.coolsimulations.SurvivalPlus.api.item.SPArmorMaterial;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DefaultedList;
+import net.minecraft.util.collection.DefaultedList;
 
 public class TerrestriaArmor {
 	
@@ -91,6 +91,16 @@ public class TerrestriaArmor {
 		SPItems.sakura.add(1, new ItemStack(SPItems.sakura_chestplate));
 		SPItems.sakura.add(2, new ItemStack(SPItems.sakura_leggings));
 		SPItems.sakura.add(3, new ItemStack(SPItems.sakura_boots));
+		
+		SPItems.yucca_palm_helmet = new SPItemArmor(SPArmorMaterial.yuccaPalmArmorMaterial, EquipmentSlot.HEAD);
+		SPItems.yucca_palm_chestplate = new SPItemArmor(SPArmorMaterial.yuccaPalmArmorMaterial, EquipmentSlot.CHEST);
+		SPItems.yucca_palm_leggings = new SPItemArmor(SPArmorMaterial.yuccaPalmArmorMaterial, EquipmentSlot.LEGS);
+		SPItems.yucca_palm_boots = new SPItemArmor(SPArmorMaterial.yuccaPalmArmorMaterial, EquipmentSlot.FEET);
+		SPItems.yucca_palm = DefaultedList.of();
+		SPItems.yucca_palm.add(0, new ItemStack(SPItems.yucca_palm_helmet));
+		SPItems.yucca_palm.add(1, new ItemStack(SPItems.yucca_palm_chestplate));
+		SPItems.yucca_palm.add(2, new ItemStack(SPItems.yucca_palm_leggings));
+		SPItems.yucca_palm.add(3, new ItemStack(SPItems.yucca_palm_boots));
 	}
 	
 	public static void register() {
@@ -103,6 +113,7 @@ public class TerrestriaArmor {
 		SurvivalPlusArmor.registerItem(SPItems.japanese_maple, "japanese_maple");
 		SurvivalPlusArmor.registerItem(SPItems.rainbow_eucalyptus, "rainbow_eucalyptus");
 		SurvivalPlusArmor.registerItem(SPItems.sakura, "sakura");
+		SurvivalPlusArmor.registerItem(SPItems.yucca_palm, "yucca_palm");
 	}
 
 }

@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.minecraft.advancement.criterion.Criterions;
 import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
@@ -19,7 +18,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShearsItem;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -51,7 +49,7 @@ public abstract class BeehiveBlockMixin {
 		}
 		
 		if (bl) {
-	         if (!CampfireBlock.isLitCampfireInRange(world, pos, 5)) {
+	         if (!CampfireBlock.isLitCampfireInRange(world, pos)) {
 	            if (this.hasBees(world, pos)) {
 	               this.angerNearbyBees(world, pos);
 	            }
@@ -59,9 +57,6 @@ public abstract class BeehiveBlockMixin {
 	            this.takeHoney(world, state, pos, player, BeehiveBlockEntity.BeeState.EMERGENCY);
 	         } else {
 	            this.takeHoney(world, state, pos);
-	            if (player instanceof ServerPlayerEntity) {
-	               Criterions.SAFELY_HARVEST_HONEY.test((ServerPlayerEntity)player, pos, itemStack2);
-	            }
 	         }
 	      }
 	}

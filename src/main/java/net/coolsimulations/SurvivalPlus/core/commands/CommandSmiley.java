@@ -3,10 +3,12 @@ package net.coolsimulations.SurvivalPlus.core.commands;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
+import net.minecraft.network.MessageType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Util;
 
 public class CommandSmiley {
 
@@ -19,8 +21,8 @@ public class CommandSmiley {
 	private static int smiley(ServerCommandSource sender) {
 
 		TranslatableText smiley = new TranslatableText("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
-		smiley.getStyle().setColor(Formatting.GREEN);
-		sender.getMinecraftServer().getPlayerManager().sendToAll(smiley);
+		smiley.formatted(Formatting.GREEN);
+		sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(smiley, MessageType.SYSTEM, Util.NIL_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

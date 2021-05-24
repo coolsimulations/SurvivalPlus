@@ -1,0 +1,12 @@
+
+{
+  "type": "pulverizer_mod:pulverizer",
+  "id": "survivalplus:copper_ore_copper_ingot",
+  "ingredient": "survivalplus:copper_ore",
+  "result": {
+    "id": "survivalplus:copper_ingot",
+    "Count": 4
+  },
+  "pulverizetime": 200,
+  "category": "ore"
+}

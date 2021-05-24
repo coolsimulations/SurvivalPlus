@@ -21,7 +21,7 @@ public class SurvivalPlusTools {
 		SPItems.bronze_pickaxe = new SPItemPickaxe(SPItemTier.bronzeToolMaterial);
 		SPItems.bronze_axe = new SPItemAxe(SPItemTier.bronzeToolMaterial, 7, -3.1F);
 		SPItems.bronze_shovel = new SPItemShovel(SPItemTier.bronzeToolMaterial);
-		SPItems.bronze_hoe = new SPItemHoe(SPItemTier.bronzeToolMaterial);
+		SPItems.bronze_hoe = new SPItemHoe(SPItemTier.bronzeToolMaterial, -1.5F, -1.5F);
 		SPItems.bronze_sword = new SPItemSword(SPItemTier.bronzeToolMaterial);
 		SPItems.bronze_shears = new SPItemShears(179);
 		SPItems.bronze_shield = new SPItemShield(274);
@@ -29,7 +29,7 @@ public class SurvivalPlusTools {
 		SPItems.titanium_pickaxe = new SPItemPickaxe(SPItemTier.titaniumToolMaterial);
 		SPItems.titanium_axe = new SPItemAxe(SPItemTier.titaniumToolMaterial, 8.0F, -3.0F);
 		SPItems.titanium_shovel = new SPItemShovel(SPItemTier.titaniumToolMaterial);
-		SPItems.titanium_hoe = new SPItemHoe(SPItemTier.titaniumToolMaterial);
+		SPItems.titanium_hoe = new SPItemHoe(SPItemTier.titaniumToolMaterial, -2.5F, -0.5F);
 		SPItems.titanium_sword = new SPItemSword(SPItemTier.titaniumToolMaterial);
 		SPItems.titanium_shears = new SPItemShears(298);
 		SPItems.titanium_shield = new SPItemShield(519);

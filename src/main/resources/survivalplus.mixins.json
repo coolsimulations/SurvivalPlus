@@ -3,7 +3,6 @@
     "package": "net.coolsimulations.SurvivalPlus.core.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-        "SlotPaymentMixin", "BeaconContainerMixin", "BeaconBlockEntityMixin",
         "BlockTagsMixin",
         "SheepEntityMixin", "PumpkinBlockMixin", "TripwireBlockMixin", "EfficiencyEnchantmentMixin", "MooshroomEntityMixin", "SnowGolemEntityMixin", "BeehiveBlockMixin", "IronGolemEntityMixin",
         "MobEntityMixin", "PlayerEntityMixin",
@@ -18,7 +17,6 @@
     ],
     "client": [
     	"BuiltinModelItemRendererMixin",
-    	"BeaconScreenMixin",
     	"InGameHudMixin",
     	"ClientPlayerInteractionManagerMixin",
     	"ClientPlayNetworkHandlerMixin",

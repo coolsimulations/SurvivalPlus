@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
@@ -26,7 +27,7 @@ public abstract class IronGolemEntityMixin extends GolemEntity {
 	}
 
 	@Inject(at = @At("HEAD"), method = "interactMob", cancellable = true)
-	public void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<Boolean> cir)
+	public void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir)
 	{
 		ItemStack itemStack = player.getStackInHand(hand);
 
@@ -34,7 +35,7 @@ public abstract class IronGolemEntityMixin extends GolemEntity {
 
 		Random rand = new Random();
 		
-		if (this.getHealth() < this.getMaximumHealth()) {
+		if (this.getHealth() < this.getMaxHealth()) {
 			if(item instanceof SPItemIngot && ((SPItemIngot) item).healsGolem()) {
 				this.heal(((SPItemIngot) item).getGolemHealth());
 				float f1 = 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
@@ -43,7 +44,7 @@ public abstract class IronGolemEntityMixin extends GolemEntity {
 					itemStack.decrement(1);
 				}
 				
-				cir.setReturnValue(true);
+				cir.setReturnValue(ActionResult.PASS);
 			}
 		}
 	}

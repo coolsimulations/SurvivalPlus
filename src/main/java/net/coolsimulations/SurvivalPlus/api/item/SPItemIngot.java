@@ -6,20 +6,17 @@ import net.minecraft.item.Item;
 
 public class SPItemIngot extends Item {
 
-	public final boolean beacon;
 	private boolean golem;
 	private float health;
 
-	public SPItemIngot(boolean isBeaconIngot, boolean healsIronGolem, float golemHealth) {
+	public SPItemIngot(boolean healsIronGolem, float golemHealth) {
 		super(new FabricItemSettings().group(SPTabs.tabMaterials));
-		this.beacon = isBeaconIngot;
 		this.golem = healsIronGolem;
 		this.health = golemHealth;
 	}
 	
-	public SPItemIngot(boolean isBeaconIngot) {
+	public SPItemIngot() {
 		super(new FabricItemSettings().group(SPTabs.tabMaterials));
-		this.beacon = isBeaconIngot;
 		this.golem = false;
 		this.health = 0.0F;
 	}

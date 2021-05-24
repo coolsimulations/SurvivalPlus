@@ -1,5 +1,6 @@
 {
     "parent": "builtin/entity",
+    "gui_light": "front",
     "textures": {
         "particle": "block/dark_oak_planks"
     },
@@ -43,7 +44,7 @@
     "overrides": [
         {
             "predicate": {
-                "blocking": 1
+                "survivalplus:blocking": 1
             },
             "model": "survivalplus:item/bronze_shield_blocking"
         }

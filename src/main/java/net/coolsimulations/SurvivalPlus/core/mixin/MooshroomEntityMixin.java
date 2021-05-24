@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
@@ -34,7 +35,7 @@ public abstract class MooshroomEntityMixin extends AnimalEntity {
 
 	@SuppressWarnings("unchecked")
 	@Inject(at = @At("TAIL"), method = "interactMob", cancellable = true)
-	public void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<Boolean> cir)
+	public void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir)
 	{
 		ItemStack itemStack = player.getStackInHand(hand);
 		int k;
@@ -63,7 +64,7 @@ public abstract class MooshroomEntityMixin extends AnimalEntity {
                this.playSound(SoundEvents.ENTITY_MOOSHROOM_SHEAR, 1.0F, 1.0F);
             }
             
-            cir.setReturnValue(true);
+            cir.setReturnValue(ActionResult.PASS);
          }
 	}
 

@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
-import net.minecraft.entity.EntityContext;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
@@ -23,8 +23,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.CollisionView;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 
 public class BlockCheeseCake extends Block
 {
@@ -37,7 +37,7 @@ public class BlockCheeseCake extends Block
         this.setDefaultState((this.stateManager.getDefaultState()).with(BITES, 0));
     }
 
-    public VoxelShape getOutlineShape(BlockState state, BlockView source, BlockPos pos, EntityContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView source, BlockPos pos, ShapeContext context) {
         return CAKE_AABB[(Integer)state.get(BITES)];
     }
 
@@ -56,7 +56,7 @@ public class BlockCheeseCake extends Block
         return this.tryEat(world, pos, state, player);
     }
 
-    private ActionResult tryEat(IWorld world, BlockPos pos, BlockState state, PlayerEntity player) {
+    private ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!player.canConsume(false)) {
            return ActionResult.PASS;
         } else {
@@ -73,7 +73,7 @@ public class BlockCheeseCake extends Block
         }
      }
 
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction side, BlockState blockState, IWorld worldIn, BlockPos pos, BlockPos blockPos) {
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction side, BlockState blockState, WorldAccess worldIn, BlockPos pos, BlockPos blockPos) {
         return side == Direction.DOWN && !state.canPlaceAt(worldIn, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, side, blockState, worldIn, pos, blockPos);
     }
 

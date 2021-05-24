@@ -17,18 +17,28 @@ public class SurvivalPlusItems {
 	
 	public static void init() {
 
-		SPItems.tin_ingot = new SPItemIngot(true, true, 20.0F);
-		SPItems.copper_ingot = new SPItemIngot(true);
+		SPItems.tin_ingot = new SPItemIngot(true, 20.0F);
+		SPItems.copper_ingot = new SPItemIngot();
 		SPItems.onion_seeds = new AliasedBlockItem(SPBlocks.onion, new FabricItemSettings().group(SPTabs.tabMaterials));
-		SPItems.bronze_ingot = new SPItemIngot(true);
+		SPItems.bronze_ingot = new SPItemIngot();
 		SPItems.bronze_nugget = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
-		SPItems.titanium_ingot = new SPItemIngot(true, true, 50.0F);
+		SPItems.titanium_ingot = new SPItemIngot(true, 50.0F);
 		SPItems.titanium_nugget = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
 		SPItems.charcoal_bucket = new Item(new FabricItemSettings().group(SPTabs.tabMaterials).maxCount(1).recipeRemainder(Items.BUCKET));
 		SPItems.paper_cup = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
 		
-		if(SPCompatibilityManager.isRefinedMachineryLoaded())
+		if(SPCompatibilityManager.isRefinedMachineryLoaded() || SPCompatibilityManager.isMechanixLoaded() || SPCompatibilityManager.isIndustrialRevolutionLoaded())
 			SPItems.titanium_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+		
+		if(SPCompatibilityManager.isModernIndustrializationLoaded()) {
+			SPItems.titanium_crushed_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+			SPItems.titanium_tiny_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+		}
+		
+		if(SPCompatibilityManager.isMechanixLoaded()) {
+			SPItems.copper_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+			SPItems.tin_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+		}
 
 	}
 	
@@ -44,8 +54,18 @@ public class SurvivalPlusItems {
 		registerItem(SPItems.charcoal_bucket, "charcoal_bucket");
 		registerItem(SPItems.paper_cup, "paper_cup");
 		
-		if(SPCompatibilityManager.isRefinedMachineryLoaded())
+		if(SPCompatibilityManager.isRefinedMachineryLoaded() || SPCompatibilityManager.isMechanixLoaded() || SPCompatibilityManager.isIndustrialRevolutionLoaded())
 			registerItem(SPItems.titanium_dust, "titanium_dust");
+		
+		if(SPCompatibilityManager.isModernIndustrializationLoaded()) {
+			registerItem(SPItems.titanium_crushed_dust, "titanium_crushed_dust");
+			registerItem(SPItems.titanium_tiny_dust, "titanium_tiny_dust");
+		}
+		
+		if(SPCompatibilityManager.isMechanixLoaded()) {
+			registerItem(SPItems.copper_dust, "copper_dust");
+			registerItem(SPItems.tin_dust, "tin_dust");
+		}
 	}
 	
 	public static void registerItem(Item item, String registryName) {

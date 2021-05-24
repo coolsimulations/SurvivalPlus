@@ -1,0 +1,12 @@
+
+{
+  "type": "pulverizer_mod:pulverizer",
+  "id": "survivalplus:shears_iron_ingot",
+  "ingredient": "minecraft:shears",
+  "result": {
+    "id": "minecraft:iron_ingot",
+    "Count": 1
+  },
+  "pulverizetime": 200,
+  "category": "recycle"
+}

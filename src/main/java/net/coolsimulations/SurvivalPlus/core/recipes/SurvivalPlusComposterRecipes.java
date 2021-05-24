@@ -22,7 +22,7 @@ public class SurvivalPlusComposterRecipes {
 		
 		//SurvivalPlus Tags haven't been working in 1.13 or 1.14, however they do work in SurvivalPlus Lightsabers so I'm assuming that it order of loading related
 		//So these lines below do not work, but leaving them there in case other mods tags work 
-		registerCompostableTag(SPTags.Items.CROPS_ONION, RARE);
+		/**registerCompostableTag(SPTags.Items.CROPS_ONION, RARE);
 		registerCompostableTag(SPTags.Items.SEEDS_ONION, COMMON);
 		registerCompostableTag(SPTags.Items.FOOD_BAKED_APPLE, EPIC);
 		registerCompostableTag(SPTags.Items.FOOD_CHEESE, UNCOMMON);
@@ -33,7 +33,7 @@ public class SurvivalPlusComposterRecipes {
 		registerCompostableTag(SPTags.Items.FOOD_BREAD_MELTED_CHEESE, LEGENDARY);
 		registerCompostableTag(SPTags.Items.FOOD_CUPCAKE, COMMON);
 		registerCompostableTag(SPTags.Items.FOOD_CUPCAKE, COMMON);
-		registerCompostableTag(SPTags.Items.FOOD_CAKE, LEGENDARY);
+		registerCompostableTag(SPTags.Items.FOOD_CAKE, LEGENDARY);**/
 		
 		registerCompostable(SPItems.raw_onion, RARE);
 		registerCompostable(SPItems.onion_seeds, COMMON);

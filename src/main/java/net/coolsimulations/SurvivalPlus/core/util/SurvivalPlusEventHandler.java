@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.network.MessageType;
 import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -32,6 +33,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Language;
+import net.minecraft.util.Util;
 import net.minecraft.village.VillagerProfession;
 
 public class SurvivalPlusEventHandler {
@@ -66,37 +68,31 @@ public class SurvivalPlusEventHandler {
 				if(!player.world.isClient) {
 
 					TranslatableText installInfo = new TranslatableText("advancements.sp.install.display1");
-					installInfo.getStyle().setColor(Formatting.GOLD);
-					installInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("advancements.sp.install.display2")));
-					installInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"));
-					player.sendMessage(installInfo);
+					installInfo.formatted(Formatting.GOLD);
+					player.sendMessage(installInfo.setStyle(installInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("advancements.sp.install.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"))), MessageType.SYSTEM, Util.NIL_UUID);
 
 					TranslatableText discord = new TranslatableText("sp.discord.display1");
-					discord.getStyle().setColor(Formatting.DARK_GREEN);
-					discord.getStyle().setBold(true);
+					discord.formatted(Formatting.DARK_GREEN, Formatting.BOLD);
 
 					for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
-						String name = Language.getInstance().translate(SPReference.MOD_ADDON_NAMES.get(i));
+						String name = Language.getInstance().get(SPReference.MOD_ADDON_NAMES.get(i));
 
 						LiteralText formatted = new LiteralText(name);
-						formatted.getStyle().setColor(Formatting.BLUE);
-						formatted.getStyle().setBold(true);
+						formatted.formatted(Formatting.BLUE, Formatting.BOLD);
 
 						LiteralText gap = new LiteralText(", ");
-						gap.getStyle().setColor(Formatting.WHITE);
+						gap.formatted(Formatting.WHITE);
 
 						discord.append(formatted);
 						if(i + 1 != SPReference.MOD_ADDON_NAMES.size()) {
 							discord.append(gap);
 						}
 					}
-					discord.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.discord.display2")));
-					discord.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));
 
 					timer.schedule(new TimerTask() {
 						@Override
 						public void run() {
-							player.sendMessage(discord);
+							player.sendMessage(discord.setStyle(discord.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.discord.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"))), MessageType.SYSTEM, Util.NIL_UUID);
 						}
 					}, 30000);
 				}
@@ -106,8 +102,8 @@ public class SurvivalPlusEventHandler {
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						player.sendMessage(SurvivalPlusUpdateHandler.updateInfo);
-						player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo);
+						player.sendMessage(SurvivalPlusUpdateHandler.updateInfo.setStyle(SurvivalPlusUpdateHandler.updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"))), MessageType.SYSTEM, Util.NIL_UUID);
+						player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo.setStyle(SurvivalPlusUpdateHandler.updateVersionInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"))), MessageType.SYSTEM, Util.NIL_UUID);
 					}
 				}, 15000);
 			}
@@ -144,8 +140,8 @@ public class SurvivalPlusEventHandler {
 					dropItem(coolsimHead, attacker);
 				} else {
 					TranslatableText error = new TranslatableText("sp.coolsim.error");
-					error.getStyle().setColor(Formatting.RED);
-					attacker.sendMessage(error);
+					error.formatted(Formatting.RED);
+					attacker.sendMessage(error, MessageType.SYSTEM, Util.NIL_UUID);
 				}
 			}
 
@@ -162,7 +158,7 @@ public class SurvivalPlusEventHandler {
 		ItemStack playerhead = new ItemStack(Items.PLAYER_HEAD);
 
 		TranslatableText headName = new TranslatableText("block.minecraft.player_head.named", new Object[] {"coolsim"});
-		headName.getStyle().setItalic(true);
+		headName.formatted(Formatting.ITALIC);
 		CompoundTag skullOwner = new CompoundTag();
 		skullOwner.putString("Id", id);
 		CompoundTag properties = new CompoundTag();
@@ -190,7 +186,7 @@ public class SurvivalPlusEventHandler {
 			}
 
 			player.world.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
-			player.playerContainer.sendContentUpdates();
+			player.playerScreenHandler.sendContentUpdates();
 		} else {
 			itemEntity = player.dropItem(stack, false);
 			if (itemEntity != null) {

@@ -11,7 +11,7 @@ import net.minecraft.tag.Tag;
 public interface BlockTagsMixin {
 	
 	@Invoker("register")
-	public static Tag<Block> register(String id){
+	public static Tag.Identified<Block> register(String id){
 		throw new AssertionError();
 	};
 

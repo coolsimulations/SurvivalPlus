@@ -7,12 +7,14 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.command.CommandException;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.network.MessageType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Util;
 
 public class CommandIndeed {
 
@@ -39,8 +41,8 @@ public class CommandIndeed {
 
 			} else {
 				TranslatableText indeed = new TranslatableText("sp.commands.indeed.display1", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				indeed.getStyle().setColor(Formatting.DARK_GREEN);
-				sender.getMinecraftServer().getPlayerManager().sendToAll(indeed);
+				indeed.formatted(Formatting.DARK_GREEN);
+				sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(indeed, MessageType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 
@@ -50,8 +52,8 @@ public class CommandIndeed {
 	private static int indeedSingle(ServerCommandSource sender) {
 
 		TranslatableText indeed = new TranslatableText("sp.commands.indeed.display2", new Object[]{sender.getDisplayName()});
-		indeed.getStyle().setColor(Formatting.DARK_GREEN);
-		sender.getMinecraftServer().getPlayerManager().sendToAll(indeed);
+		indeed.formatted(Formatting.DARK_GREEN);
+		sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(indeed, MessageType.SYSTEM, Util.NIL_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

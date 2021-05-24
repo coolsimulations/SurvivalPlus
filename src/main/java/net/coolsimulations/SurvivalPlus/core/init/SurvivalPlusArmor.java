@@ -8,7 +8,7 @@ import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DefaultedList;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -106,6 +106,26 @@ public class SurvivalPlusArmor {
 		SPItems.dark_oak.add(2, new ItemStack(SPItems.dark_oak_leggings));
 		SPItems.dark_oak.add(3, new ItemStack(SPItems.dark_oak_boots));
 		
+		SPItems.crimson_helmet = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.HEAD);
+		SPItems.crimson_chestplate = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.CHEST);
+		SPItems.crimson_leggings = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.LEGS);
+		SPItems.crimson_boots = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.FEET);
+		SPItems.crimson = DefaultedList.of();
+		SPItems.crimson.add(0, new ItemStack(SPItems.crimson_helmet));
+		SPItems.crimson.add(1, new ItemStack(SPItems.crimson_chestplate));
+		SPItems.crimson.add(2, new ItemStack(SPItems.crimson_leggings));
+		SPItems.crimson.add(3, new ItemStack(SPItems.crimson_boots));
+		
+		SPItems.warped_helmet = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.HEAD);
+		SPItems.warped_chestplate = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.CHEST);
+		SPItems.warped_leggings = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.LEGS);
+		SPItems.warped_boots = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.FEET);
+		SPItems.warped = DefaultedList.of();
+		SPItems.warped.add(0, new ItemStack(SPItems.warped_helmet));
+		SPItems.warped.add(1, new ItemStack(SPItems.warped_chestplate));
+		SPItems.warped.add(2, new ItemStack(SPItems.warped_leggings));
+		SPItems.warped.add(3, new ItemStack(SPItems.warped_boots));
+		
 		if(SPCompatibilityManager.isBambooModsLoaded()) {
 			SPItems.bamboo_helmet = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlot.HEAD);
 			SPItems.bamboo_chestplate = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlot.CHEST);
@@ -116,6 +136,18 @@ public class SurvivalPlusArmor {
 			SPItems.bamboo.add(1, new ItemStack(SPItems.bamboo_chestplate));
 			SPItems.bamboo.add(2, new ItemStack(SPItems.bamboo_leggings));
 			SPItems.bamboo.add(3, new ItemStack(SPItems.bamboo_boots));
+		}
+		
+		if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
+			SPItems.redwood_helmet_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.HEAD);
+			SPItems.redwood_chestplate_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.CHEST);
+			SPItems.redwood_leggings_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.LEGS);
+			SPItems.redwood_boots_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.FEET);
+			SPItems.redwood_vanilla_enhanced = DefaultedList.of();
+			SPItems.redwood_vanilla_enhanced.add(0, new ItemStack(SPItems.redwood_helmet_vanilla_enhanced));
+			SPItems.redwood_vanilla_enhanced.add(1, new ItemStack(SPItems.redwood_chestplate_vanilla_enhanced));
+			SPItems.redwood_vanilla_enhanced.add(2, new ItemStack(SPItems.redwood_leggings_vanilla_enhanced));
+			SPItems.redwood_vanilla_enhanced.add(3, new ItemStack(SPItems.redwood_boots_vanilla_enhanced));
 		}
 		
 		if(SPCompatibilityManager.isTraverseLoaded()) {
@@ -139,9 +171,15 @@ public class SurvivalPlusArmor {
 		registerItem(SPItems.jungle, "jungle");
 		registerItem(SPItems.acacia, "acacia");
 		registerItem(SPItems.dark_oak, "dark_oak");
+		registerItem(SPItems.crimson, "crimson");
+		registerItem(SPItems.warped, "warped");
 		
 		if(SPCompatibilityManager.isBambooModsLoaded()) {
 			registerItem(SPItems.bamboo, "bamboo");
+		}
+		
+		if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
+			registerItem(SPItems.redwood_vanilla_enhanced, "redwood", "vanilla_enhanced");
 		}
 		
 		if(SPCompatibilityManager.isTraverseLoaded()) {

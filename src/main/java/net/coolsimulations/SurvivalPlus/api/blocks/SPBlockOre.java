@@ -10,6 +10,7 @@ import net.minecraft.block.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ToolMaterials;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -31,7 +32,7 @@ public class SPBlockOre extends Block{
 	 */
 
 	public SPBlockOre(Resource resource, Boolean dropsXP) {
-		super(FabricBlockSettings.of(Material.STONE).hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).lightLevel(0));
+		super(FabricBlockSettings.of(Material.STONE).requiresTool().hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).luminance(0));
 		this.resource = resource;
 		this.experience = dropsXP;
 	}
@@ -52,7 +53,7 @@ public class SPBlockOre extends Block{
 	}
 
 	@Override
-	public void onStacksDropped(BlockState state, World world, BlockPos pos, ItemStack stack) {
+	public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
 		super.onStacksDropped(state, world, pos, stack);
 		int i = this.getExperience(world.random);
 		if (i > 0) {

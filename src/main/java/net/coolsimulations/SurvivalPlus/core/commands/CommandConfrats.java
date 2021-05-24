@@ -6,12 +6,14 @@ import java.util.Iterator;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.command.CommandException;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.network.MessageType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Util;
 
 public class CommandConfrats {
 
@@ -34,8 +36,8 @@ public class CommandConfrats {
 
 			}else {
 				TranslatableText confrats = new TranslatableText("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
-				confrats.getStyle().setColor(Formatting.YELLOW);
-				sender.getMinecraftServer().getPlayerManager().sendToAll(confrats);
+				confrats.formatted(Formatting.YELLOW);
+				sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(confrats, MessageType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 

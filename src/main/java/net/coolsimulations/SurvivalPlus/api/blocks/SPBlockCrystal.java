@@ -6,8 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
-import net.minecraft.entity.EntityContext;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -20,7 +20,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.WorldAccess;
 
 public class SPBlockCrystal extends Block implements Waterloggable{
 	
@@ -44,19 +44,19 @@ public class SPBlockCrystal extends Block implements Waterloggable{
 
 		
 		public SPBlockCrystal(MaterialColor colour) {
-			super(FabricBlockSettings.of(Material.GLASS, colour).hardness(1.0F).resistance(1.0F).sounds(BlockSoundGroup.GLASS).breakByTool(FabricToolTags.PICKAXES).lightLevel(7));
+			super(FabricBlockSettings.of(Material.GLASS, colour).hardness(1.0F).resistance(1.0F).sounds(BlockSoundGroup.GLASS).breakByTool(FabricToolTags.PICKAXES).luminance(7));
 			this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false));
 			
 		}
 		
 		@Override
-	    public VoxelShape getOutlineShape(BlockState state, BlockView worldIn, BlockPos pos, EntityContext context)
+	    public VoxelShape getOutlineShape(BlockState state, BlockView worldIn, BlockPos pos, ShapeContext context)
 		{
 	        return Crystal_AABB;
 	    }
 		
 		@Override
-		public BlockState getStateForNeighborUpdate(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		public BlockState getStateForNeighborUpdate(BlockState stateIn, Direction facing, BlockState facingState, WorldAccess worldIn, BlockPos currentPos, BlockPos facingPos) {
 			if (stateIn.get(WATERLOGGED)) {
 				worldIn.getFluidTickScheduler().schedule(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
 			}

@@ -6,12 +6,14 @@ import java.util.Iterator;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.command.CommandException;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.network.MessageType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Util;
 
 public class CommandMourn {
 
@@ -34,8 +36,8 @@ public class CommandMourn {
 
 			}else {
 				TranslatableText mourns = new TranslatableText("sp.commands.mourn.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				mourns.getStyle().setColor(Formatting.DARK_AQUA);
-				sender.getMinecraftServer().getPlayerManager().sendToAll(mourns);
+				mourns.formatted(Formatting.DARK_AQUA);
+				sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(mourns, MessageType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 

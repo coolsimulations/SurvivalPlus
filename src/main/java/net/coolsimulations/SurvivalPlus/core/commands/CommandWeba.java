@@ -6,12 +6,14 @@ import java.util.Iterator;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.command.CommandException;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.network.MessageType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Util;
 
 public class CommandWeba {
 
@@ -34,8 +36,8 @@ public class CommandWeba {
 
 			}else {
 				TranslatableText weba = new TranslatableText("sp.commands.weba.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				weba.getStyle().setColor(Formatting.GOLD);
-				sender.getMinecraftServer().getPlayerManager().sendToAll(weba);
+				weba.formatted(Formatting.GOLD);
+				sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(weba, MessageType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 

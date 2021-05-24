@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_chestplate",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "tag": "blockus:white_oak_logs"
+    }
+  },
+  "result": {
+    "item": "survivalplus:white_oak_chestplate"
+  }
+}

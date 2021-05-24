@@ -2,7 +2,7 @@ package net.coolsimulations.SurvivalPlus.api;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DefaultedList;
+import net.minecraft.util.collection.DefaultedList;
 
 public class SPItems {
 	
@@ -20,12 +20,12 @@ public class SPItems {
 	public static Item paper_cup;
 	
 	/**
-	 * These are the Refined Machinery Items referred to in SurvivalPlusItems
+	 * These are the Ore Processing Items referred to in SurvivalPlusItems
 	 */
-	//public static Item crushed_titanium_ore;
+	public static Item titanium_crushed_dust;
 	public static Item titanium_dust;
 	//public static Item purified_titanium_ore;
-	//public static Item tiny_titanium_pile;
+	public static Item titanium_tiny_dust;
 	//public static Item titanium_plate;
 	//public static Item titanium_dense_plate;
 	//public static Item titanium_casing;
@@ -130,6 +130,18 @@ public class SPItems {
 	public static Item dark_oak_boots;
 	//public static ItemArmor.ArmorMaterial darkOakArmorMaterial;
 	public static DefaultedList<ItemStack> dark_oak;
+	public static Item crimson_helmet;
+	public static Item crimson_chestplate;
+	public static Item crimson_leggings;
+	public static Item crimson_boots;
+	//public static ItemArmor.ArmorMaterial crimsonArmorMaterial;
+	public static DefaultedList<ItemStack> crimson;
+	public static Item warped_helmet;
+	public static Item warped_chestplate;
+	public static Item warped_leggings;
+	public static Item warped_boots;
+	//public static ItemArmor.ArmorMaterial warpedArmorMaterial;
+	public static DefaultedList<ItemStack> warped;
 	
 	/**
 	 * These are the bamboo armor Items referred to in SurvivalPlusArmor along with the corresponding ArmorMaterial and Armor ItemStack List
@@ -142,7 +154,7 @@ public class SPItems {
 	public static DefaultedList<ItemStack> bamboo;
 	
 	/**
-	 * These are the Traverse and Terrestria armor Items referred to in TraverseArmor and TerrestriaArmor along with the corresponding ArmorMaterial and Armor ItemStack List
+	 * These are the Traverse, Terrestria, BlockUs, and Vanilla Enhanced armor Items referred to in TraverseArmor, TerrestriaArmor and SurvivalPlusBlockus along with the corresponding ArmorMaterial and Armor ItemStack List
 	 */
 	public static Item fir_helmet_traverse;
 	public static Item fir_chestplate_traverse;
@@ -206,5 +218,26 @@ public class SPItems {
 	public static Item sakura_boots;
 	//public static ItemArmor.ArmorMaterial sakuraArmorMaterial;
 	public static DefaultedList<ItemStack> sakura;
+	
+	public static Item yucca_palm_helmet;
+	public static Item yucca_palm_chestplate;
+	public static Item yucca_palm_leggings;
+	public static Item yucca_palm_boots;
+	//public static ItemArmor.ArmorMaterial yuccaPalmArmorMaterial;
+	public static DefaultedList<ItemStack> yucca_palm;
+	
+	public static Item white_oak_helmet;
+	public static Item white_oak_chestplate;
+	public static Item white_oak_leggings;
+	public static Item white_oak_boots;
+	//public static ItemArmor.ArmorMaterial whiteOakArmorMaterial;
+	public static DefaultedList<ItemStack> white_oak;
+	
+	public static Item redwood_helmet_vanilla_enhanced;
+	public static Item redwood_chestplate_vanilla_enhanced;
+	public static Item redwood_leggings_vanilla_enhanced;
+	public static Item redwood_boots_vanilla_enhanced;
+	//public static ItemArmor.ArmorMaterial redwoodTerrestriaArmorMaterial;
+	public static DefaultedList<ItemStack> redwood_vanilla_enhanced;
 
 }

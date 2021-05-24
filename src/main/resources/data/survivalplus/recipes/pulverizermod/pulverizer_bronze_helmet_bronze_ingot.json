@@ -1,0 +1,12 @@
+
+{
+  "type": "pulverizer_mod:pulverizer",
+  "id": "survivalplus:bronze_helmet_bronze_ingot",
+  "ingredient": "survivalplus:bronze_helmet",
+  "result": {
+    "id": "survivalplus:bronze_ingot",
+    "Count": 1
+  },
+  "pulverizetime": 200,
+  "category": "recycle"
+}

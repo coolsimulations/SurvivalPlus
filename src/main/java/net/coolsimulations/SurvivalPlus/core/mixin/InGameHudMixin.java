@@ -8,6 +8,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -17,32 +18,36 @@ import net.minecraft.util.Formatting;
 public abstract class InGameHudMixin {
 
 	@ModifyVariable(at = @At(value = "INVOKE", ordinal = 0), method = "addChatMessage", ordinal = 0)
-	private Text onChatMessage(Text message) {
+	private Text addChatMessage(Text message) {
 		TranslatableText coolsim = new TranslatableText("sp.coolsim.creator");
-		coolsim.getStyle().setColor(Formatting.GOLD);
+		coolsim.formatted(Formatting.GOLD);
 
 		TranslatableText playerJoined = new TranslatableText("multiplayer.player.joined", new Object[] {"coolsim"});
-		playerJoined.getStyle().setColor(Formatting.YELLOW);
+		playerJoined.formatted(Formatting.YELLOW);
 
 		TranslatableText playerLeft = new TranslatableText("multiplayer.player.left", new Object[] {"coolsim"});
-		playerLeft.getStyle().setColor(Formatting.YELLOW);
+		playerLeft.formatted(Formatting.YELLOW);
 
 		TranslatableText coolsimJoined = new TranslatableText("sp.coolsim.joined");
-		coolsimJoined.getStyle().setColor(Formatting.YELLOW);
+		coolsimJoined.formatted(Formatting.YELLOW);
 
 		TranslatableText coolsimLeft = new TranslatableText("sp.coolsim.left");
-		coolsimLeft.getStyle().setColor(Formatting.YELLOW);
+		coolsimLeft.formatted(Formatting.YELLOW);
 
-		if(message.asFormattedString().equals(playerJoined.asFormattedString())) {
+		if(message.equals(playerJoined)) {
 			return coolsimJoined;
 		}
 
-		if(message.asFormattedString().equals(playerLeft.asFormattedString())) {
+		if(message.equals(playerLeft)) {
 			return coolsimLeft;
 		}
 
-		if(message.asFormattedString().startsWith("[coolsim]")) {
-			return new LiteralText(message.asFormattedString().replaceFirst("\\[", coolsim.asFormattedString() + " ["));
+		if(message.getString().startsWith("[coolsim]")) {
+			if(message instanceof MutableText) {
+				return coolsim.append(((MutableText) message).formatted(Formatting.WHITE));
+			} else {
+				return coolsim.append(new LiteralText("").formatted(Formatting.WHITE).append(message));
+			}
 		}
 		
 		return message;

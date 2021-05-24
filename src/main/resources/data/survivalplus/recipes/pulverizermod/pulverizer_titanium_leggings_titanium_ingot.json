@@ -1,0 +1,12 @@
+
+{
+  "type": "pulverizer_mod:pulverizer",
+  "id": "survivalplus:titanium_leggings_titanium_ingot",
+  "ingredient": "survivalplus:titanium_leggings",
+  "result": {
+    "id": "survivalplus:titanium_ingot",
+    "Count": 1
+  },
+  "pulverizetime": 200,
+  "category": "recycle"
+}

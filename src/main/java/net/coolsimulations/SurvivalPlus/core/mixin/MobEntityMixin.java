@@ -38,7 +38,7 @@ public abstract class MobEntityMixin extends LivingEntity {
 
 	@Inject(at = @At("HEAD"), method = "tryAttack", cancellable = true)
 	public void tryAttack(Entity target, CallbackInfoReturnable<Boolean> cir) {
-		float f = (float)this.getAttributeInstance(EntityAttributes.ATTACK_DAMAGE).getValue();
+		float f = (float)this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).getValue();
 		if (target instanceof LivingEntity) {
 			f += EnchantmentHelper.getAttackDamage(this.getMainHandStack(), ((LivingEntity)target).getGroup());
 		}

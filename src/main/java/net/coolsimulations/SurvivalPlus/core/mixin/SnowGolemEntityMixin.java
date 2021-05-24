@@ -15,6 +15,7 @@ import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
@@ -33,7 +34,7 @@ public abstract class SnowGolemEntityMixin extends GolemEntity {
 	
 	@SuppressWarnings("unchecked")
 	@Inject(at = @At("TAIL"), method = "interactMob", cancellable = true)
-	public void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<Boolean> cir)
+	public void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir)
 	{
 		ItemStack itemStack = player.getStackInHand(hand);
 	      if (itemStack.getItem() instanceof ShearsItem && this.hasPumpkin() && !this.world.isClient) {

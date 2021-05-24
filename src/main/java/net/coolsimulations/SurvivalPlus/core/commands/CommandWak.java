@@ -7,12 +7,14 @@ import com.mojang.brigadier.CommandDispatcher;
 
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.minecraft.command.CommandException;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.network.MessageType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Util;
 
 public class CommandWak {
 
@@ -35,8 +37,8 @@ public class CommandWak {
 
 			}else {
 				TranslatableText wak = new TranslatableText("sp.commands.wak.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				wak.getStyle().setColor(Formatting.DARK_RED);
-				sender.getMinecraftServer().getPlayerManager().sendToAll(wak);
+				wak.formatted(Formatting.DARK_RED);
+				sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(wak, MessageType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 

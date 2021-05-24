@@ -23,7 +23,7 @@ public class SurvivalPlusClient implements ClientModInitializer {
 	@Environment(EnvType.CLIENT)
 	public void textureStitch() {
 		
-		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEX).register((atlasTexture, registry)->
+		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry)->
         {
         	registry.register(new Identifier(SPReference.MOD_ID, "entity/bronze_shield_base"));
     		registry.register(new Identifier(SPReference.MOD_ID, "entity/bronze_shield_base_nopattern"));

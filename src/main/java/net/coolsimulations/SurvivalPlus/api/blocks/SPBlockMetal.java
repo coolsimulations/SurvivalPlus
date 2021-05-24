@@ -11,16 +11,14 @@ import net.minecraft.sound.BlockSoundGroup;
 public class SPBlockMetal extends Block{
 	
 	public final Resource resource;
-	public final Boolean beacon;
 	
 	/**
 	 * @param metalTier accepts SPBlockMetal.Resouce
 	 */
 	
-	public SPBlockMetal(Resource resource, boolean isBeaconMetal) {
-		super(FabricBlockSettings.of(Material.METAL).hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).lightLevel(0));
+	public SPBlockMetal(Resource resource) {
+		super(FabricBlockSettings.of(Material.METAL).requiresTool().hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).luminance(0));
 		this.resource = resource;
-		this.beacon = isBeaconMetal;
 	}
 	
 	public enum Resource {

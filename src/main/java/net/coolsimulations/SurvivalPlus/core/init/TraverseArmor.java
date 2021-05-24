@@ -6,7 +6,7 @@ import net.coolsimulations.SurvivalPlus.api.item.SPArmorMaterial;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DefaultedList;
+import net.minecraft.util.collection.DefaultedList;
 
 public class TraverseArmor {
 	

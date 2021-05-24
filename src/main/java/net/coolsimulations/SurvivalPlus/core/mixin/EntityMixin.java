@@ -19,11 +19,11 @@ import net.minecraft.util.crash.CrashReportSection;
 public abstract class EntityMixin implements EntityAccessor{
 
 	@Shadow
-	public double x;
+	public abstract double getX();
 	@Shadow
-	public double y;
+	public abstract double getY();
 	@Shadow
-	public double z;
+	public abstract double getZ();
 	@Shadow
 	public float yaw;
 	@Shadow
@@ -33,7 +33,7 @@ public abstract class EntityMixin implements EntityAccessor{
 
 	@Inject(at = @At("TAIL"), method = "fromTag", cancellable = true)
 	public void fromTag(CompoundTag tag, CallbackInfo info) {
-		if (Double.isFinite(this.x) && Double.isFinite(this.y) && Double.isFinite(this.z)) {
+		if (Double.isFinite(this.getX()) && Double.isFinite(this.getY()) && Double.isFinite(this.getZ())) {
 			if (Double.isFinite((double)this.yaw) && Double.isFinite((double)this.pitch)) {
 				if(tag.contains("SurvivalPlusData", 10)) persistentData = tag.getCompound("SurvivalPlusData");
 			}

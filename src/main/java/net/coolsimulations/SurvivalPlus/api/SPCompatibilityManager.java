@@ -18,12 +18,15 @@ public class SPCompatibilityManager {
 	private static boolean modVanillaEnhancedLoaded;
 	private static boolean modRobinsEmeraldLoaded;
 	private static boolean modRobinsRubyLoaded;
-	private static boolean modBugBoyEmeraldLoaded;
+	private static boolean modRobinsAmethystLoaded;
 	private static boolean modSimpleEmeraldLoaded;
-	private static boolean modSimplyEmeraldLoaded;
-	private static boolean modSimpleQuartzLoaded;
+	private static boolean modBambooExpandedLoaded;
+	private static boolean modMechanixLoaded;
+	private static boolean modPulverizerLoaded;
+	private static boolean modIndustrialRevolutionLoaded;
+	private static boolean modModernIndustrializationLoaded;
 
-	public static final String GCCORE_MODID = "galacticraft-rewoven";
+	public static final String GCCORE_MODID = "galacticraft";
 	public static final String FABRIC_SHIELD_LIB_MODID = "fabricshieldlib";
 	public static final String REFINED_MACHINERY_MODID = "refinedmachinery";
 	public static final String BLOCKUS_MODID = "blockus";
@@ -37,10 +40,13 @@ public class SPCompatibilityManager {
 	public static final String VANILLA_ENHANCED_MODID = "vanillaenhanced";
 	public static final String ROBINS_EMERALD_MODID = "emerald_mod";
 	public static final String ROBINS_RUBY_MODID = "ruby_mod";
-	public static final String BUGBOY_EMERALD_MODID = "emeraldtools";
-	public static final String SIMPLE_EMERALD_MODID = "emerald-tools-justfatlard";
-	public static final String SIMPLY_EMERALD_MODID = "simpleemeralds";
-	public static final String SIMPLE_QUARTZ_MODID = "quartz-tools-justfatlard";
+	public static final String ROBINS_AMETHYST_MODID = "amethyst_mod";
+	public static final String SIMPLE_EMERALD_MODID = "em";
+	public static final String BAMBOO_EXPANDED_MODID = "bambooexpanded";
+	public static final String MECHANIX_MODID = "mechanix";
+	public static final String PULVERIZER_MODID = "pulverizer_mod";
+	public static final String INDUSTRIAL_REVOLUTION_MODID = "indrev";
+	public static final String MODERN_INDUSTRIALIZATION_MODID = "modern_industrialization";
 
 	public static void checkForCompatibleMods(){
 
@@ -109,17 +115,14 @@ public class SPCompatibilityManager {
 			SPCompatibilityManager.modRobinsEmeraldLoaded = true;
 		}
 		
-		if (FabricLoader.getInstance().isModLoaded(BUGBOY_EMERALD_MODID))
+		if (FabricLoader.getInstance().isModLoaded(ROBINS_RUBY_MODID))
 		{
-			SPCompatibilityManager.modBugBoyEmeraldLoaded = true;
+			SPCompatibilityManager.modRobinsRubyLoaded = true;
 		}
 		
-		try {
-			Class bugBoy = Class.forName("net.fabricmc.emeraldtools.EmeraldTools");
-			if(bugBoy.getMethod("onInitialize", new Class[0]) != null)
-				SPCompatibilityManager.modBugBoyEmeraldLoaded = true;
-		} catch (Exception e) {
-			SPCompatibilityManager.modBugBoyEmeraldLoaded = false;
+		if (FabricLoader.getInstance().isModLoaded(ROBINS_AMETHYST_MODID))
+		{
+			SPCompatibilityManager.modRobinsAmethystLoaded = true;
 		}
 		
 		if (FabricLoader.getInstance().isModLoaded(SIMPLE_EMERALD_MODID))
@@ -127,14 +130,29 @@ public class SPCompatibilityManager {
 			SPCompatibilityManager.modSimpleEmeraldLoaded = true;
 		}
 		
-		if (FabricLoader.getInstance().isModLoaded(SIMPLY_EMERALD_MODID))
+		if (FabricLoader.getInstance().isModLoaded(BAMBOO_EXPANDED_MODID))
 		{
-			SPCompatibilityManager.modSimplyEmeraldLoaded = true;
+			SPCompatibilityManager.modBambooExpandedLoaded = true;
 		}
 		
-		if (FabricLoader.getInstance().isModLoaded(SIMPLE_QUARTZ_MODID))
+		if (FabricLoader.getInstance().isModLoaded(MECHANIX_MODID))
 		{
-			SPCompatibilityManager.modSimpleQuartzLoaded = true;
+			SPCompatibilityManager.modMechanixLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(PULVERIZER_MODID))
+		{
+			SPCompatibilityManager.modPulverizerLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(INDUSTRIAL_REVOLUTION_MODID))
+		{
+			SPCompatibilityManager.modIndustrialRevolutionLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(MODERN_INDUSTRIALIZATION_MODID))
+		{
+			SPCompatibilityManager.modModernIndustrializationLoaded = true;
 		}
 	}
 
@@ -174,7 +192,7 @@ public class SPCompatibilityManager {
 	}
 	
 	public static boolean isBambooModsLoaded() {
-		return isBlockusLoaded() || isBambooTweaksLoaded() || isBambooEverythingLoaded() || isBetterBambooLoaded();
+		return isBlockusLoaded() || isBambooTweaksLoaded() || isBambooEverythingLoaded() || isBetterBambooLoaded() || isBambooExpandedModLoaded() || isVanillaEnhancedLoaded();
 	}
 	
 	public static boolean isTraverseLoaded()
@@ -212,9 +230,9 @@ public class SPCompatibilityManager {
 		return SPCompatibilityManager.modRobinsRubyLoaded;
 	}
 	
-	public static boolean isBugBoyEmeraldLoaded()
+	public static boolean isRobinsAmethystLoaded()
 	{
-		return SPCompatibilityManager.modBugBoyEmeraldLoaded;
+		return SPCompatibilityManager.modRobinsAmethystLoaded;
 	}
 	
 	public static boolean isSimpleEmeraldLoaded()
@@ -222,24 +240,39 @@ public class SPCompatibilityManager {
 		return SPCompatibilityManager.modSimpleEmeraldLoaded;
 	}
 	
-	public static boolean isSimplyEmeraldLoaded()
-	{
-		return SPCompatibilityManager.modSimplyEmeraldLoaded;
-	}
-	
-	public static boolean isSimpleQuartzLoaded()
-	{
-		return SPCompatibilityManager.modSimpleQuartzLoaded;
-	}
-	
 	public static boolean isEmeraldMaterialModsLoaded()
 	{
-		return isMoreGemsLoaded() || isEasyEmeraldLoaded() || isVanillaEnhancedLoaded() || isRobinsEmeraldLoaded() || isBugBoyEmeraldLoaded() || isSimpleEmeraldLoaded() || isSimplyEmeraldLoaded();
+		return isMoreGemsLoaded() || isEasyEmeraldLoaded() || isVanillaEnhancedLoaded() || isRobinsEmeraldLoaded() || isSimpleEmeraldLoaded();
 	}
 	
 	public static boolean isObsidianMaterialModsLoaded()
 	{
-		return isVanillaEnhancedLoaded();
+		return isVanillaEnhancedLoaded() || isEasyEmeraldLoaded();
+	}
+	
+	public static boolean isBambooExpandedModLoaded()
+	{
+		return SPCompatibilityManager.modBambooExpandedLoaded;
+	}
+	
+	public static boolean isMechanixLoaded()
+	{
+		return SPCompatibilityManager.modMechanixLoaded;
+	}
+	
+	public static boolean isPulverizerLoaded()
+	{
+		return SPCompatibilityManager.modPulverizerLoaded;
+	}
+	
+	public static boolean isIndustrialRevolutionLoaded()
+	{
+		return SPCompatibilityManager.modIndustrialRevolutionLoaded;
+	}
+	
+	public static boolean isModernIndustrializationLoaded()
+	{
+		return SPCompatibilityManager.modModernIndustrializationLoaded;
 	}
 
 }

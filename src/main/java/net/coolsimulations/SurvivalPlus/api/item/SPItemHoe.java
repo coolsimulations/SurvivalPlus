@@ -7,8 +7,8 @@ import net.minecraft.item.ToolMaterial;
 
 public class SPItemHoe extends HoeItem{
 
-	public SPItemHoe(ToolMaterial tier) {
-		super(tier, tier.getMiningLevel() - 3.5F, (new FabricItemSettings().group(SPTabs.tabTools)));
+	public SPItemHoe(ToolMaterial tier, float attackDamageIn, float attackSpeedIn) {
+		super(tier, (int) attackDamageIn, attackSpeedIn, (new FabricItemSettings().group(SPTabs.tabTools)));
 	}
 
 }
