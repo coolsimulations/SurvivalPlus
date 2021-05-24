@@ -23,7 +23,7 @@ public class SPCompatibilityManager {
 	private static boolean modSimplyEmeraldLoaded;
 	private static boolean modSimpleQuartzLoaded;
 
-	public static final String GCCORE_MODID = "galacticraft-rewoven";
+	public static final String GCCORE_MODID = "galacticraft";
 	public static final String FABRIC_SHIELD_LIB_MODID = "fabricshieldlib";
 	public static final String REFINED_MACHINERY_MODID = "refinedmachinery";
 	public static final String BLOCKUS_MODID = "blockus";
@@ -107,6 +107,11 @@ public class SPCompatibilityManager {
 		if (FabricLoader.getInstance().isModLoaded(ROBINS_EMERALD_MODID))
 		{
 			SPCompatibilityManager.modRobinsEmeraldLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(ROBINS_RUBY_MODID))
+		{
+			SPCompatibilityManager.modRobinsRubyLoaded = true;
 		}
 		
 		if (FabricLoader.getInstance().isModLoaded(BUGBOY_EMERALD_MODID))
