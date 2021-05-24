@@ -86,7 +86,7 @@ public class SurvivalPlusOreGenerator implements IWorldGenerator{
 			}
 			
 			if(biome instanceof BiomeMushroomIsland && !SPConfig.disableSpinelGen){
-				this.runGenerator(spinel, world, random, chunkX, chunkZ, 5, 1, 5);
+				this.runGenerator(spinel, world, random, chunkX, chunkZ, 5, 1, 8);
 			}
 			
 		case 1: //End
