@@ -18,7 +18,7 @@ public class SurvivalPlusOreGenerator {
 	public static void generateOres() {
 
 		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
-			if (biome == Biomes.NETHER) {
+			if (biome instanceof NetherBiome) {
 				if(!SPConfig.disableAmethystGen.get()) {
 					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(BlockMatcher.forBlock(Blocks.NETHERRACK), SPBlocks.amethyst.getDefaultState(), 3), biome.COUNT_RANGE, new CountRangeConfig(10, 1, 0, 255)));
 				}
@@ -31,13 +31,16 @@ public class SurvivalPlusOreGenerator {
 				if(!SPConfig.disableSapphireGen.get()) {
 					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(BlockMatcher.forBlock(Blocks.NETHERRACK), SPBlocks.sapphire.getDefaultState(), 3), biome.COUNT_RANGE, new CountRangeConfig(10, 1, 0, 255)));
 				}
-			} else if(biome instanceof OceanBiome || biome instanceof DeepOceanBiome || biome instanceof ColdOceanBiome || biome instanceof DeepColdOceanBiome || biome instanceof DeepWarmOceanBiome || biome instanceof WarmOceanBiome || biome instanceof DeepLukewarmOceanBiome || biome instanceof LukewarmOceanBiome || biome instanceof DeepFrozenOceanBiome || biome instanceof FrozenOceanBiome && !SPConfig.disablePearlGen.get()) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(BlockMatcher.forBlock(Blocks.GRAVEL), SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3), biome.COUNT_RANGE, new CountRangeConfig(4, 20, 0, 63)));
+			} else if(!(biome instanceof EndBarrensBiome || biome instanceof EndHighlandsBiome || biome instanceof EndMidlandsBiome)) {
 
-			} else if(biome instanceof MushroomFieldsBiome && !SPConfig.disableSpinelGen.get()) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(MinableConfig.IS_ROCK, SPBlocks.spinel.getDefaultState(), 3), biome.COUNT_RANGE, new CountRangeConfig(2, 1, 0, 5)));
+				if(biome instanceof OceanBiome || biome instanceof DeepOceanBiome || biome instanceof ColdOceanBiome || biome instanceof DeepColdOceanBiome || biome instanceof DeepWarmOceanBiome || biome instanceof WarmOceanBiome || biome instanceof DeepLukewarmOceanBiome || biome instanceof LukewarmOceanBiome || biome instanceof DeepFrozenOceanBiome || biome instanceof FrozenOceanBiome && !SPConfig.disablePearlGen.get()) {
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(BlockMatcher.forBlock(Blocks.GRAVEL), SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3), biome.COUNT_RANGE, new CountRangeConfig(4, 20, 0, 63)));
 
-			} else {
+				}
+				if((biome instanceof MushroomFieldsBiome || biome instanceof MushroomFieldShoreBiome) && !SPConfig.disableSpinelGen.get()) {
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(MinableConfig.IS_ROCK, SPBlocks.spinel.getDefaultState(), 3), biome.COUNT_RANGE, new CountRangeConfig(2, 1, 0, 8)));
+
+				}
 				if(!SPConfig.disableCopperOreGen.get()) {
 					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, biome.createCompositeFeature(Feature.MINABLE, new MinableConfig(MinableConfig.IS_ROCK, SPBlocks.copper_ore.getDefaultState(), 8), biome.COUNT_RANGE, new CountRangeConfig(20, 1, 0, 54)));
 				}
