@@ -34,8 +34,6 @@ dependencies {
 
         modImplementation "com.terraformersmc:terrestria:${project.terrestria_version}"
 
-        compile files('libs/FabricShieldLib-v1.0.5-1.14.4-dev.jar')
-
         compile files('libs/blockus-1.2.0-dev.jar')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.

@@ -14,7 +14,7 @@ public class SPCompatibilityManager {
 	private static boolean modTraverseLoaded;
 	private static boolean modTerrestriaLoaded;
 
-	public static final String GCCORE_MODID = "galacticraft-rewoven";
+	public static final String GCCORE_MODID = "galacticraft";
 	public static final String FABRIC_SHIELD_LIB_MODID = "fabricshieldlib";
 	public static final String REFINED_MACHINERY_MODID = "refinedmachinery";
 	public static final String BLOCKUS_MODID = "blockus";

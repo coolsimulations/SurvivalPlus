@@ -30,7 +30,6 @@ import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusDispenserBehavi
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusTrades;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusBlockus;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusShieldLib;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.fabricmc.api.ModInitializer;
@@ -111,10 +110,6 @@ public class SurvivalPlus implements ModInitializer {
 		SurvivalPlusTrades.initVillagerTrades();
 		SurvivalPlusEventHandler.villagerTrades();
 		SPTrades.postInitVillagerTrades();
-		
-		if(SPCompatibilityManager.isShieldLibLoaded()) {
-			SurvivalPlusShieldLib.init();
-		}
 		
 		if(SPCompatibilityManager.isBlockusLoaded()) {
 			SurvivalPlusBlockus.init();

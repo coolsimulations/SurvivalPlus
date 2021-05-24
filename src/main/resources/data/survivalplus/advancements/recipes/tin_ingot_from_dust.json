@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:tin_dust"
+            "tag": "c:tin_dusts"
           }
         ]
       }
