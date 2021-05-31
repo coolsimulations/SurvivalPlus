@@ -6,6 +6,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
@@ -23,6 +25,7 @@ import net.insane96mcp.carbonado.lib.Properties;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCake;
 import net.minecraft.block.BlockTripWire;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
@@ -30,9 +33,11 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -45,6 +50,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
@@ -65,7 +71,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 import thedarkcolour.futuremc.block.villagepillage.CampfireBlock;
 import thedarkcolour.futuremc.config.FConfig;
@@ -262,6 +267,10 @@ public class SurvivalPlusEventHandler {
 			}
 		}
 
+		if(SPCompatibilityManager.isBambooziedLoaded()) {
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.BAMBOOZIED_MODID + ":" + "bamboo_bundle"));
+		}
+
 	}
 
 	@SubscribeEvent
@@ -347,8 +356,51 @@ public class SurvivalPlusEventHandler {
 				}
 			}
 		}
+
+		if(block == Blocks.CAKE) {
+			
+			if(entityplayer.getHeldItemMainhand().getItem() == SPItems.paper_cup || entityplayer.getHeldItemOffhand().getItem() == SPItems.paper_cup) {
+				event.setCanceled(true);
+			}
+			
+			if(entityplayer.getHeldItem(event.getHand()).getItem() == SPItems.paper_cup) {
+
+				if(!event.getWorld().isRemote) {
+
+					int i = ((Integer)state.getValue(BlockCake.BITES)).intValue();
+
+					if (i < 6)
+					{
+						event.getWorld().setBlockState(event.getPos(), state.withProperty(BlockCake.BITES, Integer.valueOf(i + 1)), 3);
+					}
+					else
+					{
+						event.getWorld().setBlockToAir(event.getPos());
+					}
+
+					if(!entityplayer.capabilities.isCreativeMode) {
+						if(itemStackIn.getCount() == 1) {
+							if (ItemStack.areItemStacksEqual(entityplayer.getHeldItemOffhand(), itemStackIn))
+							{
+								entityplayer.setHeldItem(EnumHand.OFF_HAND, new ItemStack(SPItems.cupcake));
+							}
+							else
+							{
+								entityplayer.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(SPItems.cupcake));
+							}
+						} else  if(itemStackIn.getCount() >= 2){
+							itemStackIn.shrink(1);
+							boolean flag = entityplayer.inventory.addItemStackToInventory(new ItemStack(SPItems.cupcake));
+							if(!flag) {
+								entityplayer.dropItem(new ItemStack(SPItems.cupcake), false);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
-	
+
 	@SubscribeEvent
 	public void golemHealth(EntityInteract event) {
 		ItemStack itemstack = event.getItemStack();
@@ -431,7 +483,7 @@ public class SurvivalPlusEventHandler {
 			event.setMessage(coolsimLeft);
 		}
 
-		if(event.getMessage().getUnformattedText().startsWith("[coolsim]")) {
+		if(replaceFormattingCodes(event.getMessage()).startsWith("[coolsim]")) {
 			event.setMessage(new TextComponentString(event.getMessage().getFormattedText().replaceFirst("\\[", coolsim.getFormattedText() + " [")));
 		}
 	}
@@ -445,7 +497,7 @@ public class SurvivalPlusEventHandler {
 			ItemStack coolsimHead = getcoolsimHead();
 
 			if(coolsimHead != null) {
-				ItemHandlerHelper.giveItemToPlayer(attacker, coolsimHead);
+				dropItem(coolsimHead, attacker);
 			} else {
 				TextComponentTranslation error = new TextComponentTranslation("sp.coolsim.error");
 				error.getStyle().setColor(TextFormatting.RED);
@@ -477,5 +529,41 @@ public class SurvivalPlusEventHandler {
 		playerhead.setStackDisplayName(headName.getFormattedText());
 
 		return playerhead;
+	}
+
+	public static void dropItem(ItemStack stack, EntityPlayer player) {
+
+		boolean bl = player.inventory.addItemStackToInventory(stack);
+		EntityItem itemEntity;
+		if (bl && stack.isEmpty()) {
+			stack.setCount(1);
+			itemEntity = player.dropItem(stack, false);
+			if (itemEntity != null) {
+				itemEntity.makeFakeItem();
+			}
+
+			player.world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.getRNG().nextFloat() - player.getRNG().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+			player.inventoryContainer.detectAndSendChanges();
+		} else {
+			itemEntity = player.dropItem(stack, false);
+			if (itemEntity != null) {
+				itemEntity.setNoPickupDelay();
+				itemEntity.setOwner(player.getName());
+			}
+		}
+	}
+
+	public static String replaceFormattingCodes(ITextComponent component) {
+
+		String text = component.getUnformattedText();
+
+		if(text.contains("§")) {
+			System.out.println(text);
+			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
+				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
+			}
+		}
+
+		return text;
 	}
 }

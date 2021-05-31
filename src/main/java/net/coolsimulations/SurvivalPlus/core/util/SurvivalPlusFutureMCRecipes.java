@@ -161,6 +161,18 @@ public class SurvivalPlusFutureMCRecipes {
     		BlastFurnaceRecipes.INSTANCE.addRecipe(new ItemStack(sapphire), new ItemStack(SPBlocks.sapphire));
     		BlastFurnaceRecipes.INSTANCE.addRecipe(new ItemStack(topaz), new ItemStack(SPBlocks.topaz));
        	}
+       	
+       	if(SPCompatibilityManager.isBambooziedLoaded()) {
+       		Item dried_bamboo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.BAMBOOZIED_MODID, "bamboo_dried"));
+       		
+       		addOreDictionaryCampfireRecipe("cropBamboo", new ItemStack(dried_bamboo), 600);
+       	}
+       	
+       	if(SPCompatibilityManager.isWeepingAngelsLoaded()) {
+       		Item ingot = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.WEEPING_ANGELS_MODID, "kontron_ingot"));
+       		
+       		addOreDictionaryBlastFurnaceRecipe("oreKontron", new ItemStack(ingot));
+       	}
     }
 	
 	protected static void addOreDictionaryCampfireRecipe(String input, ItemStack output, int duration) {

@@ -43,6 +43,9 @@ public class SPCompatibilityManager {
 	private static boolean modGalaxiteOreLoaded;
 	private static boolean modFutureMCLoaded;
 	private static boolean modAetherLegacyLoaded;
+	private static boolean modWeepingAngelsLoaded;
+	private static boolean modBamboozledLoaded;
+	private static boolean modTraverseLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -84,6 +87,9 @@ public class SPCompatibilityManager {
 	public static final String GALAXITE_ORE_MODID = "galaxite";
 	public static final String FUTURE_MC_MODID = "futuremc";
 	public static final String AETHER_LEGACY_MODID = "aether_legacy";
+	public static final String WEEPING_ANGELS_MODID = "weeping-angels";
+	public static final String BAMBOOZIED_MODID = "bamboozled";
+	public static final String TRAVERSE_MODID = "traverse";
 
 	public static void checkForCompatibleMods(){
 
@@ -116,7 +122,6 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modIc2Loaded = true;
 		}
-
 
 		if (Loader.isModLoaded(BCRAFTCORE_MODID))
 		{
@@ -281,6 +286,21 @@ public class SPCompatibilityManager {
 		if (Loader.isModLoaded(AETHER_LEGACY_MODID))
 		{
 			SPCompatibilityManager.modAetherLegacyLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(WEEPING_ANGELS_MODID))
+		{
+			SPCompatibilityManager.modWeepingAngelsLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(BAMBOOZIED_MODID))
+		{
+			SPCompatibilityManager.modBamboozledLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(TRAVERSE_MODID))
+		{
+			SPCompatibilityManager.modTraverseLoaded = true;
 		}
 	}
 
@@ -487,6 +507,25 @@ public class SPCompatibilityManager {
 	public static boolean isAetherLegacyLoaded()
 	{
 		return SPCompatibilityManager.modAetherLegacyLoaded;
+	}
+	
+	public static boolean isWeepingAngelsLoaded()
+	{
+		return SPCompatibilityManager.modWeepingAngelsLoaded;
+	}
+	
+	public static boolean isBambooziedLoaded()
+	{
+		return SPCompatibilityManager.modBamboozledLoaded;
+	}
+	
+	public static boolean isBambooModsLoaded() {
+		return isBambooziedLoaded();
+	}
+	
+	public static boolean isTraverseLoaded()
+	{
+		return SPCompatibilityManager.modTraverseLoaded;
 	}
 
 }

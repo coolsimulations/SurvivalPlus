@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class SurvivalPlusAPIRecipes {
 	
@@ -56,6 +57,30 @@ public class SurvivalPlusAPIRecipes {
         
         if(SPCompatibilityManager.isGACLoaded() && SPConfig.enableReplaceSmelting) {
         	SurvivalPlusAPIRecipes.addGemsAndCrystalsItemsRecipes();
+        }
+        
+        if(SPCompatibilityManager.isBopLoaded()) {
+        	Item bamboo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.BOP_MODID, "bamboo"));
+        	
+        	OreDictionary.registerOre("cropBamboo", new ItemStack(bamboo));
+        }
+        
+        if(SPCompatibilityManager.isBambooziedLoaded()) {
+        	Item bamboo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.BAMBOOZIED_MODID, "bamboo"));
+        	Item dried_bamboo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.BAMBOOZIED_MODID, "bamboo_dried"));
+        	
+        	OreDictionary.registerOre("cropBamboo", new ItemStack(bamboo));
+        	removeFurnaceRecipe(new ItemStack(dried_bamboo));
+        	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("cropBamboo", new ItemStack(dried_bamboo), 1.0F, true);
+        }
+        
+        if(SPCompatibilityManager.isWeepingAngelsLoaded()) {
+        	Item ore = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.WEEPING_ANGELS_MODID, "kontron_ore"));
+        	Item ingot = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.WEEPING_ANGELS_MODID, "kontron_ingot"));
+        	
+        	OreDictionary.registerOre("oreKontron", new ItemStack(ore));
+        	OreDictionary.registerOre("ingotKontron", new ItemStack(ingot));
+        	SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("oreKontron", new ItemStack(ingot), 0.7F, true);
         }
     }
 	

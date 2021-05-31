@@ -91,6 +91,23 @@ tile.cardboard_purple.name=Фиолетовый картон
 tile.cardboard_magenta.name=Пурпурный картон
 tile.cardboard_pink.name=Розовый картон
 tile.cardboard_brown.name=Коричневый картон
+tile.cardboard_lantern.name=картон Фонарь
+tile.cardboard_lantern_white.name=Белый картон Фонарь
+tile.cardboard_lantern_light_grey.name=Светло-серый картон Фонарь
+tile.cardboard_lantern_grey.name=Серый картон Фонарь
+tile.cardboard_lantern_black.name=Чёрный картон Фонарь
+tile.cardboard_lantern_red.name=Красный картон Фонарь
+tile.cardboard_lantern_orange.name=Оранжевый картон Фонарь
+tile.cardboard_lantern_yellow.name=Жёлтый картон Фонарь
+tile.cardboard_lantern_lime.name=Лаймовый картон Фонарь
+tile.cardboard_lantern_green.name=Зелёный картон Фонарь
+tile.cardboard_lantern_light_blue.name=Голубой картон Фонарь
+tile.cardboard_lantern_cyan.name=Бирюзовый картон Фонарь
+tile.cardboard_lantern_blue.name=Синий картон Фонарь
+tile.cardboard_lantern_purple.name=Фиолетовый картон Фонарь
+tile.cardboard_lantern_magenta.name=Пурпурный картон Фонарь
+tile.cardboard_lantern_pink.name=Розовый картон Фонарь
+tile.cardboard_lantern_brown.name=Коричневый картон Фонарь
 
 tile.campfire.name=Костёр
 container.campfire=Костёр
@@ -131,6 +148,12 @@ item.dark_oak_helmet.name=Тёмный дуб шлем
 item.dark_oak_chestplate.name=Тёмный дуб нагрудник
 item.dark_oak_leggings.name=Тёмный дуб поножи
 item.dark_oak_boots.name=Тёмный дуб ботинки
+
+item.bamboo_helmet.name=Бамбук шлем
+item.bamboo_chestplate.name=Бамбук нагрудник
+item.bamboo_leggings.name=Бамбук поножи
+item.bamboo_boots.name=Бамбук ботинки
+
 item.rubber_helmet.name=Древесина гевеи шлем
 item.rubber_chestplate.name=Древесина гевеи нагрудник
 item.rubber_leggings.name=Древесина гевеи поножи
@@ -327,7 +350,10 @@ item.golden_oak_helmet.name=Золотой Дуб шлем
 item.golden_oak_chestplate.name=Золотой Дуб нагрудник
 item.golden_oak_leggings.name=Золотой Дуб поножи
 item.golden_oak_boots.name=Золотой Дуб ботинки
-
+item.fir_helmet_traverse.name=Пихта шлем
+item.fir_chestplate_traverse.name=Пихта нагрудник
+item.fir_leggings_traverse.name=Пихта поножи
+item.fir_boots_traverse.name=Пихта ботинки
 
 item.bronze_pickaxe.name=Бронзовый кирка
 item.bronze_axe.name=Бронзовый топор

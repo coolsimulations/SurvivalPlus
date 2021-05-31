@@ -5,6 +5,8 @@ import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboard;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -12,6 +14,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.IFuelHandler;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class FuelHandler implements IFuelHandler{
 	
@@ -493,7 +496,65 @@ public class FuelHandler implements IFuelHandler{
 			
 		}
 		
+		if (OreDictionary.getOres("woodRubber").size() > 0) {
+			
+			if(fuel.getItem() == SPItems.rubber_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.rubber_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.rubber_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.rubber_boots)
+				return 1200;
+		}
+		
+		if(SPCompatibilityManager.isBambooModsLoaded()) {
+			
+			if(fuel.getItem() == SPItems.bamboo_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.bamboo_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.bamboo_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.bamboo_boots)
+				return 1200;
+		}
+		
+		if(SPCompatibilityManager.isAetherLegacyLoaded()) {
+			
+			if(fuel.getItem() == SPItems.skyroot_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.skyroot_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.skyroot_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.skyroot_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.golden_oak_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.golden_oak_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.golden_oak_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.golden_oak_boots)
+				return 1200;
+		}
+		
+		if(SPCompatibilityManager.isTraverseLoaded()){
+			
+			if(fuel.getItem() == SPItems.fir_helmet_traverse)
+				return 1500;
+			if(fuel.getItem() == SPItems.fir_chestplate_traverse)
+				return 2400;
+			if(fuel.getItem() == SPItems.fir_leggings_traverse)
+				return 2100;
+			if(fuel.getItem() == SPItems.fir_boots_traverse)
+				return 1200;
+		}
+		
 		if(fuel.getItem() == SPItems.paper_cup)
+			return 200;
 
 		if(fuel.getItem() == SPItems.charcoal_bucket)
 			return 4800;
@@ -503,74 +564,14 @@ public class FuelHandler implements IFuelHandler{
 		if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.AIR)
         {
             Block block = Block.getBlockFromItem(item);
-
-            if (block == SPBlocks.cardboard)
+            
+            if(block instanceof BlockCardboard)
             {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_white)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_light_grey)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_grey)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_black)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_red)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_orange)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_yellow)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_lime)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_green)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_light_blue)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_cyan)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_blue)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_purple)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_magenta)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_pink)
-            {
-                return 800;
-            }
-            if (block == SPBlocks.cardboard_brown)
-            {
-                return 800;
+            	if(block instanceof BlockCardboardLantern)
+                {
+            		return 1600;
+                }
+            	return 800;
             }
         }
 

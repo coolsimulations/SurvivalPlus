@@ -91,6 +91,23 @@ tile.cardboard_purple.name=Purple Cardboard
 tile.cardboard_magenta.name=Magenta Cardboard
 tile.cardboard_pink.name=Pink Cardboard
 tile.cardboard_brown.name=Brown Cardboard
+tile.cardboard_lantern.name=Cardboard Lantern
+tile.cardboard_lantern_white.name=White Cardboard Lantern
+tile.cardboard_lantern_light_grey.name=Light Gray Cardboard Lantern
+tile.cardboard_lantern_grey.name=Gray Cardboard Lantern
+tile.cardboard_lantern_black.name=Black Cardboard Lantern
+tile.cardboard_lantern_red.name=Red Cardboard Lantern
+tile.cardboard_lantern_orange.name=Orange Cardboard Lantern
+tile.cardboard_lantern_yellow.name=Yellow Cardboard Lantern
+tile.cardboard_lantern_lime.name=Lime Cardboard Lantern
+tile.cardboard_lantern_green.name=Green Cardboard Lantern
+tile.cardboard_lantern_light_blue.name=Light Blue Cardboard Lantern
+tile.cardboard_lantern_cyan.name=Cyan Cardboard Lantern
+tile.cardboard_lantern_blue.name=Blue Cardboard Lantern
+tile.cardboard_lantern_purple.name=Purple Cardboard Lantern
+tile.cardboard_lantern_magenta.name=Magenta Cardboard Lantern
+tile.cardboard_lantern_pink.name=Pink Cardboard Lantern
+tile.cardboard_lantern_brown.name=Brown Cardboard Lantern
 
 tile.campfire.name=Campfire
 container.campfire=Campfire
@@ -135,6 +152,12 @@ item.rubber_helmet.name=Rubber Wood Helmet
 item.rubber_chestplate.name=Rubber Wood Chestplate
 item.rubber_leggings.name=Rubber Wood Leggings
 item.rubber_boots.name=Rubber Wood Boots
+
+item.bamboo_helmet.name=Bamboo Helmet
+item.bamboo_chestplate.name=Bamboo Chestplate
+item.bamboo_leggings.name=Bamboo Leggings
+item.bamboo_boots.name=Bamboo Boots
+
 item.cherry_helmet.name=Cherry Wood Helmet
 item.cherry_chestplate.name=Cherry Wood Chestplate
 item.cherry_leggings.name=Cherry Wood Leggings
@@ -327,7 +350,10 @@ item.golden_oak_helmet.name=Golden Oak Wood Helmet
 item.golden_oak_chestplate.name=Golden Oak Wood Chestplate
 item.golden_oak_leggings.name=Golden Oak Wood Leggings
 item.golden_oak_boots.name=Golden Oak Wood Boots
-
+item.fir_helmet_traverse.name=Fir Helmet
+item.fir_chestplate_traverse.name=Fir Chestplate
+item.fir_leggings_traverse.name=Fir Leggings
+item.fir_boots_traverse.name=Fir Boots
 
 item.bronze_pickaxe.name=Bronze Pickaxe
 item.bronze_axe.name=Bronze Axe

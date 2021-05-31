@@ -114,6 +114,10 @@ public class SurvivalPlusAetherLegacyRecipes {
 			registerArmourLists(registry, SPItems.willow_forestry, 225);
 			registerArmourLists(registry, SPItems.zebrawood, 225);
 		}
+		
+		if(SPCompatibilityManager.isTraverseLoaded()) {
+			registerArmourLists(registry, SPItems.fir_traverse, 225);
+		}
 	}
 	
 	protected void registerArmourLists(IForgeRegistry<AetherEnchantment> registry, NonNullList<ItemStack> itemList, int duration) {

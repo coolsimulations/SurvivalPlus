@@ -91,6 +91,23 @@ tile.cardboard_purple.name=紫段ボール
 tile.cardboard_magenta.name=赤紫段ボール
 tile.cardboard_pink.name=桃段ボール
 tile.cardboard_brown.name=茶段ボール
+tile.cardboard_lantern.name=段ボールランタン
+tile.cardboard_lantern_white.name=白段ボールランタン
+tile.cardboard_lantern_light_grey.name=薄灰段ボールランタン
+tile.cardboard_lantern_grey.name=灰段ボールランタン
+tile.cardboard_lantern_black.name=黒段ボールランタン
+tile.cardboard_lantern_red.name=赤段ボールランタン
+tile.cardboard_lantern_orange.name=橙段ボールランタン
+tile.cardboard_lantern_yellow.name=黄段ボールランタン
+tile.cardboard_lantern_lime.name=黄緑段ボールランタン
+tile.cardboard_lantern_green.name=緑段ボールランタン
+tile.cardboard_lantern_light_blue.name=空段ボールランタン
+tile.cardboard_lantern_cyan.name=青緑段ボールランタン
+tile.cardboard_lantern_blue.name=青段ボールランタン
+tile.cardboard_lantern_purple.name=紫段ボールランタン
+tile.cardboard_lantern_magenta.name=赤紫段ボールランタン
+tile.cardboard_lantern_pink.name=桃段ボールランタン
+tile.cardboard_lantern_brown.name=茶段ボールランタン
 
 tile.campfire.name=焚き火
 container.campfire=焚き火
@@ -131,6 +148,12 @@ item.dark_oak_helmet.name=ダークオークのヘルメット
 item.dark_oak_chestplate.name=ダークオークのチェストプレート
 item.dark_oak_leggings.name=ダークオークのレギンス
 item.dark_oak_boots.name=ダークオークのブーツ
+
+item.bamboo_helmet.name=竹のヘルメット
+item.bamboo_chestplate.name=竹のチェストプレート
+item.bamboo_leggings.name=竹のレギンス
+item.bamboo_boots.name=竹のブーツ
+
 item.rubber_helmet.name=ゴムの木のヘルメット
 item.rubber_chestplate.name=ゴムの木のチェストプレート
 item.rubber_leggings.name=ゴムの木のレギンス
@@ -327,6 +350,10 @@ item.golden_oak_helmet.name=ゴールデンオークのヘルメット
 item.golden_oak_chestplate.name=ゴールデンオークのチェストプレート
 item.golden_oak_leggings.name=ゴールデンオークのレギンス
 item.golden_oak_boots.name=ゴールデンオークのブーツ
+item.fir_helmet_traverse.name=モミのヘルメット
+item.fir_chestplate_traverse.name=モミのチェストプレート
+item.fir_leggings_traverse.name=モミのレギンス
+item.fir_boots_traverse.name=モミのブーツ
 
 item.bronze_pickaxe.name=青銅のツルハシ
 item.bronze_axe.name=青銅の斧

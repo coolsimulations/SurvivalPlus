@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -75,12 +76,48 @@ public class BlockCheeseCake extends Block
     {
     	if (!worldIn.isRemote)
         {
-            return this.eatCake(worldIn, pos, state, playerIn);
+            if(playerIn.getHeldItemMainhand().getItem() == SPItems.paper_cup || playerIn.getHeldItemOffhand().getItem() == SPItems.paper_cup) {
+            	
+            	decrementBites(worldIn, state, pos);
+            	
+            	if(!playerIn.capabilities.isCreativeMode) {
+            		
+            		ItemStack itemStackIn;
+            		
+            		if (playerIn.getHeldItemOffhand().getItem() == SPItems.paper_cup)
+					{
+						itemStackIn = playerIn.getHeldItemOffhand();
+					}
+					else
+					{
+						itemStackIn = playerIn.getHeldItemMainhand();
+					}
+            		
+					if(itemStackIn.getCount() == 1) {
+						if (ItemStack.areItemStacksEqual(playerIn.getHeldItemOffhand(), itemStackIn))
+						{
+							playerIn.setHeldItem(EnumHand.OFF_HAND, new ItemStack(SPItems.cheese_cupcake));
+						}
+						else
+						{
+							playerIn.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(SPItems.cheese_cupcake));
+						}
+					} else  if(itemStackIn.getCount() >= 2){
+						itemStackIn.shrink(1);
+						boolean flag = playerIn.inventory.addItemStackToInventory(new ItemStack(SPItems.cheese_cupcake));
+						if(!flag) {
+							playerIn.dropItem(new ItemStack(SPItems.cheese_cupcake), false);
+						}
+
+					}
+				}
+				return true;
+            }
+    		return this.eatCake(worldIn, pos, state, playerIn);
         }
         else
         {
-            ItemStack itemstack = playerIn.getHeldItem(hand);
-            return this.eatCake(worldIn, pos, state, playerIn) || itemstack.isEmpty();
+            return true;
         }
     }
 
@@ -94,18 +131,23 @@ public class BlockCheeseCake extends Block
         {
             player.addStat(StatList.CAKE_SLICES_EATEN);
             player.getFoodStats().addStats(3, 0.2F);
-            int i = ((Integer)state.getValue(BITES)).intValue();
-
-            if (i < 6)
-            {
-                worldIn.setBlockState(pos, state.withProperty(BITES, Integer.valueOf(i + 1)), 3);
-            }
-            else
-            {
-                worldIn.setBlockToAir(pos);
-            }
+            decrementBites(worldIn, state, pos);
 
             return true;
+        }
+    }
+    
+    private void decrementBites(World worldIn, IBlockState state, BlockPos pos) {
+    	
+    	int i = ((Integer)state.getValue(BITES)).intValue();
+    	
+    	if (i < 6)
+        {
+            worldIn.setBlockState(pos, state.withProperty(BITES, Integer.valueOf(i + 1)), 3);
+        }
+        else
+        {
+            worldIn.setBlockToAir(pos);
         }
     }
 

@@ -91,6 +91,23 @@ tile.cardboard_purple.name=紫纸板
 tile.cardboard_magenta.name=品红纸板
 tile.cardboard_pink.name=粉红纸板
 tile.cardboard_brown.name=棕纸板
+tile.cardboard_lantern.name=纸板灯笼
+tile.cardboard_lantern_white.name=白色纸板灯笼
+tile.cardboard_lantern_light_grey.name=淡灰纸板灯笼
+tile.cardboard_lantern_grey.name=灰纸板灯笼
+tile.cardboard_lantern_black.name=黑纸板灯笼
+tile.cardboard_lantern_red.name=红纸板灯笼
+tile.cardboard_lantern_orange.name=橙纸板灯笼
+tile.cardboard_lantern_yellow.name=黄纸板灯笼
+tile.cardboard_lantern_lime.name=黄绿纸板灯笼
+tile.cardboard_lantern_green.name=绿纸板灯笼
+tile.cardboard_lantern_light_blue.name=淡蓝纸板灯笼
+tile.cardboard_lantern_cyan.name=青纸板灯笼
+tile.cardboard_lantern_blue.name=蓝纸板灯笼
+tile.cardboard_lantern_purple.name=紫纸板灯笼
+tile.cardboard_lantern_magenta.name=品红纸板灯笼
+tile.cardboard_lantern_pink.name=粉红纸板灯笼
+tile.cardboard_lantern_brown.name=棕纸板灯笼
 
 tile.campfire.name=营火
 container.campfire=营火
@@ -131,6 +148,12 @@ item.dark_oak_helmet.name=深色橡头盔
 item.dark_oak_chestplate.name=深色橡胸甲
 item.dark_oak_leggings.name=深色橡护腿
 item.dark_oak_boots.name=深色橡战靴
+
+item.bamboo_helmet.name=竹子头盔
+item.bamboo_chestplate.name=竹子胸甲
+item.bamboo_leggings.name=竹子护腿
+item.bamboo_boots.name=竹子战靴
+
 item.rubber_helmet.name=橡胶树原木头盔
 item.rubber_chestplate.name=橡胶树原木胸甲
 item.rubber_leggings.name=橡胶树原木护腿
@@ -327,6 +350,10 @@ item.golden_oak_helmet.name=金琥珀树原木头盔
 item.golden_oak_chestplate.name=金琥珀树原木胸甲
 item.golden_oak_leggings.name=金琥珀树原木护腿
 item.golden_oak_boots.name=金琥珀树原木战靴
+item.fir_helmet_traverse.name=杉树原木头盔
+item.fir_chestplate_traverse.name=杉树原木胸甲
+item.fir_leggings_traverse.name=杉树原木护腿
+item.fir_boots_traverse.name=杉树原木战靴
 
 item.bronze_pickaxe.name=青铜镐
 item.bronze_axe.name=青铜斧

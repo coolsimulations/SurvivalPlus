@@ -91,6 +91,24 @@ tile.cardboard_purple.name=Cartón Morada
 tile.cardboard_magenta.name=Cartón Magenta
 tile.cardboard_pink.name=Cartón Rosa
 tile.cardboard_brown.name=Cardboard Marrón
+tile.cardboard_lantern.name=Farolillo de Cartón
+tile.cardboard_lantern_white.name=Farolillo de Cartón Blanca
+tile.cardboard_lantern_light_grey.name=Farolillo de Cartón Gris Claro
+tile.cardboard_lantern_grey.name=Farolillo de Cartón Gris
+tile.cardboard_lantern_black.name=Farolillo de Cartón Negra
+tile.cardboard_lantern_red.name=Farolillo de Cartón Roja
+tile.cardboard_lantern_orange.name=Farolillo de Cartón Naranja
+tile.cardboard_lantern_yellow.name=Farolillo de Cartón Amarilla
+tile.cardboard_lantern_lime.name=Farolillo de Cartón Verde Lima
+tile.cardboard_lantern_green.name=Farolillo de Cartón Verde
+tile.cardboard_lantern_light_blue.name=Farolillo de Cartón Azul Claro
+tile.cardboard_lantern_cyan.name=Farolillo de Cartón Cian
+tile.cardboard_lantern_blue.name=Farolillo de Cartón Azul
+tile.cardboard_lantern_purple.name=Farolillo de Cartón Morada
+tile.cardboard_lantern_magenta.name=Farolillo de Cartón Magenta
+tile.cardboard_lantern_pink.name=Farolillo de Cartón Rosa
+tile.cardboard_lantern_brown.name=Farolillo de Cardboard Marrón
+
 
 tile.campfire.name=Hoguera
 container.campfire=Hoguera
@@ -131,6 +149,12 @@ item.dark_oak_helmet.name=Casco de Roble Oscuro
 item.dark_oak_chestplate.name=Peto de Roble Oscuro
 item.dark_oak_leggings.name=Grebas de Roble Oscuro
 item.dark_oak_boots.name=Botas de Roble Oscuro
+
+item.bamboo_helmet.name=Casco de Bambú
+item.bamboo_chestplate.name=Peto de Bambú
+item.bamboo_leggings.name=Grebas de Bambú
+item.bamboo_boots.name=Botas de Bambú
+
 item.rubber_helmet.name=Casco de Caucho
 item.rubber_chestplate.name=Peto de Caucho
 item.rubber_leggings.name=Grebas de Caucho
@@ -327,7 +351,10 @@ item.golden_oak_helmet.name=Casco de Roble Dorado
 item.golden_oak_chestplate.name=Peto de Roble Dorado
 item.golden_oak_leggings.name=Grebas de Roble Dorado
 item.golden_oak_boots.name=Botas de Roble Dorado
-
+item.fir_helmet_traverse.name=Casco de Abeto Blanco
+item.fir_chestplate_traverse.name=Peto de Abeto Blanco
+item.fir_leggings_traverse.name=Grebas de Abeto Blanco
+item.fir_boots_traverse.name=Botas de Abeto Blanco
 
 item.bronze_pickaxe.name=Pico de Bronce
 item.bronze_axe.name=Hacha de Bronce

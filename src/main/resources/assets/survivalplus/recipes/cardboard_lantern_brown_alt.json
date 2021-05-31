@@ -1,0 +1,22 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "cardboard_lantern",
+  "pattern": [
+    "XXX",
+    "XDX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "survivalplus:cardboard_lantern"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "dyeBrown"
+    }
+  },
+  "result": {
+    "item": "survivalplus:cardboard_lantern_brown",
+    "count": 8
+  }
+}

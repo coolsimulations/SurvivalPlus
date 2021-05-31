@@ -49,6 +49,7 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLighting;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusSkills;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
+import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnionCrop;
 import net.coolsimulations.SurvivalPlus.core.world.village.VillageOnionCropHandler;
 import net.minecraft.block.Block;
@@ -168,6 +169,8 @@ public class SurvivalPlus {
 		{
 			SurvivalPlusEMCValues.init();
 		}
+		
+		GameRegistry.registerWorldGenerator(new SurvivalPlusOreGenerator(), 1);
 
 		if (SPCompatibilityManager.isJerLoaded())
 		{

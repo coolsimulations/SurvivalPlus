@@ -2,17 +2,15 @@ package net.coolsimulations.SurvivalPlus.core.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
+import net.coolsimulations.SurvivalPlus.api.item.SPItemCupcake;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemFoodEffect;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemAppleGold;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSoup;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class SurvivalPlusFood {
@@ -32,9 +30,9 @@ public class SurvivalPlusFood {
 		SPItems.cheese = new ItemFood(3, 1.0F, false).setUnlocalizedName("cheese").setRegistryName("cheese").setCreativeTab(SPTabs.tabFood);
 		SPItems.cheese_bread = new ItemFood(9, 0.9F, false).setUnlocalizedName("cheese_bread").setRegistryName("cheese_bread").setCreativeTab(SPTabs.tabFood);
 		SPItems.melted_cheese_bread = new ItemFood(11, 1.0F, false).setUnlocalizedName("melted_cheese_bread").setRegistryName("melted_cheese_bread").setCreativeTab(SPTabs.tabFood);
-		SPItems.cupcake = new ItemFood(2, 0.1F, false).setUnlocalizedName("cupcake").setRegistryName("cupcake").setCreativeTab(SPTabs.tabFood);
-		SPItems.cheese_cupcake = new ItemFood(3, 0.2F, false).setUnlocalizedName("cheese_cupcake").setRegistryName("cheese_cupcake").setCreativeTab(SPTabs.tabFood);
-		SPItems.sponge_cupcake = new ItemFood(2, 0.1F, false).setUnlocalizedName("sponge_cupcake").setRegistryName("sponge_cupcake").setCreativeTab(SPTabs.tabFood);
+		SPItems.cupcake = new SPItemCupcake(2, 0.1F, false).setUnlocalizedName("cupcake").setRegistryName("cupcake").setCreativeTab(SPTabs.tabFood);
+		SPItems.cheese_cupcake = new SPItemCupcake(3, 0.2F, false).setUnlocalizedName("cheese_cupcake").setRegistryName("cheese_cupcake").setCreativeTab(SPTabs.tabFood);
+		SPItems.sponge_cupcake = new SPItemCupcake(2, 0.1F, false).setUnlocalizedName("sponge_cupcake").setRegistryName("sponge_cupcake").setCreativeTab(SPTabs.tabFood);
 		SPItems.baked_apple = new ItemFood(6, 0.5F, false).setUnlocalizedName("baked_apple").setRegistryName("baked_apple").setCreativeTab(SPTabs.tabFood);
 		SPItems.fried_onion = new ItemFood(4, 0.8F, false).setUnlocalizedName("fried_onion").setRegistryName("fried_onion").setCreativeTab(SPTabs.tabFood);
 		

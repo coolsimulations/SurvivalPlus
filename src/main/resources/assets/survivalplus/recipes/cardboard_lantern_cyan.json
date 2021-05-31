@@ -1,0 +1,23 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "cardboard_lantern",
+  "pattern": [
+    "XXX",
+    "XTX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "blockCardboardCyan"
+    },
+    "T": {
+      "type": "forge:ore_dict",
+      "ore": "torch"
+    }
+  },
+  "result": {
+    "item": "survivalplus:cardboard_lantern_cyan",
+    "count": 4
+  }
+}
