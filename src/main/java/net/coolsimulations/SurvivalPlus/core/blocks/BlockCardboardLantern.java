@@ -9,6 +9,7 @@ import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.BlockHopper;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockTrapDoor;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -49,7 +50,8 @@ public class BlockCardboardLantern extends BlockCardboard {
 	
 	protected boolean isDyed;
 
-	public BlockCardboardLantern(boolean isDyed) {
+	public BlockCardboardLantern(MapColor colour, boolean isDyed) {
+		super(colour);
 		this.setLightLevel(1.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP).withProperty(FLOATING, Boolean.valueOf(false)));
 		this.isDyed = isDyed;

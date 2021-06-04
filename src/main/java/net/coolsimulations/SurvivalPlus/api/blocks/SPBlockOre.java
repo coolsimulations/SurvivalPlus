@@ -25,7 +25,7 @@ public class SPBlockOre extends Block{
 	 */
 	
 	public SPBlockOre(int harvestLevel, Boolean dropsXP) {
-		super(Material.ROCK);
+		super(Material.ROCK, Material.ROCK.getMaterialMapColor());
 		if(harvestLevel == 0) {
 			this.setHarvestLevel("pickaxe", 0);
 		}

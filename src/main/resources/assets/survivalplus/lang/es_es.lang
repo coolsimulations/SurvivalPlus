@@ -90,7 +90,7 @@ tile.cardboard_blue.name=Cartón Azul
 tile.cardboard_purple.name=Cartón Morada
 tile.cardboard_magenta.name=Cartón Magenta
 tile.cardboard_pink.name=Cartón Rosa
-tile.cardboard_brown.name=Cardboard Marrón
+tile.cardboard_brown.name= Cartón Marrón
 tile.cardboard_lantern.name=Farolillo de Cartón
 tile.cardboard_lantern_white.name=Farolillo de Cartón Blanca
 tile.cardboard_lantern_light_grey.name=Farolillo de Cartón Gris Claro
@@ -107,7 +107,7 @@ tile.cardboard_lantern_blue.name=Farolillo de Cartón Azul
 tile.cardboard_lantern_purple.name=Farolillo de Cartón Morada
 tile.cardboard_lantern_magenta.name=Farolillo de Cartón Magenta
 tile.cardboard_lantern_pink.name=Farolillo de Cartón Rosa
-tile.cardboard_lantern_brown.name=Farolillo de Cardboard Marrón
+tile.cardboard_lantern_brown.name=Farolillo de Cartón Marrón
 
 
 tile.campfire.name=Hoguera

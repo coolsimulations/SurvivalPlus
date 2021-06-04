@@ -2,6 +2,7 @@ package net.coolsimulations.SurvivalPlus.api.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -14,8 +15,8 @@ public class SPBlockMetal extends Block{
 	 * @param metalTier only accepts 0-3, anything higher will revert to 3
 	 */
 	
-	public SPBlockMetal(int metalTier, boolean isBeaconMetal) {
-		super(Material.IRON);
+	public SPBlockMetal(MapColor colour, int metalTier, boolean isBeaconMetal) {
+		super(Material.IRON, colour);
 		if(metalTier == 0) {
 			this.setHardness(4.0F);
 			this.setHarvestLevel("pickaxe", 1);
