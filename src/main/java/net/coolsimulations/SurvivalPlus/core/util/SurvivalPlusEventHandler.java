@@ -5,6 +5,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
@@ -14,10 +16,10 @@ import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CakeBlock;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.block.TripWireBlock;
-import net.minecraft.util.text.translation.LanguageMap;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
@@ -34,13 +36,17 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
+import net.minecraft.util.text.translation.LanguageMap;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.common.BasicTrade;
+import net.minecraftforge.event.RegistryEvent.MissingMappings;
+import net.minecraftforge.event.RegistryEvent.MissingMappings.Mapping;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -51,7 +57,6 @@ import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 public class SurvivalPlusEventHandler {
 
@@ -221,6 +226,47 @@ public class SurvivalPlusEventHandler {
 				}
 			}
 		}
+		
+		if(block == Blocks.CAKE) {
+			
+			if(entityplayer.getHeldItemMainhand().getItem() == SPItems.paper_cup || entityplayer.getHeldItemOffhand().getItem() == SPItems.paper_cup) {
+				event.setCanceled(true);
+			}
+			
+			if(entityplayer.getHeldItem(event.getHand()).getItem() == SPItems.paper_cup) {
+
+				if(!event.getWorld().isRemote) {
+
+					int bites = (Integer)state.get(CakeBlock.BITES);
+			    	
+			        if (bites < 6) {
+			            event.getWorld().setBlockState(event.getPos(), (BlockState)state.with(CakeBlock.BITES, bites + 1), 3);
+			        } else {
+			        	event.getWorld().removeBlock(event.getPos(), false);
+			        }
+
+					if(!entityplayer.isCreative()) {
+						if(itemStackIn.getCount() == 1) {
+							if (ItemStack.areItemStacksEqual(entityplayer.getHeldItemOffhand(), itemStackIn))
+							{
+								entityplayer.setHeldItem(Hand.OFF_HAND, new ItemStack(SPItems.cupcake));
+							}
+							else
+							{
+								entityplayer.setHeldItem(Hand.MAIN_HAND, new ItemStack(SPItems.cupcake));
+							}
+						} else  if(itemStackIn.getCount() >= 2){
+							itemStackIn.shrink(1);
+							boolean flag = entityplayer.inventory.addItemStackToInventory(new ItemStack(SPItems.cupcake));
+							if(!flag) {
+								entityplayer.dropItem(new ItemStack(SPItems.cupcake), false);
+							}
+						}
+					}
+				}
+			}
+		}
+
 	}
 
 	@SubscribeEvent
@@ -274,7 +320,7 @@ public class SurvivalPlusEventHandler {
 		}
 
     }**/
-
+	
 	@SubscribeEvent
 	public void coolsimChat(ServerChatEvent event) {
 
@@ -313,7 +359,7 @@ public class SurvivalPlusEventHandler {
 			event.setMessage(coolsimLeft);
 		}
 
-		if(event.getMessage().getFormattedText().startsWith("[coolsim]")) {
+		if(replaceFormattingCodes(event.getMessage()).startsWith("[coolsim]")) {
 			event.setMessage(new StringTextComponent(event.getMessage().getFormattedText().replaceFirst("\\[", coolsim.getFormattedText() + " [")));
 		}
 	}
@@ -327,7 +373,7 @@ public class SurvivalPlusEventHandler {
 			ItemStack coolsimHead = getcoolsimHead();
 
 			if(coolsimHead != null) {
-				ItemHandlerHelper.giveItemToPlayer(attacker, coolsimHead);
+				dropItem(coolsimHead, attacker);
 			} else {
 				TranslationTextComponent error = new TranslationTextComponent("sp.coolsim.error");
 				error.getStyle().setColor(TextFormatting.RED);
@@ -360,6 +406,40 @@ public class SurvivalPlusEventHandler {
 
 		return playerhead;
 	}
+	
+	public static void dropItem(ItemStack stack, PlayerEntity player) {
+		
+		boolean bl = player.inventory.addItemStackToInventory(stack);
+        if (bl && stack.isEmpty()) {
+        	stack.setCount(1);
+           ItemEntity itementity1 = player.dropItem(stack, false);
+           if (itementity1 != null) {
+              itementity1.makeFakeItem();
+           }
 
+           player.world.playSound((PlayerEntity)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.getRNG().nextFloat() - player.getRNG().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+           player.container.detectAndSendChanges();
+        } else {
+           ItemEntity itementity = player.dropItem(stack, false);
+           if (itementity != null) {
+              itementity.setNoPickupDelay();
+              itementity.setOwnerId(player.getUniqueID());
+           }
+        }
 
+	}
+
+	public static String replaceFormattingCodes(ITextComponent component) {
+
+		String text = component.getFormattedText();
+
+		if(text.contains("§")) {
+			System.out.println(text);
+			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
+				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
+			}
+		}
+
+		return text;
+	}
 }

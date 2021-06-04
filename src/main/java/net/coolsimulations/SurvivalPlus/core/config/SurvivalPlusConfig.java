@@ -94,7 +94,7 @@ public class SurvivalPlusConfig {
 		}
 	}
 
-	private static final ForgeConfigSpec commonSpec;
+	public static final ForgeConfigSpec commonSpec;
 	public static final Common COMMON;
 
 	static {

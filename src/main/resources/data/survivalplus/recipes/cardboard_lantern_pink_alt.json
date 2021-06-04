@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cardboard_lantern",
+  "pattern": [
+    "XXX",
+    "XDX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "survivalplus:cardboard_lantern"
+    },
+    "D": {
+      "tag": "forge:dyes/pink"
+    }
+  },
+  "result": {
+    "item": "survivalplus:cardboard_lantern_pink",
+    "count": 8
+  }
+}

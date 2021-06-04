@@ -3,6 +3,7 @@ package net.coolsimulations.SurvivalPlus.api.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
-public class SPBlockMetal extends Block{
+public class SPBlockMetal extends Block {
 	
 	public final Resource resource;
 	public final Boolean beacon;
@@ -22,8 +23,8 @@ public class SPBlockMetal extends Block{
 	 * @param metalTier accepts SPBlockMetal.Resouce
 	 */
 	
-	public SPBlockMetal(Resource resource, boolean isBeaconMetal) {
-		super(Properties.create(Material.IRON).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()));
+	public SPBlockMetal(MaterialColor colour, Resource resource, boolean isBeaconMetal) {
+		super(Properties.create(Material.IRON, colour).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()));
 		this.resource = resource;
 		this.beacon = isBeaconMetal;
 	}
@@ -57,7 +58,7 @@ public class SPBlockMetal extends Block{
 
 	
 	public enum Resource {
-		TIER_0(1, 4.0F, 10.0F, SoundType.METAL, ItemTier.IRON),
+		TIER_0(1, 4.0F, 10.0F, SoundType.METAL, ItemTier.STONE),
 		TIER_1(2, 4.5F, 10.0F, SoundType.METAL, ItemTier.IRON),
 		TIER_2(2, 5.0F, 10.0F, SoundType.METAL, ItemTier.IRON),
 		TIER_3(3, 5.5F, 10.0F, SoundType.METAL, ItemTier.DIAMOND);

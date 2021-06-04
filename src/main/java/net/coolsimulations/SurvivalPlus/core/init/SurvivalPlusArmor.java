@@ -30,9 +30,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class SurvivalPlusArmor {
-	
+
 	public static void init(){
-		
+
 		SPItems.bronze_helmet = new SPItemArmor(SPArmorMaterial.bronzeArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("bronze_helmet");
 		SPItems.bronze_chestplate = new SPItemArmor(SPArmorMaterial.bronzeArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("bronze_chestplate");
 		SPItems.bronze_leggings = new SPItemArmor(SPArmorMaterial.bronzeArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("bronze_leggings");
@@ -42,7 +42,7 @@ public class SurvivalPlusArmor {
 		SPItems.bronze.add(1, new ItemStack(SPItems.bronze_chestplate));
 		SPItems.bronze.add(2, new ItemStack(SPItems.bronze_leggings));
 		SPItems.bronze.add(3, new ItemStack(SPItems.bronze_boots));
-		
+
 		SPItems.stone_helmet = new SPItemArmor(SPArmorMaterial.stoneArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("stone_helmet");
 		SPItems.stone_chestplate = new SPItemArmor(SPArmorMaterial.stoneArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("stone_chestplate");
 		SPItems.stone_leggings = new SPItemArmor(SPArmorMaterial.stoneArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("stone_leggings");
@@ -52,7 +52,7 @@ public class SurvivalPlusArmor {
 		SPItems.stone.add(1, new ItemStack(SPItems.stone_chestplate));
 		SPItems.stone.add(2, new ItemStack(SPItems.stone_leggings));
 		SPItems.stone.add(3, new ItemStack(SPItems.stone_boots));
-		
+
 		SPItems.titanium_helmet = new SPItemArmor(SPArmorMaterial.titaniumArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("titanium_helmet");
 		SPItems.titanium_chestplate = new SPItemArmor(SPArmorMaterial.titaniumArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("titanium_chestplate");
 		SPItems.titanium_leggings = new SPItemArmor(SPArmorMaterial.titaniumArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("titanium_leggings");
@@ -62,7 +62,7 @@ public class SurvivalPlusArmor {
 		SPItems.titanium.add(1, new ItemStack(SPItems.titanium_chestplate));
 		SPItems.titanium.add(2, new ItemStack(SPItems.titanium_leggings));
 		SPItems.titanium.add(3, new ItemStack(SPItems.titanium_boots));
-		
+
 		SPItems.oak_helmet = new SPItemArmor(SPArmorMaterial.oakArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("oak_helmet");
 		SPItems.oak_chestplate = new SPItemArmor(SPArmorMaterial.oakArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("oak_chestplate");
 		SPItems.oak_leggings = new SPItemArmor(SPArmorMaterial.oakArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("oak_leggings");
@@ -72,7 +72,7 @@ public class SurvivalPlusArmor {
 		SPItems.oak.add(1, new ItemStack(SPItems.oak_chestplate));
 		SPItems.oak.add(2, new ItemStack(SPItems.oak_leggings));
 		SPItems.oak.add(3, new ItemStack(SPItems.oak_boots));
-		
+
 		SPItems.spruce_helmet = new SPItemArmor(SPArmorMaterial.spruceArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("spruce_helmet");
 		SPItems.spruce_chestplate = new SPItemArmor(SPArmorMaterial.spruceArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("spruce_chestplate");
 		SPItems.spruce_leggings = new SPItemArmor(SPArmorMaterial.spruceArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("spruce_leggings");
@@ -82,7 +82,7 @@ public class SurvivalPlusArmor {
 		SPItems.spruce.add(1, new ItemStack(SPItems.spruce_chestplate));
 		SPItems.spruce.add(2, new ItemStack(SPItems.spruce_leggings));
 		SPItems.spruce.add(3, new ItemStack(SPItems.spruce_boots));
-		
+
 		SPItems.birch_helmet = new SPItemArmor(SPArmorMaterial.birchArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("birch_helmet");
 		SPItems.birch_chestplate = new SPItemArmor(SPArmorMaterial.birchArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("birch_chestplate");
 		SPItems.birch_leggings = new SPItemArmor(SPArmorMaterial.birchArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("birch_leggings");
@@ -92,7 +92,7 @@ public class SurvivalPlusArmor {
 		SPItems.birch.add(1, new ItemStack(SPItems.birch_chestplate));
 		SPItems.birch.add(2, new ItemStack(SPItems.birch_leggings));
 		SPItems.birch.add(3, new ItemStack(SPItems.birch_boots));
-		
+
 		SPItems.jungle_helmet = new SPItemArmor(SPArmorMaterial.jungleArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("jungle_helmet");
 		SPItems.jungle_chestplate = new SPItemArmor(SPArmorMaterial.jungleArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("jungle_chestplate");
 		SPItems.jungle_leggings = new SPItemArmor(SPArmorMaterial.jungleArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("jungle_leggings");
@@ -102,7 +102,7 @@ public class SurvivalPlusArmor {
 		SPItems.jungle.add(1, new ItemStack(SPItems.jungle_chestplate));
 		SPItems.jungle.add(2, new ItemStack(SPItems.jungle_leggings));
 		SPItems.jungle.add(3, new ItemStack(SPItems.jungle_boots));
-		
+
 		SPItems.acacia_helmet = new SPItemArmor(SPArmorMaterial.acaciaArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("acacia_helmet");
 		SPItems.acacia_chestplate = new SPItemArmor(SPArmorMaterial.acaciaArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("acacia_chestplate");
 		SPItems.acacia_leggings = new SPItemArmor(SPArmorMaterial.acaciaArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("acacia_leggings");
@@ -112,7 +112,7 @@ public class SurvivalPlusArmor {
 		SPItems.acacia.add(1, new ItemStack(SPItems.acacia_chestplate));
 		SPItems.acacia.add(2, new ItemStack(SPItems.acacia_leggings));
 		SPItems.acacia.add(3, new ItemStack(SPItems.acacia_boots));
-		
+
 		SPItems.dark_oak_helmet = new SPItemArmor(SPArmorMaterial.darkOakArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("dark_oak_helmet");
 		SPItems.dark_oak_chestplate = new SPItemArmor(SPArmorMaterial.darkOakArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("dark_oak_chestplate");
 		SPItems.dark_oak_leggings = new SPItemArmor(SPArmorMaterial.darkOakArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("dark_oak_leggings");
@@ -124,7 +124,7 @@ public class SurvivalPlusArmor {
 		SPItems.dark_oak.add(3, new ItemStack(SPItems.dark_oak_boots));
 
 		if (SPCompatibilityManager.isIc2Loaded()) {
-			
+
 			SPItems.rubber_helmet = new SPItemArmor(SPArmorMaterial.rubberArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("rubber_helmet");
 			SPItems.rubber_chestplate = new SPItemArmor(SPArmorMaterial.rubberArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("rubber_chestplate");
 			SPItems.rubber_leggings = new SPItemArmor(SPArmorMaterial.rubberArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("rubber_leggings");
@@ -134,18 +134,36 @@ public class SurvivalPlusArmor {
 			SPItems.rubber.add(1, new ItemStack(SPItems.rubber_chestplate));
 			SPItems.rubber.add(2, new ItemStack(SPItems.rubber_leggings));
 			SPItems.rubber.add(3, new ItemStack(SPItems.rubber_boots));
-			
+
 		}
 		
-		if(SPCompatibilityManager.isBopLoaded()){
+		if (SPCompatibilityManager.isBambooModsLoaded()) {
+
+			SPItems.bamboo_helmet = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("bamboo_helmet");
+			SPItems.bamboo_chestplate = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("bamboo_chestplate");
+			SPItems.bamboo_leggings = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("bamboo_leggings");
+			SPItems.bamboo_boots = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlotType.FEET).setRegistryName("bamboo_boots");
+			SPItems.bamboo = NonNullList.create();
+			SPItems.bamboo.add(0, new ItemStack(SPItems.bamboo_helmet));
+			SPItems.bamboo.add(1, new ItemStack(SPItems.bamboo_chestplate));
+			SPItems.bamboo.add(2, new ItemStack(SPItems.bamboo_leggings));
+			SPItems.bamboo.add(3, new ItemStack(SPItems.bamboo_boots));
+		}
+
+		if(SPCompatibilityManager.isBopLoaded()) {
 			BOPArmor.init();
 		}
-		
-		if(SPCompatibilityManager.isForestryLoaded()){
+
+		if(SPCompatibilityManager.isForestryLoaded()) {
 			ForestryArmor.init();
 		}
-		
+
+		if(SPCompatibilityManager.isTraverseLoaded()) {
+			TraverseArmor.init();
+		}
+
 	}
+
 	public static void register()
 	{
 		registerItem(SPItems.bronze);
@@ -157,24 +175,31 @@ public class SurvivalPlusArmor {
 		registerItem(SPItems.jungle);
 		registerItem(SPItems.acacia);
 		registerItem(SPItems.dark_oak);
-		
+
 		if (SPCompatibilityManager.isIc2Loaded()) {
-			
+
 			registerItem(SPItems.rubber);
 		}
-
 		
-		if(SPCompatibilityManager.isBopLoaded()){
+		if (SPCompatibilityManager.isBambooModsLoaded()) {
+			registerItem(SPItems.bamboo);
+		}
+
+		if(SPCompatibilityManager.isBopLoaded()) {
 			BOPArmor.register();
 		}
-		
-		if(SPCompatibilityManager.isForestryLoaded()){
+
+		if(SPCompatibilityManager.isForestryLoaded()) {
 			ForestryArmor.register();
+		}
+		
+		if(SPCompatibilityManager.isTraverseLoaded()) {
+			TraverseArmor.register();
 		}
 	}
 
 	public static void registerItem(NonNullList<ItemStack> item) {
-		
+
 		for(int i = 0; i < item.size(); i++) {
 			ForgeRegistries.ITEMS.register(item.get(i).getItem());
 		}

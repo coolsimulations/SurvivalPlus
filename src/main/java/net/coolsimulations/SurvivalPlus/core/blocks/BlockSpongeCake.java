@@ -1,13 +1,14 @@
 package net.coolsimulations.SurvivalPlus.core.blocks;
 
+import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IProperty;
 import net.minecraft.state.IntegerProperty;
@@ -43,10 +44,46 @@ public class BlockSpongeCake extends Block
 
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand, BlockRayTraceResult ray) {
         if (!worldIn.isRemote) {
-            return this.eatCake(worldIn, pos, state, playerIn);
+            if(playerIn.getHeldItemMainhand().getItem() == SPItems.paper_cup || playerIn.getHeldItemOffhand().getItem() == SPItems.paper_cup) {
+            	
+            	decrementBites(worldIn, state, pos);
+            	
+            	if(!playerIn.isCreative()) {
+            		
+            		ItemStack itemStackIn;
+            		
+            		if (playerIn.getHeldItemOffhand().getItem() == SPItems.paper_cup)
+					{
+						itemStackIn = playerIn.getHeldItemOffhand();
+					}
+					else
+					{
+						itemStackIn = playerIn.getHeldItemMainhand();
+					}
+            		
+					if(itemStackIn.getCount() == 1) {
+						if (ItemStack.areItemStacksEqual(playerIn.getHeldItemOffhand(), itemStackIn))
+						{
+							playerIn.setHeldItem(Hand.OFF_HAND, new ItemStack(SPItems.sponge_cupcake));
+						}
+						else
+						{
+							playerIn.setHeldItem(Hand.MAIN_HAND, new ItemStack(SPItems.sponge_cupcake));
+						}
+					} else  if(itemStackIn.getCount() >= 2){
+						itemStackIn.shrink(1);
+						boolean flag = playerIn.inventory.addItemStackToInventory(new ItemStack(SPItems.sponge_cupcake));
+						if(!flag) {
+							playerIn.dropItem(new ItemStack(SPItems.sponge_cupcake), false);
+						}
+
+					}
+				}
+				return true;
+            }
+    		return this.eatCake(worldIn, pos, state, playerIn);
         } else {
-            ItemStack itemstack = playerIn.getHeldItem(hand);
-            return this.eatCake(worldIn, pos, state, playerIn) || itemstack.isEmpty();
+            return true;
         }
     }
 
@@ -55,15 +92,21 @@ public class BlockSpongeCake extends Block
             return false;
         } else {
             player.addStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodStats().addStats(3, 0.2F);
-            int bites = (Integer)state.get(BITES);
-            if (bites < 7) {
-                worldIn.setBlockState(pos, (BlockState)state.with(BITES, bites + 1), 3);
-            } else {
-                worldIn.removeBlock(pos, false);
-            }
+            player.getFoodStats().addStats(2, 0.1F);
+            decrementBites(worldIn, state, pos);
 
             return true;
+        }
+    }
+    
+    private void decrementBites(IWorld worldIn, BlockState state, BlockPos pos) {
+    	
+    	int bites = (Integer)state.get(BITES);
+    	
+        if (bites < 7) {
+            worldIn.setBlockState(pos, (BlockState)state.with(BITES, bites + 1), 3);
+        } else {
+            worldIn.removeBlock(pos, false);
         }
     }
 

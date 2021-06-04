@@ -31,7 +31,7 @@ public class SPBlockOre extends Block{
 	 */
 	
 	public SPBlockOre(Resource resource, Boolean dropsXP) {
-		super(Properties.create(Material.ROCK).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()));
+		super(Properties.create(Material.ROCK, Material.ROCK.getColor()).hardnessAndResistance(resource.hardness, resource.resistance).sound(resource.getBlockSoundType()));
 		this.resource = resource;
 		this.experience = dropsXP;
 	}
