@@ -29,8 +29,8 @@ public class SurvivalPlusBlocks {
 		SPBlocks.copper_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1, false).setRegistryName("copper_ore");
 		SPBlocks.tin_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1, false).setRegistryName("tin_ore");
 		SPBlocks.amethyst = new SPBlockCrystal(MaterialColor.PURPLE).setRegistryName("amethyst");
-		SPBlocks.ruby = new SPBlockCrystal(MaterialColor.BROWN).setRegistryName("ruby");
-		SPBlocks.bronze_block = new SPBlockMetal(MaterialColor.RED, SPBlockMetal.Resource.TIER_1, true).setRegistryName("bronze_block");
+		SPBlocks.ruby = new SPBlockCrystal(MaterialColor.RED).setRegistryName("ruby");
+		SPBlocks.bronze_block = new SPBlockMetal(MaterialColor.BROWN, SPBlockMetal.Resource.TIER_1, true).setRegistryName("bronze_block");
 		SPBlocks.titanium_block = new SPBlockMetal(MaterialColor.DIAMOND, SPBlockMetal.Resource.TIER_2, true).setRegistryName("titanium_block");
 		SPBlocks.titanium_ore = new SPBlockOre(SPBlockOre.Resource.TIER_2, false).setRegistryName("titanium_ore");
 		SPBlocks.pearl = new SPBlockCrystal(MaterialColor.SNOW).setRegistryName("pearl");
