@@ -1,16 +1,16 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
-import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboard;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
@@ -99,6 +99,17 @@ public class FuelHandler{
 			addArmorFuels(event, SPItems.fir_traverse);
 		}
 		
+		if (SPCompatibilityManager.isBambooModsLoaded()) {
+			if(fuel.getItem() == SPItems.bamboo_helmet)
+				event.setBurnTime(250);
+			if(fuel.getItem() == SPItems.bamboo_chestplate)
+				event.setBurnTime(400);
+			if(fuel.getItem() == SPItems.bamboo_leggings)
+				event.setBurnTime(350);
+			if(fuel.getItem() == SPItems.bamboo_boots)
+				event.setBurnTime(200);
+		}
+		
 		if(fuel.getItem() == SPItems.paper_cup)
 			event.setBurnTime(200);
 
@@ -113,7 +124,10 @@ public class FuelHandler{
 
             if (block instanceof BlockCardboard)
             {
-                event.setBurnTime(800);
+            	event.setBurnTime(800);
+            	if(block instanceof BlockCardboardLantern) {
+            		event.setBurnTime(1600);
+            	}
             }
         }
 	}
