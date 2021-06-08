@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "survivalplus:copper_ingot_from_dust"
+      "survivalplus:bronze_ingot_from_dust_smelting"
     ]
   },
   "criteria": {
-    "has_copper_dust": {
+    "has_bronze_dust": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "c:copper_dusts"
+            "tag": "c:bronze_dusts"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "survivalplus:copper_ingot_from_dust"
+        "recipe": "survivalplus:bronze_ingot_from_dust_smelting"
       }
     }
   },
   "requirements": [
     [
-      "has_copper_dust",
+      "has_bronze_dust",
       "has_the_recipe"
     ]
   ]

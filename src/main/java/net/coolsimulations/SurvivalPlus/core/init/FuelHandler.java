@@ -1,7 +1,9 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
+import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboard;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EquipmentSlot;
@@ -20,13 +22,41 @@ public class FuelHandler{
 		addArmorFuels(SPItems.jungle);
 		addArmorFuels(SPItems.acacia);
 		addArmorFuels(SPItems.dark_oak);
+		
+		if (SPCompatibilityManager.isBambooModsLoaded()) {
+			FuelRegistry.INSTANCE.add(SPItems.bamboo_helmet, 250);
+			FuelRegistry.INSTANCE.add(SPItems.bamboo_chestplate, 400);
+			FuelRegistry.INSTANCE.add(SPItems.bamboo_leggings, 350);
+			FuelRegistry.INSTANCE.add(SPItems.bamboo_boots, 200);
+		}
+		
+		if(SPCompatibilityManager.isTerrestriaLoaded()) {
+			addArmorFuels(SPItems.redwood_terrestria);
+			addArmorFuels(SPItems.hemlock);
+			addArmorFuels(SPItems.rubber_terrestria);
+			addArmorFuels(SPItems.cypress);
+			addArmorFuels(SPItems.willow_terrestria);
+			addArmorFuels(SPItems.japanese_maple);
+			addArmorFuels(SPItems.rainbow_eucalyptus);
+			addArmorFuels(SPItems.sakura);
+		}
+		
+		if(SPCompatibilityManager.isTraverseLoaded()) {
+			addArmorFuels(SPItems.fir_traverse);
+		}
+		
+		FuelRegistry.INSTANCE.add(SPItems.paper_cup, 200);
 
 		FuelRegistry.INSTANCE.add(SPItems.charcoal_bucket, 4800);
 
 		for(int i = 0; i < Registry.BLOCK.getIds().size(); i++) {
-			if(Registry.BLOCK.get(i) instanceof BlockCardboard) {
-				Block block = Registry.BLOCK.get(i);
+			Block block = Registry.BLOCK.get(i);
+			
+			if(block instanceof BlockCardboard) {
 				FuelRegistry.INSTANCE.add(block, 800);
+				if(block instanceof BlockCardboardLantern) {
+					FuelRegistry.INSTANCE.add(block, 1600);
+				}
 			}
 		}
 	}

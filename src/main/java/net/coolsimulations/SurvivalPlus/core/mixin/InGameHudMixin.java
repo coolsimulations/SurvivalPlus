@@ -4,6 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -41,7 +42,7 @@ public abstract class InGameHudMixin {
 			return coolsimLeft;
 		}
 
-		if(message.asFormattedString().startsWith("[coolsim]")) {
+		if(SurvivalPlusEventHandler.replaceFormattingCodes(message).startsWith("[coolsim]")) {
 			return new LiteralText(message.asFormattedString().replaceFirst("\\[", coolsim.asFormattedString() + " ["));
 		}
 		

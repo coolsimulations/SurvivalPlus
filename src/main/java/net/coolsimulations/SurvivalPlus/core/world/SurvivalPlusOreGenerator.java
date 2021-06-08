@@ -21,6 +21,7 @@ import net.minecraft.world.biome.DeepWarmOceanBiome;
 import net.minecraft.world.biome.EndBiome;
 import net.minecraft.world.biome.FrozenOceanBiome;
 import net.minecraft.world.biome.LukewarmOceanBiome;
+import net.minecraft.world.biome.MushroomFieldShoreBiome;
 import net.minecraft.world.biome.MushroomFieldsBiome;
 import net.minecraft.world.biome.NetherBiome;
 import net.minecraft.world.biome.OceanBiome;
@@ -51,11 +52,11 @@ public class SurvivalPlusOreGenerator {
 					biome.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, Biome.configureFeature(Feature.ORE, new OreFeatureConfig(Target.NETHERRACK, SPBlocks.sapphire.getDefaultState(), 3), Decorator.COUNT_RANGE, new RangeDecoratorConfig(10, 1, 0, 255)));
 				}
 			} else if(!(biome instanceof EndBiome || biome.getCategory() == Category.THEEND)) {
-				if(biome instanceof OceanBiome || biome instanceof DeepOceanBiome || biome instanceof ColdOceanBiome || biome instanceof DeepColdOceanBiome || biome instanceof DeepWarmOceanBiome || biome instanceof WarmOceanBiome || biome instanceof DeepLukewarmOceanBiome || biome instanceof LukewarmOceanBiome || biome instanceof DeepFrozenOceanBiome || biome instanceof FrozenOceanBiome || biome.getCategory() == Category.OCEAN && !SPConfig.disablePearlGen) {
+				if((biome instanceof OceanBiome || biome instanceof DeepOceanBiome || biome instanceof ColdOceanBiome || biome instanceof DeepColdOceanBiome || biome instanceof DeepWarmOceanBiome || biome instanceof WarmOceanBiome || biome instanceof DeepLukewarmOceanBiome || biome instanceof LukewarmOceanBiome || biome instanceof DeepFrozenOceanBiome || biome instanceof FrozenOceanBiome || biome.getCategory() == Category.OCEAN) && !SPConfig.disablePearlGen) {
 					biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(SPOreFeature.SURVIVALPLUS_ORE_FEATURE, new SPOreFeatureConfig(new SPGravelGeneratorPredicate(), SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3), Decorator.COUNT_RANGE, new RangeDecoratorConfig(4, 20, 0, 63)));
 
 				}
-				if(biome instanceof MushroomFieldsBiome || biome.getCategory() == Category.MUSHROOM && !SPConfig.disableSpinelGen) {
+				if((biome instanceof MushroomFieldsBiome || biome instanceof MushroomFieldShoreBiome || biome.getCategory() == Category.MUSHROOM) && !SPConfig.disableSpinelGen) {
 					biome.addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(Feature.ORE, new OreFeatureConfig(Target.NATURAL_STONE, SPBlocks.spinel.getDefaultState(), 3), Decorator.COUNT_RANGE, new RangeDecoratorConfig(2, 1, 0, 8)));
 
 				}

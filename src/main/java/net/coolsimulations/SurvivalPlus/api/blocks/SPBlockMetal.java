@@ -4,11 +4,12 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tools.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.block.MaterialColor;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.sound.BlockSoundGroup;
 
-public class SPBlockMetal extends Block{
+public class SPBlockMetal extends Block {
 	
 	public final Resource resource;
 	public final Boolean beacon;
@@ -17,8 +18,8 @@ public class SPBlockMetal extends Block{
 	 * @param metalTier accepts SPBlockMetal.Resouce
 	 */
 	
-	public SPBlockMetal(Resource resource, boolean isBeaconMetal) {
-		super(FabricBlockSettings.of(Material.METAL).hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).lightLevel(0));
+	public SPBlockMetal(MaterialColor colour, Resource resource, boolean isBeaconMetal) {
+		super(FabricBlockSettings.of(Material.METAL, colour).hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).lightLevel(0));
 		this.resource = resource;
 		this.beacon = isBeaconMetal;
 	}

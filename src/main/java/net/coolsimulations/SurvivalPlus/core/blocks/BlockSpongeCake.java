@@ -2,6 +2,7 @@ package net.coolsimulations.SurvivalPlus.core.blocks;
 
 import com.google.common.jimfs.PathType;
 
+import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -41,11 +42,48 @@ public class BlockSpongeCake extends Block
     }
 
     public boolean activate(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand, BlockHitResult ray) {
-        if (!worldIn.isClient) {
-            return this.tryEat(worldIn, pos, state, playerIn);
+    	if (!worldIn.isClient) {
+            if(playerIn.getMainHandStack().getItem() == SPItems.paper_cup || playerIn.getOffHandStack().getItem() == SPItems.paper_cup) {
+            	
+            	decrementBites(worldIn, state, pos);
+            	
+            	if(!playerIn.isCreative()) {
+            		
+            		ItemStack itemStackIn;
+            		
+            		if (playerIn.getOffHandStack().getItem() == SPItems.paper_cup)
+					{
+						itemStackIn = playerIn.getOffHandStack();
+					}
+					else
+					{
+						itemStackIn = playerIn.getMainHandStack();
+					}
+            		
+					if(itemStackIn.getCount() == 1) {
+						if (ItemStack.areItemsEqual(playerIn.getOffHandStack(), itemStackIn))
+						{
+							playerIn.setStackInHand(Hand.OFF_HAND, new ItemStack(SPItems.sponge_cupcake));
+						}
+						else
+						{
+							playerIn.setStackInHand(Hand.MAIN_HAND, new ItemStack(SPItems.sponge_cupcake));
+						}
+					} else if(itemStackIn.getCount() >= 2){
+						itemStackIn.decrement(1);
+						boolean flag = playerIn.inventory.insertStack(new ItemStack(SPItems.sponge_cupcake));
+						if(!flag) {
+							playerIn.dropItem(new ItemStack(SPItems.sponge_cupcake), false);
+						}
+
+					}
+				}
+				return true;
+            }
+    		return this.tryEat(worldIn, pos, state, playerIn);
+
         } else {
-            ItemStack itemstack = playerIn.getStackInHand(hand);
-            return this.tryEat(worldIn, pos, state, playerIn) || itemstack.isEmpty();
+            return true;
         }
     }
 
@@ -54,15 +92,21 @@ public class BlockSpongeCake extends Block
             return false;
         } else {
             player.incrementStat(Stats.EAT_CAKE_SLICE);
-            player.getHungerManager().add(3, 0.2F);
-            int bites = (Integer)state.get(BITES);
-            if (bites < 7) {
-                worldIn.setBlockState(pos, (BlockState)state.with(BITES, bites + 1), 3);
-            } else {
-                worldIn.removeBlock(pos, false);
-            }
-
+            player.getHungerManager().add(2, 0.1F);
+            decrementBites(worldIn, state, pos);
+            
             return true;
+        }
+    }
+    
+    private void decrementBites(IWorld worldIn, BlockState state, BlockPos pos) {
+
+    	int bites = (Integer)state.get(BITES);
+    	
+        if (bites < 7) {
+            worldIn.setBlockState(pos, (BlockState)state.with(BITES, bites + 1), 3);
+        } else {
+            worldIn.removeBlock(pos, false);
         }
     }
 

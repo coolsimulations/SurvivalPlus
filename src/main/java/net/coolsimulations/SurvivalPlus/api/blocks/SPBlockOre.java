@@ -31,7 +31,7 @@ public class SPBlockOre extends Block{
 	 */
 
 	public SPBlockOre(Resource resource, Boolean dropsXP) {
-		super(FabricBlockSettings.of(Material.STONE).hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).lightLevel(0));
+		super(FabricBlockSettings.of(Material.STONE, Material.STONE.getColor()).hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).lightLevel(0));
 		this.resource = resource;
 		this.experience = dropsXP;
 	}

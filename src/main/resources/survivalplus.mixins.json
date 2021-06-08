@@ -14,7 +14,8 @@
         "ItemMixin", "EnchantmentHelperMixin", "EnchantmentMixin",
         "LivingEntityMixin",
         "ServerPlayerInteractionManagerMixin",
-        "ServerWorldMixin"
+        "ServerWorldMixin",
+        "CakeBlockMixin"
     ],
     "client": [
     	"BuiltinModelItemRendererMixin",
