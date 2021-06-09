@@ -13,7 +13,6 @@ public class SPCompatibilityManager {
 	private static boolean modBetterBambooLoaded;
 	private static boolean modTraverseLoaded;
 	private static boolean modTerrestriaLoaded;
-	private static boolean modWeepingAngelsLoaded;
 
 	public static final String GCCORE_MODID = "galacticraft";
 	public static final String FABRIC_SHIELD_LIB_MODID = "fabricshieldlib";
@@ -24,7 +23,6 @@ public class SPCompatibilityManager {
 	public static final String BETTER_BAMBOO_MODID = "bamboomod";
 	public static final String TRAVERSE_MODID = "traverse";
 	public static final String TERRESTRIA_MODID = "terrestria";
-	public static final String WEEPING_ANGELS_MODID = "weeping-angels";
 
 	public static void checkForCompatibleMods(){
 
@@ -71,11 +69,6 @@ public class SPCompatibilityManager {
 		if (FabricLoader.getInstance().isModLoaded(TERRESTRIA_MODID))
 		{
 			SPCompatibilityManager.modTerrestriaLoaded = true;
-		}
-		
-		if (FabricLoader.getInstance().isModLoaded(WEEPING_ANGELS_MODID))
-		{
-			SPCompatibilityManager.modWeepingAngelsLoaded = true;
 		}
 	}
 
@@ -126,11 +119,6 @@ public class SPCompatibilityManager {
 	public static boolean isTerrestriaLoaded()
 	{
 		return SPCompatibilityManager.modTerrestriaLoaded;
-	}
-	
-	public static boolean isWeepingAngelsLoaded()
-	{
-		return SPCompatibilityManager.modWeepingAngelsLoaded;
 	}
 
 }
