@@ -5,7 +5,7 @@ logoFile="logo.png"
 
 [[mods]]
     modId="survivalplus"
-    version="0.1.4b"
+    version="0.1.5"
     updateJSONURL="https://coolsimulations.net/mcmods/survivalplus/versionchecker.json"
     displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus"
     displayName="SurvivalPlus"
@@ -17,7 +17,7 @@ logoFile="logo.png"
 [[dependencies.survivalplus]]
     modId="forge"
     mandatory=true
-    versionRange="[31.2.35,)"
+    versionRange="[31.2.50,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]

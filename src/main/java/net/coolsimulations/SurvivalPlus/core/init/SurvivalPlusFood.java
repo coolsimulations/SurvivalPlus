@@ -3,6 +3,7 @@ package net.coolsimulations.SurvivalPlus.core.init;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPFoods;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
+import net.coolsimulations.SurvivalPlus.api.item.SPItemCupcake;
 import net.minecraft.item.Item;
 import net.minecraft.item.Food;
 import net.minecraft.item.Food.Builder;
@@ -49,9 +50,9 @@ public class SurvivalPlusFood {
 		SPItems.cheese = new Item(new Item.Properties().food(SPFoods.cheese).group(SPTabs.tabFood)).setRegistryName("cheese");
 		SPItems.cheese_bread = new Item(new Item.Properties().food(SPFoods.cheese_bread).group(SPTabs.tabFood)).setRegistryName("cheese_bread");
 		SPItems.melted_cheese_bread = new Item(new Item.Properties().food(SPFoods.melted_cheese_bread).group(SPTabs.tabFood)).setRegistryName("melted_cheese_bread");
-		SPItems.cupcake = new Item(new Item.Properties().food(SPFoods.cupcake).group(SPTabs.tabFood)).setRegistryName("cupcake");
-		SPItems.cheese_cupcake = new Item(new Item.Properties().food(SPFoods.cheese_cupcake).group(SPTabs.tabFood)).setRegistryName("cheese_cupcake");
-		SPItems.sponge_cupcake = new Item(new Item.Properties().food(SPFoods.sponge_cupcake).group(SPTabs.tabFood)).setRegistryName("sponge_cupcake");
+		SPItems.cupcake = new SPItemCupcake(new Item.Properties().food(SPFoods.cupcake).group(SPTabs.tabFood)).setRegistryName("cupcake");
+		SPItems.cheese_cupcake = new SPItemCupcake(new Item.Properties().food(SPFoods.cheese_cupcake).group(SPTabs.tabFood)).setRegistryName("cheese_cupcake");
+		SPItems.sponge_cupcake = new SPItemCupcake(new Item.Properties().food(SPFoods.sponge_cupcake).group(SPTabs.tabFood)).setRegistryName("sponge_cupcake");
 		SPItems.baked_apple = new Item(new Item.Properties().food(SPFoods.baked_apple).group(SPTabs.tabFood)).setRegistryName("baked_apple");
 		SPItems.fried_onion = new Item(new Item.Properties().food(SPFoods.fried_onion).group(SPTabs.tabFood)).setRegistryName("fried_onion");
 		

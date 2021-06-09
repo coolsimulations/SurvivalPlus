@@ -8,16 +8,20 @@ import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystal;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.ColdOceanBiome;
 import net.minecraft.world.biome.DeepColdOceanBiome;
 import net.minecraft.world.biome.DeepFrozenOceanBiome;
 import net.minecraft.world.biome.DeepLukewarmOceanBiome;
 import net.minecraft.world.biome.DeepOceanBiome;
 import net.minecraft.world.biome.DeepWarmOceanBiome;
+import net.minecraft.world.biome.EndBarrensBiome;
+import net.minecraft.world.biome.EndHighlandsBiome;
+import net.minecraft.world.biome.EndMidlandsBiome;
 import net.minecraft.world.biome.FrozenOceanBiome;
 import net.minecraft.world.biome.LukewarmOceanBiome;
+import net.minecraft.world.biome.MushroomFieldShoreBiome;
 import net.minecraft.world.biome.MushroomFieldsBiome;
+import net.minecraft.world.biome.NetherBiome;
 import net.minecraft.world.biome.OceanBiome;
 import net.minecraft.world.biome.WarmOceanBiome;
 import net.minecraft.world.gen.GenerationStage;
@@ -33,7 +37,7 @@ public class SurvivalPlusOreGenerator {
 	public static void generateOres() {
 
 		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
-			if (biome == Biomes.NETHER) {
+			if (biome instanceof NetherBiome) {
 				if(!SPConfig.disableAmethystGen.get()) {
 					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.amethyst.getDefaultState(), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 1, 0, 255))));
 				}
@@ -46,13 +50,15 @@ public class SurvivalPlusOreGenerator {
 				if(!SPConfig.disableSapphireGen.get()) {
 					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.sapphire.getDefaultState(), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(10, 1, 0, 255))));
 				}
-			} else if(biome instanceof OceanBiome || biome instanceof DeepOceanBiome || biome instanceof ColdOceanBiome || biome instanceof DeepColdOceanBiome || biome instanceof DeepWarmOceanBiome || biome instanceof WarmOceanBiome || biome instanceof DeepLukewarmOceanBiome || biome instanceof LukewarmOceanBiome || biome instanceof DeepFrozenOceanBiome || biome instanceof FrozenOceanBiome && !SPConfig.disablePearlGen.get()) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(FillerBlockType.create("gravel", "gravel", new SPGravelGeneratorPredicate()), SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(4, 20, 0, 63))));
+			} else if(!(biome instanceof EndBarrensBiome || biome instanceof EndHighlandsBiome || biome instanceof EndMidlandsBiome)) {
+				if(biome instanceof OceanBiome || biome instanceof DeepOceanBiome || biome instanceof ColdOceanBiome || biome instanceof DeepColdOceanBiome || biome instanceof DeepWarmOceanBiome || biome instanceof WarmOceanBiome || biome instanceof DeepLukewarmOceanBiome || biome instanceof LukewarmOceanBiome || biome instanceof DeepFrozenOceanBiome || biome instanceof FrozenOceanBiome && !SPConfig.disablePearlGen.get()) {
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(FillerBlockType.create("gravel", "gravel", new SPGravelGeneratorPredicate()), SPBlocks.pearl.getDefaultState().with(SPBlockCrystal.WATERLOGGED, true), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(4, 20, 0, 63))));
 
-			} else if(biome instanceof MushroomFieldsBiome && !SPConfig.disableSpinelGen.get()) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.spinel.getDefaultState(), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(2, 1, 0, 8))));
+				}
+				if((biome instanceof MushroomFieldsBiome || biome instanceof MushroomFieldShoreBiome) && !SPConfig.disableSpinelGen.get()) {
+					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.spinel.getDefaultState(), 3)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(2, 1, 0, 8))));
 
-			} else {
+				}
 				if(!SPConfig.disableCopperOreGen.get()) {
 					biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.copper_ore.getDefaultState(), 8)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 1, 0, 54))));
 				}
@@ -65,9 +71,9 @@ public class SurvivalPlusOreGenerator {
 			}
 		}
 	}
-	
+
 	public static class SPGravelGeneratorPredicate implements Predicate<BlockState> {
-		
+
 		@Override
 		public boolean apply(BlockState input) {
 			return input != null && input.getBlock() == Blocks.GRAVEL;

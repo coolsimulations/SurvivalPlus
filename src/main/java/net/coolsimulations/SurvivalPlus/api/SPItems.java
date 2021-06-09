@@ -153,6 +153,26 @@ public class SPItems {
 	public static NonNullList<ItemStack> warped;
 	
 	/**
+	 * These are the bamboo armor Items referred to in SurvivalPlusArmor along with the corresponding ArmorMaterial and Armor ItemStack List
+	 */
+	public static Item bamboo_helmet;
+	public static Item bamboo_chestplate;
+	public static Item bamboo_leggings;
+	public static Item bamboo_boots;
+	//public static ItemArmor.ArmorMaterial bambooArmorMaterial;
+	public static NonNullList<ItemStack> bamboo;
+	
+	/**
+	 * These are the Traverse armor Items referred to in TraverseArmor along with the corresponding ArmorMaterial and Armor ItemStack List
+	 */
+	public static Item fir_helmet_traverse;
+	public static Item fir_chestplate_traverse;
+	public static Item fir_leggings_traverse;
+	public static Item fir_boots_traverse;
+	//public static ItemArmor.ArmorMaterial firTraverseArmorMaterial;
+	public static NonNullList<ItemStack> fir_traverse;
+	
+	/**
 	 * These are the rubber armor Items referred to in SurvivalPlusArmor along with the corresponding ArmorMaterial and Armor ItemStack List
 	 */
 	public static Item rubber_helmet;

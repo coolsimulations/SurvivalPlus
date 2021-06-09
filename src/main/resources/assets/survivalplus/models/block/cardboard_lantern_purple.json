@@ -1,0 +1,6 @@
+{
+  "parent": "survivalplus:block/template_cardboard_lantern",
+  "textures": {
+    "cardboard": "survivalplus:blocks/cardboard_purple"
+  }
+}

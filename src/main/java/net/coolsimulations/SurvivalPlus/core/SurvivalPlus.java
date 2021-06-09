@@ -5,6 +5,7 @@ import com.mojang.authlib.GameProfile;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandConfrats;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandEmportant;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandIndeed;
@@ -16,6 +17,7 @@ import net.coolsimulations.SurvivalPlus.core.commands.CommandWak;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWeba;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWoo;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
+import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfigGUI;
 import net.coolsimulations.SurvivalPlus.core.init.FuelHandler;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusBlocks;
@@ -26,6 +28,7 @@ import net.coolsimulations.SurvivalPlus.core.proxy.ClientProxy;
 import net.coolsimulations.SurvivalPlus.core.proxy.CommonProxy;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusComposterRecipes;
+import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusDispenserBehavior;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
@@ -34,6 +37,7 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -46,6 +50,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -53,6 +58,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @Mod(value = SPReference.MOD_ID)
@@ -99,6 +105,13 @@ public class SurvivalPlus {
 
 		SPCompatibilityManager.checkForCompatibleMods();
 		SurvivalPlusConfig.register(ModLoadingContext.get());
+
+		if(SPCompatibilityManager.isClothConfigLoaded()) {
+			ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> (client, parent) -> {
+				return SurvivalPlusConfigGUI.getConfigScreen(client.currentScreen);
+			});
+		}
+
 		SurvivalPlusUpdateHandler.init();
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(SurvivalPlus::setupEvent);
@@ -124,6 +137,8 @@ public class SurvivalPlus {
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
 		
+		SurvivalPlusDispenserBehavior.init();
+
 		proxy.init();
 
 		if(SPCompatibilityManager.isHammerTimeLoaded()) {
@@ -171,10 +186,18 @@ public class SurvivalPlus {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public static void registerCutouts(FMLClientSetupEvent event)
 	{
 		RenderTypeLookup.setRenderLayer(SPBlocks.onion, RenderType.getCutout());
+
+		for(ResourceLocation location : ForgeRegistries.BLOCKS.getKeys()) {
+			Block block = ForgeRegistries.BLOCKS.getValue(location);
+
+			if(block instanceof BlockCardboardLantern) {
+				RenderTypeLookup.setRenderLayer(block, RenderType.getCutout());
+			}
+		}
 	}
 }

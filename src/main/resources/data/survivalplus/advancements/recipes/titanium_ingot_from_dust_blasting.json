@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "survivalplus:titanium_ingot_from_dust_blasting"
+    ]
+  },
+  "criteria": {
+    "has_titanium_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "survivalplus:titanium_dust"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "survivalplus:titanium_ingot_from_dust_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_titanium_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

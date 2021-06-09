@@ -36,6 +36,12 @@ public class SPCompatibilityManager {
 	private static boolean modVulcaniteLoaded;
 	private static boolean modCarbonadoLoaded;
 	private static boolean modFutureMCLoaded;
+	private static boolean modWeepingAngelsLoaded;
+	private static boolean modTraverseLoaded;
+	private static boolean modBambooEverythingLoaded;
+	private static boolean modBamboo2Loaded;
+	private static boolean modClothConfigLoaded;
+	private static boolean modCavesandCliffsBackportLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -70,6 +76,12 @@ public class SPCompatibilityManager {
 	public static final String VULCANITE_MODID = "vulcanite";
 	public static final String CARBONADO_MODID = "carbonado";
 	public static final String FUTURE_MC_MODID = "futuremc";
+	public static final String WEEPING_ANGELS_MODID = "weeping-angels";
+	public static final String TRAVERSE_MODID = "traverse";
+	public static final String BAMBOO_EVERYTHING_MODID = "bambooeverything";
+	public static final String BAMBOO_2_MODID = "bamboo2";
+	public static final String CLOTH_CONFIG_MODID = "cloth-config2";
+	public static final String CAVES_AND_CLIFFS_BACKPORT_MODID = "cavesandcliffs";
 
 	public static void checkForCompatibleMods(){
 
@@ -232,6 +244,36 @@ public class SPCompatibilityManager {
 		if (ModList.get().isLoaded(FUTURE_MC_MODID))
 		{
 			SPCompatibilityManager.modFutureMCLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(WEEPING_ANGELS_MODID))
+		{
+			SPCompatibilityManager.modWeepingAngelsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(TRAVERSE_MODID))
+		{
+			SPCompatibilityManager.modTraverseLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(BAMBOO_EVERYTHING_MODID))
+		{
+			SPCompatibilityManager.modBambooEverythingLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(BAMBOO_2_MODID))
+		{
+			SPCompatibilityManager.modBamboo2Loaded = true;
+		}
+		
+		if (ModList.get().isLoaded(CLOTH_CONFIG_MODID))
+		{
+			SPCompatibilityManager.modClothConfigLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(CAVES_AND_CLIFFS_BACKPORT_MODID))
+		{
+			SPCompatibilityManager.modCavesandCliffsBackportLoaded = true;
 		}
 	}
 
@@ -403,6 +445,40 @@ public class SPCompatibilityManager {
 	public static boolean isFutureMCLoaded()
 	{
 		return SPCompatibilityManager.modFutureMCLoaded;
+	}
+	
+	public static boolean isWeepingAngelsLoaded()
+	{
+		return SPCompatibilityManager.modWeepingAngelsLoaded;
+	}
+	
+	public static boolean isTraverseLoaded()
+	{
+		return SPCompatibilityManager.modTraverseLoaded;
+	}
+	
+	public static boolean isBambooEverythingLoaded()
+	{
+		return SPCompatibilityManager.modBambooEverythingLoaded;
+	}
+	
+	public static boolean isBamboo2Loaded()
+	{
+		return SPCompatibilityManager.modBamboo2Loaded;
+	}
+	
+	public static boolean isBambooModsLoaded() {
+		return isBambooEverythingLoaded() || isBamboo2Loaded();
+	}
+	
+	public static boolean isClothConfigLoaded()
+	{
+		return SPCompatibilityManager.modClothConfigLoaded;
+	}
+	
+	public static boolean isCavesAndCliffsBackportLoaded()
+	{
+		return SPCompatibilityManager.modCavesandCliffsBackportLoaded;
 	}
 
 }

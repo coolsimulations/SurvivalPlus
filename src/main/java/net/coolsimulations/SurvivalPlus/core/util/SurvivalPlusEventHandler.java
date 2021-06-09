@@ -6,6 +6,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.blackgear.nether.common.block.update.SoulCampfireBlock;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -21,6 +23,7 @@ import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CakeBlock;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.CarvedPumpkinBlock;
 import net.minecraft.block.TripWireBlock;
@@ -47,6 +50,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.LanguageMap;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -66,7 +70,6 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 public class SurvivalPlusEventHandler {
 
@@ -210,7 +213,7 @@ public class SurvivalPlusEventHandler {
 				}
 			}
 		}
-		
+
 		if(SPCompatibilityManager.isExtendedNetherBackportLoaded() && block instanceof SoulCampfireBlock) {
 			if(state.get(SoulCampfireBlock.LIT) && item == Items.BUCKET  && !entityplayer.abilities.isCreativeMode) {
 				event.getWorld().setBlockState(event.getPos(), state.with(SoulCampfireBlock.LIT, false));
@@ -280,6 +283,46 @@ public class SurvivalPlusEventHandler {
 					((BeehiveBlock) block).takeHoney(event.getWorld(), state, event.getPos());
 					if (entityplayer instanceof ServerPlayerEntity) {
 						CriteriaTriggers.SAFELY_HARVEST_HONEY.test((ServerPlayerEntity)entityplayer, event.getPos(), itemStackIn1);
+					}
+				}
+			}
+		}
+
+		if(block == Blocks.CAKE) {
+
+			if(entityplayer.getHeldItemMainhand().getItem() == SPItems.paper_cup || entityplayer.getHeldItemOffhand().getItem() == SPItems.paper_cup) {
+				event.setCanceled(true);
+			}
+
+			if(entityplayer.getHeldItem(event.getHand()).getItem() == SPItems.paper_cup) {
+
+				if(!event.getWorld().isRemote) {
+
+					int bites = (Integer)state.get(CakeBlock.BITES);
+
+					if (bites < 6) {
+						event.getWorld().setBlockState(event.getPos(), (BlockState)state.with(CakeBlock.BITES, bites + 1), 3);
+					} else {
+						event.getWorld().removeBlock(event.getPos(), false);
+					}
+
+					if(!entityplayer.isCreative()) {
+						if(itemStackIn.getCount() == 1) {
+							if (ItemStack.areItemStacksEqual(entityplayer.getHeldItemOffhand(), itemStackIn))
+							{
+								entityplayer.setHeldItem(Hand.OFF_HAND, new ItemStack(SPItems.cupcake));
+							}
+							else
+							{
+								entityplayer.setHeldItem(Hand.MAIN_HAND, new ItemStack(SPItems.cupcake));
+							}
+						} else  if(itemStackIn.getCount() >= 2){
+							itemStackIn.shrink(1);
+							boolean flag = entityplayer.inventory.addItemStackToInventory(new ItemStack(SPItems.cupcake));
+							if(!flag) {
+								entityplayer.dropItem(new ItemStack(SPItems.cupcake), false);
+							}
+						}
 					}
 				}
 			}
@@ -396,7 +439,7 @@ public class SurvivalPlusEventHandler {
 			event.setMessage(coolsimLeft);
 		}
 
-		if(event.getMessage().getFormattedText().startsWith("[coolsim]")) {
+		if(replaceFormattingCodes(event.getMessage()).startsWith("[coolsim]")) {
 			event.setMessage(new StringTextComponent(event.getMessage().getFormattedText().replaceFirst("\\[", coolsim.getFormattedText() + " [")));
 		}
 	}
@@ -410,7 +453,7 @@ public class SurvivalPlusEventHandler {
 			ItemStack coolsimHead = getcoolsimHead();
 
 			if(coolsimHead != null) {
-				ItemHandlerHelper.giveItemToPlayer(attacker, coolsimHead);
+				dropItem(coolsimHead, attacker);
 			} else {
 				TranslationTextComponent error = new TranslationTextComponent("sp.coolsim.error");
 				error.getStyle().setColor(TextFormatting.RED);
@@ -442,6 +485,42 @@ public class SurvivalPlusEventHandler {
 		playerhead.setDisplayName(headName);
 
 		return playerhead;
+	}
+
+	public static void dropItem(ItemStack stack, PlayerEntity player) {
+
+		boolean bl = player.inventory.addItemStackToInventory(stack);
+		if (bl && stack.isEmpty()) {
+			stack.setCount(1);
+			ItemEntity itementity1 = player.dropItem(stack, false);
+			if (itementity1 != null) {
+				itementity1.makeFakeItem();
+			}
+
+			player.world.playSound((PlayerEntity)null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.getRNG().nextFloat() - player.getRNG().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+			player.container.detectAndSendChanges();
+		} else {
+			ItemEntity itementity = player.dropItem(stack, false);
+			if (itementity != null) {
+				itementity.setNoPickupDelay();
+				itementity.setOwnerId(player.getUniqueID());
+			}
+		}
+
+	}
+
+	public static String replaceFormattingCodes(ITextComponent component) {
+
+		String text = component.getFormattedText();
+
+		if(text.contains("§")) {
+			System.out.println(text);
+			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
+				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
+			}
+		}
+
+		return text;
 	}
 
 	private void angerNearbyBees(World world, BlockPos pos) {
