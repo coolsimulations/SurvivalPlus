@@ -15,61 +15,61 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Lazy;
 
 public enum SPArmorMaterial implements ArmorMaterial {
-	bronzeArmorMaterial("bronze", 20, new int[] {2, 6, 5, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
+	bronzeArmorMaterial("bronze", 20, new int[] {2, 5, 5, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, () -> {
     	return Ingredient.fromTag(SPTags.Items.INGOTS_BRONZE);
     }),
-    stoneArmorMaterial("stone", 20, new int[] {1, 2, 4, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    stoneArmorMaterial("stone", 20, new int[] {1, 2, 4, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "cobblestones")));
     }),
     titaniumArmorMaterial("titanium", 20, new int[] {3, 5, 7, 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.0F, () -> {
     	return Ingredient.fromTag(SPTags.Items.INGOTS_TITANIUM);
     }),
-    oakArmorMaterial("oak", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    oakArmorMaterial("oak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    spruceArmorMaterial("spruce", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    spruceArmorMaterial("spruce", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    birchArmorMaterial("birch", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    birchArmorMaterial("birch", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    jungleArmorMaterial("jungle", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    jungleArmorMaterial("jungle", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    acaciaArmorMaterial("acacia", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    acaciaArmorMaterial("acacia", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    darkOakArmorMaterial("dark_oak", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    darkOakArmorMaterial("dark_oak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    bambooArmorMaterial("bamboo", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    bambooArmorMaterial("bamboo", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "bamboos")));
     }),
-    firTraverseArmorMaterial("fir_traverse", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    firTraverseArmorMaterial("fir_traverse", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    redwoodTerrestriaArmorMaterial("redwood_terrestria", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    redwoodTerrestriaArmorMaterial("redwood_terrestria", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    hemlockArmorMaterial("hemlock", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    hemlockArmorMaterial("hemlock", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    rubberTerrestriaArmorMaterial("rubber_terrestria", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    rubberTerrestriaArmorMaterial("rubber_terrestria", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    cypressArmorMaterial("cypress", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    cypressArmorMaterial("cypress", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    willowTerrestriaArmorMaterial("willow_terrestria", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    willowTerrestriaArmorMaterial("willow_terrestria", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    japaneseMapleArmorMaterial("japanese_maple", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    japaneseMapleArmorMaterial("japanese_maple", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    rainbowEucalyptusArmorMaterial("rainbow_eucalyptus", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    rainbowEucalyptusArmorMaterial("rainbow_eucalyptus", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     }),
-    sakuraArmorMaterial("sakura", 20, new int[] {1, 2, 3, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    sakuraArmorMaterial("sakura", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "wood_sticks")));
     });
 	

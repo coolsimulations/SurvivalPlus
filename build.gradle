@@ -38,8 +38,6 @@ dependencies {
 
         compile files('libs/blockus-1.6.0-1.15.2-dev.jar')
 
-        compile files('libs/rer-1.3.2-dev.jar')
-
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 }

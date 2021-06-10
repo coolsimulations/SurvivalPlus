@@ -4,6 +4,7 @@ import net.coolsimulations.SurvivalPlus.api.SPFoods;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
+import net.coolsimulations.SurvivalPlus.api.item.SPItemCupcake;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -52,9 +53,9 @@ public class SurvivalPlusFood {
 		SPItems.cheese = new Item(new FabricItemSettings().food(SPFoods.cheese).group(SPTabs.tabFood));
 		SPItems.cheese_bread = new Item(new FabricItemSettings().food(SPFoods.cheese_bread).group(SPTabs.tabFood));
 		SPItems.melted_cheese_bread = new Item(new FabricItemSettings().food(SPFoods.melted_cheese_bread).group(SPTabs.tabFood));
-		SPItems.cupcake = new Item(new FabricItemSettings().food(SPFoods.cupcake).group(SPTabs.tabFood));
-		SPItems.cheese_cupcake = new Item(new FabricItemSettings().food(SPFoods.cheese_cupcake).group(SPTabs.tabFood));
-		SPItems.sponge_cupcake = new Item(new FabricItemSettings().food(SPFoods.sponge_cupcake).group(SPTabs.tabFood));
+		SPItems.cupcake = new SPItemCupcake(new FabricItemSettings().food(SPFoods.cupcake).group(SPTabs.tabFood));
+		SPItems.cheese_cupcake = new SPItemCupcake(new FabricItemSettings().food(SPFoods.cheese_cupcake).group(SPTabs.tabFood));
+		SPItems.sponge_cupcake = new SPItemCupcake(new FabricItemSettings().food(SPFoods.sponge_cupcake).group(SPTabs.tabFood));
 		SPItems.baked_apple = new Item(new FabricItemSettings().food(SPFoods.baked_apple).group(SPTabs.tabFood));
 		SPItems.fried_onion = new Item(new FabricItemSettings().food(SPFoods.fried_onion).group(SPTabs.tabFood));
 

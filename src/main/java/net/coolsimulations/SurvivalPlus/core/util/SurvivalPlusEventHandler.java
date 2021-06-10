@@ -4,6 +4,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
@@ -27,6 +29,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.HoverEvent;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -199,5 +202,20 @@ public class SurvivalPlusEventHandler {
 			}
 		}
 	}
+	
+	public static String replaceFormattingCodes(Text message) {
+
+		String text = message.asFormattedString();
+
+		if(text.contains("§")) {
+			System.out.println(text);
+			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
+				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
+			}
+		}
+
+		return text;
+	}
+
 
 }

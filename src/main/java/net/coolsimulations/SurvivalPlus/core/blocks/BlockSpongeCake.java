@@ -2,6 +2,7 @@ package net.coolsimulations.SurvivalPlus.core.blocks;
 
 import com.google.common.jimfs.PathType;
 
+import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -41,37 +42,76 @@ public class BlockSpongeCake extends Block
         return CAKE_AABB[(Integer)state.get(BITES)];
     }
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) {
-           ItemStack itemStack = player.getStackInHand(hand);
-           if (this.tryEat(world, pos, state, player) == ActionResult.SUCCESS) {
-              return ActionResult.SUCCESS;
-           }
+    public ActionResult onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand, BlockHitResult ray) {
+		if (!worldIn.isClient) {
+			if(playerIn.getStackInHand(hand).getItem() == SPItems.paper_cup) {
 
-           if (itemStack.isEmpty()) {
-              return ActionResult.CONSUME;
-           }
-        }
+				decrementBites(worldIn, state, pos);
 
-        return this.tryEat(world, pos, state, player);
-     }
+				if(!playerIn.isCreative()) {
 
-    private ActionResult tryEat(IWorld world, BlockPos pos, BlockState state, PlayerEntity player) {
+					ItemStack itemStackIn;
+
+					if (playerIn.getOffHandStack().getItem() == SPItems.paper_cup)
+					{
+						itemStackIn = playerIn.getOffHandStack();
+					}
+					else
+					{
+						itemStackIn = playerIn.getMainHandStack();
+					}
+
+					if(itemStackIn.getCount() == 1) {
+						if (ItemStack.areItemsEqual(playerIn.getOffHandStack(), itemStackIn))
+						{
+							playerIn.setStackInHand(Hand.OFF_HAND, new ItemStack(SPItems.sponge_cupcake));
+						}
+						else
+						{
+							playerIn.setStackInHand(Hand.MAIN_HAND, new ItemStack(SPItems.sponge_cupcake));
+						}
+					} else  if(itemStackIn.getCount() >= 2){
+						itemStackIn.decrement(1);
+						boolean flag = playerIn.inventory.insertStack(new ItemStack(SPItems.sponge_cupcake));
+						if(!flag) {
+							playerIn.dropItem(new ItemStack(SPItems.sponge_cupcake), false);
+						}
+
+					}
+				}
+				return ActionResult.SUCCESS;
+			} else if(playerIn.getMainHandStack().getItem() != SPItems.paper_cup && playerIn.getOffHandStack().getItem() != SPItems.paper_cup) {
+				return this.tryEat(worldIn, pos, state, playerIn);
+			}
+			return ActionResult.PASS;
+
+		} else {
+			return ActionResult.PASS;
+		}
+	}
+
+    private ActionResult tryEat(IWorld worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!player.canConsume(false)) {
            return ActionResult.PASS;
         } else {
            player.incrementStat(Stats.EAT_CAKE_SLICE);
-           player.getHungerManager().add(3, 0.2F);
-           int i = (Integer)state.get(BITES);
-           if (i < 7) {
-              world.setBlockState(pos, (BlockState)state.with(BITES, i + 1), 3);
-           } else {
-              world.removeBlock(pos, false);
-           }
+           player.getHungerManager().add(2, 0.1F);
+           decrementBites(worldIn, state, pos);
 
            return ActionResult.SUCCESS;
         }
      }
+    
+    private void decrementBites(IWorld worldIn, BlockState state, BlockPos pos) {
+
+    	int bites = (Integer)state.get(BITES);
+    	
+        if (bites < 7) {
+            worldIn.setBlockState(pos, (BlockState)state.with(BITES, bites + 1), 3);
+        } else {
+            worldIn.removeBlock(pos, false);
+        }
+    }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction side, BlockState blockState, IWorld worldIn, BlockPos pos, BlockPos blockPos) {
         return side == Direction.DOWN && !state.canPlaceAt(worldIn, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, side, blockState, worldIn, pos, blockPos);
