@@ -9,7 +9,7 @@ import net.minecraft.util.IItemProvider;
 public class BlockOnionCrop extends CropsBlock{
 	
 	public BlockOnionCrop() {
-		super(Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.CROP));
+		super(Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
 		this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
 	}
 
