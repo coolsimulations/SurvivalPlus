@@ -497,6 +497,10 @@
   "sp.coolsim.error": "coolsim has been killed too many times in a row and thus has not dropped a head!",
 
   "sp.configgui.title": "SurvivalPlus Config",
+  "sp.configgui.recipes": "Recipes",
+  "sp.configgui.compatibility": "Compatibility",
+  "sp.configgui.generation": "Generation",
+  "sp.configgui.command": "Commands",
   "sp.configgui.enable_sponge": "Enable Sponge Recipe",
   "sp.configgui.enable_cheese_block": "Enable Galacticraft Cheese Block Recipe",
   "sp.configgui.enable_IC2_Config_Gen": "Enable IC2 Config Generation",

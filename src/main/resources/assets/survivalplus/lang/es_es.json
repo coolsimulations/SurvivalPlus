@@ -497,6 +497,10 @@
   "sp.coolsim.error": "¡coolsim ha sido asesinado demasiadas veces seguidas y por lo tanto, no se le ha ca\u00eddo la cabeza!",
 
   "sp.configgui.title": "SupervivenciaM\u00e1s Configuraci\u00f3n",
+  "sp.configgui.recipes": "Recetas",
+  "sp.configgui.compatibility": "Compatibilidad",
+  "sp.configgui.generation": "Generacion",
+  "sp.configgui.command": "Comandos",
   "sp.configgui.enable_sponge": "Habilitar Receta de Esponja",
   "sp.configgui.enable_cheese_block": "Habilitar Receta de Bloque de Queso Galacticraft",
   "sp.configgui.enable_IC2_Config_Gen": "Habilitar la Generaci\u00f3n de Configuraci\u00f3n IC2",

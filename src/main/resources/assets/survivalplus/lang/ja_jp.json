@@ -500,6 +500,10 @@
   "sp.coolsim.error": "coolsim\u306f\u9023\u7d9a\u3057\u3066\u4f55\u5ea6\u3082\u6bba\u3055\u308c\u305f\u305f\u3081\u982d\u3092\u843d\u3068\u3057\u3066\u3044\u307e\u305b\u3093\uff01",
 
   "sp.configgui.title": "\u30b5\u30d0\u30a4\u30d0\u30eb\u30d7\u30e9\u30b9\u69cb\u6210",
+  "sp.configgui.recipes": "\u30ec\u30b7\u30d4",
+  "sp.configgui.compatibility": "\u4e92\u63db\u6027",
+  "sp.configgui.generation": "\u4e16\u4ee3",
+  "sp.configgui.command": "\u30b3\u30de\u30f3\u30c9",
   "sp.configgui.enable_sponge": "\u30b9\u30dd\u30f3\u30b8\u30ec\u30b7\u30d4\u3092\u6709\u52b9\u306b\u3059\u308b",
   "sp.configgui.enable_cheese_block": "Galacticraft\u30c1\u30fc\u30ba\u30d6\u30ed\u30c3\u30af\u30ec\u30b7\u30d4\u3092\u6709\u52b9\u306b\u3059\u308b",
   "sp.configgui.enable_IC2_Config_Gen": "IC2\u69cb\u6210\u751f\u6210\u3092\u6709\u52b9\u306b\u3059\u308b",

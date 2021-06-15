@@ -26,9 +26,9 @@ public class SurvivalPlusConfigGUI {
 
 		builder.setDefaultBackgroundTexture(new ResourceLocation(SPReference.MOD_ID + ":textures/blocks/bronze_block.png"));
 
-		ConfigCategory generation = builder.getOrCreateCategory(SPReference.CONFIG_CATEGORY_GENERATION);
-		ConfigCategory command = builder.getOrCreateCategory(SPReference.CONFIG_CATEGORY_COMMAND);
-		ConfigCategory compatibility = builder.getOrCreateCategory(SPReference.CONFIG_CATEGORY_COMPATIBILITY);
+		ConfigCategory generation = builder.getOrCreateCategory("sp.configgui.generation");
+		ConfigCategory command = builder.getOrCreateCategory("sp.configgui.command");
+		ConfigCategory compatibility = builder.getOrCreateCategory("sp.configgui.compatibility");
 		ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
 		generation.addEntry(entryBuilder.startBooleanToggle(new TranslationTextComponent("sp.configgui.disable_copper_ore_gen").getFormattedText(), SPConfig.disableCopperOreGen.get()).setTooltip("Disable SurvivalPlus Copper Ore Gen").setDefaultValue(false).setSaveConsumer(newValue->SPConfig.disableCopperOreGen.set(newValue)).build());
