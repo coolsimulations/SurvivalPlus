@@ -229,7 +229,7 @@ public class SurvivalPlusEventHandler {
 		
 		if(block == Blocks.CAKE) {
 			
-			if(entityplayer.getHeldItemMainhand().getItem() == SPItems.paper_cup || entityplayer.getHeldItemOffhand().getItem() == SPItems.paper_cup) {
+			if((entityplayer.getHeldItemMainhand().getItem() == SPItems.paper_cup || entityplayer.getHeldItemOffhand().getItem() == SPItems.paper_cup) || entityplayer.getHeldItemMainhand().getItem() == SPItems.cupcake || entityplayer.getHeldItemOffhand().getItem() == SPItems.cupcake) {
 				event.setCanceled(true);
 			}
 			
