@@ -180,43 +180,43 @@ public class BlockCardboardLantern extends BlockCardboard implements IWaterLogga
 
 		if(!isDyed) {
 
-			boolean success = false;
+			ActionResultType success = ActionResultType.FAIL;
 
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_WHITE, SPBlocks.cardboard_lantern_white);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_LIGHT_GRAY, SPBlocks.cardboard_lantern_light_grey);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_GRAY, SPBlocks.cardboard_lantern_grey);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_BLACK, SPBlocks.cardboard_lantern_black);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_RED, SPBlocks.cardboard_lantern_red);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_ORANGE, SPBlocks.cardboard_lantern_orange);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_YELLOW, SPBlocks.cardboard_lantern_yellow);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_LIME, SPBlocks.cardboard_lantern_lime);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_GREEN, SPBlocks.cardboard_lantern_green);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_LIGHT_BLUE, SPBlocks.cardboard_lantern_light_blue);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_CYAN, SPBlocks.cardboard_lantern_cyan);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_BLUE, SPBlocks.cardboard_lantern_blue);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_PURPLE, SPBlocks.cardboard_lantern_purple);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_MAGENTA, SPBlocks.cardboard_lantern_magenta);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_PINK, SPBlocks.cardboard_lantern_pink);
-			if(!success)
+			if(!success.isSuccess())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_BROWN, SPBlocks.cardboard_lantern_brown);
 
 			state.updatePostPlacement(hit.getFace(), state, worldIn, pos, pos);
-			return ActionResultType.SUCCESS;
+			return success;
 		} else {
 			state.updatePostPlacement(hit.getFace(), state, worldIn, pos, pos);
 		}
@@ -224,7 +224,7 @@ public class BlockCardboardLantern extends BlockCardboard implements IWaterLogga
 		return ActionResultType.FAIL;
 	}
 
-	protected boolean checkDye(World worldIn, BlockPos pos, BlockState state, PlayerEntity playerIn, ItemStack stack, Tag<Item> tag, Block dyeBlock) {
+	protected ActionResultType checkDye(World worldIn, BlockPos pos, BlockState state, PlayerEntity playerIn, ItemStack stack, Tag<Item> tag, Block dyeBlock) {
 
 		for(Iterator<Item> acceptableItems = tag.getAllElements().iterator(); acceptableItems.hasNext(); ){
 			Item dye = acceptableItems.next();
@@ -232,12 +232,12 @@ public class BlockCardboardLantern extends BlockCardboard implements IWaterLogga
 				if(!playerIn.isCreative())
 					stack.shrink(1);
 				worldIn.setBlockState(pos, dyeBlock.getDefaultState().with(FACING, state.get(FACING)).with(FLOATING, state.get(FLOATING)).with(WATERLOGGED, state.get(WATERLOGGED)), 3);
-				return true;
+				return ActionResultType.SUCCESS;
 			}
 
 		}
 
-		return false;
+		return ActionResultType.FAIL;
 	}
 
 	/**
