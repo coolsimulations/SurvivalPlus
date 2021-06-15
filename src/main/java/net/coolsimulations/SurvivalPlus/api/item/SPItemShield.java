@@ -12,7 +12,7 @@ import net.minecraft.item.ShieldItem;
 public class SPItemShield extends ShieldItem {
 
 	public SPItemShield(int maxDamage) {
-		super((new Item.Properties()).maxStackSize(1).defaultMaxDamage(maxDamage).setISTER(() -> TileEntityShieldRenderer::new).group(SPTabs.tabCombat));
+		super((new Item.Properties()).stacksTo(1).defaultDurability(maxDamage).setISTER(() -> TileEntityShieldRenderer::new).tab(SPTabs.tabCombat));
 	}
 	
 	@Override

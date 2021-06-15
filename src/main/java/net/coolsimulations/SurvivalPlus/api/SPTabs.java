@@ -7,41 +7,41 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SPTabs {
 	
-	public static final ItemGroup tabMaterials = (new ItemGroup(ItemGroup.GROUPS.length, "tabMaterials") {
+	public static final ItemGroup tabMaterials = (new ItemGroup(ItemGroup.TABS.length, "tabMaterials") {
 	      @OnlyIn(Dist.CLIENT)
-	      public ItemStack createIcon() {
+	      public ItemStack makeIcon() {
 	         return new ItemStack(SPItems.tin_ingot);
 	      }
-	   }).setTabPath("tabMaterials");
-	public static final ItemGroup tabBlocks = (new ItemGroup(ItemGroup.GROUPS.length, "tabBlocks") {
+	   }).setRecipeFolderName("tabMaterials");
+	public static final ItemGroup tabBlocks = (new ItemGroup(ItemGroup.TABS.length, "tabBlocks") {
 	      @OnlyIn(Dist.CLIENT)
-	      public ItemStack createIcon() {
+	      public ItemStack makeIcon() {
 	         return new ItemStack(SPBlocks.tin_block);
 	      }
-	   }).setTabPath("tabBlocks");
-	public static final ItemGroup tabFood = (new ItemGroup(ItemGroup.GROUPS.length, "tabFood") {
+	   }).setRecipeFolderName("tabBlocks");
+	public static final ItemGroup tabFood = (new ItemGroup(ItemGroup.TABS.length, "tabFood") {
 	      @OnlyIn(Dist.CLIENT)
-	      public ItemStack createIcon() {
+	      public ItemStack makeIcon() {
 	         return new ItemStack(SPItems.apple_pie);
 	      }
-	   }).setTabPath("tabFood");
-	public static final ItemGroup tabGem = (new ItemGroup(ItemGroup.GROUPS.length, "tabGem") {
+	   }).setRecipeFolderName("tabFood");
+	public static final ItemGroup tabGem = (new ItemGroup(ItemGroup.TABS.length, "tabGem") {
 	      @OnlyIn(Dist.CLIENT)
-	      public ItemStack createIcon() {
+	      public ItemStack makeIcon() {
 	         return new ItemStack(SPBlocks.amethyst);
 	      }
-	   }).setTabPath("tabGem");
-	public static final ItemGroup tabCombat = (new ItemGroup(ItemGroup.GROUPS.length, "tabCombat") {
+	   }).setRecipeFolderName("tabGem");
+	public static final ItemGroup tabCombat = (new ItemGroup(ItemGroup.TABS.length, "tabCombat") {
 	      @OnlyIn(Dist.CLIENT)
-	      public ItemStack createIcon() {
+	      public ItemStack makeIcon() {
 	         return new ItemStack(SPItems.titanium_sword);
 	      }
-	   }).setTabPath("tabCombat");
-	public static final ItemGroup tabTools = (new ItemGroup(ItemGroup.GROUPS.length, "tabTools") {
+	   }).setRecipeFolderName("tabCombat");
+	public static final ItemGroup tabTools = (new ItemGroup(ItemGroup.TABS.length, "tabTools") {
 	      @OnlyIn(Dist.CLIENT)
-	      public ItemStack createIcon() {
+	      public ItemStack makeIcon() {
 	         return new ItemStack(SPItems.bronze_axe);
 	      }
-	   }).setTabPath("tabTools");
+	   }).setRecipeFolderName("tabTools");
 
 }

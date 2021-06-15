@@ -9,12 +9,12 @@ import net.minecraft.util.IItemProvider;
 public class BlockOnionCrop extends CropsBlock{
 	
 	public BlockOnionCrop() {
-		super(Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().sound(SoundType.CROP));
-		this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
+		super(Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP));
+		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)));
 	}
 
 	@Override
-	protected IItemProvider getSeedsItem() {
+	protected IItemProvider getBaseSeedId() {
 	      return SPItems.onion_seeds;
 	}
 	

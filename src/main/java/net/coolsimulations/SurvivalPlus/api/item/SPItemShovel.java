@@ -9,7 +9,7 @@ import net.minecraftforge.common.ToolType;
 public class SPItemShovel extends ShovelItem {
 
 	public SPItemShovel(IItemTier tier) {
-	      super(tier, 1.5F, -3.0F, (new Item.Properties().addToolType(ToolType.SHOVEL, tier.getHarvestLevel()).group(SPTabs.tabTools)));
+	      super(tier, 1.5F, -3.0F, (new Item.Properties().addToolType(ToolType.SHOVEL, tier.getLevel()).tab(SPTabs.tabTools)));
 	   }
 
 }

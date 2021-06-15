@@ -19,7 +19,7 @@ public class CommandWeba {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("weba")
 				.then(Commands.argument("targets", EntityArgument.players())
-				.requires(s -> s.hasPermissionLevel(0))
+				.requires(s -> s.hasPermission(0))
 				.executes(weba -> weba(weba.getSource(), EntityArgument.getPlayers(weba, "targets")))));
 	}
 
@@ -35,8 +35,11 @@ public class CommandWeba {
 
 			}else {
 				TranslationTextComponent weba = new TranslationTextComponent("sp.commands.weba.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				weba.mergeStyle(TextFormatting.GOLD);
-				sender.getServer().getPlayerList().func_232641_a_(weba, ChatType.SYSTEM, Util.DUMMY_UUID);
+				weba.withStyle(TextFormatting.GOLD);
+				if (sender.getEntity() != null)
+					sender.getServer().getPlayerList().broadcastMessage(weba, ChatType.CHAT, sender.getEntity().getUUID());
+				else
+					sender.getServer().getPlayerList().broadcastMessage(weba, ChatType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 

@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -12,10 +13,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 
-public class BlockCardboard extends Block{
+public class BlockCardboard extends Block {
 
-	public BlockCardboard() {
-		super(Properties.create(Material.WOOD).hardnessAndResistance(0.5F, 2.5F).sound(SoundType.WOOD).setLightLevel((p_235464_0_) -> {return 0;}));
+	public BlockCardboard(MaterialColor colour) {
+		super(Properties.of(Material.WOOD, colour).strength(0.5F, 2.5F).sound(SoundType.WOOD).lightLevel((p_235464_0_) -> {return 0;}));
 	}
 
 	@Override
@@ -24,8 +25,8 @@ public class BlockCardboard extends Block{
 	}
 
 	@Override
-	public void spawnAdditionalDrops(BlockState state, ServerWorld worldIn, BlockPos pos, ItemStack stack) {
-	      super.spawnAdditionalDrops(state, worldIn, pos, stack);
+	public void spawnAfterBreak(BlockState state, ServerWorld worldIn, BlockPos pos, ItemStack stack) {
+		super.spawnAfterBreak(state, worldIn, pos, stack);
 	}
 
 	@Override
@@ -33,16 +34,16 @@ public class BlockCardboard extends Block{
 
 		return 1;
 	}
-	
+
 	@Override
 	public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-		
+
 		return 30;
 	}
-	
+
 	@Override
 	public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-		
+
 		return 60;
 	}
 

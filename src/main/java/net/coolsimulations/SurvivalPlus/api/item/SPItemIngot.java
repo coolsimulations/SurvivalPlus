@@ -10,13 +10,13 @@ public class SPItemIngot extends Item {
 	private float health;
 	
 	public SPItemIngot(boolean healsIronGolem, float golemHealth) {
-		super(new Item.Properties().group(SPTabs.tabMaterials));
+		super(new Item.Properties().tab(SPTabs.tabMaterials));
 		this.golem = healsIronGolem;
 		this.health = golemHealth;
 	}
 	
 	public SPItemIngot() {
-		super(new Item.Properties().group(SPTabs.tabMaterials));
+		super(new Item.Properties().tab(SPTabs.tabMaterials));
 		this.golem = false;
 		this.health = 0.0F;
 	}

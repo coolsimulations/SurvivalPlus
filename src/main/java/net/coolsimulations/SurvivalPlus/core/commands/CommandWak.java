@@ -20,7 +20,7 @@ public class CommandWak {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("wak")
 				.then(Commands.argument("targets", EntityArgument.players())
-						.requires(s -> s.hasPermissionLevel(getRequiredPermissionLevel()))
+						.requires(s -> s.hasPermission(getRequiredPermissionLevel()))
 						.executes(wak -> wak(wak.getSource(), EntityArgument.getPlayers(wak, "targets")))));
 	}
 
@@ -36,8 +36,11 @@ public class CommandWak {
 
 			}else {
 				TranslationTextComponent wak = new TranslationTextComponent("sp.commands.wak.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				wak.mergeStyle(TextFormatting.DARK_RED);
-				sender.getServer().getPlayerList().func_232641_a_(wak, ChatType.SYSTEM, Util.DUMMY_UUID);
+				wak.withStyle(TextFormatting.DARK_RED);
+				if (sender.getEntity() != null)
+					sender.getServer().getPlayerList().broadcastMessage(wak, ChatType.CHAT, sender.getEntity().getUUID());
+				else
+					sender.getServer().getPlayerList().broadcastMessage(wak, ChatType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 

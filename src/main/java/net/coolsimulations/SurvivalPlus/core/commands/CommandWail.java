@@ -13,15 +13,18 @@ public class CommandWail {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("wail")
-				.requires(s -> s.hasPermissionLevel(0))
+				.requires(s -> s.hasPermission(0))
 				.executes(wail -> wail(wail.getSource())));
 	}
 
 	private static int wail(CommandSource sender) {
 
 		TranslationTextComponent wail = new TranslationTextComponent("sp.commands.wail.display", new Object[] {sender.getDisplayName()});
-		wail.mergeStyle(TextFormatting.AQUA);
-		sender.getServer().getPlayerList().func_232641_a_(wail, ChatType.SYSTEM, Util.DUMMY_UUID);
+		wail.withStyle(TextFormatting.AQUA);
+		if (sender.getEntity() != null)
+			sender.getServer().getPlayerList().broadcastMessage(wail, ChatType.CHAT, sender.getEntity().getUUID());
+		else
+			sender.getServer().getPlayerList().broadcastMessage(wail, ChatType.SYSTEM, Util.NIL_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

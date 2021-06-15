@@ -20,11 +20,11 @@ public class CommandIndeed {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("indeed")
 				.then(Commands.argument("targets", EntityArgument.players())
-						.requires(s -> s.hasPermissionLevel(0))
+						.requires(s -> s.hasPermission(0))
 						.executes(indeed -> indeed(indeed.getSource(), EntityArgument.getPlayers(indeed, "targets")))));
 
 		dispatcher.register(Commands.literal("indeed")
-				.requires(s -> s.hasPermissionLevel(0))
+				.requires(s -> s.hasPermission(0))
 				.executes(indeed -> indeedSingle(indeed.getSource())));
 	}
 
@@ -40,8 +40,11 @@ public class CommandIndeed {
 
 			} else {
 				TranslationTextComponent indeed = new TranslationTextComponent("sp.commands.indeed.display1", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				indeed.mergeStyle(TextFormatting.DARK_GREEN);
-				sender.getServer().getPlayerList().func_232641_a_(indeed, ChatType.SYSTEM, Util.DUMMY_UUID);
+				indeed.withStyle(TextFormatting.DARK_GREEN);
+				if (sender.getEntity() != null)
+					sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.CHAT, sender.getEntity().getUUID());
+				else
+					sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 
@@ -51,8 +54,11 @@ public class CommandIndeed {
 	private static int indeedSingle(CommandSource sender) {
 
 		TranslationTextComponent indeed = new TranslationTextComponent("sp.commands.indeed.display2", new Object[]{sender.getDisplayName()});
-		indeed.mergeStyle(TextFormatting.DARK_GREEN);
-		sender.getServer().getPlayerList().func_232641_a_(indeed, ChatType.SYSTEM, Util.DUMMY_UUID);
+		indeed.withStyle(TextFormatting.DARK_GREEN);
+		if (sender.getEntity() != null)
+			sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.CHAT, sender.getEntity().getUUID());
+		else
+			sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.SYSTEM, Util.NIL_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

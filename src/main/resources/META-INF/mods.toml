@@ -6,7 +6,7 @@ license="All rights reserved"
 
 [[mods]]
     modId="survivalplus"
-    version="0.1.4d"
+    version="0.1.5"
     updateJSONURL="https://coolsimulations.net/mcmods/survivalplus/versionchecker.json"
     displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus"
     displayName="SurvivalPlus"
@@ -18,7 +18,7 @@ license="All rights reserved"
 [[dependencies.survivalplus]]
     modId="forge"
     mandatory=true
-    versionRange="[36.0.15,)"
+    versionRange="[36.1.20,]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]
@@ -30,37 +30,37 @@ license="All rights reserved"
 [[dependencies.survivalplus]]
     modId="biomesoplenty"
     mandatory=false
-    versionRange="[10.0.0.294]"
+    versionRange="[1.16.5-10.0.0.294,]"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="biomesoplentyextras"
     mandatory=false
-    versionRange="[1.0.0]"
+    versionRange="[1.0.0,]"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="recycler"
     mandatory=false
-    versionRange="[1.0.0]"
+    versionRange="[1.0.0,]"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="projecte"
     mandatory=false
-    versionRange="[PE1.0.0,)"
+    versionRange="[PE1.0.0,]"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="lumberjack"
     mandatory=false
-    versionRange="[2.0.0]"
+    versionRange="[2.0.0,]"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="jeresources"
     mandatory=false
-    versionRange="[0.10.1]"
+    versionRange="[0.10.1,]"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.survivalplus]]
@@ -69,10 +69,10 @@ license="All rights reserved"
     versionRange="[0.7.2,]"
     ordering="BEFORE"
     side="BOTH"
-      [[dependencies.survivalplus]]
+[[dependencies.survivalplus]]
     modId="notreepunching"
     mandatory=false
-    versionRange="[4.0.1,]"
+    versionRange="[4.2.0,]"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.survivalplus]]
@@ -102,7 +102,7 @@ license="All rights reserved"
 [[dependencies.survivalplus]]
     modId="easy_emerald"
     mandatory=false
-    versionRange="[1.0.9,]"
+    versionRange="[1.0.25,]"
     ordering="BEFORE"
     side="BOTH"
     

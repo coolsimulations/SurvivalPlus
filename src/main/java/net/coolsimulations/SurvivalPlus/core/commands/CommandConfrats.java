@@ -19,7 +19,7 @@ public class CommandConfrats {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("confrats")
 				.then(Commands.argument("targets", EntityArgument.players())
-						.requires(s -> s.hasPermissionLevel(0))
+						.requires(s -> s.hasPermission(0))
 						.executes(confrats -> confrats(confrats.getSource(), EntityArgument.getPlayers(confrats, "targets")))));
 	}
 
@@ -35,8 +35,11 @@ public class CommandConfrats {
 
 			}else {
 				TranslationTextComponent confrats = new TranslationTextComponent("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
-				confrats.mergeStyle(TextFormatting.YELLOW);
-				sender.getServer().getPlayerList().func_232641_a_(confrats, ChatType.SYSTEM, Util.DUMMY_UUID);
+				confrats.withStyle(TextFormatting.YELLOW);
+				if (sender.getEntity() != null)
+					sender.getServer().getPlayerList().broadcastMessage(confrats, ChatType.CHAT, sender.getEntity().getUUID());
+				else
+					sender.getServer().getPlayerList().broadcastMessage(confrats, ChatType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 

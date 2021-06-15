@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:torches/torch",
+    "#forge:torches/soul_torch",
+    {
+      "id": "#forge:torches/candle",
+      "required": false
+    },
+    {
+      "id": "#forge:torches/lit_torch",
+      "required": false
+    }
+  ]
+}

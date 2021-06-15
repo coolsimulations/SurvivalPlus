@@ -34,34 +34,34 @@ public class TileEntityShieldRenderer extends ItemStackTileEntityRenderer {
 	public static TileEntityShieldRenderer instance = new TileEntityShieldRenderer();
 
 	@Override
-	public void func_239207_a_(ItemStack stack, TransformType transformType, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay)
+	public void renderByItem(ItemStack stack, TransformType transformType, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay)
 	{
 		Item item = stack.getItem();
 
 		if (item instanceof SPItemShield) {
-			boolean tag = stack.getChildTag("BlockEntityTag") != null;
-			matrix.push();
+			boolean tag = stack.getTagElement("BlockEntityTag") != null;
+			matrix.pushPose();
 			matrix.scale(1.0F, -1.0F, -1.0F);
 			RenderMaterial material = tag
-					? new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE,
+					? new RenderMaterial(AtlasTexture.LOCATION_BLOCKS,
 							new ResourceLocation(item.getRegistryName().getNamespace(), "entity/" + item.getRegistryName().getPath() + "_base"))
-							: new RenderMaterial(AtlasTexture.LOCATION_BLOCKS_TEXTURE,
+							: new RenderMaterial(AtlasTexture.LOCATION_BLOCKS,
 									new ResourceLocation(item.getRegistryName().getNamespace(), "entity/" + item.getRegistryName().getPath() + "_base_nopattern"));
-			IVertexBuilder lvt_9_3_ = material.getSprite().wrapBuffer(ItemRenderer.getBuffer(buffer,
-					this.modelShield.getRenderType(material.getAtlasLocation()), false, stack.hasEffect()));
-			this.modelShield.func_228294_b_().render(matrix, lvt_9_3_, combinedLight, combinedOverlay, 1.0F, 1.0F,
+			IVertexBuilder lvt_9_3_ = material.sprite().wrap(ItemRenderer.getFoilBuffer(buffer,
+					this.modelShield.renderType(material.atlasLocation()), false, stack.hasFoil()));
+			this.modelShield.handle().render(matrix, lvt_9_3_, combinedLight, combinedOverlay, 1.0F, 1.0F,
 					1.0F, 1.0F);
 			if (tag) {
-				List<Pair<BannerPattern, DyeColor>> colour = BannerTileEntity.getPatternColorData(
-						ShieldItem.getColor(stack), BannerTileEntity.getPatternData(stack));
-				BannerTileEntityRenderer.func_230180_a_(matrix, buffer, combinedLight, combinedOverlay,
-						this.modelShield.func_228293_a_(), material, false, colour);
+				List<Pair<BannerPattern, DyeColor>> colour = BannerTileEntity.createPatterns(
+						ShieldItem.getColor(stack), BannerTileEntity.getItemPatterns(stack));
+				BannerTileEntityRenderer.renderPatterns(matrix, buffer, combinedLight, combinedOverlay,
+						this.modelShield.plate(), material, false, colour);
 			} else {
-				this.modelShield.func_228293_a_().render(matrix, lvt_9_3_, combinedLight, combinedOverlay, 1.0F,
+				this.modelShield.plate().render(matrix, lvt_9_3_, combinedLight, combinedOverlay, 1.0F,
 						1.0F, 1.0F, 1.0F);
 			}
 
-			matrix.pop();
+			matrix.popPose();
 		}
 	}
 

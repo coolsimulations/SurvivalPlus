@@ -136,6 +136,19 @@ public class SurvivalPlusArmor {
 			SPItems.rubber.add(3, new ItemStack(SPItems.rubber_boots));
 
 		}
+		
+		if (SPCompatibilityManager.isBambooModsLoaded()) {
+
+			SPItems.bamboo_helmet = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlotType.HEAD).setRegistryName("bamboo_helmet");
+			SPItems.bamboo_chestplate = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlotType.CHEST).setRegistryName("bamboo_chestplate");
+			SPItems.bamboo_leggings = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlotType.LEGS).setRegistryName("bamboo_leggings");
+			SPItems.bamboo_boots = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlotType.FEET).setRegistryName("bamboo_boots");
+			SPItems.bamboo = NonNullList.create();
+			SPItems.bamboo.add(0, new ItemStack(SPItems.bamboo_helmet));
+			SPItems.bamboo.add(1, new ItemStack(SPItems.bamboo_chestplate));
+			SPItems.bamboo.add(2, new ItemStack(SPItems.bamboo_leggings));
+			SPItems.bamboo.add(3, new ItemStack(SPItems.bamboo_boots));
+		}
 
 		if(SPCompatibilityManager.isBopLoaded()){
 			BOPArmor.init();
@@ -143,6 +156,10 @@ public class SurvivalPlusArmor {
 
 		if(SPCompatibilityManager.isForestryLoaded()){
 			ForestryArmor.init();
+		}
+		
+		if(SPCompatibilityManager.isTraverseLoaded()) {
+			TraverseArmor.init();
 		}
 
 	}
@@ -165,6 +182,9 @@ public class SurvivalPlusArmor {
 			registerItem(SPItems.rubber);
 		}
 
+		if (SPCompatibilityManager.isBambooModsLoaded()) {
+			registerItem(SPItems.bamboo);
+		}
 
 		if(SPCompatibilityManager.isBopLoaded()){
 			BOPArmor.register();
@@ -172,6 +192,10 @@ public class SurvivalPlusArmor {
 
 		if(SPCompatibilityManager.isForestryLoaded()){
 			ForestryArmor.register();
+		}
+		
+		if(SPCompatibilityManager.isTraverseLoaded()) {
+			TraverseArmor.register();
 		}
 	}
 

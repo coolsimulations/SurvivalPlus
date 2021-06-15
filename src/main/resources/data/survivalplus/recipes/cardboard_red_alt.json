@@ -8,7 +8,7 @@
   ],
   "key": {
     "S": {
-      "item": "survivalplus:cardboard"
+      "tag": "forge:cardboard/plain"
     },
     "D": {
       "tag": "forge:dyes/red"

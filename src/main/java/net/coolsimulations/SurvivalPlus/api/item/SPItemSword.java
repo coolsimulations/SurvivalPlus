@@ -8,7 +8,7 @@ import net.minecraft.item.SwordItem;
 public class SPItemSword extends SwordItem{
 
 	public SPItemSword(IItemTier tier) {
-	      super(tier, 3, -2.4F, (new Item.Properties()).group(SPTabs.tabCombat));
+	      super(tier, 3, -2.4F, (new Item.Properties()).tab(SPTabs.tabCombat));
 	   }
 
 }

@@ -46,13 +46,13 @@ public class SurvivalPlusUpdateHandler {
 				isOld = true;
 				
 				TranslationTextComponent sp = new TranslationTextComponent("sp.name");
-				sp.mergeStyle(TextFormatting.BLUE);
+				sp.withStyle(TextFormatting.BLUE);
 				
 				StringTextComponent MCVersion = new StringTextComponent(MCPVersion.getMCVersion());
-				MCVersion.mergeStyle(TextFormatting.BLUE);
+				MCVersion.withStyle(TextFormatting.BLUE);
 				
 				updateInfo = new TranslationTextComponent("sp.update.display3", new Object[] {sp, MCVersion});
-				updateInfo.mergeStyle(TextFormatting.YELLOW);
+				updateInfo.withStyle(TextFormatting.YELLOW);
 				
 				//updateInfo.getStyle().func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2")));
 				//updateInfo.getStyle().func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
@@ -64,13 +64,13 @@ public class SurvivalPlusUpdateHandler {
 				isOld = true;
 				
 				TranslationTextComponent sp = new TranslationTextComponent("sp.name");
-				sp.mergeStyle(TextFormatting.BLUE);
+				sp.withStyle(TextFormatting.BLUE);
 				
 				StringTextComponent version = new StringTextComponent(latestVersion);
-				version.mergeStyle(TextFormatting.BLUE);
+				version.withStyle(TextFormatting.BLUE);
 				
 				updateInfo = new TranslationTextComponent("sp.update.display1", new Object[] {sp, version});
-				updateInfo.mergeStyle(TextFormatting.YELLOW);
+				updateInfo.withStyle(TextFormatting.YELLOW);
 				
 				//updateInfo.getStyle().func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2")));
 				//updateInfo.getStyle().func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
@@ -78,8 +78,8 @@ public class SurvivalPlusUpdateHandler {
 				if(latestVersionInfo != null) {
 					
 					updateVersionInfo = new StringTextComponent(latestVersionInfo);
-					updateVersionInfo.mergeStyle(TextFormatting.DARK_AQUA);
-					updateVersionInfo.mergeStyle(TextFormatting.BOLD);
+					updateVersionInfo.withStyle(TextFormatting.DARK_AQUA);
+					updateVersionInfo.withStyle(TextFormatting.BOLD);
 					
 					//updateVersionInfo.getStyle().func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2")));
 					//updateVersionInfo.getStyle().func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));

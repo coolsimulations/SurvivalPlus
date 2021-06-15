@@ -9,7 +9,7 @@ import net.minecraftforge.common.ToolType;
 public class SPItemPickaxe extends PickaxeItem{
 
 	public SPItemPickaxe(IItemTier tier) {
-	      super(tier, 1, -2.8F, (new Item.Properties().addToolType(ToolType.PICKAXE, tier.getHarvestLevel()).group(SPTabs.tabTools)));
+	      super(tier, 1, -2.8F, (new Item.Properties().addToolType(ToolType.PICKAXE, tier.getLevel()).tab(SPTabs.tabTools)));
 	   }
 
 }

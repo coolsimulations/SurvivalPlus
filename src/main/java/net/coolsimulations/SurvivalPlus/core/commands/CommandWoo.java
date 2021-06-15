@@ -13,15 +13,18 @@ public class CommandWoo {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("woo")
-		.requires(s -> s.hasPermissionLevel(0))
+		.requires(s -> s.hasPermission(0))
 		.executes(woo -> woo(woo.getSource())));
 	}
 
 	private static int woo(CommandSource sender) {
 
 		TranslationTextComponent woo = new TranslationTextComponent("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
-		woo.mergeStyle(TextFormatting.BLUE);
-		sender.getServer().getPlayerList().func_232641_a_(woo, ChatType.SYSTEM, Util.DUMMY_UUID);
+		woo.withStyle(TextFormatting.BLUE);
+		if (sender.getEntity() != null)
+			sender.getServer().getPlayerList().broadcastMessage(woo, ChatType.CHAT, sender.getEntity().getUUID());
+		else
+			sender.getServer().getPlayerList().broadcastMessage(woo, ChatType.SYSTEM, Util.NIL_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

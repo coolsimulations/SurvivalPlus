@@ -19,7 +19,7 @@ public class CommandMourn {
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal("mourn")
 				.then(Commands.argument("targets", EntityArgument.players())
-						.requires(s -> s.hasPermissionLevel(0))
+						.requires(s -> s.hasPermission(0))
 						.executes(mourn -> mourn(mourn.getSource(), EntityArgument.getPlayers(mourn, "targets")))));
 	}
 
@@ -35,8 +35,11 @@ public class CommandMourn {
 
 			}else {
 				TranslationTextComponent mourns = new TranslationTextComponent("sp.commands.mourn.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				mourns.mergeStyle(TextFormatting.DARK_AQUA);
-				sender.getServer().getPlayerList().func_232641_a_(mourns, ChatType.SYSTEM, Util.DUMMY_UUID);
+				mourns.withStyle(TextFormatting.DARK_AQUA);
+				if (sender.getEntity() != null)
+					sender.getServer().getPlayerList().broadcastMessage(mourns, ChatType.CHAT, sender.getEntity().getUUID());
+				else
+					sender.getServer().getPlayerList().broadcastMessage(mourns, ChatType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 

@@ -13,15 +13,18 @@ public class CommandSmiley {
 
 	public static void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(Commands.literal(":)")
-				.requires(s -> s.hasPermissionLevel(0))
+				.requires(s -> s.hasPermission(0))
 				.executes(smiley -> smiley(smiley.getSource())));
 	}
 
 	private static int smiley(CommandSource sender) {
 
 		TranslationTextComponent smiley = new TranslationTextComponent("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
-		smiley.mergeStyle(TextFormatting.GREEN);
-		sender.getServer().getPlayerList().func_232641_a_(smiley, ChatType.SYSTEM, Util.DUMMY_UUID);
+		smiley.withStyle(TextFormatting.GREEN);
+		if (sender.getEntity() != null)
+			sender.getServer().getPlayerList().broadcastMessage(smiley, ChatType.CHAT, sender.getEntity().getUUID());
+		else
+			sender.getServer().getPlayerList().broadcastMessage(smiley, ChatType.SYSTEM, Util.NIL_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

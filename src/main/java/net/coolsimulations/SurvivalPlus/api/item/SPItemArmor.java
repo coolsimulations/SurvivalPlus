@@ -9,7 +9,7 @@ import net.minecraft.item.ArmorItem;
 public class SPItemArmor extends ArmorItem{
 	
     public SPItemArmor(IArmorMaterial material, EquipmentSlotType equipmentSlotIn) {
-		super(material, equipmentSlotIn, (new Item.Properties()).group(SPTabs.tabCombat));
+		super(material, equipmentSlotIn, (new Item.Properties()).tab(SPTabs.tabCombat));
 	}
 
 }

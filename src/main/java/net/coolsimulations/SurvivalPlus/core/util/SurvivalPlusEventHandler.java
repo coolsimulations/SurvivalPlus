@@ -1,12 +1,16 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
@@ -14,48 +18,48 @@ import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementManager;
-import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CakeBlock;
 import net.minecraft.block.CampfireBlock;
-import net.minecraft.block.CarvedPumpkinBlock;
-import net.minecraft.block.TripWireBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
-import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.ShearsItem;
+import net.minecraft.loot.ItemLootEntry;
+import net.minecraft.loot.LootEntry;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.RandomValueRange;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.tileentity.BeehiveTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ChatType;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.LanguageMap;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.common.BasicTrade;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -64,11 +68,10 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 public class SurvivalPlusEventHandler {
 
@@ -78,14 +81,14 @@ public class SurvivalPlusEventHandler {
 		ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
 		CompoundNBT entityData = player.getPersistentData();
 
-		AdvancementManager manager = player.getServer().getAdvancementManager();
+		AdvancementManager manager = player.getServer().getAdvancements();
 		Advancement install = manager.getAdvancement(new ResourceLocation(SPReference.MOD_ID, SPReference.MOD_ID + "/install"));
 
 		boolean isDone = false;
 
 		Timer timer = new Timer();
 
-		if(install !=null && player.getAdvancements().getProgress(install).hasProgress()) {
+		if(install !=null && player.getAdvancements().getOrStartProgress(install).hasProgress()) {
 			isDone = true;
 		}
 
@@ -93,25 +96,25 @@ public class SurvivalPlusEventHandler {
 
 			entityData.putBoolean("sp.firstJoin", true);
 
-			if(!player.world.isRemote) {
+			if(!player.level.isClientSide) {
 
 				TranslationTextComponent installInfo = new TranslationTextComponent("advancements.sp.install.display1");
-				installInfo.mergeStyle(TextFormatting.GOLD);
-				player.func_241151_a_(installInfo.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("advancements.sp.install.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
+				installInfo.withStyle(TextFormatting.GOLD);
+				player.sendMessage(installInfo.withStyle((style) -> {return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("advancements.sp.install.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.NIL_UUID);
 
 				TranslationTextComponent discord = new TranslationTextComponent("sp.discord.display1");
-				discord.mergeStyle(TextFormatting.DARK_GREEN);
-				discord.mergeStyle(TextFormatting.BOLD);
+				discord.withStyle(TextFormatting.DARK_GREEN);
+				discord.withStyle(TextFormatting.BOLD);
 
 				for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
-					String name = LanguageMap.getInstance().func_230503_a_(SPReference.MOD_ADDON_NAMES.get(i));
+					String name = LanguageMap.getInstance().getOrDefault(SPReference.MOD_ADDON_NAMES.get(i));
 
 					StringTextComponent formatted = new StringTextComponent(name);
-					formatted.mergeStyle(TextFormatting.BLUE);
-					formatted.mergeStyle(TextFormatting.BOLD);
+					formatted.withStyle(TextFormatting.BLUE);
+					formatted.withStyle(TextFormatting.BOLD);
 
 					StringTextComponent gap = new StringTextComponent(", ");
-					gap.mergeStyle(TextFormatting.WHITE);
+					gap.withStyle(TextFormatting.WHITE);
 
 					discord.append(formatted);
 					if(i + 1 != SPReference.MOD_ADDON_NAMES.size()) {
@@ -122,7 +125,7 @@ public class SurvivalPlusEventHandler {
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						player.func_241151_a_(discord.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.discord.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
+						player.sendMessage(discord.withStyle((style) -> {return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.discord.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));}), ChatType.SYSTEM, Util.NIL_UUID);
 					}
 				}, 30000);
 			}
@@ -132,8 +135,8 @@ public class SurvivalPlusEventHandler {
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
-					player.func_241151_a_(SurvivalPlusUpdateHandler.updateInfo.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
-					player.func_241151_a_(SurvivalPlusUpdateHandler.updateVersionInfo.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
+					player.sendMessage(SurvivalPlusUpdateHandler.updateInfo.withStyle((style) -> {return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.NIL_UUID);
+					player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo.withStyle((style) -> {return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.NIL_UUID);
 				}
 			}, 15000);
 		}
@@ -176,94 +179,79 @@ public class SurvivalPlusEventHandler {
 		BlockState state = event.getWorld().getBlockState(event.getPos());
 
 		PlayerEntity entityplayer = event.getPlayer();
-		ItemStack itemStackIn = entityplayer.getHeldItem(event.getHand());
+		ItemStack itemStackIn = entityplayer.getItemInHand(event.getHand());
 		Item item = itemStackIn.getItem();
 		ItemStack itemStackIn1 = itemStackIn.copy();
 
 		if(block instanceof CampfireBlock) {
-			if(state.get(CampfireBlock.LIT) && item == Items.BUCKET  && !entityplayer.abilities.isCreativeMode) {
-				event.getWorld().setBlockState(event.getPos(), state.with(CampfireBlock.LIT, false));
-				if (event.getWorld().isRemote()) {
+			if(state.getValue(CampfireBlock.LIT) && item == Items.BUCKET  && !entityplayer.abilities.instabuild) {
+				event.getWorld().setBlockAndUpdate(event.getPos(), state.setValue(CampfireBlock.LIT, false));
+				if (event.getWorld().isClientSide()) {
 					for (int i = 0; i < 20; ++i) {
-						CampfireBlock.spawnSmokeParticles(event.getWorld(), event.getPos(), (Boolean) state.get(CampfireBlock.SIGNAL_FIRE),true);
+						CampfireBlock.makeParticles(event.getWorld(), event.getPos(), (Boolean) state.getValue(CampfireBlock.SIGNAL_FIRE),true);
 					}
 				} else {
-					event.getWorld().playSound((PlayerEntity) null, event.getPos(), SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					event.getWorld().playSound((PlayerEntity) null, event.getPos(), SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				}
 				if(itemStackIn.getCount() == 1) {
-					if (ItemStack.areItemStacksEqual(entityplayer.getHeldItemOffhand(), itemStackIn))
+					if (ItemStack.isSame(entityplayer.getOffhandItem(), itemStackIn))
 					{
-						entityplayer.setHeldItem(Hand.OFF_HAND, new ItemStack(SPItems.charcoal_bucket));
+						entityplayer.setItemInHand(Hand.OFF_HAND, new ItemStack(SPItems.charcoal_bucket));
 					}
 					else
 					{
-						entityplayer.setHeldItem(Hand.MAIN_HAND, new ItemStack(SPItems.charcoal_bucket));
+						entityplayer.setItemInHand(Hand.MAIN_HAND, new ItemStack(SPItems.charcoal_bucket));
 					}
 				} else  if(itemStackIn.getCount() >= 2){
 					itemStackIn.shrink(1);
-					boolean flag = entityplayer.inventory.addItemStackToInventory(new ItemStack(SPItems.charcoal_bucket));
+					boolean flag = entityplayer.inventory.add(new ItemStack(SPItems.charcoal_bucket));
 					if(!flag) {
-						entityplayer.dropItem(new ItemStack(SPItems.charcoal_bucket), false);
+						entityplayer.drop(new ItemStack(SPItems.charcoal_bucket), false);
 					}		
 				}
 			}
 		}
 
-		if(block == Blocks.PUMPKIN) {
+		if(block == Blocks.CAKE) {
 
-			if (item instanceof ShearsItem && item != Items.SHEARS) {
-				if (!event.getWorld().isRemote) {
-					Direction direction = event.getFace();
-					Direction direction1 = direction.getAxis() == Direction.Axis.Y ? entityplayer.getHorizontalFacing().getOpposite() : direction;
-					event.getWorld().playSound((PlayerEntity)null, event.getPos(), SoundEvents.BLOCK_PUMPKIN_CARVE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					event.getWorld().setBlockState(event.getPos(), Blocks.CARVED_PUMPKIN.getDefaultState().with(CarvedPumpkinBlock.FACING, direction1), 11);
-					ItemEntity itementity = new ItemEntity(event.getWorld(), (double)event.getPos().getX() + 0.5D + (double)direction1.getXOffset() * 0.65D, (double)event.getPos().getY() + 0.1D, (double)event.getPos().getZ() + 0.5D + (double)direction1.getZOffset() * 0.65D, new ItemStack(Items.PUMPKIN_SEEDS, 4));
-					itementity.setMotion(0.05D * (double)direction1.getXOffset() + event.getWorld().rand.nextDouble() * 0.02D, 0.05D, 0.05D * (double)direction1.getZOffset() + event.getWorld().rand.nextDouble() * 0.02D);
-					event.getWorld().addEntity(itementity);
-					itemStackIn.damageItem(1, entityplayer, (livingentity) -> {
-						livingentity.sendBreakAnimation(event.getHand());
-					});
-				}
-			}
-		}
-
-		if(block instanceof BeehiveBlock) {
-			int level = state.get(BeehiveBlock.HONEY_LEVEL);
-			boolean flag = false;
-
-			if (level >= 5 && item instanceof ShearsItem && item != Items.SHEARS) {
-				event.getWorld().playSound(entityplayer, entityplayer.getPosX(), entityplayer.getPosY(), entityplayer.getPosZ(), SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-				BeehiveBlock.dropHoneyComb(event.getWorld(), event.getPos());
-				itemStackIn.damageItem(1, entityplayer, (livingentity) -> {livingentity.sendBreakAnimation(event.getHand());});
-				flag = true;
+			if((entityplayer.getMainHandItem().getItem() == SPItems.paper_cup || entityplayer.getOffhandItem().getItem() == SPItems.paper_cup) || entityplayer.getMainHandItem().getItem() == SPItems.cupcake || entityplayer.getOffhandItem().getItem() == SPItems.cupcake) {
+				event.setCanceled(true);
 			}
 
-			if (flag) {
-				if (!CampfireBlock.isSmokingBlockAt(event.getWorld(), event.getPos())) {
-					if (hasBees(event.getWorld(), event.getPos())) {
-						angerNearbyBees(event.getWorld(), event.getPos());
+			if(entityplayer.getItemInHand(event.getHand()).getItem() == SPItems.paper_cup) {
+
+				if(!event.getWorld().isClientSide) {
+
+					int bites = (Integer)state.getValue(CakeBlock.BITES);
+
+					if (bites < 6) {
+						event.getWorld().setBlock(event.getPos(), (BlockState)state.setValue(CakeBlock.BITES, bites + 1), 3);
+					} else {
+						event.getWorld().removeBlock(event.getPos(), false);
 					}
 
-					((BeehiveBlock) block).takeHoney(event.getWorld(), state, event.getPos(), entityplayer, BeehiveTileEntity.State.EMERGENCY);
-				} else {
-					((BeehiveBlock) block).takeHoney(event.getWorld(), state, event.getPos());
+					if(!entityplayer.isCreative()) {
+						if(itemStackIn.getCount() == 1) {
+							if (ItemStack.isSame(entityplayer.getOffhandItem(), itemStackIn))
+							{
+								entityplayer.setItemInHand(Hand.OFF_HAND, new ItemStack(SPItems.cupcake));
+							}
+							else
+							{
+								entityplayer.setItemInHand(Hand.MAIN_HAND, new ItemStack(SPItems.cupcake));
+							}
+						} else  if(itemStackIn.getCount() >= 2){
+							itemStackIn.shrink(1);
+							boolean flag = entityplayer.inventory.add(new ItemStack(SPItems.cupcake));
+							if(!flag) {
+								entityplayer.drop(new ItemStack(SPItems.cupcake), false);
+							}
+						}
+					}
 				}
 			}
 		}
 
-	}
-
-	@SubscribeEvent
-	public void tripWireBreak(BreakEvent event) {
-
-		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
-		BlockState state = event.getWorld().getBlockState(event.getPos());
-
-		PlayerEntity entityplayer = event.getPlayer();
-
-		if (block instanceof TripWireBlock && !event.getWorld().isRemote() && !entityplayer.getHeldItemMainhand().isEmpty() && entityplayer.getHeldItemMainhand().getItem() instanceof ShearsItem && entityplayer.getHeldItemMainhand().getItem() != Items.SHEARS) {
-			event.getWorld().setBlockState(event.getPos(), state.with(TripWireBlock.DISARMED, Boolean.valueOf(true)), 4);
-		}
 	}
 
 	@SubscribeEvent
@@ -276,8 +264,8 @@ public class SurvivalPlusEventHandler {
 				if(item instanceof SPItemIngot && ((SPItemIngot) item).healsGolem()) {
 					((LivingEntity) event.getTarget()).heal(((SPItemIngot) item).getGolemHealth());
 					float f1 = 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
-					((LivingEntity) event.getTarget()).playSound(SoundEvents.ENTITY_IRON_GOLEM_REPAIR, 1.0F, f1);
-					if (!event.getPlayer().abilities.isCreativeMode) {
+					((LivingEntity) event.getTarget()).playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, f1);
+					if (!event.getPlayer().abilities.instabuild) {
 						itemstack.shrink(1);
 					}
 				}
@@ -288,6 +276,34 @@ public class SurvivalPlusEventHandler {
 	@SubscribeEvent(priority =  EventPriority.HIGH)
 	public void genOres(BiomeLoadingEvent event) {
 		SurvivalPlusOreGenerator.generateOres(event.getName(), event.getClimate(), event.getCategory(), event.getDepth(), event.getScale(), event.getEffects(), event.getGeneration(), event.getSpawns());
+	}
+
+	@SubscribeEvent
+	public void addLootTable(LootTableLoadEvent event) {
+
+		if(event.getName().equals(LootTables.PIGLIN_BARTERING)) {
+
+			LootEntry spinel = ItemLootEntry.lootTableItem(SPBlocks.spinel).setWeight(15).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).build();
+
+			LootTable table = event.getTable();
+
+			Field entires = ObfuscationReflectionHelper.findField(LootPool.class, "entries");
+
+			if(event.getTable().getPool("main") != null) {
+				try {
+					List<LootEntry> list = (List<LootEntry>) entires.get(event.getTable().getPool("main"));
+
+					list.add(spinel);
+
+				} catch (IllegalArgumentException e) {
+					System.out.println("Failed to add Spinel Loot");
+				} catch (IllegalAccessException e) {
+					System.out.println("Failed to add Spinel Loot");
+				}
+			}
+
+			event.setTable(table);
+		}
 	}
 
 	/**@SubscribeEvent
@@ -330,14 +346,31 @@ public class SurvivalPlusEventHandler {
     }**/
 
 	@SubscribeEvent
+	public void coolsimTabList(PlayerEvent.TabListNameFormat event) {
+
+		if(event.getPlayer().getUUID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
+			
+			StringTextComponent coolsim = new StringTextComponent("coolsim");
+			coolsim.withStyle(TextFormatting.GOLD);
+			
+			if(event.getPlayer().getTeam() == null) {
+				event.setDisplayName(coolsim);
+			} else if(event.getPlayer().getTeam() instanceof ScorePlayerTeam) {
+				if(((ScorePlayerTeam) event.getPlayer().getTeam()).getColor() == TextFormatting.RESET)
+					event.setDisplayName(coolsim);
+			}
+		}
+	}
+
+	@SubscribeEvent
 	public void coolsimChat(ServerChatEvent event) {
 
 		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
-		coolsim.mergeStyle(TextFormatting.GOLD);
+		coolsim.withStyle(TextFormatting.GOLD);
 
-		if(event.getPlayer().getUniqueID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
-			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()) != null)
-				event.setComponent(new TranslationTextComponent("%s <%s> %s", new Object[] {coolsim, ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByUsername(event.getUsername()).getDisplayName(), event.getMessage()}));
+		if(event.getPlayer().getUUID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
+			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(event.getUsername()) != null)
+				event.setComponent(new TranslationTextComponent("%s <%s> %s", new Object[] {coolsim, ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(event.getUsername()).getDisplayName(), event.getMessage()}));
 		}
 	}
 
@@ -345,19 +378,19 @@ public class SurvivalPlusEventHandler {
 	public void coolsimReceivedChat(ClientChatReceivedEvent event) {
 
 		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
-		coolsim.mergeStyle(TextFormatting.GOLD);
+		coolsim.withStyle(TextFormatting.GOLD);
 
 		TranslationTextComponent playerJoined = new TranslationTextComponent("multiplayer.player.joined", new Object[] {"coolsim"});
-		playerJoined.mergeStyle(TextFormatting.YELLOW);
+		playerJoined.withStyle(TextFormatting.YELLOW);
 
 		TranslationTextComponent playerLeft = new TranslationTextComponent("multiplayer.player.left", new Object[] {"coolsim"});
-		playerLeft.mergeStyle(TextFormatting.YELLOW);
+		playerLeft.withStyle(TextFormatting.YELLOW);
 
 		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined");
-		coolsimJoined.mergeStyle(TextFormatting.YELLOW);
+		coolsimJoined.withStyle(TextFormatting.YELLOW);
 
 		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left");
-		coolsimLeft.mergeStyle(TextFormatting.YELLOW);
+		coolsimLeft.withStyle(TextFormatting.YELLOW);
 
 		if(event.getMessage().getString().equals(playerJoined.getString())) {
 			event.setMessage(coolsimJoined);
@@ -367,7 +400,7 @@ public class SurvivalPlusEventHandler {
 			event.setMessage(coolsimLeft);
 		}
 
-		if(event.getMessage().getString().startsWith("[coolsim]")) {
+		if(replaceFormattingCodes(event.getMessage()).startsWith("[coolsim]")) {
 			event.setMessage(new TranslationTextComponent("%s %s", new Object[] {coolsim, event.getMessage()}));
 		}
 	}
@@ -375,17 +408,17 @@ public class SurvivalPlusEventHandler {
 	@SubscribeEvent
 	public void coolsimDeath(LivingDeathEvent event) {
 
-		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().getUniqueID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412")) && event.getSource().getTrueSource() instanceof ServerPlayerEntity) {
+		if(event.getEntity() instanceof ServerPlayerEntity && event.getEntity().getUUID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412")) && event.getSource().getEntity() instanceof ServerPlayerEntity) {
 
-			ServerPlayerEntity attacker = (ServerPlayerEntity) event.getSource().getTrueSource();
+			ServerPlayerEntity attacker = (ServerPlayerEntity) event.getSource().getEntity();
 			ItemStack coolsimHead = getcoolsimHead((PlayerEntity) event.getEntity());
 
 			if(coolsimHead != null) {
-				ItemHandlerHelper.giveItemToPlayer(attacker, coolsimHead);
+				dropItem(coolsimHead, attacker);
 			} else {
 				TranslationTextComponent error = new TranslationTextComponent("sp.coolsim.error");
-				error.mergeStyle(TextFormatting.RED);
-				attacker.func_241151_a_(error, ChatType.SYSTEM, Util.DUMMY_UUID);
+				error.withStyle(TextFormatting.RED);
+				attacker.sendMessage(error, ChatType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 
@@ -398,43 +431,53 @@ public class SurvivalPlusEventHandler {
 		ItemStack playerhead = new ItemStack(Items.PLAYER_HEAD);
 
 		TranslationTextComponent headName = new TranslationTextComponent("block.minecraft.player_head.named", new Object[] {"coolsim"});
-		headName.mergeStyle(TextFormatting.ITALIC);
+		headName.withStyle(TextFormatting.ITALIC);
 		CompoundNBT properties = new CompoundNBT();
 		ListNBT textures = new ListNBT();
 		CompoundNBT tex = new CompoundNBT();
 		tex.putString("Value", texture);
 		textures.add(tex);
 		properties.put("textures", textures);
-		playerhead.setTagInfo("SkullOwner", NBTUtil.writeGameProfile(new CompoundNBT(), coolsim.getGameProfile()));
-		playerhead.setDisplayName(headName);
+		playerhead.addTagElement("SkullOwner", NBTUtil.writeGameProfile(new CompoundNBT(), coolsim.getGameProfile()));
+		playerhead.setHoverName(headName);
 
 		return playerhead;
 	}
 
-	private void angerNearbyBees(World world, BlockPos pos) {
-		List<BeeEntity> list = world.getEntitiesWithinAABB(BeeEntity.class, (new AxisAlignedBB(pos)).grow(8.0D, 6.0D, 8.0D));
-		if (!list.isEmpty()) {
-			List<PlayerEntity> list1 = world.getEntitiesWithinAABB(PlayerEntity.class, (new AxisAlignedBB(pos)).grow(8.0D, 6.0D, 8.0D));
-			int i = list1.size();
+	public static void dropItem(ItemStack stack, PlayerEntity player) {
 
-			for(BeeEntity beeentity : list) {
-				if (beeentity.getAttackTarget() == null) {
-					beeentity.setAttackTarget(list1.get(world.rand.nextInt(i)));
-				}
+		boolean bl = player.inventory.add(stack);
+		if (bl && stack.isEmpty()) {
+			stack.setCount(1);
+			ItemEntity itementity1 = player.drop(stack, false);
+			if (itementity1 != null) {
+				itementity1.makeFakeItem();
+			}
+
+			player.level.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+			player.containerMenu.broadcastChanges();;
+		} else {
+			ItemEntity itementity = player.drop(stack, false);
+			if (itementity != null) {
+				itementity.setNoPickUpDelay();
+				itementity.setOwner(player.getUUID());
 			}
 		}
 
 	}
 
-	private boolean hasBees(World world, BlockPos pos) {
-		TileEntity tileentity = world.getTileEntity(pos);
-		if (tileentity instanceof BeehiveTileEntity) {
-			BeehiveTileEntity beehivetileentity = (BeehiveTileEntity)tileentity;
-			return !beehivetileentity.hasNoBees();
-		} else {
-			return false;
-		}
-	}
+	public static String replaceFormattingCodes(ITextComponent component) {
 
+		String text = component.getString();
+
+		if(text.contains("§")) {
+			System.out.println(text);
+			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
+				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
+			}
+		}
+
+		return text;
+	}
 
 }
