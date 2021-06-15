@@ -45,6 +45,7 @@ public class FuelHandler{
 			addArmorFuels(event, SPItems.palm);
 			addArmorFuels(event, SPItems.redwood);
 			addArmorFuels(event, SPItems.umbran);
+			addArmorFuels(event, SPItems.willow);
 		}
 
 		if(SPCompatibilityManager.isBopExtrasLoaded()) {
