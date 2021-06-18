@@ -28,14 +28,6 @@ dependencies {
 
 	modImplementation "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
 
-        modImplementation "com.terraformersmc:terraform:${project.terraform_version}"
-
-	compile files ('libs/climaticworldtype-1.1.4.jar')
-
-        modImplementation "com.terraformersmc:traverse:${project.traverse_version}"
-
-        modImplementation "com.terraformersmc:terrestria:${project.terrestria_version}"
-
         compile files('libs/blockus-1.6.0-1.15.2-dev.jar')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.

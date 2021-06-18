@@ -166,43 +166,43 @@ public class BlockCardboardLantern extends BlockCardboard implements Waterloggab
 
 		if(!isDyed) {
 
-			boolean success = false;
+			ActionResult success = ActionResult.FAIL;
 
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "white_dyes", SPBlocks.cardboard_lantern_white);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "light_gray_dyes", SPBlocks.cardboard_lantern_light_grey);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "gray_dyes", SPBlocks.cardboard_lantern_grey);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "black_dyes", SPBlocks.cardboard_lantern_black);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "red_dyes", SPBlocks.cardboard_lantern_red);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "orange_dyes", SPBlocks.cardboard_lantern_orange);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "yellow_dyes", SPBlocks.cardboard_lantern_yellow);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "lime_dyes", SPBlocks.cardboard_lantern_lime);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "green_dyes", SPBlocks.cardboard_lantern_green);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "light_blue_dyes", SPBlocks.cardboard_lantern_light_blue);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "cyan_dyes", SPBlocks.cardboard_lantern_cyan);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "blue_dyes", SPBlocks.cardboard_lantern_blue);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "purple_dyes", SPBlocks.cardboard_lantern_purple);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "magenta_dyes", SPBlocks.cardboard_lantern_magenta);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "pink_dyes", SPBlocks.cardboard_lantern_pink);
-			if(!success)
+			if(!success.isAccepted())
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "brown_dyes", SPBlocks.cardboard_lantern_brown);
 
 			state.getStateForNeighborUpdate(hit.getSide(), state, worldIn, pos, pos);
-			return ActionResult.SUCCESS;
+			return success;
 		} else {
 			state.getStateForNeighborUpdate(hit.getSide(), state, worldIn, pos, pos);
 		}
@@ -210,7 +210,7 @@ public class BlockCardboardLantern extends BlockCardboard implements Waterloggab
 		return ActionResult.FAIL;
 	}
 
-	protected boolean checkDye(World worldIn, BlockPos pos, BlockState state, PlayerEntity playerIn, ItemStack stack, String dye_tag, Block dyeBlock) {
+	protected ActionResult checkDye(World worldIn, BlockPos pos, BlockState state, PlayerEntity playerIn, ItemStack stack, String dye_tag, Block dyeBlock) {
 
 		Tag<Item> tag = new ItemTags.CachingTag(new Identifier("c", dye_tag));
 		
@@ -220,12 +220,12 @@ public class BlockCardboardLantern extends BlockCardboard implements Waterloggab
 				if(!playerIn.isCreative())
 					stack.decrement(1);
 				worldIn.setBlockState(pos, dyeBlock.getDefaultState().with(FACING, state.get(FACING)).with(FLOATING, state.get(FLOATING)).with(WATERLOGGED, state.get(WATERLOGGED)), 3);
-				return true;
+				return ActionResult.SUCCESS;
 			}
 
 		}
 
-		return false;
+		return ActionResult.FAIL;
 	}
 
 	/**

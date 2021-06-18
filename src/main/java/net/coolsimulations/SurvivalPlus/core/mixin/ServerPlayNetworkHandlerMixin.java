@@ -32,7 +32,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
 		coolsim.getStyle().setColor(Formatting.GOLD);
 
 		if(player.getUuid().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
-			return new LiteralText(coolsim.asFormattedString() + " " + message.asFormattedString());
+			return coolsim.append(Formatting.RESET + " " + message.asFormattedString());
 		}
 		
 		return message;

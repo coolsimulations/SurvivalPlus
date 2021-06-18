@@ -6,7 +6,6 @@ import com.mojang.authlib.GameProfile;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.recipes.SPTrades;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandConfrats;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandEmportant;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandIndeed;
@@ -27,7 +26,6 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusComposterRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusDispenserBehavior;
-import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusTrades;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusBlockus;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
@@ -106,10 +104,6 @@ public class SurvivalPlus implements ModInitializer {
 		setupEvent();
 
 		SurvivalPlusEventHandler.init();
-
-		SurvivalPlusTrades.initVillagerTrades();
-		SurvivalPlusEventHandler.villagerTrades();
-		SPTrades.postInitVillagerTrades();
 		
 		if(SPCompatibilityManager.isBlockusLoaded()) {
 			SurvivalPlusBlockus.init();

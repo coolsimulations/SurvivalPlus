@@ -18,7 +18,6 @@
         "CakeBlockMixin"
     ],
     "client": [
-    	"BuiltinModelItemRendererMixin",
     	"BeaconScreenMixin",
     	"InGameHudMixin",
     	"ClientPlayerInteractionManagerMixin",

@@ -83,10 +83,10 @@ public class BlockCheeseCake extends Block
 			} else if(playerIn.getMainHandStack().getItem() != SPItems.paper_cup && playerIn.getOffHandStack().getItem() != SPItems.paper_cup) {
 				return this.tryEat(worldIn, pos, state, playerIn);
 			}
-			return ActionResult.PASS;
+			return ActionResult.CONSUME;
 
 		} else {
-			return ActionResult.PASS;
+			return ActionResult.CONSUME;
 		}
 	}
 

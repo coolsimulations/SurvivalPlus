@@ -12,9 +12,7 @@ import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.events.EntityAccessor;
 import net.coolsimulations.SurvivalPlus.api.events.SPPlayerDeathEvent;
 import net.coolsimulations.SurvivalPlus.api.events.SPPlayerJoinEvent;
-import net.coolsimulations.SurvivalPlus.api.recipes.SPBasicTrade;
-import net.coolsimulations.SurvivalPlus.api.recipes.SPTradeRecipes;
-import net.coolsimulations.SurvivalPlus.api.recipes.SPTradeRecipes.VillagerLevel;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,6 +33,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Language;
+import net.minecraft.village.TradeOffer;
 import net.minecraft.village.VillagerProfession;
 
 public class SurvivalPlusEventHandler {
@@ -43,6 +42,7 @@ public class SurvivalPlusEventHandler {
 
 		onplayerLogin();
 		coolsimDeath();
+		villagerTrades();
 	}
 
 	public static void onplayerLogin()
@@ -79,9 +79,8 @@ public class SurvivalPlusEventHandler {
 					discord.getStyle().setBold(true);
 
 					for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
-						String name = Language.getInstance().translate(SPReference.MOD_ADDON_NAMES.get(i));
 
-						LiteralText formatted = new LiteralText(name);
+						TranslatableText formatted = new TranslatableText(SPReference.MOD_ADDON_NAMES.get(i));
 						formatted.getStyle().setColor(Formatting.BLUE);
 						formatted.getStyle().setBold(true);
 
@@ -119,20 +118,42 @@ public class SurvivalPlusEventHandler {
 	}
 
 	public static void villagerTrades() {
-
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.BUTCHER, VillagerLevel.getIDByLevel(3), new SPBasicTrade(2, new ItemStack(SPItems.beef_pie, 4), 16, 20));
-
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.FARMER, VillagerLevel.getIDByLevel(1), new SPBasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 2));
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.FARMER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.raw_onion, 13), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
-
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(6, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
-
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.WEAPONSMITH, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.WEAPONSMITH, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
-
-		SPTradeRecipes.addWanderingBasicRecipe(new SPBasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 20));
+		
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.BUTCHER, 3, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 2), new ItemStack(SPItems.beef_pie, 4), 16, 20, 0.05F));
+		});
+		
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 1, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(SPItems.onion_seeds, 4), 12, 2, 0.05F));
+		});
+		
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 2, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.raw_onion, 13), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
+		});
+		
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 2, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 6), new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
+		});
+		
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 2, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+		});
+		
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 2, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+		});
+		
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 2, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+		});
+		
+		TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 2, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+		});
+		
+		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD), new ItemStack(SPItems.onion_seeds, 4), 12, 20, 0.05F));
+		});
 	}
 
 	public static void coolsimDeath() {

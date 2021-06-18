@@ -62,11 +62,11 @@ public abstract class CakeBlockMixin {
 
 					}
 				}
-				cir.setReturnValue(ActionResult.SUCCESS);
+				cir.setReturnValue(ActionResult.CONSUME);
 				cir.cancel();
 			}
 		} else {
-			cir.setReturnValue(ActionResult.SUCCESS);
+			cir.setReturnValue(ActionResult.CONSUME);
 			cir.cancel();
 		}
 	}

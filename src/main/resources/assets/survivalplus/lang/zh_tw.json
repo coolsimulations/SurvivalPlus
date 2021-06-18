@@ -304,6 +304,10 @@
   "sp.coolsim.error": "coolsim\u5df2\u7d93\u9023\u7e8c\u88ab\u6bba\u6b7b\u4e86\u5f88\u591a\u6b21\u56e0\u6b64\u6c92\u6709\u4e1f\u4e0b\u982d\uff01",
 
   "sp.configgui.title": "\u751f\u5b58\u52a0\u7d44\u614b",
+  "sp.configgui.recipes": "\u98df\u8b5c",
+  "sp.configgui.compatibility": "\u517c\u5bb9\u6027",
+  "sp.configgui.generation": "\u4e00\u4ee3",
+  "sp.configgui.command": "\u547d\u4ee4",
   "sp.configgui.enable_sponge": "\u5553\u7528\u6d77\u7dbf\u98df\u8b5c",
   "sp.configgui.enable_cheese_block": "\u5553\u7528\u661f\u7cfb\u5976\u916a\u584a\u98df\u8b5c",
   "sp.configgui.enable_IC2_Config_Gen": "\u5553\u7528IC2\u914d\u7f6e\u751f\u6210",
