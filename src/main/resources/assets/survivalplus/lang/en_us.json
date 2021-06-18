@@ -303,7 +303,7 @@
   "sp.coolsim.error": "coolsim has been killed too many times in a row and thus has not dropped a head!",
 
   "sp.configgui.title": "SurvivalPlus Config",
-  "sp.configgui.reipces": "Recipes",
+  "sp.configgui.recipes": "Recipes",
   "sp.configgui.compatibility": "Compatibility",
   "sp.configgui.generation": "Generation",
   "sp.configgui.command": "Commands",

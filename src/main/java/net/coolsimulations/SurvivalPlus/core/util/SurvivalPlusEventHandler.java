@@ -79,9 +79,8 @@ public class SurvivalPlusEventHandler {
 					discord.getStyle().setBold(true);
 
 					for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
-						String name = Language.getInstance().translate(SPReference.MOD_ADDON_NAMES.get(i));
 
-						LiteralText formatted = new LiteralText(name);
+						TranslatableText formatted = new TranslatableText(SPReference.MOD_ADDON_NAMES.get(i));
 						formatted.getStyle().setColor(Formatting.BLUE);
 						formatted.getStyle().setBold(true);
 
