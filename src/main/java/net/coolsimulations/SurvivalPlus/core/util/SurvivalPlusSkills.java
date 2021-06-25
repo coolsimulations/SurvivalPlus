@@ -19,6 +19,7 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemSpade;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.config.Configuration;
@@ -244,22 +245,22 @@ public class SurvivalPlusSkills {
 				return getIntFromString(shovel, Items.IRON_HOE);
 			}
 			
-			if(item instanceof ItemArmor && ((ItemArmor) item).getEquipmentSlot() == EntityEquipmentSlot.HEAD && checkList(list, Items.IRON_HELMET)) {
+			if(item instanceof ItemArmor && item.getEquipmentSlot(new ItemStack(item)) == EntityEquipmentSlot.HEAD && checkList(list, Items.IRON_HELMET)) {
 				String shovel = checkListString(list, Items.IRON_HELMET);
 				return getIntFromString(shovel, Items.IRON_HELMET);
 			}
 			
-			if(item instanceof ItemArmor && ((ItemArmor) item).getEquipmentSlot() == EntityEquipmentSlot.CHEST && checkList(list, Items.IRON_CHESTPLATE)) {
+			if(item instanceof ItemArmor && item.getEquipmentSlot(new ItemStack(item)) == EntityEquipmentSlot.CHEST && checkList(list, Items.IRON_CHESTPLATE)) {
 				String shovel = checkListString(list, Items.IRON_CHESTPLATE);
 				return getIntFromString(shovel, Items.IRON_CHESTPLATE);
 			}
 			
-			if(item instanceof ItemArmor && ((ItemArmor) item).getEquipmentSlot() == EntityEquipmentSlot.LEGS && checkList(list, Items.IRON_LEGGINGS)) {
+			if(item instanceof ItemArmor && item.getEquipmentSlot(new ItemStack(item)) == EntityEquipmentSlot.LEGS && checkList(list, Items.IRON_LEGGINGS)) {
 				String shovel = checkListString(list, Items.IRON_LEGGINGS);
 				return getIntFromString(shovel, Items.IRON_LEGGINGS);
 			}
 			
-			if(item instanceof ItemArmor && ((ItemArmor) item).getEquipmentSlot() == EntityEquipmentSlot.FEET && checkList(list, Items.IRON_BOOTS)) {
+			if(item instanceof ItemArmor && item.getEquipmentSlot(new ItemStack(item)) == EntityEquipmentSlot.FEET && checkList(list, Items.IRON_BOOTS)) {
 				String shovel = checkListString(list, Items.IRON_BOOTS);
 				return getIntFromString(shovel, Items.IRON_BOOTS);
 			}
