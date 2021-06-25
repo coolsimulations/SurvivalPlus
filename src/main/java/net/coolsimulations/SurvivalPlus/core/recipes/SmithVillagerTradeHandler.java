@@ -18,9 +18,9 @@ public class SmithVillagerTradeHandler implements ITradeList {
     @Override
 	public void addMerchantRecipe(IMerchant merchant, MerchantRecipeList recipeList, Random random) {
     	
-		recipeList.add(new MerchantRecipe(new ItemStack(Items.EMERALD, 6), new ItemStack(SPItems.bronze_chestplate)));
-		recipeList.add(new MerchantRecipe(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD)));
-		recipeList.add(new MerchantRecipe(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD, 2)));
+		recipeList.add(new MerchantRecipe(new ItemStack(Items.EMERALD, 3), new ItemStack(SPItems.bronze_chestplate)));
+		recipeList.add(new MerchantRecipe(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD)));
+		recipeList.add(new MerchantRecipe(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD, 2)));
 		
 	}
     

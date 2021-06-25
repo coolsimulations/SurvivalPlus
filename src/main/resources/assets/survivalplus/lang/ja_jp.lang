@@ -493,8 +493,8 @@ sp.discord.display1=公式の不和サーバーに参加するには、ここを
 sp.discord.display2=クリックして参加！
 
 sp.coolsim.creator=[サバイバルプラス作成者]
-sp.coolsim.joined=サバイバルプラスのグランドクリエイターであるcoolsimがゲームに参加しました
-sp.coolsim.left=サバイバルプラスの大作者であるcoolsimがゲームを去りました
+sp.coolsim.joined=サバイバルプラスのグランドクリエイターである%sがゲームに参加しました
+sp.coolsim.left=サバイバルプラスの大作者である%sがゲームを去りました
 sp.coolsim.error=coolsimは連続して何度も殺されたため頭を落としていません！
 
 sp.configgui.title=サバイバルプラス構成

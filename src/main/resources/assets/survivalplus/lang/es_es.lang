@@ -494,8 +494,8 @@ sp.discord.display1=Haga Clic Aquí Para Unirse al Servidor Oficial de Discord P
 sp.discord.display2=Haga Clic Para Unirse!
 
 sp.coolsim.creator=[SupervivenciaMás Creador]
-sp.coolsim.joined=coolsim el gran creador de SupervivenciaMás se unió al juego
-sp.coolsim.left=coolsim el gran creador de SupervivenciaMás dejó el juego
+sp.coolsim.joined=%s el gran creador de SupervivenciaMás se unió al juego
+sp.coolsim.left=%s el gran creador de SupervivenciaMás dejó el juego
 sp.coolsim.error=¡coolsim ha sido asesinado demasiadas veces seguidas y por lo tanto, no se le ha caído la cabeza!
 
 sp.configgui.title=SupervivenciaMás Configuración

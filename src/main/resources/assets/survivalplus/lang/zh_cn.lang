@@ -493,8 +493,8 @@ sp.discord.display1=单击此处加入正式的Discord服务器以进行：
 sp.discord.display2=点击加入！
 
 sp.coolsim.creator=[生存加创作者]
-sp.coolsim.joined=coolsim生存加的伟大创造者加入了游戏
-sp.coolsim.left=coolsim生存加的伟大创造者离开了游戏
+sp.coolsim.joined=%s生存加的伟大创造者加入了游戏
+sp.coolsim.left=%s生存加的伟大创造者离开了游戏
 sp.coolsim.error=coolsim已经连续被杀死了很多次因此没有丢下头！
 
 sp.configgui.title=生存加组态

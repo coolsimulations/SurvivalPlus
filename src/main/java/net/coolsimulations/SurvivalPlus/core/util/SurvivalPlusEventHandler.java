@@ -464,22 +464,27 @@ public class SurvivalPlusEventHandler {
 		coolsim.getStyle().setColor(TextFormatting.GOLD);
 
 		TextComponentTranslation playerJoined = new TextComponentTranslation("multiplayer.player.joined", new Object[] {"coolsim"});
-		playerJoined.getStyle().setColor(TextFormatting.YELLOW);
 
 		TextComponentTranslation playerLeft = new TextComponentTranslation("multiplayer.player.left", new Object[] {"coolsim"});
-		playerLeft.getStyle().setColor(TextFormatting.YELLOW);
-
-		TextComponentTranslation coolsimJoined = new TextComponentTranslation("sp.coolsim.joined");
+		
+		String coolsimFormatted = "coolsim";
+		
+		if(event.getMessage().getFormattedText().contains("coolsim")) {
+			int index = event.getMessage().getFormattedText().indexOf("coolsim");
+			coolsimFormatted = event.getMessage().getFormattedText().substring(index - 2, index + 9);
+		}
+		
+		TextComponentTranslation coolsimJoined = new TextComponentTranslation("sp.coolsim.joined", new Object[] {coolsimFormatted});
 		coolsimJoined.getStyle().setColor(TextFormatting.YELLOW);
-
-		TextComponentTranslation coolsimLeft = new TextComponentTranslation("sp.coolsim.left");
+		
+		TextComponentTranslation coolsimLeft = new TextComponentTranslation("sp.coolsim.left", new Object[] {coolsimFormatted});
 		coolsimLeft.getStyle().setColor(TextFormatting.YELLOW);
 
-		if(event.getMessage().getFormattedText().equals(playerJoined.getFormattedText())) {
+		if(replaceFormattingCodes(event.getMessage()).equals(playerJoined.getUnformattedText())) {
 			event.setMessage(coolsimJoined);
 		}
 
-		if(event.getMessage().getFormattedText().equals(playerLeft.getFormattedText())) {
+		if(replaceFormattingCodes(event.getMessage()).equals(playerLeft.getUnformattedText())) {
 			event.setMessage(coolsimLeft);
 		}
 
