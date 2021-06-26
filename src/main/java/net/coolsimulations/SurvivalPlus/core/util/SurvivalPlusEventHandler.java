@@ -471,7 +471,11 @@ public class SurvivalPlusEventHandler {
 		
 		if(event.getMessage().getFormattedText().contains("coolsim")) {
 			int index = event.getMessage().getFormattedText().indexOf("coolsim");
-			coolsimFormatted = event.getMessage().getFormattedText().substring(index - 2, index + 9);
+			try {
+				coolsimFormatted = event.getMessage().getFormattedText().substring(index - 2, index + 9);
+			} catch(Exception e) {
+
+			}
 		}
 		
 		TextComponentTranslation coolsimJoined = new TextComponentTranslation("sp.coolsim.joined", new Object[] {coolsimFormatted});
@@ -563,7 +567,7 @@ public class SurvivalPlusEventHandler {
 		String text = component.getUnformattedText();
 
 		if(text.contains("§")) {
-			System.out.println(text);
+			
 			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
 				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
 			}
