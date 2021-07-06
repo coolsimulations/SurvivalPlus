@@ -7,8 +7,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
-import org.apache.commons.lang3.StringUtils;
-
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
@@ -50,7 +48,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ChatType;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.LanguageMap;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -152,16 +149,16 @@ public class SurvivalPlusEventHandler {
 
 		if(event.getType() == VillagerProfession.FARMER) {
 			trades.get(1).add(new BasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 2)); //temp till forge pull request #6142 is resolved
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.raw_onion, 13), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
+			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.raw_onion, 6), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
 		}
 
 		if(event.getType() == VillagerProfession.ARMORER) {
-			trades.get(2).add(new BasicTrade(6, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
+			trades.get(2).add(new BasicTrade(3, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
 		}
 
 		if(event.getType() == VillagerProfession.ARMORER  || event.getType() == VillagerProfession.WEAPONSMITH) {
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
 		}
 
 	}
@@ -349,10 +346,10 @@ public class SurvivalPlusEventHandler {
 	public void coolsimTabList(PlayerEvent.TabListNameFormat event) {
 
 		if(event.getPlayer().getUUID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
-			
+
 			StringTextComponent coolsim = new StringTextComponent("coolsim");
 			coolsim.withStyle(TextFormatting.GOLD);
-			
+
 			if(event.getPlayer().getTeam() == null) {
 				event.setDisplayName(coolsim);
 			} else if(event.getPlayer().getTeam() instanceof ScorePlayerTeam) {
@@ -386,10 +383,10 @@ public class SurvivalPlusEventHandler {
 		TranslationTextComponent playerLeft = new TranslationTextComponent("multiplayer.player.left", new Object[] {"coolsim"});
 		playerLeft.withStyle(TextFormatting.YELLOW);
 
-		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined");
+		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined", new Object[] {"coolsim"});
 		coolsimJoined.withStyle(TextFormatting.YELLOW);
 
-		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left");
+		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left", new Object[] {"coolsim"});
 		coolsimLeft.withStyle(TextFormatting.YELLOW);
 
 		if(event.getMessage().getString().equals(playerJoined.getString())) {
@@ -400,7 +397,7 @@ public class SurvivalPlusEventHandler {
 			event.setMessage(coolsimLeft);
 		}
 
-		if(replaceFormattingCodes(event.getMessage()).startsWith("[coolsim]")) {
+		if(event.getMessage().getString().startsWith("[coolsim]")) {
 			event.setMessage(new TranslationTextComponent("%s %s", new Object[] {coolsim, event.getMessage()}));
 		}
 	}
@@ -464,20 +461,6 @@ public class SurvivalPlusEventHandler {
 			}
 		}
 
-	}
-
-	public static String replaceFormattingCodes(ITextComponent component) {
-
-		String text = component.getString();
-
-		if(text.contains("§")) {
-			System.out.println(text);
-			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
-				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
-			}
-		}
-
-		return text;
 	}
 
 }
