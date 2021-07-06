@@ -484,8 +484,8 @@
   "sp.discord.display2": "Haga Clic Para Unirse!",
   
   "sp.coolsim.creator": "[SupervivenciaM\u00e1s Creador]",
-  "sp.coolsim.joined": "coolsim el gran creador de SupervivenciaM\u00e1s se uni\u00f3 al juego",
-  "sp.coolsim.left": "coolsim el gran creador de SupervivenciaM\u00e1s dej\u00f3 el juego",
+  "sp.coolsim.joined": "%s el gran creador de SupervivenciaM\u00e1s se uni\u00f3 al juego",
+  "sp.coolsim.left": "%s el gran creador de SupervivenciaM\u00e1s dej\u00f3 el juego",
   "sp.coolsim.error": "¡coolsim ha sido asesinado demasiadas veces seguidas y por lo tanto, no se le ha ca\u00eddo la cabeza!",
 
   "sp.configgui.title": "SupervivenciaM\u00e1s Configuraci\u00f3n",

@@ -484,8 +484,8 @@
   "sp.discord.display2": "Click to Join!",
   
   "sp.coolsim.creator": "[SurvivalPlus Creator]",
-  "sp.coolsim.joined": "coolsim the grand creator of SurvivalPlus joined the game",
-  "sp.coolsim.left": "coolsim the grand creator of SurvivalPlus left the game",
+  "sp.coolsim.joined": "%s the grand creator of SurvivalPlus joined the game",
+  "sp.coolsim.left": "%s the grand creator of SurvivalPlus left the game",
   "sp.coolsim.error": "coolsim has been killed too many times in a row and thus has not dropped a head!",
 
   "sp.configgui.title": "SurvivalPlus Config",

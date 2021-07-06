@@ -150,16 +150,16 @@ public class SurvivalPlusEventHandler {
 
 		if(event.getType() == VillagerProfession.FARMER) {
 			trades.get(1).add(new BasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 2)); //temp till forge pull request #6142 is resolved
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.raw_onion, 13), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
+			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.raw_onion, 6), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
 		}
 
 		if(event.getType() == VillagerProfession.ARMORER) {
-			trades.get(2).add(new BasicTrade(6, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
+			trades.get(2).add(new BasicTrade(3, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
 		}
 
 		if(event.getType() == VillagerProfession.ARMORER  || event.getType() == VillagerProfession.WEAPONSMITH) {
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
 		}
 
 	}
@@ -226,24 +226,24 @@ public class SurvivalPlusEventHandler {
 				}
 			}
 		}
-		
+
 		if(block == Blocks.CAKE) {
-			
+
 			if((entityplayer.getHeldItemMainhand().getItem() == SPItems.paper_cup || entityplayer.getHeldItemOffhand().getItem() == SPItems.paper_cup) || entityplayer.getHeldItemMainhand().getItem() == SPItems.cupcake || entityplayer.getHeldItemOffhand().getItem() == SPItems.cupcake) {
 				event.setCanceled(true);
 			}
-			
+
 			if(entityplayer.getHeldItem(event.getHand()).getItem() == SPItems.paper_cup) {
 
 				if(!event.getWorld().isRemote) {
 
 					int bites = (Integer)state.get(CakeBlock.BITES);
-			    	
-			        if (bites < 6) {
-			            event.getWorld().setBlockState(event.getPos(), (BlockState)state.with(CakeBlock.BITES, bites + 1), 3);
-			        } else {
-			        	event.getWorld().removeBlock(event.getPos(), false);
-			        }
+
+					if (bites < 6) {
+						event.getWorld().setBlockState(event.getPos(), (BlockState)state.with(CakeBlock.BITES, bites + 1), 3);
+					} else {
+						event.getWorld().removeBlock(event.getPos(), false);
+					}
 
 					if(!entityplayer.isCreative()) {
 						if(itemStackIn.getCount() == 1) {
@@ -320,7 +320,7 @@ public class SurvivalPlusEventHandler {
 		}
 
     }**/
-	
+
 	@SubscribeEvent
 	public void coolsimChat(ServerChatEvent event) {
 
@@ -339,23 +339,37 @@ public class SurvivalPlusEventHandler {
 		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
 		coolsim.getStyle().setColor(TextFormatting.GOLD);
 
-		TranslationTextComponent playerJoined = new TranslationTextComponent("multiplayer.player.joined", new Object[] {"coolsim"});
+		String coolsimFormatted = "coolsim";
+
+		if(event.getMessage().getFormattedText().contains("coolsim")) {
+			int index = event.getMessage().getFormattedText().indexOf("coolsim");
+			try {
+				coolsimFormatted = event.getMessage().getFormattedText().substring(index - 2, index + 9);
+				if(StringUtils.countMatches(coolsimFormatted, "§") != 2) {
+					coolsimFormatted = "coolsim";
+				}
+			} catch(Exception e) {
+				
+			}
+		}
+		
+		TranslationTextComponent playerJoined = new TranslationTextComponent("multiplayer.player.joined", new Object[] {coolsimFormatted});
 		playerJoined.getStyle().setColor(TextFormatting.YELLOW);
 
-		TranslationTextComponent playerLeft = new TranslationTextComponent("multiplayer.player.left", new Object[] {"coolsim"});
+		TranslationTextComponent playerLeft = new TranslationTextComponent("multiplayer.player.left", new Object[] {coolsimFormatted});
 		playerLeft.getStyle().setColor(TextFormatting.YELLOW);
 
-		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined");
+		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined", new Object[] {coolsimFormatted});
 		coolsimJoined.getStyle().setColor(TextFormatting.YELLOW);
 
-		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left");
+		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left", new Object[] {coolsimFormatted});
 		coolsimLeft.getStyle().setColor(TextFormatting.YELLOW);
 
-		if(event.getMessage().getFormattedText().equals(playerJoined.getFormattedText())) {
+		if(replaceFormattingCodes(event.getMessage()).equals(replaceFormattingCodes(playerJoined))) {
 			event.setMessage(coolsimJoined);
 		}
 
-		if(event.getMessage().getFormattedText().equals(playerLeft.getFormattedText())) {
+		if(replaceFormattingCodes(event.getMessage()).equals(replaceFormattingCodes(playerLeft))) {
 			event.setMessage(coolsimLeft);
 		}
 
@@ -406,26 +420,26 @@ public class SurvivalPlusEventHandler {
 
 		return playerhead;
 	}
-	
-	public static void dropItem(ItemStack stack, PlayerEntity player) {
-		
-		boolean bl = player.inventory.addItemStackToInventory(stack);
-        if (bl && stack.isEmpty()) {
-        	stack.setCount(1);
-           ItemEntity itementity1 = player.dropItem(stack, false);
-           if (itementity1 != null) {
-              itementity1.makeFakeItem();
-           }
 
-           player.world.playSound((PlayerEntity)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.getRNG().nextFloat() - player.getRNG().nextFloat()) * 0.7F + 1.0F) * 2.0F);
-           player.container.detectAndSendChanges();
-        } else {
-           ItemEntity itementity = player.dropItem(stack, false);
-           if (itementity != null) {
-              itementity.setNoPickupDelay();
-              itementity.setOwnerId(player.getUniqueID());
-           }
-        }
+	public static void dropItem(ItemStack stack, PlayerEntity player) {
+
+		boolean bl = player.inventory.addItemStackToInventory(stack);
+		if (bl && stack.isEmpty()) {
+			stack.setCount(1);
+			ItemEntity itementity1 = player.dropItem(stack, false);
+			if (itementity1 != null) {
+				itementity1.makeFakeItem();
+			}
+
+			player.world.playSound((PlayerEntity)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.getRNG().nextFloat() - player.getRNG().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+			player.container.detectAndSendChanges();
+		} else {
+			ItemEntity itementity = player.dropItem(stack, false);
+			if (itementity != null) {
+				itementity.setNoPickupDelay();
+				itementity.setOwnerId(player.getUniqueID());
+			}
+		}
 
 	}
 
@@ -434,7 +448,7 @@ public class SurvivalPlusEventHandler {
 		String text = component.getFormattedText();
 
 		if(text.contains("§")) {
-			System.out.println(text);
+
 			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
 				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
 			}
