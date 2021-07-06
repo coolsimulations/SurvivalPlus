@@ -154,16 +154,16 @@ public class SurvivalPlusEventHandler {
 
 		if(event.getType() == VillagerProfession.FARMER) {
 			trades.get(1).add(new BasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 2)); //temp till forge pull request #6142 is resolved
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.raw_onion, 13), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
+			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.raw_onion, 6), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
 		}
 
 		if(event.getType() == VillagerProfession.ARMORER) {
-			trades.get(2).add(new BasicTrade(6, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
+			trades.get(2).add(new BasicTrade(3, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
 		}
 
 		if(event.getType() == VillagerProfession.ARMORER  || event.getType() == VillagerProfession.WEAPONSMITH) {
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
 		}
 
 	}
@@ -418,24 +418,38 @@ public class SurvivalPlusEventHandler {
 
 		TranslationTextComponent coolsim = new TranslationTextComponent("sp.coolsim.creator");
 		coolsim.getStyle().setColor(TextFormatting.GOLD);
+		
+		String coolsimFormatted = "coolsim";
 
-		TranslationTextComponent playerJoined = new TranslationTextComponent("multiplayer.player.joined", new Object[] {"coolsim"});
+		if(event.getMessage().getFormattedText().contains("coolsim")) {
+			int index = event.getMessage().getFormattedText().indexOf("coolsim");
+			try {
+				coolsimFormatted = event.getMessage().getFormattedText().substring(index - 2, index + 9);
+				if(StringUtils.countMatches(coolsimFormatted, "§") != 2) {
+					coolsimFormatted = "coolsim";
+				}
+			} catch(Exception e) {
+				
+			}
+		}
+
+		TranslationTextComponent playerJoined = new TranslationTextComponent("multiplayer.player.joined", new Object[] {coolsimFormatted});
 		playerJoined.getStyle().setColor(TextFormatting.YELLOW);
 
-		TranslationTextComponent playerLeft = new TranslationTextComponent("multiplayer.player.left", new Object[] {"coolsim"});
+		TranslationTextComponent playerLeft = new TranslationTextComponent("multiplayer.player.left", new Object[] {coolsimFormatted});
 		playerLeft.getStyle().setColor(TextFormatting.YELLOW);
 
-		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined");
+		TranslationTextComponent coolsimJoined = new TranslationTextComponent("sp.coolsim.joined", new Object[] {coolsimFormatted});
 		coolsimJoined.getStyle().setColor(TextFormatting.YELLOW);
 
-		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left");
+		TranslationTextComponent coolsimLeft = new TranslationTextComponent("sp.coolsim.left", new Object[] {coolsimFormatted});
 		coolsimLeft.getStyle().setColor(TextFormatting.YELLOW);
 
-		if(event.getMessage().getFormattedText().equals(playerJoined.getFormattedText())) {
+		if(replaceFormattingCodes(event.getMessage()).equals(replaceFormattingCodes(playerJoined))) {
 			event.setMessage(coolsimJoined);
 		}
 
-		if(event.getMessage().getFormattedText().equals(playerLeft.getFormattedText())) {
+		if(replaceFormattingCodes(event.getMessage()).equals(replaceFormattingCodes(playerLeft))) {
 			event.setMessage(coolsimLeft);
 		}
 
@@ -514,7 +528,7 @@ public class SurvivalPlusEventHandler {
 		String text = component.getFormattedText();
 
 		if(text.contains("§")) {
-			System.out.println(text);
+			
 			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
 				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
 			}
