@@ -122,14 +122,14 @@ public class SurvivalPlusEventHandler {
 		SPTradeRecipes.addBasicRecipe(VillagerProfession.BUTCHER, VillagerLevel.getIDByLevel(3), new SPBasicTrade(2, new ItemStack(SPItems.beef_pie, 4), 16, 20));
 
 		SPTradeRecipes.addBasicRecipe(VillagerProfession.FARMER, VillagerLevel.getIDByLevel(1), new SPBasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 2));
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.FARMER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.raw_onion, 13), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.FARMER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.raw_onion, 6), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
 
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(6, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(3, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
 
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.WEAPONSMITH, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
-		SPTradeRecipes.addBasicRecipe(VillagerProfession.WEAPONSMITH, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.WEAPONSMITH, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.ARMORER, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+		SPTradeRecipes.addBasicRecipe(VillagerProfession.WEAPONSMITH, VillagerLevel.getIDByLevel(2), new SPBasicTrade(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
 
 		SPTradeRecipes.addWanderingBasicRecipe(new SPBasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 20));
 	}
@@ -207,7 +207,7 @@ public class SurvivalPlusEventHandler {
 		String text = message.asFormattedString();
 
 		if(text.contains("§")) {
-			System.out.println(text);
+			
 			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
 				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
 			}
