@@ -128,27 +128,27 @@ public class SurvivalPlusEventHandler {
 		});
 		
 		TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 2, factories -> {
-            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.raw_onion, 13), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.raw_onion, 6), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
 		});
 		
 		TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 2, factories -> {
-            factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 6), new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 3), new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
 		});
 		
 		TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 2, factories -> {
-            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
 		});
 		
 		TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 2, factories -> {
-            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.bronze_ingot, 12), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
 		});
 		
 		TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 2, factories -> {
-            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
 		});
 		
 		TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 2, factories -> {
-            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.titanium_ingot, 18), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+            factories.add((entity, random) -> new TradeOffer(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
 		});
 		
 		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
@@ -229,7 +229,7 @@ public class SurvivalPlusEventHandler {
 		String text = message.asFormattedString();
 
 		if(text.contains("§")) {
-			System.out.println(text);
+			
 			for(int i = 0; i <= StringUtils.countMatches(text, "§"); i++) {
 				text = text.substring(0, text.indexOf("§")) + text.substring(text.indexOf("§") + 2);
 			}
