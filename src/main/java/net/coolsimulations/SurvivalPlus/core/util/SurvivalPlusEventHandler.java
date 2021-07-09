@@ -1,5 +1,6 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -12,14 +13,41 @@ import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.events.EntityAccessor;
 import net.coolsimulations.SurvivalPlus.api.events.SPPlayerDeathEvent;
 import net.coolsimulations.SurvivalPlus.api.events.SPPlayerJoinEvent;
+import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
+import net.fabricmc.fabric.api.loot.v1.FabricLootSupplier;
+import net.fabricmc.fabric.api.loot.v1.FabricLootSupplierBuilder;
+import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback.LootTableSetter;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.advancement.Advancement;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.CobwebBlock;
+import net.minecraft.block.DeadBushBlock;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.SeagrassBlock;
+import net.minecraft.block.VineBlock;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.loot.ConstantLootTableRange;
+import net.minecraft.loot.LootManager;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.condition.AlternativeLootCondition;
+import net.minecraft.loot.condition.InvertedLootCondition;
+import net.minecraft.loot.condition.MatchToolLootCondition;
+import net.minecraft.loot.context.LootContextType;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.LimitCountLootFunction;
+import net.minecraft.loot.function.LootFunction;
+import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -30,9 +58,10 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.BoundedIntUnaryOperator;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Language;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.VillagerProfession;
 
@@ -43,6 +72,7 @@ public class SurvivalPlusEventHandler {
 		onplayerLogin();
 		coolsimDeath();
 		villagerTrades();
+		addLootTable();
 	}
 
 	public static void onplayerLogin()
@@ -155,6 +185,41 @@ public class SurvivalPlusEventHandler {
             factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD), new ItemStack(SPItems.onion_seeds, 4), 12, 20, 0.05F));
 		});
 	}
+	
+	public static void addLootTable() {
+		LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
+
+			for(Identifier identifier : Registry.BLOCK.getIds()) {
+				Block block = Registry.BLOCK.get(identifier);
+
+				if(block instanceof LeavesBlock) {
+					replaceLootWithShears(block, id, supplier, manager, setter);
+				}
+				
+				if(block instanceof CobwebBlock) {
+					replaceLootWithShears(block, id, supplier, manager, setter);
+				}
+				
+				if(block instanceof DeadBushBlock) {
+					replaceLootWithShears(block, id, supplier, manager, setter);
+				}
+				
+				if(block instanceof VineBlock) {
+					replaceLootWithShears(block, id, supplier, manager, setter);
+				}
+				
+				if(block instanceof SeagrassBlock) {
+					replaceLootWithShears(block, id, supplier, manager, setter);
+				}
+			}
+			
+			replaceLootWithShears(Blocks.FERN, id, supplier, manager, setter);
+			replaceLootWithShears(Blocks.LARGE_FERN, Items.FERN, id, supplier, manager, setter);
+			replaceLootWithShears(Blocks.GRASS, id, supplier, manager, setter);
+			replaceLootWithShears(Blocks.TALL_GRASS, Items.GRASS, id, supplier, manager, setter);
+			replaceLootWithShears(Blocks.TALL_SEAGRASS, Items.SEAGRASS, id, supplier, manager, setter);
+		});
+	}
 
 	public static void coolsimDeath() {
 		SPPlayerDeathEvent.EVENT.register((player, source) -> {
@@ -238,5 +303,71 @@ public class SurvivalPlusEventHandler {
 		return text;
 	}
 
+	public static void replaceLootWithShears(Block block, Identifier id, FabricLootSupplierBuilder supplier, LootManager manager, LootTableSetter setter) {
+		replaceLootWithShears(block, block.asItem(), 1, id, supplier, manager, setter);
+	}
+	
+	public static void replaceLootWithShears(Block block, Item item, Identifier id, FabricLootSupplierBuilder supplier, LootManager manager, LootTableSetter setter) {
+		replaceLootWithShears(block, item, 1, id, supplier, manager, setter);
+	}
+	
+	/**
+	 * Replaces the shear item of a Loot Table with the fabric tag.
+	 * 
+	 * It is a modified version of ERN468's solution found here: https://www.reddit.com/r/fabricmc/comments/mcl827/my_custom_shears_wont_work_like_shears_unless_i/
+	 * 
+	 * @author ERN468 and coolsim
+	 * @param block The block to be Sheared
+	 * @param item The item that should be dropped
+	 * @param count The amount of items to be dropped
+	 * @param id The LootTable ResourceLocaiton
+	 * @param supplier The Loot Supplier
+	 * @param manager The Loot Manager
+	 * @param setter THe Loot Setter
+	 */
+	public static void replaceLootWithShears(Block block, Item item, int count, Identifier id, FabricLootSupplierBuilder supplier, LootManager manager, LootTableSetter setter) {
+		
+		if (id.equals(block.getDropTableId())) {
+			if (supplier != null) {
 
+				LootTable table = manager.getSupplier(id);
+
+				if(table instanceof FabricLootSupplier) {
+
+					FabricLootSupplier extended = (FabricLootSupplier) table;
+
+					LootContextType contextType = supplier.create().getType();
+					List<LootPool> pools = extended.getPools();
+					List<LootFunction> functions = extended.getFunctions();
+					FabricLootSupplierBuilder replacement = FabricLootSupplierBuilder.builder()
+							.withType(contextType);
+					int i = 0;
+					for (LootPool pool : pools) {
+						i++;
+						if(i == 2) {
+							FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.of(pool)
+									.withCondition(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(FabricToolTags.SHEARS)).invert());
+							replacement.withPool(poolBuilder.build());
+						}
+						else if (i == 1){
+							FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.of(pool)
+									.withFunction(LimitCountLootFunction.builder(BoundedIntUnaryOperator.create(0, 0)).withCondition(InvertedLootCondition.builder(AlternativeLootCondition.builder(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(FabricToolTags.SHEARS)).invert()).withCondition(MatchToolLootCondition.builder(ItemPredicate.Builder.create().item(Items.SHEARS))))));
+							replacement.withPool(poolBuilder.build());
+						}
+						else {
+							replacement.withPool(pool);
+						}
+					}
+					FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+							.withCondition(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(FabricToolTags.SHEARS)))
+							.withCondition(MatchToolLootCondition.builder(ItemPredicate.Builder.create().item(Items.SHEARS)).invert())
+							.withRolls(ConstantLootTableRange.create(1))
+							.withEntry(ItemEntry.builder(item).withFunction(SetCountLootFunction.builder(ConstantLootTableRange.create(count))).build());
+					replacement.withPool(poolBuilder.build());
+					replacement.withFunctions(functions);
+					setter.set(replacement.create());
+				}
+			}
+		}
+	}
 }
