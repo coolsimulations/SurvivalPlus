@@ -6,14 +6,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 @Mixin(Enchantment.class)
 public abstract class EnchantmentMixin {
 
-	@Inject(at = @At("HEAD"), method = "isAcceptableItem", cancellable = true)
-	public void isAcceptableItem(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+	@Inject(at = @At("HEAD"), method = "canEnchant", cancellable = true)
+	public void canEnchant(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
 		if(((ItemAccessor) stack.getItem()).canApplyAtEnchantingTable(stack, (((Enchantment) (Object)this)))) {
 			cir.setReturnValue(true);
 		}

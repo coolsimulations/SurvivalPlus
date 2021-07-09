@@ -4,20 +4,18 @@ import java.net.URL;
 import java.util.Scanner;
 
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.minecraft.ChatFormatting;
 import net.minecraft.SharedConstants;
-import net.minecraft.text.ClickEvent;
-import net.minecraft.text.HoverEvent;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class SurvivalPlusUpdateHandler {
 	
 	private static String latestVersion;
 	private static String latestVersionInfo;
 	public static boolean isOld = false;
-	public static TranslatableText updateInfo = null;
-	public static LiteralText updateVersionInfo = null;
+	public static TranslatableComponent updateInfo = null;
+	public static TextComponent updateVersionInfo = null;
 	
 	public static void init() {
 		
@@ -45,16 +43,16 @@ public class SurvivalPlusUpdateHandler {
 				
 				isOld = true;
 				
-				TranslatableText sp = new TranslatableText("sp.name");
-				sp.formatted(Formatting.BLUE);
+				TranslatableComponent sp = new TranslatableComponent("sp.name");
+				sp.withStyle(ChatFormatting.BLUE);
 				
-				LiteralText MCVersion = new LiteralText(SharedConstants.getGameVersion().getName());
-				MCVersion.formatted(Formatting.BLUE);
+				TextComponent MCVersion = new TextComponent(SharedConstants.getCurrentVersion().getName());
+				MCVersion.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslatableText("sp.update.display3", new Object[] {sp, MCVersion});
-				updateInfo.formatted(Formatting.YELLOW);
+				updateInfo = new TranslatableComponent("sp.update.display3", new Object[] {sp, MCVersion});
+				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
-				//updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.update.display2")));
+				//updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
 				//updateInfo.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"));
 				
 			}
@@ -63,24 +61,24 @@ public class SurvivalPlusUpdateHandler {
 				
 				isOld = true;
 				
-				TranslatableText sp = new TranslatableText("sp.name");
-				sp.formatted(Formatting.BLUE);
+				TranslatableComponent sp = new TranslatableComponent("sp.name");
+				sp.withStyle(ChatFormatting.BLUE);
 				
-				LiteralText version = new LiteralText(latestVersion);
-				version.formatted(Formatting.BLUE);
+				TextComponent version = new TextComponent(latestVersion);
+				version.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslatableText("sp.update.display1", new Object[] {sp, version});
-				updateInfo.formatted(Formatting.YELLOW);
+				updateInfo = new TranslatableComponent("sp.update.display1", new Object[] {sp, version});
+				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
-				//updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.update.display2")));
+				//updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
 				//updateInfo.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"));
 				
 				if(latestVersionInfo != null) {
 					
-					updateVersionInfo = new LiteralText(latestVersionInfo);
-					updateVersionInfo.formatted(Formatting.DARK_AQUA, Formatting.BOLD);
+					updateVersionInfo = new TextComponent(latestVersionInfo);
+					updateVersionInfo.withStyle(ChatFormatting.DARK_AQUA, ChatFormatting.BOLD);
 					
-					//updateVersionInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.update.display2")));
+					//updateVersionInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
 					//updateVersionInfo.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"));
 					
 				}

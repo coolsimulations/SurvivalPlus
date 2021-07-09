@@ -6,54 +6,60 @@ import java.util.Iterator;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
-import net.minecraft.command.CommandException;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.network.MessageType;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Util;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.commands.CommandRuntimeException;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
 
 public class CommandIndeed {
 
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("indeed")
-				.then(CommandManager.argument("targets", EntityArgumentType.players())
-						.requires(s -> s.hasPermissionLevel(0))
-						.executes(indeed -> indeed(indeed.getSource(), EntityArgumentType.getPlayers(indeed, "targets")))));
+	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+		dispatcher.register(Commands.literal("indeed")
+				.then(Commands.argument("targets", EntityArgument.players())
+						.requires(s -> s.hasPermission(0))
+						.executes(indeed -> indeed(indeed.getSource(), EntityArgument.getPlayers(indeed, "targets")))));
 
-		dispatcher.register(CommandManager.literal("indeed")
-				.requires(s -> s.hasPermissionLevel(0))
+		dispatcher.register(Commands.literal("indeed")
+				.requires(s -> s.hasPermission(0))
 				.executes(indeed -> indeedSingle(indeed.getSource())));
 	}
 
-	private static int indeed(ServerCommandSource sender, Collection<ServerPlayerEntity> players) {
+	private static int indeed(CommandSourceStack sender, Collection<ServerPlayer> players) {
 		Iterator var3 = players.iterator();
 
 		while (var3.hasNext()) {
-			ServerPlayerEntity entityplayer = (ServerPlayerEntity) var3.next();
+			ServerPlayer entityplayer = (ServerPlayer) var3.next();
 
 			if (entityplayer == sender.getEntity()) {
 
-				throw new CommandException(new TranslatableText("sp.commands.indeed.sameTarget"));
+				throw new CommandRuntimeException(new TranslatableComponent("sp.commands.indeed.sameTarget"));
 
 			} else {
-				TranslatableText indeed = new TranslatableText("sp.commands.indeed.display1", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				indeed.formatted(Formatting.DARK_GREEN);
-				sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(indeed, MessageType.SYSTEM, Util.NIL_UUID);
+				TranslatableComponent indeed = new TranslatableComponent("sp.commands.indeed.display1", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
+				indeed.withStyle(ChatFormatting.DARK_GREEN);
+				if(sender.getEntity() != null)
+					sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.CHAT, sender.getEntity().getUUID());
+				else
+					sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 
 		return players.size();
 	}
 
-	private static int indeedSingle(ServerCommandSource sender) {
+	private static int indeedSingle(CommandSourceStack sender) {
 
-		TranslatableText indeed = new TranslatableText("sp.commands.indeed.display2", new Object[]{sender.getDisplayName()});
-		indeed.formatted(Formatting.DARK_GREEN);
-		sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(indeed, MessageType.SYSTEM, Util.NIL_UUID);
+		TranslatableComponent indeed = new TranslatableComponent("sp.commands.indeed.display2", new Object[]{sender.getDisplayName()});
+		indeed.withStyle(ChatFormatting.DARK_GREEN);
+		if(sender.getEntity() != null)
+			sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.CHAT, sender.getEntity().getUUID());
+		else
+			sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.SYSTEM, Util.NIL_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

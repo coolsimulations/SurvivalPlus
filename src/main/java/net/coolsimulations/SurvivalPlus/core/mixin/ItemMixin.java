@@ -5,14 +5,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShieldItem;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 @Mixin(Item.class)
 public class ItemMixin implements ItemAccessor {
@@ -20,7 +20,7 @@ public class ItemMixin implements ItemAccessor {
 	@Override
 	@Unique
 	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-		return enchantment.type.isAcceptableItem(stack.getItem());
+		return enchantment.category.canEnchant(stack.getItem());
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class ItemMixin implements ItemAccessor {
 
 	@Override
 	@Unique
-	public boolean onDroppedByPlayer(ItemStack item, PlayerEntity player) {
+	public boolean onDroppedByPlayer(ItemStack item, Player player) {
 		return true;
 	}
 
@@ -48,7 +48,7 @@ public class ItemMixin implements ItemAccessor {
 	}
 
 	@Override
-	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, PlayerEntity player) {
+	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, Player player) {
 		return false;
 	}
 

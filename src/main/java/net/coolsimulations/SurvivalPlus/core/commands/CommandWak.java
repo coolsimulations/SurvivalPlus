@@ -6,39 +6,42 @@ import java.util.Iterator;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
-import net.minecraft.command.CommandException;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.network.MessageType;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Util;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.commands.CommandRuntimeException;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
 
 public class CommandWak {
 
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("wak")
-				.then(CommandManager.argument("targets", EntityArgumentType.players())
-						.requires(s -> s.hasPermissionLevel(getRequiredPermissionLevel()))
-						.executes(wak -> wak(wak.getSource(), EntityArgumentType.getPlayers(wak, "targets")))));
+	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+		dispatcher.register(Commands.literal("wak")
+				.then(Commands.argument("targets", EntityArgument.players())
+						.requires(s -> s.hasPermission(getRequiredPermissionLevel()))
+						.executes(wak -> wak(wak.getSource(), EntityArgument.getPlayers(wak, "targets")))));
 	}
 
-	private static int wak(ServerCommandSource sender, Collection<ServerPlayerEntity> players) {
+	private static int wak(CommandSourceStack sender, Collection<ServerPlayer> players) {
 		Iterator var3 = players.iterator();
 
 		while(var3.hasNext()) {
-			ServerPlayerEntity entityplayer = (ServerPlayerEntity)var3.next();
+			ServerPlayer entityplayer = (ServerPlayer)var3.next();
 
 			if(entityplayer == sender.getEntity()) {
 
-				throw new CommandException(new TranslatableText("sp.commands.wak.sameTarget"));
+				throw new CommandRuntimeException(new TranslatableComponent("sp.commands.wak.sameTarget"));
 
 			}else {
-				TranslatableText wak = new TranslatableText("sp.commands.wak.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
-				wak.formatted(Formatting.DARK_RED);
-				sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(wak, MessageType.SYSTEM, Util.NIL_UUID);
+				TranslatableComponent wak = new TranslatableComponent("sp.commands.wak.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
+				wak.withStyle(ChatFormatting.DARK_RED);
+				if(sender.getEntity() != null)
+					sender.getServer().getPlayerList().broadcastMessage(wak, ChatType.CHAT, sender.getEntity().getUUID());
+				else
+					sender.getServer().getPlayerList().broadcastMessage(wak, ChatType.SYSTEM, Util.NIL_UUID);
 			}
 		}
 

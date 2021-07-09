@@ -2,23 +2,23 @@ package net.coolsimulations.SurvivalPlus.api.events;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.network.ClientPlayerInteractionManager;
-import net.minecraft.network.ClientConnection;
-import net.minecraft.util.ActionResult;
+import net.minecraft.client.multiplayer.MultiPlayerGameMode;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.Connection;
+import net.minecraft.world.InteractionResult;
 
 public interface SPClientPlayerJoinEvent {
 	Event<SPClientPlayerJoinEvent> EVENT = EventFactory.createArrayBacked(SPClientPlayerJoinEvent.class, (listeners) -> (manager, player, networkManager) -> {
 		for (SPClientPlayerJoinEvent listener : listeners) {
-			ActionResult result = listener.playerLogin(manager, player, networkManager);
+			InteractionResult result = listener.playerLogin(manager, player, networkManager);
 
-			if (result != ActionResult.PASS) {
+			if (result != InteractionResult.PASS) {
 				return result;
 			}
 		}
 
-		return ActionResult.PASS;
+		return InteractionResult.PASS;
 	});
 
-	ActionResult playerLogin(ClientPlayerInteractionManager manager, ClientPlayerEntity player, ClientConnection networkManager);
+	InteractionResult playerLogin(MultiPlayerGameMode manager, LocalPlayer player, Connection networkManager);
 }

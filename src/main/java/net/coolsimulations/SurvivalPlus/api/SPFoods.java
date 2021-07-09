@@ -1,30 +1,30 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraft.item.FoodComponent;
+import net.minecraft.world.food.FoodProperties;
 
 public class SPFoods {
 	
 	/**
 	 * These are the food Items referred to in SurvivalPlusFood
 	 */
-	public static FoodComponent apple_pie;
-	public static FoodComponent beef_pie;
-	public static FoodComponent pork_pie;
-	public static FoodComponent chicken_pie;
-	public static FoodComponent mutton_pie;
-	public static FoodComponent rabbit_pie;
-	public static FoodComponent vegetable_pie;
-	public static FoodComponent raw_onion;
-	public static FoodComponent onion_soup;;
-	public static FoodComponent fried_egg;
-	public static FoodComponent roast_carrot;
-	public static FoodComponent cheese;
-	public static FoodComponent cheese_bread;
-	public static FoodComponent melted_cheese_bread;
-	public static FoodComponent cupcake;
-	public static FoodComponent cheese_cupcake;
-	public static FoodComponent sponge_cupcake;
-	public static FoodComponent baked_apple;
-	public static FoodComponent fried_onion;
+	public static FoodProperties apple_pie;
+	public static FoodProperties beef_pie;
+	public static FoodProperties pork_pie;
+	public static FoodProperties chicken_pie;
+	public static FoodProperties mutton_pie;
+	public static FoodProperties rabbit_pie;
+	public static FoodProperties vegetable_pie;
+	public static FoodProperties raw_onion;
+	public static FoodProperties onion_soup;;
+	public static FoodProperties fried_egg;
+	public static FoodProperties roast_carrot;
+	public static FoodProperties cheese;
+	public static FoodProperties cheese_bread;
+	public static FoodProperties melted_cheese_bread;
+	public static FoodProperties cupcake;
+	public static FoodProperties cheese_cupcake;
+	public static FoodProperties sponge_cupcake;
+	public static FoodProperties baked_apple;
+	public static FoodProperties fried_onion;
 
 }

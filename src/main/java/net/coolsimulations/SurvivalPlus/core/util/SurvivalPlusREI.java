@@ -7,14 +7,14 @@ import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.fabricmc.loader.api.SemanticVersion;
 import net.fabricmc.loader.api.VersionParsingException;
-import net.minecraft.block.Block;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 
 public class SurvivalPlusREI implements REIPluginV0 {
 
 	@Override
-	public Identifier getPluginIdentifier() {
-		return new Identifier(SPReference.MOD_ID, "rer_plugin");
+	public ResourceLocation getPluginIdentifier() {
+		return new ResourceLocation(SPReference.MOD_ID, "rer_plugin");
 	}
 	
 	@Override
@@ -25,7 +25,7 @@ public class SurvivalPlusREI implements REIPluginV0 {
 	@Override
     public void postRegister() {
 		
-		EntryRegistry.getInstance().getEntryStacks().filter(stack->Block.getBlockFromItem(stack.getItem()) == SPBlocks.onion && stack.getItem() != SPItems.onion_seeds).forEach(stack->EntryRegistry.getInstance().removeEntry(stack));
+		EntryRegistry.getInstance().getEntryStacks().filter(stack->Block.byItem(stack.getItem()) == SPBlocks.onion && stack.getItem() != SPItems.onion_seeds).forEach(stack->EntryRegistry.getInstance().removeEntry(stack));
     }
 
 }

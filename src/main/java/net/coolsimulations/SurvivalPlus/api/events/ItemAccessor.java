@@ -2,11 +2,11 @@ package net.coolsimulations.SurvivalPlus.api.events;
 
 import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 public interface ItemAccessor {
 	
@@ -16,10 +16,10 @@ public interface ItemAccessor {
 	
 	boolean isShield(ItemStack stack, @Nullable LivingEntity entity);
 	
-	boolean onDroppedByPlayer(ItemStack item, PlayerEntity player);
+	boolean onDroppedByPlayer(ItemStack item, Player player);
 	
 	boolean onEntitySwing(ItemStack stack, LivingEntity entity);
 	
-	boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, PlayerEntity player);
+	boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, Player player);
 
 }

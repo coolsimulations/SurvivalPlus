@@ -3,21 +3,21 @@ package net.coolsimulations.SurvivalPlus.api.events;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.ActionResult;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
 
 public interface SPPlayerJoinEvent {
 	Event<SPPlayerJoinEvent> EVENT = EventFactory.createArrayBacked(SPPlayerJoinEvent.class, (listeners) -> (player, server) -> {
 		for (SPPlayerJoinEvent listener : listeners) {
-			ActionResult result = listener.playerLogin(player, server);
+			InteractionResult result = listener.playerLogin(player, server);
 
-			if (result != ActionResult.PASS) {
+			if (result != InteractionResult.PASS) {
 				return result;
 			}
 		}
 
-		return ActionResult.PASS;
+		return InteractionResult.PASS;
 	});
 
-	ActionResult playerLogin(ServerPlayerEntity player, MinecraftServer server);
+	InteractionResult playerLogin(ServerPlayer player, MinecraftServer server);
 }

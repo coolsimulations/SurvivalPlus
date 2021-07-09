@@ -7,11 +7,11 @@ import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.AliasedBlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.Items;
 
 public class SurvivalPlusItems {
 	
@@ -19,7 +19,7 @@ public class SurvivalPlusItems {
 
 		SPItems.tin_ingot = new SPItemIngot(true, 20.0F);
 		SPItems.copper_ingot = new SPItemIngot();
-		SPItems.onion_seeds = new AliasedBlockItem(SPBlocks.onion, new FabricItemSettings().group(SPTabs.tabMaterials));
+		SPItems.onion_seeds = new ItemNameBlockItem(SPBlocks.onion, new FabricItemSettings().group(SPTabs.tabMaterials));
 		SPItems.bronze_ingot = new SPItemIngot();
 		SPItems.bronze_nugget = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
 		SPItems.titanium_ingot = new SPItemIngot(true, 50.0F);
@@ -70,7 +70,7 @@ public class SurvivalPlusItems {
 	
 	public static void registerItem(Item item, String registryName) {
 
-		Registry.register(Registry.ITEM, new Identifier(SPReference.MOD_ID, registryName), item);
+		Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), item);
 	}
 
 }

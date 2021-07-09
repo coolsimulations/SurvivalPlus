@@ -4,17 +4,15 @@ import java.util.Random;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.item.ToolMaterials;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 
 public class SPBlockOre extends Block{
 
@@ -32,7 +30,7 @@ public class SPBlockOre extends Block{
 	 */
 
 	public SPBlockOre(Resource resource, Boolean dropsXP) {
-		super(FabricBlockSettings.of(Material.STONE).requiresTool().hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).luminance(0));
+		super(FabricBlockSettings.of(Material.STONE, Material.STONE.getColor()).requiresTool().hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).luminance(0));
 		this.resource = resource;
 		this.experience = dropsXP;
 	}
@@ -40,40 +38,40 @@ public class SPBlockOre extends Block{
 	protected int getExperience(Random random) {
 		if(experience) {
 			if (resource == Resource.TIER_0) {
-				return MathHelper.nextInt(random, 0, 2);
+				return Mth.nextInt(random, 0, 2);
 			} else if (resource == Resource.TIER_1) {
-				return MathHelper.nextInt(random, 2, 5);
+				return Mth.nextInt(random, 2, 5);
 			} else if (resource == Resource.TIER_2) {
-				return MathHelper.nextInt(random, 3, 7);
+				return Mth.nextInt(random, 3, 7);
 			} else {
-				return resource == Resource.TIER_3 ? MathHelper.nextInt(random, 3, 7) : 0;
+				return resource == Resource.TIER_3 ? Mth.nextInt(random, 3, 7) : 0;
 			}
 		}
 		return 0;
 	}
 
 	@Override
-	public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-		super.onStacksDropped(state, world, pos, stack);
+	public void spawnAfterBreak(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack) {
+		super.spawnAfterBreak(state, world, pos, stack);
 		int i = this.getExperience(world.random);
 		if (i > 0) {
-			this.dropExperience(world, pos, i);
+			this.popExperience(world, pos, i);
 		}
 	}
 
 	public enum Resource {
-		TIER_0(0, 3.0F, 5.0F, BlockSoundGroup.STONE, ToolMaterials.WOOD),
-		TIER_1(1, 3.5F, 5.0F, BlockSoundGroup.STONE, ToolMaterials.STONE),
-		TIER_2(2, 3.0F, 5.0F, BlockSoundGroup.STONE, ToolMaterials.IRON),
-		TIER_3(3, 3.5F, 5.0F, BlockSoundGroup.STONE, ToolMaterials.DIAMOND);
+		TIER_0(0, 3.0F, 5.0F, SoundType.STONE, Tiers.WOOD),
+		TIER_1(1, 3.5F, 5.0F, SoundType.STONE, Tiers.STONE),
+		TIER_2(2, 3.0F, 5.0F, SoundType.STONE, Tiers.IRON),
+		TIER_3(3, 3.5F, 5.0F, SoundType.STONE, Tiers.DIAMOND);
 
 		public final float hardness;
 		public final float resistance;
-		private final BlockSoundGroup soundType;
+		private final SoundType soundType;
 		public final int harvestLevel;
-		public final ToolMaterial itemTier;
+		public final Tiers itemTier;
 
-		Resource(int harvestLevel, float hardness, float resistance, BlockSoundGroup soundType, ToolMaterial itemTier) {
+		Resource(int harvestLevel, float hardness, float resistance, SoundType soundType, Tiers itemTier) {
 			this.hardness = hardness;
 			this.resistance = resistance;
 			this.soundType = soundType;
@@ -81,7 +79,7 @@ public class SPBlockOre extends Block{
 			this.itemTier = itemTier;
 		}
 
-		public BlockSoundGroup getBlockSoundType() {
+		public SoundType getBlockSoundType() {
 			return soundType;
 		}
 

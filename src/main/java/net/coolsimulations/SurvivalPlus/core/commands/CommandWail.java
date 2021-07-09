@@ -3,26 +3,29 @@ package net.coolsimulations.SurvivalPlus.core.commands;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
-import net.minecraft.network.MessageType;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Util;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class CommandWail {
 
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("wail")
-				.requires(s -> s.hasPermissionLevel(0))
+	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+		dispatcher.register(Commands.literal("wail")
+				.requires(s -> s.hasPermission(0))
 				.executes(wail -> wail(wail.getSource())));
 	}
 
-	private static int wail(ServerCommandSource sender) {
+	private static int wail(CommandSourceStack sender) {
 
-		TranslatableText wail = new TranslatableText("sp.commands.wail.display", new Object[] {sender.getDisplayName()});
-		wail.formatted(Formatting.AQUA);
-		sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(wail, MessageType.SYSTEM, Util.NIL_UUID);
+		TranslatableComponent wail = new TranslatableComponent("sp.commands.wail.display", new Object[] {sender.getDisplayName()});
+		wail.withStyle(ChatFormatting.AQUA);
+		if(sender.getEntity() != null)
+			sender.getServer().getPlayerList().broadcastMessage(wail, ChatType.CHAT, sender.getEntity().getUUID());
+		else
+			sender.getServer().getPlayerList().broadcastMessage(wail, ChatType.SYSTEM, Util.NIL_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

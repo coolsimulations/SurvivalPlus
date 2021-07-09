@@ -3,30 +3,30 @@ package net.coolsimulations.SurvivalPlus.core.recipes;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemShield;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.BannerItem;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialCraftingRecipe;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.BannerItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
+import net.minecraft.world.level.Level;
 
-public class SPShieldRecipes extends SpecialCraftingRecipe {
+public class SPShieldRecipes extends CustomRecipe {
 	
-	public static final SpecialRecipeSerializer<SPShieldRecipes> CRAFTING_SPECIAL_SPSHIELD = new SpecialRecipeSerializer<>(SPShieldRecipes::new);
+	public static final SimpleRecipeSerializer<SPShieldRecipes> CRAFTING_SPECIAL_SPSHIELD = new SimpleRecipeSerializer<>(SPShieldRecipes::new);
 	
-	public SPShieldRecipes(Identifier idIn) {
+	public SPShieldRecipes(ResourceLocation idIn) {
 		super(idIn);
 	}
 
-	public boolean matches(CraftingInventory inv, World worldIn) {
+	public boolean matches(CraftingContainer inv, Level worldIn) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		ItemStack itemstack1 = ItemStack.EMPTY;
 
-		for (int i = 0; i < inv.size(); ++i) {
-			ItemStack itemstack2 = inv.getStack(i);
+		for (int i = 0; i < inv.getContainerSize(); ++i) {
+			ItemStack itemstack2 = inv.getItem(i);
 			if (!itemstack2.isEmpty()) {
 				if (itemstack2.getItem() instanceof BannerItem) {
 					if (!itemstack1.isEmpty()) {
@@ -43,7 +43,7 @@ public class SPShieldRecipes extends SpecialCraftingRecipe {
 						return false;
 					}
 
-					if (itemstack2.getSubTag("BlockEntityTag") != null) {
+					if (itemstack2.getTagElement("BlockEntityTag") != null) {
 						return false;
 					}
 
@@ -59,12 +59,12 @@ public class SPShieldRecipes extends SpecialCraftingRecipe {
 		}
 	}
 
-	public ItemStack craft(CraftingInventory inv) {
+	public ItemStack assemble(CraftingContainer inv) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		ItemStack itemstack1 = ItemStack.EMPTY;
 
-		for (int i = 0; i < inv.size(); ++i) {
-			ItemStack itemstack2 = inv.getStack(i);
+		for (int i = 0; i < inv.getContainerSize(); ++i) {
+			ItemStack itemstack2 = inv.getItem(i);
 			if (!itemstack2.isEmpty()) {
 				if (itemstack2.getItem() instanceof BannerItem) {
 					itemstack = itemstack2;
@@ -77,10 +77,10 @@ public class SPShieldRecipes extends SpecialCraftingRecipe {
 		if (itemstack1.isEmpty()) {
 			return itemstack1;
 		} else {
-			CompoundTag compoundnbt = itemstack.getSubTag("BlockEntityTag");
+			CompoundTag compoundnbt = itemstack.getTagElement("BlockEntityTag");
 			CompoundTag compoundnbt1 = compoundnbt == null ? new CompoundTag() : compoundnbt.copy();
 			compoundnbt1.putInt("Base", ((BannerItem) itemstack.getItem()).getColor().getId());
-			itemstack1.putSubTag("BlockEntityTag", compoundnbt1);
+			itemstack1.addTagElement("BlockEntityTag", compoundnbt1);
 			return itemstack1;
 		}
 	}
@@ -89,7 +89,7 @@ public class SPShieldRecipes extends SpecialCraftingRecipe {
 	 * Used to determine if this recipe can fit in a grid of the given width/height
 	 */
 	@Environment(EnvType.CLIENT)
-	public boolean fits(int width, int height) {
+	public boolean canCraftInDimensions(int width, int height) {
 		return width * height >= 2;
 	}
 

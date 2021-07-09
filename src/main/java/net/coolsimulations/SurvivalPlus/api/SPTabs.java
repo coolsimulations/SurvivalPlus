@@ -1,22 +1,22 @@
 package net.coolsimulations.SurvivalPlus.api;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 public class SPTabs {
 	
-	public static final ItemGroup tabMaterials = FabricItemGroupBuilder.build(new Identifier(SPReference.MOD_ID, "tabmaterials"),  
+	public static final CreativeModeTab tabMaterials = FabricItemGroupBuilder.build(new ResourceLocation(SPReference.MOD_ID, "tabmaterials"),  
 			() -> new ItemStack(SPItems.tin_ingot));
-	public static final ItemGroup tabBlocks = FabricItemGroupBuilder.build(new Identifier(SPReference.MOD_ID, "tabblocks"),  
+	public static final CreativeModeTab tabBlocks = FabricItemGroupBuilder.build(new ResourceLocation(SPReference.MOD_ID, "tabblocks"),  
 			() -> new ItemStack(SPBlocks.tin_block));
-	public static final ItemGroup tabFood = FabricItemGroupBuilder.build(new Identifier(SPReference.MOD_ID, "tabfood"),  
+	public static final CreativeModeTab tabFood = FabricItemGroupBuilder.build(new ResourceLocation(SPReference.MOD_ID, "tabfood"),  
 			() -> new ItemStack(SPItems.apple_pie));
-	public static final ItemGroup tabGem = FabricItemGroupBuilder.build(new Identifier(SPReference.MOD_ID, "tabgem"),  
+	public static final CreativeModeTab tabGem = FabricItemGroupBuilder.build(new ResourceLocation(SPReference.MOD_ID, "tabgem"),  
 			() -> new ItemStack(SPBlocks.amethyst));
-	public static final ItemGroup tabCombat = FabricItemGroupBuilder.build(new Identifier(SPReference.MOD_ID, "tabcombat"),  
+	public static final CreativeModeTab tabCombat = FabricItemGroupBuilder.build(new ResourceLocation(SPReference.MOD_ID, "tabcombat"),  
 			() -> new ItemStack(SPItems.titanium_sword));
-	public static final ItemGroup tabTools = FabricItemGroupBuilder.build(new Identifier(SPReference.MOD_ID, "tabtools"),  
+	public static final CreativeModeTab tabTools = FabricItemGroupBuilder.build(new ResourceLocation(SPReference.MOD_ID, "tabtools"),  
 			() -> new ItemStack(SPItems.bronze_axe));
 }

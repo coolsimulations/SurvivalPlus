@@ -1,104 +1,142 @@
 package net.coolsimulations.SurvivalPlus.core.blocks;
 
-import com.google.common.jimfs.PathType;
-
+import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.stat.Stats;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.CollisionView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BlockCheeseCake extends Block
-{
-    public static final IntProperty BITES;
-    protected static final VoxelShape[] CAKE_AABB;
+public class BlockCheeseCake extends Block {
+	public static final IntegerProperty BITES;
+	protected static final VoxelShape[] CAKE_AABB;
 
-    public BlockCheeseCake()
-    {
-    	super(FabricBlockSettings.of(Material.CAKE).strength(0.5F).sounds(BlockSoundGroup.WOOL));
-        this.setDefaultState((this.stateManager.getDefaultState()).with(BITES, 0));
-    }
+	public BlockCheeseCake()
+	{
+		super(FabricBlockSettings.of(Material.CAKE).strength(0.5F).sounds(SoundType.WOOL));
+		this.registerDefaultState((this.stateDefinition.any()).setValue(BITES, 0));
+	}
 
-    public VoxelShape getOutlineShape(BlockState state, BlockView source, BlockPos pos, ShapeContext context) {
-        return CAKE_AABB[(Integer)state.get(BITES)];
-    }
+	public VoxelShape getShape(BlockState state, BlockGetter source, BlockPos pos, CollisionContext context) {
+		return CAKE_AABB[(Integer)state.getValue(BITES)];
+	}
 
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) {
-            ItemStack itemStack = player.getStackInHand(hand);
-            if (this.tryEat(world, pos, state, player) == ActionResult.SUCCESS) {
-               return ActionResult.SUCCESS;
-            }
+	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player playerIn, InteractionHand hand, BlockHitResult ray) {
+		if (!worldIn.isClientSide) {
+			if(playerIn.getItemInHand(hand).getItem() == SPItems.paper_cup) {
 
-            if (itemStack.isEmpty()) {
-               return ActionResult.CONSUME;
-            }
-         }
-        
-        return this.tryEat(world, pos, state, player);
-    }
+				decrementBites(worldIn, state, pos);
 
-    private ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!player.canConsume(false)) {
-           return ActionResult.PASS;
-        } else {
-           player.incrementStat(Stats.EAT_CAKE_SLICE);
-           player.getHungerManager().add(2, 0.1F);
-           int i = (Integer)state.get(BITES);
-           if (i < 6) {
-              world.setBlockState(pos, (BlockState)state.with(BITES, i + 1), 3);
-           } else {
-              world.removeBlock(pos, false);
-           }
+				if(!playerIn.isCreative()) {
 
-           return ActionResult.SUCCESS;
-        }
-     }
+					ItemStack itemStackIn;
 
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction side, BlockState blockState, WorldAccess worldIn, BlockPos pos, BlockPos blockPos) {
-        return side == Direction.DOWN && !state.canPlaceAt(worldIn, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, side, blockState, worldIn, pos, blockPos);
-    }
+					if (playerIn.getOffhandItem().getItem() == SPItems.paper_cup)
+					{
+						itemStackIn = playerIn.getOffhandItem();
+					}
+					else
+					{
+						itemStackIn = playerIn.getMainHandItem();
+					}
 
-    public boolean canPlaceAt(BlockState state, CollisionView reader, BlockPos pos) {
-        return reader.getBlockState(pos.down()).getMaterial().isSolid();
-    }
+					if(itemStackIn.getCount() == 1) {
+						if (ItemStack.isSame(playerIn.getOffhandItem(), itemStackIn))
+						{
+							playerIn.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(SPItems.cheese_cupcake));
+						}
+						else
+						{
+							playerIn.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SPItems.cheese_cupcake));
+						}
+					} else  if(itemStackIn.getCount() >= 2){
+						itemStackIn.shrink(1);
+						boolean flag = playerIn.inventory.add(new ItemStack(SPItems.cheese_cupcake));
+						if(!flag) {
+							playerIn.drop(new ItemStack(SPItems.cheese_cupcake), false);
+						}
 
-    protected void appendProperties(StateManager.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(BITES);
-    }
+					}
+				}
+				return InteractionResult.SUCCESS;
+			} else if(playerIn.getMainHandItem().getItem() != SPItems.paper_cup && playerIn.getOffhandItem().getItem() != SPItems.paper_cup) {
+				return this.eat(worldIn, pos, state, playerIn);
+			}
+			return InteractionResult.CONSUME;
 
-    public int getComparatorOutput(BlockState state, World worldIn, BlockPos pos) {
-        return (7 - (Integer)state.get(BITES)) * 2;
-    }
+		} else {
+			return InteractionResult.CONSUME;
+		}
+	}
 
-    public boolean hasComparatorOutput(BlockState state) {
-        return true;
-    }
+	private InteractionResult eat(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
+		if (!player.canEat(false)) {
+			return InteractionResult.PASS;
+		} else {
+			player.awardStat(Stats.EAT_CAKE_SLICE);
+			player.getFoodData().eat(3, 0.2F);
+			decrementBites(world, state, pos);
 
-    public boolean canPlaceAtSide(BlockState state, BlockView reader, BlockPos pos, PathType type) {
-        return false;
-    }
+			return InteractionResult.SUCCESS;
+		}
+	}
+	
+	private void decrementBites(LevelAccessor worldIn, BlockState state, BlockPos pos) {
 
-    static {
-        BITES = Properties.BITES;
-        CAKE_AABB = new VoxelShape[]{Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.createCuboidShape(3.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.createCuboidShape(5.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.createCuboidShape(7.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.createCuboidShape(9.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.createCuboidShape(11.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.createCuboidShape(13.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D)};
-    }
+		int bites = (Integer)state.getValue(BITES);
+
+		if (bites < 6) {
+			worldIn.setBlock(pos, (BlockState)state.setValue(BITES, bites + 1), 3);
+		} else {
+			worldIn.removeBlock(pos, false);
+		}
+	}
+
+	public BlockState updateShape(BlockState state, Direction side, BlockState blockState, LevelAccessor worldIn, BlockPos pos, BlockPos blockPos) {
+		return side == Direction.DOWN && !state.canSurvive(worldIn, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, side, blockState, worldIn, pos, blockPos);
+	}
+
+	public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
+		return reader.getBlockState(pos.below()).getMaterial().isSolid();
+	}
+
+	protected void createBlockStateDefinition(Builder<Block, BlockState> stateBuilder) {
+		stateBuilder.add(BITES);
+	}
+
+	public int getAnalogOutputSignal(BlockState state, Level worldIn, BlockPos pos) {
+		return (7 - (Integer)state.getValue(BITES)) * 2;
+	}
+
+	public boolean hasAnalogOutputSignal(BlockState state) {
+		return true;
+	}
+
+	public boolean isPathfindable(BlockState state, BlockGetter reader, BlockPos pos, PathComputationType type) {
+		return false;
+	}
+
+	static {
+		BITES = BlockStateProperties.BITES;
+		CAKE_AABB = new VoxelShape[]{Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(3.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(5.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(7.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(9.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(11.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(13.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D)};
+	}
 }

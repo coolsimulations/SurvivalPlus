@@ -1,12 +1,12 @@
 package net.coolsimulations.SurvivalPlus.api;
 
 import net.coolsimulations.SurvivalPlus.core.mixin.BlockTagsMixin;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.tag.RequiredTagListRegistry;
-import net.minecraft.tag.Tag;
-import net.minecraft.tag.TagManager;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.StaticTags;
+import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagContainer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 public class SPTags
 {
@@ -78,9 +78,9 @@ public class SPTags
     	public static final Tag<Item> SEEDS_ONION = tag("onion_seeds");
     	public static final Tag<Item> FOOD_CAKE = tag("cakes");
 
-        private static Tag.Identified<Item> tag(String name)
+        private static Tag.Named<Item> tag(String name)
         {
-        	return RequiredTagListRegistry.register(new Identifier("item"), TagManager::getItems).add("c:" + name);
+        	return StaticTags.create(new ResourceLocation("item"), TagContainer::getItems).bind("c:" + name);
         }
     }
 }

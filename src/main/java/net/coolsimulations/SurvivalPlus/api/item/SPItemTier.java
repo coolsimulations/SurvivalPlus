@@ -2,19 +2,19 @@ package net.coolsimulations.SurvivalPlus.api.item;
 
 import java.util.function.Supplier;
 
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Lazy;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 
-public enum SPItemTier implements ToolMaterial {
+public enum SPItemTier implements Tier {
     bronzeToolMaterial(2, 350, 5.0F, 1.5F, 7, () -> {
-    	return Ingredient.fromTag(ItemTags.getTagGroup().getTag(new Identifier("c", "bronze_ingots")));
+    	return Ingredient.of(ItemTags.getAllTags().getTag(new ResourceLocation("c", "bronze_ingots")));
     }),
     //3, 731, 7f, 2.5f, 16
     titaniumToolMaterial(2, 432, 7.0F, 2.5F, 17, () -> {
-        return Ingredient.fromTag(ItemTags.getTagGroup().getTag(new Identifier("c", "titanium_ingots")));
+        return Ingredient.of(ItemTags.getAllTags().getTag(new ResourceLocation("c", "titanium_ingots")));
     });
 
     private final int harvestLevel;
@@ -22,7 +22,7 @@ public enum SPItemTier implements ToolMaterial {
     private final float efficiency;
     private final float attackDamage;
     private final int enchantability;
-    private final Lazy<Ingredient> repairMaterial;
+    private final LazyLoadedValue<Ingredient> repairMaterial;
 
     SPItemTier(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn) {
         this.harvestLevel = harvestLevelIn;
@@ -30,26 +30,26 @@ public enum SPItemTier implements ToolMaterial {
         this.efficiency = efficiencyIn;
         this.attackDamage = attackDamageIn;
         this.enchantability = enchantabilityIn;
-        this.repairMaterial = new Lazy(repairMaterialIn);
+        this.repairMaterial = new LazyLoadedValue(repairMaterialIn);
     }
 
-    public int getDurability() {
+    public int getUses() {
         return this.maxUses;
     }
 
-    public float getMiningSpeedMultiplier() {
+    public float getSpeed() {
         return this.efficiency;
     }
 
-    public float getAttackDamage() {
+    public float getAttackDamageBonus() {
         return this.attackDamage;
     }
 
-    public int getMiningLevel() {
+    public int getLevel() {
         return this.harvestLevel;
     }
 
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return this.enchantability;
     }
 

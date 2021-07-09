@@ -5,12 +5,12 @@ import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.item.SPArmorMaterial;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ItemStack;
 
 public class SurvivalPlusArmor {
 
@@ -20,7 +20,7 @@ public class SurvivalPlusArmor {
 		SPItems.bronze_chestplate = new SPItemArmor(SPArmorMaterial.bronzeArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.bronze_leggings = new SPItemArmor(SPArmorMaterial.bronzeArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.bronze_boots = new SPItemArmor(SPArmorMaterial.bronzeArmorMaterial, EquipmentSlot.FEET);
-		SPItems.bronze = DefaultedList.of();
+		SPItems.bronze = NonNullList.create();
 		SPItems.bronze.add(0, new ItemStack(SPItems.bronze_helmet));
 		SPItems.bronze.add(1, new ItemStack(SPItems.bronze_chestplate));
 		SPItems.bronze.add(2, new ItemStack(SPItems.bronze_leggings));
@@ -30,7 +30,7 @@ public class SurvivalPlusArmor {
 		SPItems.stone_chestplate = new SPItemArmor(SPArmorMaterial.stoneArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.stone_leggings = new SPItemArmor(SPArmorMaterial.stoneArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.stone_boots = new SPItemArmor(SPArmorMaterial.stoneArmorMaterial, EquipmentSlot.FEET);
-		SPItems.stone = DefaultedList.of();
+		SPItems.stone = NonNullList.create();
 		SPItems.stone.add(0, new ItemStack(SPItems.stone_helmet));
 		SPItems.stone.add(1, new ItemStack(SPItems.stone_chestplate));
 		SPItems.stone.add(2, new ItemStack(SPItems.stone_leggings));
@@ -40,7 +40,7 @@ public class SurvivalPlusArmor {
 		SPItems.titanium_chestplate = new SPItemArmor(SPArmorMaterial.titaniumArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.titanium_leggings = new SPItemArmor(SPArmorMaterial.titaniumArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.titanium_boots = new SPItemArmor(SPArmorMaterial.titaniumArmorMaterial, EquipmentSlot.FEET);
-		SPItems.titanium = DefaultedList.of();
+		SPItems.titanium = NonNullList.create();
 		SPItems.titanium.add(0, new ItemStack(SPItems.titanium_helmet));
 		SPItems.titanium.add(1, new ItemStack(SPItems.titanium_chestplate));
 		SPItems.titanium.add(2, new ItemStack(SPItems.titanium_leggings));
@@ -50,7 +50,7 @@ public class SurvivalPlusArmor {
 		SPItems.oak_chestplate = new SPItemArmor(SPArmorMaterial.oakArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.oak_leggings = new SPItemArmor(SPArmorMaterial.oakArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.oak_boots = new SPItemArmor(SPArmorMaterial.oakArmorMaterial, EquipmentSlot.FEET);
-		SPItems.oak = DefaultedList.of();
+		SPItems.oak = NonNullList.create();
 		SPItems.oak.add(0, new ItemStack(SPItems.oak_helmet));
 		SPItems.oak.add(1, new ItemStack(SPItems.oak_chestplate));
 		SPItems.oak.add(2, new ItemStack(SPItems.oak_leggings));
@@ -60,7 +60,7 @@ public class SurvivalPlusArmor {
 		SPItems.spruce_chestplate = new SPItemArmor(SPArmorMaterial.spruceArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.spruce_leggings = new SPItemArmor(SPArmorMaterial.spruceArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.spruce_boots = new SPItemArmor(SPArmorMaterial.spruceArmorMaterial, EquipmentSlot.FEET);
-		SPItems.spruce = DefaultedList.of();
+		SPItems.spruce = NonNullList.create();
 		SPItems.spruce.add(0, new ItemStack(SPItems.spruce_helmet));
 		SPItems.spruce.add(1, new ItemStack(SPItems.spruce_chestplate));
 		SPItems.spruce.add(2, new ItemStack(SPItems.spruce_leggings));
@@ -70,7 +70,7 @@ public class SurvivalPlusArmor {
 		SPItems.birch_chestplate = new SPItemArmor(SPArmorMaterial.birchArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.birch_leggings = new SPItemArmor(SPArmorMaterial.birchArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.birch_boots = new SPItemArmor(SPArmorMaterial.birchArmorMaterial, EquipmentSlot.FEET);
-		SPItems.birch = DefaultedList.of();
+		SPItems.birch = NonNullList.create();
 		SPItems.birch.add(0, new ItemStack(SPItems.birch_helmet));
 		SPItems.birch.add(1, new ItemStack(SPItems.birch_chestplate));
 		SPItems.birch.add(2, new ItemStack(SPItems.birch_leggings));
@@ -80,7 +80,7 @@ public class SurvivalPlusArmor {
 		SPItems.jungle_chestplate = new SPItemArmor(SPArmorMaterial.jungleArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.jungle_leggings = new SPItemArmor(SPArmorMaterial.jungleArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.jungle_boots = new SPItemArmor(SPArmorMaterial.jungleArmorMaterial, EquipmentSlot.FEET);
-		SPItems.jungle = DefaultedList.of();
+		SPItems.jungle = NonNullList.create();
 		SPItems.jungle.add(0, new ItemStack(SPItems.jungle_helmet));
 		SPItems.jungle.add(1, new ItemStack(SPItems.jungle_chestplate));
 		SPItems.jungle.add(2, new ItemStack(SPItems.jungle_leggings));
@@ -90,7 +90,7 @@ public class SurvivalPlusArmor {
 		SPItems.acacia_chestplate = new SPItemArmor(SPArmorMaterial.acaciaArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.acacia_leggings = new SPItemArmor(SPArmorMaterial.acaciaArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.acacia_boots = new SPItemArmor(SPArmorMaterial.acaciaArmorMaterial, EquipmentSlot.FEET);
-		SPItems.acacia = DefaultedList.of();
+		SPItems.acacia = NonNullList.create();
 		SPItems.acacia.add(0, new ItemStack(SPItems.acacia_helmet));
 		SPItems.acacia.add(1, new ItemStack(SPItems.acacia_chestplate));
 		SPItems.acacia.add(2, new ItemStack(SPItems.acacia_leggings));
@@ -100,7 +100,7 @@ public class SurvivalPlusArmor {
 		SPItems.dark_oak_chestplate = new SPItemArmor(SPArmorMaterial.darkOakArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.dark_oak_leggings = new SPItemArmor(SPArmorMaterial.darkOakArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.dark_oak_boots = new SPItemArmor(SPArmorMaterial.darkOakArmorMaterial, EquipmentSlot.FEET);
-		SPItems.dark_oak = DefaultedList.of();
+		SPItems.dark_oak = NonNullList.create();
 		SPItems.dark_oak.add(0, new ItemStack(SPItems.dark_oak_helmet));
 		SPItems.dark_oak.add(1, new ItemStack(SPItems.dark_oak_chestplate));
 		SPItems.dark_oak.add(2, new ItemStack(SPItems.dark_oak_leggings));
@@ -110,7 +110,7 @@ public class SurvivalPlusArmor {
 		SPItems.crimson_chestplate = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.crimson_leggings = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.crimson_boots = new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.FEET);
-		SPItems.crimson = DefaultedList.of();
+		SPItems.crimson = NonNullList.create();
 		SPItems.crimson.add(0, new ItemStack(SPItems.crimson_helmet));
 		SPItems.crimson.add(1, new ItemStack(SPItems.crimson_chestplate));
 		SPItems.crimson.add(2, new ItemStack(SPItems.crimson_leggings));
@@ -120,7 +120,7 @@ public class SurvivalPlusArmor {
 		SPItems.warped_chestplate = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.warped_leggings = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.warped_boots = new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.FEET);
-		SPItems.warped = DefaultedList.of();
+		SPItems.warped = NonNullList.create();
 		SPItems.warped.add(0, new ItemStack(SPItems.warped_helmet));
 		SPItems.warped.add(1, new ItemStack(SPItems.warped_chestplate));
 		SPItems.warped.add(2, new ItemStack(SPItems.warped_leggings));
@@ -131,7 +131,7 @@ public class SurvivalPlusArmor {
 			SPItems.bamboo_chestplate = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlot.CHEST);
 			SPItems.bamboo_leggings = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlot.LEGS);
 			SPItems.bamboo_boots = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlot.FEET);
-			SPItems.bamboo = DefaultedList.of();
+			SPItems.bamboo = NonNullList.create();
 			SPItems.bamboo.add(0, new ItemStack(SPItems.bamboo_helmet));
 			SPItems.bamboo.add(1, new ItemStack(SPItems.bamboo_chestplate));
 			SPItems.bamboo.add(2, new ItemStack(SPItems.bamboo_leggings));
@@ -143,7 +143,7 @@ public class SurvivalPlusArmor {
 			SPItems.redwood_chestplate_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.CHEST);
 			SPItems.redwood_leggings_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.LEGS);
 			SPItems.redwood_boots_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.FEET);
-			SPItems.redwood_vanilla_enhanced = DefaultedList.of();
+			SPItems.redwood_vanilla_enhanced = NonNullList.create();
 			SPItems.redwood_vanilla_enhanced.add(0, new ItemStack(SPItems.redwood_helmet_vanilla_enhanced));
 			SPItems.redwood_vanilla_enhanced.add(1, new ItemStack(SPItems.redwood_chestplate_vanilla_enhanced));
 			SPItems.redwood_vanilla_enhanced.add(2, new ItemStack(SPItems.redwood_leggings_vanilla_enhanced));
@@ -191,16 +191,16 @@ public class SurvivalPlusArmor {
 		}
 	}
 	
-	public static void registerItem(DefaultedList<ItemStack> item, String materialName) {
+	public static void registerItem(NonNullList<ItemStack> item, String materialName) {
 		registerItem(item, materialName, "");
 	}
 
-	public static void registerItem(DefaultedList<ItemStack> item, String materialName, String modId) {
+	public static void registerItem(NonNullList<ItemStack> item, String materialName, String modId) {
 
 		for(int i = 0; i < item.size(); i++) {
 			if(item.get(i).getItem() instanceof ArmorItem) {
 
-				EquipmentSlot slotType = ((ArmorItem) item.get(i).getItem()).getSlotType();
+				EquipmentSlot slotType = ((ArmorItem) item.get(i).getItem()).getSlot();
 				String lastName;
 
 				switch (slotType) {
@@ -222,9 +222,9 @@ public class SurvivalPlusArmor {
 				}
 
 				if(modId != "") {
-					Registry.register(Registry.ITEM, new Identifier(SPReference.MOD_ID, materialName + "_" + lastName + "_" + modId), item.get(i).getItem());
+					Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, materialName + "_" + lastName + "_" + modId), item.get(i).getItem());
 				} else {
-					Registry.register(Registry.ITEM, new Identifier(SPReference.MOD_ID, materialName + "_" + lastName), item.get(i).getItem());
+					Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, materialName + "_" + lastName), item.get(i).getItem());
 				}
 			}
 		}

@@ -7,9 +7,9 @@ import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.item.SPArmorMaterial;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
 
 public class SurvivalPlusBlockus {
 	
@@ -21,7 +21,7 @@ public class SurvivalPlusBlockus {
 		SPItems.white_oak_chestplate = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, EquipmentSlot.CHEST);
 		SPItems.white_oak_leggings = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, EquipmentSlot.LEGS);
 		SPItems.white_oak_boots = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, EquipmentSlot.FEET);
-		SPItems.white_oak = DefaultedList.of();
+		SPItems.white_oak = NonNullList.create();
 		SPItems.white_oak.add(0, new ItemStack(SPItems.white_oak_helmet));
 		SPItems.white_oak.add(1, new ItemStack(SPItems.white_oak_chestplate));
 		SPItems.white_oak.add(2, new ItemStack(SPItems.white_oak_leggings));

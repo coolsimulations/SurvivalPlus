@@ -3,26 +3,29 @@ package net.coolsimulations.SurvivalPlus.core.commands;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
-import net.minecraft.network.MessageType;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Util;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class CommandWoo {
 
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("woo")
-		.requires(s -> s.hasPermissionLevel(0))
+	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+		dispatcher.register(Commands.literal("woo")
+		.requires(s -> s.hasPermission(0))
 		.executes(woo -> woo(woo.getSource())));
 	}
 
-	private static int woo(ServerCommandSource sender) {
+	private static int woo(CommandSourceStack sender) {
 
-		TranslatableText woo = new TranslatableText("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
-		woo.formatted(Formatting.BLUE);
-		sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(woo, MessageType.SYSTEM, Util.NIL_UUID);
+		TranslatableComponent woo = new TranslatableComponent("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
+		woo.withStyle(ChatFormatting.BLUE);
+		if(sender.getEntity() != null)
+			sender.getServer().getPlayerList().broadcastMessage(woo, ChatType.CHAT, sender.getEntity().getUUID());
+		else
+			sender.getServer().getPlayerList().broadcastMessage(woo, ChatType.SYSTEM, Util.NIL_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}

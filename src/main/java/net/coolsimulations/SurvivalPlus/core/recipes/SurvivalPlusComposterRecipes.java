@@ -4,11 +4,10 @@ import java.util.Iterator;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.coolsimulations.SurvivalPlus.api.SPTags;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.tag.Tag;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 
 public class SurvivalPlusComposterRecipes {
 	
@@ -59,11 +58,11 @@ public class SurvivalPlusComposterRecipes {
 	
 	protected static void registerCompostableTag(Tag<Item> tag, float rarity) {
 		
-		for(Iterator<Item> item = tag.values().iterator(); item.hasNext();)
+		for(Iterator<Item> item = tag.getValues().iterator(); item.hasNext();)
 			registerCompostable(item.next(), rarity);
 	}
 	
-	protected static void registerCompostable(ItemConvertible item, float rarity) {
+	protected static void registerCompostable(ItemLike item, float rarity) {
 		CompostingChanceRegistry.INSTANCE.add(item, rarity);
 	}
 

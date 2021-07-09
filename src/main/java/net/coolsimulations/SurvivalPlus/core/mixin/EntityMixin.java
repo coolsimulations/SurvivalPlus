@@ -9,11 +9,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.coolsimulations.SurvivalPlus.api.events.EntityAccessor;
-import net.minecraft.entity.Entity;
+import net.minecraft.CrashReport;
+import net.minecraft.CrashReportCategory;
+import net.minecraft.ReportedException;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.crash.CrashException;
-import net.minecraft.util.crash.CrashReport;
-import net.minecraft.util.crash.CrashReportSection;
+import net.minecraft.world.entity.Entity;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin implements EntityAccessor{
@@ -25,31 +25,31 @@ public abstract class EntityMixin implements EntityAccessor{
 	@Shadow
 	public abstract double getZ();
 	@Shadow
-	public float yaw;
+	public float yRot;
 	@Shadow
-	public float pitch;
+	public float xRot;
 
 	private CompoundTag persistentData;
 
-	@Inject(at = @At("TAIL"), method = "fromTag", cancellable = true)
-	public void fromTag(CompoundTag tag, CallbackInfo info) {
+	@Inject(at = @At("TAIL"), method = "load", cancellable = true)
+	public void load(CompoundTag tag, CallbackInfo info) {
 		if (Double.isFinite(this.getX()) && Double.isFinite(this.getY()) && Double.isFinite(this.getZ())) {
-			if (Double.isFinite((double)this.yaw) && Double.isFinite((double)this.pitch)) {
+			if (Double.isFinite((double)this.yRot) && Double.isFinite((double)this.xRot)) {
 				if(tag.contains("SurvivalPlusData", 10)) persistentData = tag.getCompound("SurvivalPlusData");
 			}
 		}
 	}
 
-	@Inject(at = @At("TAIL"), method = "toTag", cancellable = true)
-	public void toTag(CompoundTag tag, CallbackInfoReturnable<CompoundTag> cir) {
+	@Inject(at = @At("TAIL"), method = "saveWithoutId", cancellable = true)
+	public void saveWithoutId(CompoundTag tag, CallbackInfoReturnable<CompoundTag> cir) {
 		try {
 			if(persistentData != null) tag.put("SurvivalPlusData", persistentData);
 			cir.setReturnValue(tag);
 		} catch (Throwable var8) {
-			CrashReport crashReport = CrashReport.create(var8, "Saving entity NBT");
-			CrashReportSection crashReportSection = crashReport.addElement("Entity being saved");
-			this.populateCrashReport(crashReportSection);
-			throw new CrashException(crashReport);
+			CrashReport crashReport = CrashReport.forThrowable(var8, "Saving entity NBT");
+			CrashReportCategory crashReportSection = crashReport.addCategory("Entity being saved");
+			this.fillCrashReportCategory(crashReportSection);
+			throw new ReportedException(crashReport);
 		}
 	}
 
@@ -62,6 +62,6 @@ public abstract class EntityMixin implements EntityAccessor{
 	}
 
 	@Shadow
-	public abstract void populateCrashReport(CrashReportSection section);
+	public abstract void fillCrashReportCategory(CrashReportCategory section);
 
 }

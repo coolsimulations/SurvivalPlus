@@ -1,6 +1,6 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 
 public class SPDamageSource extends DamageSource {
 

@@ -1,6 +1,6 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 
 public class SPBlocks {
 
@@ -40,6 +40,23 @@ public class SPBlocks {
 	public static Block cardboard_magenta;
 	public static Block cardboard_pink;
 	public static Block cardboard_brown;
+	public static Block cardboard_lantern;
+	public static Block cardboard_lantern_white;
+	public static Block cardboard_lantern_light_grey;
+	public static Block cardboard_lantern_grey;
+	public static Block cardboard_lantern_black;
+	public static Block cardboard_lantern_red;
+	public static Block cardboard_lantern_orange;
+	public static Block cardboard_lantern_yellow;
+	public static Block cardboard_lantern_lime;
+	public static Block cardboard_lantern_green;
+	public static Block cardboard_lantern_light_blue;
+	public static Block cardboard_lantern_cyan;
+	public static Block cardboard_lantern_blue;
+	public static Block cardboard_lantern_purple;
+	public static Block cardboard_lantern_magenta;
+	public static Block cardboard_lantern_pink;
+	public static Block cardboard_lantern_brown;
 	
 	/**
 	 * These are the Blocks referred to in SurvivalPlusBlockus

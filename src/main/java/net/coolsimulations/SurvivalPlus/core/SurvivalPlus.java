@@ -6,7 +6,6 @@ import com.mojang.authlib.GameProfile;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.recipes.SPTrades;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandConfrats;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandEmportant;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandIndeed;
@@ -27,7 +26,6 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusComposterRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusDispenserBehavior;
-import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusTrades;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusBlockus;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
@@ -36,9 +34,9 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.server.Whitelist;
-import net.minecraft.server.WhitelistEntry;
+import net.minecraft.server.players.UserWhiteList;
+import net.minecraft.server.players.UserWhiteListEntry;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class SurvivalPlus implements ModInitializer {
 	
@@ -50,13 +48,13 @@ public class SurvivalPlus implements ModInitializer {
 
 	public static void onServerLoad() {
 		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
-			if(server.isDedicated()) {
+			if(server.isDedicatedServer()) {
 
-				GameProfile gameprofile = server.getUserCache().findByName("coolsim");
-				Whitelist whitelist = server.getPlayerManager().getWhitelist();
+				GameProfile gameprofile = server.getProfileCache().get("coolsim");
+				UserWhiteList whitelist = server.getPlayerList().getWhiteList();
 
-				if(server.getPlayerManager().isWhitelistEnabled() && !whitelist.isAllowed(gameprofile) && !server.getPlayerManager().getUserBanList().contains(gameprofile)) {
-					WhitelistEntry entry = new WhitelistEntry(gameprofile);
+				if(server.getPlayerList().isUsingWhitelist() && !whitelist.isWhiteListed(gameprofile) && !server.getPlayerList().getBans().isBanned(gameprofile)) {
+					UserWhiteListEntry entry = new UserWhiteListEntry(gameprofile);
 					whitelist.add(entry);
 				}
 			}
@@ -106,10 +104,6 @@ public class SurvivalPlus implements ModInitializer {
 		setupEvent();
 
 		SurvivalPlusEventHandler.init();
-
-		SurvivalPlusTrades.initVillagerTrades();
-		SurvivalPlusEventHandler.villagerTrades();
-		SPTrades.postInitVillagerTrades();
 		
 		if(SPCompatibilityManager.isBlockusLoaded()) {
 			SurvivalPlusBlockus.init();

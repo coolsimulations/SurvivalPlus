@@ -4,23 +4,23 @@
     "compatibilityLevel": "JAVA_8",
     "mixins": [
         "BlockTagsMixin",
-        "SheepEntityMixin", "PumpkinBlockMixin", "TripwireBlockMixin", "EfficiencyEnchantmentMixin", "MooshroomEntityMixin", "SnowGolemEntityMixin", "BeehiveBlockMixin", "IronGolemEntityMixin",
-        "MobEntityMixin", "PlayerEntityMixin",
+        "SheepMixin", "PumpkinBlockMixin", "TripWireBlockMixin", "DiggingEnchantmentMixin", "MushroomCowMixin", "SnowGolemMixin", "BeehiveBlockMixin", "IronGolemMixin",
+        "MobMixin", "PlayerMixin",
         "CampfireBlockMixin",
-        "PlayerManagerMixin",
-        "EntityMixin", "ServerPlayerEntityMixin",
-        "ServerPlayNetworkHandlerMixin",
+        "PlayerListMixin",
+        "EntityMixin", "ServerPlayerMixin",
+        "ServerGamePacketListenerImplMixin",
         "ItemMixin", "EnchantmentHelperMixin", "EnchantmentMixin",
         "LivingEntityMixin",
-        "ServerPlayerInteractionManagerMixin",
-        "ServerWorldMixin"
+        "ServerPlayerGameModeMixin",
+        "ServerLevelMixin",
+        "CakeBlockMixin"
     ],
     "client": [
-    	"BuiltinModelItemRendererMixin",
-    	"InGameHudMixin",
-    	"ClientPlayerInteractionManagerMixin",
-    	"ClientPlayNetworkHandlerMixin",
-    	"ClientPlayerEntityMixin", "ClientWorldMixin"
+    	"GuiMixin",
+    	"MultiPlayerGameModeMixin",
+    	"ClientPacketListenerMixin",
+    	"LocalPlayerMixin", "ClientLevelMixin"
     ],
     "injectors": {
         "defaultRequire": 1

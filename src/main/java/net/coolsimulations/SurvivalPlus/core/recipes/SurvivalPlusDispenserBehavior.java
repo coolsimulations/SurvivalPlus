@@ -1,19 +1,19 @@
 package net.coolsimulations.SurvivalPlus.core.recipes;
 
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.dispenser.ShearsDispenserBehavior;
-import net.minecraft.item.Item;
-import net.minecraft.item.ShearsItem;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ShearsItem;
+import net.minecraft.world.level.block.DispenserBlock;
 
 public class SurvivalPlusDispenserBehavior {
 
 	public static void init() {
 
-		for(int i = 0; i < Registry.ITEM.getIds().size(); i++) {
-			if(Registry.ITEM.get(i) instanceof ShearsItem) {
-				Item item = Registry.ITEM.get(i);
-				DispenserBlock.registerBehavior(item, new ShearsDispenserBehavior());
+		for(int i = 0; i < Registry.ITEM.keySet().size(); i++) {
+			if(Registry.ITEM.byId(i) instanceof ShearsItem) {
+				Item item = Registry.ITEM.byId(i);
+				DispenserBlock.registerBehavior(item, new ShearsDispenseItemBehavior());
 			}
 		}
 	}

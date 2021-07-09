@@ -10,28 +10,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.google.common.collect.Lists;
 
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 
 @Mixin(EnchantmentHelper.class)
 public abstract class EnchantmentHelperMixin {
 
-	@Inject(at = @At("HEAD"), method = "getPossibleEntries", cancellable = true)
-	private static void getPossibleEntries(int power, ItemStack stack, boolean bl, CallbackInfoReturnable<List<EnchantmentLevelEntry>> cir) {
-		List<EnchantmentLevelEntry> list = Lists.newArrayList();
+	@Inject(at = @At("HEAD"), method = "getAvailableEnchantmentResults", cancellable = true)
+	private static void getAvailableEnchantmentResults(int power, ItemStack stack, boolean bl, CallbackInfoReturnable<List<EnchantmentInstance>> cir) {
+		List<EnchantmentInstance> list = Lists.newArrayList();
 		Item item = stack.getItem();
 		boolean bl2 = item == Items.BOOK;
 
 		for(Enchantment enchantment : Registry.ENCHANTMENT) {
-			if ((!enchantment.isTreasure() || bl) && (((ItemAccessor) stack.getItem()).canApplyAtEnchantingTable(stack, enchantment) || bl2)) {
+			if ((!enchantment.isTreasureOnly() || bl) && (((ItemAccessor) stack.getItem()).canApplyAtEnchantingTable(stack, enchantment) || bl2)) {
 				for(int i = enchantment.getMaxLevel(); i > enchantment.getMinLevel() - 1; --i) {
-					if (power >= enchantment.getMinPower(i) && power <= enchantment.getMaxPower(i)) {
-						list.add(new EnchantmentLevelEntry(enchantment, i));
+					if (power >= enchantment.getMinCost(i) && power <= enchantment.getMaxCost(i)) {
+						list.add(new EnchantmentInstance(enchantment, i));
 						break;
 					}
 				}

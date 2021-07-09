@@ -7,93 +7,104 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
-import net.minecraft.command.CommandException;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.MessageType;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Util;
-import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.commands.CommandRuntimeException;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
 public class CommandSleep {
 
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("sleep")
-				.then(CommandManager.argument("targets", EntityArgumentType.players())
-						.requires(s -> s.hasPermissionLevel(0))
-						.executes(sleep -> sleep(sleep.getSource(), EntityArgumentType.getPlayers(sleep, "targets")))));
+	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+		dispatcher.register(Commands.literal("sleep")
+				.then(Commands.argument("targets", EntityArgument.players())
+						.requires(s -> s.hasPermission(0))
+						.executes(sleep -> sleep(sleep.getSource(), EntityArgument.getPlayers(sleep, "targets")))));
 
-		dispatcher.register(CommandManager.literal("sleep")
-				.requires(s -> s.hasPermissionLevel(0))
+		dispatcher.register(Commands.literal("sleep")
+				.requires(s -> s.hasPermission(0))
 				.executes(sleep -> sleepSingle(sleep.getSource())));
-		
-		dispatcher.register(CommandManager.literal("sloop")
-				.then(CommandManager.argument("targets", EntityArgumentType.players())
-						.requires(s -> s.hasPermissionLevel(0))
-						.executes(sleep -> sleep(sleep.getSource(), EntityArgumentType.getPlayers(sleep, "targets")))));
 
-		dispatcher.register(CommandManager.literal("sloop")
-				.requires(s -> s.hasPermissionLevel(0))
+		dispatcher.register(Commands.literal("sloop")
+				.then(Commands.argument("targets", EntityArgument.players())
+						.requires(s -> s.hasPermission(0))
+						.executes(sleep -> sleep(sleep.getSource(), EntityArgument.getPlayers(sleep, "targets")))));
+
+		dispatcher.register(Commands.literal("sloop")
+				.requires(s -> s.hasPermission(0))
 				.executes(sleep -> sleepSingle(sleep.getSource())));
 	}
 
-	private static int sleep(ServerCommandSource sender, Collection<ServerPlayerEntity> players) {
+	private static int sleep(CommandSourceStack sender, Collection<ServerPlayer> players) {
 		Iterator var3 = players.iterator();
 
 		while (var3.hasNext()) {
-			ServerPlayerEntity entityplayer = (ServerPlayerEntity) var3.next();
+			ServerPlayer entityplayer = (ServerPlayer) var3.next();
 
-			TranslatableText dimension = null;
-			if (!SPCompatibilityManager.isGCLoaded() && sender.getWorld().getRegistryKey() == World.OVERWORLD) {
-				dimension = new TranslatableText("createWorld.customize.preset.overworld", new Object[]{});
+			TranslatableComponent dimension = null;
+			if (!SPCompatibilityManager.isGCLoaded() && sender.getLevel().dimension() == Level.OVERWORLD) {
+				dimension = new TranslatableComponent("createWorld.customize.preset.overworld", new Object[]{});
 			}
 
-			if (sender.getWorld().getRegistryKey() == World.END) {
-				throw new CommandException(new TranslatableText("sp.commands.sleep.invalid"));
+			if (sender.getLevel().dimension() == Level.END) {
+				throw new CommandRuntimeException(new TranslatableComponent("sp.commands.sleep.invalid"));
 			} else {
-				if (!sender.getWorld().isDay()) {
+				if (!sender.getLevel().isDay()) {
 					if (entityplayer == sender.getEntity()) {
-						if (sender.getEntity() instanceof PlayerEntity && ((PlayerEntity) sender.getEntity()).isSleeping()) {
+						if (sender.getEntity() instanceof Player && ((Player) sender.getEntity()).isSleeping()) {
 
 							if (dimension == null) {
-								TranslatableText sleep = new TranslatableText("sp.commands.sleep.display3", new Object[]{sender.getDisplayName(), sender.getDisplayName(), sender.getWorld().getRegistryKey().getValue()});
-								sleep.formatted(Formatting.LIGHT_PURPLE);
-								sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(sleep, MessageType.SYSTEM, Util.NIL_UUID);
+								TranslatableComponent sleep = new TranslatableComponent("sp.commands.sleep.display3", new Object[]{sender.getDisplayName(), sender.getDisplayName(), sender.getLevel().dimension().location()});
+								sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
+								if(sender.getEntity() != null)
+									sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.CHAT, sender.getEntity().getUUID());
+								else
+									sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.SYSTEM, Util.NIL_UUID);
 							} else {
-								TranslatableText sleep = new TranslatableText("sp.commands.sleep.display3", new Object[]{sender.getDisplayName(), dimension});
-								sleep.formatted(Formatting.LIGHT_PURPLE);
-								sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(sleep, MessageType.SYSTEM, Util.NIL_UUID);
+								TranslatableComponent sleep = new TranslatableComponent("sp.commands.sleep.display3", new Object[]{sender.getDisplayName(), dimension});
+								sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
+								if(sender.getEntity() != null)
+									sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.CHAT, sender.getEntity().getUUID());
+								else
+									sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.SYSTEM, Util.NIL_UUID);
 							}
 						} else {
-							throw new CommandException(new TranslatableText("sp.commands.sleep.display4", new Object[]{sender.getDisplayName(), dimension}));
+							throw new CommandRuntimeException(new TranslatableComponent("sp.commands.sleep.display4", new Object[]{sender.getDisplayName(), dimension}));
 						}
 					} else {
-						if (entityplayer.world.getDimension() == sender.getWorld().getDimension()) {
+						if (entityplayer.level.dimension() == sender.getLevel().dimension()) {
 
-							if (sender.getWorld().getRegistryKey() == World.NETHER || sender.getWorld().getRegistryKey() == World.END) {
-								throw new CommandException(new TranslatableText("sp.commands.sleep.invalid"));
+							if (sender.getLevel().dimension() == Level.NETHER || sender.getLevel().dimension() == Level.END) {
+								throw new CommandRuntimeException(new TranslatableComponent("sp.commands.sleep.invalid"));
 							} else {
 								if (dimension == null) {
-									TranslatableText sleep = new TranslatableText("sp.commands.sleep.display1", new Object[]{entityplayer.getDisplayName(), sender.getDisplayName(), sender.getWorld().getRegistryKey().getValue()});
-									sleep.formatted(Formatting.LIGHT_PURPLE);
-									sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(sleep, MessageType.SYSTEM, Util.NIL_UUID);
+									TranslatableComponent sleep = new TranslatableComponent("sp.commands.sleep.display1", new Object[]{entityplayer.getDisplayName(), sender.getDisplayName(), sender.getLevel().dimension().location()});
+									sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
+									if(sender.getEntity() != null)
+										sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.CHAT, sender.getEntity().getUUID());
+									else
+										sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.SYSTEM, Util.NIL_UUID);
 								} else {
-									TranslatableText sleep = new TranslatableText("sp.commands.sleep.display1", new Object[]{entityplayer.getDisplayName(), sender.getDisplayName(), dimension});
-									sleep.formatted(Formatting.LIGHT_PURPLE);
-									sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(sleep, MessageType.SYSTEM, Util.NIL_UUID);
+									TranslatableComponent sleep = new TranslatableComponent("sp.commands.sleep.display1", new Object[]{entityplayer.getDisplayName(), sender.getDisplayName(), dimension});
+									sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
+									if(sender.getEntity() != null)
+										sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.CHAT, sender.getEntity().getUUID());
+									else
+										sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.SYSTEM, Util.NIL_UUID);
 								}
 							}
 						} else {
-							throw new CommandException(new TranslatableText("sp.commands.sleep.dimension"));
+							throw new CommandRuntimeException(new TranslatableComponent("sp.commands.sleep.dimension"));
 						}
 					}
 				} else {
-					throw new CommandException(new TranslatableText("sp.commands.sleep.night"));
+					throw new CommandRuntimeException(new TranslatableComponent("sp.commands.sleep.night"));
 				}
 			}
 		}
@@ -101,33 +112,39 @@ public class CommandSleep {
 		return players.size();
 	}
 
-	private static int sleepSingle(ServerCommandSource sender) {
+	private static int sleepSingle(CommandSourceStack sender) {
 
-		TranslatableText dimension = null;
-		if(!SPCompatibilityManager.isGCLoaded() && sender.getWorld().getRegistryKey() == World.OVERWORLD) {
-			dimension = new TranslatableText("createWorld.customize.preset.overworld", new Object[] {});
+		TranslatableComponent dimension = null;
+		if(!SPCompatibilityManager.isGCLoaded() && sender.getLevel().dimension() == Level.OVERWORLD) {
+			dimension = new TranslatableComponent("createWorld.customize.preset.overworld", new Object[] {});
 		}
 
-		if(sender.getWorld().getRegistryKey() == World.END) {
-			throw new CommandException(new TranslatableText("sp.commands.sleep.invalid"));
+		if(sender.getLevel().dimension() == Level.END) {
+			throw new CommandRuntimeException(new TranslatableComponent("sp.commands.sleep.invalid"));
 		} else {
-			if (!sender.getWorld().isDay()) {
+			if (!sender.getLevel().isDay()) {
 
-				if (sender.getWorld().getRegistryKey() == World.NETHER) {
-					throw new CommandException(new TranslatableText("sp.commands.sleep.invalid"));
+				if (sender.getLevel().dimension() == Level.NETHER) {
+					throw new CommandRuntimeException(new TranslatableComponent("sp.commands.sleep.invalid"));
 				} else {
 					if (dimension == null) {
-						TranslatableText sleep = new TranslatableText("sp.commands.sleep.display2", new Object[]{sender.getDisplayName(), sender.getWorld().getRegistryKey().getValue()});
-						sleep.formatted(Formatting.LIGHT_PURPLE);
-						sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(sleep, MessageType.SYSTEM, Util.NIL_UUID);
+						TranslatableComponent sleep = new TranslatableComponent("sp.commands.sleep.display2", new Object[]{sender.getDisplayName(), sender.getLevel().dimension().location()});
+						sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
+						if(sender.getEntity() != null)
+							sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.CHAT, sender.getEntity().getUUID());
+						else
+							sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.SYSTEM, Util.NIL_UUID);
 					} else {
-						TranslatableText sleep = new TranslatableText("sp.commands.sleep.display2", new Object[]{sender.getDisplayName(), dimension});
-						sleep.formatted(Formatting.LIGHT_PURPLE);
-						sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(sleep, MessageType.SYSTEM, Util.NIL_UUID);
+						TranslatableComponent sleep = new TranslatableComponent("sp.commands.sleep.display2", new Object[]{sender.getDisplayName(), dimension});
+						sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
+						if(sender.getEntity() != null)
+							sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.CHAT, sender.getEntity().getUUID());
+						else
+							sender.getServer().getPlayerList().broadcastMessage(sleep, ChatType.SYSTEM, Util.NIL_UUID);
 					}
 				}
 			} else {
-				throw new CommandException(new TranslatableText("sp.commands.sleep.night"));
+				throw new CommandRuntimeException(new TranslatableComponent("sp.commands.sleep.night"));
 			}
 		}
 

@@ -6,7 +6,7 @@ import io.github.prospector.modmenu.api.ModMenuApi;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 
 @Environment(EnvType.CLIENT)
 public class SPConfigGUI implements ModMenuApi {

@@ -6,51 +6,51 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CampfireBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 
 @Mixin(CampfireBlock.class)
 public abstract class CampfireBlockMixin {
 	
-	@Inject(at = @At("HEAD"), method = "onUse", cancellable = true)
-	public void onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-		ItemStack itemStackIn = player.getStackInHand(hand);
+	@Inject(at = @At("HEAD"), method = "use", cancellable = true)
+	public void use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {
+		ItemStack itemStackIn = player.getItemInHand(hand);
 		Item item = itemStackIn.getItem();
 		
-		if(state.get(CampfireBlock.LIT) && item == Items.BUCKET  && !player.abilities.creativeMode) {
-			world.setBlockState(pos, state.with(CampfireBlock.LIT, false));
-			if (world.isClient()) {
+		if(state.getValue(CampfireBlock.LIT) && item == Items.BUCKET  && !player.abilities.instabuild) {
+			world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.LIT, false));
+			if (world.isClientSide()) {
 				for (int i = 0; i < 20; ++i) {
-					CampfireBlock.spawnSmokeParticle(world, pos, (Boolean) state.get(CampfireBlock.SIGNAL_FIRE),true);
+					CampfireBlock.makeParticles(world, pos, (Boolean) state.getValue(CampfireBlock.SIGNAL_FIRE),true);
 				}
 			} else {
-				world.playSound((PlayerEntity) null, pos, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				world.playSound((Player) null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
 			}
 			if(itemStackIn.getCount() == 1) {
-				if (ItemStack.areItemsEqual(player.getOffHandStack(), itemStackIn))
+				if (ItemStack.isSame(player.getOffhandItem(), itemStackIn))
 				{
-					player.setStackInHand(Hand.OFF_HAND, new ItemStack(SPItems.charcoal_bucket));
+					player.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(SPItems.charcoal_bucket));
 				}
 				else
 				{
-					player.setStackInHand(Hand.MAIN_HAND, new ItemStack(SPItems.charcoal_bucket));
+					player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SPItems.charcoal_bucket));
 				}
 			} else  if(itemStackIn.getCount() >= 2){
-				itemStackIn.decrement(1);
-				boolean flag = player.inventory.insertStack(new ItemStack(SPItems.charcoal_bucket));
+				itemStackIn.shrink(1);
+				boolean flag = player.inventory.add(new ItemStack(SPItems.charcoal_bucket));
 				if(!flag) {
-					player.dropItem(new ItemStack(SPItems.charcoal_bucket), false);
+					player.drop(new ItemStack(SPItems.charcoal_bucket), false);
 				}		
 			}
 		}

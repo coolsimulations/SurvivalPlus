@@ -3,26 +3,29 @@ package net.coolsimulations.SurvivalPlus.core.commands;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
-import net.minecraft.network.MessageType;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Util;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class CommandSmiley {
 
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal(":)")
-				.requires(s -> s.hasPermissionLevel(0))
+	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+		dispatcher.register(Commands.literal(":)")
+				.requires(s -> s.hasPermission(0))
 				.executes(smiley -> smiley(smiley.getSource())));
 	}
 
-	private static int smiley(ServerCommandSource sender) {
+	private static int smiley(CommandSourceStack sender) {
 
-		TranslatableText smiley = new TranslatableText("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
-		smiley.formatted(Formatting.GREEN);
-		sender.getMinecraftServer().getPlayerManager().broadcastChatMessage(smiley, MessageType.SYSTEM, Util.NIL_UUID);
+		TranslatableComponent smiley = new TranslatableComponent("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
+		smiley.withStyle(ChatFormatting.GREEN);
+		if(sender.getEntity() != null)
+			sender.getServer().getPlayerList().broadcastMessage(smiley, ChatType.CHAT, sender.getEntity().getUUID());
+		else
+			sender.getServer().getPlayerList().broadcastMessage(smiley, ChatType.SYSTEM, Util.NIL_UUID);
 
 		return Command.SINGLE_SUCCESS;
 	}
