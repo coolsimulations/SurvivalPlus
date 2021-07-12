@@ -295,6 +295,9 @@ public class BlockCardboardLantern extends BlockCardboard implements IWaterLogga
 				return true;
 			}
 		} else if (direction != Direction.DOWN) {
+			if(block instanceof TrapDoorBlock && !isTrapdoorValid(iblockstate, direction)) {
+				return false;
+			}
 			return iblockstate.isFaceSturdy(worldIn, blockpos, direction.getOpposite());// && !blockstate.is(BlockTags.LEAVES);
 		} else {
 			return isValidPos(worldIn, pos, Direction.DOWN);
