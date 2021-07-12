@@ -281,6 +281,9 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 				return true;
 			}
 		} else if (direction != Direction.DOWN) {
+			if(block instanceof TrapDoorBlock && !isTrapdoorValid(iblockstate, direction)) {
+				return false;
+			}
 			return iblockstate.isFaceSturdy(worldIn, blockpos, direction.getOpposite());
 		} else {
 			return isValidPos(worldIn, pos, Direction.DOWN);
