@@ -65,9 +65,9 @@ public class SurvivalPlusAPIRecipes {
         	OreDictionary.registerOre("cropBamboo", new ItemStack(bamboo));
         }
         
-        if(SPCompatibilityManager.isBambooziedLoaded()) {
-        	Item bamboo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.BAMBOOZIED_MODID, "bamboo"));
-        	Item dried_bamboo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.BAMBOOZIED_MODID, "bamboo_dried"));
+        if(SPCompatibilityManager.isBamboozledLoaded()) {
+        	Item bamboo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.BAMBOOZLED_MODID, "bamboo"));
+        	Item dried_bamboo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.BAMBOOZLED_MODID, "bamboo_dried"));
         	
         	OreDictionary.registerOre("cropBamboo", new ItemStack(bamboo));
         	removeFurnaceRecipe(new ItemStack(dried_bamboo));

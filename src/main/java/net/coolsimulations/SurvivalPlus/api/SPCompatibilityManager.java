@@ -88,7 +88,7 @@ public class SPCompatibilityManager {
 	public static final String FUTURE_MC_MODID = "futuremc";
 	public static final String AETHER_LEGACY_MODID = "aether_legacy";
 	public static final String WEEPING_ANGELS_MODID = "weeping-angels";
-	public static final String BAMBOOZIED_MODID = "bamboozled";
+	public static final String BAMBOOZLED_MODID = "bamboozled";
 	public static final String TRAVERSE_MODID = "traverse";
 
 	public static void checkForCompatibleMods(){
@@ -293,7 +293,7 @@ public class SPCompatibilityManager {
 			SPCompatibilityManager.modWeepingAngelsLoaded = true;
 		}
 		
-		if (Loader.isModLoaded(BAMBOOZIED_MODID))
+		if (Loader.isModLoaded(BAMBOOZLED_MODID))
 		{
 			SPCompatibilityManager.modBamboozledLoaded = true;
 		}
@@ -514,13 +514,13 @@ public class SPCompatibilityManager {
 		return SPCompatibilityManager.modWeepingAngelsLoaded;
 	}
 	
-	public static boolean isBambooziedLoaded()
+	public static boolean isBamboozledLoaded()
 	{
 		return SPCompatibilityManager.modBamboozledLoaded;
 	}
 	
 	public static boolean isBambooModsLoaded() {
-		return isBambooziedLoaded();
+		return isBamboozledLoaded();
 	}
 	
 	public static boolean isTraverseLoaded()

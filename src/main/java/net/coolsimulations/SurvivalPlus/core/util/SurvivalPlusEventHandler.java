@@ -267,8 +267,8 @@ public class SurvivalPlusEventHandler {
 			}
 		}
 
-		if(SPCompatibilityManager.isBambooziedLoaded()) {
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.BAMBOOZIED_MODID + ":" + "bamboo_bundle"));
+		if(SPCompatibilityManager.isBamboozledLoaded()) {
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.BAMBOOZLED_MODID + ":" + "bamboo_bundle"));
 		}
 
 	}
