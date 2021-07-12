@@ -1,9 +1,9 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import micdoodle8.mods.galacticraft.core.GCItems;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -47,6 +47,8 @@ public class SurvivalPlusOreDict {
 			OreDictionary.registerOre("plateDenseTitanium", new ItemStack(SPItems.titanium_dense_plate));
 			OreDictionary.registerOre("casingTitanium", new ItemStack(SPItems.titanium_casing));
 		}
+		
+		OreDictionary.registerOre("cropApple", new ItemStack(Items.APPLE));
 		
 		OreDictionary.registerOre("cropOnion", new ItemStack(SPItems.raw_onion));
 		OreDictionary.registerOre("listAllveggie", new ItemStack(SPItems.raw_onion));

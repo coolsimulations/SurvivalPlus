@@ -9,6 +9,7 @@ import com.mojang.authlib.GameProfile;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
+import net.coolsimulations.SurvivalPlus.api.compat.SPCompatRecipeManager;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandConfrats;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandEmportant;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandIndeed;
@@ -42,6 +43,7 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAetherLegacyRecipe
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusFutureMCRecipes;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusFutureRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusHammerTime;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusJER;
@@ -105,6 +107,7 @@ public class SurvivalPlus {
 		SurvivalPlusConfig.init(new File(event.getModConfigurationDirectory(), SPReference.SURVIVALPLUS_CONFIG_FILE));
 		SurvivalPlusUpdateHandler.init();
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
+		SPCompatRecipeManager.futureRecipeManager = new SurvivalPlusFutureRecipes();
 
 		CreativeTabs();
 
@@ -189,11 +192,8 @@ public class SurvivalPlus {
 		{
 			SurvivalPlusIC2Recipes.init();
 		}
-		if (SPCompatibilityManager.isFutureMCLoaded())
-		{
-			SurvivalPlusFutureMCRecipes.init();
-		}
-
+		
+		SurvivalPlusFutureMCRecipes.init();
 	}
 
 	@EventHandler

@@ -1,9 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import com.gildedgames.the_aether.api.accessories.AetherAccessory;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
 
-import micdoodle8.mods.galacticraft.core.fluid.ThreadFindSeal.intBucket;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.item.ItemStack;
@@ -12,7 +10,6 @@ import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
-import thedarkcolour.futuremc.block.villagepillage.ComposterBlock.ItemsForComposter;
 
 public class SurvivalPlusAetherLegacyRecipes {
 	

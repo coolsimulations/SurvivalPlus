@@ -4,11 +4,14 @@ import com.alcatrazescapee.notreepunching.client.ModTabs;
 import com.alcatrazescapee.notreepunching.common.items.ItemKnife;
 import com.alcatrazescapee.notreepunching.common.items.ItemMattock;
 import com.alcatrazescapee.notreepunching.common.items.ItemSaw;
+import com.alcatrazescapee.notreepunching.common.recipe.FirePitRecipe;
+import com.alcatrazescapee.notreepunching.common.recipe.ModRecipes;
 
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
+import net.minecraft.item.ItemStack;
 
 public class SurvivalPlusNoTreePunching {
 	
@@ -48,6 +51,22 @@ public class SurvivalPlusNoTreePunching {
 			SurvivalPlusTools.registerRender(SPItems.desh_mattock);
 			SurvivalPlusTools.registerRender(SPItems.desh_saw);
 		}
+	}
+	
+	public static void addCampfireRecipe(ItemStack input, ItemStack output) {
+		if(ModRecipes.FIRE_PIT.get(input) == null) {
+				addFirePitRecipe(input, output);
+		}
+	}
+	
+	public static void addFirePitRecipe(ItemStack input, ItemStack output) {
+		
+		ModRecipes.FIRE_PIT.add(new FirePitRecipe(output, input));
+	}
+	
+	public static void removeFirePitRecipe(ItemStack input, ItemStack output) {
+		
+		ModRecipes.FIRE_PIT.remove(new FirePitRecipe(output, input));
 	}
 
 }
