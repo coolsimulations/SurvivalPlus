@@ -1,7 +1,6 @@
 package net.coolsimulations.SurvivalPlus.core.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -21,8 +20,6 @@ import net.minecraft.world.phys.BlockHitResult;
 @Mixin(CakeBlock.class)
 public abstract class CakeBlockMixin {
 
-	@Shadow
-	protected abstract InteractionResult eat(LevelAccessor world, BlockPos pos, BlockState state, Player player);
 
 	@Inject(at = @At("HEAD"), method = "use", cancellable = true)
 	public void use(BlockState state, Level worldIn, BlockPos pos, Player playerIn, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {

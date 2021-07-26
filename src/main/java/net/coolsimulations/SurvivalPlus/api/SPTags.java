@@ -1,10 +1,8 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.coolsimulations.SurvivalPlus.core.mixin.BlockTagsMixin;
+import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.StaticTags;
 import net.minecraft.tags.Tag;
-import net.minecraft.tags.TagContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -22,12 +20,10 @@ public class SPTags
     	public static final Tag<Block> ORES_TITANIUM = tag("titanium_ores");
     	
     	public static final Tag<Block> CARDBOARD = tag("cardboards");
-    	
-    	public static final Tag<Block> CAMPFIRE = tag("campfires");
 
         private static Tag<Block> tag(String name)
         {
-            return BlockTagsMixin.register("c:" + name);
+        	return TagRegistry.block(new ResourceLocation("c", name));
         }
     }
 
@@ -78,9 +74,9 @@ public class SPTags
     	public static final Tag<Item> SEEDS_ONION = tag("onion_seeds");
     	public static final Tag<Item> FOOD_CAKE = tag("cakes");
 
-        private static Tag.Named<Item> tag(String name)
+        private static Tag<Item> tag(String name)
         {
-        	return StaticTags.create(new ResourceLocation("item"), TagContainer::getItems).bind("c:" + name);
+        	return TagRegistry.item(new ResourceLocation("c", name));
         }
     }
 }

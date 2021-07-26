@@ -46,10 +46,22 @@
   "suggests": {
     "cloth-config2": ">=2.14.2",
     "roughlyenoughitems": ">=3.6.21",
-    "fabricshieldlib": ">=1.0.5",
     "blockus": ">=2.1.8",
     "bambootweaks": ">=1.1.0",
     "bambooeverything": ">=1.4.0",
     "bamboomod": ">=0.3.0"
+  },
+  
+  "custom": {
+    "modupdater": {
+      "strategy": "curseforge",
+      "projectID": 295008
+    },
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/7DDsHfQ",
+        "modmenu.guilded": "https://guilded.gg/i/Wkn138B2"
+      }
+    }
   }
 }

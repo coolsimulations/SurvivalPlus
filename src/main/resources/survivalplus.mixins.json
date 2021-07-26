@@ -3,7 +3,6 @@
     "package": "net.coolsimulations.SurvivalPlus.core.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-        "BlockTagsMixin",
         "SheepMixin", "PumpkinBlockMixin", "TripWireBlockMixin", "DiggingEnchantmentMixin", "MushroomCowMixin", "SnowGolemMixin", "BeehiveBlockMixin", "IronGolemMixin",
         "MobMixin", "PlayerMixin",
         "CampfireBlockMixin",
