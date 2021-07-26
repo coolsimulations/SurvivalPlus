@@ -200,7 +200,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "brown_dyes", SPBlocks.cardboard_lantern_brown);
 
 			state.updateShape(hit.getDirection(), state, worldIn, pos, pos);
-			return InteractionResult.SUCCESS;
+			return success;
 		} else {
 			state.updateShape(hit.getDirection(), state, worldIn, pos, pos);
 		}
@@ -275,7 +275,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		{
 			if(block instanceof TrapDoorBlock && !isTrapdoorValid(iblockstate, direction)) {
 				return false;
-			} else if(block instanceof BlockCardboardLantern) {
+			} else if(block instanceof BlockCardboardLantern && iblockstate.getValue(FACING).getAxis() == Direction.Axis.Y) {
 				return false;
 			} else {
 				return true;
