@@ -22,6 +22,8 @@ public class FuelHandler{
 		addArmorFuels(SPItems.jungle);
 		addArmorFuels(SPItems.acacia);
 		addArmorFuels(SPItems.dark_oak);
+		addArmorFuels(SPItems.crimson);
+		addArmorFuels(SPItems.warped);
 		
 		if (SPCompatibilityManager.isBambooModsLoaded()) {
 			FuelRegistry.INSTANCE.add(SPItems.bamboo_helmet, 250);

@@ -90,8 +90,6 @@ public class SurvivalPlus implements ModInitializer {
 		SurvivalPlusFood.init();
 		SurvivalPlusFood.register();
 
-		SurvivalPlusComposterRecipes.init();
-
 		SurvivalPlusArmor.init();
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
@@ -109,6 +107,8 @@ public class SurvivalPlus implements ModInitializer {
 			SurvivalPlusBlockus.init();
 			SurvivalPlusBlockus.register();
 		}
+
+		SurvivalPlusComposterRecipes.init();
 	}
 	
 	public void setupEvent() {

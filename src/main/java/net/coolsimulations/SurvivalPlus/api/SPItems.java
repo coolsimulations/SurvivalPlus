@@ -22,10 +22,10 @@ public class SPItems {
 	/**
 	 * These are the Ore Processing Items referred to in SurvivalPlusItems
 	 */
-	public static Item titanium_crushed_dust;
+	//public static Item titanium_crushed_dust;
 	public static Item titanium_dust;
 	//public static Item purified_titanium_ore;
-	public static Item titanium_tiny_dust;
+	//public static Item titanium_tiny_dust;
 	//public static Item titanium_plate;
 	//public static Item titanium_dense_plate;
 	//public static Item titanium_casing;

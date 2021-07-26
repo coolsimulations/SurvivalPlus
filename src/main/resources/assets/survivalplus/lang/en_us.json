@@ -325,6 +325,8 @@
   "sp.coolsim.joined": "%s the grand creator of SurvivalPlus joined the game",
   "sp.coolsim.left": "%s the grand creator of SurvivalPlus left the game",
   "sp.coolsim.error": "coolsim has been killed too many times in a row and thus has not dropped a head!",
+  
+  "modmenu.guilded": "Guilded",
 
   "sp.configgui.title": "SurvivalPlus Config",
   "sp.configgui.recipes": "Recipes",
