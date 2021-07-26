@@ -1,9 +1,8 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.coolsimulations.SurvivalPlus.core.mixin.BlockTagsMixin;
+import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 
@@ -26,7 +25,7 @@ public class SPTags
 
         private static Tag<Block> tag(String name)
         {
-            return BlockTagsMixin.register("c:" + name);
+        	return TagRegistry.block(new Identifier("c", name));
         }
     }
 
@@ -79,7 +78,7 @@ public class SPTags
 
         private static Tag<Item> tag(String name)
         {
-        	return new ItemTags.CachingTag(new Identifier("c", name));
+        	return TagRegistry.item(new Identifier("c", name));
         }
     }
 }

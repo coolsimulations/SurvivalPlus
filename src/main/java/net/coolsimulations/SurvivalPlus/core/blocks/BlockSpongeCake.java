@@ -126,7 +126,7 @@ public class BlockSpongeCake extends Block
     }
 
     public int getComparatorOutput(BlockState state, World worldIn, BlockPos pos) {
-        return (7 - (Integer)state.get(BITES)) * 2;
+        return (8 - (Integer)state.get(BITES)) * 2;
     }
 
     public boolean hasComparatorOutput(BlockState state) {
