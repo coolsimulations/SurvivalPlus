@@ -23,7 +23,7 @@ public class SurvivalPlusREI implements REIPluginV0 {
 	
 	@Override
     public SemanticVersion getMinimumVersion() throws VersionParsingException {
-        return SemanticVersion.parse("0.1.4");
+        return SemanticVersion.parse("0.1.5");
     }
 	
 	@Override
