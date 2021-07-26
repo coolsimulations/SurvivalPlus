@@ -40,8 +40,6 @@ public class SPTags
 		public static final IOptionalNamedTag<Block> CARDBOARD_WHITE = tag("cardboard/white");
 		public static final IOptionalNamedTag<Block> CARDBOARD_YELLOW = tag("cardboard/yellow");
 
-		public static final IOptionalNamedTag<Block> CAMPFIRE = tag("campfire");
-
 		private static IOptionalNamedTag<Block> tag(String name)
         {
             return BlockTags.createOptional(new ResourceLocation(ForgeMod.getInstance().getModId(), name));
