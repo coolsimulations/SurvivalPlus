@@ -124,7 +124,7 @@ public class BlockSpongeCake extends Block {
 	}
 
 	public int getAnalogOutputSignal(BlockState state, Level worldIn, BlockPos pos) {
-		return (7 - (Integer)state.getValue(BITES)) * 2;
+		return (8 - (Integer)state.getValue(BITES)) * 2;
 	}
 
 	public boolean hasAnalogOutputSignal(BlockState state) {
