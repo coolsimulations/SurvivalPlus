@@ -352,7 +352,7 @@ public class BlockCardboardLantern extends BlockCardboard {
 				return false;
 			} else if(block instanceof BlockTrapDoor && !isTrapdoorValid(iblockstate, direction)) {
 				return false;
-			} else if(block instanceof BlockCardboardLantern) {
+			} else if(block instanceof BlockCardboardLantern && iblockstate.getValue(FACING).getAxis() == EnumFacing.Axis.Y) {
 				return false;
 			} else {
 				return true;
