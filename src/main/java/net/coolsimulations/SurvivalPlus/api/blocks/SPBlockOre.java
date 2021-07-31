@@ -78,10 +78,10 @@ public class SPBlockOre extends Block{
 	}
 	
 	public enum Resource {
-		TIER_0(0, 3.0F, 5.0F, SoundType.STONE, ItemTier.WOOD),
-		TIER_1(1, 3.5F, 5.0F, SoundType.STONE, ItemTier.STONE),
-		TIER_2(2, 3.0F, 5.0F, SoundType.STONE, ItemTier.IRON),
-		TIER_3(3, 3.5F, 5.0F, SoundType.STONE, ItemTier.DIAMOND);
+		TIER_0(0, 3.0F, 3.0F, SoundType.STONE, ItemTier.WOOD),
+		TIER_1(1, 3.0F, 3.0F, SoundType.STONE, ItemTier.STONE),
+		TIER_2(2, 3.0F, 3.0F, SoundType.STONE, ItemTier.IRON),
+		TIER_3(3, 3.0F, 3.0F, SoundType.STONE, ItemTier.DIAMOND);
 		
 	    public final float hardness;
 	    public final float resistance;
