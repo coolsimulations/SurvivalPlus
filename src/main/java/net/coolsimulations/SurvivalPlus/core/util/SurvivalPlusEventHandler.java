@@ -284,7 +284,7 @@ public class SurvivalPlusEventHandler {
 
 			LootTable table = event.getTable();
 
-			Field entires = ObfuscationReflectionHelper.findField(LootPool.class, "entries");
+			Field entires = ObfuscationReflectionHelper.findField(LootPool.class, "field_186453_a");
 
 			if(event.getTable().getPool("main") != null) {
 				try {
