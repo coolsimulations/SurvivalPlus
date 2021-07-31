@@ -18,21 +18,18 @@ public class SPBlockMetal extends Block{
 	public SPBlockMetal(MapColor colour, int metalTier, boolean isBeaconMetal) {
 		super(Material.IRON, colour);
 		if(metalTier == 0) {
-			this.setHardness(4.0F);
 			this.setHarvestLevel("pickaxe", 1);
 		}
 		else if (metalTier == 1) {
-			this.setHardness(4.5F);
 			this.setHarvestLevel("pickaxe", 2);
 		}
 		else if (metalTier == 2) {
-			this.setHardness(5.0F);
 			this.setHarvestLevel("pickaxe", 2);
 		}
 		else if (metalTier >= 3) {
-			this.setHardness(5.5F);
 			this.setHarvestLevel("pickaxe", 3);
 		}
+		this.setHardness(5.0F);
 		this.setResistance(10.0F);
 		this.setLightOpacity(16);
 		this.blockSoundType = SoundType.METAL;
