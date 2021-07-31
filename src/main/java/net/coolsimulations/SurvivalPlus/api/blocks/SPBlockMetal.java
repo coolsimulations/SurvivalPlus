@@ -22,10 +22,10 @@ public class SPBlockMetal extends Block {
 	}
 
 	public enum Resource {
-		TIER_0(1, 4.0F, 10.0F, SoundType.METAL, Tiers.STONE),
-		TIER_1(2, 4.5F, 10.0F, SoundType.METAL, Tiers.IRON),
-		TIER_2(2, 5.0F, 10.0F, SoundType.METAL, Tiers.IRON),
-		TIER_3(3, 5.5F, 10.0F, SoundType.METAL, Tiers.DIAMOND);
+		TIER_0(1, 5.0F, 6.0F, SoundType.METAL, Tiers.STONE),
+		TIER_1(2, 5.0F, 6.0F, SoundType.METAL, Tiers.IRON),
+		TIER_2(2, 5.0F, 6.0F, SoundType.METAL, Tiers.IRON),
+		TIER_3(3, 5.0F, 6.0F, SoundType.METAL, Tiers.DIAMOND);
 
 		public final float hardness;
 		public final float resistance;
