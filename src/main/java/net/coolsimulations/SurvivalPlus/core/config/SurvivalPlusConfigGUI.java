@@ -44,7 +44,7 @@ public class SurvivalPlusConfigGUI {
 		command.addEntry(entryBuilder.startIntSlider(new TranslationTextComponent("sp.configgui.op_wak_command").getFormattedText(), SPConfig.opWak.get(), 0, 4).setTooltip("If this is set to 0 anyone can use the Wak Command").setDefaultValue(0).setSaveConsumer(newValue->SPConfig.opWak.set(newValue)).build());
 		command.addEntry(entryBuilder.startBooleanToggle(new TranslationTextComponent("sp.configgui.update_check").getFormattedText(), SPConfig.disableUpdateCheck.get()).setTooltip("Disable SurvivalPlus Update Checker Message").setDefaultValue(false).setSaveConsumer(newValue->SPConfig.disableUpdateCheck.set(newValue)).build());
 
-		compatibility.addEntry(entryBuilder.startBooleanToggle(new TranslationTextComponent("sp.configgui.sun_audio").getFormattedText(), SPConfig.disableSunAudio.get()).setTooltip("Disable Sounds Played Through sun.audio").setDefaultValue(false).setSaveConsumer(newValue->SPConfig.disableSunAudio.set(newValue)).build());
+		compatibility.addEntry(entryBuilder.startBooleanToggle(new TranslationTextComponent("sp.configgui.client_audio").getFormattedText(), SPConfig.disableClientAudio.get()).setTooltip("Disable Sounds Played Through the Client").setDefaultValue(false).setSaveConsumer(newValue->SPConfig.disableClientAudio.set(newValue)).build());
 
 		command.addEntry(entryBuilder.startBooleanToggle(new TranslationTextComponent("sp.configgui.disable_thanks").getFormattedText(), SPConfig.disableThanks.get()).setTooltip("Disable SurvivalPlus Thank You Message").setDefaultValue(false).setSaveConsumer(newValue->SPConfig.disableThanks.set(newValue)).build());
 
