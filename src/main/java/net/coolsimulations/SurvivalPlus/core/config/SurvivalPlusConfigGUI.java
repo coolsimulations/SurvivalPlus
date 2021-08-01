@@ -44,7 +44,7 @@ public class SurvivalPlusConfigGUI {
 		command.addEntry(entryBuilder.startIntSlider(new TranslationTextComponent("sp.configgui.op_wak_command"), SPConfig.opWak.get(), 0, 4).setTooltip(new TranslationTextComponent("sp.configgui.op_wak_command")).setDefaultValue(0).setSaveConsumer(newValue->SPConfig.opWak.set(newValue)).build());
 		command.addEntry(entryBuilder.startBooleanToggle(new TranslationTextComponent("sp.configgui.update_check"), SPConfig.disableUpdateCheck.get()).setTooltip(new TranslationTextComponent("sp.configgui.update_check")).setDefaultValue(false).setSaveConsumer(newValue->SPConfig.disableUpdateCheck.set(newValue)).build());
 
-		compatibility.addEntry(entryBuilder.startBooleanToggle(new TranslationTextComponent("sp.configgui.sun_audio"), SPConfig.disableSunAudio.get()).setTooltip(new TranslationTextComponent("sp.configgui.sun_audio")).setDefaultValue(false).setSaveConsumer(newValue->SPConfig.disableSunAudio.set(newValue)).build());
+		compatibility.addEntry(entryBuilder.startBooleanToggle(new TranslationTextComponent("sp.configgui.client_audio"), SPConfig.disableClientAudio.get()).setTooltip(new TranslationTextComponent("sp.configgui.client_audio")).setDefaultValue(false).setSaveConsumer(newValue->SPConfig.disableClientAudio.set(newValue)).build());
 
 		command.addEntry(entryBuilder.startBooleanToggle(new TranslationTextComponent("sp.configgui.disable_thanks"), SPConfig.disableThanks.get()).setTooltip(new TranslationTextComponent("sp.configgui.disable_thanks")).setDefaultValue(false).setSaveConsumer(newValue->SPConfig.disableThanks.set(newValue)).build());
 
