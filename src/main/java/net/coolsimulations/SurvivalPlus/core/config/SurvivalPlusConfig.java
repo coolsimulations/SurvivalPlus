@@ -80,10 +80,10 @@ public class SurvivalPlusConfig {
 					.translation("sp.configgui.update_check")
 					.define("disableUpdateCheck", false);
 			
-			SPConfig.disableSunAudio = builder
-					.comment("Disable Sounds Played Through sun.audio")
-					.translation("sp.configgui.sun_audio")
-					.define("disableSunAudio", false);
+			SPConfig.disableClientAudio = builder
+					.comment("Disable Sounds Played Through the Client")
+					.translation("sp.configgui.client_audio")
+					.define("disableClientAudio", false);
 
 			SPConfig.disableThanks = builder
 					.comment("Disable SurvivalPlus Thank You Message")

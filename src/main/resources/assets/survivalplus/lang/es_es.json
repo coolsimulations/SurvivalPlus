@@ -509,7 +509,7 @@
   "sp.configgui.enable_Replace_BOP_Recipe": "Habilitar Reemplazar Receta de Artefacto Terrestre BOP",
   "sp.configgui.op_wak_command": "Definir el Nivel de Permiso del Comando Wak",
   "sp.configgui.update_check": "Desactivar el Mensaje del Comprobador de Actualizaciones de SupervivenciaM\u00e1s",
-  "sp.configgui.sun_audio": "Desactivar los Sonidos Reproducidos a Trav\u00e9s de sun.audio",
+  "sp.configgui.client_audio": "Desactivar los Sonidos Reproducidos a Trav\u00e9s del Cliente",
   "sp.configgui.disable_thanks": "Desactivar SupervivenciaM\u00e1s Mensaje de Agradecimiento",
   "sp.configgui.enable_emerald": "Habil\u00edtelo si SupervivenciaM\u00e1s no ha Detectado Ning\u00fan Mod de Herramienta Esmeralda",
   "sp.configgui.enable_obsidian": "Habil\u00edtelo si SupervivenciaM\u00e1s no ha Detectado Ning\u00fan Mod de Herramienta Obsidiana"

@@ -131,6 +131,8 @@ public class SurvivalPlus {
 
 		SurvivalPlusDispenserBehavior.init();
 
+		proxy.init();
+
 		if(SPCompatibilityManager.isHammerTimeLoaded()) {
 			SurvivalPlusHammerTime.init();
 		}
