@@ -29,7 +29,7 @@ public class SurvivalPlusConfig {
 		SPConfig.disableSpinelGen = false;
 		SPConfig.opWak = 0;
 		SPConfig.disableUpdateCheck = false;
-		SPConfig.disableSunAudio = false;
+		SPConfig.disableClientAudio = false;
 		SPConfig.disableThanks = false;
 
 		JsonObject jsonObject = setJsonObject(new JsonObject());
@@ -72,7 +72,7 @@ public class SurvivalPlusConfig {
 			SPConfig.disableSpinelGen = jsonObjectRead.get("disableSpinelGen").getAsBoolean();
 			SPConfig.opWak = jsonObjectRead.get("opWak").getAsInt();
 			SPConfig.disableUpdateCheck = jsonObjectRead.get("disableUpdateCheck").getAsBoolean();
-			SPConfig.disableSunAudio = jsonObjectRead.get("disableSunAudio").getAsBoolean();
+			SPConfig.disableClientAudio = jsonObjectRead.get("disableClientAudio").getAsBoolean();
 			SPConfig.disableThanks = jsonObjectRead.get("disableThanks").getAsBoolean();
 			
 			if(SPConfig.opWak < 0) {
@@ -99,7 +99,7 @@ public class SurvivalPlusConfig {
 		jsonObject.addProperty("disableSpinelGen", SPConfig.disableSpinelGen);
 		jsonObject.addProperty("opWak", SPConfig.opWak);
 		jsonObject.addProperty("disableUpdateCheck", SPConfig.disableUpdateCheck);
-		jsonObject.addProperty("disableSunAudio", SPConfig.disableSunAudio);
+		jsonObject.addProperty("disableClientAudio", SPConfig.disableClientAudio);
 		jsonObject.addProperty("disableThanks", SPConfig.disableThanks);
 		
 		return jsonObject;
