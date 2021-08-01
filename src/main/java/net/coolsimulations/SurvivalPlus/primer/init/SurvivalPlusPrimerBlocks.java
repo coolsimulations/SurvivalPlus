@@ -18,6 +18,7 @@ public class SurvivalPlusPrimerBlocks {
 	public static Block copper_ore;
 	public static Block amethyst;
 	public static Block ruby;
+	public static Block pearl;
 	public static Block topaz;
 	public static Block sapphire;
 	public static Block spinel;
@@ -28,6 +29,7 @@ public class SurvivalPlusPrimerBlocks {
 		copper_ore = new SPBlockOre(SPBlockOre.Resource.TIER_1, false);
 		amethyst = new SPBlockCrystal(MaterialColor.COLOR_PURPLE);
 		ruby = new SPBlockCrystal(MaterialColor.COLOR_RED);
+		pearl = new SPBlockCrystal(MaterialColor.SNOW);
 		topaz = new SPBlockCrystal(MaterialColor.COLOR_YELLOW);
 		sapphire = new SPBlockCrystal(MaterialColor.COLOR_BLUE);
 		spinel = new SPBlockCrystal(MaterialColor.COLOR_BLACK);
@@ -40,13 +42,18 @@ public class SurvivalPlusPrimerBlocks {
 		registerBlock(copper_ore, "copper_ore");
 		registerBlock(amethyst, "amethyst");
 		registerBlock(ruby, "ruby");
+		registerBlock(pearl, "pearl", false);
 		registerBlock(topaz, "topaz");
 		registerBlock(sapphire, "sapphire");
 		registerBlock(spinel, "spinel");
 
 	}
-
+	
 	public static void registerBlock(Block block, String registryName) {
+		registerBlock(block, registryName, true);
+	}
+
+	public static void registerBlock(Block block, String registryName, boolean registerItem) {
 
 		BlockItem blockItem;
 
@@ -57,7 +64,8 @@ public class SurvivalPlusPrimerBlocks {
 		}
 
 		Registry.register(Registry.BLOCK, new ResourceLocation(SPReference.MOD_ID, registryName), block);
-		Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), blockItem);
+		if(registerItem)
+			Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), blockItem);
 	}
 
 }
