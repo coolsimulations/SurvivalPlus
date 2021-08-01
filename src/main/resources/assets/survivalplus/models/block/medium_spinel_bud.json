@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "survivalplus:blocks/medium_spinel_bud"
+  }
+}

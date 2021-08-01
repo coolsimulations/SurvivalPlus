@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.mojang.authlib.GameProfile;
 
 import net.coolsimulations.SurvivalPlus.api.events.EntityAccessor;
+import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.coolsimulations.SurvivalPlus.api.events.SPPlayerDeathEvent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -21,7 +22,9 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.scores.PlayerTeam;
 
@@ -65,6 +68,12 @@ public abstract class ServerPlayerMixin extends Player {
 			}
 		}
 
+	}
+	
+	@Inject(at = @At("HEAD"), method = "drop(Z)Z", cancellable = true)
+	public void drop(boolean dropEntireStack, CallbackInfoReturnable<Boolean> cir) {
+		ItemStack stack = this.getInventory().getSelected();
+		if (stack.isEmpty() || !((ItemAccessor) stack.getItem()).onDroppedByPlayer(stack, (((Player) (Object)this)))) cir.setReturnValue(false);
 	}
 
 }

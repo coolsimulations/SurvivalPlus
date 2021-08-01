@@ -18,10 +18,8 @@ public class SurvivalPlusConfig {
 	
 	public static void init(File fileSrc) {
 
-		SPConfig.disableCopperOreGen = false;
 		SPConfig.disableTinOreGen = false;
 		SPConfig.disableTitaniumOreGen = false;
-		SPConfig.disableAmethystGen = false;
 		SPConfig.disableRubyGen = false;
 		SPConfig.disableTopazGen = false;
 		SPConfig.disableSapphireGen = false;
@@ -29,7 +27,7 @@ public class SurvivalPlusConfig {
 		SPConfig.disableSpinelGen = false;
 		SPConfig.opWak = 0;
 		SPConfig.disableUpdateCheck = false;
-		SPConfig.disableSunAudio = false;
+		SPConfig.disableClientAudio = false;
 		SPConfig.disableThanks = false;
 
 		JsonObject jsonObject = setJsonObject(new JsonObject());
@@ -60,11 +58,17 @@ public class SurvivalPlusConfig {
 		JsonParser parser = new JsonParser();
 		try {
 			Object obj = parser.parse(new FileReader(fileSrc));
-			JsonObject jsonObjectRead = (JsonObject) obj;;
-			SPConfig.disableCopperOreGen = jsonObjectRead.get("disableCopperOreGen").getAsBoolean();
+			JsonObject jsonObjectRead = (JsonObject) obj;
+			if(jsonObjectRead.get("disableCopperOreGen") != null) {
+				jsonObjectRead.remove("disableCopperOreGen");
+				save(fileSrc, jsonObjectRead);
+			}
 			SPConfig.disableTinOreGen = jsonObjectRead.get("disableTinOreGen").getAsBoolean();
 			SPConfig.disableTitaniumOreGen = jsonObjectRead.get("disableTitaniumOreGen").getAsBoolean();
-			SPConfig.disableAmethystGen = jsonObjectRead.get("disableAmethystGen").getAsBoolean();
+			if(jsonObjectRead.get("disableAmethystGen") != null) {
+				jsonObjectRead.remove("disableAmethystGen");
+				save(fileSrc, jsonObjectRead);
+			}
 			SPConfig.disableRubyGen = jsonObjectRead.get("disableRubyGen").getAsBoolean();
 			SPConfig.disableTopazGen = jsonObjectRead.get("disableTopazGen").getAsBoolean();
 			SPConfig.disableSapphireGen = jsonObjectRead.get("disableSapphireGen").getAsBoolean();
@@ -72,7 +76,7 @@ public class SurvivalPlusConfig {
 			SPConfig.disableSpinelGen = jsonObjectRead.get("disableSpinelGen").getAsBoolean();
 			SPConfig.opWak = jsonObjectRead.get("opWak").getAsInt();
 			SPConfig.disableUpdateCheck = jsonObjectRead.get("disableUpdateCheck").getAsBoolean();
-			SPConfig.disableSunAudio = jsonObjectRead.get("disableSunAudio").getAsBoolean();
+			SPConfig.disableClientAudio = jsonObjectRead.get("disableClientAudio").getAsBoolean();
 			SPConfig.disableThanks = jsonObjectRead.get("disableThanks").getAsBoolean();
 			
 			if(SPConfig.opWak < 0) {
@@ -88,10 +92,8 @@ public class SurvivalPlusConfig {
 	
 	public static JsonObject setJsonObject(JsonObject jsonObject) {
 		
-		jsonObject.addProperty("disableCopperOreGen", SPConfig.disableCopperOreGen);
 		jsonObject.addProperty("disableTinOreGen", SPConfig.disableTinOreGen);
 		jsonObject.addProperty("disableTitaniumOreGen", SPConfig.disableTitaniumOreGen);
-		jsonObject.addProperty("disableAmethystGen", SPConfig.disableAmethystGen);
 		jsonObject.addProperty("disableRubyGen", SPConfig.disableRubyGen);
 		jsonObject.addProperty("disableTopazGen", SPConfig.disableTopazGen);
 		jsonObject.addProperty("disableSapphireGen", SPConfig.disableSapphireGen);
@@ -99,7 +101,7 @@ public class SurvivalPlusConfig {
 		jsonObject.addProperty("disableSpinelGen", SPConfig.disableSpinelGen);
 		jsonObject.addProperty("opWak", SPConfig.opWak);
 		jsonObject.addProperty("disableUpdateCheck", SPConfig.disableUpdateCheck);
-		jsonObject.addProperty("disableSunAudio", SPConfig.disableSunAudio);
+		jsonObject.addProperty("disableClientAudio", SPConfig.disableClientAudio);
 		jsonObject.addProperty("disableThanks", SPConfig.disableThanks);
 		
 		return jsonObject;

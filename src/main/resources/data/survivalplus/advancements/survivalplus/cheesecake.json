@@ -17,7 +17,9 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "survivalplus:cheese_cake"
+                        "items": [
+                            "survivalplus:cheese_cake"
+                        ]
                     }
                 ]
             }

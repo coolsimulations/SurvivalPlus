@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.BeehiveBlock;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.entity.BeehiveBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 
 @Mixin(BeehiveBlock.class)
@@ -31,9 +32,8 @@ public abstract class BeehiveBlockMixin {
 
 	@Inject(at = @At("HEAD"), method = "use", cancellable = true)
 	public void use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {
-		
+
 		ItemStack itemStack = player.getItemInHand(hand);
-		ItemStack itemStack2 = itemStack.copy();
 		int i = (Integer)state.getValue(BeehiveBlock.HONEY_LEVEL);
 		boolean bl = false;
 
@@ -45,31 +45,34 @@ public abstract class BeehiveBlockMixin {
 					((LivingEntity) playerx).broadcastBreakEvent(hand);
 				}));
 				bl = true;
+				world.gameEvent(player, GameEvent.SHEAR, pos);
 			}
 		}
-		
-		if (bl) {
-	         if (!CampfireBlock.isSmokeyPos(world, pos)) {
-	            if (this.hiveContainsBees(world, pos)) {
-	               this.angerNearbyBees(world, pos);
-	            }
 
-	            this.releaseBeesAndResetHoneyLevel(world, state, pos, player, BeehiveBlockEntity.BeeReleaseStatus.EMERGENCY);
-	         } else {
-	            this.resetHoneyLevel(world, state, pos);
-	         }
-	      }
+		if (bl) {
+			if (!CampfireBlock.isSmokeyPos(world, pos)) {
+				if (this.hiveContainsBees(world, pos)) {
+					this.angerNearbyBees(world, pos);
+				}
+
+				this.releaseBeesAndResetHoneyLevel(world, state, pos, player, BeehiveBlockEntity.BeeReleaseStatus.EMERGENCY);
+			} else {
+				this.resetHoneyLevel(world, state, pos);
+			}
+			
+			cir.setReturnValue(InteractionResult.sidedSuccess(world.isClientSide));
+		}
 	}
-	
+
 	@Shadow
 	public abstract boolean hiveContainsBees(Level world, BlockPos pos);
-	
+
 	@Shadow
 	public abstract void angerNearbyBees(Level world, BlockPos pos);
-	
+
 	@Shadow
 	public abstract void releaseBeesAndResetHoneyLevel(Level world, BlockState state, BlockPos pos, @Nullable Player player, BeehiveBlockEntity.BeeReleaseStatus beeState);
-	
+
 	@Shadow
 	public abstract void resetHoneyLevel(Level world, BlockState state, BlockPos pos);
 

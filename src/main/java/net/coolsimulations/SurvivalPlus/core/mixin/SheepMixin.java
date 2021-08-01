@@ -19,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
 
 @Mixin(Sheep.class)
 public abstract class SheepMixin extends Animal {
@@ -41,9 +42,11 @@ public abstract class SheepMixin extends Animal {
 		if (itemStack.getItem() instanceof ShearsItem) {
 			if (!this.level.isClientSide && this.readyForShearing()) {
 	            this.shear(SoundSource.PLAYERS);
+	            this.gameEvent(GameEvent.SHEAR, player);
 	            itemStack.hurtAndBreak(1, (LivingEntity)player, (Consumer)((playerEntity) -> {
 	               ((LivingEntity) playerEntity).broadcastBreakEvent(hand);;
 	            }));
+	            cir.setReturnValue(InteractionResult.SUCCESS);
 	         }
 		}
 	}

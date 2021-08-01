@@ -1,0 +1,11 @@
+{
+  "type": "mechanix:crushing",
+  "ingredient": {
+    "tag": "c:raw_titanium_ores"
+  },
+  "time": 200,
+  "result": {
+    "tag": "c:titanium_dusts",
+    "count" : 2
+  }
+}

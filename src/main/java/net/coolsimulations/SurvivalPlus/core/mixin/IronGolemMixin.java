@@ -18,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
 
 @Mixin(IronGolem.class)
 public abstract class IronGolemMixin extends AbstractGolem {
@@ -40,11 +41,12 @@ public abstract class IronGolemMixin extends AbstractGolem {
 				this.heal(((SPItemIngot) item).getGolemHealth());
 				float f1 = 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
 				this.playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, f1);
-				if (!player.abilities.instabuild) {
+				this.gameEvent(GameEvent.MOB_INTERACT, this.eyeBlockPosition());
+				if (!player.getAbilities().instabuild) {
 					itemStack.shrink(1);
 				}
 				
-				cir.setReturnValue(InteractionResult.PASS);
+				cir.setReturnValue(InteractionResult.sidedSuccess(this.level.isClientSide));
 			}
 		}
 	}

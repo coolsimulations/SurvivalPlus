@@ -1,10 +1,8 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.coolsimulations.SurvivalPlus.core.mixin.BlockTagsMixin;
+import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.StaticTags;
 import net.minecraft.tags.Tag;
-import net.minecraft.tags.TagContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -22,12 +20,10 @@ public class SPTags
     	public static final Tag<Block> ORES_TITANIUM = tag("titanium_ores");
     	
     	public static final Tag<Block> CARDBOARD = tag("cardboards");
-    	
-    	public static final Tag<Block> CAMPFIRE = tag("campfires");
 
-        private static Tag<Block> tag(String name)
+    	private static Tag<Block> tag(String name)
         {
-            return BlockTagsMixin.register("c:" + name);
+        	return TagRegistry.block(new ResourceLocation("c", name));
         }
     }
 
@@ -41,17 +37,19 @@ public class SPTags
     	public static final Tag<Item> NUGGETS_BRONZE = tag("bronze_nuggets");
     	public static final Tag<Item> NUGGETS_TITANIUM = tag("titanium_nuggets");
     	
-    	public static final Tag<Item> GEMS_AMETHYST = tag("amethysts");
-    	public static final Tag<Item> GEMS_RUBY = tag("rubies");
-    	public static final Tag<Item> GEMS_SAPPHIRE = tag("sapphires");
-    	public static final Tag<Item> GEMS_TOPAZ = tag("topazes");
-    	public static final Tag<Item> GEMS_SPINEL = tag("spinels");
-    	public static final Tag<Item> GEMS_PEARL = tag("pearls");
+    	public static final Tag<Item> SHARDS_AMETHYST = tag("amethyst_shards");
+    	public static final Tag<Item> SHARDS_RUBY = tag("ruby_shards");
+    	public static final Tag<Item> SHARDS_SAPPHIRE = tag("sapphire_shards");
+    	public static final Tag<Item> SHARDS_TOPAZ = tag("topaz_shards");
+    	public static final Tag<Item> SHARDS_SPINEL = tag("spinel_shards");
+    	public static final Tag<Item> PEARLS = tag("pearls");
+    	
+    	public static final Tag<Item> RAW_ORES_TIN = tag("raw_tins_ores");
+    	public static final Tag<Item> RAW_ORES_TITANIUM = tag("raw_titanium_ores");
     	
     	//public static final Tag<Item> DYES_WHITE = tag("white_dyes");
     	
-    	/**public static final Tag<Item> DUSTS_COPPER = tag("copper_dusts");
-    	public static final Tag<Item> DUSTS_TIN = tag("tin_dusts");
+    	/**public static final Tag<Item> DUSTS_TIN = tag("tin_dusts");
     	public static final Tag<Item> DUSTS_TITANIUM = tag("titanium_dusts");**/
     	
     	/**public static final Tag<Item> CRUSHED_TITANIUM = tag("crushed/titanium");
@@ -78,9 +76,9 @@ public class SPTags
     	public static final Tag<Item> SEEDS_ONION = tag("onion_seeds");
     	public static final Tag<Item> FOOD_CAKE = tag("cakes");
 
-        private static Tag.Named<Item> tag(String name)
+        private static Tag<Item> tag(String name)
         {
-        	return StaticTags.create(new ResourceLocation("item"), TagContainer::getItems).bind("c:" + name);
+        	return TagRegistry.item(new ResourceLocation("c", name));
         }
     }
 }

@@ -28,15 +28,12 @@ public abstract class CampfireBlockMixin {
 		ItemStack itemStackIn = player.getItemInHand(hand);
 		Item item = itemStackIn.getItem();
 		
-		if(state.getValue(CampfireBlock.LIT) && item == Items.BUCKET  && !player.abilities.instabuild) {
-			world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.LIT, false));
-			if (world.isClientSide()) {
-				for (int i = 0; i < 20; ++i) {
-					CampfireBlock.makeParticles(world, pos, (Boolean) state.getValue(CampfireBlock.SIGNAL_FIRE),true);
-				}
-			} else {
-				world.playSound((Player) null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
+		if(state.getValue(CampfireBlock.LIT) && item == Items.BUCKET  && !player.getAbilities().instabuild) {
+			if (!world.isClientSide()) {
+				world.levelEvent((Player) null, 1009, pos, 0);
 			}
+			CampfireBlock.dowse(player, world, pos, state);
+			world.setBlockAndUpdate(pos, state.setValue(CampfireBlock.LIT, false));
 			if(itemStackIn.getCount() == 1) {
 				if (ItemStack.isSame(player.getOffhandItem(), itemStackIn))
 				{
@@ -48,7 +45,7 @@ public abstract class CampfireBlockMixin {
 				}
 			} else  if(itemStackIn.getCount() >= 2){
 				itemStackIn.shrink(1);
-				boolean flag = player.inventory.add(new ItemStack(SPItems.charcoal_bucket));
+				boolean flag = player.getInventory().add(new ItemStack(SPItems.charcoal_bucket));
 				if(!flag) {
 					player.drop(new ItemStack(SPItems.charcoal_bucket), false);
 				}		

@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "survivalplus:ruby_block",
+    "survivalplus:budding_ruby",
+    "survivalplus:pearl_block",
+    "survivalplus:budding_pearl",
+    "survivalplus:topaz_block",
+    "survivalplus:budding_topaz",
+    "survivalplus:sapphire_block",
+    "survivalplus:budding_sapphire",
+    "survivalplus:spinel_block",
+    "survivalplus:budding_spinel"
+  ]
+}

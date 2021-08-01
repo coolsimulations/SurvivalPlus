@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "survivalplus:spyglass"
+    ]
+  },
+  "criteria": {
+    "has_shard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:shards"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "survivalplus:spyglass"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_shard",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -21,6 +21,7 @@ import net.coolsimulations.SurvivalPlus.core.init.FuelHandler;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusBlocks;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
+import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusGeodes;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
@@ -50,7 +51,7 @@ public class SurvivalPlus implements ModInitializer {
 		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
 			if(server.isDedicatedServer()) {
 
-				GameProfile gameprofile = server.getProfileCache().get("coolsim");
+				GameProfile gameprofile = server.getProfileCache().get("coolsim").get();
 				UserWhiteList whitelist = server.getPlayerList().getWhiteList();
 
 				if(server.getPlayerList().isUsingWhitelist() && !whitelist.isWhiteListed(gameprofile) && !server.getPlayerList().getBans().isBanned(gameprofile)) {
@@ -89,8 +90,9 @@ public class SurvivalPlus implements ModInitializer {
 		SurvivalPlusItems.register();
 		SurvivalPlusFood.init();
 		SurvivalPlusFood.register();
-
-		SurvivalPlusComposterRecipes.init();
+		
+		SurvivalPlusGeodes.init();
+		SurvivalPlusGeodes.register();
 
 		SurvivalPlusArmor.init();
 		SurvivalPlusArmor.register();
@@ -109,6 +111,8 @@ public class SurvivalPlus implements ModInitializer {
 			SurvivalPlusBlockus.init();
 			SurvivalPlusBlockus.register();
 		}
+		
+		SurvivalPlusComposterRecipes.init();
 	}
 	
 	public void setupEvent() {

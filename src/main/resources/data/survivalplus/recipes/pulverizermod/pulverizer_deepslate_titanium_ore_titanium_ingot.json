@@ -1,0 +1,12 @@
+
+{
+  "type": "pulverizer_mod:pulverizer",
+  "id": "survivalplus:deepslate_titanium_ore_titanium_ingot",
+  "ingredient": "survivalplus:deepslate_titanium_ore",
+  "result": {
+    "id": "survivalplus:titanium_ingot",
+    "Count": 4
+  },
+  "pulverizetime": 200,
+  "category": "ore"
+}

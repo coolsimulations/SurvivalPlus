@@ -44,7 +44,7 @@
     "overrides": [
         {
             "predicate": {
-                "survivalplus:blocking": 1
+                "blocking": 1
             },
             "model": "survivalplus:item/bronze_shield_blocking"
         }

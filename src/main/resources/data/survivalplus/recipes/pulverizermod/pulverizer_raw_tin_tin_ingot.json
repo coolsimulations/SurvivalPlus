@@ -1,0 +1,12 @@
+
+{
+  "type": "pulverizer_mod:pulverizer",
+  "id": "survivalplus:raw_tin_tin_ingot",
+  "ingredient": "survivalplus:raw_tin",
+  "result": {
+    "id": "survivalplus:tin_ingot",
+    "Count": 4
+  },
+  "pulverizetime": 200,
+  "category": "ore"
+}

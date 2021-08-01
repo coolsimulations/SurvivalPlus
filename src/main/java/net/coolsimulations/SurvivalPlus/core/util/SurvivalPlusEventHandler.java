@@ -52,17 +52,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DeadBushBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.NetherSproutsBlock;
-import net.minecraft.world.level.block.Seagrass;
-import net.minecraft.world.level.block.TallSeagrass;
+import net.minecraft.world.level.block.SeagrassBlock;
 import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.WebBlock;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.ConstantIntValue;
-import net.minecraft.world.level.storage.loot.IntLimiter;
+import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.LootTables;
-import net.minecraft.world.level.storage.loot.RandomValueBounds;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.LimitCount;
@@ -72,6 +69,8 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.predicates.AlternativeLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 public class SurvivalPlusEventHandler {
 
@@ -192,7 +191,7 @@ public class SurvivalPlusEventHandler {
 		LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
 			if(id.equals(BuiltInLootTables.PIGLIN_BARTERING)) {
 
-				LootPoolEntryContainer spinel = LootItem.lootTableItem(SPBlocks.spinel).setWeight(15).apply(SetItemCountFunction.setCount(RandomValueBounds.between(1.0F, 2.0F))).build();
+				LootPoolEntryContainer spinel = LootItem.lootTableItem(SPItems.spinel_shard).setWeight(15).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).build();
 
 				LootTable table = manager.get(id);
 
@@ -233,7 +232,7 @@ public class SurvivalPlusEventHandler {
 					replaceLootWithShears(block, id, supplier, manager, setter);
 				}
 				
-				if(block instanceof Seagrass) {
+				if(block instanceof SeagrassBlock) {
 					replaceLootWithShears(block, id, supplier, manager, setter);
 				}
 			}
@@ -290,7 +289,7 @@ public class SurvivalPlusEventHandler {
 
 	public static void dropItem(ItemStack stack, Player player) {
 
-		boolean bl = player.inventory.add(stack);
+		boolean bl = player.getInventory().add(stack);
 		ItemEntity itemEntity;
 		if (bl && stack.isEmpty()) {
 			stack.setCount(1);
@@ -358,7 +357,7 @@ public class SurvivalPlusEventHandler {
 						}
 						else if (i == 1){
 							FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.of(pool)
-									.apply(LimitCount.limitCount(IntLimiter.clamp(0, 0)).when(InvertedLootItemCondition.invert(AlternativeLootItemCondition.alternative(MatchTool.toolMatches(ItemPredicate.Builder.item().of(FabricToolTags.SHEARS)).invert()).or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS))))));
+									.apply(LimitCount.limitCount(IntRange.range(0, 0)).when(InvertedLootItemCondition.invert(AlternativeLootItemCondition.alternative(MatchTool.toolMatches(ItemPredicate.Builder.item().of(FabricToolTags.SHEARS)).invert()).or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS))))));
 							replacement.withPool(poolBuilder.build());
 						}
 						else {
@@ -368,8 +367,8 @@ public class SurvivalPlusEventHandler {
 					FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
 							.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(FabricToolTags.SHEARS)))
 							.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS)).invert())
-							.rolls(ConstantIntValue.exactly(1))
-							.withEntry(LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(ConstantIntValue.exactly(count))).build());
+							.rolls(ConstantValue.exactly(1))
+							.withEntry(LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(ConstantValue.exactly(count))).build());
 					replacement.withPool(poolBuilder.build());
 					replacement.withFunctions(functions);
 					setter.set(replacement.build());

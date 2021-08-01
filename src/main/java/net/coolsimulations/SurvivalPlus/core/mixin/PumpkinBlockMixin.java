@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarvedPumpkinBlock;
 import net.minecraft.world.level.block.PumpkinBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 
 @Mixin(PumpkinBlock.class)
@@ -46,6 +48,9 @@ public class PumpkinBlockMixin {
 	            itemStack.hurtAndBreak(1, (LivingEntity)player, (Consumer)((playerEntity) -> {
 	               ((LivingEntity) playerEntity).broadcastBreakEvent(hand);;
 	            }));
+	            world.gameEvent(player, GameEvent.SHEAR, pos);
+				player.awardStat(Stats.ITEM_USED.get(Items.SHEARS));
+				cir.setReturnValue(InteractionResult.sidedSuccess(world.isClientSide));
 	         }
 	      }
 	}

@@ -20,7 +20,7 @@ public class SurvivalPlusUpdateHandler {
 	public static void init() {
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus-fabric/versionchecker116.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus-fabric/versionchecker117.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersion = s.next();
             s.close();
@@ -29,7 +29,7 @@ public class SurvivalPlusUpdateHandler {
         }
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus-fabric/updateinfo116.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus-fabric/updateinfo117.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersionInfo = s.nextLine();
             s.close();

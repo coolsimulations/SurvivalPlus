@@ -1,0 +1,10 @@
+{
+  "type": "smelting",
+  "group": "titanium_ingot",
+  "ingredient": {
+    "tag": "c:raw_titanium_ores"
+  },
+  "result": "survivalplus:titanium_ingot",
+  "experience": 1.0,
+  "cookingtime": 200
+}

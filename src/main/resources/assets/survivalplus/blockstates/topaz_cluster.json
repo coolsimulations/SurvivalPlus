@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "survivalplus:block/topaz_cluster",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "survivalplus:block/topaz_cluster",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "survivalplus:block/topaz_cluster",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "survivalplus:block/topaz_cluster",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "survivalplus:block/topaz_cluster"
+    },
+    "facing=west": {
+      "model": "survivalplus:block/topaz_cluster",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

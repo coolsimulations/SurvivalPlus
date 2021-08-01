@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " X ",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "tag": "c:shards"
+    },
+    "X": {
+      "tag": "c:copper_ingots"
+    }
+  },
+  "result": {
+    "item": "minecraft:spyglass"
+  }
+}

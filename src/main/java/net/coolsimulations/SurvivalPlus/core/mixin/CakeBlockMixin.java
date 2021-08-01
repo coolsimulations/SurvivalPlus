@@ -1,7 +1,6 @@
 package net.coolsimulations.SurvivalPlus.core.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -20,9 +19,6 @@ import net.minecraft.world.phys.BlockHitResult;
 
 @Mixin(CakeBlock.class)
 public abstract class CakeBlockMixin {
-
-	@Shadow
-	protected abstract InteractionResult eat(LevelAccessor world, BlockPos pos, BlockState state, Player player);
 
 	@Inject(at = @At("HEAD"), method = "use", cancellable = true)
 	public void use(BlockState state, Level worldIn, BlockPos pos, Player playerIn, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {
@@ -55,7 +51,7 @@ public abstract class CakeBlockMixin {
 						}
 					} else  if(itemStackIn.getCount() >= 2){
 						itemStackIn.shrink(1);
-						boolean flag = playerIn.inventory.add(new ItemStack(SPItems.cupcake));
+						boolean flag = playerIn.getInventory().add(new ItemStack(SPItems.cupcake));
 						if(!flag) {
 							playerIn.drop(new ItemStack(SPItems.cupcake), false);
 						}
@@ -75,7 +71,7 @@ public abstract class CakeBlockMixin {
 
 		int bites = (Integer)state.getValue(CakeBlock.BITES);
 
-		if (bites < 6) {
+		if (bites < CakeBlock.MAX_BITES) {
 			worldIn.setBlock(pos, (BlockState)state.setValue(CakeBlock.BITES, bites + 1), 3);
 		} else {
 			worldIn.removeBlock(pos, false);

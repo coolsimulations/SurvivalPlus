@@ -10,7 +10,6 @@ public class SPItems {
 	 * These are the normal Items referred to in SurvivalPlusItems
 	 */
 	public static Item tin_ingot;
-	public static Item copper_ingot;
 	public static Item bronze_ingot;
 	public static Item bronze_nugget;
 	public static Item titanium_ingot;
@@ -18,18 +17,24 @@ public class SPItems {
 	public static Item onion_seeds;
 	public static Item charcoal_bucket;
 	public static Item paper_cup;
+	public static Item raw_tin;
+	public static Item raw_titanium;
+	public static Item ruby_shard;
+	public static Item pearl;
+	public static Item topaz_shard;
+	public static Item sapphire_shard;
+	public static Item spinel_shard;
 	
 	/**
 	 * These are the Ore Processing Items referred to in SurvivalPlusItems
 	 */
-	public static Item titanium_crushed_dust;
+	//public static Item titanium_crushed_dust;
 	public static Item titanium_dust;
 	//public static Item purified_titanium_ore;
-	public static Item titanium_tiny_dust;
+	//public static Item titanium_tiny_dust;
 	//public static Item titanium_plate;
 	//public static Item titanium_dense_plate;
 	//public static Item titanium_casing;
-	public static Item copper_dust;
 	public static Item tin_dust;
 	
 	/**

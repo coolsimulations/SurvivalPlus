@@ -7,7 +7,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.minecraft.sounds.SoundEvents;
@@ -16,7 +15,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemCooldowns;
@@ -76,15 +74,6 @@ public abstract class PlayerMixin extends LivingEntity {
 			(((Player) (Object)this)).disableShield(true);
 		}
 	}
-
-	@Inject(at = @At("HEAD"), method = "drop", cancellable = true)
-	public void drop(boolean dropEntireStack, CallbackInfoReturnable<ItemEntity> cir) {
-		ItemStack stack = this.inventory.getSelected();
-		if (stack.isEmpty() || !((ItemAccessor) stack.getItem()).onDroppedByPlayer(stack, (((Player) (Object)this)))) cir.setReturnValue(null);
-	}
-	
-	@Shadow
-	public abstract ItemEntity drop(ItemStack stack, boolean bl, boolean bl2);
 
 	@Shadow
 	public abstract ItemCooldowns getCooldowns();

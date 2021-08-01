@@ -1,9 +1,8 @@
 {
     "required": true,
     "package": "net.coolsimulations.SurvivalPlus.core.mixin",
-    "compatibilityLevel": "JAVA_8",
+    "compatibilityLevel": "JAVA_16",
     "mixins": [
-        "BlockTagsMixin",
         "SheepMixin", "PumpkinBlockMixin", "TripWireBlockMixin", "DiggingEnchantmentMixin", "MushroomCowMixin", "SnowGolemMixin", "BeehiveBlockMixin", "IronGolemMixin",
         "MobMixin", "PlayerMixin",
         "CampfireBlockMixin",
@@ -14,9 +13,10 @@
         "LivingEntityMixin",
         "ServerPlayerGameModeMixin",
         "ServerLevelMixin",
-        "CakeBlockMixin"
+        "CakeBlockMixin", "CandleCakeBlockMixin"
     ],
     "client": [
+    	"BlockEntityWithoutLevelRendererMixin",
     	"GuiMixin",
     	"MultiPlayerGameModeMixin",
     	"ClientPacketListenerMixin",

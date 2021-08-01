@@ -3,6 +3,7 @@ package net.coolsimulations.SurvivalPlus.core.recipes;
 import java.util.Iterator;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
+import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.tags.Tag;
@@ -54,6 +55,10 @@ public class SurvivalPlusComposterRecipes {
 		registerCompostable(SPItems.sponge_cupcake, COMMON);
 		registerCompostable(SPBlocks.cheese_cake, LEGENDARY);
 		registerCompostable(SPBlocks.sponge_cake, LEGENDARY);
+		
+		if(SPCompatibilityManager.isBlockusLoaded()) {
+			registerCompostable(SPBlocks.onion_crate, 0.95F);
+		}
 	}
 	
 	protected static void registerCompostableTag(Tag<Item> tag, float rarity) {

@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "survivalplus:blocks/deepslate_tin_ore"
+    }
+}

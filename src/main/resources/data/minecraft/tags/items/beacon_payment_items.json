@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#c:copper_ingots",
-    "#c:tin_ingots",
     "#c:bronze_ingots",
     "#c:titanium_ingots"
   ]

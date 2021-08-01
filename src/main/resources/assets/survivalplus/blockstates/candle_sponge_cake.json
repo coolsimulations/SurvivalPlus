@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "survivalplus:block/candle_sponge_cake"
+    },
+    "lit=true": {
+      "model": "survivalplus:block/candle_sponge_cake_lit"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "refinedmachinery:pulverizer",
+  "input": {
+    "tag": "c:raw_titanium_ores"
+  },
+  "randomOutput": {
+    "item": "refinedmachinery:iron_dust",
+    "chance": 20
+  },
+  "result": {
+    "item": "survivalplus:titanium_dust",
+    "count": 2
+  }
+}

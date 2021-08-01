@@ -12,7 +12,9 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:sponge"
+            "items": [
+              "minecraft:sponge"
+            ]
           }
         ]
       }

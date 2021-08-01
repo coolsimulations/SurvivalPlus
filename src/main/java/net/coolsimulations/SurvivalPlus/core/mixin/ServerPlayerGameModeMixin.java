@@ -12,10 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayerGameMode;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CommandBlock;
-import net.minecraft.world.level.block.JigsawBlock;
-import net.minecraft.world.level.block.StructureBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.GameMasterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(ServerPlayerGameMode.class)
@@ -31,15 +28,13 @@ public class ServerPlayerGameModeMixin {
 	public void destroyBlock(BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
 		BlockState blockState = this.level.getBlockState(blockPos);
 		if (this.player.getMainHandItem().getItem().canAttackBlock(blockState, this.level, blockPos, this.player)) {
-			BlockEntity blockEntity = this.level.getBlockEntity(blockPos);
 			Block block = blockState.getBlock();
-			if (!(block instanceof CommandBlock || block instanceof StructureBlock || block instanceof JigsawBlock) && !this.player.canUseGameMasterBlocks()) {
+			if (!(block instanceof GameMasterBlock) && !this.player.canUseGameMasterBlocks()) {
 				if (((ItemAccessor) player.getMainHandItem().getItem()).onBlockStartBreak(player.getMainHandItem(), blockPos, player)) {
 					cir.setReturnValue(false);
 
 				}
 			}
-
 		}
 	}
 }

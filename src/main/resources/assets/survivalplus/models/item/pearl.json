@@ -1,3 +1,6 @@
 {
-    "parent": "survivalplus:block/pearl"
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "survivalplus:items/pearl"
+    }
 }

@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "survivalplus:items/topaz_shard"
+    }
+}

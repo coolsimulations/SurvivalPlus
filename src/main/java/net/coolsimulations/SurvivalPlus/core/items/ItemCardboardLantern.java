@@ -59,7 +59,7 @@ public class ItemCardboardLantern extends BlockItem {
 						CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer)playerIn, blockpos1, itemStack);
 					}
 
-					if (!playerIn.abilities.instabuild) {
+					if (!playerIn.getAbilities().instabuild) {
 						itemStack.shrink(1);
 					}
 

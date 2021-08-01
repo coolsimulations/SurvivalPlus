@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "#c:amethyst_shards",
+    "#c:ruby_shards",
+    "#c:topaz_shards",
+    "#c:sapphire_shards",
+    "#c:spinel_shards",
+    {
+      "id": "#c:emerald_shards",
+      "required": false
+    },
+    {
+      "id": "#c:quartz_shards",
+      "required": false
+    }
+  ]
+}

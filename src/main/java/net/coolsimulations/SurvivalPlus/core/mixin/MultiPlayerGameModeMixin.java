@@ -13,9 +13,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CommandBlock;
-import net.minecraft.world.level.block.JigsawBlock;
-import net.minecraft.world.level.block.StructureBlock;
+import net.minecraft.world.level.block.GameMasterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(MultiPlayerGameMode.class)
@@ -35,7 +33,7 @@ public class MultiPlayerGameModeMixin {
 			BlockState blockState = world.getBlockState(pos);
 			if (this.minecraft.player.getMainHandItem().getItem().canAttackBlock(blockState, world, pos, this.minecraft.player)) {
 				Block block = blockState.getBlock();
-				if (!(block instanceof CommandBlock || block instanceof StructureBlock || block instanceof JigsawBlock) && !this.minecraft.player.canUseGameMasterBlocks()) {
+				if (!(block instanceof GameMasterBlock) && !this.minecraft.player.canUseGameMasterBlocks()) {
 					if(blockState.isAir()) {
 						if (((ItemAccessor) minecraft.player.getMainHandItem().getItem()).onBlockStartBreak(minecraft.player.getMainHandItem(), pos, minecraft.player)) cir.setReturnValue(false);
 

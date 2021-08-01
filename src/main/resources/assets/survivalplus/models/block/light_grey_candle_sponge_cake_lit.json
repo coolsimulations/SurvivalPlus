@@ -1,0 +1,6 @@
+{
+  "parent": "survivalplus:block/template_sponge_cake_with_candle",
+  "textures": {
+    "candle": "minecraft:block/light_gray_candle_lit"
+  }
+}

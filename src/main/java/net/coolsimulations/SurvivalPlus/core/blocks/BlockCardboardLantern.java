@@ -25,6 +25,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CauldronBlock;
@@ -53,11 +54,11 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 
 	protected static final VoxelShape CARDBOARD_LANTERN_AABB = Shapes.or(Block.box(6.0D, 1.0D, 6.D, 10.0D, 5D, 10.0D), Block.box(5.75D, 0.0D, 5.75D, 10.25D, 1.0D, 10.25D), Block.box(5.75D, 5.0D, 5.75D, 10.25D, 6.0D, 10.25D), Block.box(7.0, 6.0D, 7.0D, 9.0D, 7.0D, 9.0D), Block.box(6.75, 6.0D, 6.75D, 9.25D, 6.25D, 9.25D));
 	protected static final VoxelShape CARDBOARD_LANTERN_HANGING_AABB = Shapes.or(Block.box(6.0D, 2.0D, 6.D, 10.0D, 6D, 10.0D), Block.box(5.75D, 1.0D, 5.75D, 10.25D, 2.0D, 10.25D), Block.box(5.75D, 6.0D, 5.75D, 10.25D, 7.0D, 10.25D), Block.box(7.0, 7.0D, 7.0D, 9.0D, 8.0D, 9.0D), Block.box(6.75, 7.0D, 6.75D, 9.25D, 7.25D, 9.25D), Block.box(7.75, 8.0D, 7.75D, 8.25D, 16.0D, 8.25D));
-	protected static final VoxelShape CARDBOARD_PAD_AABB = Shapes.or(Block.box(6.0D, -1.5D, 6.D, 10.0D, 3.5D, 10.0D), Block.box(5.75D, -1.5D, 5.75D, 10.25D, -0.5D, 10.25D), Block.box(5.75D, 3.5D, 5.75D, 10.25D, 4.5D, 10.25D), Block.box(7.0, 4.5D, 7.0D, 9.0D, 5.5D, 9.0D), Block.box(6.75, 4.5D, 6.75D, 9.25D, 4.75D, 9.25D), Block.box(5.0D, -1.5D, 5.0D, 11.0D, -2.5D, 11.0D), Block.box(4.0D, -1.0D, 11.0D, 5.0D, -2.0D, 5.0D), Block.box(12.0D, -1.0D, 4.0D, 4.0D, -2.0D, 5.0D), Block.box(12.0D, -1.0D, 11.0D, 4.0D, -2.0D, 12.0D), Block.box(12.0D, -1.0D, 5.0D, 11.0D, -2.0D, 11.0D));
+	protected static final VoxelShape CARDBOARD_PAD_AABB = Shapes.or(Block.box(6.0D, -1.5D, 6.D, 10.0D, 3.5D, 10.0D), Block.box(5.75D, -1.5D, 5.75D, 10.25D, -0.5D, 10.25D), Block.box(5.75D, 3.5D, 5.75D, 10.25D, 4.5D, 10.25D), Block.box(7.0, 4.5D, 7.0D, 9.0D, 5.5D, 9.0D), Block.box(6.75, 4.5D, 6.75D, 9.25D, 4.75D, 9.25D), Block.box(5.0D, -2.5D, 5.0D, 11.0D, -1.5D, 11.0D), Block.box(4.0D, -2.0D, 5.0D, 5.0D, -1.0D, 11.0D), Block.box(4.0D, -2.0D, 4.0D, 12.0D, -1.0D, 5.0D), Block.box(4.0D, -2.0D, 11.0D, 12.0D, -1.0D, 12.0D), Block.box(11.0D, -2.0D, 5.0D, 12.0D, -1.0D, 11.0D));
 	protected static final VoxelShape CARDBOARD_LANTERN_NORTH_AABB = Shapes.or(Block.box(6.0D, 2.0D, 8.D, 10.0D, 6D, 12.0D), Block.box(5.75D, 1.0D, 7.75D, 10.25D, 2.0D, 12.25D), Block.box(5.75D, 6.0D, 7.75D, 10.25D, 7.0D, 12.25D), Block.box(7.0, 7.0D, 9.0D, 9.0D, 8.0D, 11.0D), Block.box(6.75, 7.0D, 8.75D, 9.25D, 7.25D, 11.25D), Block.box(7.75, 6.25D, 7.75D, 8.25D, 6.75D, 15.75D), Block.box(7.5, 6.D, 15.75D, 8.5D, 7.0D, 16.0D), Block.box(7.75, 1.25D, 7.75D, 8.25D, 1.75D, 15.75D), Block.box(7.5, 1.D, 15.75D, 8.5D, 2.0D, 16.0D), Block.box(7.75, 1.75D, 14.25D, 8.25D, 6.25D, 14.75D));
 	protected static final VoxelShape CARDBOARD_LANTERN_SOUTH_AABB = Shapes.or(Block.box(6.0D, 2.0D, 4.D, 10.0D, 6D, 8.0D), Block.box(5.75D, 1.0D, 3.75D, 10.25D, 2.0D, 8.25D), Block.box(5.75D, 6.0D, 3.75D, 10.25D, 7.0D, 8.25D), Block.box(7.0, 7.0D, 5.0D, 9.0D, 8.0D, 7.0D), Block.box(6.75, 7.0D, 4.75D, 9.25D, 7.25D, 7.25D), Block.box(7.75, 6.25D, 0.25D, 8.25D, 6.75D, 3.75D), Block.box(7.5, 6.0D, 0.0D, 8.5D, 7.0D, 0.25D), Block.box(7.75, 1.25D, 0.25D, 8.25D, 1.75D, 3.75D), Block.box(7.5, 1.0D, 0.0D, 8.5D, 2.0D, 0.25D), Block.box(7.75, 1.75D, 1.25D, 8.25D, 6.25D, 1.75D));
 	protected static final VoxelShape CARDBOARD_LANTERN_EAST_AABB = Shapes.or(Block.box(4.0D, 2.0D, 6.D, 8.0D, 6D, 10.0D), Block.box(3.75D, 1.0D, 5.75D, 8.25D, 2.0D, 10.25D), Block.box(3.75D, 6.0D, 5.75D, 8.25D, 7.0D, 10.25D), Block.box(5.0, 7.0D, 7.0D, 7.0D, 8.0D, 9.0D), Block.box(4.75, 7.0D, 6.75D, 7.25D, 7.25D, 9.25D), Block.box(0.25, 6.25D, 7.75D, 3.75D, 6.75D, 8.25D), Block.box(0.0, 6.0D, 7.5D, 0.25D, 7.0D, 8.5D), Block.box(0.0, 1.25D, 7.75D, 0.25D, 1.75D, 8.25D), Block.box(0.0, 1.0D, 7.5D, 0.25D, 2.0D, 8.5D), Block.box(1.25, 1.75D, 7.75D, 1.75D, 6.25D, 8.25D));
-	protected static final VoxelShape CARDBOARD_LANTERN_WEST_AABB = Shapes.or(Block.box(8.0D, 2.0D, 6.D, 12.0D, 6D, 10.0D), Block.box(7.75D, 1.0D, 5.75D, 12.25D, 2.0D, 10.25D), Block.box(7.75D, 6.0D, 5.75D, 12.25D, 7.0D, 10.25D), Block.box(9.0, 7.0D, 7.0D, 11.0D, 8.0D, 9.0D), Block.box(8.75, 7.0D, 6.75D, 11.25D, 7.25D, 9.25D), Block.box(15.75, 6.25D, 7.75D, 9.25D, 6.75D, 8.25D), Block.box(16.0, 6.0D, 7.5D, 15.75D, 7.0D, 8.5D), Block.box(15.75, 1.25D, 7.75D, 9.25D, 1.75D, 8.25D), Block.box(16.0, 1.0D, 7.5D, 15.75D, 2.0D, 8.5D), Block.box(14.75, 1.75D, 7.75D, 14.25D, 6.25D, 8.25D));
+	protected static final VoxelShape CARDBOARD_LANTERN_WEST_AABB = Shapes.or(Block.box(8.0D, 2.0D, 6.D, 12.0D, 6D, 10.0D), Block.box(7.75D, 1.0D, 5.75D, 12.25D, 2.0D, 10.25D), Block.box(7.75D, 6.0D, 5.75D, 12.25D, 7.0D, 10.25D), Block.box(9.0, 7.0D, 7.0D, 11.0D, 8.0D, 9.0D), Block.box(8.75, 7.0D, 6.75D, 11.25D, 7.25D, 9.25D), Block.box(9.25D, 6.25D, 7.75D, 15.75D, 6.75D, 8.25D), Block.box(15.75D, 6.0D, 7.5D, 16.0D, 7.0D, 8.5D), Block.box(9.25D, 1.25D, 7.75D, 15.75D, 1.75D, 8.25D), Block.box(15.75D, 1.0D, 7.5D, 16.0D, 2.0D, 8.5D), Block.box(14.25, 1.75D, 7.75D, 14.75D, 6.25D, 8.25D));
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 	public static final BooleanProperty FLOATING = BooleanProperty.create("floating");
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -119,35 +120,35 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		boolean isFloating = stateIn.getValue(FLOATING);
 		boolean isWaterLogged = stateIn.getValue(WATERLOGGED);
 		double d0 = (double)pos.getX() + 0.5D;
-		double d1 = (double)pos.getY() + 0.21875D;
+		double d1 = (double)pos.getY() + 0.25D;
 		double d2 = (double)pos.getZ() + 0.5D;
 
 		if(!isWaterLogged) {
 			if(isFloating) {
 				if(enumfacing == Direction.DOWN) {
-					worldIn.addParticle(ParticleTypes.FLAME, d0, d1 + 0.0625D, d2, 0.0D, 0.0D, 0.0D);
+					worldIn.addParticle(ParticleTypes.SMALL_FLAME, d0, d1 + 0.0625D, d2, 0.0D, 0.0D, 0.0D);
 				} else {
-					worldIn.addParticle(ParticleTypes.FLAME, d0, d1 - 0.03125D, d2, 0.0D, 0.0D, 0.0D);
+					worldIn.addParticle(ParticleTypes.SMALL_FLAME, d0, d1 - 0.03125D, d2, 0.0D, 0.0D, 0.0D);
 				}
 			} else {
 				switch (enumfacing) {
 				case UP:
-					worldIn.addParticle(ParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+					worldIn.addParticle(ParticleTypes.SMALL_FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 					break;
 				case EAST:
-					worldIn.addParticle(ParticleTypes.FLAME, d0 - 0.125, d1 + 0.0625D, d2, 0.0D, 0.0D, 0.0D);
+					worldIn.addParticle(ParticleTypes.SMALL_FLAME, d0 - 0.125, d1 + 0.0625D, d2, 0.0D, 0.0D, 0.0D);
 					break;
 				case SOUTH:
-					worldIn.addParticle(ParticleTypes.FLAME, d0, d1 + 0.0625D, d2 - 0.125, 0.0D, 0.0D, 0.0D);
+					worldIn.addParticle(ParticleTypes.SMALL_FLAME, d0, d1 + 0.0625D, d2 - 0.125, 0.0D, 0.0D, 0.0D);
 					break;
 				case WEST:
-					worldIn.addParticle(ParticleTypes.FLAME, d0 + 0.125, d1 + 0.0625D, d2, 0.0D, 0.0D, 0.0D);
+					worldIn.addParticle(ParticleTypes.SMALL_FLAME, d0 + 0.125, d1 + 0.0625D, d2, 0.0D, 0.0D, 0.0D);
 					break;
 				case NORTH:
-					worldIn.addParticle(ParticleTypes.FLAME, d0, d1 + 0.0625D, d2 + 0.125, 0.0D, 0.0D, 0.0D);
+					worldIn.addParticle(ParticleTypes.SMALL_FLAME, d0, d1 + 0.0625D, d2 + 0.125, 0.0D, 0.0D, 0.0D);
 					break;
 				case DOWN:
-					worldIn.addParticle(ParticleTypes.FLAME, d0, d1 + 0.0625D, d2, 0.0D, 0.0D, 0.0D);
+					worldIn.addParticle(ParticleTypes.SMALL_FLAME, d0, d1 + 0.0625D, d2, 0.0D, 0.0D, 0.0D);
 					break;
 				}
 			}
@@ -200,7 +201,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, "brown_dyes", SPBlocks.cardboard_lantern_brown);
 
 			state.updateShape(hit.getDirection(), state, worldIn, pos, pos);
-			return InteractionResult.SUCCESS;
+			return success;
 		} else {
 			state.updateShape(hit.getDirection(), state, worldIn, pos, pos);
 		}
@@ -259,7 +260,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		BlockState iblockstate = worldIn.getBlockState(pos.below());
 		FluidState ifluidstate = worldIn.getFluidState(pos.below());
 		Material material = iblockstate.getMaterial();
-		return ifluidstate.getType() == Fluids.WATER || (material == Material.ICE || material == Material.ICE_SOLID) || (iblockstate.getBlock() instanceof CauldronBlock && iblockstate.getValue(CauldronBlock.LEVEL) == 3);
+		return ifluidstate.getType() == Fluids.WATER || (material == Material.ICE || material == Material.ICE_SOLID) || (iblockstate.getBlock() instanceof AbstractCauldronBlock && iblockstate.getBlock() != Blocks.LAVA_CAULDRON && ((AbstractCauldronBlock) iblockstate.getBlock()).isFull(iblockstate));
 	}
 
 	/**
@@ -275,7 +276,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		{
 			if(block instanceof TrapDoorBlock && !isTrapdoorValid(iblockstate, direction)) {
 				return false;
-			} else if(block instanceof BlockCardboardLantern) {
+			} else if(block instanceof BlockCardboardLantern && iblockstate.getValue(FACING).getAxis() == Direction.Axis.Y) {
 				return false;
 			} else {
 				return true;
@@ -295,7 +296,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		BlockPos blockpos = pos.relative(direction.getOpposite());
 		BlockState iblockstate = worldIn.getBlockState(blockpos);
 
-		return direction == Direction.UP && (iblockstate.getBlock() == Blocks.WATER || ((iblockstate.getMaterial() == Material.ICE || iblockstate.getMaterial() == Material.ICE_SOLID) && direction != Direction.DOWN) || (iblockstate.getBlock() instanceof CauldronBlock && iblockstate.getValue(CauldronBlock.LEVEL) == 3));
+		return direction == Direction.UP && (iblockstate.getBlock() == Blocks.WATER || ((iblockstate.getMaterial() == Material.ICE || iblockstate.getMaterial() == Material.ICE_SOLID) && direction != Direction.DOWN) || (iblockstate.getBlock() instanceof AbstractCauldronBlock && iblockstate.getBlock() != Blocks.LAVA_CAULDRON && ((AbstractCauldronBlock) iblockstate.getBlock()).isFull(iblockstate)));
 	}
 
 	protected boolean isWaterLogged(Level worldIn, BlockPos pos) {
