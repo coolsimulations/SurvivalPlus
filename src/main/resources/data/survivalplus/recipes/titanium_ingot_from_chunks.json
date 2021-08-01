@@ -1,9 +1,0 @@
-{
-  "type": "smelting",
-  "ingredient": {
-    "item": "survivalplus:titanium_chunks"
-  },
-  "result": "survivalplus:titanium_ingot",
-  "experience": 1.0,
-  "cookingtime": 200
-}

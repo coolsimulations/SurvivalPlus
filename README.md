@@ -1,6 +1,6 @@
-<p align="center"><img src="https://coolsimulations.net/wp-content/uploads/2019/03/survivalplus_logo_HD.png"></p>
+<p align="center"><img src="https://coolsimulations.net/wp-content/uploads/2021/07/survivalplus_primer_logo_HD.png"></p>
 
-**[SurvivalPlus](https://www.curseforge.com/minecraft/mc-mods/survivalplus)** is a **Minecraft mod** that enhances the vanilla survival experience of Minecraft whilst interacting with other mods to create seamless gameplay.
+**[SurvivalPlus Primer](https://www.curseforge.com/minecraft/mc-mods/survivalplus-primer)** is a **Minecraft mod** that adds items and blocks that were removed from SurvivalPlus in the 1.17 update so that worlds can be converted.
 
 -----------------
 

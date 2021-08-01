@@ -1,108 +1,34 @@
 modLoader="javafml"
-loaderVersion="[36,]"
+loaderVersion="[37,]"
 issueTrackerURL="http://github.com/coolsimulations/survivalplus/issues/"
 logoFile="logo.png"
 license="All rights reserved"
 
 [[mods]]
-    modId="survivalplus"
-    version="0.1.5"
-    updateJSONURL="https://coolsimulations.net/mcmods/survivalplus/versionchecker.json"
-    displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus"
-    displayName="SurvivalPlus"
-    credits="To leviofpower, Jessen_House, exostealth79, and TrackaDacks who have all played a vital part in testing this mod throughout its development"
+    modId="survivalplus_primer"
+    version="0.1.0"
+    displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus-primer"
+    displayName="SurvivalPlus Primer"
+    credits="To Mojang, for adding in SurvivalPlus content over the years... Beetroot, White Dye, Campfires, and now Copper and Amethysts. Thanks."
     authors="coolsim"
     description='''
-    SurvivalPlus enhances the vanilla survival experience of Minecraft whilst interacting with other mods to create seamless gameplay.
+    SurvivalPlus Primer adds items and blocks that were removed from SurvivalPlus in the 1.17 update so that worlds can be converted.
     '''
-[[dependencies.survivalplus]]
+[[dependencies.survivalplus_primer]]
     modId="forge"
     mandatory=true
-    versionRange="[36.1.20,]"
+    versionRange="[37.0.9,]"
     ordering="NONE"
     side="BOTH"
-[[dependencies.survivalplus]]
+[[dependencies.survivalplus_primer]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5]"
+    versionRange="[1.17.1,]"
     ordering="NONE"
     side="BOTH"
-[[dependencies.survivalplus]]
-    modId="biomesoplenty"
-    mandatory=false
-    versionRange="[1.16.4-10.0.0.294,]"
-    ordering="BEFORE"
+    [[dependencies.survivalplus_primer]]
+    modId="survivalplus"
+    mandatory=true
+    versionRange="[0.1.5,]"
+    ordering="NONE"
     side="BOTH"
-[[dependencies.survivalplus]]
-    modId="biomesoplentyextras"
-    mandatory=false
-    versionRange="[1.0.0,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="recycler"
-    mandatory=false
-    versionRange="[1.0.0,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="projecte"
-    mandatory=false
-    versionRange="[PE1.0.0,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="lumberjack"
-    mandatory=false
-    versionRange="[2.0.0,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="jeresources"
-    mandatory=false
-    versionRange="[0.10.1,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="silents_mechanisms"
-    mandatory=false
-    versionRange="[0.7.2,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="notreepunching"
-    mandatory=false
-    versionRange="[4.2.0,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="gemsandcrystals"
-    mandatory=false
-    versionRange="[1.3.1,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="standardmaterials"
-    mandatory=false
-    versionRange="[1.2.4,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="obsidiantools"
-    mandatory=false
-    versionRange="[2.0.2,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="emeraldmod"
-    mandatory=false
-    versionRange="[1.0,]"
-    ordering="BEFORE"
-    side="BOTH"
-[[dependencies.survivalplus]]
-    modId="easy_emerald"
-    mandatory=false
-    versionRange="[1.0.25,]"
-    ordering="BEFORE"
-    side="BOTH"
-    

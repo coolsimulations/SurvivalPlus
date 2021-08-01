@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    {
-      "id": "realistictorches:lit_torch",
-      "required": false
-    }
-  ]
-}

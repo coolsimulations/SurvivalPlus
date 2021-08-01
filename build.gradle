@@ -5,20 +5,20 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 
-def mcVersion = "1.16.5"
-def spVersion = "0.1.5"
+def mcVersion = "1.17.1"
+def spVersion = "0.1.0"
 version = "${mcVersion}-${spVersion}"
-group = "net.coolsimulations.SurvivalPlus" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "SurvivalPlus"
+group = "net.coolsimulations.SurvivalPlus.primer" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "SurvivalPlus-Primer"
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
 minecraft {
     hideOfficialWarningUntilChanged
@@ -34,7 +34,7 @@ minecraft {
     //
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'official', version: '1.16.5'
+    mappings channel: 'official', version: '1.17.1'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
     // accessTransformer = file('build/resources/main/META-INF/accesstransformer.cfg')
@@ -46,7 +46,7 @@ minecraft {
             workingDirectory project.file('run')
 
             mods {
-                survivalplus {
+                survivalplus_primer {
                     source sourceSets.main
                 }
             }
@@ -56,7 +56,7 @@ minecraft {
             workingDirectory project.file('run')
 
             mods {
-                survivalplus {
+                survivalplus_primer {
                     source sourceSets.main
                 }
             }
@@ -68,7 +68,7 @@ minecraft {
             args '--mod', 'survivalplus', '--all', '--output', file('src/generated/resources/')
 
             mods {
-                survivalplus {
+                survivalplus_primer {
                     source sourceSets.main
                 }
             }
@@ -80,17 +80,12 @@ dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.16.5-36.1.20'
+    minecraft 'net.minecraftforge:forge:1.17.1-37.0.12'
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
     // compile "some.group:artifact:version"
-    compile files('libs/ProjectE-1.16.5-PE1.0.0B-api.jar')
-    compile files('libs/lumberjack-API-2.0.0.jar')
-    //compile files('libs/JustEnoughResources-1.15.2-0.10.1.77.jar')
-    compile files('libs/notreepunching-API-forge-1.16.3-3.1.1.jar')
-    compile files('libs/CavesAndCliffsBackport-6.0.1.jar')
-    compile files('libs/cloth-config-4.11.26-forge.jar')
+    implementation fileTree(dir: 'libs', include: '*.jar')
 
     // Real examples
     // compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
@@ -105,6 +100,8 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    processResources.setDuplicatesStrategy(DuplicatesStrategy.WARN)
 
 }
 
@@ -127,47 +124,5 @@ processResources {
         exclude 'mcmod.info'
         exclude 'META-INF/mods.toml'
     }
-
-task packApi(type: Jar) {
-	// Jar will always be updated
-	outputs.upToDateWhen {false}
-	// Set the jar's base name
-	baseName = "SurvivalPlus-API"
-	
-	from (sourceSets.main.allJava) {
-		// Add necessary files, remove unnecessary ones.
-		includes.addAll('net/coolsimulations/SurvivalPlus/api/**')
-		excludes.addAll('net/coolsimulations/SurvivalPlus/core/**')
-		excludes.addAll('**/*.info')
-		excludes.addAll('**/*.toml')
-		excludes.addAll('assets')
-		excludes.addAll('data')
-	}
-
-	from (sourceSets.main.output) {
-		// Add necessary files, remove unnecessary ones.
-		includes.addAll('net/coolsimulations/SurvivalPlus/api/**')
-		excludes.addAll('net/coolsimulations/SurvivalPlus/core/**')
-		excludes.addAll('**/*.info')
-		excludes.addAll('**/*.toml')
-		excludes.addAll('assets')
-		excludes.addAll('data')
-	}
-}
-
-task packDev(type: Jar) {
-    from sourceSets.main.output
-    from sourceSets.main.allJava
-    baseName = "SurvivalPlus-Dev"
-    version = "${project.version}"
-
-    println(defaultTasks)
-}
-
-
-artifacts {
-    archives packApi
-    archives packDev
-}
 
 }
