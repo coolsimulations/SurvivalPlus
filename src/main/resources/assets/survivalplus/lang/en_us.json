@@ -346,7 +346,7 @@
   "sp.configgui.disable_wak_Command": "Disable the Wak Command",
   "sp.configgui.op_wak_command": "Define the Permission Level of the Wak Command",
   "sp.configgui.update_check": "Disable SurvivalPlus Update Checker Message",
-  "sp.configgui.sun_audio": "Disable Sounds Played Through sun.audio",
+  "sp.configgui.client_audio": "Disable Sounds Played Through the Client",
   "sp.configgui.disable_thanks": "Disable SurvivalPlus Thank You Message",
   "sp.configgui.enable_emerald": "Enable if SurvivalPlus Hasn't Detected any Emerald Tool Mods",
   "sp.configgui.enable_obsidian": "Enable if SurvivalPlus Hasn't Detected any Obsidian Tool Mods"
