@@ -1,64 +1,38 @@
 package net.coolsimulations.SurvivalPlus.core.world;
 
-import com.google.common.base.Predicate;
-
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
-import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystal;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.Category;
-import net.minecraft.world.biome.BiomeAmbience;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
-import net.minecraft.world.gen.feature.template.RuleTest;
-import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
-import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.placement.TopSolidRangeConfig;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biome.BiomeCategory;
+import net.minecraft.world.level.biome.BiomeSpecialEffects;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.RangeDecoratorConfiguration;
+import net.minecraft.world.level.levelgen.heightproviders.UniformHeight;
+import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.common.world.MobSpawnInfoBuilder;
 
 public class SurvivalPlusOreGenerator {
 
-	public static final RuleTest gravel = new TagMatchRuleTest(Tags.Blocks.GRAVEL);
+	public static final RuleTest gravel = new TagMatchTest(Tags.Blocks.GRAVEL);
 
-	public static void generateOres(ResourceLocation name, Biome.Climate climate, Biome.Category category, float depth, float scale, BiomeAmbience effects, BiomeGenerationSettingsBuilder gen, MobSpawnInfoBuilder spawns) {
+	public static void generateOres(ResourceLocation name, Biome.ClimateSettings climate, Biome.BiomeCategory category, float depth, float scale, BiomeSpecialEffects effects, BiomeGenerationSettingsBuilder gen, MobSpawnInfoBuilder spawns) {
 
-		if (category == Category.NETHER) {
-			if(!SPConfig.disableAmethystGen.get()) {
-				gen.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.amethyst.defaultBlockState(), 3)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(0, 0, 255))).squared().count(3));
-			}
-			if(!SPConfig.disableRubyGen.get()) {
-				gen.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.ruby.defaultBlockState(), 3)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(0, 0, 255))).squared().count(3));
-			}
-			if(!SPConfig.disableTopazGen.get()) {
-				gen.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.topaz.defaultBlockState(), 3)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(0, 0, 255))).squared().count(3));
-			}
-			if(!SPConfig.disableSapphireGen.get()) {
-				gen.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, SPBlocks.sapphire.defaultBlockState(), 3)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(0, 0, 255))).squared().count(3));
-			}
-		} else if (category != Category.THEEND) {
-			if(category == Category.OCEAN && !SPConfig.disablePearlGen.get()) {
-				gen.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreFeatureConfig(gravel, SPBlocks.pearl.defaultBlockState().setValue(SPBlockCrystal.WATERLOGGED, true), 3)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(0, 0, 63))).squared().count(3));
-
-			}
-			if(category == Category.MUSHROOM && !SPConfig.disableSpinelGen.get()) {
-				gen.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.spinel.defaultBlockState(), 3)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(0, 0, 8))).squared().count(3));
-
-			}
-			if(!SPConfig.disableCopperOreGen.get()) {
-				gen.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.copper_ore.defaultBlockState(), 8)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(0, 0, 54))).squared().count(8));
-			}
+		if (category != BiomeCategory.NETHER && category != BiomeCategory.THEEND) {
 			if(!SPConfig.disableTinOreGen.get()) {
-				gen.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.tin_ore.defaultBlockState(), 8)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(0, 0, 54))).squared().count(8));
+				gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreConfiguration(OreConfiguration.Predicates.NATURAL_STONE, SPBlocks.tin_ore.defaultBlockState(), 8)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(96))))).squared().count(6));
+				gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreConfiguration(OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES, SPBlocks.deepslate_tin_ore.defaultBlockState(), 8)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(96))))).squared().count(6));
 			}
 			if(!SPConfig.disableTitaniumOreGen.get()) {
-				gen.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, SPBlocks.titanium_ore.defaultBlockState(), 4)).decorated(Placement.RANGE.configured(new TopSolidRangeConfig(0, 0, 25))).squared().count(4));
+				gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreConfiguration(OreConfiguration.Predicates.NATURAL_STONE, SPBlocks.titanium_ore.defaultBlockState(), 4)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(25))))).squared().count(4));
+				gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, Feature.ORE.configured(new OreConfiguration(OreConfiguration.Predicates.DEEPSLATE_ORE_REPLACEABLES, SPBlocks.deepslate_titanium_ore.defaultBlockState(), 4)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(25))))).squared().count(4));
 			}
 		}
 	}

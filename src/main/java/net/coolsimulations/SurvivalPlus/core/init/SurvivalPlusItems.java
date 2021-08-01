@@ -5,9 +5,9 @@ import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
-import net.minecraft.item.BlockNamedItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SurvivalPlusItems {
@@ -15,11 +15,12 @@ public class SurvivalPlusItems {
 	public static void init() {
 
 		SPItems.tin_ingot = new SPItemIngot(true, 20.0F).setRegistryName("tin_ingot");
-		SPItems.copper_ingot = new SPItemIngot().setRegistryName("copper_ingot");
-		SPItems.onion_seeds = new BlockNamedItem(SPBlocks.onion, new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("onion_seeds");
+		SPItems.raw_tin = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("raw_tin");
+		SPItems.onion_seeds = new ItemNameBlockItem(SPBlocks.onion, new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("onion_seeds");
 		SPItems.bronze_ingot = new SPItemIngot().setRegistryName("bronze_ingot");
 		SPItems.bronze_nugget = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("bronze_nugget");
 		SPItems.titanium_ingot = new SPItemIngot(true, 50.0F).setRegistryName("titanium_ingot");
+		SPItems.raw_titanium = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("raw_titanium");
 		SPItems.titanium_nugget = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("titanium_nugget");
 		SPItems.charcoal_bucket = new Item(new Item.Properties().tab(SPTabs.tabMaterials).stacksTo(1).craftRemainder(Items.BUCKET)).setRegistryName("charcoal_bucket");
 		SPItems.paper_cup = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("paper_cup");
@@ -31,7 +32,6 @@ public class SurvivalPlusItems {
 
 		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
 		{
-			SPItems.copper_dust = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("copper_dust");
 			SPItems.tin_dust = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("tin_dust");
 		}
 
@@ -55,11 +55,12 @@ public class SurvivalPlusItems {
 	public static void register()
 	{
 		registerItem(SPItems.tin_ingot);
-		registerItem(SPItems.copper_ingot);
+		registerItem(SPItems.raw_tin);
 		registerItem(SPItems.onion_seeds);
 		registerItem(SPItems.bronze_ingot);
 		registerItem(SPItems.bronze_nugget);
 		registerItem(SPItems.titanium_ingot);
+		registerItem(SPItems.raw_titanium);
 		registerItem(SPItems.titanium_nugget);
 		registerItem(SPItems.charcoal_bucket);
 		registerItem(SPItems.paper_cup);
@@ -71,7 +72,6 @@ public class SurvivalPlusItems {
 
 		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
 		{
-			registerItem(SPItems.copper_dust);
 			registerItem(SPItems.tin_dust);
 		}
 

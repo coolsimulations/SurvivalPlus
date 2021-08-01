@@ -24,11 +24,6 @@ public class SurvivalPlusConfig {
 					.translation("sp.configgui.enable_Replace_BOP_Recipe")
 					.define("enableReplaceBOPRecipe", false);
 			
-			SPConfig.disableCopperOreGen = builder
-					.comment("Disable SurvivalPlus Copper Ore Gen")
-					.translation("sp.configgui.disable_copper_ore_gen")
-					.define("disableCopperOreGen", false);
-			
 			SPConfig.disableTinOreGen = builder
 					.comment("Disable SurvivalPlus Tin Ore Gen")
 					.translation("sp.configgui.disable_tin_ore_gen")
@@ -38,11 +33,6 @@ public class SurvivalPlusConfig {
 					.comment("Disable SurvivalPlus Titanium Ore Gen")
 					.translation("sp.configgui.disable_titanium_ore_gen")
 					.define("disableTitaniumOreGen", false);
-			
-			SPConfig.disableAmethystGen = builder
-					.comment("Disable SurvivalPlus Amethyst Gen")
-					.translation("sp.configgui.disable_amethyst_gen")
-					.define("disableAmethystGen", false);
 			
 			SPConfig.disableRubyGen = builder
 					.comment("Disable SurvivalPlus Ruby Gen")
@@ -80,10 +70,10 @@ public class SurvivalPlusConfig {
 					.translation("sp.configgui.update_check")
 					.define("disableUpdateCheck", false);
 			
-			SPConfig.disableSunAudio = builder
-					.comment("Disable Sounds Played Through sun.audio")
-					.translation("sp.configgui.sun_audio")
-					.define("disableSunAudio", false);
+			SPConfig.disableClientAudio = builder
+					.comment("Disable Sounds Played Through the Client")
+					.translation("sp.configgui.client_audio")
+					.define("disableClientAudio", false);
 			
 			SPConfig.disableThanks = builder
 					.comment("Disable SurvivalPlus Thank You Message")

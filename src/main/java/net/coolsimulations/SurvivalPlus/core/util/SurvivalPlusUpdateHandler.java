@@ -4,11 +4,9 @@ import java.net.URL;
 import java.util.Scanner;
 
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.util.text.event.HoverEvent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.versions.mcp.MCPVersion;
 
 public class SurvivalPlusUpdateHandler {
@@ -16,13 +14,13 @@ public class SurvivalPlusUpdateHandler {
 	private static String latestVersion;
 	private static String latestVersionInfo;
 	public static boolean isOld = false;
-	public static TranslationTextComponent updateInfo = null;
-	public static StringTextComponent updateVersionInfo = null;
+	public static TranslatableComponent updateInfo = null;
+	public static TextComponent updateVersionInfo = null;
 	
 	public static void init() {
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus/versionchecker116.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus/versionchecker117.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersion = s.next();
             s.close();
@@ -31,7 +29,7 @@ public class SurvivalPlusUpdateHandler {
         }
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus/updateinfo116.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus/updateinfo117.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersionInfo = s.nextLine();
             s.close();
@@ -45,14 +43,14 @@ public class SurvivalPlusUpdateHandler {
 				
 				isOld = true;
 				
-				TranslationTextComponent sp = new TranslationTextComponent("sp.name");
-				sp.withStyle(TextFormatting.BLUE);
+				TranslatableComponent sp = new TranslatableComponent("sp.name");
+				sp.withStyle(ChatFormatting.BLUE);
 				
-				StringTextComponent MCVersion = new StringTextComponent(MCPVersion.getMCVersion());
-				MCVersion.withStyle(TextFormatting.BLUE);
+				TextComponent MCVersion = new TextComponent(MCPVersion.getMCVersion());
+				MCVersion.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslationTextComponent("sp.update.display3", new Object[] {sp, MCVersion});
-				updateInfo.withStyle(TextFormatting.YELLOW);
+				updateInfo = new TranslatableComponent("sp.update.display3", new Object[] {sp, MCVersion});
+				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
 				//updateInfo.getStyle().func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2")));
 				//updateInfo.getStyle().func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
@@ -63,23 +61,23 @@ public class SurvivalPlusUpdateHandler {
 				
 				isOld = true;
 				
-				TranslationTextComponent sp = new TranslationTextComponent("sp.name");
-				sp.withStyle(TextFormatting.BLUE);
+				TranslatableComponent sp = new TranslatableComponent("sp.name");
+				sp.withStyle(ChatFormatting.BLUE);
 				
-				StringTextComponent version = new StringTextComponent(latestVersion);
-				version.withStyle(TextFormatting.BLUE);
+				TextComponent version = new TextComponent(latestVersion);
+				version.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslationTextComponent("sp.update.display1", new Object[] {sp, version});
-				updateInfo.withStyle(TextFormatting.YELLOW);
+				updateInfo = new TranslatableComponent("sp.update.display1", new Object[] {sp, version});
+				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
 				//updateInfo.getStyle().func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2")));
 				//updateInfo.getStyle().func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
 				
 				if(latestVersionInfo != null) {
 					
-					updateVersionInfo = new StringTextComponent(latestVersionInfo);
-					updateVersionInfo.withStyle(TextFormatting.DARK_AQUA);
-					updateVersionInfo.withStyle(TextFormatting.BOLD);
+					updateVersionInfo = new TextComponent(latestVersionInfo);
+					updateVersionInfo.withStyle(ChatFormatting.DARK_AQUA);
+					updateVersionInfo.withStyle(ChatFormatting.BOLD);
 					
 					//updateVersionInfo.getStyle().func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2")));
 					//updateVersionInfo.getStyle().func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));

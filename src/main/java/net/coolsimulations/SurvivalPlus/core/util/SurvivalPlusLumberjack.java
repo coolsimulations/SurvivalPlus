@@ -12,19 +12,19 @@ import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.doubledoordev.lumberjack.LumberjackConfig;
 import net.doubledoordev.lumberjack.util.EventHandler;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -66,12 +66,12 @@ public class SurvivalPlusLumberjack {
 	
 	public static class SPItemLumberAxe extends AxeItem {
 
-		public SPItemLumberAxe(IItemTier itemTier) {
-			super(itemTier, itemTier.getAttackDamageBonus(), itemTier.getSpeed(), new Item.Properties().tab(ItemGroup.TAB_TOOLS).addToolType(ToolType.AXE, itemTier.getLevel()));
+		public SPItemLumberAxe(Tier itemTier) {
+			super(itemTier, itemTier.getAttackDamageBonus(), itemTier.getSpeed(), new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).addToolType(ToolType.AXE, itemTier.getLevel()));
 		}
 		
 		@Override
-	    public boolean mineBlock(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving)
+	    public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving)
 	    {
 	        return stack != ItemStack.EMPTY && worldIn != null && (Material.LEAVES.equals(state.getMaterial()) || super.mineBlock(stack, worldIn, state, pos, entityLiving));
 	    }
@@ -103,7 +103,7 @@ public class SurvivalPlusLumberjack {
 	        for (BlockPos point : ImmutableSet.copyOf(nextMap.get(uuid)))
 	        {
 	            // This indirectly causes breakEvent to be invoked
-	            ((ServerPlayerEntity) event.player).gameMode.destroyBlock(point);
+	            ((ServerPlayer) event.player).gameMode.destroyBlock(point);
 	            // Remove the current point
 	            nextMap.remove(uuid, point);
 	            if (i++ > LumberjackConfig.GENERAL.tickLimit.get()) break;
@@ -117,7 +117,7 @@ public class SurvivalPlusLumberjack {
 	    @SubscribeEvent
 	    public void breakEvent(BlockEvent.BreakEvent event)
 	    {
-	        final PlayerEntity player = event.getPlayer();
+	        final Player player = event.getPlayer();
 	        if (player == null) return;
 	        final UUID uuid = player.getUUID();
 	        final BlockState state = event.getState();

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "survivalplus:sapphire_block"
+    ]
+  },
+  "criteria": {
+    "has_sapphire": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/sapphire"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "survivalplus:sapphire_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sapphire",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,19 +1,18 @@
 package net.coolsimulations.SurvivalPlus.api.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTier;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.ToolType;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class SPBlockMetal extends Block {
 
@@ -34,7 +33,7 @@ public class SPBlockMetal extends Block {
 	}
 
 	@Override
-	public void spawnAfterBreak(BlockState state, ServerWorld worldIn, BlockPos pos, ItemStack stack) {
+	public void spawnAfterBreak(BlockState state, ServerLevel worldIn, BlockPos pos, ItemStack stack) {
 		super.spawnAfterBreak(state, worldIn, pos, stack);
 	}
 
@@ -44,18 +43,18 @@ public class SPBlockMetal extends Block {
 	}
 
 	public enum Resource {
-		TIER_0(1, 4.0F, 10.0F, SoundType.METAL, ItemTier.STONE),
-		TIER_1(2, 4.5F, 10.0F, SoundType.METAL, ItemTier.IRON),
-		TIER_2(2, 5.0F, 10.0F, SoundType.METAL, ItemTier.IRON),
-		TIER_3(3, 5.5F, 10.0F, SoundType.METAL, ItemTier.DIAMOND);
+		TIER_0(1, 5.0F, 6.0F, SoundType.METAL, Tiers.STONE),
+		TIER_1(2, 5.0F, 6.0F, SoundType.METAL, Tiers.IRON),
+		TIER_2(2, 5.0F, 6.0F, SoundType.METAL, Tiers.IRON),
+		TIER_3(3, 5.0F, 6.0F, SoundType.METAL, Tiers.DIAMOND);
 
 		public final float hardness;
 		public final float resistance;
 		private final SoundType soundType;
 		public final int harvestLevel;
-		public final IItemTier itemTier;
+		public final Tier itemTier;
 
-		Resource(int harvestLevel, float hardness, float resistance, SoundType soundType, IItemTier itemTier) {
+		Resource(int harvestLevel, float hardness, float resistance, SoundType soundType, Tier itemTier) {
 			this.hardness = hardness;
 			this.resistance = resistance;
 			this.soundType = soundType;

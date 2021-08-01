@@ -4,12 +4,13 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
-import net.minecraft.block.Block;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.AmethystClusterBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -27,7 +28,7 @@ public class ClientProxy extends CommonProxy{
 	@SubscribeEvent
 	public static void textureStitch(TextureStitchEvent.Pre event) {
 
-		if (event.getMap().location() == AtlasTexture.LOCATION_BLOCKS) {
+		if (event.getMap().location() == TextureAtlas.LOCATION_BLOCKS) {
 
 			event.addSprite(new ResourceLocation(SPReference.MOD_ID, "entity/bronze_shield_base"));
 			event.addSprite(new ResourceLocation(SPReference.MOD_ID, "entity/bronze_shield_base_nopattern"));
@@ -39,19 +40,23 @@ public class ClientProxy extends CommonProxy{
 	@SubscribeEvent
 	public static void registerCutouts(FMLClientSetupEvent event)
 	{
-		RenderTypeLookup.setRenderLayer(SPBlocks.onion, RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SPBlocks.onion, RenderType.cutout());
 		
 		for(ResourceLocation location : ForgeRegistries.BLOCKS.getKeys()) {
 			Block block = ForgeRegistries.BLOCKS.getValue(location);
 			
 			if(block instanceof BlockCardboardLantern) {
-				RenderTypeLookup.setRenderLayer(block, RenderType.cutout());
+				ItemBlockRenderTypes.setRenderLayer(block, RenderType.cutout());
+			}
+			
+			if(location.getNamespace().equals(SPReference.MOD_ID) && block instanceof AmethystClusterBlock) {
+				ItemBlockRenderTypes.setRenderLayer(block, RenderType.cutout());
 			}
 		}
 		
-		ItemModelsProperties.register(SPItems.bronze_shield, new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player) -> {
+		ItemProperties.register(SPItems.bronze_shield, new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player, seed) -> {
 	         return player != null && player.isUsingItem() && player.getUseItem() == stack ? 1.0F : 0.0F;});
-		ItemModelsProperties.register(SPItems.titanium_shield, new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player) -> {
+		ItemProperties.register(SPItems.titanium_shield, new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player, seed) -> {
 	         return player != null && player.isUsingItem() && player.getUseItem() == stack ? 1.0F : 0.0F;});
 	}
 	

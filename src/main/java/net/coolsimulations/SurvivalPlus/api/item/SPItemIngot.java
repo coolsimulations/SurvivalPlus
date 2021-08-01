@@ -1,8 +1,7 @@
 package net.coolsimulations.SurvivalPlus.api.item;
 
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.Item;
 
 public class SPItemIngot extends Item {
 	

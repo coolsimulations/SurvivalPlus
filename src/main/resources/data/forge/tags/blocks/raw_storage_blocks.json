@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:raw_storage_blocks/tin",
+    "#forge:raw_storage_blocks/titanium"
+  ]
+}

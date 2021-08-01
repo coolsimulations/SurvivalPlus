@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "survivalplus:bronze_block",
+    "survivalplus:raw_titanium_block",
+    "survivalplus:titanium_block",
+    "survivalplus:titanium_ore",
+    "survivalplus:deepslate_titanium_ore"
+  ]
+}

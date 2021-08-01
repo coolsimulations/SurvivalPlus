@@ -5,14 +5,14 @@ import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboard;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.NonNullList;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -141,7 +141,7 @@ public class FuelHandler{
 
 				int value;
 
-				EquipmentSlotType slotType = ((ArmorItem) item.get(i).getItem()).getSlot();
+				EquipmentSlot slotType = ((ArmorItem) item.get(i).getItem()).getSlot();
 
 				switch (slotType) {
 				case HEAD:

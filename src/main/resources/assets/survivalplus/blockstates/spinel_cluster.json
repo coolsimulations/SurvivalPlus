@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "survivalplus:block/spinel_cluster",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "survivalplus:block/spinel_cluster",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "survivalplus:block/spinel_cluster",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "survivalplus:block/spinel_cluster",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "survivalplus:block/spinel_cluster"
+    },
+    "facing=west": {
+      "model": "survivalplus:block/spinel_cluster",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

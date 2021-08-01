@@ -8,7 +8,7 @@ import com.alcatrazescapee.notreepunching.common.items.MattockItem;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class SurvivalPlusNoTreePunching {
 	

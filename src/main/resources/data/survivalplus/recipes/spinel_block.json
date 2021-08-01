@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:gems/spinel"
+    }
+  },
+  "result": {
+    "item": "survivalplus:spinel_block"
+  }
+}

@@ -1,10 +1,10 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.Item;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.Tags.IOptionalNamedTag;
 
@@ -56,17 +56,19 @@ public class SPTags
 
 		public static final IOptionalNamedTag<Item> NUGGETS_BRONZE = tag("nuggets/bronze");
 		public static final IOptionalNamedTag<Item> NUGGETS_TITANIUM = tag("nuggets/titanium");
-
-		public static final IOptionalNamedTag<Item> GEMS_AMETHYST = tag("gems/amethyst");
-		public static final IOptionalNamedTag<Item> GEMS_RUBY = tag("gems/ruby");
-		public static final IOptionalNamedTag<Item> GEMS_SAPPHIRE = tag("gems/sapphire");
-		public static final IOptionalNamedTag<Item> GEMS_TOPAZ = tag("gems/topaz");
-		public static final IOptionalNamedTag<Item> GEMS_SPINEL = tag("gems/spinel");
-		public static final IOptionalNamedTag<Item> GEMS_PEARL = tag("gems/pearl");
+		
+    	public static final IOptionalNamedTag<Item> SHARDS_AMETHYST = tag("gems/amethyst");
+    	public static final IOptionalNamedTag<Item> SHARDS_RUBY = tag("gems/ruby");
+    	public static final IOptionalNamedTag<Item> SHARDS_SAPPHIRE = tag("gems/sapphire");
+    	public static final IOptionalNamedTag<Item> SHARDS_TOPAZ = tag("gems/topaz");
+    	public static final IOptionalNamedTag<Item> SHARDS_SPINEL = tag("gems/spinel");
+    	public static final IOptionalNamedTag<Item> PEARLS = tag("gems/pearl");
+    	
+    	public static final IOptionalNamedTag<Item> RAW_ORES_TIN = tag("raw_ores/tin");
+    	public static final IOptionalNamedTag<Item> RAW_ORES_TITANIUM = tag("raw_ores/titanium");
 
 		public static final IOptionalNamedTag<Item> DYES_WHITE = tag("dyes/white");
 
-		public static final IOptionalNamedTag<Item> DUSTS_COPPER = tag("dusts/copper");
 		public static final IOptionalNamedTag<Item> DUSTS_TIN = tag("dusts/tin");
 		public static final IOptionalNamedTag<Item> DUSTS_TITANIUM = tag("dusts/titanium");
 

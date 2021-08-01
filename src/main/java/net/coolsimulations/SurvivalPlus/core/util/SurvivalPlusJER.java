@@ -10,8 +10,6 @@ import jeresources.api.restrictions.DimensionRestriction;
 import jeresources.api.restrictions.Restriction;**/
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.item.BlockNamedItem;
-import net.minecraft.item.ItemStack;
 
 public class SurvivalPlusJER {
 	

@@ -2,19 +2,20 @@ package net.coolsimulations.SurvivalPlus.api.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.ToolType;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class SPBlockOre extends Block {
 
@@ -43,7 +44,7 @@ public class SPBlockOre extends Block {
 	}
 
 	@Override
-	public void spawnAfterBreak(BlockState state, ServerWorld worldIn, BlockPos pos, ItemStack stack) {
+	public void spawnAfterBreak(BlockState state, ServerLevel worldIn, BlockPos pos, ItemStack stack) {
 		super.spawnAfterBreak(state, worldIn, pos, stack);
 	}
 
@@ -54,37 +55,41 @@ public class SPBlockOre extends Block {
 
 	protected int getExperience(Random random) {
 		if(experience) {
-			if (resource == Resource.TIER_0) {
-				return MathHelper.nextInt(random, 0, 2);
-			} else if (resource == Resource.TIER_1) {
-				return MathHelper.nextInt(random, 2, 5);
-			} else if (resource == Resource.TIER_2) {
-				return MathHelper.nextInt(random, 3, 7);
+			if (resource == Resource.TIER_0 || resource == Resource.TIER_0_DEEPSLATE) {
+				return Mth.nextInt(random, 0, 2);
+			} else if (resource == Resource.TIER_1 || resource == Resource.TIER_1_DEEPSLATE) {
+				return Mth.nextInt(random, 2, 5);
+			} else if (resource == Resource.TIER_2 || resource == Resource.TIER_2_DEEPSLATE) {
+				return Mth.nextInt(random, 3, 7);
 			} else {
-				return resource == Resource.TIER_3 ? MathHelper.nextInt(random, 3, 7) : 0;
+				return resource == Resource.TIER_3 || resource == Resource.TIER_3_DEEPSLATE ? Mth.nextInt(random, 3, 7) : 0;
 			}
 		}
 		return 0;
 	}
 
 	@Override
-	public int getExpDrop(BlockState state, IWorldReader reader, BlockPos pos, int p_getExpDrop_4_, int amount) {
+	public int getExpDrop(BlockState state, LevelReader reader, BlockPos pos, int p_getExpDrop_4_, int amount) {
 		return amount == 0 ? this.getExperience(this.RANDOM) : 0;
 	}
 
 	public enum Resource {
-		TIER_0(0, 3.0F, 5.0F, SoundType.STONE, ItemTier.WOOD),
-		TIER_1(1, 3.5F, 5.0F, SoundType.STONE, ItemTier.STONE),
-		TIER_2(2, 3.0F, 5.0F, SoundType.STONE, ItemTier.IRON),
-		TIER_3(3, 3.5F, 5.0F, SoundType.STONE, ItemTier.DIAMOND);
+		TIER_0(0, 3.0F, 3.0F, SoundType.STONE, Tiers.WOOD),
+		TIER_0_DEEPSLATE(0, 3.0F, 4.5F, SoundType.STONE, Tiers.WOOD),
+		TIER_1(1, 3.0F, 3.0F, SoundType.STONE, Tiers.STONE),
+		TIER_1_DEEPSLATE(1, 3.0F, 4.5F, SoundType.STONE, Tiers.STONE),
+		TIER_2(2, 3.0F, 3.0F, SoundType.STONE, Tiers.IRON),
+		TIER_2_DEEPSLATE(2, 3.0F, 4.5F, SoundType.STONE, Tiers.IRON),
+		TIER_3(3, 3.0F, 3.0F, SoundType.STONE, Tiers.DIAMOND),
+		TIER_3_DEEPSLATE(3, 3.0F, 4.5F, SoundType.STONE, Tiers.DIAMOND);
 
 		public final float hardness;
 		public final float resistance;
 		private final SoundType soundType;
 		public final int harvestLevel;
-		public final IItemTier itemTier;
+		public final Tier itemTier;
 
-		Resource(int harvestLevel, float hardness, float resistance, SoundType soundType, IItemTier itemTier) {
+		Resource(int harvestLevel, float hardness, float resistance, SoundType soundType, Tier itemTier) {
 			this.hardness = hardness;
 			this.resistance = resistance;
 			this.soundType = soundType;

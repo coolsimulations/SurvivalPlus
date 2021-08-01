@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "survivalplus:block/blue_candle_cheese_cake"
+    },
+    "lit=true": {
+      "model": "survivalplus:block/blue_candle_cheese_cake_lit"
+    }
+  }
+}

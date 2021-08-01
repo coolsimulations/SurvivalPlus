@@ -11,7 +11,7 @@
       "tag": "forge:cardboard/magenta"
     },
     "T": {
-      "tag": "forge:torches"
+      "tag": "minecraft:candles"
     }
   },
   "result": {

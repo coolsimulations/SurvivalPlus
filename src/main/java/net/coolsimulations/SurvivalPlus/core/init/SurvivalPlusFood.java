@@ -4,12 +4,12 @@ import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPFoods;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemCupcake;
-import net.minecraft.item.Item;
-import net.minecraft.item.Food;
-import net.minecraft.item.Food.Builder;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.item.SoupItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.food.FoodProperties.Builder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.BowlFoodItem;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SurvivalPlusFood {
@@ -23,7 +23,7 @@ public class SurvivalPlusFood {
 		SPFoods.mutton_pie = (new Builder()).nutrition(8).saturationMod(0.75F).meat().build();
 		SPFoods.rabbit_pie = (new Builder()).nutrition(8).saturationMod(0.75F).meat().build();
 		SPFoods.vegetable_pie = (new Builder()).nutrition(7).saturationMod(1.0F).build();
-		SPFoods.raw_onion = (new Builder()).nutrition(2).saturationMod(1.0F).effect(new EffectInstance(Effects.CONFUSION, 300), 1.0F).build();
+		SPFoods.raw_onion = (new Builder()).nutrition(2).saturationMod(1.0F).effect(new MobEffectInstance(MobEffects.CONFUSION, 300), 1.0F).build();
 		SPFoods.onion_soup = buildSoup(10);
 		SPFoods.fried_egg = (new Builder()).nutrition(2).saturationMod(1.0F).fast().build();
 		SPFoods.roast_carrot = (new Builder()).nutrition(5).saturationMod(0.5F).build();
@@ -44,7 +44,7 @@ public class SurvivalPlusFood {
 		SPItems.rabbit_pie = new Item(new Item.Properties().food(SPFoods.rabbit_pie).tab(SPTabs.tabFood)).setRegistryName("rabbit_pie");
 		SPItems.vegetable_pie = new Item(new Item.Properties().food(SPFoods.vegetable_pie).tab(SPTabs.tabFood)).setRegistryName("vegetable_pie");
 		SPItems.raw_onion = new Item(new Item.Properties().food(SPFoods.raw_onion).tab(SPTabs.tabFood)).setRegistryName("raw_onion");
-		SPItems.onion_soup = new SoupItem(new Item.Properties().food(SPFoods.onion_soup).stacksTo(1).tab(SPTabs.tabFood)).setRegistryName("onion_soup");
+		SPItems.onion_soup = new BowlFoodItem(new Item.Properties().food(SPFoods.onion_soup).stacksTo(1).tab(SPTabs.tabFood)).setRegistryName("onion_soup");
 		SPItems.fried_egg = new Item(new Item.Properties().food(SPFoods.fried_egg).tab(SPTabs.tabFood)).setRegistryName("fried_egg");
 		SPItems.roast_carrot = new Item(new Item.Properties().food(SPFoods.roast_carrot).tab(SPTabs.tabFood)).setRegistryName("roast_carrot");
 		SPItems.cheese = new Item(new Item.Properties().food(SPFoods.cheese).tab(SPTabs.tabFood)).setRegistryName("cheese");
@@ -86,7 +86,7 @@ public class SurvivalPlusFood {
 		 ForgeRegistries.ITEMS.register(item);
 	}
 	
-	private static Food buildSoup(int hunger) {
+	private static FoodProperties buildSoup(int hunger) {
 		return (new Builder()).nutrition(hunger).saturationMod(0.6F).build();
 	}
 }

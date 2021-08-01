@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "survivalplus:blocks/large_topaz_bud"
+  }
+}

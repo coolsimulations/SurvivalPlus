@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "titanium_ingot",
+  "ingredients": [
+    {
+    "tag": "forge:raw_storage_blocks/titanium"
+    }
+  ],
+  "result": {
+    "item": "survivalplus:raw_titanium",
+    "count": 9
+  }
+}

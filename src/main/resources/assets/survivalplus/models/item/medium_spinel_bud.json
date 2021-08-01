@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:item/medium_amethyst_bud",
+    "textures": {
+    "layer0": "survivalplus:blocks/medium_spinel_bud"
+  }
+}

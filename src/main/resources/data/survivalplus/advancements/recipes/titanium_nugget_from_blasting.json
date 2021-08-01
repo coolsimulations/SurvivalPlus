@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:titanium_pickaxe"
+            "items": [
+              "survivalplus:titanium_pickaxe"
+            ]
           }
         ]
       }
@@ -21,7 +23,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:titanium_shears"
+            "items": [
+              "survivalplus:titanium_shears"
+            ]
           }
         ]
       }
@@ -31,7 +35,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:titanium_shovel"
+            "items": [
+              "survivalplus:titanium_shovel"
+            ]
           }
         ]
       }
@@ -41,7 +47,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:titanium_axe"
+            "items": [
+              "survivalplus:titanium_axe"
+            ]
           }
         ]
       }
@@ -51,7 +59,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:titanium_hoe"
+            "items": [
+              "survivalplus:titanium_hoe"
+            ]
           }
         ]
       }
@@ -61,7 +71,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:titanium_sword"
+            "items": [
+              "survivalplus:titanium_sword"
+            ]
           }
         ]
       }
@@ -71,7 +83,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:titanium_helmet"
+            "items": [
+              "survivalplus:titanium_helmet"
+            ]
           }
         ]
       }
@@ -81,7 +95,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:titanium_chestplate"
+            "items": [
+              "survivalplus:titanium_chestplate"
+            ]
           }
         ]
       }
@@ -91,7 +107,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:titanium_leggings"
+            "items": [
+              "survivalplus:titanium_leggings"
+            ]
           }
         ]
       }
@@ -101,7 +119,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:titanium_boots"
+            "items": [
+              "survivalplus:titanium_boots"
+            ]
           }
         ]
       }

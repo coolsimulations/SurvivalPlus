@@ -1,0 +1,11 @@
+{
+  "type": "simplegrinder:grinder",
+  "group": "simplegrinder:dust_titanium",
+  "ingredient": {
+    "item": "survivalplus:raw_titanium"
+  },
+  "result": "survivalplus:titanium_dust",
+  "count": 3,
+  "cookingtime": 150
+
+}

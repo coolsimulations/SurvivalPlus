@@ -3,21 +3,21 @@ package net.coolsimulations.SurvivalPlus.api.item;
 import java.util.function.Supplier;
 
 import net.coolsimulations.SurvivalPlus.api.SPTags;
-import net.minecraft.block.Blocks;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.tags.Tag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.LazyValue;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
 
-public enum SPArmorMaterial implements IArmorMaterial {
+public enum SPArmorMaterial implements ArmorMaterial {
 	bronzeArmorMaterial("bronze", 20, new int[] {2, 5, 5, 2}, 20, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, () -> {
     	return Ingredient.of(SPTags.Items.INGOTS_BRONZE);
     }),
@@ -52,7 +52,7 @@ public enum SPArmorMaterial implements IArmorMaterial {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
     }),
     rubberArmorMaterial("rubber", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-    	return Ingredient.of((ITag<Item>) ItemTags.bind("minecraft:" + "rubber_logs"));
+    	return Ingredient.of((Tag<Item>) ItemTags.bind("minecraft:" + "rubber_logs"));
     }),
     cherryArmorMaterial("cherry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
@@ -206,7 +206,7 @@ public enum SPArmorMaterial implements IArmorMaterial {
     private final int enchantability;
     private final SoundEvent soundEvent;
     private final float toughness;
-    private LazyValue<Ingredient> repairMaterial;
+    private LazyLoadedValue<Ingredient> repairMaterial;
     private final String name;
     
     SPArmorMaterial(String name, int maxDamageFactor, int[] damageReductionAmountArray, int enchantability, SoundEvent soundEvent, float toughness, Supplier<Ingredient> repairMaterialIn) {
@@ -215,15 +215,15 @@ public enum SPArmorMaterial implements IArmorMaterial {
         this.enchantability = enchantability;
         this.soundEvent = soundEvent;
         this.toughness = toughness;
-        this.repairMaterial = new LazyValue(repairMaterialIn);
+        this.repairMaterial = new LazyLoadedValue(repairMaterialIn);
         this.name = name;
 }
     
-    public int getDurabilityForSlot(EquipmentSlotType slotIn) {
+    public int getDurabilityForSlot(EquipmentSlot slotIn) {
         return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
     }
 
-    public int getDefenseForSlot(EquipmentSlotType slotIn) {
+    public int getDefenseForSlot(EquipmentSlot slotIn) {
         return this.damageReductionAmountArray[slotIn.getIndex()];
     }
 

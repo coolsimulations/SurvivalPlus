@@ -14,11 +14,10 @@ import moze_intel.projecte.api.mapper.IEMCMapper;
 import moze_intel.projecte.api.mapper.collector.IMappingCollector;
 import moze_intel.projecte.api.nss.NSSItem;
 import moze_intel.projecte.api.nss.NormalizedSimpleStack;
-import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.resources.DataPackRegistries;
-import net.minecraft.resources.IResourceManager;
+import net.minecraft.server.ServerResources;
+import net.minecraft.server.packs.resources.ResourceManager;
 
 @EMCMapper
 public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, Long> {
@@ -40,6 +39,7 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 		//SurvivalPlus Tags haven't been working in 1.13 or 1.14, however they do work in SurvivalPlus Lightsabers so I'm assuming that it order of loading related
 		//So these lines below do not work, but leaving them there in case other mods tags work
 		//Also unsure if ProjectE will make changes to this in 1.16 due to the ITag<> stuff, so this may not work...
+		//Leaving this commented out to avoid crashes as I'm not 100% sure if it'll work since SurvivalPlus generally updates to newer versions (ex. 1.17) before ProjectE
 		/**registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_COPPER.func_230234_a_()), 55);
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_TIN.func_230234_a_()), 256);
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.INGOTS_TITANIUM.func_230234_a_()), 2048);
@@ -52,17 +52,15 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_PEARL.func_230234_a_()), 2048);
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SPINEL.func_230234_a_()), 2048);**/
 		
-		registerCustomEMC(NSSItem.createItem(SPItems.copper_ingot), 55);
-		registerCustomEMC(NSSItem.createItem(SPItems.tin_ingot), 256);
-		registerCustomEMC(NSSItem.createItem(SPItems.titanium_ingot), 2048);
+		registerCustomEMC(NSSItem.createItem(SPItems.raw_tin), 256);
+		registerCustomEMC(NSSItem.createItem(SPItems.raw_titanium), 2048);
 		registerCustomEMC(NSSItem.createItem(SPItems.raw_onion), 64);
 		registerCustomEMC(NSSItem.createItem(SPItems.onion_seeds), 32);
-		registerCustomEMC(NSSItem.createItem(SPBlocks.amethyst), 512);
-		registerCustomEMC(NSSItem.createItem(SPBlocks.ruby), 512);
-		registerCustomEMC(NSSItem.createItem(SPBlocks.topaz), 512);
-		registerCustomEMC(NSSItem.createItem(SPBlocks.sapphire), 512);
-		registerCustomEMC(NSSItem.createItem(SPBlocks.pearl), 2048);
-		registerCustomEMC(NSSItem.createItem(SPBlocks.spinel), 2048);
+		registerCustomEMC(NSSItem.createItem(SPItems.ruby_shard), 512);
+		registerCustomEMC(NSSItem.createItem(SPItems.topaz_shard), 512);
+		registerCustomEMC(NSSItem.createItem(SPItems.sapphire_shard), 512);
+		registerCustomEMC(NSSItem.createItem(SPItems.pearl), 2048);
+		registerCustomEMC(NSSItem.createItem(SPItems.spinel_shard), 2048);
     		
 		if (SPCompatibilityManager.isIc2Loaded()) {
 			
@@ -87,7 +85,7 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 	}
 
 	@Override
-	public void addMappings(IMappingCollector<NormalizedSimpleStack, Long> mapper, CommentedFileConfig config, DataPackRegistries registriy, IResourceManager resourceManager) {
+	public void addMappings(IMappingCollector<NormalizedSimpleStack, Long> mapper, CommentedFileConfig config, ServerResources registriy, ResourceManager resourceManager) {
 		
 		Iterator var4 = customEmcValues.entrySet().iterator();
 

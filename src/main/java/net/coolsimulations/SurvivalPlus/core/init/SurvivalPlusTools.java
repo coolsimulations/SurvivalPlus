@@ -11,7 +11,7 @@ import net.coolsimulations.SurvivalPlus.api.item.SPItemShovel;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemSword;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusNoTreePunching;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SurvivalPlusTools {

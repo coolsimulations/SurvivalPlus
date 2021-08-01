@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:shards/amethyst",
+    "#forge:shards/ruby",
+    "#forge:shards/sapphire",
+    "#forge:shards/topaz",
+    "#forge:shards/spinel"
+  ]
+}

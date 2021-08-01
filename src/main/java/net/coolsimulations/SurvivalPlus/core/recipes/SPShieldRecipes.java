@@ -1,25 +1,25 @@
 package net.coolsimulations.SurvivalPlus.core.recipes;
 
 import net.coolsimulations.SurvivalPlus.api.item.SPItemShield;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.BannerItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.SpecialRecipe;
-import net.minecraft.item.crafting.SpecialRecipeSerializer;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.BannerItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 
-public class SPShieldRecipes extends SpecialRecipe {
+public class SPShieldRecipes extends CustomRecipe {
 	
-	public static final SpecialRecipeSerializer<SPShieldRecipes> CRAFTING_SPECIAL_SPSHIELD = new SpecialRecipeSerializer<>(SPShieldRecipes::new);
+	public static final SimpleRecipeSerializer<SPShieldRecipes> CRAFTING_SPECIAL_SPSHIELD = new SimpleRecipeSerializer<>(SPShieldRecipes::new);
 	
 	public SPShieldRecipes(ResourceLocation idIn) {
 		super(idIn);
 	}
 
-	public boolean matches(CraftingInventory inv, World worldIn) {
+	public boolean matches(CraftingContainer inv, Level worldIn) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		ItemStack itemstack1 = ItemStack.EMPTY;
 
@@ -57,7 +57,7 @@ public class SPShieldRecipes extends SpecialRecipe {
 		}
 	}
 
-	public ItemStack assemble(CraftingInventory inv) {
+	public ItemStack assemble(CraftingContainer inv) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		ItemStack itemstack1 = ItemStack.EMPTY;
 
@@ -75,8 +75,8 @@ public class SPShieldRecipes extends SpecialRecipe {
 		if (itemstack1.isEmpty()) {
 			return itemstack1;
 		} else {
-			CompoundNBT compoundnbt = itemstack.getTagElement("BlockEntityTag");
-			CompoundNBT compoundnbt1 = compoundnbt == null ? new CompoundNBT() : compoundnbt.copy();
+			CompoundTag compoundnbt = itemstack.getTagElement("BlockEntityTag");
+			CompoundTag compoundnbt1 = compoundnbt == null ? new CompoundTag() : compoundnbt.copy();
 			compoundnbt1.putInt("Base", ((BannerItem) itemstack.getItem()).getColor().getId());
 			itemstack1.addTagElement("BlockEntityTag", compoundnbt1);
 			return itemstack1;
@@ -91,7 +91,7 @@ public class SPShieldRecipes extends SpecialRecipe {
 	}
 
 	@Override
-	public IRecipeSerializer<?> getSerializer() {
+	public RecipeSerializer<?> getSerializer() {
 		return CRAFTING_SPECIAL_SPSHIELD;
 	}
 }

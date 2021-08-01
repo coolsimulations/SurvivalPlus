@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:cardboard",
+    "survivalplus:cardboard_lantern",
+    "survivalplus:cardboard_lantern_white",
+    "survivalplus:cardboard_lantern_light_grey",
+    "survivalplus:cardboard_lantern_grey",
+    "survivalplus:cardboard_lantern_black",
+    "survivalplus:cardboard_lantern_red",
+    "survivalplus:cardboard_lantern_orange",
+    "survivalplus:cardboard_lantern_yellow",
+    "survivalplus:cardboard_lantern_lime",
+    "survivalplus:cardboard_lantern_green",
+    "survivalplus:cardboard_lantern_light_blue",
+    "survivalplus:cardboard_lantern_cyan",
+    "survivalplus:cardboard_lantern_blue",
+    "survivalplus:cardboard_lantern_purple",
+    "survivalplus:cardboard_lantern_magenta",
+    "survivalplus:cardboard_lantern_pink",
+    "survivalplus:cardboard_lantern_brown"
+  ]
+}

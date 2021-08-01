@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:storage_blocks/ruby",
+    "survivalplus:budding_ruby",
+    "#forge:storage_blocks/pearl",
+    "survivalplus:budding_pearl",
+    "#forge:storage_blocks/topaz",
+    "survivalplus:budding_topaz",
+    "#forge:storage_blocks/sapphire",
+    "survivalplus:budding_sapphire",
+    "#forge:storage_blocks/spinel",
+    "survivalplus:budding_spinel"
+  ]
+}

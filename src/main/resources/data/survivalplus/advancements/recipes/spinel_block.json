@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "survivalplus:spinel_block"
+    ]
+  },
+  "criteria": {
+    "has_spinel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/spinel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "survivalplus:spinel_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_spinel",
+      "has_the_recipe"
+    ]
+  ]
+}

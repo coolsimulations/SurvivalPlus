@@ -4,27 +4,27 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.ChatType;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.Util;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class CommandEmportant {
 
-	public static void register(CommandDispatcher<CommandSource> dispatcher) {
+	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
 		dispatcher.register(Commands.literal("emportant")
 				.then(Commands.argument("message", StringArgumentType.greedyString())
 					.requires(s -> s.hasPermission(0))
 					.executes(emportant -> emportant(emportant.getSource(), StringArgumentType.getString(emportant, "message")))));
 	}
 
-	private static int emportant(CommandSource sender, String announcement) {
+	private static int emportant(CommandSourceStack sender, String announcement) {
 
-		TranslationTextComponent emportant = new TranslationTextComponent("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), announcement});
-		emportant.withStyle(TextFormatting.BLUE);
-		emportant.withStyle(TextFormatting.BOLD);
+		TranslatableComponent emportant = new TranslatableComponent("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), announcement});
+		emportant.withStyle(ChatFormatting.BLUE);
+		emportant.withStyle(ChatFormatting.BOLD);
 		if (sender.getEntity() != null)
 			sender.getServer().getPlayerList().broadcastMessage(emportant, ChatType.CHAT, sender.getEntity().getUUID());
 		else

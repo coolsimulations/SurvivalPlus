@@ -1,10 +1,8 @@
 package net.coolsimulations.SurvivalPlus.api.item;
 
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
-import net.minecraft.enchantment.EfficiencyEnchantment;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ShearsItem;
 
 public class SPItemShears extends ShearsItem{
 

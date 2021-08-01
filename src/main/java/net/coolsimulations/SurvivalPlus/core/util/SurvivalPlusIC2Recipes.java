@@ -1,16 +1,5 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-//import ic2.api.item.IC2Items;
-//import ic2.api.recipe.Recipes;
-import net.coolsimulations.SurvivalPlus.api.SPBlocks;
-import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
-import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-//import biomesoplenty.api.block.BOPBlocks;
-
 public class SurvivalPlusIC2Recipes {
 	
 	/**private static CompoundNBT orewash;

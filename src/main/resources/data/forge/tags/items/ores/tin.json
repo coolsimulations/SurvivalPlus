@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "survivalplus:tin_ore"
+    "survivalplus:tin_ore",
+    "survivalplus:deepslate_tin_ore"
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "survivalplus:raw_tin_block",
+    "survivalplus:tin_block",
+    "survivalplus:tin_ore",
+    "survivalplus:deepslate_tin_ore"
+  ]
+}

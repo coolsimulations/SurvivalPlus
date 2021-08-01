@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:bronze_pickaxe"
+            "items": [
+              "survivalplus:bronze_pickaxe"
+            ]
           }
         ]
       }
@@ -21,7 +23,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:bronze_shears"
+            "items": [
+              "survivalplus:bronze_shears"
+            ]
           }
         ]
       }
@@ -31,7 +35,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:bronze_shovel"
+            "items": [
+              "survivalplus:bronze_shovel"
+            ]
           }
         ]
       }
@@ -41,7 +47,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:bronze_axe"
+            "items": [
+              "survivalplus:bronze_axe"
+            ]
           }
         ]
       }
@@ -51,7 +59,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:bronze_hoe"
+            "items": [
+              "survivalplus:bronze_hoe"
+            ]
           }
         ]
       }
@@ -61,7 +71,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:bronze_sword"
+            "items": [
+              "survivalplus:bronze_sword"
+            ]
           }
         ]
       }
@@ -71,7 +83,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:bronze_helmet"
+            "items": [
+              "survivalplus:bronze_helmet"
+            ]
           }
         ]
       }
@@ -81,7 +95,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:bronze_chestplate"
+            "items": [
+              "survivalplus:bronze_chestplate"
+            ]
           }
         ]
       }
@@ -91,7 +107,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:bronze_leggings"
+            "items": [
+              "survivalplus:bronze_leggings"
+            ]
           }
         ]
       }
@@ -101,7 +119,9 @@
       "conditions": {
         "items": [
           {
-            "item": "survivalplus:bronze_boots"
+            "items": [
+              "survivalplus:bronze_boots"
+            ]
           }
         ]
       }
