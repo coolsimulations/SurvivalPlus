@@ -17,7 +17,7 @@ public class SPConfig {
     public static boolean disableSpinelGen;
     public static int opWak;
     public static boolean disableUpdateCheck;
-    public static boolean disableSunAudio;
+    public static boolean disableClientAudio;
     public static boolean disableThanks;
     public static boolean enableEmeraldMaterial;
     public static boolean enableObsidianMaterial;

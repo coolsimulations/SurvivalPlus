@@ -117,9 +117,9 @@ public class SurvivalPlusConfig {
 	            SPConfig.disableUpdateCheck = prop.getBoolean(false);
 	            propOrder.add(prop.getName());
 	            
-	            prop = config.get(SPReference.CONFIG_CATEGORY_COMPATIBILITY, "Disable Sounds Played Through sun.audio", false);
-	            prop.setLanguageKey("sp.configgui.sun_audio");
-	            SPConfig.disableSunAudio = prop.getBoolean(false);
+	            prop = config.get(SPReference.CONFIG_CATEGORY_COMPATIBILITY, "Disable Sounds Played Through the Client", false);
+	            prop.setLanguageKey("sp.configgui.client_audio");
+	            SPConfig.disableClientAudio = prop.getBoolean(false);
 	            propOrder.add(prop.getName());
 	            
 	            prop = config.get(SPReference.CONFIG_CATEGORY_COMMAND, "Disable SurvivalPlus Thank You Message", false);
