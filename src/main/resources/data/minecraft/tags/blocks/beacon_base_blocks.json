@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#c:copper_blocks",
-    "#c:tin_blocks",
-    "#c:bronze_blocks",
-    "#c:titanium_blocks"
-  ]
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "survivalplus:block/template_cardboard_lantern_hanging",
-  "textures": {
-    "cardboard": "survivalplus:blocks/cardboard_red"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "type": "smelting",
-  "ingredient": {
-    "tag": "c:cheese_breads"
-  },
-  "result": "survivalplus:melted_cheese_bread",
-  "experience": 0.4,
-  "cookingtime": 200
-}

@@ -1,17 +1,21 @@
 plugins {
-	id 'fabric-loom' version '0.5-SNAPSHOT'
+	id 'fabric-loom' version '0.8-SNAPSHOT'
 	id 'maven-publish'
 }
 
 repositories {
 	maven {
 		name = 'TerraformersMC'
-		url = 'https://maven.terraformersmc.com/'
+		url = 'https://raw.githubusercontent.com/TerraformersMC/Archive/main/releases/'
+	}
+	maven {
+		name = 'SheDaniel'
+		url = 'https://maven.shedaniel.me/'
 	}
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -31,13 +35,9 @@ dependencies {
 
 	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
-	modImplementation "me.shedaniel.cloth:config-2:${project.cloth_version}"
+	modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
-	modImplementation "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
-
-        compile files('libs/blockus-2.1.8+1.16.5-Dev.jar')
-
-        // compile files('libs/rer-1.3.2-dev.jar')
+        implementation fileTree(dir: 'libs', include: '*.jar')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
@@ -61,7 +61,7 @@ tasks.withType(JavaCompile).configureEach {
 	// The Minecraft launcher currently installs Java 8 for users, so your mod probably wants to target Java 8 too
 	// JDK 9 introduced a new way of specifying this that will make sure no newer classes or methods are used.
 	// We'll use that if it's available, but otherwise we'll use the older option.
-	def targetVersion = 8
+	def targetVersion = 16
 	if (JavaVersion.current().isJava9Compatible()) {
 		 it.options.release = targetVersion
 	}
@@ -78,46 +78,3 @@ jar {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
 }
-
-task packApi(type: Jar) {
-	// Jar will always be updated
-	outputs.upToDateWhen {false}
-	// Set the jar's base name
-	classifier = "API"
-	
-	from (sourceSets.main.allJava) {
-		// Add necessary files, remove unnecessary ones.
-		include 'net/coolsimulations/SurvivalPlus/api/**'
-		exclude 'net/coolsimulations/SurvivalPlus/core/**'
-		exclude '**/*.info'
-		exclude '**/*.toml'
-		exclude 'assets'
-		exclude 'data'
-	}
-
-	from (sourceSets.main.output) {
-		// Add necessary files, remove unnecessary ones.
-		include 'net/coolsimulations/SurvivalPlus/api/**'
-		exclude 'net/coolsimulations/SurvivalPlus/core/**'
-		exclude '**/*.info'
-		exclude '**/*.toml'
-		exclude 'assets'
-		exclude 'data'
-	}
-}
-
-task packDev(type: Jar) {
-    from sourceSets.main.output
-    from sourceSets.main.allJava
-    classifier = "Dev"
-    version = "${project.version}"
-
-    println(defaultTasks)
-}
-
-
-artifacts {
-    archives packApi
-    archives packDev
-}
-

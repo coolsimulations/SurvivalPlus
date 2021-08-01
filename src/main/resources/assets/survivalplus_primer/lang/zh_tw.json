@@ -1,0 +1,13 @@
+{
+  "sp_primer.name": "\u751f\u5b58\u52a0\u5e95\u6f06",
+  
+  "item.survivalplus.copper_ingot": "\u9285\u9320",
+
+  "block.survivalplus.copper_block": "\u9285\u584a",
+  "block.survivalplus.copper_ore": "\u9285\u7926\u77f3",
+  "block.survivalplus.amethyst": "\u7d2b\u6676",
+  "block.survivalplus.ruby": "\u7d05\u5bf6\u77f3",
+  "block.survivalplus.topaz": "\u9ec3\u7389",
+  "block.survivalplus.sapphire": "\u85cd\u5bf6\u77f3",
+  "block.survivalplus.spinel": "\u5c16\u6676\u77f3"
+}

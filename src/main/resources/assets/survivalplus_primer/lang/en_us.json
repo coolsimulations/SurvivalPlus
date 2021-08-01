@@ -1,0 +1,13 @@
+{
+  "sp_primer.name": "SurvivalPlus Primer",
+
+  "item.survivalplus.copper_ingot": "Copper Ingot",
+
+  "block.survivalplus.copper_block": "Block of Copper",
+  "block.survivalplus.copper_ore": "Copper Ore",
+  "block.survivalplus.amethyst": "Amethyst",
+  "block.survivalplus.ruby": "Ruby",
+  "block.survivalplus.topaz": "Topaz",
+  "block.survivalplus.sapphire": "Sapphire",
+  "block.survivalplus.spinel": "Spinel"
+}

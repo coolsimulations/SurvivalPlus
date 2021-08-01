@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "id": "survivalplus",
+  "id": "survivalplus_primer",
   "version": "${version}",
 
-  "name": "SurvivalPlus",
-  "description": "SurvivalPlus enhances the vanilla survival experience of Minecraft whilst interacting with other mods to create seamless gameplay.",
+  "name": "SurvivalPlus Primer",
+  "description": "SurvivalPlus Primer adds items and blocks that were removed from SurvivalPlus in the 1.17 update so that worlds can be converted.",
   "authors": [
     "coolsim"
   ],
   "contact": {
-    "homepage": "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric",
+    "homepage": "https://curseforge.com/minecraft/mc-mods/survivalplus-primer-fabric",
     "sources": "http://github.com/coolsimulations/survivalplus/",
     "issues": "http://github.com/coolsimulations/survivalplus/issues/"
   },
@@ -20,36 +20,27 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.coolsimulations.SurvivalPlus.core.SurvivalPlus"
-    ],
-    "client": [
-      "net.coolsimulations.SurvivalPlus.core.SurvivalPlusClient"
-    ],
-    "modmenu": [
-      "net.coolsimulations.SurvivalPlus.core.config.SPConfigGUI"
-    ],
-    "rei_plugins": [
-      "net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusREI"
+      "net.coolsimulations.SurvivalPlus.primer.SurvivalPlusPrimer"
     ]
   },
-  
-  "mixins": [
-    "survivalplus.mixins.json"
-    ],
     
   "depends": {
-    "fabricloader": ">=0.10.8",
+    "fabricloader": ">=0.11.3",
     "fabric": "*",
-    "minecraft": "1.16.x"
+    "minecraft": "1.17.x",
+    "survivalplus": "*"
   },
   
-  "suggests": {
-    "cloth-config2": ">=2.14.2",
-    "roughlyenoughitems": ">=3.6.21",
-    "fabricshieldlib": ">=1.0.5",
-    "blockus": ">=2.1.8",
-    "bambootweaks": ">=1.1.0",
-    "bambooeverything": ">=1.4.0",
-    "bamboomod": ">=0.3.0"
+  "custom": {
+  "modupdater": {
+      "strategy": "curseforge",
+      "projectID": 509573
+    },
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/7DDsHfQ",
+        "modmenu.guilded": "https://guilded.gg/i/Wkn138B2"
+      }
+    }
   }
 }
