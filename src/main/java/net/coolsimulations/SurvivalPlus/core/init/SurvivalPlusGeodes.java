@@ -31,7 +31,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfigurat
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -39,44 +38,44 @@ public class SurvivalPlusGeodes {
 	
 	public static void init() {
 
-		SPBlocks.ruby_block = new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.COLOR_RED).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()).setRegistryName("ruby_block");
-		SPBlocks.ruby_cluster = new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.COLOR_RED).noOcclusion().harvestTool(ToolType.PICKAXE).randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)).setRegistryName("ruby_cluster");
+		SPBlocks.ruby_block = new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.COLOR_RED).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).requiresCorrectToolForDrops()).setRegistryName("ruby_block");
+		SPBlocks.ruby_cluster = new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.COLOR_RED).noOcclusion().randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)).setRegistryName("ruby_cluster");
 		SPBlocks.large_ruby_bud = new AmethystClusterBlock(5, 3, BlockBehaviour.Properties.copy(SPBlocks.ruby_cluster).sound(SoundType.LARGE_AMETHYST_BUD).lightLevel((blockState) -> 4)).setRegistryName("large_ruby_bud");
 		SPBlocks.medium_ruby_bud = new AmethystClusterBlock(4, 3, BlockBehaviour.Properties.copy(SPBlocks.ruby_cluster).sound(SoundType.MEDIUM_AMETHYST_BUD).lightLevel((blockState) -> 2)).setRegistryName("medium_ruby_bud");
 		SPBlocks.small_ruby_bud = new AmethystClusterBlock(3, 4, BlockBehaviour.Properties.copy(SPBlocks.ruby_cluster).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel((blockState) -> 1)).setRegistryName("small_ruby_bud");
-		SPBlocks.budding_ruby = new SPBlockCrystalBudding(Properties.of(Material.AMETHYST, MaterialColor.COLOR_RED).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops(),
+		SPBlocks.budding_ruby = new SPBlockCrystalBudding(Properties.of(Material.AMETHYST, MaterialColor.COLOR_RED).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops(),
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_ruby_bud), ((AmethystClusterBlock) SPBlocks.medium_ruby_bud), ((AmethystClusterBlock) SPBlocks.large_ruby_bud), ((AmethystClusterBlock) SPBlocks.ruby_cluster))
 				).setRegistryName("budding_ruby");
-		SPBlocks.pearl_block = new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.SNOW).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()).setRegistryName("pearl_block");
-		SPBlocks.pearl_cluster = new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.SNOW).noOcclusion().harvestTool(ToolType.PICKAXE).randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)).setRegistryName("pearl_cluster");
+		SPBlocks.pearl_block = new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.SNOW).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).requiresCorrectToolForDrops()).setRegistryName("pearl_block");
+		SPBlocks.pearl_cluster = new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.SNOW).noOcclusion().randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)).setRegistryName("pearl_cluster");
 		SPBlocks.large_pearl_bud = new AmethystClusterBlock(5, 3, BlockBehaviour.Properties.copy(SPBlocks.pearl_cluster).sound(SoundType.LARGE_AMETHYST_BUD).lightLevel((blockState) -> 4)).setRegistryName("large_pearl_bud");
 		SPBlocks.medium_pearl_bud = new AmethystClusterBlock(4, 3, BlockBehaviour.Properties.copy(SPBlocks.pearl_cluster).sound(SoundType.MEDIUM_AMETHYST_BUD).lightLevel((blockState) -> 2)).setRegistryName("medium_pearl_bud");
 		SPBlocks.small_pearl_bud = new AmethystClusterBlock(3, 4, BlockBehaviour.Properties.copy(SPBlocks.pearl_cluster).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel((blockState) -> 1)).setRegistryName("small_pearl_bud");
-		SPBlocks.budding_pearl = new SPBlockCrystalBudding(Properties.of(Material.AMETHYST, MaterialColor.SNOW).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops(),
+		SPBlocks.budding_pearl = new SPBlockCrystalBudding(Properties.of(Material.AMETHYST, MaterialColor.SNOW).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops(),
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_pearl_bud), ((AmethystClusterBlock) SPBlocks.medium_pearl_bud), ((AmethystClusterBlock) SPBlocks.large_pearl_bud), ((AmethystClusterBlock) SPBlocks.pearl_cluster))
 				).setRegistryName("budding_pearl");
-		SPBlocks.topaz_block = new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()).setRegistryName("topaz_block");
-		SPBlocks.topaz_cluster = new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).noOcclusion().harvestTool(ToolType.PICKAXE).randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)).setRegistryName("topaz_cluster");
+		SPBlocks.topaz_block = new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).requiresCorrectToolForDrops()).setRegistryName("topaz_block");
+		SPBlocks.topaz_cluster = new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).noOcclusion().randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)).setRegistryName("topaz_cluster");
 		SPBlocks.large_topaz_bud = new AmethystClusterBlock(5, 3, BlockBehaviour.Properties.copy(SPBlocks.topaz_cluster).sound(SoundType.LARGE_AMETHYST_BUD).lightLevel((blockState) -> 4)).setRegistryName("large_topaz_bud");
 		SPBlocks.medium_topaz_bud = new AmethystClusterBlock(4, 3, BlockBehaviour.Properties.copy(SPBlocks.topaz_cluster).sound(SoundType.MEDIUM_AMETHYST_BUD).lightLevel((blockState) -> 2)).setRegistryName("medium_topaz_bud");
 		SPBlocks.small_topaz_bud = new AmethystClusterBlock(3, 4, BlockBehaviour.Properties.copy(SPBlocks.topaz_cluster).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel((blockState) -> 1)).setRegistryName("small_topaz_bud");
-		SPBlocks.budding_topaz = new SPBlockCrystalBudding(Properties.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops(),
+		SPBlocks.budding_topaz = new SPBlockCrystalBudding(Properties.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops(),
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_topaz_bud), ((AmethystClusterBlock) SPBlocks.medium_topaz_bud), ((AmethystClusterBlock) SPBlocks.large_topaz_bud), ((AmethystClusterBlock) SPBlocks.topaz_cluster))
 				).setRegistryName("budding_topaz");
-		SPBlocks.sapphire_block = new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()).setRegistryName("sapphire_block");
-		SPBlocks.sapphire_cluster = new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).noOcclusion().harvestTool(ToolType.PICKAXE).randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)).setRegistryName("sapphire_cluster");
+		SPBlocks.sapphire_block = new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).requiresCorrectToolForDrops()).setRegistryName("sapphire_block");
+		SPBlocks.sapphire_cluster = new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).noOcclusion().randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)).setRegistryName("sapphire_cluster");
 		SPBlocks.large_sapphire_bud = new AmethystClusterBlock(5, 3, BlockBehaviour.Properties.copy(SPBlocks.sapphire_cluster).sound(SoundType.LARGE_AMETHYST_BUD).lightLevel((blockState) -> 4)).setRegistryName("large_sapphire_bud");
 		SPBlocks.medium_sapphire_bud = new AmethystClusterBlock(4, 3, BlockBehaviour.Properties.copy(SPBlocks.sapphire_cluster).sound(SoundType.MEDIUM_AMETHYST_BUD).lightLevel((blockState) -> 2)).setRegistryName("medium_sapphire_bud");
 		SPBlocks.small_sapphire_bud = new AmethystClusterBlock(3, 4, BlockBehaviour.Properties.copy(SPBlocks.sapphire_cluster).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel((blockState) -> 1)).setRegistryName("small_sapphire_bud");
-		SPBlocks.budding_sapphire = new SPBlockCrystalBudding(Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops(),
+		SPBlocks.budding_sapphire = new SPBlockCrystalBudding(Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops(),
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_sapphire_bud), ((AmethystClusterBlock) SPBlocks.medium_sapphire_bud), ((AmethystClusterBlock) SPBlocks.large_sapphire_bud), ((AmethystClusterBlock) SPBlocks.sapphire_cluster))
 				).setRegistryName("budding_sapphire");
-		SPBlocks.spinel_block = new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()).setRegistryName("spinel_block");
-		SPBlocks.spinel_cluster = new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).noOcclusion().harvestTool(ToolType.PICKAXE).randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)).setRegistryName("spinel_cluster");
+		SPBlocks.spinel_block = new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).requiresCorrectToolForDrops()).setRegistryName("spinel_block");
+		SPBlocks.spinel_cluster = new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).noOcclusion().randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)).setRegistryName("spinel_cluster");
 		SPBlocks.large_spinel_bud = new AmethystClusterBlock(5, 3, BlockBehaviour.Properties.copy(SPBlocks.spinel_cluster).sound(SoundType.LARGE_AMETHYST_BUD).lightLevel((blockState) -> 4)).setRegistryName("large_spinel_bud");
 		SPBlocks.medium_spinel_bud = new AmethystClusterBlock(4, 3, BlockBehaviour.Properties.copy(SPBlocks.spinel_cluster).sound(SoundType.MEDIUM_AMETHYST_BUD).lightLevel((blockState) -> 2)).setRegistryName("medium_spinel_bud");
 		SPBlocks.small_spinel_bud = new AmethystClusterBlock(3, 4, BlockBehaviour.Properties.copy(SPBlocks.spinel_cluster).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel((blockState) -> 1)).setRegistryName("small_spinel_bud");
-		SPBlocks.budding_spinel = new SPBlockCrystalBudding(Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops(),
+		SPBlocks.budding_spinel = new SPBlockCrystalBudding(Properties.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops(),
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_spinel_bud), ((AmethystClusterBlock) SPBlocks.medium_spinel_bud), ((AmethystClusterBlock) SPBlocks.large_spinel_bud), ((AmethystClusterBlock) SPBlocks.spinel_cluster))
 				).setRegistryName("budding_spinel");
 

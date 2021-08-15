@@ -6,7 +6,7 @@ license="All rights reserved"
 
 [[mods]]
     modId="survivalplus"
-    version="0.1.5"
+    version="0.1.5b"
     updateJSONURL="https://coolsimulations.net/mcmods/survivalplus/versionchecker.json"
     displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus"
     displayName="SurvivalPlus"
@@ -18,7 +18,7 @@ license="All rights reserved"
 [[dependencies.survivalplus]]
     modId="forge"
     mandatory=true
-    versionRange="[37.0.9,]"
+    versionRange="[37.0.31,]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]
@@ -102,7 +102,7 @@ license="All rights reserved"
 [[dependencies.survivalplus]]
     modId="easy_emerald"
     mandatory=false
-    versionRange="[1.0.25,]"
+    versionRange="[1.2.0,]"
     ordering="BEFORE"
     side="BOTH"
     

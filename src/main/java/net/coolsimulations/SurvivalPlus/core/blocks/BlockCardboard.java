@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.common.ToolType;
 
 public class BlockCardboard extends Block {
 
@@ -19,19 +18,8 @@ public class BlockCardboard extends Block {
 	}
 
 	@Override
-	public ToolType getHarvestTool(BlockState state) {
-		return ToolType.AXE;
-	}
-
-	@Override
 	public void spawnAfterBreak(BlockState state, ServerLevel worldIn, BlockPos pos, ItemStack stack) {
 		super.spawnAfterBreak(state, worldIn, pos, stack);
-	}
-
-	@Override
-	public int getHarvestLevel(BlockState state) {
-
-		return 1;
 	}
 
 	@Override

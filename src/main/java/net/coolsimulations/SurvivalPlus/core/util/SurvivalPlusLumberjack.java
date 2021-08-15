@@ -25,7 +25,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -67,7 +66,7 @@ public class SurvivalPlusLumberjack {
 	public static class SPItemLumberAxe extends AxeItem {
 
 		public SPItemLumberAxe(Tier itemTier) {
-			super(itemTier, itemTier.getAttackDamageBonus(), itemTier.getSpeed(), new Item.Properties().tab(CreativeModeTab.TAB_TOOLS).addToolType(ToolType.AXE, itemTier.getLevel()));
+			super(itemTier, itemTier.getAttackDamageBonus(), itemTier.getSpeed(), new Item.Properties().tab(CreativeModeTab.TAB_TOOLS));
 		}
 		
 		@Override

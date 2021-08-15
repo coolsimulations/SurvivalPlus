@@ -73,7 +73,7 @@ public class SPCompatibilityManager {
 	public static final String TRAVERSE_MODID = "traverse";
 	public static final String BAMBOO_EVERYTHING_MODID = "bambooeverything";
 	public static final String BAMBOO_2_MODID = "bamboo2";
-	public static final String CLOTH_CONFIG_MODID = "cloth-config";
+	public static final String CLOTH_CONFIG_MODID = "cloth_config";
 	public static final String CAVES_AND_CLIFFS_BACKPORT_MODID = "cavesandcliffs";
 	public static final String BAMBOO_TWEAKS_MODID = "bambootweaks";
 

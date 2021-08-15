@@ -13,9 +13,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.common.ToolType;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class SPBlockOre extends Block {
 
@@ -39,18 +36,8 @@ public class SPBlockOre extends Block {
 	}
 
 	@Override
-	public ToolType getHarvestTool(BlockState state) {
-		return ToolType.PICKAXE;
-	}
-
-	@Override
 	public void spawnAfterBreak(BlockState state, ServerLevel worldIn, BlockPos pos, ItemStack stack) {
 		super.spawnAfterBreak(state, worldIn, pos, stack);
-	}
-
-	@Override
-	public int getHarvestLevel(BlockState state) {
-		return resource.harvestLevel;
 	}
 
 	protected int getExperience(Random random) {
