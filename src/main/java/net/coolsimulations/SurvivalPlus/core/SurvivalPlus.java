@@ -137,6 +137,8 @@ public class SurvivalPlus {
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
 		
+		FuelHandler.registerArmorFuels();
+		
 		SurvivalPlusDispenserBehavior.init();
 
 		proxy.init();
