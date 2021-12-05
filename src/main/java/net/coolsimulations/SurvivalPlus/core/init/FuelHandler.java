@@ -22,20 +22,20 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SPReference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FuelHandler{
-	
+
 	private static Map<Item, Integer> armor_fuel = new HashMap<Item, Integer>();
-	
+
 	public static void registerArmorFuels() {
-		
+
 		addArmorFuels(SPItems.oak);
-        addArmorFuels(SPItems.spruce);
-        addArmorFuels(SPItems.birch);
-        addArmorFuels(SPItems.jungle);
-        addArmorFuels(SPItems.acacia);
-        addArmorFuels(SPItems.dark_oak);
-		
+		addArmorFuels(SPItems.spruce);
+		addArmorFuels(SPItems.birch);
+		addArmorFuels(SPItems.jungle);
+		addArmorFuels(SPItems.acacia);
+		addArmorFuels(SPItems.dark_oak);
+
 		if(SPCompatibilityManager.isBopLoaded()) {
-			
+
 			addArmorFuels(SPItems.cherry);
 			addArmorFuels(SPItems.dead);
 			addArmorFuels(SPItems.ethereal);
@@ -49,18 +49,18 @@ public class FuelHandler{
 			addArmorFuels(SPItems.umbran);
 			addArmorFuels(SPItems.willow);
 		}
-		
+
 		if(SPCompatibilityManager.isBopExtrasLoaded()) {
-			
+
 			addArmorFuels(SPItems.ebony);
 			addArmorFuels(SPItems.eucalyptus);
 			addArmorFuels(SPItems.mangrove);
 			addArmorFuels(SPItems.pine);
 			addArmorFuels(SPItems.sacred_oak);
 		}
-		
+
 		if(SPCompatibilityManager.isForestryLoaded()) {
-			
+
 			addArmorFuels(SPItems.desert_acacia);
 			addArmorFuels(SPItems.balsa);
 			addArmorFuels(SPItems.baobab);
@@ -91,55 +91,62 @@ public class FuelHandler{
 			addArmorFuels(SPItems.willow_forestry);
 			addArmorFuels(SPItems.zebrawood);
 		}
-		
+
 		if (SPCompatibilityManager.isIc2Loaded()) {
 			addArmorFuels(SPItems.rubber);
 		}
-		
+
 		if(SPCompatibilityManager.isTraverseLoaded()) {
-			
+
 			addArmorFuels(SPItems.fir_traverse);
 		}
-		
-		if (SPCompatibilityManager.isBambooModsLoaded()) {
-			addArmorFuels(SPItems.bamboo);
-		}
 	}
-	
+
 	@SubscribeEvent
-    public static void onFurnaceFuelBurnTimeEvent(FurnaceFuelBurnTimeEvent event)
-    {
-        ItemStack fuel = event.getItemStack();
-		
+	public static void onFurnaceFuelBurnTimeEvent(FurnaceFuelBurnTimeEvent event)
+	{
+		ItemStack fuel = event.getItemStack();
+
 		for(Map.Entry<Item, Integer> entry : armor_fuel.entrySet()) {
 			if(fuel.getItem() == entry.getKey()) {
 				event.setBurnTime(entry.getValue());
 				return;
 			}
 		}
-		
+
+		if (SPCompatibilityManager.isBambooModsLoaded()) {
+			if(fuel.getItem() == SPItems.bamboo_helmet)
+				event.setBurnTime(250);
+			if(fuel.getItem() == SPItems.bamboo_chestplate)
+				event.setBurnTime(400);
+			if(fuel.getItem() == SPItems.bamboo_leggings)
+				event.setBurnTime(350);
+			if(fuel.getItem() == SPItems.bamboo_boots)
+				event.setBurnTime(200);
+		}
+
 		if(fuel.getItem() == SPItems.paper_cup)
 			event.setBurnTime(200);
 
 		if(fuel.getItem() == SPItems.charcoal_bucket)
 			event.setBurnTime(4800);
-		
-		Item item = fuel.getItem();
-		
-		if (item instanceof BlockItem && Block.getBlockFromItem(item) != Blocks.AIR)
-        {
-            Block block = Block.getBlockFromItem(item);
 
-            if (block instanceof BlockCardboard)
-            {
-            	event.setBurnTime(800);
-            	if(block instanceof BlockCardboardLantern) {
-            		event.setBurnTime(1600);
-            	}
-            }
-        }
+		Item item = fuel.getItem();
+
+		if (item instanceof BlockItem && Block.getBlockFromItem(item) != Blocks.AIR)
+		{
+			Block block = Block.getBlockFromItem(item);
+
+			if (block instanceof BlockCardboard)
+			{
+				event.setBurnTime(800);
+				if(block instanceof BlockCardboardLantern) {
+					event.setBurnTime(1600);
+				}
+			}
+		}
 	}
-	
+
 	private static void addArmorFuels(NonNullList<ItemStack> item) {
 
 		for(int i = 0; i < item.size(); i++) {
