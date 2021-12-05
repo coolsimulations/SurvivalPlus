@@ -166,6 +166,10 @@ public class SurvivalPlusArmor {
 			TraverseArmor.init();
 		}
 		
+		if(SPCompatibilityManager.isExtraPlanetsLoaded()){
+			ExtraPlanetsArmor.init();
+		}
+		
 	}
 	public static void register()
 	{
@@ -203,6 +207,10 @@ public class SurvivalPlusArmor {
 		
 		if(SPCompatibilityManager.isTraverseLoaded()){
 			TraverseArmor.register();
+		}
+		
+		if(SPCompatibilityManager.isExtraPlanetsLoaded()){
+			ExtraPlanetsArmor.register();
 		}
 	}
 	
@@ -242,6 +250,10 @@ public class SurvivalPlusArmor {
 		
 		if(SPCompatibilityManager.isTraverseLoaded()){
 			TraverseArmor.registerRenders();
+		}
+		
+		if(SPCompatibilityManager.isExtraPlanetsLoaded()){
+			ExtraPlanetsArmor.registerRenders();
 		}
 
 	}

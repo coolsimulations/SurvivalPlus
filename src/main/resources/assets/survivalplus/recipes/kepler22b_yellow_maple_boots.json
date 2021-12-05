@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_boots",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "extraplanets:kepler22b_maple_logs",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "survivalplus:kepler22b_yellow_maple_boots"
+  }
+}

@@ -46,6 +46,8 @@ public class SPCompatibilityManager {
 	private static boolean modWeepingAngelsLoaded;
 	private static boolean modBamboozledLoaded;
 	private static boolean modTraverseLoaded;
+	private static boolean modExtraPlanetsLoaded;
+	private static boolean modFluidloggedAPILoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -90,6 +92,8 @@ public class SPCompatibilityManager {
 	public static final String WEEPING_ANGELS_MODID = "weeping-angels";
 	public static final String BAMBOOZLED_MODID = "bamboozled";
 	public static final String TRAVERSE_MODID = "traverse";
+	public static final String EXTRA_PLANETS_MODID = "extraplanets";
+	public static final String FLUIDLOGGED_API_MODID = "fluidlogged_api";
 
 	public static void checkForCompatibleMods(){
 
@@ -301,6 +305,16 @@ public class SPCompatibilityManager {
 		if (Loader.isModLoaded(TRAVERSE_MODID))
 		{
 			SPCompatibilityManager.modTraverseLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(EXTRA_PLANETS_MODID))
+		{
+			SPCompatibilityManager.modExtraPlanetsLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(FLUIDLOGGED_API_MODID))
+		{
+			SPCompatibilityManager.modFluidloggedAPILoaded = true;
 		}
 	}
 
@@ -526,6 +540,16 @@ public class SPCompatibilityManager {
 	public static boolean isTraverseLoaded()
 	{
 		return SPCompatibilityManager.modTraverseLoaded;
+	}
+	
+	public static boolean isExtraPlanetsLoaded()
+	{
+		return SPCompatibilityManager.modExtraPlanetsLoaded;
+	}
+	
+	public static boolean isFluidLoggedLoaded()
+	{
+		return SPCompatibilityManager.modFluidloggedAPILoaded;
 	}
 
 }

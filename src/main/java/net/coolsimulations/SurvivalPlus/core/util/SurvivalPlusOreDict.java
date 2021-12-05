@@ -4,7 +4,9 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class SurvivalPlusOreDict {
@@ -34,21 +36,10 @@ public class SurvivalPlusOreDict {
 			OreDictionary.registerOre("dustTitanium", new ItemStack(SPItems.titanium_dust));
 		}
 		
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded()) {
-			OreDictionary.registerOre("dustCopper", new ItemStack(SPItems.copper_dust));
-			OreDictionary.registerOre("dustTin", new ItemStack(SPItems.tin_dust));
-		}
-		
-		if(SPCompatibilityManager.isIc2Loaded()) {
-			OreDictionary.registerOre("crushedTitanium", new ItemStack(SPItems.crushed_titanium_ore));	
-			OreDictionary.registerOre("crushedPurifiedTitanium", new ItemStack(SPItems.purified_titanium_ore));
-			OreDictionary.registerOre("dustTinyTitanium", new ItemStack(SPItems.tiny_titanium_pile));
-			OreDictionary.registerOre("plateTitanium", new ItemStack(SPItems.titanium_plate));
-			OreDictionary.registerOre("plateDenseTitanium", new ItemStack(SPItems.titanium_dense_plate));
-			OreDictionary.registerOre("casingTitanium", new ItemStack(SPItems.titanium_casing));
-		}
-		
 		OreDictionary.registerOre("cropApple", new ItemStack(Items.APPLE));
+		
+		OreDictionary.registerOre("cropBeetroot", new ItemStack(Items.BEETROOT));
+		OreDictionary.registerOre("seedBeetroot", new ItemStack(Items.BEETROOT_SEEDS));
 		
 		OreDictionary.registerOre("cropOnion", new ItemStack(SPItems.raw_onion));
 		OreDictionary.registerOre("listAllveggie", new ItemStack(SPItems.raw_onion));

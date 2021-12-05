@@ -477,4 +477,44 @@ public class SPItems {
 	public static ItemArmor.ArmorMaterial goldenOakArmorMaterial;
 	public static NonNullList<ItemStack> golden_oak;
 	
+	/**
+	 * These are the Extra Planets armor Items referred to in ExtraPlanetsArmor along with the corresponding ArmorMaterial and Armor ItemStack List
+	 */
+	public static Item kepler22b_blue_maple_helmet;
+	public static Item kepler22b_blue_maple_chestplate;
+	public static Item kepler22b_blue_maple_leggings;
+	public static Item kepler22b_blue_maple_boots;
+	public static ItemArmor.ArmorMaterial kepler22bBlueMapleArmorMaterial;
+	public static NonNullList<ItemStack> kepler22b_blue_maple;
+	public static Item kepler22b_red_maple_helmet;
+	public static Item kepler22b_red_maple_chestplate;
+	public static Item kepler22b_red_maple_leggings;
+	public static Item kepler22b_red_maple_boots;
+	public static ItemArmor.ArmorMaterial kepler22bRedMapleArmorMaterial;
+	public static NonNullList<ItemStack> kepler22b_red_maple;
+	public static Item kepler22b_purple_maple_helmet;
+	public static Item kepler22b_purple_maple_chestplate;
+	public static Item kepler22b_purple_maple_leggings;
+	public static Item kepler22b_purple_maple_boots;
+	public static ItemArmor.ArmorMaterial kepler22bPurpleMapleArmorMaterial;
+	public static NonNullList<ItemStack> kepler22b_purple_maple;
+	public static Item kepler22b_yellow_maple_helmet;
+	public static Item kepler22b_yellow_maple_chestplate;
+	public static Item kepler22b_yellow_maple_leggings;
+	public static Item kepler22b_yellow_maple_boots;
+	public static ItemArmor.ArmorMaterial kepler22bYellowMapleArmorMaterial;
+	public static NonNullList<ItemStack> kepler22b_yellow_maple;
+	public static Item kepler22b_green_maple_helmet;
+	public static Item kepler22b_green_maple_chestplate;
+	public static Item kepler22b_green_maple_leggings;
+	public static Item kepler22b_green_maple_boots;
+	public static ItemArmor.ArmorMaterial kepler22bGreenMapleArmorMaterial;
+	public static NonNullList<ItemStack> kepler22b_green_maple;
+	public static Item kepler22b_brown_maple_helmet;
+	public static Item kepler22b_brown_maple_chestplate;
+	public static Item kepler22b_brown_maple_leggings;
+	public static Item kepler22b_brown_maple_boots;
+	public static ItemArmor.ArmorMaterial kepler22bBrownMapleArmorMaterial;
+	public static NonNullList<ItemStack> kepler22b_brown_maple;
+	
 }

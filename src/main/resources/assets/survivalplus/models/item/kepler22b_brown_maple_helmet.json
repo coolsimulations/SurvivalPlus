@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "survivalplus:armor/kepler22b_brown_maple_helmet"
+    }
+}

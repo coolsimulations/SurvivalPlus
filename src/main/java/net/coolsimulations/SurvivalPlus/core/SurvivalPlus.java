@@ -20,6 +20,13 @@ import net.coolsimulations.SurvivalPlus.core.commands.CommandWail;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWak;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWeba;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWoo;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusCompatManager;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusEMCValues;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusHammerTime;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusJER;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusLighting;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusLumberjack;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusSkills;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
 import net.coolsimulations.SurvivalPlus.core.init.FuelHandler;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
@@ -38,18 +45,9 @@ import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusFoodTab;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusGemTab;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusMaterialsTab;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusToolsTab;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAetherLegacyRecipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusFutureMCRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusFutureRecipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusHammerTime;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusJER;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLighting;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusSkills;
+import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusRailCraftRecipes;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.coolsimulations.SurvivalPlus.core.world.village.StructureVillageOnionCrop;
@@ -107,7 +105,9 @@ public class SurvivalPlus {
 		SurvivalPlusConfig.init(new File(event.getModConfigurationDirectory(), SPReference.SURVIVALPLUS_CONFIG_FILE));
 		SurvivalPlusUpdateHandler.init();
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
+		SurvivalPlusCompatManager.initEventHandler();
 		SPCompatRecipeManager.futureRecipeManager = new SurvivalPlusFutureRecipes();
+		SPCompatRecipeManager.railcraftRecipeManager = new SurvivalPlusRailCraftRecipes();
 
 		CreativeTabs();
 
@@ -129,7 +129,7 @@ public class SurvivalPlus {
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
-
+		
 		if(SPCompatibilityManager.isHammerTimeLoaded()) {
 			SurvivalPlusHammerTime.init();
 		}
@@ -152,11 +152,6 @@ public class SurvivalPlus {
 		{
 			SurvivalPlusSkills.initReskillable(event);
 		}
-		if (SPCompatibilityManager.isAetherLegacyLoaded())
-		{
-			MinecraftForge.EVENT_BUS.register(new SurvivalPlusAetherLegacyRecipes());
-		}
-
 	}
 
 	@EventHandler
@@ -186,14 +181,8 @@ public class SurvivalPlus {
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		System.out.println("Post Init");
-
-		SurvivalPlusAPIRecipes.loadRecipes();
-		if (SPCompatibilityManager.isIc2Loaded())
-		{
-			SurvivalPlusIC2Recipes.init();
-		}
 		
-		SurvivalPlusFutureMCRecipes.init();
+		SurvivalPlusCompatManager.initRecipies();
 	}
 
 	@EventHandler

@@ -2,6 +2,7 @@ package net.coolsimulations.SurvivalPlus.core.util;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.compat.ISPFutureRecipes;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusNoTreePunching;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import thedarkcolour.futuremc.block.villagepillage.ComposterBlock;
@@ -34,7 +35,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
 			if(CampfireRecipes.INSTANCE.getRecipe(output) != null) {
-				CampfireRecipes.INSTANCE.removeRecipe(output);
+				CampfireRecipes.INSTANCE.removeRecipeForOutput(output);
 			}
 		}
 	}
@@ -52,7 +53,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
 			if(BlastFurnaceRecipes.INSTANCE.getRecipe(output) != null) {
-				BlastFurnaceRecipes.INSTANCE.removeRecipe(output);
+				BlastFurnaceRecipes.INSTANCE.removeRecipeForOutput(output);
 			}
 		}
 	}
@@ -70,7 +71,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
 			if(SmokerRecipes.INSTANCE.getRecipe(output) != null) {
-				SmokerRecipes.INSTANCE.removeRecipe(output);
+				SmokerRecipes.INSTANCE.removeRecipeForOutput(output);
 			}
 		}
 	}
@@ -110,7 +111,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
 			if(StonecutterRecipes.INSTANCE.getRecipe(output) != null) {
-				StonecutterRecipes.INSTANCE.removeRecipe(output);
+				StonecutterRecipes.INSTANCE.removeRecipeForOutput(output);
 			}
 		}
 	}

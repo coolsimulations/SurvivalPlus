@@ -2,6 +2,8 @@ package net.coolsimulations.SurvivalPlus.core.world;
 
 import java.util.Random;
 
+import com.google.common.base.Predicate;
+
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.world.SPNetherGeneratorPredicate;
@@ -12,13 +14,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeMushroomIsland;
 import net.minecraft.world.biome.BiomeOcean;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
-
-import com.google.common.base.Predicate;
 
 public class SurvivalPlusOreGenerator implements IWorldGenerator{
 

@@ -1,7 +1,5 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import java.util.Map;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -12,7 +10,6 @@ import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
@@ -21,20 +18,13 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
-import net.insane96mcp.carbonado.lib.Properties;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCake;
 import net.minecraft.block.BlockTripWire;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -49,7 +39,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -59,22 +48,16 @@ import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
-import thedarkcolour.futuremc.block.villagepillage.CampfireBlock;
-import thedarkcolour.futuremc.config.FConfig;
-import thedarkcolour.futuremc.registry.FSounds;
 
 public class SurvivalPlusEventHandler {
 
@@ -199,9 +182,7 @@ public class SurvivalPlusEventHandler {
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "sponge"));
 		}
 
-		if(SPCompatibilityManager.isIc2Loaded()) {
-			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "bronze_ingot_alt2"));
-		} else {
+		if(!SPCompatibilityManager.isIc2Loaded()) {
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber"));
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt1"));
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt2"));
@@ -209,111 +190,6 @@ public class SurvivalPlusEventHandler {
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt4"));
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt5"));
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt6"));
-		}
-
-		if(SPCompatibilityManager.isBopLoaded()) {
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.BOP_MODID + ":" + "white_dye_from_lily_of_the_valley"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.BOP_MODID + ":" + "white_dye_from_white_anemone"));
-			if(!SPConfig.enableReplaceBOPRecipe) {
-				modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "terrestrial_artifact"));
-				modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "terrestrial_artifact_ore_gc"));
-			} else {
-				modRegistry.remove(new ResourceLocation(SPCompatibilityManager.BOP_MODID + ":" + "terrestrial_artifact"));
-				modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "terrestrial_artifact_gc"));
-			}
-		}
-
-		if(SPCompatibilityManager.isHammerTimeLoaded()) {
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxediamond"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxegold"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxeiron"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxestone"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxewood"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammerdiamond"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammergold"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammeriron"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammerstone"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemhammerwood"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshoveldiamond"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshovelgold"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshoveliron"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshovelstone"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemshovelwood"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklediamond"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklegold"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsickleiron"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklestone"));
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemsicklewood"));
-		}
-
-		if(SPCompatibilityManager.isLumberjackLoaded() && SPCompatibilityManager.isCarbonadoLoaded()) {
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.LUMBERJACK_MODID + ":" + "carbonado"));
-		}
-
-		if(SPCompatibilityManager.isLumberjackLoaded() && SPCompatibilityManager.isNoTreePunchingLoaded()) {
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.LUMBERJACK_MODID + ":" + "wood"));
-		}
-
-		if(SPCompatibilityManager.isFutureMCLoaded()) {
-			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire"));
-			if(SPCompatibilityManager.isIc2Loaded()) {
-				modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber"));
-				modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt1"));
-				modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt2"));
-				modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt3"));
-				modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt4"));
-				modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt5"));
-				modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt6"));
-			}
-		}
-
-		if(SPCompatibilityManager.isBamboozledLoaded()) {
-			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.BAMBOOZLED_MODID + ":" + "bamboo_bundle"));
-		}
-
-	}
-
-	@SubscribeEvent
-	public void anvilRecipe(AnvilUpdateEvent event) {
-		if(SPCompatibilityManager.isLumberjackLoaded() && SPCompatibilityManager.isCarbonadoLoaded()) {
-
-			ItemStack left = event.getLeft();
-			ItemStack right = event.getRight();
-			ItemStack output = null;
-			int carbonadoAmount = 4;
-
-			if (Properties.config.tools.enableAnvilCrafting && left.isItemEqualIgnoreDurability(new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.LUMBERJACK_MODID, "diamond_lumberaxe")))) && right.getItem().equals(net.insane96mcp.carbonado.init.ModItems.carbonadoItem) && right.getCount() >= carbonadoAmount) {
-
-				output = new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.LUMBERJACK_MODID, "carbonado_lumberaxe")));
-				NBTTagCompound tags = left.getTagCompound();
-				output.setTagCompound(tags);
-				event.setOutput(output);
-				event.setMaterialCost(carbonadoAmount);
-
-				int cost = 0;
-				Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(left);
-				for (Enchantment enchantment : enchantments.keySet()) {
-					int lvl = enchantments.get(enchantment);
-					int baseCost = 0;
-					switch (enchantment.getRarity())
-					{
-					case COMMON:
-						baseCost = 1;
-						break;
-					case UNCOMMON:
-						baseCost = 2;
-						break;
-					case RARE:
-						baseCost = 4;
-						break;
-					case VERY_RARE:
-						baseCost = 8;
-					}
-					cost += baseCost * lvl;
-				}
-				cost *= 0.5f;
-				event.setCost(MathHelper.clamp(cost, 1, 39));
-			}
 		}
 	}
 
@@ -325,37 +201,6 @@ public class SurvivalPlusEventHandler {
 		EntityPlayer entityplayer = event.getEntityPlayer();
 		ItemStack itemStackIn = entityplayer.getHeldItem(event.getHand());
 		Item item = itemStackIn.getItem();
-
-		if(SPCompatibilityManager.isFutureMCLoaded() && block instanceof CampfireBlock) {
-			PropertyBool LIT = ObfuscationReflectionHelper.getPrivateValue(CampfireBlock.class, (CampfireBlock) block, "LIT");
-			PropertyBool SIGNAL = ObfuscationReflectionHelper.getPrivateValue(CampfireBlock.class, (CampfireBlock) block, "SIGNAL");
-			if(state.getValue(LIT) && item == Items.BUCKET  && !entityplayer.isCreative()) {
-				event.getWorld().setBlockState(event.getPos(), state.withProperty(LIT, false));
-				if (event.getWorld().isRemote) {
-					for (int i = 0; i < 20; ++i) {
-						CampfireBlock.Companion.spawnSmokeParticles(event.getWorld(), event.getPos(), (Boolean) state.getValue(SIGNAL), true);
-					}
-				} else {
-					event.getWorld().playSound((EntityPlayer) null, event.getPos(), SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				}
-				if(itemStackIn.getCount() == 1) {
-					if (ItemStack.areItemStacksEqual(entityplayer.getHeldItemOffhand(), itemStackIn))
-					{
-						entityplayer.setHeldItem(EnumHand.OFF_HAND, new ItemStack(SPItems.charcoal_bucket));
-					}
-					else
-					{
-						entityplayer.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(SPItems.charcoal_bucket));
-					}
-				} else  if(itemStackIn.getCount() >= 2){
-					itemStackIn.shrink(1);
-					boolean flag = entityplayer.inventory.addItemStackToInventory(new ItemStack(SPItems.charcoal_bucket));
-					if(!flag) {
-						entityplayer.dropItem(new ItemStack(SPItems.charcoal_bucket), false);
-					}		
-				}
-			}
-		}
 
 		if(block == Blocks.CAKE) {
 			
@@ -395,25 +240,6 @@ public class SurvivalPlusEventHandler {
 								entityplayer.dropItem(new ItemStack(SPItems.cupcake), false);
 							}
 						}
-					}
-				}
-			}
-		}
-	}
-
-	@SubscribeEvent
-	public void golemHealth(EntityInteract event) {
-		ItemStack itemstack = event.getItemStack();
-		Item item = itemstack.getItem();
-		if(SPCompatibilityManager.isFutureMCLoaded() && FConfig.INSTANCE.getBuzzyBees().ironGolem.ironBarHealing && event.getTarget() instanceof EntityIronGolem) {
-			if (((EntityLiving) event.getTarget()).getHealth() < ((EntityLiving) event.getTarget()).getMaxHealth()) {
-				if(item instanceof SPItemIngot && ((SPItemIngot) item).healsGolem()) {
-					Random rand = ((EntityLivingBase) event.getTarget()).getRNG();
-					((EntityLiving) event.getTarget()).heal(((SPItemIngot) item).getGolemHealth());
-					float f1 = 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
-					((EntityLiving) event.getTarget()).playSound(FSounds.INSTANCE.getIRON_GOLEM_REPAIR(), 1.0F, f1);
-					if (!event.getEntityPlayer().isCreative()) {
-						itemstack.shrink(1);
 					}
 				}
 			}

@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.BlockHopper;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -352,6 +353,8 @@ public class BlockCardboardLantern extends BlockCardboard {
 				return false;
 			} else if(block instanceof BlockTrapDoor && !isTrapdoorValid(iblockstate, direction)) {
 				return false;
+			} else if(block instanceof BlockSlab && !isSlabValid(iblockstate, direction)) {
+				return false;
 			} else if(block instanceof BlockCardboardLantern && iblockstate.getValue(FACING).getAxis() == EnumFacing.Axis.Y) {
 				return false;
 			} else {
@@ -385,6 +388,10 @@ public class BlockCardboardLantern extends BlockCardboard {
 		if(block instanceof BlockHopper) {
 			return false;
 		}
+		
+		if(block instanceof BlockSlab) {
+			return isSlabValid(state, direction);
+		}
 
 		if(block.isAir(state, worldIn, blockpos)) {
 			return false;
@@ -395,6 +402,10 @@ public class BlockCardboardLantern extends BlockCardboard {
 
 	protected static boolean isTrapdoorValid(IBlockState state, EnumFacing facing) {
 		return state.getProperties().containsKey(BlockTrapDoor.HALF) && (facing == EnumFacing.UP && state.getValue(BlockTrapDoor.HALF) == BlockTrapDoor.DoorHalf.TOP || facing == EnumFacing.DOWN && state.getValue(BlockTrapDoor.HALF) == BlockTrapDoor.DoorHalf.BOTTOM) && !state.getValue(BlockTrapDoor.OPEN);
+	}
+	
+	protected static boolean isSlabValid(IBlockState state, EnumFacing facing) {
+		return (state.getProperties().containsKey(BlockSlab.HALF) && (facing == EnumFacing.UP && state.getValue(BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP || facing == EnumFacing.DOWN && state.getValue(BlockSlab.HALF) == BlockSlab.EnumBlockHalf.BOTTOM)) || ((BlockSlab) state.getBlock()).isDouble();
 	}
 
 	/**

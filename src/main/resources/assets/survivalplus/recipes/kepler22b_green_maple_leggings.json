@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_leggings",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "extraplanets:kepler22b_maple_logs2",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "survivalplus:kepler22b_green_maple_leggings"
+  }
+}

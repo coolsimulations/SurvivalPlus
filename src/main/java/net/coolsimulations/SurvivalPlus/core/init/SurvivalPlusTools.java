@@ -12,7 +12,7 @@ import net.coolsimulations.SurvivalPlus.api.item.SPItemShield;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemShovel;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemSword;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusNoTreePunching;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusNoTreePunching;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

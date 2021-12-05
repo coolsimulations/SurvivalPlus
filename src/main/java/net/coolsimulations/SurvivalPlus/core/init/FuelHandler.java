@@ -553,6 +553,91 @@ public class FuelHandler implements IFuelHandler{
 				return 1200;
 		}
 		
+		if(SPCompatibilityManager.isExtraPlanetsLoaded()) {
+			
+			Item stick = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.EXTRA_PLANETS_MODID, "tier11_items"));
+			Item kepler22b_maple = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.EXTRA_PLANETS_MODID, "kepler22b_maple_saplings"));
+			
+			if(fuel.getItem() == stick && fuel.getMetadata() == 7)
+				return 100;
+			if(fuel.getItem() == stick && fuel.getMetadata() == 8)
+				return 100;
+			if(fuel.getItem() == stick && fuel.getMetadata() == 9)
+				return 100;
+			if(fuel.getItem() == stick && fuel.getMetadata() == 10)
+				return 100;
+			if(fuel.getItem() == stick && fuel.getMetadata() == 11)
+				return 100;
+			if(fuel.getItem() == stick && fuel.getMetadata() == 12)
+				return 100;
+			if(fuel.getItem() == kepler22b_maple && fuel.getMetadata() == 0)
+				return 100;
+			if(fuel.getItem() == kepler22b_maple && fuel.getMetadata() == 1)
+				return 100;
+			if(fuel.getItem() == kepler22b_maple && fuel.getMetadata() == 2)
+				return 100;
+			if(fuel.getItem() == kepler22b_maple && fuel.getMetadata() == 3)
+				return 100;
+			if(fuel.getItem() == kepler22b_maple && fuel.getMetadata() == 4)
+				return 100;
+			if(fuel.getItem() == kepler22b_maple && fuel.getMetadata() == 5)
+				return 100;
+			
+			if(fuel.getItem() == SPItems.kepler22b_blue_maple_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.kepler22b_blue_maple_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.kepler22b_blue_maple_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.kepler22b_blue_maple_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.kepler22b_red_maple_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.kepler22b_red_maple_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.kepler22b_red_maple_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.kepler22b_red_maple_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.kepler22b_purple_maple_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.kepler22b_purple_maple_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.kepler22b_purple_maple_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.kepler22b_purple_maple_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.kepler22b_yellow_maple_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.kepler22b_yellow_maple_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.kepler22b_yellow_maple_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.kepler22b_yellow_maple_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.kepler22b_green_maple_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.kepler22b_green_maple_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.kepler22b_green_maple_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.kepler22b_green_maple_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.kepler22b_brown_maple_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.kepler22b_brown_maple_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.kepler22b_brown_maple_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.kepler22b_brown_maple_boots)
+				return 1200;
+		}
+		
 		if(fuel.getItem() == SPItems.paper_cup)
 			return 200;
 

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.gildedgames.the_aether.AetherConfig;
+import com.mjr.extraplanets.Config;
 
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.planets.asteroids.ConfigManagerAsteroids;
@@ -66,8 +67,54 @@ public class CommandSleep extends CommandBase{
     			dimension = new TextComponentTranslation("planet.mars", new Object[] {});
     		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == ConfigManagerAsteroids.dimensionIDAsteroids) {
     			dimension = new TextComponentTranslation("planet.asteroids", new Object[] {});
-    		}else if(sender.getCommandSenderEntity().world.provider.getDimension() == ConfigManagerVenus.dimensionIDVenus) {
+    		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == ConfigManagerVenus.dimensionIDVenus) {
     			dimension = new TextComponentTranslation("Venus", new Object[] {});
+    		}
+    		
+    		if(SPCompatibilityManager.isExtraPlanetsLoaded()) {
+    			if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.CALLISTO_ID) {
+        			dimension = new TextComponentTranslation("moon.callisto", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.CERES_ID) {
+        			dimension = new TextComponentTranslation("planet.Ceres", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.DEIMOS_ID) {
+        			dimension = new TextComponentTranslation("moon.deimos", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.ERIS_ID) {
+        			dimension = new TextComponentTranslation("planet.Eris", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.EUROPA_ID) {
+        			dimension = new TextComponentTranslation("moon.europa", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.GANYMEDE_ID) {
+        			dimension = new TextComponentTranslation("moon.ganymede", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.IAPETUS_ID) {
+        			dimension = new TextComponentTranslation("moon.iapetus", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.IO_ID) {
+        			dimension = new TextComponentTranslation("moon.io", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.JUPITER_ID) {
+        			dimension = new TextComponentTranslation("planet.Juptier", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.KEPLER22B_ID) {
+        			dimension = new TextComponentTranslation("planet.kepler22b", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.MERCURY_ID) {
+        			dimension = new TextComponentTranslation("planet.Mercury", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.NEPTUNE_ID) {
+        			dimension = new TextComponentTranslation("planet.Neptune", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.OBERON_ID) {
+        			dimension = new TextComponentTranslation("moon.oberon", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.PHOBOS_ID) {
+        			dimension = new TextComponentTranslation("moon.phobos", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.PLUTO_ID) {
+        			dimension = new TextComponentTranslation("planet.Pluto", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.RHEA_ID) {
+        			dimension = new TextComponentTranslation("moon.rhea", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.SATURN_ID) {
+        			dimension = new TextComponentTranslation("planet.Saturn", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.TITAN_ID) {
+        			dimension = new TextComponentTranslation("moon.titan", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.TITANIA_ID) {
+        			dimension = new TextComponentTranslation("moon.titania", new Object[] {});
+        		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.TRITON_ID) {
+         			dimension = new TextComponentTranslation("moon.triton", new Object[] {});
+         		} else if(sender.getCommandSenderEntity().world.provider.getDimension() == Config.URANUS_ID) {
+         			dimension = new TextComponentTranslation("planet.Uranus", new Object[] {});
+         		}
     		}
     	}
     	

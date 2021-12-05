@@ -1,9 +1,12 @@
 package net.coolsimulations.SurvivalPlus.core.recipes;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusGAC;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -60,11 +63,23 @@ public class SurvivalPlusSmeltingRecipes {
 		
 		for(ItemStack stack : OreDictionary.getOres(input)) {
 			if(FurnaceRecipes.instance().getSmeltingResult(stack) != null && removeCurrent) {
-				SurvivalPlusAPIRecipes.removeFurnaceRecipe(FurnaceRecipes.instance().getSmeltingResult(stack));
+				removeFurnaceRecipe(FurnaceRecipes.instance().getSmeltingResult(stack));
 			}
 			GameRegistry.addSmelting(stack, output, xp);
 		}
 		
+	}
+	
+	public static void removeFurnaceRecipe (ItemStack resultItem)
+	{
+		Map<ItemStack, ItemStack> recipes = FurnaceRecipes.instance().getSmeltingList();
+		for (Iterator<Map.Entry<ItemStack,ItemStack>> entries = recipes.entrySet().iterator(); entries.hasNext(); ){
+			Map.Entry<ItemStack,ItemStack> entry = entries.next();
+			ItemStack result = entry.getValue();
+			if (ItemStack.areItemStacksEqual(result, resultItem)){ // If the output matches the specified ItemStack,
+				entries.remove(); // Remove the recipe
+			}
+		}
 	}
 
 }
