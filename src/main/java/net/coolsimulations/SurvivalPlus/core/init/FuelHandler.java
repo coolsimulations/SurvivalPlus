@@ -1,5 +1,8 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
@@ -20,94 +23,99 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = SPReference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FuelHandler{
 	
-	@SubscribeEvent
-    public static void onFurnaceFuelBurnTimeEvent(FurnaceFuelBurnTimeEvent event)
-    {
-        ItemStack fuel = event.getItemStack();
-        
-        addArmorFuels(event, SPItems.oak);
-        addArmorFuels(event, SPItems.spruce);
-        addArmorFuels(event, SPItems.birch);
-        addArmorFuels(event, SPItems.jungle);
-        addArmorFuels(event, SPItems.acacia);
-        addArmorFuels(event, SPItems.dark_oak);
+	private static Map<Item, Integer> armor_fuel = new HashMap<Item, Integer>();
+	
+	public static void registerArmorFuels() {
+		
+		addArmorFuels(SPItems.oak);
+        addArmorFuels(SPItems.spruce);
+        addArmorFuels(SPItems.birch);
+        addArmorFuels(SPItems.jungle);
+        addArmorFuels(SPItems.acacia);
+        addArmorFuels(SPItems.dark_oak);
 		
 		if(SPCompatibilityManager.isBopLoaded()) {
 			
-			addArmorFuels(event, SPItems.cherry);
-			addArmorFuels(event, SPItems.dead);
-			addArmorFuels(event, SPItems.ethereal);
-			addArmorFuels(event, SPItems.fir);
-			addArmorFuels(event, SPItems.hellbark);
-			addArmorFuels(event, SPItems.jacaranda);
-			addArmorFuels(event, SPItems.magic);
-			addArmorFuels(event, SPItems.mahogany);
-			addArmorFuels(event, SPItems.palm);
-			addArmorFuels(event, SPItems.redwood);
-			addArmorFuels(event, SPItems.umbran);
-			addArmorFuels(event, SPItems.willow);
+			addArmorFuels(SPItems.cherry);
+			addArmorFuels(SPItems.dead);
+			addArmorFuels(SPItems.ethereal);
+			addArmorFuels(SPItems.fir);
+			addArmorFuels(SPItems.hellbark);
+			addArmorFuels(SPItems.jacaranda);
+			addArmorFuels(SPItems.magic);
+			addArmorFuels(SPItems.mahogany);
+			addArmorFuels(SPItems.palm);
+			addArmorFuels(SPItems.redwood);
+			addArmorFuels(SPItems.umbran);
+			addArmorFuels(SPItems.willow);
 		}
 		
 		if(SPCompatibilityManager.isBopExtrasLoaded()) {
 			
-			addArmorFuels(event, SPItems.ebony);
-			addArmorFuels(event, SPItems.eucalyptus);
-			addArmorFuels(event, SPItems.mangrove);
-			addArmorFuels(event, SPItems.pine);
-			addArmorFuels(event, SPItems.sacred_oak);
+			addArmorFuels(SPItems.ebony);
+			addArmorFuels(SPItems.eucalyptus);
+			addArmorFuels(SPItems.mangrove);
+			addArmorFuels(SPItems.pine);
+			addArmorFuels(SPItems.sacred_oak);
 		}
 		
 		if(SPCompatibilityManager.isForestryLoaded()) {
 			
-			addArmorFuels(event, SPItems.desert_acacia);
-			addArmorFuels(event, SPItems.balsa);
-			addArmorFuels(event, SPItems.baobab);
-			addArmorFuels(event, SPItems.cherry_forestry);
-			addArmorFuels(event, SPItems.chestnut);
-			addArmorFuels(event, SPItems.citrus);
-			addArmorFuels(event, SPItems.cocobolo);
-			addArmorFuels(event, SPItems.ebony_forestry);
-			addArmorFuels(event, SPItems.giant_sequoia);
-			addArmorFuels(event, SPItems.greenheart);
-			addArmorFuels(event, SPItems.ipe);
-			addArmorFuels(event, SPItems.kapok);
-			addArmorFuels(event, SPItems.larch);
-			addArmorFuels(event, SPItems.lime);
-			addArmorFuels(event, SPItems.mahoe);
-			addArmorFuels(event, SPItems.mahogany_forestry);
-			addArmorFuels(event, SPItems.maple);
-			addArmorFuels(event, SPItems.padauk);
-			addArmorFuels(event, SPItems.palm_forestry);
-			addArmorFuels(event, SPItems.papaya);
-			addArmorFuels(event, SPItems.pine_forestry);
-			addArmorFuels(event, SPItems.plum);
-			addArmorFuels(event, SPItems.poplar);
-			addArmorFuels(event, SPItems.sequoia);
-			addArmorFuels(event, SPItems.teak);
-			addArmorFuels(event, SPItems.walnut);
-			addArmorFuels(event, SPItems.wenge);
-			addArmorFuels(event, SPItems.willow_forestry);
-			addArmorFuels(event, SPItems.zebrawood);
+			addArmorFuels(SPItems.desert_acacia);
+			addArmorFuels(SPItems.balsa);
+			addArmorFuels(SPItems.baobab);
+			addArmorFuels(SPItems.cherry_forestry);
+			addArmorFuels(SPItems.chestnut);
+			addArmorFuels(SPItems.citrus);
+			addArmorFuels(SPItems.cocobolo);
+			addArmorFuels(SPItems.ebony_forestry);
+			addArmorFuels(SPItems.giant_sequoia);
+			addArmorFuels(SPItems.greenheart);
+			addArmorFuels(SPItems.ipe);
+			addArmorFuels(SPItems.kapok);
+			addArmorFuels(SPItems.larch);
+			addArmorFuels(SPItems.lime);
+			addArmorFuels(SPItems.mahoe);
+			addArmorFuels(SPItems.mahogany_forestry);
+			addArmorFuels(SPItems.maple);
+			addArmorFuels(SPItems.padauk);
+			addArmorFuels(SPItems.palm_forestry);
+			addArmorFuels(SPItems.papaya);
+			addArmorFuels(SPItems.pine_forestry);
+			addArmorFuels(SPItems.plum);
+			addArmorFuels(SPItems.poplar);
+			addArmorFuels(SPItems.sequoia);
+			addArmorFuels(SPItems.teak);
+			addArmorFuels(SPItems.walnut);
+			addArmorFuels(SPItems.wenge);
+			addArmorFuels(SPItems.willow_forestry);
+			addArmorFuels(SPItems.zebrawood);
 		}
 		
 		if (SPCompatibilityManager.isIc2Loaded()) {
-			addArmorFuels(event, SPItems.rubber);
+			addArmorFuels(SPItems.rubber);
 		}
 		
 		if(SPCompatibilityManager.isTraverseLoaded()) {
 			
-			addArmorFuels(event, SPItems.fir_traverse);
+			addArmorFuels(SPItems.fir_traverse);
 		}
 		
 		if (SPCompatibilityManager.isBambooModsLoaded()) {
-			if(fuel.getItem() == SPItems.bamboo_helmet)
-				event.setBurnTime(250);
-			if(fuel.getItem() == SPItems.bamboo_chestplate)
-				event.setBurnTime(400);
-			if(fuel.getItem() == SPItems.bamboo_leggings)
-				event.setBurnTime(350);
-			if(fuel.getItem() == SPItems.bamboo_boots)
-				event.setBurnTime(200);
+			addArmorFuels(SPItems.bamboo);
+		}
+	}
+	
+	@SubscribeEvent
+    public static void onFurnaceFuelBurnTimeEvent(FurnaceFuelBurnTimeEvent event)
+    {
+        ItemStack fuel = event.getItemStack();
+		
+		for(Map.Entry<Item, Integer> entry : armor_fuel.entrySet()) {
+			if(fuel.getItem() == entry.getKey()) {
+				event.setBurnTime(entry.getValue());
+				return;
+			}
 		}
 		
 		if(fuel.getItem() == SPItems.paper_cup)
@@ -132,7 +140,7 @@ public class FuelHandler{
         }
 	}
 	
-	private static void addArmorFuels(FurnaceFuelBurnTimeEvent event, NonNullList<ItemStack> item) {
+	private static void addArmorFuels(NonNullList<ItemStack> item) {
 
 		for(int i = 0; i < item.size(); i++) {
 			if(item.get(i).getItem() instanceof ArmorItem) {
@@ -158,7 +166,7 @@ public class FuelHandler{
 					value = 0;
 				}
 
-				event.setBurnTime(value);
+				armor_fuel.put(item.get(i).getItem(), value);
 			}
 		}
 	}

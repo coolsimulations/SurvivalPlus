@@ -128,6 +128,8 @@ public class SurvivalPlus {
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
+		
+		FuelHandler.registerArmorFuels();
 
 		SurvivalPlusDispenserBehavior.init();
 
