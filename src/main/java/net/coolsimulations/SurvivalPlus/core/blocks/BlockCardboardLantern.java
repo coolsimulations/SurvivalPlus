@@ -17,6 +17,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.CauldronBlock;
 import net.minecraft.block.HopperBlock;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.TrapDoorBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -33,7 +34,7 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.Half;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -289,6 +290,8 @@ public class BlockCardboardLantern extends BlockCardboard implements IWaterLogga
 		{
 			if(block instanceof TrapDoorBlock && !isTrapdoorValid(iblockstate, direction)) {
 				return false;
+			} else if(block instanceof SlabBlock && !isSlabValid(iblockstate, direction)) {
+				return false;
 			} else if(block instanceof BlockCardboardLantern && iblockstate.getValue(FACING).getAxis() == Direction.Axis.Y) {
 				return false;
 			} else {
@@ -341,6 +344,10 @@ public class BlockCardboardLantern extends BlockCardboard implements IWaterLogga
 		if(block instanceof HopperBlock) {
 			return false;
 		}
+		
+		if(block instanceof SlabBlock) {
+			return isSlabValid(state, direction);
+		}
 
 		if(block.isAir(state, worldIn, blockpos)) {
 			return false;
@@ -351,6 +358,10 @@ public class BlockCardboardLantern extends BlockCardboard implements IWaterLogga
 
 	protected static boolean isTrapdoorValid(BlockState state, Direction facing) {
 		return state.getProperties().contains(TrapDoorBlock.HALF) && (facing == Direction.UP && state.getValue(TrapDoorBlock.HALF) == Half.TOP || facing == Direction.DOWN && state.getValue(TrapDoorBlock.HALF) == Half.BOTTOM) && !state.getValue(TrapDoorBlock.OPEN);
+	}
+	
+	protected static boolean isSlabValid(BlockState state, Direction facing) {
+		return (state.getProperties().contains(SlabBlock.TYPE) && (facing == Direction.UP && state.getValue(SlabBlock.TYPE) == SlabType.TOP || facing == Direction.DOWN && state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM)) || state.getValue(SlabBlock.TYPE) == SlabType.DOUBLE;
 	}
 
 	/**
