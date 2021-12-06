@@ -38,6 +38,7 @@ import net.coolsimulations.SurvivalPlus.core.proxy.CommonProxy;
 import net.coolsimulations.SurvivalPlus.core.recipes.ButcherVillagerTradeHandler;
 import net.coolsimulations.SurvivalPlus.core.recipes.FarmerVillagerTradeHandler;
 import net.coolsimulations.SurvivalPlus.core.recipes.SmithVillagerTradeHandler;
+import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusDispenserBehavior;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusSmeltingRecipes;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusBlocksTab;
 import net.coolsimulations.SurvivalPlus.core.tabs.SurvivalPlusCombatTab;
@@ -130,6 +131,8 @@ public class SurvivalPlus {
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
 		
+		SurvivalPlusDispenserBehavior.init();
+		
 		if(SPCompatibilityManager.isHammerTimeLoaded()) {
 			SurvivalPlusHammerTime.init();
 		}
@@ -183,6 +186,7 @@ public class SurvivalPlus {
 		System.out.println("Post Init");
 		
 		SurvivalPlusCompatManager.initRecipies();
+		SurvivalPlusDispenserBehavior.postInit();
 	}
 
 	@EventHandler

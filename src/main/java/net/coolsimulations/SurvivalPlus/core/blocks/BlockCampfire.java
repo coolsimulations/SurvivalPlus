@@ -423,7 +423,7 @@ public class BlockCampfire extends Block{
 		}
 	}
 	
-	private void igniteCampfire(World worldIn, EntityPlayer playerIn, IBlockState state, BlockPos pos, SoundEvent sound) {
+	public void igniteCampfire(World worldIn, EntityPlayer playerIn, IBlockState state, BlockPos pos, SoundEvent sound) {
 		worldIn.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(BURNING, Boolean.valueOf(true)), 3);
 		worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, sound, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.4F + 0.8F, false);
 	}
@@ -453,7 +453,7 @@ public class BlockCampfire extends Block{
 		}
 	}
 
-	private void extinguishCampfire(World worldIn, EntityPlayer playerIn, IBlockState state, BlockPos pos, SoundEvent sound) {
+	public void extinguishCampfire(World worldIn, EntityPlayer playerIn, IBlockState state, BlockPos pos, SoundEvent sound) {
 		//defaultSmoke
 		double d0 = (double)pos.getX() + worldIn.rand.nextDouble();
 		double d1 = (double)pos.getY() + worldIn.rand.nextDouble() * 0.5D + 0.5D;
