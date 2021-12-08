@@ -40,7 +40,6 @@ public class FuelHandler{
 			
 			addArmorFuels(SPItems.cherry);
 			addArmorFuels(SPItems.dead);
-			addArmorFuels(SPItems.ethereal);
 			addArmorFuels(SPItems.fir);
 			addArmorFuels(SPItems.hellbark);
 			addArmorFuels(SPItems.jacaranda);
@@ -59,6 +58,7 @@ public class FuelHandler{
 			addArmorFuels(SPItems.mangrove);
 			addArmorFuels(SPItems.pine);
 			addArmorFuels(SPItems.sacred_oak);
+			addArmorFuels(SPItems.ethereal);
 		}
 		
 		if(SPCompatibilityManager.isForestryLoaded()) {
