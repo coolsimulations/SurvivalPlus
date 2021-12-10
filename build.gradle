@@ -89,7 +89,7 @@ dependencies {
     compile files('libs/lumberjack-API-2.0.0.jar')
     //compile files('libs/JustEnoughResources-1.15.2-0.10.1.77.jar')
     compile files('libs/notreepunching-API-forge-1.16.3-3.1.1.jar')
-    compile files('libs/CavesAndCliffsBackport-6.0.1.jar')
+    compile files('libs/cavesandcliffs-1.16.5-7.1.4.jar')
     compile files('libs/cloth-config-4.11.26-forge.jar')
 
     // Real examples

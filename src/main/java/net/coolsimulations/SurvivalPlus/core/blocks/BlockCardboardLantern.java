@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.blackgear.cavesandcliffs.common.blocks.AbstractCauldronBlock;
+import com.blackgear.cavesandcliffs.common.blocks.ICauldron;
 import com.blackgear.cavesandcliffs.core.registries.CCBBlocks;
 import com.blackgear.cavesandcliffs.core.registries.CCBParticleTypes;
 
@@ -274,7 +274,7 @@ public class BlockCardboardLantern extends BlockCardboard implements IWaterLogga
 		BlockState iblockstate = worldIn.getBlockState(pos.below());
 		FluidState ifluidstate = worldIn.getFluidState(pos.below());
 		Material material = iblockstate.getMaterial();
-		return ifluidstate.getType() == Fluids.WATER || (material == Material.ICE || material == Material.ICE_SOLID) || (iblockstate.getBlock() instanceof CauldronBlock && iblockstate.getValue(CauldronBlock.LEVEL) == 3) || (SPCompatibilityManager.isCavesAndCliffsBackportLoaded() && iblockstate.getBlock() instanceof AbstractCauldronBlock && iblockstate.getBlock() != CCBBlocks.LAVA_CAULDRON.get() && ((AbstractCauldronBlock) iblockstate.getBlock()).isFull(iblockstate));
+		return ifluidstate.getType() == Fluids.WATER || (material == Material.ICE || material == Material.ICE_SOLID) || (iblockstate.getBlock() instanceof CauldronBlock && iblockstate.getValue(CauldronBlock.LEVEL) == 3) || (SPCompatibilityManager.isCavesAndCliffsBackportLoaded() && iblockstate.getBlock() instanceof ICauldron && iblockstate.getBlock() != CCBBlocks.LAVA_CAULDRON.get() && ((ICauldron) iblockstate.getBlock()).isFull(iblockstate));
 	}
 
 	/**
@@ -312,7 +312,7 @@ public class BlockCardboardLantern extends BlockCardboard implements IWaterLogga
 		BlockPos blockpos = pos.relative(direction.getOpposite());
 		BlockState iblockstate = worldIn.getBlockState(blockpos);
 
-		return direction == Direction.UP && (iblockstate.getBlock() == Blocks.WATER || ((iblockstate.getMaterial() == Material.ICE || iblockstate.getMaterial() == Material.ICE_SOLID) && direction != Direction.DOWN) || (iblockstate.getBlock() instanceof CauldronBlock && iblockstate.getValue(CauldronBlock.LEVEL) == 3)  || (SPCompatibilityManager.isCavesAndCliffsBackportLoaded() && iblockstate.getBlock() instanceof AbstractCauldronBlock && iblockstate.getBlock() != CCBBlocks.LAVA_CAULDRON.get() && ((AbstractCauldronBlock) iblockstate.getBlock()).isFull(iblockstate)));
+		return direction == Direction.UP && (iblockstate.getBlock() == Blocks.WATER || ((iblockstate.getMaterial() == Material.ICE || iblockstate.getMaterial() == Material.ICE_SOLID) && direction != Direction.DOWN) || (iblockstate.getBlock() instanceof CauldronBlock && iblockstate.getValue(CauldronBlock.LEVEL) == 3)  || (SPCompatibilityManager.isCavesAndCliffsBackportLoaded() && iblockstate.getBlock() instanceof ICauldron && iblockstate.getBlock() != CCBBlocks.LAVA_CAULDRON.get() && ((ICauldron) iblockstate.getBlock()).isFull(iblockstate)));
 	}
 
 	protected boolean isWaterLogged(IWorld worldIn, BlockPos pos) {
