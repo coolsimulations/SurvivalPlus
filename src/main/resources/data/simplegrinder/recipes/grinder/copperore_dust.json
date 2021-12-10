@@ -4,8 +4,9 @@
   "ingredient": {
     "item": "survivalplus:copper_ore"
   },
-  "result": "survivalplus:copper_dust",
-  "count": 3,
-  "cookingtime": 150
 
+ "result": {
+ "item": "survivalplus:copper_dust",
+ "count": 4
+ }
 }

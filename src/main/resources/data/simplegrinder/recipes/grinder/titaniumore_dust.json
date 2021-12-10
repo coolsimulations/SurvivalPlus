@@ -4,8 +4,9 @@
   "ingredient": {
     "item": "survivalplus:titanium_ore"
   },
-  "result": "survivalplus:titanium_dust",
-  "count": 3,
-  "cookingtime": 150
 
+ "result": {
+ "item": "survivalplus:titanium_dust",
+ "count": 4
+ }
 }
