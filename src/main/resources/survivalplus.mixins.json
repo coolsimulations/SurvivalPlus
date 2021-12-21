@@ -19,7 +19,11 @@
     	"GuiMixin",
     	"MultiPlayerGameModeMixin",
     	"ClientPacketListenerMixin",
-    	"LocalPlayerMixin", "ClientLevelMixin"
+    	"LocalPlayerMixin", "ClientLevelMixin",
+    	"MinecraftMixin"
+    ],
+    "server": [
+        "ServerMainMixin"
     ],
     "injectors": {
         "defaultRequire": 1

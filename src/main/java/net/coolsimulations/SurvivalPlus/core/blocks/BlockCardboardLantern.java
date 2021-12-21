@@ -3,8 +3,7 @@ package net.coolsimulations.SurvivalPlus.core.blocks;
 import java.util.Iterator;
 import java.util.Random;
 
-import org.jetbrains.annotations.Nullable;
-
+import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -32,6 +31,7 @@ import net.minecraft.world.level.block.HopperBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,6 +40,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
@@ -275,6 +276,8 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		{
 			if(block instanceof TrapDoorBlock && !isTrapdoorValid(iblockstate, direction)) {
 				return false;
+			} else if(block instanceof SlabBlock && !isSlabValid(iblockstate, direction)) {
+				return false;
 			} else if(block instanceof BlockCardboardLantern && iblockstate.getValue(FACING).getAxis() == Direction.Axis.Y) {
 				return false;
 			} else {
@@ -327,6 +330,10 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		if(block instanceof HopperBlock) {
 			return false;
 		}
+		
+		if(block instanceof SlabBlock) {
+			return isSlabValid(state, direction);
+		}
 
 		if(state.isAir()) {
 			return false;
@@ -337,6 +344,10 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 
 	protected static boolean isTrapdoorValid(BlockState state, Direction facing) {
 		return state.getProperties().contains(TrapDoorBlock.HALF) && (facing == Direction.UP && state.getValue(TrapDoorBlock.HALF) == Half.TOP || facing == Direction.DOWN && state.getValue(TrapDoorBlock.HALF) == Half.BOTTOM) && !state.getValue(TrapDoorBlock.OPEN);
+	}
+	
+	protected static boolean isSlabValid(BlockState state, Direction facing) {
+		return (state.getProperties().contains(SlabBlock.TYPE) && (facing == Direction.UP && state.getValue(SlabBlock.TYPE) == SlabType.TOP || facing == Direction.DOWN && state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM)) || state.getValue(SlabBlock.TYPE) == SlabType.DOUBLE;
 	}
 
 	/**

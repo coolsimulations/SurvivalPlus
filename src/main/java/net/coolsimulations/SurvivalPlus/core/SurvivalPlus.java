@@ -39,7 +39,7 @@ import net.minecraft.server.players.UserWhiteListEntry;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class SurvivalPlus implements ModInitializer {
-	
+
 	private static SurvivalPlus instance;
 	public static SurvivalPlus getInstance()
 	{
@@ -80,7 +80,7 @@ public class SurvivalPlus implements ModInitializer {
 			CommandSleep.register(dispatcher);
 			CommandWeba.register(dispatcher);
 		});
-		
+
 		onServerLoad();
 
 		SurvivalPlusBlocks.init();
@@ -110,7 +110,7 @@ public class SurvivalPlus implements ModInitializer {
 
 		SurvivalPlusComposterRecipes.init();
 	}
-	
+
 	public void setupEvent() {
 		SurvivalPlusOreGenerator.generateOres();
 	}

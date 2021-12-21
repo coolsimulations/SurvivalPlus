@@ -40,11 +40,10 @@ public abstract class EntityMixin implements EntityAccessor{
 		}
 	}
 
-	@Inject(at = @At("TAIL"), method = "saveWithoutId", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "saveWithoutId", cancellable = true)
 	public void saveWithoutId(CompoundTag tag, CallbackInfoReturnable<CompoundTag> cir) {
 		try {
 			if(persistentData != null) tag.put("SurvivalPlusData", persistentData);
-			cir.setReturnValue(tag);
 		} catch (Throwable var8) {
 			CrashReport crashReport = CrashReport.forThrowable(var8, "Saving entity NBT");
 			CrashReportCategory crashReportSection = crashReport.addCategory("Entity being saved");

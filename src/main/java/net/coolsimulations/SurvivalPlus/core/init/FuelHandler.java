@@ -47,6 +47,10 @@ public class FuelHandler{
 			addArmorFuels(SPItems.fir_traverse);
 		}
 		
+		if(SPCompatibilityManager.isBlockusLoaded()) {
+			addArmorFuels(SPItems.white_oak);
+		}
+		
 		FuelRegistry.INSTANCE.add(SPItems.paper_cup, 200);
 
 		FuelRegistry.INSTANCE.add(SPItems.charcoal_bucket, 4800);
