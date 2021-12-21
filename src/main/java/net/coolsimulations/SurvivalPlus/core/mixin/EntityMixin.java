@@ -40,11 +40,10 @@ public abstract class EntityMixin implements EntityAccessor{
 		}
 	}
 
-	@Inject(at = @At("TAIL"), method = "toTag", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "toTag", cancellable = true)
 	public void toTag(CompoundTag tag, CallbackInfoReturnable<CompoundTag> cir) {
 		try {
 			if(persistentData != null) tag.put("SurvivalPlusData", persistentData);
-			cir.setReturnValue(tag);
 		} catch (Throwable var8) {
 			CrashReport crashReport = CrashReport.create(var8, "Saving entity NBT");
 			CrashReportSection crashReportSection = crashReport.addElement("Entity being saved");

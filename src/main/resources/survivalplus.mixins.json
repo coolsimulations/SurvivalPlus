@@ -21,7 +21,11 @@
     	"InGameHudMixin",
     	"ClientPlayerInteractionManagerMixin",
     	"ClientPlayNetworkHandlerMixin",
-    	"ClientPlayerEntityMixin", "ClientWorldMixin"
+    	"ClientPlayerEntityMixin", "ClientWorldMixin",
+    	"MinecraftClientMixin"
+    ],
+    "server": [
+        "MinecraftServerMixin"
     ],
     "injectors": {
         "defaultRequire": 1

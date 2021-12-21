@@ -41,6 +41,9 @@ public class SPCompatibilityManager {
 	public static final String SIMPLE_EMERALD_MODID = "emerald-tools-justfatlard";
 	public static final String SIMPLY_EMERALD_MODID = "simpleemeralds";
 	public static final String SIMPLE_QUARTZ_MODID = "quartz-tools-justfatlard";
+	
+	
+	public static final String FABRIC_LOADER_MODID = "fabricloader";
 
 	public static void checkForCompatibleMods(){
 
@@ -245,6 +248,31 @@ public class SPCompatibilityManager {
 	public static boolean isObsidianMaterialModsLoaded()
 	{
 		return isVanillaEnhancedLoaded();
+	}
+	
+	
+	public static boolean isFabricLoader12Loaded()
+	{
+		if(FabricLoader.getInstance().isModLoaded(FABRIC_LOADER_MODID))
+		{
+			String loader_version = FabricLoader.getInstance().getModContainer(FABRIC_LOADER_MODID).get().getMetadata().getVersion().getFriendlyString();
+			String[] version = loader_version.split("[.]");
+			
+			int major = Integer.parseInt(version[0]);
+			int minor = Integer.parseInt(version[1]);
+			//int patch = Integer.parseInt(version[2]);
+			
+			if(major > 0)
+			{
+				return true;
+			}
+			else if(minor >= 12)
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 }
