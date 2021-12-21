@@ -16,6 +16,7 @@ import net.coolsimulations.SurvivalPlus.core.commands.CommandWail;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWak;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWeba;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWoo;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusCompatManager;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
 import net.coolsimulations.SurvivalPlus.core.init.FuelHandler;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
@@ -27,7 +28,6 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusComposterRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusDispenserBehavior;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusBlockus;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
@@ -98,6 +98,8 @@ public class SurvivalPlus implements ModInitializer {
 		SurvivalPlusArmor.register();
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
+		
+		SurvivalPlusCompatManager.init();
 
 		FuelHandler.init();
 
@@ -106,11 +108,6 @@ public class SurvivalPlus implements ModInitializer {
 		setupEvent();
 
 		SurvivalPlusEventHandler.init();
-		
-		if(SPCompatibilityManager.isBlockusLoaded()) {
-			SurvivalPlusBlockus.init();
-			SurvivalPlusBlockus.register();
-		}
 		
 		SurvivalPlusComposterRecipes.init();
 	}

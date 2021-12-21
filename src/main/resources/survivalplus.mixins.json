@@ -13,14 +13,19 @@
         "LivingEntityMixin",
         "ServerPlayerGameModeMixin",
         "ServerLevelMixin",
-        "CakeBlockMixin", "CandleCakeBlockMixin"
+        "CakeBlockMixin", "CandleCakeBlockMixin",
+        "DispenserBlockMixin"
     ],
     "client": [
     	"BlockEntityWithoutLevelRendererMixin",
     	"GuiMixin",
     	"MultiPlayerGameModeMixin",
     	"ClientPacketListenerMixin",
-    	"LocalPlayerMixin", "ClientLevelMixin"
+    	"LocalPlayerMixin", "ClientLevelMixin",
+    	"MinecraftMixin"
+    ],
+    "server": [
+        "ServerMainMixin"
     ],
     "injectors": {
         "defaultRequire": 1

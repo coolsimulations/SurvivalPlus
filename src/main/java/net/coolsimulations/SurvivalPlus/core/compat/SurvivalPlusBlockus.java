@@ -1,4 +1,4 @@
-package net.coolsimulations.SurvivalPlus.core.util;
+package net.coolsimulations.SurvivalPlus.core.compat;
 
 import com.brand.blockus.Blockus;
 import com.brand.blockus.content.BlocksRegistration;

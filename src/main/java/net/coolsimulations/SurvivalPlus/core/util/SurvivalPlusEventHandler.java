@@ -6,7 +6,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
-import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
@@ -50,6 +49,7 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DeadBushBlock;
+import net.minecraft.world.level.block.GlowLichenBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.NetherSproutsBlock;
 import net.minecraft.world.level.block.SeagrassBlock;
@@ -233,6 +233,10 @@ public class SurvivalPlusEventHandler {
 				}
 				
 				if(block instanceof SeagrassBlock) {
+					replaceLootWithShears(block, id, supplier, manager, setter);
+				}
+				
+				if(block instanceof GlowLichenBlock) {
 					replaceLootWithShears(block, id, supplier, manager, setter);
 				}
 			}

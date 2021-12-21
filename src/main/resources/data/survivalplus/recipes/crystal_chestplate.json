@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_chestplate",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": [
+      {
+        "item": "the_aether:crystal_log"
+      },
+      {
+        "item": "the_aether:crystal_wood"
+      },
+      {
+        "item": "the_aether:stripped_crystal_log"
+      },
+      {
+        "item": "the_aether:stripped_crystal_wood"
+      }
+    ]
+  },
+  "result": {
+    "item": "survivalplus:crystal_chestplate"
+  }
+}

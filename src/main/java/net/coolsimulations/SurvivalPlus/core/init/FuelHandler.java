@@ -47,6 +47,18 @@ public class FuelHandler{
 			addArmorFuels(SPItems.fir_traverse);
 		}
 		
+		if(SPCompatibilityManager.isBlockusLoaded()) {
+			addArmorFuels(SPItems.white_oak);
+		}
+		
+		if(SPCompatibilityManager.isAetherRebornLoaded()) {
+			addArmorFuels(SPItems.skyroot);
+			addArmorFuels(SPItems.golden_oak);
+			addArmorFuels(SPItems.orange);
+			addArmorFuels(SPItems.crystal);
+			addArmorFuels(SPItems.wisteria);
+		}
+		
 		FuelRegistry.INSTANCE.add(SPItems.paper_cup, 200);
 
 		FuelRegistry.INSTANCE.add(SPItems.charcoal_bucket, 4800);

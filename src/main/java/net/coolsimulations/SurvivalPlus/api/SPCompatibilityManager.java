@@ -1,5 +1,7 @@
 package net.coolsimulations.SurvivalPlus.api;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.fabricmc.loader.api.FabricLoader;
 
 public class SPCompatibilityManager {
@@ -25,6 +27,10 @@ public class SPCompatibilityManager {
 	private static boolean modPulverizerLoaded;
 	private static boolean modIndustrialRevolutionLoaded;
 	private static boolean modModernIndustrializationLoaded;
+	private static boolean modObsidianEquipmentLoaded;
+	private static boolean modEmeraldEquipmentLoaded;
+	private static boolean modAdabraniumLoaded;
+	private static boolean modAetherRebornLoaded;
 
 	public static final String GCCORE_MODID = "galacticraft";
 	public static final String FABRIC_SHIELD_LIB_MODID = "fabricshieldlib";
@@ -47,6 +53,12 @@ public class SPCompatibilityManager {
 	public static final String PULVERIZER_MODID = "pulverizer_mod";
 	public static final String INDUSTRIAL_REVOLUTION_MODID = "indrev";
 	public static final String MODERN_INDUSTRIALIZATION_MODID = "modern_industrialization";
+	public static final String OBSIDIAN_EQUIPMENT_MODID = "obsidianequipment";
+	public static final String EMERALD_EQUIPMENT_MODID = "emeraldequipment";
+	public static final String ADABRANIUM_MODID = "adabraniummod";
+	public static final String AETHER_REBORN_MODID = "the_aether";
+	
+	public static final String FABRIC_LOADER_MODID = "fabricloader";
 
 	public static void checkForCompatibleMods(){
 
@@ -154,6 +166,26 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modModernIndustrializationLoaded = true;
 		}
+		
+		if (FabricLoader.getInstance().isModLoaded(OBSIDIAN_EQUIPMENT_MODID))
+		{
+			SPCompatibilityManager.modObsidianEquipmentLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(EMERALD_EQUIPMENT_MODID))
+		{
+			SPCompatibilityManager.modEmeraldEquipmentLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(ADABRANIUM_MODID))
+		{
+			SPCompatibilityManager.modAdabraniumLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(AETHER_REBORN_MODID))
+		{
+			SPCompatibilityManager.modAetherRebornLoaded = true;
+		}
 	}
 
 	public static boolean isGCLoaded()
@@ -240,14 +272,24 @@ public class SPCompatibilityManager {
 		return SPCompatibilityManager.modSimpleEmeraldLoaded;
 	}
 	
+	public static boolean isObsidianEquipmentLoaded()
+	{
+		return SPCompatibilityManager.modObsidianEquipmentLoaded;
+	}
+	
+	public static boolean isEmeraldEquipmentLoaded()
+	{
+		return SPCompatibilityManager.modEmeraldEquipmentLoaded;
+	}
+	
 	public static boolean isEmeraldMaterialModsLoaded()
 	{
-		return isMoreGemsLoaded() || isEasyEmeraldLoaded() || isVanillaEnhancedLoaded() || isRobinsEmeraldLoaded() || isSimpleEmeraldLoaded();
+		return isMoreGemsLoaded() || isEasyEmeraldLoaded() || isVanillaEnhancedLoaded() || isRobinsEmeraldLoaded() || isSimpleEmeraldLoaded() || isEmeraldEquipmentLoaded();
 	}
 	
 	public static boolean isObsidianMaterialModsLoaded()
 	{
-		return isVanillaEnhancedLoaded() || isEasyEmeraldLoaded();
+		return isVanillaEnhancedLoaded() || isEasyEmeraldLoaded() || isObsidianEquipmentLoaded();
 	}
 	
 	public static boolean isBambooExpandedModLoaded()
@@ -273,6 +315,41 @@ public class SPCompatibilityManager {
 	public static boolean isModernIndustrializationLoaded()
 	{
 		return SPCompatibilityManager.modModernIndustrializationLoaded;
+	}
+	
+	public static boolean isAdabraniumLoaded()
+	{
+		return SPCompatibilityManager.modAdabraniumLoaded;
+	}
+	
+	public static boolean isAetherRebornLoaded()
+	{
+		return SPCompatibilityManager.modAetherRebornLoaded;
+	}
+	
+	
+	public static boolean isFabricLoader12Loaded()
+	{
+		if(FabricLoader.getInstance().isModLoaded(FABRIC_LOADER_MODID))
+		{
+			String loader_version = FabricLoader.getInstance().getModContainer(FABRIC_LOADER_MODID).get().getMetadata().getVersion().getFriendlyString();
+			String[] version = loader_version.split("[.]");
+			
+			int major = Integer.parseInt(version[0]);
+			int minor = Integer.parseInt(version[1]);
+			//int patch = Integer.parseInt(version[2]);
+			
+			if(major > 0)
+			{
+				return true;
+			}
+			else if(minor >= 12)
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 }

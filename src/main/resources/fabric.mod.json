@@ -29,7 +29,7 @@
       "net.coolsimulations.SurvivalPlus.core.config.SPConfigGUI"
     ],
     "rei_plugins": [
-      "net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusREI"
+      "net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusREI"
     ]
   },
   

@@ -85,6 +85,21 @@ public enum SPArmorMaterial implements ArmorMaterial {
     }),
     redwoodVanillaEnhancedArmorMaterial("redwood_vanilla_enhanced", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(ItemTags.getAllTags().getTag(new ResourceLocation("c", "wood_sticks")));
+    }),
+    skyrootArmorMaterial("skyroot", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.of(ItemTags.getAllTags().getTag(new ResourceLocation("c", "wood_sticks")));
+    }),
+    goldenOakArmorMaterial("golden_oak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.of(ItemTags.getAllTags().getTag(new ResourceLocation("c", "wood_sticks")));
+    }),
+    orangeArmorMaterial("orange", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.of(ItemTags.getAllTags().getTag(new ResourceLocation("c", "wood_sticks")));
+    }),
+    crystalArmorMaterial("crystal", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.of(ItemTags.getAllTags().getTag(new ResourceLocation("c", "wood_sticks")));
+    }),
+    wisteriaArmorMaterial("wisteria", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.of(ItemTags.getAllTags().getTag(new ResourceLocation("c", "wood_sticks")));
     });
 	
 	private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};

@@ -1,6 +1,6 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.fabricmc.fabric.api.tag.TagRegistry;
+import net.fabricmc.fabric.api.tag.TagFactory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
@@ -15,6 +15,10 @@ public class SPTags
     	public static final Tag<Block> STORAGE_BLOCKS_BRONZE = tag("bronze_blocks");
     	public static final Tag<Block> STORAGE_BLOCKS_TITANIUM = tag("titanium_blocks");
     	
+    	public static final Tag<Block> RAW_STORAGE_BLOCKS_TIN = tag("raw_tin_blocks");
+    	public static final Tag<Block> RAW_STORAGE_BLOCKS_BRONZE = tag("raw_bronze_blocks");
+    	public static final Tag<Block> RAW_STORAGE_BLOCKS_TITANIUM = tag("raw_titanium_blocks");
+    	
     	public static final Tag<Block> ORES_COPPER = tag("copper_ores");
     	public static final Tag<Block> ORES_TIN = tag("tin_ores");
     	public static final Tag<Block> ORES_TITANIUM = tag("titanium_ores");
@@ -23,7 +27,7 @@ public class SPTags
 
     	private static Tag<Block> tag(String name)
         {
-        	return TagRegistry.block(new ResourceLocation("c", name));
+        	return TagFactory.BLOCK.create(new ResourceLocation("c", name));
         }
     }
 
@@ -78,7 +82,7 @@ public class SPTags
 
         private static Tag<Item> tag(String name)
         {
-        	return TagRegistry.item(new ResourceLocation("c", name));
+        	return TagFactory.ITEM.create(new ResourceLocation("c", name));
         }
     }
 }

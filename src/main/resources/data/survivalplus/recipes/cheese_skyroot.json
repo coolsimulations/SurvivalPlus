@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cheese",
+  "pattern": [
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "tag": "the_aether:milk_buckets"
+    }
+  },
+  "result": {
+    "item": "survivalplus:cheese",
+    "count": 6
+  }
+}

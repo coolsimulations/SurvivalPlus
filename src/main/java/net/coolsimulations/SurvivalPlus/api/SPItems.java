@@ -244,5 +244,39 @@ public class SPItems {
 	public static Item redwood_boots_vanilla_enhanced;
 	//public static ItemArmor.ArmorMaterial redwoodTerrestriaArmorMaterial;
 	public static NonNullList<ItemStack> redwood_vanilla_enhanced;
+	
+	/**
+	 * These are the Aether Reborn armor Items referred to in AetherRebornArmor along with the corresponding ArmorMaterial and Armor ItemStack List
+	 */
+	public static Item skyroot_helmet;
+	public static Item skyroot_chestplate;
+	public static Item skyroot_leggings;
+	public static Item skyroot_boots;
+	//public static ItemArmor.ArmorMaterial skyrootArmorMaterial;
+	public static NonNullList<ItemStack> skyroot;
+	public static Item golden_oak_helmet;
+	public static Item golden_oak_chestplate;
+	public static Item golden_oak_leggings;
+	public static Item golden_oak_boots;
+	//public static ItemArmor.ArmorMaterial goldenOakArmorMaterial;
+	public static NonNullList<ItemStack> golden_oak;
+	public static Item orange_helmet;
+	public static Item orange_chestplate;
+	public static Item orange_leggings;
+	public static Item orange_boots;
+	//public static ItemArmor.ArmorMaterial orangeArmorMaterial;
+	public static NonNullList<ItemStack> orange;
+	public static Item crystal_helmet;
+	public static Item crystal_chestplate;
+	public static Item crystal_leggings;
+	public static Item crystal_boots;
+	//public static ItemArmor.ArmorMaterial crystalArmorMaterial;
+	public static NonNullList<ItemStack> crystal;
+	public static Item wisteria_helmet;
+	public static Item wisteria_chestplate;
+	public static Item wisteria_leggings;
+	public static Item wisteria_boots;
+	//public static ItemArmor.ArmorMaterial wisteriaArmorMaterial;
+	public static NonNullList<ItemStack> wisteria;
 
 }

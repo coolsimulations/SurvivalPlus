@@ -157,6 +157,10 @@ public class SurvivalPlusArmor {
 		if(SPCompatibilityManager.isTerrestriaLoaded()) {
 			TerrestriaArmor.init();
 		}
+		
+		if(SPCompatibilityManager.isAetherRebornLoaded()) {
+			AetherRebornArmor.init();
+		}
 
 	}
 
@@ -188,6 +192,10 @@ public class SurvivalPlusArmor {
 		
 		if(SPCompatibilityManager.isTerrestriaLoaded()) {
 			TerrestriaArmor.register();
+		}
+		
+		if(SPCompatibilityManager.isAetherRebornLoaded()) {
+			AetherRebornArmor.register();
 		}
 	}
 	

@@ -51,10 +51,6 @@ public class SurvivalPlusUpdateHandler {
 				
 				updateInfo = new TranslatableComponent("sp.update.display3", new Object[] {sp, MCVersion});
 				updateInfo.withStyle(ChatFormatting.YELLOW);
-				
-				//updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
-				//updateInfo.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"));
-				
 			}
 			
 			if(!latestVersion.equals(SPReference.VERSION) && !latestVersion.equals("ended")) {
@@ -70,17 +66,10 @@ public class SurvivalPlusUpdateHandler {
 				updateInfo = new TranslatableComponent("sp.update.display1", new Object[] {sp, version});
 				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
-				//updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
-				//updateInfo.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"));
-				
 				if(latestVersionInfo != null) {
 					
 					updateVersionInfo = new TextComponent(latestVersionInfo);
 					updateVersionInfo.withStyle(ChatFormatting.DARK_AQUA, ChatFormatting.BOLD);
-					
-					//updateVersionInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
-					//updateVersionInfo.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"));
-					
 				}
 				
 			}

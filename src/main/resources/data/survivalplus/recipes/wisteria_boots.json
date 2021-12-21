@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_boots",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": [
+      {
+        "item": "the_aether:wisteria_log"
+      },
+      {
+        "item": "the_aether:wisteria_wood"
+      },
+      {
+        "item": "the_aether:stripped_wisteria_log"
+      },
+      {
+        "item": "the_aether:stripped_wisteria_wood"
+      }
+    ]
+  },
+  "result": {
+    "item": "survivalplus:wisteria_boots"
+  }
+}

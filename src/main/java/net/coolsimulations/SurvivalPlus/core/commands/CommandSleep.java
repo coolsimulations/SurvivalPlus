@@ -7,6 +7,7 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
+import net.id.aether.world.dimension.AetherDimension;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.commands.CommandRuntimeException;
@@ -50,6 +51,12 @@ public class CommandSleep {
 			TranslatableComponent dimension = null;
 			if (!SPCompatibilityManager.isGCLoaded() && sender.getLevel().dimension() == Level.OVERWORLD) {
 				dimension = new TranslatableComponent("createWorld.customize.preset.overworld", new Object[]{});
+			}
+
+			if (SPCompatibilityManager.isAetherRebornLoaded()) {
+				if(sender.getLevel().dimension() == AetherDimension.AETHER_WORLD_KEY) {
+					dimension = new TranslatableComponent("The Aether", new Object[]{});
+				}
 			}
 
 			if (sender.getLevel().dimension() == Level.END) {
@@ -117,6 +124,12 @@ public class CommandSleep {
 		TranslatableComponent dimension = null;
 		if(!SPCompatibilityManager.isGCLoaded() && sender.getLevel().dimension() == Level.OVERWORLD) {
 			dimension = new TranslatableComponent("createWorld.customize.preset.overworld", new Object[] {});
+		}
+		
+		if (SPCompatibilityManager.isAetherRebornLoaded()) {
+			if(sender.getLevel().dimension() == AetherDimension.AETHER_WORLD_KEY) {
+				dimension = new TranslatableComponent("The Aether", new Object[]{});
+			}
 		}
 
 		if(sender.getLevel().dimension() == Level.END) {
