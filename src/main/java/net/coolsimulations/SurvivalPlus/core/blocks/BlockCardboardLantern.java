@@ -16,9 +16,11 @@ import net.minecraft.block.CauldronBlock;
 import net.minecraft.block.HopperBlock;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
+import net.minecraft.block.SlabBlock;
 import net.minecraft.block.TrapdoorBlock;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.block.enums.BlockHalf;
+import net.minecraft.block.enums.SlabType;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -276,6 +278,8 @@ public class BlockCardboardLantern extends BlockCardboard implements Waterloggab
 		{
 			if(block instanceof TrapdoorBlock && !isTrapdoorValid(iblockstate, direction)) {
 				return false;
+			} else if(block instanceof SlabBlock && !isSlabValid(iblockstate, direction)) {
+				return false;
 			} else if(block instanceof BlockCardboardLantern && iblockstate.get(FACING).getAxis() == Direction.Axis.Y) {
 				return false;
 			} else {
@@ -325,6 +329,10 @@ public class BlockCardboardLantern extends BlockCardboard implements Waterloggab
 		if(block instanceof HopperBlock) {
 			return false;
 		}
+		
+		if(block instanceof SlabBlock) {
+			return isSlabValid(state, direction);
+		}
 
 		if(block.isAir(state)) {
 			return false;
@@ -335,6 +343,10 @@ public class BlockCardboardLantern extends BlockCardboard implements Waterloggab
 
 	protected static boolean isTrapdoorValid(BlockState state, Direction facing) {
 		return state.getProperties().contains(TrapdoorBlock.HALF) && (facing == Direction.UP && state.get(TrapdoorBlock.HALF) == BlockHalf.TOP || facing == Direction.DOWN && state.get(TrapdoorBlock.HALF) == BlockHalf.BOTTOM) && !state.get(TrapdoorBlock.OPEN);
+	}
+	
+	protected static boolean isSlabValid(BlockState state, Direction facing) {
+		return (state.getProperties().contains(SlabBlock.TYPE) && (facing == Direction.UP && state.get(SlabBlock.TYPE) == SlabType.TOP || facing == Direction.DOWN && state.get(SlabBlock.TYPE) == SlabType.BOTTOM)) || state.get(SlabBlock.TYPE) == SlabType.DOUBLE;
 	}
 
 	/**

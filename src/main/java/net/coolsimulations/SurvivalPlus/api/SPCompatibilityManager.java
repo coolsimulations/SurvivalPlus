@@ -23,6 +23,9 @@ public class SPCompatibilityManager {
 	public static final String BETTER_BAMBOO_MODID = "bamboomod";
 	public static final String TRAVERSE_MODID = "traverse";
 	public static final String TERRESTRIA_MODID = "terrestria";
+	
+	
+	public static final String FABRIC_LOADER_MODID = "fabricloader";
 
 	public static void checkForCompatibleMods(){
 
@@ -119,6 +122,31 @@ public class SPCompatibilityManager {
 	public static boolean isTerrestriaLoaded()
 	{
 		return SPCompatibilityManager.modTerrestriaLoaded;
+	}
+	
+	
+	public static boolean isFabricLoader12Loaded()
+	{
+		if(FabricLoader.getInstance().isModLoaded(FABRIC_LOADER_MODID))
+		{
+			String loader_version = FabricLoader.getInstance().getModContainer(FABRIC_LOADER_MODID).get().getMetadata().getVersion().getFriendlyString();
+			String[] version = loader_version.split("[.]");
+			
+			int major = Integer.parseInt(version[0]);
+			int minor = Integer.parseInt(version[1]);
+			//int patch = Integer.parseInt(version[2]);
+			
+			if(major > 0)
+			{
+				return true;
+			}
+			else if(minor >= 12)
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 }
