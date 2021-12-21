@@ -1,4 +1,4 @@
-package net.coolsimulations.SurvivalPlus.core.util;
+package net.coolsimulations.SurvivalPlus.core.compat;
 
 /**import jeresources.api.IJERAPI;
 import jeresources.api.JERPlugin;

@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:bamboo_helmet"
-  }
+  },
+  "conditions": [
+    {
+      "item": "survivalplus:bamboo_helmet",
+      "type": "forge:item_exists"
+    }
+  ]
 }

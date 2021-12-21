@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "lumberjack:titanium_lumberaxe"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "lumberjack",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:ethereal_helmet"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplentyextras",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:eucalyptus_leggings"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplentyextras",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:mahogany_helmet"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplenty",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

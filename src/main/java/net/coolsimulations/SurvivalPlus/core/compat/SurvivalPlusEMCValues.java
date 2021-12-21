@@ -1,4 +1,4 @@
-package net.coolsimulations.SurvivalPlus.core.util;
+package net.coolsimulations.SurvivalPlus.core.compat;
 
 import java.util.HashMap;
 import java.util.Iterator;

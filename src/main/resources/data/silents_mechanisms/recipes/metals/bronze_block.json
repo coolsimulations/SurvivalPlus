@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:bronze_block"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "silents_mechanisms",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

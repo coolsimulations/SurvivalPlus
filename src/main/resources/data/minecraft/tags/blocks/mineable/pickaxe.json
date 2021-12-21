@@ -3,11 +3,11 @@
   "values": [
     "#forge:ores/tin",
     "#forge:storage_blocks/tin",
-    "#forge:raw_storage_blocks/tin",
+    "#forge:storage_blocks/raw_tin",
     "#forge:storage_blocks/bronze",
     "#forge:ores/titanium",
     "#forge:storage_blocks/titanium",
-    "#forge:raw_storage_blocks/titanium",
+    "#forge:storage_blocks/raw_titanium",
     "survivalplus:ruby_cluster",
     "survivalplus:small_ruby_bud",
     "survivalplus:medium_ruby_bud",

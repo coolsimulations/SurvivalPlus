@@ -1,4 +1,4 @@
-package net.coolsimulations.SurvivalPlus.core.util;
+package net.coolsimulations.SurvivalPlus.core.compat;
 
 import com.alcatrazescapee.notreepunching.common.ModItemGroup;
 import com.alcatrazescapee.notreepunching.common.items.KnifeItem;

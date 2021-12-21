@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:jacaranda_boots"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplenty",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

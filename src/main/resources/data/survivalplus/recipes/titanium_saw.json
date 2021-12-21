@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "survivalplus:titanium_saw"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "notreepunching",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

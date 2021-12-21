@@ -12,5 +12,11 @@
   "result": {
     "item": "gemsandcrystals:amethyst_block",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "modid": "gemsandcrystals",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

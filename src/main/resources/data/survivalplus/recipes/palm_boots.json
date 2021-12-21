@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:palm_boots"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplenty",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

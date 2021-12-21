@@ -9,5 +9,11 @@
       "item": "survivalplus:titanium_dust",
       "count": 1
     }
+  ],
+  "conditions": [
+    {
+      "modid": "silents_mechanisms",
+      "type": "forge:mod_loaded"
+    }
   ]
 }

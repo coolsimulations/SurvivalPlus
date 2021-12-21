@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:bamboo_chestplate"
-  }
+  },
+  "conditions": [
+    {
+      "item": "survivalplus:bamboo_chestplate",
+      "type": "forge:item_exists"
+    }
+  ]
 }

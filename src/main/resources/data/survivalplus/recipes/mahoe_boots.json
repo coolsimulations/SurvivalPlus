@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:mahoe_boots"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "forestry",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

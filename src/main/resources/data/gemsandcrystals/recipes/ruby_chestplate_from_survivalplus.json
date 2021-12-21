@@ -13,5 +13,11 @@
   "result": {
     "item": "gemsandcrystals:ruby_chestplate",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "modid": "gemsandcrystals",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

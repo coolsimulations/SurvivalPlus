@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:mahoe_leggings"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "forestry",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

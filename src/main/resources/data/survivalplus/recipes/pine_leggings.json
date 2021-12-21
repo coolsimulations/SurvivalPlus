@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:pine_leggings"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplentyextras",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

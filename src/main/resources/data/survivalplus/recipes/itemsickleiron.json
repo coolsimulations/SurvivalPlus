@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "hammertime:itemsickleiron"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "hammertime",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

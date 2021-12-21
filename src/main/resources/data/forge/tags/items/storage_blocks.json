@@ -5,6 +5,8 @@
     "#forge:storage_blocks/tin",
     "#forge:storage_blocks/bronze",
     "#forge:storage_blocks/titanium",
+    "#forge:storage_blocks/raw_tin",
+    "#forge:storage_blocks/raw_titanium",
     "#forge:storage_blocks/ruby",
     "#forge:storage_blocks/pearl",
     "#forge:storage_blocks/topaz",

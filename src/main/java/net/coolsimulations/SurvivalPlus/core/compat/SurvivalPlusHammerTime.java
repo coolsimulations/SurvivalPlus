@@ -1,4 +1,4 @@
-package net.coolsimulations.SurvivalPlus.core.util;
+package net.coolsimulations.SurvivalPlus.core.compat;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;

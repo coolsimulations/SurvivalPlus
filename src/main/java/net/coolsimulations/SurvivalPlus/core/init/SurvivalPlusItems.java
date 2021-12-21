@@ -25,12 +25,12 @@ public class SurvivalPlusItems {
 		SPItems.charcoal_bucket = new Item(new Item.Properties().tab(SPTabs.tabMaterials).stacksTo(1).craftRemainder(Items.BUCKET)).setRegistryName("charcoal_bucket");
 		SPItems.paper_cup = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("paper_cup");
 
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded())
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded() || SPCompatibilityManager.isPlainGrinderLoaded())
 		{
 			SPItems.titanium_dust = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("titanium_dust");
 		}
 
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isPlainGrinderLoaded())
 		{
 			SPItems.tin_dust = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("tin_dust");
 		}
@@ -65,12 +65,12 @@ public class SurvivalPlusItems {
 		registerItem(SPItems.charcoal_bucket);
 		registerItem(SPItems.paper_cup);
 
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded())
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded() || SPCompatibilityManager.isPlainGrinderLoaded())
 		{
 			registerItem(SPItems.titanium_dust);
 		}
 
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded())
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isPlainGrinderLoaded())
 		{
 			registerItem(SPItems.tin_dust);
 		}

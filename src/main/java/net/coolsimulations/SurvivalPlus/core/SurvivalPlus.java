@@ -14,6 +14,8 @@ import net.coolsimulations.SurvivalPlus.core.commands.CommandWail;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWak;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWeba;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWoo;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusCompatManager;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfigGUI;
 import net.coolsimulations.SurvivalPlus.core.init.FuelHandler;
@@ -28,12 +30,7 @@ import net.coolsimulations.SurvivalPlus.core.proxy.CommonProxy;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusComposterRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusDispenserBehavior;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusAPIRecipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusHammerTime;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusIC2Recipes;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusLumberjack;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -111,6 +108,7 @@ public class SurvivalPlus {
 		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(RecipeSerializer.class, SurvivalPlus::registerRecipes);;
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
+		SurvivalPlusCompatManager.initEventHandler();
 
 		SurvivalPlusBlocks.init();
 		SurvivalPlusBlocks.register();
@@ -130,19 +128,12 @@ public class SurvivalPlus {
 		SurvivalPlusTools.init();
 		SurvivalPlusTools.register();
 		
+		FuelHandler.registerArmorFuels();
+		
+		SurvivalPlusCompatManager.init();
 		SurvivalPlusDispenserBehavior.init();
 		
 		proxy.init();
-
-		if(SPCompatibilityManager.isHammerTimeLoaded()) {
-			SurvivalPlusHammerTime.init();
-		}
-
-		if(SPCompatibilityManager.isLumberjackLoaded()) {
-			SurvivalPlusLumberjack.init();
-			SurvivalPlusLumberjack.register();
-			MinecraftForge.EVENT_BUS.register(new SurvivalPlusLumberjack.SPEventHandler());
-		}
 
 		if (SPCompatibilityManager.isProjectELoaded())
 		{
@@ -154,13 +145,6 @@ public class SurvivalPlus {
     			SurvivalPlusJER.init();
         }
 		 **/
-
-		SurvivalPlusAPIRecipes.loadRecipes();
-
-		if (SPCompatibilityManager.isIc2Loaded())
-		{
-			SurvivalPlusIC2Recipes.init();
-		}
 		
 		SurvivalPlusComposterRecipes.init();
 

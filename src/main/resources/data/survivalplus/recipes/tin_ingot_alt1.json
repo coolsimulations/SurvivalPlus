@@ -13,5 +13,14 @@
   },
   "result": {
     "item": "survivalplus:tin_ingot"
-  }
+  },
+  "conditions": [
+    {
+      "value": {
+        "tag": "forge:nuggets/tin",
+        "type": "forge:tag_empty"
+      },
+      "type": "forge:not"
+    }
+  ]
 }

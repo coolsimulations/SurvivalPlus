@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:rubber_chestplate"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "ic2",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

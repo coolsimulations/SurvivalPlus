@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:redwood_chestplate"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplenty",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

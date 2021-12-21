@@ -12,5 +12,11 @@
   "result": {
     "item": "gemsandcrystals:topaz_boots",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "modid": "gemsandcrystals",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

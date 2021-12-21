@@ -1,0 +1,16 @@
+{
+  "type": "plaingrinder:grinder",
+  "input": {
+    "tag": "forge:raw_materials/titanium"
+  },
+  "result": {
+    "item": "survivalplus:titanium_dust",
+    "count": 2
+  },
+  "conditions": [
+    {
+      "modid": "plaingrinder",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

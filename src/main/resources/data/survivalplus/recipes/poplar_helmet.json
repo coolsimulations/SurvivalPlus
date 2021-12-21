@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:poplar_helmet"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "forestry",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

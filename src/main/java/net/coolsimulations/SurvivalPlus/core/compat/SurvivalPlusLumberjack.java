@@ -1,4 +1,4 @@
-package net.coolsimulations.SurvivalPlus.core.util;
+package net.coolsimulations.SurvivalPlus.core.compat;
 
 import java.util.UUID;
 
@@ -25,6 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -50,6 +51,11 @@ public class SurvivalPlusLumberjack {
 				}
 			}**/
 		}
+	}
+	
+	public static void registerEventHandler() {
+		
+		MinecraftForge.EVENT_BUS.register(new SurvivalPlusLumberjack.SPEventHandler());
 	}
 	
 	public static void register() {

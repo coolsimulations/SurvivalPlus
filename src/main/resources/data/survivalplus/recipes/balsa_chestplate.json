@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:balsa_chestplate"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "forestry",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

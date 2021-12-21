@@ -5,5 +5,11 @@
     },
     "result": "survivalplus:bronze_ingot",
     "experience": 1.0,
-    "cookingtime": 100
+    "cookingtime": 100,
+    "conditions": [
+      {
+        "modid": "silents_mechanisms",
+        "type": "forge:mod_loaded"
+      }
+    ]
 }

@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:willow_helmet"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "forestry",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

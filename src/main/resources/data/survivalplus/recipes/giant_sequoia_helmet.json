@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:giant_sequoia_helmet"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "forestry",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

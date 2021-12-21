@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:zebrawood_helmet"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "forestry",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

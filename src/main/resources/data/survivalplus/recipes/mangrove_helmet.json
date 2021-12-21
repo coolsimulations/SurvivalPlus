@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:mangrove_helmet"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplentyextras",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "survivalplus:titanium_mattock"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "notreepunching",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

@@ -16,5 +16,11 @@
   "result": {
     "item": "gemsandcrystals:topaz_sword",
     "count": 1
-  }
+  },
+  "conditions": [
+    {
+      "modid": "gemsandcrystals",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

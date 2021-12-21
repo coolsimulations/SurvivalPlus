@@ -7,8 +7,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.level.Level;
 
-import net.minecraft.world.item.Item.Properties;
-
 public class SPItemCupcake extends Item {
 
 	public SPItemCupcake(Properties properties) {

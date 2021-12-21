@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:padauk_leggings"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "forestry",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

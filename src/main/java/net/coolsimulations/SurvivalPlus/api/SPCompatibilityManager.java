@@ -37,8 +37,11 @@ public class SPCompatibilityManager {
 	private static boolean modBambooEverythingLoaded;
 	private static boolean modBamboo2Loaded;
 	private static boolean modClothConfigLoaded;
-	private static boolean modCavesandCliffsBackportLoaded;
 	private static boolean modBambooTweaksLoaded;
+	private static boolean modFancyToolsLoaded;
+	private static boolean modObsidianEquipmentLoaded;
+	private static boolean modEmeraldEquipmentLoaded;
+	private static boolean modPlainGrinderLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -74,8 +77,11 @@ public class SPCompatibilityManager {
 	public static final String BAMBOO_EVERYTHING_MODID = "bambooeverything";
 	public static final String BAMBOO_2_MODID = "bamboo2";
 	public static final String CLOTH_CONFIG_MODID = "cloth_config";
-	public static final String CAVES_AND_CLIFFS_BACKPORT_MODID = "cavesandcliffs";
 	public static final String BAMBOO_TWEAKS_MODID = "bambootweaks";
+	public static final String FANCYTOOLS_MODID = "fancytools";
+	public static final String OBSIDIAN_EQUIPMENT_MODID = "obsidianequipment";
+	public static final String EMERALD_EQUIPMENT_MODID = "emeraldequipment";
+	public static final String PLAIN_GRINDER_MODID = "plaingrinder";
 
 	public static void checkForCompatibleMods(){
 
@@ -245,14 +251,29 @@ public class SPCompatibilityManager {
 			SPCompatibilityManager.modClothConfigLoaded = true;
 		}
 		
-		if (ModList.get().isLoaded(CAVES_AND_CLIFFS_BACKPORT_MODID))
-		{
-			SPCompatibilityManager.modCavesandCliffsBackportLoaded = true;
-		}
-		
 		if (ModList.get().isLoaded(BAMBOO_TWEAKS_MODID))
 		{
 			SPCompatibilityManager.modBambooTweaksLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(FANCYTOOLS_MODID))
+		{
+			SPCompatibilityManager.modFancyToolsLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(OBSIDIAN_EQUIPMENT_MODID))
+		{
+			SPCompatibilityManager.modObsidianEquipmentLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(EMERALD_EQUIPMENT_MODID))
+		{
+			SPCompatibilityManager.modEmeraldEquipmentLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(PLAIN_GRINDER_MODID))
+		{
+			SPCompatibilityManager.modPlainGrinderLoaded = true;
 		}
 	}
 
@@ -396,14 +417,29 @@ public class SPCompatibilityManager {
 		return SPCompatibilityManager.modEasyEmeraldToolsLoaded;
 	}
 	
+	public static boolean isFancyToolsLoaded()
+	{
+		return SPCompatibilityManager.modFancyToolsLoaded;
+	}
+	
+	public static boolean isObsidianEquipmentLoaded()
+	{
+		return SPCompatibilityManager.modObsidianEquipmentLoaded;
+	}
+	
+	public static boolean isEmeraldEquipmentLoaded()
+	{
+		return SPCompatibilityManager.modEmeraldEquipmentLoaded;
+	}
+	
 	public static boolean isEmeraldMaterialModsLoaded()
 	{
-		return isSimpleEmeraldLoaded() || isEasyEmeraldLoaded();
+		return isSimpleEmeraldLoaded() || isEasyEmeraldLoaded() || isFancyToolsLoaded() || isEmeraldEquipmentLoaded();
 	}
 	
 	public static boolean isObsidianMaterialModsLoaded()
 	{
-		return isOAATLoaded() || isEasyEmeraldLoaded();
+		return isOAATLoaded() || isEasyEmeraldLoaded() || isFancyToolsLoaded() || isObsidianEquipmentLoaded();
 	}
 	
 	public static boolean isWeepingAngelsLoaded()
@@ -440,9 +476,9 @@ public class SPCompatibilityManager {
 		return SPCompatibilityManager.modClothConfigLoaded;
 	}
 	
-	public static boolean isCavesAndCliffsBackportLoaded()
+	public static boolean isPlainGrinderLoaded()
 	{
-		return SPCompatibilityManager.modCavesandCliffsBackportLoaded;
+		return SPCompatibilityManager.modPlainGrinderLoaded;
 	}
 
 }

@@ -1,0 +1,19 @@
+{
+  "type": "smelting",
+  "group": "tin_ingot",
+  "ingredient": {
+    "tag": "forge:dusts/tin"
+  },
+  "result": "survivalplus:tin_ingot",
+  "experience": 0.7,
+  "cookingtime": 200,
+  "conditions": [
+    {
+      "value": {
+        "tag": "forge:dusts/tin",
+        "type": "forge:tag_empty"
+      },
+      "type": "forge:not"
+    }
+  ]
+}

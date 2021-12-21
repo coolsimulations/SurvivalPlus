@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:tin_block"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "silents_mechanisms",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

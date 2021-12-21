@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "hammertime:itemshoveldiamond"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "hammertime",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

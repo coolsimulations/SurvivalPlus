@@ -25,5 +25,14 @@
   },
   "result": {
     "item": "survivalplus:sponge_cake"
-  }
+  },
+  "conditions": [
+    {
+      "value": {
+        "tag": "forge:food/flour",
+        "type": "forge:tag_empty"
+      },
+      "type": "forge:not"
+    }
+  ]
 }

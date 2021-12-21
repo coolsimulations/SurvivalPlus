@@ -31,16 +31,6 @@ public class BOPArmor {
 		SPItems.dead.add(1, new ItemStack(SPItems.dead_chestplate));
 		SPItems.dead.add(2, new ItemStack(SPItems.dead_leggings));
 		SPItems.dead.add(3, new ItemStack(SPItems.dead_boots));
-		
-		SPItems.ethereal_helmet = new SPItemArmor(SPArmorMaterial.etherealArmorMaterial, EquipmentSlot.HEAD).setRegistryName("ethereal_helmet");
-		SPItems.ethereal_chestplate = new SPItemArmor(SPArmorMaterial.etherealArmorMaterial, EquipmentSlot.CHEST).setRegistryName("ethereal_chestplate");
-		SPItems.ethereal_leggings = new SPItemArmor(SPArmorMaterial.etherealArmorMaterial, EquipmentSlot.LEGS).setRegistryName("ethereal_leggings");
-		SPItems.ethereal_boots = new SPItemArmor(SPArmorMaterial.etherealArmorMaterial, EquipmentSlot.FEET).setRegistryName("ethereal_boots");
-		SPItems.ethereal = NonNullList.create();
-		SPItems.ethereal.add(0, new ItemStack(SPItems.ethereal_helmet));
-		SPItems.ethereal.add(1, new ItemStack(SPItems.ethereal_chestplate));
-		SPItems.ethereal.add(2, new ItemStack(SPItems.ethereal_leggings));
-		SPItems.ethereal.add(3, new ItemStack(SPItems.ethereal_boots));
 
 		SPItems.fir_helmet = new SPItemArmor(SPArmorMaterial.firArmorMaterial, EquipmentSlot.HEAD).setRegistryName("fir_helmet");
 		SPItems.fir_chestplate = new SPItemArmor(SPArmorMaterial.firArmorMaterial, EquipmentSlot.CHEST).setRegistryName("fir_chestplate");
@@ -183,6 +173,16 @@ public class BOPArmor {
 			SPItems.sacred_oak.add(1, new ItemStack(SPItems.sacred_oak_chestplate));
 			SPItems.sacred_oak.add(2, new ItemStack(SPItems.sacred_oak_leggings));
 			SPItems.sacred_oak.add(3, new ItemStack(SPItems.sacred_oak_boots));
+			
+			SPItems.ethereal_helmet = new SPItemArmor(SPArmorMaterial.etherealArmorMaterial, EquipmentSlot.HEAD).setRegistryName("ethereal_helmet");
+			SPItems.ethereal_chestplate = new SPItemArmor(SPArmorMaterial.etherealArmorMaterial, EquipmentSlot.CHEST).setRegistryName("ethereal_chestplate");
+			SPItems.ethereal_leggings = new SPItemArmor(SPArmorMaterial.etherealArmorMaterial, EquipmentSlot.LEGS).setRegistryName("ethereal_leggings");
+			SPItems.ethereal_boots = new SPItemArmor(SPArmorMaterial.etherealArmorMaterial, EquipmentSlot.FEET).setRegistryName("ethereal_boots");
+			SPItems.ethereal = NonNullList.create();
+			SPItems.ethereal.add(0, new ItemStack(SPItems.ethereal_helmet));
+			SPItems.ethereal.add(1, new ItemStack(SPItems.ethereal_chestplate));
+			SPItems.ethereal.add(2, new ItemStack(SPItems.ethereal_leggings));
+			SPItems.ethereal.add(3, new ItemStack(SPItems.ethereal_boots));
 		}
 	}
 	
@@ -190,7 +190,6 @@ public class BOPArmor {
 	{
 		SurvivalPlusArmor.registerItem(SPItems.cherry);
 		SurvivalPlusArmor.registerItem(SPItems.dead);
-		SurvivalPlusArmor.registerItem(SPItems.ethereal);
 		SurvivalPlusArmor.registerItem(SPItems.fir);
 		SurvivalPlusArmor.registerItem(SPItems.hellbark);
 		SurvivalPlusArmor.registerItem(SPItems.jacaranda);
@@ -208,6 +207,7 @@ public class BOPArmor {
 			SurvivalPlusArmor.registerItem(SPItems.mangrove);
 			SurvivalPlusArmor.registerItem(SPItems.pine);
 			SurvivalPlusArmor.registerItem(SPItems.sacred_oak);
+			SurvivalPlusArmor.registerItem(SPItems.ethereal);
 		}
 	}
 

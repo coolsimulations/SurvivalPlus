@@ -14,5 +14,11 @@
   },
   "result": {
     "item": "survivalplus:titanium_knife"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "notreepunching",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

@@ -1,6 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
-import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
@@ -32,7 +33,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -42,6 +42,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CakeBlock;
@@ -50,7 +51,6 @@ import net.minecraft.world.level.block.CandleCakeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
@@ -70,7 +70,6 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 
 public class SurvivalPlusEventHandler {
@@ -175,21 +174,21 @@ public class SurvivalPlusEventHandler {
 
 	@SubscribeEvent
 	public void rightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
-		BlockState state = event.getWorld().getBlockState(event.getPos());
+		Level world = event.getWorld();
+		Block block = world.getBlockState(event.getPos()).getBlock();
+		BlockState state = world.getBlockState(event.getPos());
 
 		Player entityplayer = event.getPlayer();
 		ItemStack itemStackIn = entityplayer.getItemInHand(event.getHand());
 		Item item = itemStackIn.getItem();
-		ItemStack itemStackIn1 = itemStackIn.copy();
 		
 		if(block instanceof CampfireBlock) {
 			if(state.getValue(CampfireBlock.LIT) && item == Items.BUCKET  && !entityplayer.getAbilities().instabuild) {
-				if (!event.getWorld().isClientSide()) {
-					event.getWorld().levelEvent((Player) null, 1009, event.getPos(), 0);
+				if (!world.isClientSide()) {
+					world.levelEvent((Player) null, 1009, event.getPos(), 0);
 				}
-				CampfireBlock.dowse(entityplayer, event.getWorld(), event.getPos(), state);
-				event.getWorld().setBlockAndUpdate(event.getPos(), state.setValue(CampfireBlock.LIT, false));
+				CampfireBlock.dowse(entityplayer, world, event.getPos(), state);
+				world.setBlockAndUpdate(event.getPos(), state.setValue(CampfireBlock.LIT, false));
 				if(itemStackIn.getCount() == 1) {
 					if (ItemStack.isSame(entityplayer.getOffhandItem(), itemStackIn))
 					{
@@ -217,14 +216,14 @@ public class SurvivalPlusEventHandler {
 
 			if(entityplayer.getItemInHand(event.getHand()).getItem() == SPItems.paper_cup) {
 
-				if(!event.getWorld().isClientSide) {
+				if(!world.isClientSide) {
 
 					int bites = (Integer)state.getValue(CakeBlock.BITES);
 
 					if (bites < CakeBlock.MAX_BITES) {
-						event.getWorld().setBlock(event.getPos(), (BlockState)state.setValue(CakeBlock.BITES, bites + 1), 3);
+						world.setBlock(event.getPos(), (BlockState)state.setValue(CakeBlock.BITES, bites + 1), 3);
 					} else {
-						event.getWorld().removeBlock(event.getPos(), false);
+						world.removeBlock(event.getPos(), false);
 					}
 
 					if(!entityplayer.isCreative()) {
@@ -255,14 +254,14 @@ public class SurvivalPlusEventHandler {
 				event.setCanceled(true);
 			}
 			
-			if(!event.getWorld().isClientSide) {
+			if(!world.isClientSide) {
 				
 				int bites = (Integer)Blocks.CAKE.defaultBlockState().getValue(CakeBlock.BITES);
 
 				if (bites < CakeBlock.MAX_BITES) {
-					event.getWorld().setBlock(event.getPos(), (BlockState)Blocks.CAKE.defaultBlockState().setValue(CakeBlock.BITES, bites + 1), 3);
+					world.setBlock(event.getPos(), (BlockState)Blocks.CAKE.defaultBlockState().setValue(CakeBlock.BITES, bites + 1), 3);
 				} else {
-					event.getWorld().removeBlock(event.getPos(), false);
+					world.removeBlock(event.getPos(), false);
 				}
 
 				if(!entityplayer.isCreative()) {
@@ -284,7 +283,7 @@ public class SurvivalPlusEventHandler {
 					}
 				}
 				
-				block.dropResources(state, event.getWorld(), event.getPos());
+				Block.dropResources(state, world, event.getPos());
 			}
 		}
 
@@ -325,17 +324,15 @@ public class SurvivalPlusEventHandler {
 
 			LootTable table = event.getTable();
 
-			Field entires = ObfuscationReflectionHelper.findField(LootPool.class, "f_79023_");
-
 			if(event.getTable().getPool("main") != null) {
 				try {
-					List<LootPoolEntryContainer> list = (List<LootPoolEntryContainer>) entires.get(event.getTable().getPool("main"));
-
+					List<LootPoolEntryContainer> list = new ArrayList<LootPoolEntryContainer>(Arrays.asList(event.getTable().getPool("main").entries));
+					
 					list.add(spinel);
+					
+					event.getTable().getPool("main").entries = list.toArray(new LootPoolEntryContainer[0]);
 
 				} catch (IllegalArgumentException e) {
-					System.out.println("Failed to add Spinel Loot");
-				} catch (IllegalAccessException e) {
 					System.out.println("Failed to add Spinel Loot");
 				}
 			}

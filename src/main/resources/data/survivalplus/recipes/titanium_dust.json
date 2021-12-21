@@ -12,5 +12,14 @@
   },
   "result": {
     "item": "survivalplus:titanium_dust"
-  }
+  },
+  "conditions": [
+    {
+      "value": {
+        "tag": "forge:dusts/tiny/titanium",
+        "type": "forge:tag_empty"
+      },
+      "type": "forge:not"
+    }
+  ]
 }

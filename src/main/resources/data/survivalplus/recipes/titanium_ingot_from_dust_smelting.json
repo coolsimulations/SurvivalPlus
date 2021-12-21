@@ -1,0 +1,19 @@
+{
+  "type": "smelting",
+  "group": "titanium_ingot",
+  "ingredient": {
+    "tag": "forge:dusts/titanium"
+  },
+  "result": "survivalplus:titanium_ingot",
+  "experience": 1.0,
+  "cookingtime": 200,
+  "conditions": [
+    {
+      "value": {
+        "tag": "forge:dusts/titanium",
+        "type": "forge:tag_empty"
+      },
+      "type": "forge:not"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "type": "minecraft:blasting",
   "group": "titanium_ingot",
   "ingredient": {
-    "tag": "forge:raw_ores/titanium"
+    "tag": "forge:raw_materials/titanium"
   },
   "result": "survivalplus:titanium_ingot",
   "experience": 1.0,

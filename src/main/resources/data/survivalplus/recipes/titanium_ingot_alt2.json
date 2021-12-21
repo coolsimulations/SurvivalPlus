@@ -3,7 +3,7 @@
   "group": "titanium_ingot",
   "ingredients": [
     {
-    "tag": "forge:raw_storage_blocks/titanium"
+    "tag": "forge:storage_blocks/raw_titanium"
     }
   ],
   "result": {

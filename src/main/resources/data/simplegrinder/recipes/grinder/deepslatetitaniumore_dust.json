@@ -4,8 +4,18 @@
   "ingredient": {
     "item": "survivalplus:deepslate_titanium_ore"
   },
-  "result": "survivalplus:titanium_dust",
-  "count": 3,
-  "cookingtime": 150
 
+ "result": {
+ "item": "survivalplus:titanium_dust",
+ "count": 4
+ },
+
+  "experience": 0.1,
+  "cookingtime": 150,
+  "conditions": [
+    {
+      "modid": "simplegrinder",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

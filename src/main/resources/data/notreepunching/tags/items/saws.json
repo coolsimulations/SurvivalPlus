@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "survivalplus:titanium_saw"
+    {
+      "id": "survivalplus:titanium_saw",
+      "required": false
+    }
   ]
 }

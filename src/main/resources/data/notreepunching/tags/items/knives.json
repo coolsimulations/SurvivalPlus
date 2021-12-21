@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "survivalplus:titanium_knife"
+    {
+      "id": "survivalplus:titanium_knife",
+      "required": false
+    }
   ]
 }

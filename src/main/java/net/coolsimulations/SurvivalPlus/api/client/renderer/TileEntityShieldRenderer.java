@@ -18,10 +18,10 @@ import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import net.minecraft.client.renderer.blockentity.BannerRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -57,9 +57,9 @@ public class TileEntityShieldRenderer extends BlockEntityWithoutLevelRenderer {
 			matrix.pushPose();
 			matrix.scale(1.0F, -1.0F, -1.0F);
 			Material material = tag
-					? new Material(TextureAtlas.LOCATION_BLOCKS,
+					? new Material(InventoryMenu.BLOCK_ATLAS,
 							new ResourceLocation(item.getRegistryName().getNamespace(), "entity/" + item.getRegistryName().getPath() + "_base"))
-							: new Material(TextureAtlas.LOCATION_BLOCKS,
+							: new Material(InventoryMenu.BLOCK_ATLAS,
 									new ResourceLocation(item.getRegistryName().getNamespace(), "entity/" + item.getRegistryName().getPath() + "_base_nopattern"));
 			VertexConsumer lvt_9_3_ = material.sprite().wrap(ItemRenderer.getFoilBuffer(buffer,
 					this.modelShield.renderType(material.atlasLocation()), false, stack.hasFoil()));

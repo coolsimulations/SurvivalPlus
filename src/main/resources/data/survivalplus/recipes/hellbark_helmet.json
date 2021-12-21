@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:hellbark_helmet"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplenty",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:pine_chestplate"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplentyextras",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

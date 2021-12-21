@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:bamboo_leggings"
-  }
+  },
+  "conditions": [
+    {
+      "item": "survivalplus:bamboo_leggings",
+      "type": "forge:item_exists"
+    }
+  ]
 }

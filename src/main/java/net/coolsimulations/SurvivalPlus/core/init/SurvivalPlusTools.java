@@ -1,6 +1,5 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
-import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemAxe;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemHoe;
@@ -10,7 +9,6 @@ import net.coolsimulations.SurvivalPlus.api.item.SPItemShield;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemShovel;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemSword;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
-import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusNoTreePunching;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -33,10 +31,6 @@ public class SurvivalPlusTools {
 		SPItems.titanium_sword = new SPItemSword(SPItemTier.titaniumToolMaterial).setRegistryName("titanium_sword");
 		SPItems.titanium_shears = new SPItemShears(298).setRegistryName("titanium_shears");
 		SPItems.titanium_shield = new SPItemShield(519).setRegistryName("titanium_shield");
-		
-		if(SPCompatibilityManager.isNoTreePunchingLoaded()){
-			SurvivalPlusNoTreePunching.init();
-		}
 
 	}
 	
@@ -57,10 +51,6 @@ public class SurvivalPlusTools {
 		registerItem(SPItems.titanium_sword);
 		registerItem(SPItems.titanium_shears);
 		registerItem(SPItems.titanium_shield);
-
-		if(SPCompatibilityManager.isNoTreePunchingLoaded()){
-			SurvivalPlusNoTreePunching.register();
-		}
 		
 	}
 	

@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:ipe_helmet"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "forestry",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

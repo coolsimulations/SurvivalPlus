@@ -13,5 +13,11 @@
   },
   "result": {
     "item": "survivalplus:fir_leggings_traverse"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "traverse",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

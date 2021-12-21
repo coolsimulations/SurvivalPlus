@@ -52,9 +52,6 @@ public class SurvivalPlusUpdateHandler {
 				updateInfo = new TranslatableComponent("sp.update.display3", new Object[] {sp, MCVersion});
 				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
-				//updateInfo.getStyle().func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2")));
-				//updateInfo.getStyle().func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
-				
 			}
 			
 			if(!latestVersion.equals(SPReference.VERSION) && !latestVersion.equals("ended")) {
@@ -70,17 +67,11 @@ public class SurvivalPlusUpdateHandler {
 				updateInfo = new TranslatableComponent("sp.update.display1", new Object[] {sp, version});
 				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
-				//updateInfo.getStyle().func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2")));
-				//updateInfo.getStyle().func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
-				
 				if(latestVersionInfo != null) {
 					
 					updateVersionInfo = new TextComponent(latestVersionInfo);
 					updateVersionInfo.withStyle(ChatFormatting.DARK_AQUA);
 					updateVersionInfo.withStyle(ChatFormatting.BOLD);
-					
-					//updateVersionInfo.getStyle().func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2")));
-					//updateVersionInfo.getStyle().func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));
 					
 				}
 				

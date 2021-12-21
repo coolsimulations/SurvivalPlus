@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "hammertime:itemhammerbronze"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "hammertime",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

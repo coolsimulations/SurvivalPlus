@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:tin_ingot"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "silents_mechanisms",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:fir_helmet_traverse"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "traverse",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

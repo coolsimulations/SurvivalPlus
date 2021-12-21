@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:dead_boots"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplenty",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

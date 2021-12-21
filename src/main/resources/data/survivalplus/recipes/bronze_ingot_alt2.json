@@ -18,5 +18,14 @@
   "result": {
     "item": "survivalplus:bronze_ingot",
     "count": 3
-  }
+  },
+  "conditions": [
+    {
+      "value": {
+        "modid": "silents_mechanisms",
+        "type": "forge:mod_loaded"
+      },
+      "type": "forge:not"
+    }
+  ]
 }

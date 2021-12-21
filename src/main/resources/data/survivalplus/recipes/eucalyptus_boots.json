@@ -12,5 +12,11 @@
   },
   "result": {
     "item": "survivalplus:eucalyptus_boots"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "biomesoplentyextras",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

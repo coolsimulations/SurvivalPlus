@@ -14,5 +14,11 @@
             "count": 1,
             "chance": 0.1
         }
+    ],
+    "conditions": [
+      {
+        "modid": "silents_mechanisms",
+        "type": "forge:mod_loaded"
+      }
     ]
 }

@@ -2,9 +2,18 @@
   "type": "minecraft:blasting",
   "group": "titanium_ingot",
   "ingredient": {
-    "item": "survivalplus:titanium_dust"
+    "tag": "forge:dusts/titanium"
   },
   "result": "survivalplus:titanium_ingot",
   "experience": 1.0,
-  "cookingtime": 100
+  "cookingtime": 100,
+  "conditions": [
+    {
+      "value": {
+        "tag": "forge:dusts/titanium",
+        "type": "forge:tag_empty"
+      },
+      "type": "forge:not"
+    }
+  ]
 }

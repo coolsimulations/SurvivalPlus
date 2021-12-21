@@ -7,8 +7,8 @@ import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -28,7 +28,7 @@ public class ClientProxy extends CommonProxy{
 	@SubscribeEvent
 	public static void textureStitch(TextureStitchEvent.Pre event) {
 
-		if (event.getMap().location() == TextureAtlas.LOCATION_BLOCKS) {
+		if (event.getMap().location() == InventoryMenu.BLOCK_ATLAS) {
 
 			event.addSprite(new ResourceLocation(SPReference.MOD_ID, "entity/bronze_shield_base"));
 			event.addSprite(new ResourceLocation(SPReference.MOD_ID, "entity/bronze_shield_base_nopattern"));

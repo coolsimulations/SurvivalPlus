@@ -10,5 +10,11 @@
       "count": 9
     }
   ],
-  "max_output": 7
+  "max_output": 7,
+  "conditions": [
+    {
+      "modid": "recycler",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }
