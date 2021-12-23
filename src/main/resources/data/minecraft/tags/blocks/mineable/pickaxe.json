@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "survivalplus:copper_ore",
+    "survivalplus:copper_block",
+    "survivalplus:amethyst",
+    "survivalplus:ruby",
+    "survivalplus:pearl",
+    "survivalplus:topaz",
+    "survivalplus:spinel"
+  ]
+}
