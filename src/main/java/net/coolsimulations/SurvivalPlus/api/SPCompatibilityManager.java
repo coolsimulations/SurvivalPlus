@@ -284,7 +284,7 @@ public class SPCompatibilityManager {
 	
 	public static boolean isEmeraldMaterialModsLoaded()
 	{
-		return isMoreGemsLoaded() || isEasyEmeraldLoaded() || isVanillaEnhancedLoaded() || isRobinsEmeraldLoaded() || isSimpleEmeraldLoaded() || isEmeraldEquipmentLoaded();
+		return isEasyEmeraldLoaded() || isVanillaEnhancedLoaded() || isRobinsEmeraldLoaded() || isSimpleEmeraldLoaded() || isEmeraldEquipmentLoaded();
 	}
 	
 	public static boolean isObsidianMaterialModsLoaded()

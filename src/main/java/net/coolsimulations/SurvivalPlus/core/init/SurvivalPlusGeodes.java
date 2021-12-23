@@ -18,7 +18,6 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -33,7 +32,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
@@ -41,44 +44,44 @@ public class SurvivalPlusGeodes {
 
 	public static void init() {
 
-		SPBlocks.ruby_block = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_RED).strength(1.5F).sounds(SoundType.AMETHYST_CLUSTER).breakByTool(FabricToolTags.PICKAXES).requiresTool());
-		SPBlocks.ruby_cluster = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_RED).nonOpaque().breakByTool(FabricToolTags.PICKAXES).ticksRandomly().sounds(SoundType.AMETHYST_CLUSTER).strength(1.5f).luminance((blockState) -> 5));
+		SPBlocks.ruby_block = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_RED).strength(1.5F).sounds(SoundType.AMETHYST_CLUSTER).requiresTool());
+		SPBlocks.ruby_cluster = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_RED).nonOpaque().ticksRandomly().sounds(SoundType.AMETHYST_CLUSTER).strength(1.5f).luminance((blockState) -> 5));
 		SPBlocks.large_ruby_bud = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(SPBlocks.ruby_cluster).sounds(SoundType.LARGE_AMETHYST_BUD).luminance((blockState) -> 4));
 		SPBlocks.medium_ruby_bud = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(SPBlocks.ruby_cluster).sounds(SoundType.MEDIUM_AMETHYST_BUD).luminance((blockState) -> 2));
 		SPBlocks.small_ruby_bud = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(SPBlocks.ruby_cluster).sounds(SoundType.SMALL_AMETHYST_BUD).luminance((blockState) -> 1));
-		SPBlocks.budding_ruby = new SPBlockCrystalBudding(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_RED).ticksRandomly().strength(1.5F).sounds(SoundType.AMETHYST).breakByTool(FabricToolTags.PICKAXES).requiresTool(),
+		SPBlocks.budding_ruby = new SPBlockCrystalBudding(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_RED).ticksRandomly().strength(1.5F).sounds(SoundType.AMETHYST).requiresTool(),
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_ruby_bud), ((AmethystClusterBlock) SPBlocks.medium_ruby_bud), ((AmethystClusterBlock) SPBlocks.large_ruby_bud), ((AmethystClusterBlock) SPBlocks.ruby_cluster))
 				);
-		SPBlocks.pearl_block = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.SNOW).strength(1.5F).sounds(SoundType.AMETHYST_CLUSTER).breakByTool(FabricToolTags.PICKAXES).requiresTool());
-		SPBlocks.pearl_cluster = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST, MaterialColor.SNOW).nonOpaque().breakByTool(FabricToolTags.PICKAXES).ticksRandomly().sounds(SoundType.AMETHYST_CLUSTER).strength(1.5f).luminance((blockState) -> 5));
+		SPBlocks.pearl_block = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.SNOW).strength(1.5F).sounds(SoundType.AMETHYST_CLUSTER).requiresTool());
+		SPBlocks.pearl_cluster = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST, MaterialColor.SNOW).nonOpaque().ticksRandomly().sounds(SoundType.AMETHYST_CLUSTER).strength(1.5f).luminance((blockState) -> 5));
 		SPBlocks.large_pearl_bud = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(SPBlocks.pearl_cluster).sounds(SoundType.LARGE_AMETHYST_BUD).luminance((blockState) -> 4));
 		SPBlocks.medium_pearl_bud = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(SPBlocks.pearl_cluster).sounds(SoundType.MEDIUM_AMETHYST_BUD).luminance((blockState) -> 2));
 		SPBlocks.small_pearl_bud = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(SPBlocks.pearl_cluster).sounds(SoundType.SMALL_AMETHYST_BUD).luminance((blockState) -> 1));
-		SPBlocks.budding_pearl = new SPBlockCrystalBudding(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.SNOW).ticksRandomly().strength(1.5F).sounds(SoundType.AMETHYST).breakByTool(FabricToolTags.PICKAXES).requiresTool(),
+		SPBlocks.budding_pearl = new SPBlockCrystalBudding(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.SNOW).ticksRandomly().strength(1.5F).sounds(SoundType.AMETHYST).requiresTool(),
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_pearl_bud), ((AmethystClusterBlock) SPBlocks.medium_pearl_bud), ((AmethystClusterBlock) SPBlocks.large_pearl_bud), ((AmethystClusterBlock) SPBlocks.pearl_cluster))
 				);
-		SPBlocks.topaz_block = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).strength(1.5F).sounds(SoundType.AMETHYST_CLUSTER).breakByTool(FabricToolTags.PICKAXES).requiresTool());
-		SPBlocks.topaz_cluster = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).nonOpaque().breakByTool(FabricToolTags.PICKAXES).ticksRandomly().sounds(SoundType.AMETHYST_CLUSTER).strength(1.5f).luminance((blockState) -> 5));
+		SPBlocks.topaz_block = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).strength(1.5F).sounds(SoundType.AMETHYST_CLUSTER).requiresTool());
+		SPBlocks.topaz_cluster = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).nonOpaque().ticksRandomly().sounds(SoundType.AMETHYST_CLUSTER).strength(1.5f).luminance((blockState) -> 5));
 		SPBlocks.large_topaz_bud = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(SPBlocks.topaz_cluster).sounds(SoundType.LARGE_AMETHYST_BUD).luminance((blockState) -> 4));
 		SPBlocks.medium_topaz_bud = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(SPBlocks.topaz_cluster).sounds(SoundType.MEDIUM_AMETHYST_BUD).luminance((blockState) -> 2));
 		SPBlocks.small_topaz_bud = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(SPBlocks.topaz_cluster).sounds(SoundType.SMALL_AMETHYST_BUD).luminance((blockState) -> 1));
-		SPBlocks.budding_topaz = new SPBlockCrystalBudding(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).ticksRandomly().strength(1.5F).sounds(SoundType.AMETHYST).breakByTool(FabricToolTags.PICKAXES).requiresTool(),
+		SPBlocks.budding_topaz = new SPBlockCrystalBudding(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_YELLOW).ticksRandomly().strength(1.5F).sounds(SoundType.AMETHYST).requiresTool(),
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_topaz_bud), ((AmethystClusterBlock) SPBlocks.medium_topaz_bud), ((AmethystClusterBlock) SPBlocks.large_topaz_bud), ((AmethystClusterBlock) SPBlocks.topaz_cluster))
 				);
-		SPBlocks.sapphire_block = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).strength(1.5F).sounds(SoundType.AMETHYST_CLUSTER).breakByTool(FabricToolTags.PICKAXES).requiresTool());
-		SPBlocks.sapphire_cluster = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).nonOpaque().breakByTool(FabricToolTags.PICKAXES).ticksRandomly().sounds(SoundType.AMETHYST_CLUSTER).strength(1.5f).luminance((blockState) -> 5));
+		SPBlocks.sapphire_block = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).strength(1.5F).sounds(SoundType.AMETHYST_CLUSTER).requiresTool());
+		SPBlocks.sapphire_cluster = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).nonOpaque().ticksRandomly().sounds(SoundType.AMETHYST_CLUSTER).strength(1.5f).luminance((blockState) -> 5));
 		SPBlocks.large_sapphire_bud = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(SPBlocks.sapphire_cluster).sounds(SoundType.LARGE_AMETHYST_BUD).luminance((blockState) -> 4));
 		SPBlocks.medium_sapphire_bud = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(SPBlocks.sapphire_cluster).sounds(SoundType.MEDIUM_AMETHYST_BUD).luminance((blockState) -> 2));
 		SPBlocks.small_sapphire_bud = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(SPBlocks.sapphire_cluster).sounds(SoundType.SMALL_AMETHYST_BUD).luminance((blockState) -> 1));
-		SPBlocks.budding_sapphire = new SPBlockCrystalBudding(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).ticksRandomly().strength(1.5F).sounds(SoundType.AMETHYST).breakByTool(FabricToolTags.PICKAXES).requiresTool(),
+		SPBlocks.budding_sapphire = new SPBlockCrystalBudding(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLUE).ticksRandomly().strength(1.5F).sounds(SoundType.AMETHYST).requiresTool(),
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_sapphire_bud), ((AmethystClusterBlock) SPBlocks.medium_sapphire_bud), ((AmethystClusterBlock) SPBlocks.large_sapphire_bud), ((AmethystClusterBlock) SPBlocks.sapphire_cluster))
 				);
-		SPBlocks.spinel_block = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).strength(1.5F).sounds(SoundType.AMETHYST_CLUSTER).breakByTool(FabricToolTags.PICKAXES).requiresTool());
-		SPBlocks.spinel_cluster = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).nonOpaque().breakByTool(FabricToolTags.PICKAXES).ticksRandomly().sounds(SoundType.AMETHYST_CLUSTER).strength(1.5f).luminance((blockState) -> 5));
+		SPBlocks.spinel_block = new AmethystBlock(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).strength(1.5F).sounds(SoundType.AMETHYST_CLUSTER).requiresTool());
+		SPBlocks.spinel_cluster = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).nonOpaque().ticksRandomly().sounds(SoundType.AMETHYST_CLUSTER).strength(1.5f).luminance((blockState) -> 5));
 		SPBlocks.large_spinel_bud = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(SPBlocks.spinel_cluster).sounds(SoundType.LARGE_AMETHYST_BUD).luminance((blockState) -> 4));
 		SPBlocks.medium_spinel_bud = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(SPBlocks.spinel_cluster).sounds(SoundType.MEDIUM_AMETHYST_BUD).luminance((blockState) -> 2));
 		SPBlocks.small_spinel_bud = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(SPBlocks.spinel_cluster).sounds(SoundType.SMALL_AMETHYST_BUD).luminance((blockState) -> 1));
-		SPBlocks.budding_spinel = new SPBlockCrystalBudding(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).ticksRandomly().strength(1.5F).sounds(SoundType.AMETHYST).breakByTool(FabricToolTags.PICKAXES).requiresTool(),
+		SPBlocks.budding_spinel = new SPBlockCrystalBudding(FabricBlockSettings.of(Material.AMETHYST, MaterialColor.COLOR_BLACK).ticksRandomly().strength(1.5F).sounds(SoundType.AMETHYST).requiresTool(),
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_spinel_bud), ((AmethystClusterBlock) SPBlocks.medium_spinel_bud), ((AmethystClusterBlock) SPBlocks.large_spinel_bud), ((AmethystClusterBlock) SPBlocks.spinel_cluster))
 				);
 
@@ -129,20 +132,20 @@ public class SurvivalPlusGeodes {
 		registerItem(SPItems.spinel_shard, "spinel_shard");
 
 		if(!SPConfig.disableRubyGen) {
-			registerFeatures(SPBlocks.ruby_block, SPBlocks.budding_ruby, Blocks.CALCITE, Blocks.MAGMA_BLOCK, "ruby_geode", BiomeSelectors.foundInTheNether(), VerticalAnchor.bottom(), VerticalAnchor.top(), 53);
+			registerFeatures(SPBlocks.ruby_block, SPBlocks.budding_ruby, Blocks.CALCITE, Blocks.MAGMA_BLOCK, "ruby_geode", BiomeSelectors.foundInTheNether(), VerticalAnchor.bottom(), VerticalAnchor.top(), 24);
 		}
 		if(!SPConfig.disablePearlGen) {
-			registerFeatures(SPBlocks.pearl_block, SPBlocks.budding_pearl, Blocks.CALCITE, Blocks.SMOOTH_BASALT, true, "pearl_geode", BiomeSelectors.categories(BiomeCategory.OCEAN), VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(63), 53);
+			registerFeatures(SPBlocks.pearl_block, SPBlocks.budding_pearl, Blocks.CALCITE, Blocks.SMOOTH_BASALT, true, "pearl_geode", BiomeSelectors.categories(BiomeCategory.OCEAN), VerticalAnchor.aboveBottom(64), VerticalAnchor.absolute(63), 24);
 		}
 		if(!SPConfig.disableTopazGen) {
-			registerFeatures(SPBlocks.topaz_block, SPBlocks.budding_topaz, Blocks.CALCITE, Blocks.MAGMA_BLOCK, "topaz_geode", BiomeSelectors.foundInTheNether(), VerticalAnchor.bottom(), VerticalAnchor.top(), 53);
+			registerFeatures(SPBlocks.topaz_block, SPBlocks.budding_topaz, Blocks.CALCITE, Blocks.MAGMA_BLOCK, "topaz_geode", BiomeSelectors.foundInTheNether(), VerticalAnchor.bottom(), VerticalAnchor.top(), 24);
 		}
 		if(!SPConfig.disableSapphireGen) {
-			registerFeatures(SPBlocks.sapphire_block, SPBlocks.budding_sapphire, Blocks.CALCITE, Blocks.MAGMA_BLOCK, "sapphire_geode", BiomeSelectors.foundInTheNether(), VerticalAnchor.bottom(), VerticalAnchor.top(), 53);
+			registerFeatures(SPBlocks.sapphire_block, SPBlocks.budding_sapphire, Blocks.CALCITE, Blocks.MAGMA_BLOCK, "sapphire_geode", BiomeSelectors.foundInTheNether(), VerticalAnchor.bottom(), VerticalAnchor.top(), 24);
 		}
 		
 		if(!SPConfig.disableSpinelGen) {
-			registerFeatures(SPBlocks.spinel_block, SPBlocks.budding_spinel, Blocks.CALCITE, Blocks.SMOOTH_BASALT, "spinel_geode", BiomeSelectors.categories(BiomeCategory.MUSHROOM), VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(16), 53);
+			registerFeatures(SPBlocks.spinel_block, SPBlocks.budding_spinel, Blocks.CALCITE, Blocks.SMOOTH_BASALT, "spinel_geode", BiomeSelectors.categories(BiomeCategory.MUSHROOM), VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(64), 24);
 		}
 	}
 	
@@ -155,14 +158,12 @@ public class SurvivalPlusGeodes {
 		SPGeodeFeature geodeFeature = new SPGeodeFeature((@NotNull SPBlockCrystalBudding) buddingBlock, baseBlock, calciteBlock, outerBlock, waterLogged);
 		Registry.register(Registry.FEATURE, geodeFeatureRegistryName, geodeFeature);
 
-		ConfiguredFeature<?, ?> geodConfiguredFeature = geodeFeature
+		PlacedFeature geodConfiguredFeature = geodeFeature
 				.configured(geodeFeature.getGeodeConfiguration())
-				.rangeUniform(bottom, top)
-				.squared()
-				.rarity(rarity);
+				.placed(RarityFilter.onAverageOnceEvery(rarity), InSquarePlacement.spread(), HeightRangePlacement.uniform(bottom, top), BiomeFilter.biome());
 
-		ResourceKey<ConfiguredFeature<?, ?>> registry = ResourceKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation(SPReference.MOD_ID, geodeFeatureRegistryName));
-		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, registry.location(), geodConfiguredFeature);
+		ResourceKey<PlacedFeature> registry = ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, new ResourceLocation(SPReference.MOD_ID, geodeFeatureRegistryName));
+		Registry.register(BuiltinRegistries.PLACED_FEATURE, registry.location(), geodConfiguredFeature);
 
 		BiomeModifications.addFeature(category, GenerationStep.Decoration.UNDERGROUND_ORES, registry);
 	}

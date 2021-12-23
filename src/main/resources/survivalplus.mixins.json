@@ -1,7 +1,7 @@
 {
     "required": true,
     "package": "net.coolsimulations.SurvivalPlus.core.mixin",
-    "compatibilityLevel": "JAVA_16",
+    "compatibilityLevel": "JAVA_17",
     "mixins": [
         "SheepMixin", "PumpkinBlockMixin", "TripWireBlockMixin", "DiggingEnchantmentMixin", "MushroomCowMixin", "SnowGolemMixin", "BeehiveBlockMixin", "IronGolemMixin",
         "MobMixin", "PlayerMixin",

@@ -17,7 +17,7 @@ import net.minecraft.world.level.levelgen.GeodeCrackSettings;
 import net.minecraft.world.level.levelgen.GeodeLayerSettings;
 import net.minecraft.world.level.levelgen.feature.GeodeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
-import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
 public class SPGeodeFeature extends GeodeFeature {
 
@@ -57,11 +57,11 @@ public class SPGeodeFeature extends GeodeFeature {
 		}
 
 		this.blockSettings = new GeodeBlockSettings(
-				new SimpleStateProvider(fillingState),
-				new SimpleStateProvider(this.baseBlock.defaultBlockState()),
-				new SimpleStateProvider(this.buddingBlock.defaultBlockState()),
-				new SimpleStateProvider(this.calciteBlock.defaultBlockState()),
-				new SimpleStateProvider(this.outerBlock.defaultBlockState()),
+				BlockStateProvider.simple(fillingState),
+				BlockStateProvider.simple(this.baseBlock.defaultBlockState()),
+				BlockStateProvider.simple(this.buddingBlock.defaultBlockState()),
+				BlockStateProvider.simple(this.calciteBlock.defaultBlockState()),
+				BlockStateProvider.simple(this.outerBlock.defaultBlockState()),
 				buds,
 				BlockTags.FEATURES_CANNOT_REPLACE.getName(),
 				BlockTags.GEODE_INVALID_BLOCKS.getName()

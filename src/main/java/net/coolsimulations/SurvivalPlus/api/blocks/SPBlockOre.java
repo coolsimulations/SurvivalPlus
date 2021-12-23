@@ -3,7 +3,6 @@ package net.coolsimulations.SurvivalPlus.api.blocks;
 import java.util.Random;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -30,7 +29,7 @@ public class SPBlockOre extends Block{
 	 */
 
 	public SPBlockOre(Resource resource, Boolean dropsXP) {
-		super(FabricBlockSettings.of(Material.STONE, Material.STONE.getColor()).requiresTool().hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).luminance(0));
+		super(FabricBlockSettings.of(Material.STONE, Material.STONE.getColor()).requiresTool().hardness(resource.hardness).resistance(resource.resistance).sounds(resource.getBlockSoundType()).luminance(0));
 		this.resource = resource;
 		this.experience = dropsXP;
 	}

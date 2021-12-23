@@ -9,7 +9,6 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -67,7 +66,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 	protected boolean isDyed;
 
 	public BlockCardboardLantern(MaterialColor colour, boolean isDyed) {
-		super(FabricBlockSettings.of(Material.WOOD, colour).hardness(0.5F).resistance(2.5F).sounds(SoundType.WOOD).breakByTool(FabricToolTags.AXES, 1).luminance((blockStatex) -> {
+		super(FabricBlockSettings.of(Material.WOOD, colour).hardness(0.5F).resistance(2.5F).sounds(SoundType.WOOD).luminance((blockStatex) -> {
 			if(!blockStatex.getValue(WATERLOGGED))
 				return 14;
 			else
@@ -238,7 +237,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 	public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos pos, BlockPos fromPos)
 	{
 		if (state.getValue(WATERLOGGED)) {
-			worldIn.getLiquidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+			worldIn.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
 
 		if (!canPlaceBlock(((Level) worldIn), pos, (Direction)state.getValue(FACING)) && !state.getValue(FLOATING))
@@ -358,7 +357,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 	public void onPlace(BlockState state, Level worldIn, BlockPos pos, BlockState oldState, boolean isMoving)
 	{
 		Random rand = new Random();
-		worldIn.getBlockTicks().scheduleTick(pos, this, 20 + rand.nextInt(10));
+		worldIn.scheduleTick(pos, this, 20 + rand.nextInt(10));
 	}
 
 	/**

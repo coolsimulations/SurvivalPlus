@@ -1,7 +1,6 @@
 package net.coolsimulations.SurvivalPlus.api.blocks;	
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -17,7 +16,7 @@ public class SPBlockMetal extends Block {
 	 */
 
 	public SPBlockMetal(MaterialColor colour, Resource resource) {
-		super(FabricBlockSettings.of(Material.METAL, colour).requiresTool().hardness(resource.hardness).resistance(resource.resistance).breakByTool(FabricToolTags.PICKAXES, resource.harvestLevel).sounds(resource.getBlockSoundType()).luminance(0));
+		super(FabricBlockSettings.of(Material.METAL, colour).requiresTool().hardness(resource.hardness).resistance(resource.resistance).sounds(resource.getBlockSoundType()).luminance(0));
 		this.resource = resource;
 	}
 

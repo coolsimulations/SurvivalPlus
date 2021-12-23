@@ -1,5 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.world;
 
+import java.util.List;
+
 import com.google.common.base.Predicate;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
@@ -10,39 +12,59 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration.Predicates;
-import net.minecraft.world.level.levelgen.feature.configurations.RangeDecoratorConfiguration;
-import net.minecraft.world.level.levelgen.heightproviders.UniformHeight;
-import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.CountPlacement;
+import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 public class SurvivalPlusOreGenerator {
+	
+	public static final List<OreConfiguration.TargetBlockState> ORE_TIN_TARGET_LIST = List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, SPBlocks.tin_ore.defaultBlockState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, SPBlocks.deepslate_tin_ore.defaultBlockState()));
+	public static final List<OreConfiguration.TargetBlockState> ORE_TITANIUM_TARGET_LIST = List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, SPBlocks.titanium_ore.defaultBlockState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, SPBlocks.deepslate_titanium_ore.defaultBlockState()));
 	
 	public static void generateOres() {
 
 		if(!SPConfig.disableTinOreGen) {
-			registerOre(BiomeSelectors.foundInOverworld(), "tin_ore", Feature.ORE.configured(new OreConfiguration(Predicates.NATURAL_STONE, SPBlocks.tin_ore.defaultBlockState(), 8)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(96)))).squared().count(6)));
-			registerOre(BiomeSelectors.foundInOverworld(), "deepslate_tin_ore", Feature.ORE.configured(new OreConfiguration(Predicates.DEEPSLATE_ORE_REPLACEABLES, SPBlocks.deepslate_tin_ore.defaultBlockState(), 8)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(96)))).squared().count(6)));
+			registerOre(BiomeSelectors.includeByKey(Biomes.DRIPSTONE_CAVES), "tin_ore_large", Feature.ORE.configured(new OreConfiguration(ORE_TIN_TARGET_LIST, 20)).placed(commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)))));
+			registerOre(BiomeSelectors.foundInOverworld().and(BiomeSelectors.excludeByKey(Biomes.DRIPSTONE_CAVES)), "tin_ore", Feature.ORE.configured(new OreConfiguration(ORE_TIN_TARGET_LIST, 10)).placed(commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)))));
 		}
 		if(!SPConfig.disableTitaniumOreGen) {
-			registerOre(BiomeSelectors.foundInOverworld(), "titanium_ore", Feature.ORE.configured(new OreConfiguration(Predicates.NATURAL_STONE, SPBlocks.titanium_ore.defaultBlockState(), 4)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(25)))).squared().count(4)));
-			registerOre(BiomeSelectors.foundInOverworld(), "deepslate_titanium_ore", Feature.ORE.configured(new OreConfiguration(Predicates.DEEPSLATE_ORE_REPLACEABLES, SPBlocks.deepslate_titanium_ore.defaultBlockState(), 4)).decorated(FeatureDecorator.RANGE.configured(new RangeDecoratorConfiguration(UniformHeight.of(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(25)))).squared().count(4)));
+			registerOre(BiomeSelectors.foundInOverworld(), "titanium_ore", Feature.ORE.configured(new OreConfiguration(ORE_TITANIUM_TARGET_LIST, 4)).placed(commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(25)))));
+			registerOre(BiomeSelectors.foundInOverworld(), "titanium_ore_large", Feature.ORE.configured(new OreConfiguration(ORE_TITANIUM_TARGET_LIST, 8)).placed(rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-62), VerticalAnchor.aboveBottom(62)))));
+
 		}
 	}
 
-	protected static void registerOre(java.util.function.Predicate<BiomeSelectionContext> selector, String id, ConfiguredFeature<?, ?> config) {
+	protected static void registerOre(java.util.function.Predicate<BiomeSelectionContext> selector, String id, PlacedFeature config) {
 
-		ResourceKey<ConfiguredFeature<?, ?>> registry = ResourceKey.create(Registry.CONFIGURED_FEATURE_REGISTRY, new ResourceLocation(SPReference.MOD_ID, id));
-		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, registry.location(), config);
+		ResourceKey<PlacedFeature> registry = ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, new ResourceLocation(SPReference.MOD_ID, id));
+		Registry.register(BuiltinRegistries.PLACED_FEATURE, registry.location(), config);
 		BiomeModifications.addFeature(selector, GenerationStep.Decoration.UNDERGROUND_DECORATION, registry);
+	}
+	
+	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {
+		return List.of(p_195347_, InSquarePlacement.spread(), p_195348_, BiomeFilter.biome());
+	}
+
+	private static List<PlacementModifier> commonOrePlacement(int p_195344_, PlacementModifier p_195345_) {
+		return orePlacement(CountPlacement.of(p_195344_), p_195345_);
+	}
+
+	private static List<PlacementModifier> rareOrePlacement(int p_195350_, PlacementModifier p_195351_) {
+		return orePlacement(RarityFilter.onAverageOnceEvery(p_195350_), p_195351_);
 	}
 
 	public static class SPGravelGeneratorPredicate implements Predicate<BlockState> {

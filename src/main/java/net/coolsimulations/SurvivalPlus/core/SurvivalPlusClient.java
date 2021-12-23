@@ -11,9 +11,9 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
@@ -53,7 +53,7 @@ public class SurvivalPlusClient implements ClientModInitializer {
 	@Environment(EnvType.CLIENT)
 	public void textureStitch() {
 		
-		ClientSpriteRegistryCallback.event(TextureAtlas.LOCATION_BLOCKS).register((atlasTexture, registry)->
+		ClientSpriteRegistryCallback.event(InventoryMenu.BLOCK_ATLAS).register((atlasTexture, registry)->
         {
         	registry.register(new ResourceLocation(SPReference.MOD_ID, "entity/bronze_shield_base"));
     		registry.register(new ResourceLocation(SPReference.MOD_ID, "entity/bronze_shield_base_nopattern"));
