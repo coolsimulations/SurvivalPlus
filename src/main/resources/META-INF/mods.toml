@@ -6,7 +6,7 @@ license="All rights reserved"
 
 [[mods]]
     modId="survivalplus_primer"
-    version="0.1.0"
+    version="0.1.0b"
     displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus-primer"
     displayName="SurvivalPlus Primer"
     credits="To Mojang, for adding in SurvivalPlus content over the years... Beetroot, White Dye, Campfires, and now Copper and Amethysts. Thanks."
