@@ -58,7 +58,7 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import net.minecraftforge.common.BasicTrade;
+import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -70,7 +70,7 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 public class SurvivalPlusEventHandler {
 
@@ -146,21 +146,21 @@ public class SurvivalPlusEventHandler {
 		Int2ObjectMap<List<ItemListing>> trades = event.getTrades();
 
 		if(event.getType() == VillagerProfession.BUTCHER) {
-			trades.get(3).add(new BasicTrade(2, new ItemStack(SPItems.beef_pie, 4), 16, 20));
+			trades.get(3).add(new BasicItemListing(2, new ItemStack(SPItems.beef_pie, 4), 16, 20));
 		}
 
 		if(event.getType() == VillagerProfession.FARMER) {
-			trades.get(1).add(new BasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 2)); //temp till forge pull request #6142 is resolved
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.raw_onion, 6), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
+			trades.get(1).add(new BasicItemListing(1, new ItemStack(SPItems.onion_seeds, 4), 12, 2)); //temp till forge pull request #6142 is resolved
+			trades.get(2).add(new BasicItemListing(new ItemStack(SPItems.raw_onion, 6), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
 		}
 
 		if(event.getType() == VillagerProfession.ARMORER) {
-			trades.get(2).add(new BasicTrade(3, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
+			trades.get(2).add(new BasicItemListing(3, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
 		}
 
 		if(event.getType() == VillagerProfession.ARMORER  || event.getType() == VillagerProfession.WEAPONSMITH) {
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
-			trades.get(2).add(new BasicTrade(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+			trades.get(2).add(new BasicItemListing(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+			trades.get(2).add(new BasicItemListing(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
 		}
 
 	}
@@ -169,7 +169,7 @@ public class SurvivalPlusEventHandler {
 	public void villagerTrades(WandererTradesEvent event) {
 		List<ItemListing> trades = (List<ItemListing>) event.getGenericTrades();
 
-		trades.add(new BasicTrade(1, new ItemStack(SPItems.onion_seeds, 4), 12, 20));		
+		trades.add(new BasicItemListing(1, new ItemStack(SPItems.onion_seeds, 4), 12, 20));		
 	}
 
 	@SubscribeEvent
@@ -311,7 +311,7 @@ public class SurvivalPlusEventHandler {
 
 	@SubscribeEvent(priority =  EventPriority.HIGH)
 	public void genOres(BiomeLoadingEvent event) {
-		SurvivalPlusOreGenerator.generateOres(event.getName(), event.getClimate(), event.getCategory(), event.getDepth(), event.getScale(), event.getEffects(), event.getGeneration(), event.getSpawns());
+		SurvivalPlusOreGenerator.generateOres(event.getName(), event.getClimate(), event.getCategory(), event.getEffects(), event.getGeneration(), event.getSpawns());
 		SurvivalPlusGeodes.registerFeature(event.getGeneration(), event.getCategory());
 	}
 

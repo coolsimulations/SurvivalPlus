@@ -235,7 +235,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 	public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos pos, BlockPos fromPos)
 	{
 		if (state.getValue(WATERLOGGED)) {
-			worldIn.getLiquidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+			worldIn.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 		}
 
 		if (!canPlaceBlock((Level)worldIn, pos, (Direction)state.getValue(FACING)) && !state.getValue(FLOATING))
@@ -355,7 +355,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 	public void onPlace(BlockState state, Level worldIn, BlockPos pos, BlockState oldState, boolean isMoving)
 	{
 		Random rand = new Random();
-		worldIn.getBlockTicks().scheduleTick(pos, this, 20 + rand.nextInt(10));
+		worldIn.scheduleTick(pos, this, 20 + rand.nextInt(10));
 	}
 
 	/**

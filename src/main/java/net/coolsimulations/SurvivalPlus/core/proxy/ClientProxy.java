@@ -28,7 +28,7 @@ public class ClientProxy extends CommonProxy{
 	@SubscribeEvent
 	public static void textureStitch(TextureStitchEvent.Pre event) {
 
-		if (event.getMap().location() == InventoryMenu.BLOCK_ATLAS) {
+		if (event.getAtlas().location() == InventoryMenu.BLOCK_ATLAS) {
 
 			event.addSprite(new ResourceLocation(SPReference.MOD_ID, "entity/bronze_shield_base"));
 			event.addSprite(new ResourceLocation(SPReference.MOD_ID, "entity/bronze_shield_base_nopattern"));
