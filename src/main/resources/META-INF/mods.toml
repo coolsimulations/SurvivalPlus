@@ -6,7 +6,7 @@ license="All rights reserved"
 
 [[mods]]
     modId="survivalplus"
-    version="0.1.6"
+    version="0.1.6b"
     updateJSONURL="https://coolsimulations.net/mcmods/survivalplus/versionchecker.json"
     displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus"
     displayName="SurvivalPlus"
