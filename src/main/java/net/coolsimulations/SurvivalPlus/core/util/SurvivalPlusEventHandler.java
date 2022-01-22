@@ -12,6 +12,7 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.api.compat.RainbowComponent;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.minecraft.advancements.Advancement;
@@ -50,6 +51,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.LanguageMap;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
@@ -355,6 +357,34 @@ public class SurvivalPlusEventHandler {
 			} else if(event.getPlayer().getTeam() instanceof ScorePlayerTeam) {
 				if(((ScorePlayerTeam) event.getPlayer().getTeam()).getColor() == TextFormatting.RESET)
 					event.setDisplayName(coolsim);
+			}
+		}
+		
+		if(event.getPlayer().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+
+			TextComponent alpaca = new StringTextComponent(new RainbowComponent(event.getEntity().getName().getString()).getText());
+
+			if(event.getPlayer().getTeam() == null) {
+				event.setDisplayName(alpaca);
+			} else if(event.getPlayer().getTeam() instanceof ScorePlayerTeam) {
+				if(((ScorePlayerTeam) event.getPlayer().getTeam()).getColor() == TextFormatting.RESET)
+					event.setDisplayName(alpaca);
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void coolsimDisplayName(PlayerEvent.NameFormat event) {
+		
+		if(event.getPlayer().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+
+			TextComponent alpaca = new StringTextComponent(new RainbowComponent(event.getUsername().getString()).getText());
+
+			if(event.getPlayer().getTeam() == null) {
+				event.setDisplayname(alpaca);
+			} else if(event.getPlayer().getTeam() instanceof ScorePlayerTeam) {
+				if(((ScorePlayerTeam) event.getPlayer().getTeam()).getColor() == TextFormatting.RESET)
+					event.setDisplayname(alpaca);
 			}
 		}
 	}
