@@ -517,4 +517,26 @@ public class SPItems {
 	public static ItemArmor.ArmorMaterial kepler22bBrownMapleArmorMaterial;
 	public static NonNullList<ItemStack> kepler22b_brown_maple;
 	
+	/**
+	 * These are the Gobber armor Items referred to in GobberArmor along with the corresponding ArmorMaterial and Armor ItemStack List
+	 */
+	public static Item glob_helmet;
+	public static Item glob_chestplate;
+	public static Item glob_leggings;
+	public static Item glob_boots;
+	public static ItemArmor.ArmorMaterial globArmorMaterial;
+	public static NonNullList<ItemStack> glob;
+	public static Item nether_glob_helmet;
+	public static Item nether_glob_chestplate;
+	public static Item nether_glob_leggings;
+	public static Item nether_glob_boots;
+	public static ItemArmor.ArmorMaterial netherGlobArmorMaterial;
+	public static NonNullList<ItemStack> nether_glob;
+	public static Item end_glob_helmet;
+	public static Item end_glob_chestplate;
+	public static Item end_glob_leggings;
+	public static Item end_glob_boots;
+	public static ItemArmor.ArmorMaterial endGlobArmorMaterial;
+	public static NonNullList<ItemStack> end_glob;
+	
 }

@@ -30,6 +30,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -45,6 +46,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 import scala.reflect.internal.Trees.If;
 import thedarkcolour.futuremc.block.villagepillage.CampfireBlock;
@@ -295,6 +297,57 @@ public class SurvivalPlusFutureMC {
 			
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal, 1, 4), new ItemStack(ingot, 1, 6));
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal, 1, 5), new ItemStack(ingot, 1, 8));
+		}
+		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			
+			Item raw_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot_raw"));
+			Item raw_nether_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot2_raw"));
+			Item raw_end_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot3_raw"));
+			
+			Item ingot_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot"));
+			Item ingot_nether_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot2"));
+			Item ingot_end_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot3"));
+			
+			Item fresh_skull = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "fresh_wither_skull"));
+			
+			Item glob_seed = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_seed"));
+			Item glob2_seed = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob2_seed"));
+			Item glob3_seed = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob3_seed"));
+			
+			Item goo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "goo"));
+			Item glob_bread = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_bread"));
+			Item glob_apple = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "gapple"));
+			Item glob_pie = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_pie"));
+			Item glob_cookie = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_cookie"));
+			Item glob_chicken = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_chicken"));
+			Item glob_beef = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_beef"));
+			Item glob_mutton = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_mutton"));
+			Item glob_fish = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_fish"));
+			Item glob_pork = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_pork"));
+			Item glob_rabbit = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_rabbit"));
+			
+			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(raw_gobber), new ItemStack(ingot_gobber));
+			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(raw_nether_gobber), new ItemStack(ingot_nether_gobber));
+			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(raw_end_gobber), new ItemStack(ingot_end_gobber));
+			
+			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(fresh_skull), new ItemStack(Items.SKULL, 1, 1));
+			
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_seed), SPCompatRecipeManager.futureRecipeManager.getComposterRarityRare());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob2_seed), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob3_seed), SPCompatRecipeManager.futureRecipeManager.getComposterRarityLegendary());
+			
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(goo), SPCompatRecipeManager.futureRecipeManager.getComposterRarityRare());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_bread), SPCompatRecipeManager.futureRecipeManager.getComposterRarityRare());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_apple), SPCompatRecipeManager.futureRecipeManager.getComposterRarityRare());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_pie), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_cookie), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_chicken), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_beef), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_mutton), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_fish), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_pork), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_rabbit), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
 		}
 	}
 	

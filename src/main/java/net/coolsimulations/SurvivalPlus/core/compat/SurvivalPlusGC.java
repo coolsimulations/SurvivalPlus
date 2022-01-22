@@ -4,6 +4,7 @@ import com.mjr.extraplanets.blocks.ExtraPlanets_Blocks;
 import com.mjr.extraplanets.items.ExtraPlanets_Items;
 
 import ic2.api.item.IC2Items;
+import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.planets.venus.VenusBlocks;
 import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
@@ -12,6 +13,7 @@ import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusSmeltingRecipes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -19,6 +21,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 public class SurvivalPlusGC {
@@ -27,6 +30,9 @@ public class SurvivalPlusGC {
 
 		registerSmelting();
 		registerCrafting();
+		
+		if(SPCompatibilityManager.isGobberLoaded())
+			registerGobber();
 	}
 	
 	public static void registerEventHandler() {
@@ -88,6 +94,22 @@ public class SurvivalPlusGC {
 			}
 		}
 		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID + ":" + "garmor_repair"));
+		}
+		
+	}
+	
+	public static void registerGobber() {
+		
+		Item plate_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "garmor_repair"));
+		
+		Item ingot_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot"));
+		Item ingot_nether_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot2"));
+		
+		CompressorRecipes.addRecipe(new ItemStack(plate_gobber, 4), "XY ", "YX ", 'X', ingot_gobber, 'Y', ingot_nether_gobber);
+		CompressorRecipes.replaceRecipeIngredient(new ItemStack(ingot_gobber), OreDictionary.getOres("ingotGobber"));
+		CompressorRecipes.replaceRecipeIngredient(new ItemStack(ingot_nether_gobber), OreDictionary.getOres("ingotNetherGobber"));
 	}
 
 }

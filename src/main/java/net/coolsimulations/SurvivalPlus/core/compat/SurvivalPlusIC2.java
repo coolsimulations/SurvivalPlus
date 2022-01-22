@@ -27,6 +27,7 @@ import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusSmeltingRecipes;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -77,6 +78,9 @@ public class SurvivalPlusIC2 {
 		
 		if(SPCompatibilityManager.isRailcraftLoaded())
 			registerRailCraft();
+		
+		if(SPCompatibilityManager.isGobberLoaded())
+			registerGobber();
 	}
 
 	public static void registerEventHandler() {
@@ -414,5 +418,54 @@ public class SurvivalPlusIC2 {
 			Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("ingotNickel", 9), null, false, new ItemStack(RailcraftBlocks.METAL.item(), 1, 6));
 			Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("ingotZinc", 9), null, false, new ItemStack(RailcraftBlocks.METAL.item(), 1, 8));
 		}
+	}
+	
+	public static void registerGobber() {
+		
+		Block block_gobber = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot_block"));
+		Block block_nether_gobber = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot2_block"));
+		Block block_end_gobber = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot3_block"));
+		
+		Block glob_plank = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_plank"));
+		Block glob_log = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_log"));
+		Block glob2_plank = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob2_plank"));
+		Block glob2_log = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob2_log"));
+		Block glob3_plank = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob3_plank"));
+		Block glob3_log = Block.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob3_log"));
+		
+		Item glob = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob"));
+		Item nether_glob = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob2"));
+		Item end_glob = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob3"));
+		
+		Item ingot_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot"));
+		Item ingot_nether_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot2"));
+		Item ingot_end_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot3"));
+		
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("cropGlob", 8), null, false, IC2Items.getItem("crafting", "bio_chaff"));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("cropNetherGlob", 4), null, false, IC2Items.getItem("crafting", "bio_chaff"));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("cropEndGlob", 2), null, false, IC2Items.getItem("crafting", "bio_chaff"));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("seedGlob", 16), null, false, IC2Items.getItem("crafting", "bio_chaff"));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("seedNetherGlob", 8), null, false, IC2Items.getItem("crafting", "bio_chaff"));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("seedEndGlob", 4), null, false, IC2Items.getItem("crafting", "bio_chaff"));
+		
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("ingotGobber", 9), null, true, new ItemStack(block_gobber));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("ingotNetherGobber", 9), null, true, new ItemStack(block_nether_gobber));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("ingotEndGobber", 9), null, true, new ItemStack(block_end_gobber));
+		
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("cropGlob", 9), null, true, new ItemStack(glob));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("cropNetherGlob", 9), null, true, new ItemStack(nether_glob));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("cropEndGlob", 9), null, true, new ItemStack(end_glob));
+		
+		Recipes.extractor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(glob_log, 8)), null, false, new ItemStack(glob));
+		Recipes.extractor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(glob_plank, 8)), null, false, new ItemStack(glob));
+		Recipes.extractor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(glob2_log, 8)), null, false, new ItemStack(nether_glob));
+		Recipes.extractor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(glob2_plank, 8)), null, false, new ItemStack(nether_glob));
+		Recipes.extractor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(glob3_log, 8)), null, false, new ItemStack(end_glob));
+		Recipes.extractor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(glob3_plank, 8)), null, false, new ItemStack(end_glob));
+		
+		Recipes.blockcutter.addRecipe(Recipes.inputFactory.forOreDict("blockGobber"), cutterhard, false, new ItemStack(ingot_gobber, 9));
+		Recipes.blockcutter.addRecipe(Recipes.inputFactory.forOreDict("blockNetherGobber"), cutterhard, false, new ItemStack(ingot_nether_gobber, 9));
+		Recipes.blockcutter.addRecipe(Recipes.inputFactory.forOreDict("blockEndGobber"), cutterhard, false, new ItemStack(ingot_end_gobber, 9));
+		
 	}
 }

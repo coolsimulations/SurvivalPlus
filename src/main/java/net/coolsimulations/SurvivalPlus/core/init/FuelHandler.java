@@ -638,6 +638,36 @@ public class FuelHandler implements IFuelHandler{
 				return 1200;
 		}
 		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			
+			if(fuel.getItem() == SPItems.glob_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.glob_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.glob_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.glob_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.nether_glob_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.nether_glob_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.nether_glob_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.nether_glob_boots)
+				return 1200;
+			
+			if(fuel.getItem() == SPItems.end_glob_helmet)
+				return 1500;
+			if(fuel.getItem() == SPItems.end_glob_chestplate)
+				return 2400;
+			if(fuel.getItem() == SPItems.end_glob_leggings)
+				return 2100;
+			if(fuel.getItem() == SPItems.end_glob_boots)
+				return 1200;
+		}
+		
 		if(fuel.getItem() == SPItems.paper_cup)
 			return 200;
 

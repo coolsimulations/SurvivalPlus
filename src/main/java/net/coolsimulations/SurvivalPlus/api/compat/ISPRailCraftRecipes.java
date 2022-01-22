@@ -9,6 +9,10 @@ public interface ISPRailCraftRecipes {
 	
 	void removeBlastFurnaceRecipe(ItemStack output);
 	
+	void addBlastFurnaceFuel(ItemStack input, int burnTime);
+	
+	void removeBlastFurnaceFuel(ItemStack fuel);
+	
 	/**
 	 * Registers an OreDict recipe to the Blast Furnace
 	 * @param input Registered OreDict string
@@ -19,5 +23,9 @@ public interface ISPRailCraftRecipes {
 	void addOreDictionaryBlastFurnaceRecipe(String input, ResourceLocation name, ItemStack output, int slag);
 	
 	void addOreDictionaryBlastFurnaceRecipe(String input, ResourceLocation name, ItemStack output, int slag, boolean removeCurrent);
+	
+	void addOreDictionaryBlastFurnaceFuel(String input, ResourceLocation name, int burnTime);
+	
+	void addOreDictionaryBlastFurnaceFuel(String input, ResourceLocation name, int burnTime, boolean removeCurrent);
 
 }

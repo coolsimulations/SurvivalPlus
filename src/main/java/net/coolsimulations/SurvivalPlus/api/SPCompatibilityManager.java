@@ -48,6 +48,7 @@ public class SPCompatibilityManager {
 	private static boolean modTraverseLoaded;
 	private static boolean modExtraPlanetsLoaded;
 	private static boolean modFluidloggedAPILoaded;
+	private static boolean modGobberLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -94,6 +95,7 @@ public class SPCompatibilityManager {
 	public static final String TRAVERSE_MODID = "traverse";
 	public static final String EXTRA_PLANETS_MODID = "extraplanets";
 	public static final String FLUIDLOGGED_API_MODID = "fluidlogged_api";
+	public static final String GOBBER_MODID = "gb";
 
 	public static void checkForCompatibleMods(){
 
@@ -315,6 +317,11 @@ public class SPCompatibilityManager {
 		if (Loader.isModLoaded(FLUIDLOGGED_API_MODID))
 		{
 			SPCompatibilityManager.modFluidloggedAPILoaded = true;
+		}
+		
+		if (Loader.isModLoaded(GOBBER_MODID))
+		{
+			SPCompatibilityManager.modGobberLoaded = true;
 		}
 	}
 
@@ -550,6 +557,11 @@ public class SPCompatibilityManager {
 	public static boolean isFluidLoggedLoaded()
 	{
 		return SPCompatibilityManager.modFluidloggedAPILoaded;
+	}
+	
+	public static boolean isGobberLoaded()
+	{
+		return SPCompatibilityManager.modGobberLoaded;
 	}
 
 }

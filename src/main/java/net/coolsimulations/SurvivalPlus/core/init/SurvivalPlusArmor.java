@@ -170,6 +170,10 @@ public class SurvivalPlusArmor {
 			ExtraPlanetsArmor.init();
 		}
 		
+		if(SPCompatibilityManager.isGobberLoaded()){
+			GobberArmor.init();
+		}
+		
 	}
 	public static void register()
 	{
@@ -211,6 +215,10 @@ public class SurvivalPlusArmor {
 		
 		if(SPCompatibilityManager.isExtraPlanetsLoaded()){
 			ExtraPlanetsArmor.register();
+		}
+		
+		if(SPCompatibilityManager.isGobberLoaded()){
+			GobberArmor.register();
 		}
 	}
 	
@@ -254,6 +262,10 @@ public class SurvivalPlusArmor {
 		
 		if(SPCompatibilityManager.isExtraPlanetsLoaded()){
 			ExtraPlanetsArmor.registerRenders();
+		}
+		
+		if(SPCompatibilityManager.isGobberLoaded()){
+			GobberArmor.registerRenders();
 		}
 
 	}

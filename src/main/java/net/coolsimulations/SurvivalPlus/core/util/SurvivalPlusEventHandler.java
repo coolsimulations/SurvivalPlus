@@ -10,6 +10,7 @@ import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.api.compat.RainbowComponent;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
@@ -36,6 +37,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -51,6 +53,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -270,6 +273,21 @@ public class SurvivalPlusEventHandler {
 		}
 	}
 
+	@SubscribeEvent
+	public void coolsimDisplayName(PlayerEvent.NameFormat event) {
+		
+		if(event.getEntityPlayer().getPersistentID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+
+			TextComponentString alpaca = new TextComponentString(new RainbowComponent(event.getUsername()).getText());
+
+			if(event.getEntityPlayer().getTeam() == null) {
+				event.setDisplayname(alpaca.getText());
+			} else if(event.getEntityPlayer().getTeam() instanceof ScorePlayerTeam) {
+				if(((ScorePlayerTeam) event.getEntityPlayer().getTeam()).getColor() == TextFormatting.RESET)
+					event.setDisplayname(alpaca.getText());
+			}
+		}
+	}
 
 	@SubscribeEvent
 	public void coolsimChat(ServerChatEvent event) {

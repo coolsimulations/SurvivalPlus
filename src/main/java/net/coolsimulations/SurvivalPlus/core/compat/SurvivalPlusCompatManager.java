@@ -12,6 +12,8 @@ public class SurvivalPlusCompatManager {
 			SurvivalPlusIC2.registerEventHandler();
 		if(SPCompatibilityManager.isGCLoaded())
 			SurvivalPlusGC.registerEventHandler();
+		if(SPCompatibilityManager.isRailcraftLoaded())
+			SurvivalPlusRailCraft.registerEventHandler();
 		if(SPCompatibilityManager.isBopLoaded())
 			SurvivalPlusBOP.registerEventHandler();
 		if(SPCompatibilityManager.isLumberjackLoaded())
@@ -27,6 +29,9 @@ public class SurvivalPlusCompatManager {
 	public static void initRecipies() {
 		
 		SurvivalPlusFutureMC.init();
+		
+		if(SPCompatibilityManager.isGobberLoaded())
+			SurvivalPlusGobber.init();
 		
 		if(SPCompatibilityManager.isIc2Loaded())
 			SurvivalPlusIC2.init();

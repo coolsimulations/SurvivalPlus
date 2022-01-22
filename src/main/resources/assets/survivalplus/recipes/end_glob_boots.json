@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_boots",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "gb:glob3_log",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "survivalplus:end_glob_boots"
+  }
+}

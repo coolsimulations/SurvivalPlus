@@ -134,6 +134,12 @@ public class SurvivalPlusAetherLegacyRecipes {
 			registerArmourLists(registry, SPItems.kepler22b_green_maple, 225);
 			registerArmourLists(registry, SPItems.kepler22b_brown_maple, 225);
 		}
+		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			registerArmourLists(registry, SPItems.glob, 225);
+			registerArmourLists(registry, SPItems.nether_glob, 225);
+			registerArmourLists(registry, SPItems.end_glob, 225);
+		}
 	}
 	
 	protected void registerArmourLists(IForgeRegistry<AetherEnchantment> registry, NonNullList<ItemStack> itemList, int duration) {

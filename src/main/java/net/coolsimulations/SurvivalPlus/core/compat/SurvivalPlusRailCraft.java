@@ -8,6 +8,7 @@ import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import mods.railcraft.api.crafting.Crafters;
+import mods.railcraft.api.crafting.IRollingMachineCrafter;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.items.RailcraftItems;
@@ -24,8 +25,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 public class SurvivalPlusRailCraft {
 
@@ -36,7 +42,15 @@ public class SurvivalPlusRailCraft {
 		registerBlastFurnace();
 		registerSmelting();
 		registerCrafting();
+		
+		if(SPCompatibilityManager.isGobberLoaded())
+			registerGobber();
 
+	}
+	
+	public static void registerEventHandler() {
+
+		MinecraftForge.EVENT_BUS.register(new SurvivalPlusRailCraft());
 	}
 
 	public static void registerMetalRolling() {
@@ -257,6 +271,35 @@ public class SurvivalPlusRailCraft {
 			ItemStack lead = IC2Items.getItem("ingot", "lead");
 			GameRegistry.addShapedRecipe(steel.getItem().getRegistryName(), null, lead, new Object []{"NNN", "NNN", "NNN", 'N', "nuggetLead"});
 		}
+	}
+	
+	@SubscribeEvent
+	public void removeRecipes(RegistryEvent.Register<IRecipe> event) {
+
+		IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) event.getRegistry();
+
+		if(SPCompatibilityManager.isGobberLoaded() && !SPCompatibilityManager.isGCLoaded()) {
+			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID + ":" + "garmor_repair"));
+		}
+		
+	}
+	
+	public static void registerGobber() {
+		
+		Item foo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "foo"));
+		Item foo2 = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "foo2"));
+		Item foo3 = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "foo3"));
+		
+		Item plate_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "garmor_repair"));
+		
+		SPCompatRecipeManager.railcraftRecipeManager.addBlastFurnaceFuel(new ItemStack(foo), 6400);
+		SPCompatRecipeManager.railcraftRecipeManager.addBlastFurnaceFuel(new ItemStack(foo2), 9600);
+		SPCompatRecipeManager.railcraftRecipeManager.addBlastFurnaceFuel(new ItemStack(foo3), 12800);
+		
+		Crafters.rollingMachine().newRecipe(new ItemStack(plate_gobber, 4))
+			.name(SPCompatibilityManager.GOBBER_MODID + ":roll_gobber_plate")
+			.time(IRollingMachineCrafter.DEFAULT_PROCESS_TIME * 4)
+			.shaped("XY", "YX", 'X', "ingotGobber", 'Y', "ingotNetherGobber");
 	}
 
 }
