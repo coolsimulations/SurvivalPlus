@@ -1,0 +1,68 @@
+{
+	"replace": false,
+	"values": [
+		"survivalplus:bronze_chestplate",
+		"survivalplus:titanium_chestplate",
+		"survivalplus:stone_chestplate",
+		"survivalplus:oak_chestplate",
+		"survivalplus:spruce_chestplate",
+		"survivalplus:birch_chestplate",
+		"survivalplus:jungle_chestplate",
+		"survivalplus:acacia_chestplate",
+		"survivalplus:dark_oak_chestplate",
+		"survivalplus:crimson_chestplate",
+		"survivalplus:warped_chestplate",
+		{
+		  "id": "survivalplus:bamboo_chestplate",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:redwood_chestplate_vanilla_enhanced",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:fir_chestplate_traverse",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:redwood_chestplate_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:hemlock_chestplate",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:rubber_chestplate_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:cypress_chestplate",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:willow_chestplate_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:japanese_maple_chestplate",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:rainbow_eucalyptus_chestplate",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:sakura_chestplate",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:yucca_palm_chestplate",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:white_oak_chestplate",
+		  "required": false
+		}
+	]
+}

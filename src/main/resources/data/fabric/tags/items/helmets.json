@@ -1,0 +1,68 @@
+{
+	"replace": false,
+	"values": [
+		"survivalplus:bronze_helmet",
+		"survivalplus:titanium_helmet",
+		"survivalplus:stone_helmet",
+		"survivalplus:oak_helmet",
+		"survivalplus:spruce_helmet",
+		"survivalplus:birch_helmet",
+		"survivalplus:jungle_helmet",
+		"survivalplus:acacia_helmet",
+		"survivalplus:dark_oak_helmet",
+		"survivalplus:crimson_helmet",
+		"survivalplus:warped_helmet",
+		{
+		  "id": "survivalplus:bamboo_helmet",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:redwood_helmet_vanilla_enhanced",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:fir_helmet_traverse",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:redwood_helmet_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:hemlock_helmet",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:rubber_helmet_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:cypress_helmet",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:willow_helmet_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:japanese_maple_helmet",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:rainbow_eucalyptus_helmet",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:sakura_helmet",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:yucca_palm_helmet",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:white_oak_helmet",
+		  "required": false
+		}
+	]
+}

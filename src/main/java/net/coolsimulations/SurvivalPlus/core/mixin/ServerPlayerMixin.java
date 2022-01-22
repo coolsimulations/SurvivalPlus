@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.mojang.authlib.GameProfile;
 
+import net.coolsimulations.SurvivalPlus.api.compat.RainbowComponent;
 import net.coolsimulations.SurvivalPlus.api.events.EntityAccessor;
 import net.coolsimulations.SurvivalPlus.api.events.SPPlayerDeathEvent;
 import net.minecraft.ChatFormatting;
@@ -62,6 +63,18 @@ public abstract class ServerPlayerMixin extends Player {
 			} else if(this.getTeam() instanceof PlayerTeam) {
 				if(((PlayerTeam) this.getTeam()).getColor() == ChatFormatting.RESET)
 					cir.setReturnValue(coolsim);
+			}
+		}
+		
+		if(this.getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+			
+			TextComponent alpaca = new TextComponent(new RainbowComponent(this.getName().getString()).getText());
+			
+			if(this.getTeam() == null) {
+				cir.setReturnValue(alpaca);
+			} else if(this.getTeam() instanceof PlayerTeam) {
+				if(((PlayerTeam) this.getTeam()).getColor() == ChatFormatting.RESET)
+					cir.setReturnValue(alpaca);
 			}
 		}
 

@@ -1,4 +1,3 @@
-
 {
 	"replace": false,
 	"values": [
@@ -10,6 +9,60 @@
 		"survivalplus:birch_leggings",
 		"survivalplus:jungle_leggings",
 		"survivalplus:acacia_leggings",
-		"survivalplus:dark_oak_leggings"
+		"survivalplus:dark_oak_leggings",
+		"survivalplus:crimson_leggings",
+		"survivalplus:warped_leggings",
+		{
+		  "id": "survivalplus:bamboo_leggings",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:redwood_leggings_vanilla_enhanced",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:fir_leggings_traverse",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:redwood_leggings_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:hemlock_leggings",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:rubber_leggings_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:cypress_leggings",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:willow_leggings_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:japanese_maple_leggings",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:rainbow_eucalyptus_leggings",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:sakura_leggings",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:yucca_palm_leggings",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:white_oak_leggings",
+		  "required": false
+		}
 	]
 }

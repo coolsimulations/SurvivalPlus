@@ -1,4 +1,3 @@
-
 {
 	"replace": false,
 	"values": [
@@ -10,6 +9,60 @@
 		"survivalplus:birch_boots",
 		"survivalplus:jungle_boots",
 		"survivalplus:acacia_boots",
-		"survivalplus:dark_oak_boots"
+		"survivalplus:dark_oak_boots",
+		"survivalplus:crimson_boots",
+		"survivalplus:warped_boots",
+		{
+		  "id": "survivalplus:bamboo_boots",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:redwood_boots_vanilla_enhanced",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:fir_boots_traverse",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:redwood_boots_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:hemlock_boots",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:rubber_boots_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:cypress_boots",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:willow_boots_terrestria",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:japanese_maple_boots",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:rainbow_eucalyptus_boots",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:sakura_boots",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:yucca_palm_boots",
+		  "required": false
+		},
+		{
+		  "id": "survivalplus:white_oak_boots",
+		  "required": false
+		}
 	]
 }
