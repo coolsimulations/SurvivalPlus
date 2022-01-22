@@ -14,7 +14,9 @@
         "ServerPlayerGameModeMixin",
         "ServerLevelMixin",
         "CakeBlockMixin", "CandleCakeBlockMixin",
-        "DispenserBlockMixin"
+        "DispenserBlockMixin",
+        
+        "QuickUseEnchantmentMixin"
     ],
     "client": [
     	"BlockEntityWithoutLevelRendererMixin",

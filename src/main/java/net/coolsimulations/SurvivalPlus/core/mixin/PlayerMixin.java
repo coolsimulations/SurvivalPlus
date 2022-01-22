@@ -1,5 +1,6 @@
 package net.coolsimulations.SurvivalPlus.core.mixin;
 
+import java.util.UUID;
 import java.util.function.Consumer;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -7,8 +8,13 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import net.coolsimulations.SurvivalPlus.api.compat.RainbowComponent;
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -21,6 +27,7 @@ import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.scores.PlayerTeam;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity {
@@ -72,6 +79,22 @@ public abstract class PlayerMixin extends LivingEntity {
 		super.blockUsingShield(attacker);
 		if (((ItemAccessor) attacker.getMainHandItem().getItem()).canDisableShield(attacker.getMainHandItem(), this.getUseItem(), this, attacker)) {
 			(((Player) (Object)this)).disableShield(true);
+		}
+	}
+	
+	@Inject(at = @At("HEAD"), method = "getDisplayName", cancellable = true)
+	public void getDisplayName(CallbackInfoReturnable<Component> cir) {
+		
+		if(this.getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+			
+			TextComponent alpaca = new TextComponent(new RainbowComponent(this.getName().getString()).getText());
+			
+			if(this.getTeam() == null) {
+				cir.setReturnValue(alpaca);
+			} else if(this.getTeam() instanceof PlayerTeam) {
+				if(((PlayerTeam) this.getTeam()).getColor() == ChatFormatting.RESET)
+					cir.setReturnValue(alpaca);
+			}
 		}
 	}
 
