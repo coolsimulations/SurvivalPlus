@@ -31,6 +31,7 @@ public class SPCompatibilityManager {
 	private static boolean modEmeraldEquipmentLoaded;
 	private static boolean modAdabraniumLoaded;
 	private static boolean modAetherRebornLoaded;
+	private static boolean modGobberLoaded;
 
 	public static final String GCCORE_MODID = "galacticraft";
 	public static final String FABRIC_SHIELD_LIB_MODID = "fabricshieldlib";
@@ -57,6 +58,7 @@ public class SPCompatibilityManager {
 	public static final String EMERALD_EQUIPMENT_MODID = "emeraldequipment";
 	public static final String ADABRANIUM_MODID = "adabraniummod";
 	public static final String AETHER_REBORN_MODID = "the_aether";
+	public static final String GOBBER_MODID = "gobber2";
 	
 	public static final String FABRIC_LOADER_MODID = "fabricloader";
 
@@ -185,6 +187,11 @@ public class SPCompatibilityManager {
 		if (FabricLoader.getInstance().isModLoaded(AETHER_REBORN_MODID))
 		{
 			SPCompatibilityManager.modAetherRebornLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(GOBBER_MODID))
+		{
+			SPCompatibilityManager.modGobberLoaded = true;
 		}
 	}
 
@@ -325,6 +332,11 @@ public class SPCompatibilityManager {
 	public static boolean isAetherRebornLoaded()
 	{
 		return SPCompatibilityManager.modAetherRebornLoaded;
+	}
+	
+	public static boolean isGobberLoaded()
+	{
+		return SPCompatibilityManager.modGobberLoaded;
 	}
 	
 	

@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.mojang.authlib.GameProfile;
 
+import net.coolsimulations.SurvivalPlus.api.compat.RainbowComponent;
 import net.coolsimulations.SurvivalPlus.api.events.EntityAccessor;
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.coolsimulations.SurvivalPlus.api.events.SPPlayerDeathEvent;
@@ -22,7 +23,6 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -65,6 +65,18 @@ public abstract class ServerPlayerMixin extends Player {
 			} else if(this.getTeam() instanceof PlayerTeam) {
 				if(((PlayerTeam) this.getTeam()).getColor() == ChatFormatting.RESET)
 					cir.setReturnValue(coolsim);
+			}
+		}
+		
+		if(this.getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+			
+			TextComponent alpaca = new TextComponent(new RainbowComponent(this.getName().getString()).getText());
+			
+			if(this.getTeam() == null) {
+				cir.setReturnValue(alpaca);
+			} else if(this.getTeam() instanceof PlayerTeam) {
+				if(((PlayerTeam) this.getTeam()).getColor() == ChatFormatting.RESET)
+					cir.setReturnValue(alpaca);
 			}
 		}
 
