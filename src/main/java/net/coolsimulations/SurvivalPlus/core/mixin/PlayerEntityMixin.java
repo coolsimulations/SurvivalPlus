@@ -1,5 +1,6 @@
 package net.coolsimulations.SurvivalPlus.core.mixin;
 
+import java.util.UUID;
 import java.util.function.Consumer;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -9,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import net.coolsimulations.SurvivalPlus.api.compat.RainbowComponent;
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
@@ -19,7 +21,11 @@ import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.scoreboard.Team;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -74,6 +80,22 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		super.takeShieldHit(attacker);
 		if (((ItemAccessor) attacker.getMainHandStack().getItem()).canDisableShield(attacker.getMainHandStack(), this.getActiveItem(), this, attacker)) {
 			(((PlayerEntity) (Object)this)).disableShield(true);
+		}
+	}
+	
+	@Inject(at = @At("HEAD"), method = "getDisplayName", cancellable = true)
+	public void getDisplayName(CallbackInfoReturnable<Text> cir) {
+		
+		if(this.getUuid().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+			
+			LiteralText alpaca = new LiteralText(new RainbowComponent(this.getName().getString()).getText());
+			
+			if(this.getScoreboardTeam() == null) {
+				cir.setReturnValue(alpaca);
+			} else if(this.getScoreboardTeam() instanceof Team) {
+				if(((Team) this.getScoreboardTeam()).getColor() == Formatting.RESET)
+					cir.setReturnValue(alpaca);
+			}
 		}
 	}
 
