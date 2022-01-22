@@ -1,11 +1,10 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.item.Item;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.ForgeMod;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags.IOptionalNamedTag;
 
 public class SPTags
@@ -13,12 +12,10 @@ public class SPTags
 	public static class Blocks
 	{
 		//private static final TagRegistry<Block> collection = new TagRegistry<>();
-		public static final IOptionalNamedTag<Block> STORAGE_BLOCKS_COPPER = tag("storage_blocks/copper");
 		public static final IOptionalNamedTag<Block> STORAGE_BLOCKS_TIN = tag("storage_blocks/tin");
 		public static final IOptionalNamedTag<Block> STORAGE_BLOCKS_BRONZE = tag("storage_blocks/bronze");
 		public static final IOptionalNamedTag<Block> STORAGE_BLOCKS_TITANIUM = tag("storage_blocks/titanium");
-
-		public static final IOptionalNamedTag<Block> ORES_COPPER = tag("ores/copper");
+		
 		public static final IOptionalNamedTag<Block> ORES_TIN = tag("ores/tin");
 		public static final IOptionalNamedTag<Block> ORES_TITANIUM = tag("ores/titanium");
 
@@ -42,14 +39,13 @@ public class SPTags
 
 		private static IOptionalNamedTag<Block> tag(String name)
         {
-            return BlockTags.createOptional(new ResourceLocation(ForgeMod.getInstance().getModId(), name));
+            return BlockTags.createOptional(new ResourceLocation("forge", name));
         }
 	}
 
 	public static class Items
 	{
 		//private static final TagRegistry<Item> collection = new TagRegistry<>();
-		public static final IOptionalNamedTag<Item> INGOTS_COPPER = tag("ingots/copper");
 		public static final IOptionalNamedTag<Item> INGOTS_TIN = tag("ingots/tin");
 		public static final IOptionalNamedTag<Item> INGOTS_BRONZE = tag("ingots/bronze");
 		public static final IOptionalNamedTag<Item> INGOTS_TITANIUM = tag("ingots/titanium");
@@ -57,7 +53,6 @@ public class SPTags
 		public static final IOptionalNamedTag<Item> NUGGETS_BRONZE = tag("nuggets/bronze");
 		public static final IOptionalNamedTag<Item> NUGGETS_TITANIUM = tag("nuggets/titanium");
 		
-    	public static final IOptionalNamedTag<Item> SHARDS_AMETHYST = tag("gems/amethyst");
     	public static final IOptionalNamedTag<Item> SHARDS_RUBY = tag("gems/ruby");
     	public static final IOptionalNamedTag<Item> SHARDS_SAPPHIRE = tag("gems/sapphire");
     	public static final IOptionalNamedTag<Item> SHARDS_TOPAZ = tag("gems/topaz");
@@ -115,7 +110,7 @@ public class SPTags
 
 		private static IOptionalNamedTag<Item> tag(String name)
         {
-			return ItemTags.createOptional(new ResourceLocation(ForgeMod.getInstance().getModId(), name));
+			return ItemTags.createOptional(new ResourceLocation("forge", name));
         }
 		
         private static IOptionalNamedTag<Item> tag(String modid, String name)

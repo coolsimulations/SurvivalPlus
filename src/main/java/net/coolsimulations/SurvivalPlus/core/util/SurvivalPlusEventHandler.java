@@ -12,6 +12,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.api.compat.RainbowComponent;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusGeodes;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
@@ -393,6 +394,34 @@ public class SurvivalPlusEventHandler {
 			} else if(event.getPlayer().getTeam() instanceof PlayerTeam) {
 				if(((PlayerTeam) event.getPlayer().getTeam()).getColor() == ChatFormatting.RESET)
 					event.setDisplayName(coolsim);
+			}
+		}
+		
+		if(event.getPlayer().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+
+			TextComponent alpaca = new TextComponent(new RainbowComponent(event.getEntity().getName().getString()).getText());
+
+			if(event.getPlayer().getTeam() == null) {
+				event.setDisplayName(alpaca);
+			} else if(event.getPlayer().getTeam() instanceof PlayerTeam) {
+				if(((PlayerTeam) event.getPlayer().getTeam()).getColor() == ChatFormatting.RESET)
+					event.setDisplayName(alpaca);
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public void coolsimDisplayName(PlayerEvent.NameFormat event) {
+		
+		if(event.getPlayer().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+
+			TextComponent alpaca = new TextComponent(new RainbowComponent(event.getUsername().getString()).getText());
+
+			if(event.getPlayer().getTeam() == null) {
+				event.setDisplayname(alpaca);
+			} else if(event.getPlayer().getTeam() instanceof PlayerTeam) {
+				if(((PlayerTeam) event.getPlayer().getTeam()).getColor() == ChatFormatting.RESET)
+					event.setDisplayname(alpaca);
 			}
 		}
 	}

@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#forge:gems/amethyst",
     "#forge:gems/ruby",
     "#forge:gems/sapphire",
     "#forge:gems/topaz",

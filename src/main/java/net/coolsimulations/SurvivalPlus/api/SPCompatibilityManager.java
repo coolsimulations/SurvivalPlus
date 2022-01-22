@@ -42,6 +42,7 @@ public class SPCompatibilityManager {
 	private static boolean modObsidianEquipmentLoaded;
 	private static boolean modEmeraldEquipmentLoaded;
 	private static boolean modPlainGrinderLoaded;
+	private static boolean modGobberLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -82,6 +83,7 @@ public class SPCompatibilityManager {
 	public static final String OBSIDIAN_EQUIPMENT_MODID = "obsidianequipment";
 	public static final String EMERALD_EQUIPMENT_MODID = "emeraldequipment";
 	public static final String PLAIN_GRINDER_MODID = "plaingrinder";
+	public static final String GOBBER_MODID = "gobber2";
 
 	public static void checkForCompatibleMods(){
 
@@ -274,6 +276,11 @@ public class SPCompatibilityManager {
 		if (ModList.get().isLoaded(PLAIN_GRINDER_MODID))
 		{
 			SPCompatibilityManager.modPlainGrinderLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(GOBBER_MODID))
+		{
+			SPCompatibilityManager.modGobberLoaded = true;
 		}
 	}
 
@@ -479,6 +486,11 @@ public class SPCompatibilityManager {
 	public static boolean isPlainGrinderLoaded()
 	{
 		return SPCompatibilityManager.modPlainGrinderLoaded;
+	}
+	
+	public static boolean isGobberLoaded()
+	{
+		return SPCompatibilityManager.modGobberLoaded;
 	}
 
 }
