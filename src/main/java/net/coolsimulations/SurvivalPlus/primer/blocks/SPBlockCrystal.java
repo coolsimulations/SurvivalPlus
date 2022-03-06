@@ -1,7 +1,6 @@
 package net.coolsimulations.SurvivalPlus.primer.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -45,7 +44,7 @@ public class SPBlockCrystal extends AmethystBlock implements SimpleWaterloggedBl
 
 
 	public SPBlockCrystal(MaterialColor colour) {
-		super(FabricBlockSettings.of(Material.AMETHYST, colour).hardness(1.5F).resistance(1.5F).sounds(SoundType.AMETHYST_CLUSTER).breakByTool(FabricToolTags.PICKAXES).luminance(5));
+		super(FabricBlockSettings.of(Material.AMETHYST, colour).hardness(1.5F).resistance(1.5F).sounds(SoundType.AMETHYST_CLUSTER).luminance(5));
 		this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
 
 	}

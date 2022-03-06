@@ -55,17 +55,18 @@ public class SurvivalPlusPrimerBlocks {
 
 	public static void registerBlock(Block block, String registryName, boolean registerItem) {
 
-		BlockItem blockItem;
-
-		if(block instanceof SPBlockCrystal) {
-			blockItem = new BlockItem(block, new FabricItemSettings().group(SPTabs.tabGem));	
-		} else {
-			blockItem = new BlockItem(block, new FabricItemSettings().group(SPTabs.tabBlocks));
-		}
-
 		Registry.register(Registry.BLOCK, new ResourceLocation(SPReference.MOD_ID, registryName), block);
-		if(registerItem)
+		
+		if(registerItem) {
+			BlockItem blockItem;
+
+			if(block instanceof SPBlockCrystal) {
+				blockItem = new BlockItem(block, new FabricItemSettings().group(SPTabs.tabGem));	
+			} else {
+				blockItem = new BlockItem(block, new FabricItemSettings().group(SPTabs.tabBlocks));
+			}
 			Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), blockItem);
+		}
 	}
 
 }
