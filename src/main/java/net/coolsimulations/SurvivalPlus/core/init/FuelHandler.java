@@ -117,20 +117,20 @@ public class FuelHandler{
 		}
 		
 		if (SPCompatibilityManager.isBambooModsLoaded()) {
-			if(fuel.getItem() == SPItems.bamboo_helmet)
+			if(fuel.getItem() == SPItems.bamboo_helmet.get())
 				event.setBurnTime(250);
-			if(fuel.getItem() == SPItems.bamboo_chestplate)
+			if(fuel.getItem() == SPItems.bamboo_chestplate.get())
 				event.setBurnTime(400);
-			if(fuel.getItem() == SPItems.bamboo_leggings)
+			if(fuel.getItem() == SPItems.bamboo_leggings.get())
 				event.setBurnTime(350);
-			if(fuel.getItem() == SPItems.bamboo_boots)
+			if(fuel.getItem() == SPItems.bamboo_boots.get())
 				event.setBurnTime(200);
 		}
 		
-		if(fuel.getItem() == SPItems.paper_cup)
+		if(fuel.getItem() == SPItems.paper_cup.get())
 			event.setBurnTime(200);
 
-		if(fuel.getItem() == SPItems.charcoal_bucket)
+		if(fuel.getItem() == SPItems.charcoal_bucket.get())
 			event.setBurnTime(4800);
 		
 		Item item = fuel.getItem();

@@ -75,7 +75,7 @@ public class BlockCandleCheeseCake extends AbstractCandleBlock {
 				extinguish(playerIn, state, worldIn, pos);
 				return InteractionResult.sidedSuccess(worldIn.isClientSide);
 			} else {
-				InteractionResult interactionResult = BlockCheeseCake.cupcake(SPBlocks.cheese_cake.defaultBlockState(), worldIn, pos, playerIn, hand);
+				InteractionResult interactionResult = BlockCheeseCake.cupcake(SPBlocks.cheese_cake.get().defaultBlockState(), worldIn, pos, playerIn, hand);
 				if (interactionResult.consumesAction()) {
 					dropResources(state, worldIn, pos);
 				}
@@ -118,7 +118,7 @@ public class BlockCandleCheeseCake extends AbstractCandleBlock {
 	}
 
 	public ItemStack getCloneItemStack(BlockGetter reader, BlockPos pos, BlockState state) {
-		return new ItemStack(SPBlocks.cheese_cake);
+		return new ItemStack(SPBlocks.cheese_cake.get());
 	}
 
 	public BlockState updateShape(BlockState state, Direction side, BlockState blockState, LevelAccessor worldIn, BlockPos pos, BlockPos blockPos) {

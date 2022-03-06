@@ -1,13 +1,13 @@
 package net.coolsimulations.SurvivalPlus.core.recipes;
 
-import java.util.Iterator;
-
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.tags.Tag.Named;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class SurvivalPlusComposterRecipes {
 	
@@ -42,32 +42,33 @@ public class SurvivalPlusComposterRecipes {
 		registerCompostableTag(SPTags.Items.FOOD_CAKE_CHEESE, LEGENDARY);
 		registerCompostableTag(SPTags.Items.FOOD_CAKE_SPONGE, LEGENDARY);**/
 		
-		registerCompostable(SPItems.raw_onion, RARE);
-		registerCompostable(SPItems.onion_seeds, COMMON);
-		registerCompostable(SPItems.baked_apple, EPIC);
-		registerCompostable(SPItems.cheese, UNCOMMON);
-		registerCompostable(SPItems.fried_onion, RARE);
-		registerCompostable(SPItems.roast_carrot, EPIC);
-		registerCompostable(SPItems.apple_pie, LEGENDARY);
-		registerCompostable(SPItems.beef_pie, LEGENDARY);
-		registerCompostable(SPItems.chicken_pie, LEGENDARY);
-		registerCompostable(SPItems.mutton_pie, LEGENDARY);
-		registerCompostable(SPItems.pork_pie, LEGENDARY);
-		registerCompostable(SPItems.rabbit_pie, LEGENDARY);
-		registerCompostable(SPItems.vegetable_pie, LEGENDARY);
-		registerCompostable(SPItems.cheese_bread, LEGENDARY);
-		registerCompostable(SPItems.melted_cheese_bread, LEGENDARY);
-		registerCompostable(SPItems.cupcake, COMMON);
-		registerCompostable(SPItems.cheese_cupcake, COMMON);
-		registerCompostable(SPItems.sponge_cupcake, COMMON);
-		registerCompostable(SPBlocks.cheese_cake, LEGENDARY);
-		registerCompostable(SPBlocks.sponge_cake, LEGENDARY);
+		registerCompostable(SPItems.raw_onion.get(), RARE);
+		registerCompostable(SPItems.onion_seeds.get(), COMMON);
+		registerCompostable(SPItems.baked_apple.get(), EPIC);
+		registerCompostable(SPItems.cheese.get(), UNCOMMON);
+		registerCompostable(SPItems.fried_onion.get(), RARE);
+		registerCompostable(SPItems.roast_carrot.get(), EPIC);
+		registerCompostable(SPItems.apple_pie.get(), LEGENDARY);
+		registerCompostable(SPItems.beef_pie.get(), LEGENDARY);
+		registerCompostable(SPItems.chicken_pie.get(), LEGENDARY);
+		registerCompostable(SPItems.mutton_pie.get(), LEGENDARY);
+		registerCompostable(SPItems.pork_pie.get(), LEGENDARY);
+		registerCompostable(SPItems.rabbit_pie.get(), LEGENDARY);
+		registerCompostable(SPItems.vegetable_pie.get(), LEGENDARY);
+		registerCompostable(SPItems.cheese_bread.get(), LEGENDARY);
+		registerCompostable(SPItems.melted_cheese_bread.get(), LEGENDARY);
+		registerCompostable(SPItems.cupcake.get(), COMMON);
+		registerCompostable(SPItems.cheese_cupcake.get(), COMMON);
+		registerCompostable(SPItems.sponge_cupcake.get(), COMMON);
+		registerCompostable(SPBlocks.cheese_cake.get(), LEGENDARY);
+		registerCompostable(SPBlocks.sponge_cake.get(), LEGENDARY);
 	}
 	
-	protected static void registerCompostableTag(Named<Item> tag, float rarity) {
+	protected static void registerCompostableTag(TagKey<Item> tag, float rarity) {
 		
-		for(Iterator<Item> item = tag.getValues().iterator(); item.hasNext();)
-			registerCompostable(item.next(), rarity);
+		for(Item item : ForgeRegistries.ITEMS)
+			if(new ItemStack(item).is(tag))
+				registerCompostable(item, rarity);
 	}
 	
 	protected static void registerCompostable(ItemLike item, float rarity) {

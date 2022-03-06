@@ -1,92 +1,37 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
-import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPFoods;
+import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemCupcake;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.food.FoodProperties.Builder;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BowlFoodItem;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings({"unused"})
 public class SurvivalPlusFood {
 	
-	public static void init(){
-		
-		SPFoods.apple_pie = (new Builder()).nutrition(8).saturationMod(0.75F).build();
-		SPFoods.beef_pie = (new Builder()).nutrition(10).saturationMod(0.95F).meat().build();
-		SPFoods.pork_pie = (new Builder()).nutrition(10).saturationMod(0.95F).meat().build();
-		SPFoods.chicken_pie = (new Builder()).nutrition(8).saturationMod(0.75F).meat().build();
-		SPFoods.mutton_pie = (new Builder()).nutrition(8).saturationMod(0.75F).meat().build();
-		SPFoods.rabbit_pie = (new Builder()).nutrition(8).saturationMod(0.75F).meat().build();
-		SPFoods.vegetable_pie = (new Builder()).nutrition(7).saturationMod(1.0F).build();
-		SPFoods.raw_onion = (new Builder()).nutrition(2).saturationMod(1.0F).effect(new MobEffectInstance(MobEffects.CONFUSION, 300), 1.0F).build();
-		SPFoods.onion_soup = buildSoup(10);
-		SPFoods.fried_egg = (new Builder()).nutrition(2).saturationMod(1.0F).fast().build();
-		SPFoods.roast_carrot = (new Builder()).nutrition(5).saturationMod(0.5F).build();
-		SPFoods.cheese = (new Builder()).nutrition(3).saturationMod(1.0F).fast().build();
-		SPFoods.cheese_bread = (new Builder()).nutrition(9).saturationMod(0.9F).build();
-		SPFoods.melted_cheese_bread = (new Builder()).nutrition(11).saturationMod(1.0F).build();
-		SPFoods.cupcake = (new Builder()).nutrition(2).saturationMod(0.1F).fast().build();
-		SPFoods.cheese_cupcake = (new Builder()).nutrition(3).saturationMod(0.2F).fast().build();
-		SPFoods.sponge_cupcake = (new Builder()).nutrition(2).saturationMod(0.1F).fast().build();
-		SPFoods.baked_apple = (new Builder()).nutrition(6).saturationMod(0.5F).build();
-		SPFoods.fried_onion = (new Builder()).nutrition(4).saturationMod(0.8F).fast().build();
-		
-		SPItems.apple_pie = new Item(new Item.Properties().food(SPFoods.apple_pie).tab(SPTabs.tabFood)).setRegistryName("apple_pie");
-		SPItems.beef_pie = new Item(new Item.Properties().food(SPFoods.beef_pie).tab(SPTabs.tabFood)).setRegistryName("beef_pie");
-		SPItems.pork_pie = new Item(new Item.Properties().food(SPFoods.pork_pie).tab(SPTabs.tabFood)).setRegistryName("pork_pie");
-		SPItems.chicken_pie = new Item(new Item.Properties().food(SPFoods.chicken_pie).tab(SPTabs.tabFood)).setRegistryName("chicken_pie");
-		SPItems.mutton_pie = new Item(new Item.Properties().food(SPFoods.mutton_pie).tab(SPTabs.tabFood)).setRegistryName("mutton_pie");
-		SPItems.rabbit_pie = new Item(new Item.Properties().food(SPFoods.rabbit_pie).tab(SPTabs.tabFood)).setRegistryName("rabbit_pie");
-		SPItems.vegetable_pie = new Item(new Item.Properties().food(SPFoods.vegetable_pie).tab(SPTabs.tabFood)).setRegistryName("vegetable_pie");
-		SPItems.raw_onion = new Item(new Item.Properties().food(SPFoods.raw_onion).tab(SPTabs.tabFood)).setRegistryName("raw_onion");
-		SPItems.onion_soup = new BowlFoodItem(new Item.Properties().food(SPFoods.onion_soup).stacksTo(1).tab(SPTabs.tabFood)).setRegistryName("onion_soup");
-		SPItems.fried_egg = new Item(new Item.Properties().food(SPFoods.fried_egg).tab(SPTabs.tabFood)).setRegistryName("fried_egg");
-		SPItems.roast_carrot = new Item(new Item.Properties().food(SPFoods.roast_carrot).tab(SPTabs.tabFood)).setRegistryName("roast_carrot");
-		SPItems.cheese = new Item(new Item.Properties().food(SPFoods.cheese).tab(SPTabs.tabFood)).setRegistryName("cheese");
-		SPItems.cheese_bread = new Item(new Item.Properties().food(SPFoods.cheese_bread).tab(SPTabs.tabFood)).setRegistryName("cheese_bread");
-		SPItems.melted_cheese_bread = new Item(new Item.Properties().food(SPFoods.melted_cheese_bread).tab(SPTabs.tabFood)).setRegistryName("melted_cheese_bread");
-		SPItems.cupcake = new SPItemCupcake(new Item.Properties().food(SPFoods.cupcake).tab(SPTabs.tabFood)).setRegistryName("cupcake");
-		SPItems.cheese_cupcake = new SPItemCupcake(new Item.Properties().food(SPFoods.cheese_cupcake).tab(SPTabs.tabFood)).setRegistryName("cheese_cupcake");
-		SPItems.sponge_cupcake = new SPItemCupcake(new Item.Properties().food(SPFoods.sponge_cupcake).tab(SPTabs.tabFood)).setRegistryName("sponge_cupcake");
-		SPItems.baked_apple = new Item(new Item.Properties().food(SPFoods.baked_apple).tab(SPTabs.tabFood)).setRegistryName("baked_apple");
-		SPItems.fried_onion = new Item(new Item.Properties().food(SPFoods.fried_onion).tab(SPTabs.tabFood)).setRegistryName("fried_onion");
-		
-		//(hunger) x * 0.5 = a hearts (Max 20)
-	}
-	public static void register()
-	{
-		registerItem(SPItems.apple_pie);
-		registerItem(SPItems.beef_pie);
-		registerItem(SPItems.pork_pie);
-		registerItem(SPItems.chicken_pie);
-		registerItem(SPItems.mutton_pie);
-		registerItem(SPItems.rabbit_pie);
-		registerItem(SPItems.vegetable_pie);
-		registerItem(SPItems.raw_onion);
-		registerItem(SPItems.onion_soup);
-		registerItem(SPItems.fried_egg);
-		registerItem(SPItems.roast_carrot);
-		registerItem(SPItems.cheese);
-		registerItem(SPItems.cheese_bread);
-		registerItem(SPItems.melted_cheese_bread);
-		registerItem(SPItems.cupcake);
-		registerItem(SPItems.cheese_cupcake);
-		registerItem(SPItems.sponge_cupcake);
-		registerItem(SPItems.baked_apple);
-		registerItem(SPItems.fried_onion);
-	}
+	public static final DeferredRegister<Item> ITEMS_FOOD = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
 	
-	public static void registerItem(Item item) {
-		
-		 ForgeRegistries.ITEMS.register(item);
-	}
-	
-	private static FoodProperties buildSoup(int hunger) {
-		return (new Builder()).nutrition(hunger).saturationMod(0.6F).build();
-	}
+	private static final RegistryObject<Item> apple_pie = ITEMS_FOOD.register("apple_pie", () -> new Item(new Item.Properties().food(SPFoods.apple_pie).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> beef_pie = ITEMS_FOOD.register("beef_pie", () -> new Item(new Item.Properties().food(SPFoods.beef_pie).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> pork_pie = ITEMS_FOOD.register("pork_pie", () -> new Item(new Item.Properties().food(SPFoods.pork_pie).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> chicken_pie = ITEMS_FOOD.register("chicken_pie", () -> new Item(new Item.Properties().food(SPFoods.chicken_pie).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> mutton_pie = ITEMS_FOOD.register("mutton_pie", () -> new Item(new Item.Properties().food(SPFoods.mutton_pie).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> rabbit_pie = ITEMS_FOOD.register("rabbit_pie", () -> new Item(new Item.Properties().food(SPFoods.rabbit_pie).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> vegetable_pie = ITEMS_FOOD.register("vegetable_pie", () -> new Item(new Item.Properties().food(SPFoods.vegetable_pie).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> raw_onion = ITEMS_FOOD.register("raw_onion", () -> new Item(new Item.Properties().food(SPFoods.raw_onion).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> onion_soup = ITEMS_FOOD.register("onion_soup", () -> new BowlFoodItem(new Item.Properties().food(SPFoods.onion_soup).stacksTo(1).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> fried_egg = ITEMS_FOOD.register("fried_egg", () -> new Item(new Item.Properties().food(SPFoods.fried_egg).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> roast_carrot = ITEMS_FOOD.register("roast_carrot", () -> new Item(new Item.Properties().food(SPFoods.roast_carrot).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> cheese = ITEMS_FOOD.register("cheese", () -> new Item(new Item.Properties().food(SPFoods.cheese).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> cheese_bread = ITEMS_FOOD.register("cheese_bread", () -> new Item(new Item.Properties().food(SPFoods.cheese_bread).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> melted_cheese_bread = ITEMS_FOOD.register("melted_cheese_bread", () -> new Item(new Item.Properties().food(SPFoods.melted_cheese_bread).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> cupcake = ITEMS_FOOD.register("cupcake", () -> new SPItemCupcake(new Item.Properties().food(SPFoods.cupcake).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> cheese_cupcake = ITEMS_FOOD.register("cheese_cupcake", () -> new SPItemCupcake(new Item.Properties().food(SPFoods.cheese_cupcake).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> sponge_cupcake = ITEMS_FOOD.register("sponge_cupcake", () -> new SPItemCupcake(new Item.Properties().food(SPFoods.sponge_cupcake).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> baked_apple = ITEMS_FOOD.register("baked_apple", () -> new Item(new Item.Properties().food(SPFoods.baked_apple).tab(SPTabs.tabFood)));
+	private static final RegistryObject<Item> fried_onion = ITEMS_FOOD.register("fried_onion", () -> new Item(new Item.Properties().food(SPFoods.fried_onion).tab(SPTabs.tabFood)));
 }

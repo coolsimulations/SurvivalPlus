@@ -1,12 +1,12 @@
 modLoader="javafml"
-loaderVersion="[39,]"
+loaderVersion="[40,]"
 issueTrackerURL="http://github.com/coolsimulations/survivalplus/issues/"
 logoFile="logo.png"
 license="All rights reserved"
 
 [[mods]]
     modId="survivalplus"
-    version="0.1.6b"
+    version="0.1.6c"
     updateJSONURL="https://coolsimulations.net/mcmods/survivalplus/versionchecker.json"
     displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus"
     displayName="SurvivalPlus"
@@ -18,19 +18,19 @@ license="All rights reserved"
 [[dependencies.survivalplus]]
     modId="forge"
     mandatory=true
-    versionRange="[39.0.18,]"
+    versionRange="[40.0.3,]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.1,]"
+    versionRange="[1.18.2,]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="biomesoplenty"
     mandatory=false
-    versionRange="[1.18.1-10.0.0.294,]"
+    versionRange="[1.18.2-10.0.0.294,]"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.survivalplus]]

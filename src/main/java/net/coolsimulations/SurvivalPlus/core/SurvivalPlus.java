@@ -18,6 +18,8 @@ import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusCompatManager;
 import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
 import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfigGUI;
+import net.coolsimulations.SurvivalPlus.core.init.BOPArmor;
+import net.coolsimulations.SurvivalPlus.core.init.ForestryArmor;
 import net.coolsimulations.SurvivalPlus.core.init.FuelHandler;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusBlocks;
@@ -25,6 +27,7 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusGeodes;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
+import net.coolsimulations.SurvivalPlus.core.init.TraverseArmor;
 import net.coolsimulations.SurvivalPlus.core.proxy.ClientProxy;
 import net.coolsimulations.SurvivalPlus.core.proxy.CommonProxy;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
@@ -46,6 +49,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
@@ -110,28 +114,34 @@ public class SurvivalPlus {
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
 		SurvivalPlusCompatManager.initEventHandler();
 
-		SurvivalPlusBlocks.init();
-		SurvivalPlusBlocks.register();
-		SurvivalPlusItems.init();
-		SurvivalPlusItems.register();
-		SurvivalPlusFood.init();
-		SurvivalPlusFood.register();
+		SurvivalPlusBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		SurvivalPlusBlocks.BLOCK_ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		SurvivalPlusItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		SurvivalPlusFood.ITEMS_FOOD.register(FMLJavaModLoadingContext.get().getModEventBus());
 		
-		SurvivalPlusGeodes.init();
-		SurvivalPlusGeodes.register();
+		SurvivalPlusGeodes.BLOCKS_GEODE.register(FMLJavaModLoadingContext.get().getModEventBus());
+		SurvivalPlusGeodes.ITEMS_GEODE.register(FMLJavaModLoadingContext.get().getModEventBus());
 
 		//VillagerRegistry.instance().registerVillageCreationHandler(new VillageOnionCropHandler());  //temp till forge pull request #6142 is resolved
 		//StructureIO.registerStructureComponent(StructureVillageOnionCrop.class, SPReference.MOD_ID + ":onionCropFieldStructure");  //temp till forge pull request #6142 is resolved
 
-		SurvivalPlusArmor.init();
-		SurvivalPlusArmor.register();
-		SurvivalPlusTools.init();
-		SurvivalPlusTools.register();
-		
-		FuelHandler.registerArmorFuels();
+		SurvivalPlusArmor.ITEMS_ARMOR.register(FMLJavaModLoadingContext.get().getModEventBus());
+		if(SPCompatibilityManager.isIc2Loaded())
+			SurvivalPlusArmor.ITEMS_RUBBER_ARMOR.register(FMLJavaModLoadingContext.get().getModEventBus());
+		if(SPCompatibilityManager.isBambooModsLoaded())
+			SurvivalPlusArmor.ITEMS_BAMBOO_ARMOR.register(FMLJavaModLoadingContext.get().getModEventBus());
+		if(SPCompatibilityManager.isBopLoaded())
+			BOPArmor.ITEMS_BOP_ARMOR.register(FMLJavaModLoadingContext.get().getModEventBus());
+		if(SPCompatibilityManager.isBopExtrasLoaded())
+			BOPArmor.ITEMS_BOP_EXTRAS_ARMOR.register(FMLJavaModLoadingContext.get().getModEventBus());
+		if(SPCompatibilityManager.isForestryLoaded())
+			ForestryArmor.ITEMS_FORESTRY_ARMOR.register(FMLJavaModLoadingContext.get().getModEventBus());
+		if(SPCompatibilityManager.isTraverseLoaded())
+			TraverseArmor.ITEMS_TRAVERSE_ARMOR.register(FMLJavaModLoadingContext.get().getModEventBus());
+		SurvivalPlusTools.ITEMS_TOOL.register(FMLJavaModLoadingContext.get().getModEventBus());
 		
 		SurvivalPlusCompatManager.init();
-		SurvivalPlusDispenserBehavior.init();
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		
 		proxy.init();
 
@@ -145,10 +155,15 @@ public class SurvivalPlus {
     			SurvivalPlusJER.init();
         }
 		 **/
-		
-		SurvivalPlusComposterRecipes.init();
-
 	}
+	
+	private void setup(final FMLCommonSetupEvent event)
+    {
+		SurvivalPlusArmor.init();
+		FuelHandler.registerArmorFuels();
+		SurvivalPlusDispenserBehavior.init();
+        SurvivalPlusComposterRecipes.init();
+    }
 	
 	@SubscribeEvent
 	public static void registerRecipes(final RegistryEvent.Register<RecipeSerializer<?>> event)

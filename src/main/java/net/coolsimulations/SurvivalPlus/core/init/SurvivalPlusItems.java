@@ -2,97 +2,47 @@ package net.coolsimulations.SurvivalPlus.core.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
-import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
+import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings({"unused"})
 public class SurvivalPlusItems {
-
-	public static void init() {
-
-		SPItems.tin_ingot = new SPItemIngot(true, 20.0F).setRegistryName("tin_ingot");
-		SPItems.raw_tin = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("raw_tin");
-		SPItems.onion_seeds = new ItemNameBlockItem(SPBlocks.onion, new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("onion_seeds");
-		SPItems.bronze_ingot = new SPItemIngot().setRegistryName("bronze_ingot");
-		SPItems.bronze_nugget = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("bronze_nugget");
-		SPItems.titanium_ingot = new SPItemIngot(true, 50.0F).setRegistryName("titanium_ingot");
-		SPItems.raw_titanium = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("raw_titanium");
-		SPItems.titanium_nugget = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("titanium_nugget");
-		SPItems.charcoal_bucket = new Item(new Item.Properties().tab(SPTabs.tabMaterials).stacksTo(1).craftRemainder(Items.BUCKET)).setRegistryName("charcoal_bucket");
-		SPItems.paper_cup = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("paper_cup");
-
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded() || SPCompatibilityManager.isPlainGrinderLoaded())
-		{
-			SPItems.titanium_dust = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("titanium_dust");
-		}
-
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isPlainGrinderLoaded())
-		{
-			SPItems.tin_dust = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("tin_dust");
-		}
-
-		if(SPCompatibilityManager.isSilentMechanismsLoaded())
-		{
-			SPItems.titanium_chunks = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("titanium_chunks");
-		}
-
-		if (SPCompatibilityManager.isIc2Loaded())
-		{
-			SPItems.crushed_titanium_ore = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("crushed_titanium_ore");
-			SPItems.purified_titanium_ore = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("purified_titanium_ore");
-			SPItems.tiny_titanium_pile = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("tiny_titanium_pile");
-			SPItems.titanium_plate = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("titanium_plate");
-			SPItems.titanium_dense_plate = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("titanium_dense_plate");
-			SPItems.titanium_casing = new Item(new Item.Properties().tab(SPTabs.tabMaterials)).setRegistryName("titanium_casing");
-
-		}
-
-	}
-	public static void register()
-	{
-		registerItem(SPItems.tin_ingot);
-		registerItem(SPItems.raw_tin);
-		registerItem(SPItems.onion_seeds);
-		registerItem(SPItems.bronze_ingot);
-		registerItem(SPItems.bronze_nugget);
-		registerItem(SPItems.titanium_ingot);
-		registerItem(SPItems.raw_titanium);
-		registerItem(SPItems.titanium_nugget);
-		registerItem(SPItems.charcoal_bucket);
-		registerItem(SPItems.paper_cup);
-
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isSilentMechanismsLoaded() || SPCompatibilityManager.isPlainGrinderLoaded())
-		{
-			registerItem(SPItems.titanium_dust);
-		}
-
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() && !SPCompatibilityManager.isIc2Loaded() || SPCompatibilityManager.isPlainGrinderLoaded())
-		{
-			registerItem(SPItems.tin_dust);
-		}
-
-		if(SPCompatibilityManager.isSilentMechanismsLoaded())
-		{
-			registerItem(SPItems.titanium_chunks);
-		}
-
-		if (SPCompatibilityManager.isIc2Loaded())
-		{
-			registerItem(SPItems.crushed_titanium_ore);
-			registerItem(SPItems.purified_titanium_ore);
-			registerItem(SPItems.tiny_titanium_pile);
-			registerItem(SPItems.titanium_plate);
-			registerItem(SPItems.titanium_dense_plate);
-			registerItem(SPItems.titanium_casing);
-
-		}
-	}
-	public static void registerItem(Item item) {
-
-		ForgeRegistries.ITEMS.register(item);
-	}
+	
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
+	public static final DeferredRegister<Item> ITEMS_IC2 = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
+	public static final DeferredRegister<Item> ITEMS_TITANIUM_DUST = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
+	public static final DeferredRegister<Item> ITEMS_TIN_DUST = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
+	public static final DeferredRegister<Item> ITEMS_TITANIUM_CHUNKS = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
+	
+	private static final RegistryObject<Item> tin_ingot = ITEMS.register("tin_ingot", () -> new SPItemIngot(true, 20.0F));
+	private static final RegistryObject<Item> raw_tin = ITEMS.register("raw_tin", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	private static final RegistryObject<Item> onion_seeds = ITEMS.register("onion_seeds", () -> new ItemNameBlockItem(SPBlocks.onion.get(), new Item.Properties().tab(SPTabs.tabMaterials)));
+	private static final RegistryObject<Item> bronze_ingot = ITEMS.register("bronze_ingot", () -> new SPItemIngot());
+	private static final RegistryObject<Item> bronze_nugget = ITEMS.register("bronze_nugget", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	private static final RegistryObject<Item> titanium_ingot = ITEMS.register("titanium_ingot", () -> new SPItemIngot(true, 50.0F));
+	private static final RegistryObject<Item> raw_titanium = ITEMS.register("raw_titanium", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	private static final RegistryObject<Item> titanium_nugget = ITEMS.register("titanium_nugget", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	private static final RegistryObject<Item> charcoal_bucket = ITEMS.register("charcoal_bucket", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials).stacksTo(1).craftRemainder(Items.BUCKET)));
+	private static final RegistryObject<Item> paper_cup = ITEMS.register("paper_cup", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	
+	private static final RegistryObject<Item> titanium_dust = ITEMS_TITANIUM_DUST.register("titanium_dust", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	
+	private static final RegistryObject<Item> tin_dust = ITEMS_TIN_DUST.register("tin_dust", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	
+	private static final RegistryObject<Item> titanium_chunks = ITEMS_TITANIUM_CHUNKS.register("titanium_chunks", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	
+	private static final RegistryObject<Item> crushed_titanium_ore = ITEMS_IC2.register("crushed_titanium_ore", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	private static final RegistryObject<Item> purified_titanium_ore = ITEMS_IC2.register("purified_titanium_ore", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	private static final RegistryObject<Item> tiny_titanium_pile = ITEMS_IC2.register("tiny_titanium_pile", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	private static final RegistryObject<Item> titanium_plate = ITEMS_IC2.register("titanium_plate", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	private static final RegistryObject<Item> titanium_dense_plate = ITEMS_IC2.register("titanium_dense_plate", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	private static final RegistryObject<Item> titanium_casing = ITEMS_IC2.register("titanium_casing", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
 }

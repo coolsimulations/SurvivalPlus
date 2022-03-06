@@ -1,6 +1,5 @@
 package net.coolsimulations.SurvivalPlus.core.blocks;
 
-import java.util.Iterator;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -9,6 +8,7 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -45,7 +45,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.Tags.IOptionalNamedTag;
 
 public class BlockCardboardLantern extends BlockCardboard implements SimpleWaterloggedBlock {
 
@@ -168,37 +167,37 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 			InteractionResult success = InteractionResult.FAIL;
 
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_WHITE, SPBlocks.cardboard_lantern_white);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_WHITE, SPBlocks.cardboard_lantern_white.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_LIGHT_GRAY, SPBlocks.cardboard_lantern_light_grey);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_LIGHT_GRAY, SPBlocks.cardboard_lantern_light_grey.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_GRAY, SPBlocks.cardboard_lantern_grey);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_GRAY, SPBlocks.cardboard_lantern_grey.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_BLACK, SPBlocks.cardboard_lantern_black);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_BLACK, SPBlocks.cardboard_lantern_black.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_RED, SPBlocks.cardboard_lantern_red);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_RED, SPBlocks.cardboard_lantern_red.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_ORANGE, SPBlocks.cardboard_lantern_orange);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_ORANGE, SPBlocks.cardboard_lantern_orange.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_YELLOW, SPBlocks.cardboard_lantern_yellow);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_YELLOW, SPBlocks.cardboard_lantern_yellow.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_LIME, SPBlocks.cardboard_lantern_lime);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_LIME, SPBlocks.cardboard_lantern_lime.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_GREEN, SPBlocks.cardboard_lantern_green);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_GREEN, SPBlocks.cardboard_lantern_green.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_LIGHT_BLUE, SPBlocks.cardboard_lantern_light_blue);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_LIGHT_BLUE, SPBlocks.cardboard_lantern_light_blue.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_CYAN, SPBlocks.cardboard_lantern_cyan);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_CYAN, SPBlocks.cardboard_lantern_cyan.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_BLUE, SPBlocks.cardboard_lantern_blue);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_BLUE, SPBlocks.cardboard_lantern_blue.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_PURPLE, SPBlocks.cardboard_lantern_purple);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_PURPLE, SPBlocks.cardboard_lantern_purple.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_MAGENTA, SPBlocks.cardboard_lantern_magenta);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_MAGENTA, SPBlocks.cardboard_lantern_magenta.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_PINK, SPBlocks.cardboard_lantern_pink);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_PINK, SPBlocks.cardboard_lantern_pink.get());
 			if(!success.consumesAction())
-				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_BROWN, SPBlocks.cardboard_lantern_brown);
+				success = checkDye(worldIn, pos, state, playerIn, itemStackIn, Tags.Items.DYES_BROWN, SPBlocks.cardboard_lantern_brown.get());
 
 			state.updateShape(hit.getDirection(), state, worldIn, pos, pos);
 			return success;
@@ -209,17 +208,13 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		return InteractionResult.FAIL;
 	}
 
-	protected InteractionResult checkDye(Level worldIn, BlockPos pos, BlockState state, Player playerIn, ItemStack stack, IOptionalNamedTag<Item> tag, Block dyeBlock) {
+	protected InteractionResult checkDye(Level worldIn, BlockPos pos, BlockState state, Player playerIn, ItemStack stack, TagKey<Item> tag, Block dyeBlock) {
 
-		for(Iterator<Item> acceptableItems = tag.getValues().iterator(); acceptableItems.hasNext(); ){
-			Item dye = acceptableItems.next();
-			if(dye == stack.getItem() && tag != null) {
-				if(!playerIn.isCreative())
-					stack.shrink(1);
-				worldIn.setBlock(pos, dyeBlock.defaultBlockState().setValue(FACING, state.getValue(FACING)).setValue(FLOATING, state.getValue(FLOATING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)), 3);
-				return InteractionResult.SUCCESS;
-			}
-
+		if(stack.is(tag)) {
+			if(!playerIn.isCreative())
+				stack.shrink(1);
+			worldIn.setBlock(pos, dyeBlock.defaultBlockState().setValue(FACING, state.getValue(FACING)).setValue(FLOATING, state.getValue(FLOATING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)), 3);
+			return InteractionResult.SUCCESS;
 		}
 
 		return InteractionResult.FAIL;
@@ -328,7 +323,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		if(block instanceof HopperBlock) {
 			return false;
 		}
-		
+
 		if(block instanceof SlabBlock) {
 			return isSlabValid(state, direction);
 		}
@@ -343,7 +338,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 	protected static boolean isTrapdoorValid(BlockState state, Direction facing) {
 		return state.getProperties().contains(TrapDoorBlock.HALF) && (facing == Direction.UP && state.getValue(TrapDoorBlock.HALF) == Half.TOP || facing == Direction.DOWN && state.getValue(TrapDoorBlock.HALF) == Half.BOTTOM) && !state.getValue(TrapDoorBlock.OPEN);
 	}
-	
+
 	protected static boolean isSlabValid(BlockState state, Direction facing) {
 		return (state.getProperties().contains(SlabBlock.TYPE) && (facing == Direction.UP && state.getValue(SlabBlock.TYPE) == SlabType.TOP || facing == Direction.DOWN && state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM)) || state.getValue(SlabBlock.TYPE) == SlabType.DOUBLE;
 	}

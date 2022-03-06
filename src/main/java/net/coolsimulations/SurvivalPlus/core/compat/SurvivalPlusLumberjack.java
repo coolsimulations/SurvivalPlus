@@ -5,68 +5,42 @@ import java.util.UUID;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 
-//import micdoodle8.mods.galacticraft.core.GCItems;
-//import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
-import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
-import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.doubledoordev.lumberjack.LumberjackConfig;
 import net.doubledoordev.lumberjack.util.EventHandler;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings({"unused"})
 public class SurvivalPlusLumberjack {
 	
-	public static void init() {
-		
-		if(SPCompatibilityManager.isLumberjackLoaded()) {
-			SPItems.bronze_lumberaxe = new SPItemLumberAxe(SPItemTier.bronzeToolMaterial).setRegistryName(new ResourceLocation(SPCompatibilityManager.LUMBERJACK_MODID, "bronze_lumberaxe"));
-			SPItems.titanium_lumberaxe = new SPItemLumberAxe(SPItemTier.titaniumToolMaterial).setRegistryName(new ResourceLocation(SPCompatibilityManager.LUMBERJACK_MODID, "titanium_lumberaxe"));
-
-			/**if(SPCompatibilityManager.isGCLoaded()) {
-				
-				GCItems.TOOL_STEEL.setRepairItem(new ItemStack(GCItems.basicItem, 1, 9));
-				SPItems.steel_lumberaxe = new ItemLumberAxe(GCItems.TOOL_STEEL);
-
-				if(SPCompatibilityManager.isGCPLoaded()) {
-					MarsItems.TOOLDESH.setRepairItem(new ItemStack(MarsItems.marsItemBasic, 1, 2));
-					SPItems.desh_lumberaxe = new ItemLumberAxe(MarsItems.TOOLDESH);
-				}
-			}**/
-		}
-	}
+	public static final DeferredRegister<Item> ITEMS_LUMBERJACK = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
+	
+	private static final RegistryObject<Item> bronze_lumberaxe = ITEMS_LUMBERJACK.register("bronze_lumberaxe", () -> new SPItemLumberAxe(SPItemTier.bronzeToolMaterial));
+	private static final RegistryObject<Item> titanium_lumberaxe = ITEMS_LUMBERJACK.register("titanium_lumberaxe", () -> new SPItemLumberAxe(SPItemTier.titaniumToolMaterial));
 	
 	public static void registerEventHandler() {
 		
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusLumberjack.SPEventHandler());
-	}
-	
-	public static void register() {
-		
-		registerItem(SPItems.bronze_lumberaxe);
-		registerItem(SPItems.titanium_lumberaxe);
-	}
-	
-	public static void registerItem(Item item) {
-		
-		 ForgeRegistries.ITEMS.register(item);
 	}
 	
 	public static class SPItemLumberAxe extends AxeItem {

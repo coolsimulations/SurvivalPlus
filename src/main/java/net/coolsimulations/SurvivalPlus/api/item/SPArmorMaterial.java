@@ -3,202 +3,259 @@ package net.coolsimulations.SurvivalPlus.api.item;
 import java.util.function.Supplier;
 
 import net.coolsimulations.SurvivalPlus.api.SPTags;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.tags.Tag;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
 
-public enum SPArmorMaterial implements ArmorMaterial {
-	bronzeArmorMaterial("bronze", 20, new int[] {2, 5, 5, 2}, 20, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, () -> {
+public class SPArmorMaterial implements ArmorMaterial {
+	
+	public static final ArmorMaterial bronzeArmorMaterial = new SPArmorMaterial("bronze", 20, new int[] {2, 5, 5, 2}, 20, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, () -> {
     	return Ingredient.of(SPTags.Items.INGOTS_BRONZE);
-    }),
-    stoneArmorMaterial("stone", 20, new int[] {1, 2, 4, 2}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial stoneArmorMaterial = new SPArmorMaterial("stone", 20, new int[] {1, 2, 4, 2}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.COBBLESTONE);
-    }),
-    titaniumArmorMaterial("titanium", 20, new int[] {3, 5, 7, 3}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, () -> {
+    });
+	
+	public static final ArmorMaterial titaniumArmorMaterial = new SPArmorMaterial("titanium", 20, new int[] {3, 5, 7, 3}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, () -> {
     	return Ingredient.of(SPTags.Items.INGOTS_TITANIUM);
-    }),
-    oakArmorMaterial("oak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial oakArmorMaterial = new SPArmorMaterial("oak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    spruceArmorMaterial("spruce", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial spruceArmorMaterial = new SPArmorMaterial("spruce", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    birchArmorMaterial("birch", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial birchArmorMaterial = new SPArmorMaterial("birch", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    jungleArmorMaterial("jungle", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial jungleArmorMaterial = new SPArmorMaterial("jungle", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    acaciaArmorMaterial("acacia", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial acaciaArmorMaterial = new SPArmorMaterial("acacia", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    darkOakArmorMaterial("dark_oak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial darkOakArmorMaterial = new SPArmorMaterial("dark_oak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    crimsonArmorMaterial("crimson", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial crimsonArmorMaterial = new SPArmorMaterial("crimson", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    warpedArmorMaterial("warped", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial warpedArmorMaterial = new SPArmorMaterial("warped", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    rubberArmorMaterial("rubber", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-    	return Ingredient.of((Tag<Item>) ItemTags.bind("minecraft:" + "rubber_logs"));
-    }),
-    cherryArmorMaterial("cherry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial rubberArmorMaterial = new SPArmorMaterial("rubber", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.of(ItemTags.create(new ResourceLocation("minecraft:", "rubber_logs")));
+    });
+	
+	public static final ArmorMaterial cherryArmorMaterial = new SPArmorMaterial("cherry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    deadArmorMaterial("dead", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial deadArmorMaterial = new SPArmorMaterial("dead", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    etherealArmorMaterial("ethereal", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial etherealArmorMaterial = new SPArmorMaterial("ethereal", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    firArmorMaterial("fir", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial firArmorMaterial = new SPArmorMaterial("fir", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    hellbarkArmorMaterial("hellbark", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial hellbarkArmorMaterial = new SPArmorMaterial("hellbark", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    jacarandaArmorMaterial("jacaranda", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial jacarandaArmorMaterial = new SPArmorMaterial("jacaranda", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    magicArmorMaterial("magic", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial magicArmorMaterial = new SPArmorMaterial("magic", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    mahoganyArmorMaterial("mahogany", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial mahoganyArmorMaterial = new SPArmorMaterial("mahogany", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    palmArmorMaterial("palm", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial palmArmorMaterial = new SPArmorMaterial("palm", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    redwoodArmorMaterial("redwood", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial redwoodArmorMaterial = new SPArmorMaterial("redwood", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    umbranArmorMaterial("umbran", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial umbranArmorMaterial = new SPArmorMaterial("umbran", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    willowArmorMaterial("willow", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial willowArmorMaterial = new SPArmorMaterial("willow", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    ebonyArmorMaterial("ebony", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial ebonyArmorMaterial = new SPArmorMaterial("ebony", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    eucalyptusArmorMaterial("eucalyptus", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial eucalyptusArmorMaterial = new SPArmorMaterial("eucalyptus", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    mangroveArmorMaterial("mangrove", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial mangroveArmorMaterial = new SPArmorMaterial("mangrove", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    pineArmorMaterial("pine", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial pineArmorMaterial = new SPArmorMaterial("pine", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    sacredOakArmorMaterial("sacred_oak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial sacredOakArmorMaterial = new SPArmorMaterial("sacred_oak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    desertAcaciaArmorMaterial("desert_acacia", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial desertAcaciaArmorMaterial = new SPArmorMaterial("desert_acacia", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    balsaArmorMaterial("balsa", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial balsaArmorMaterial = new SPArmorMaterial("balsa", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    baobabArmorMaterial("baobab", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial baobabArmorMaterial = new SPArmorMaterial("baobab", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    cherryForestryArmorMaterial("cherry_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial cherryForestryArmorMaterial = new SPArmorMaterial("cherry_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    chestnutArmorMaterial("chestnut", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial chestnutArmorMaterial = new SPArmorMaterial("chestnut", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    citrusArmorMaterial("citrus", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial citrusArmorMaterial = new SPArmorMaterial("citrus", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    cocoboloArmorMaterial("cocobolo", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial cocoboloArmorMaterial = new SPArmorMaterial("cocobolo", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    ebonyForestryArmorMaterial("ebony_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial ebonyForestryArmorMaterial = new SPArmorMaterial("ebony_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    giantSequoiaArmorMaterial("giant_sequoia", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial giantSequoiaArmorMaterial = new SPArmorMaterial("giant_sequoia", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    greenheartArmorMaterial("greenheart", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial greenheartArmorMaterial = new SPArmorMaterial("greenheart", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    ipeArmorMaterial("ipe", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial ipeArmorMaterial = new SPArmorMaterial("ipe", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    kapokArmorMaterial("kapok", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial kapokArmorMaterial = new SPArmorMaterial("kapok", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    larchArmorMaterial("larch", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial larchArmorMaterial = new SPArmorMaterial("larch", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    limeArmorMaterial("lime", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial limeArmorMaterial = new SPArmorMaterial("lime", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    mahoeArmorMaterial("mahoe", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial mahoeArmorMaterial = new SPArmorMaterial("mahoe", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    mahoganyForestryArmorMaterial("mahogany_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial mahoganyForestryArmorMaterial = new SPArmorMaterial("mahogany_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    mapleArmorMaterial("maple", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial mapleArmorMaterial = new SPArmorMaterial("maple", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    padaukArmorMaterial("padauk", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial padaukArmorMaterial = new SPArmorMaterial("padauk", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    palmForestryArmorMaterial("palm_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial palmForestryArmorMaterial = new SPArmorMaterial("palm_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    papayaArmorMaterial("papaya", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial papayaArmorMaterial = new SPArmorMaterial("papaya", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    pineForestryArmorMaterial("pine_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial pineForestryArmorMaterial = new SPArmorMaterial("pine_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    plumArmorMaterial("plum", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial plumArmorMaterial = new SPArmorMaterial("plum", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    poplarArmorMaterial("poplar", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial poplarArmorMaterial = new SPArmorMaterial("poplar", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    sequoiaArmorMaterial("sequoia", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial sequoiaArmorMaterial = new SPArmorMaterial("sequoia", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    teakArmorMaterial("teak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial teakArmorMaterial = new SPArmorMaterial("teak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    walnutArmorMaterial("walnut", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial walnutArmorMaterial = new SPArmorMaterial("walnut", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    wengeArmorMaterial("wenge", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	public static final ArmorMaterial wengeArmorMaterial = new SPArmorMaterial("wenge", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    willowForestryArmorMaterial("willow_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial willowForestryArmorMaterial = new SPArmorMaterial("willow_forestry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    zebrawoodArmorMaterial("zebrawood", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial zebrawoodArmorMaterial = new SPArmorMaterial("zebrawood", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    firTraverseArmorMaterial("fir_traverse", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial firTraverseArmorMaterial = new SPArmorMaterial("fir_traverse", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    }),
-    bambooArmorMaterial("bamboo", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    });
+	
+	public static final ArmorMaterial bambooArmorMaterial = new SPArmorMaterial("bamboo", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Blocks.BAMBOO);
-    }),
-;
+    });
 	
 	private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
     private final int maxDamageFactor;

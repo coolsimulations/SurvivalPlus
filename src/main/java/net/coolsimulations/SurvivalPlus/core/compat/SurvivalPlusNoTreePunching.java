@@ -4,37 +4,21 @@ import com.alcatrazescapee.notreepunching.common.ModItemGroup;
 import com.alcatrazescapee.notreepunching.common.items.KnifeItem;
 import com.alcatrazescapee.notreepunching.common.items.MattockItem;
 
-import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
-import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings({"unused"})
 public class SurvivalPlusNoTreePunching {
 	
-	public static void init() {
-		SPItems.titanium_knife = new KnifeItem(SPItemTier.titaniumToolMaterial, 1, -2.2F, new Properties().tab(ModItemGroup.ITEMS)).setRegistryName("titanium_knife");
-		SPItems.titanium_mattock = new MattockItem(SPItemTier.titaniumToolMaterial, 0.5F, -2.2F, new Properties().tab(ModItemGroup.ITEMS)).setRegistryName("titanium_mattock");
-		SPItems.titanium_saw = new AxeItem(SPItemTier.titaniumToolMaterial, 3.0F, -3.2F, new Properties().tab(ModItemGroup.ITEMS)).setRegistryName("titanium_saw");
-		
-		/**if(SPCompatibilityManager.isGCLoaded() && SPCompatibilityManager.isGCPLoaded()) {
-			SPItems.desh_knife = new ItemKnife(MarsItems.TOOLDESH).setUnlocalizedName("desh_knife").setRegistryName("desh_knife").setCreativeTab(ModTabs.TAB_TOOLS);
-			SPItems.desh_mattock = new ItemMattock(MarsItems.TOOLDESH).setUnlocalizedName("desh_mattock").setRegistryName("desh_mattock").setCreativeTab(ModTabs.TAB_TOOLS);
-			SPItems.desh_saw = new ItemSaw(MarsItems.TOOLDESH).setUnlocalizedName("desh_saw").setRegistryName("desh_saw").setCreativeTab(ModTabs.TAB_TOOLS);
-		}**/
-	}
+	public static final DeferredRegister<Item> ITEMS_NO_TREE_PUNCHING = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
 	
-	public static void register()
-	{
-		SurvivalPlusTools.registerItem(SPItems.titanium_knife);
-		SurvivalPlusTools.registerItem(SPItems.titanium_mattock);
-		SurvivalPlusTools.registerItem(SPItems.titanium_saw);
-		
-		/**if(SPCompatibilityManager.isGCLoaded() && SPCompatibilityManager.isGCPLoaded()) {
-			SurvivalPlusTools.registerItem(SPItems.desh_knife);
-			SurvivalPlusTools.registerItem(SPItems.desh_mattock);
-			SurvivalPlusTools.registerItem(SPItems.desh_saw);
-		}**/
-	}
-
+	private static final RegistryObject<Item> titanium_knife = ITEMS_NO_TREE_PUNCHING.register("titanium_knife", () -> new KnifeItem(SPItemTier.titaniumToolMaterial, 1, -2.2F, new Properties().tab(ModItemGroup.ITEMS)));
+	private static final RegistryObject<Item> titanium_mattock = ITEMS_NO_TREE_PUNCHING.register("titanium_mattock", () -> new MattockItem(SPItemTier.titaniumToolMaterial, 0.5F, -2.2F, new Properties().tab(ModItemGroup.ITEMS)));
+	private static final RegistryObject<Item> titanium_saw = ITEMS_NO_TREE_PUNCHING.register("titanium_saw", () -> new AxeItem(SPItemTier.titaniumToolMaterial, 3.0F, -3.2F, new Properties().tab(ModItemGroup.ITEMS)));
 }

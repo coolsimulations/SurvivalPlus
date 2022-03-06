@@ -72,7 +72,7 @@ public class SurvivalPlusDispenserBehavior {
 			}
 		}
 		
-		DispenserBlock.registerBehavior(Items.BUCKET, new BehaviorDispenseExtinguish(Items.BUCKET, SoundEvents.GRAVEL_STEP, SPItems.charcoal_bucket, true));
+		DispenserBlock.registerBehavior(Items.BUCKET, new BehaviorDispenseExtinguish(Items.BUCKET, SoundEvents.GRAVEL_STEP, SPItems.charcoal_bucket.get(), true));
 	}
 	
 	public static class BehaviorDispenseExtinguish extends SPBehaviorDispenseItem {
@@ -147,7 +147,7 @@ public class SurvivalPlusDispenserBehavior {
 						stack = new ItemStack(replacement);
 					} else if(stack.getCount() > 1) {
 						stack.setCount(stack.getCount() - 1);
-						if(replacement == SPItems.charcoal_bucket) {
+						if(replacement == SPItems.charcoal_bucket.get()) {
 							BlockEntity tile = world.getBlockEntity(source.getPos());
 							if(tile instanceof DispenserBlockEntity) {
 								DispenserBlockEntity dispenser = (DispenserBlockEntity) tile;

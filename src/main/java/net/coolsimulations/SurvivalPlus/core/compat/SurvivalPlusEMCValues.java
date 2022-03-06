@@ -16,7 +16,7 @@ import moze_intel.projecte.api.nss.NSSItem;
 import moze_intel.projecte.api.nss.NormalizedSimpleStack;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.server.ServerResources;
+import net.minecraft.server.ReloadableServerResources;
 import net.minecraft.server.packs.resources.ResourceManager;
 
 @EMCMapper
@@ -52,22 +52,22 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_PEARL.func_230234_a_()), 2048);
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SPINEL.func_230234_a_()), 2048);**/
 		
-		registerCustomEMC(NSSItem.createItem(SPItems.raw_tin), 256);
-		registerCustomEMC(NSSItem.createItem(SPItems.raw_titanium), 2048);
-		registerCustomEMC(NSSItem.createItem(SPItems.raw_onion), 64);
-		registerCustomEMC(NSSItem.createItem(SPItems.onion_seeds), 32);
-		registerCustomEMC(NSSItem.createItem(SPItems.ruby_shard), 512);
-		registerCustomEMC(NSSItem.createItem(SPItems.topaz_shard), 512);
-		registerCustomEMC(NSSItem.createItem(SPItems.sapphire_shard), 512);
-		registerCustomEMC(NSSItem.createItem(SPItems.pearl), 2048);
-		registerCustomEMC(NSSItem.createItem(SPItems.spinel_shard), 2048);
+		registerCustomEMC(NSSItem.createItem(SPItems.raw_tin.get()), 256);
+		registerCustomEMC(NSSItem.createItem(SPItems.raw_titanium.get()), 2048);
+		registerCustomEMC(NSSItem.createItem(SPItems.raw_onion.get()), 64);
+		registerCustomEMC(NSSItem.createItem(SPItems.onion_seeds.get()), 32);
+		registerCustomEMC(NSSItem.createItem(SPItems.ruby_shard.get()), 512);
+		registerCustomEMC(NSSItem.createItem(SPItems.topaz_shard.get()), 512);
+		registerCustomEMC(NSSItem.createItem(SPItems.sapphire_shard.get()), 512);
+		registerCustomEMC(NSSItem.createItem(SPItems.pearl.get()), 2048);
+		registerCustomEMC(NSSItem.createItem(SPItems.spinel_shard.get()), 2048);
     		
 		if (SPCompatibilityManager.isIc2Loaded()) {
 			
-			registerCustomEMC(NSSItem.createItem(SPItems.crushed_titanium_ore), 1024);
-			registerCustomEMC(NSSItem.createItem(SPItems.purified_titanium_ore), 1024);
-			registerCustomEMC(NSSItem.createItem(SPItems.titanium_dust), 1024);
-			registerCustomEMC(NSSItem.createItem(SPItems.tiny_titanium_pile), (long) 113.7);
+			registerCustomEMC(NSSItem.createItem(SPItems.crushed_titanium_ore.get()), 1024);
+			registerCustomEMC(NSSItem.createItem(SPItems.purified_titanium_ore.get()), 1024);
+			registerCustomEMC(NSSItem.createItem(SPItems.titanium_dust.get()), 1024);
+			registerCustomEMC(NSSItem.createItem(SPItems.tiny_titanium_pile.get()), (long) 113.7);
 		}
     		
     		/**if(SPConfig.enableSponge) {
@@ -85,7 +85,7 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 	}
 
 	@Override
-	public void addMappings(IMappingCollector<NormalizedSimpleStack, Long> mapper, CommentedFileConfig config, ServerResources registriy, ResourceManager resourceManager) {
+	public void addMappings(IMappingCollector<NormalizedSimpleStack, Long> mapper, CommentedFileConfig config, ReloadableServerResources registriy, ResourceManager resourceManager) {
 		
 		Iterator var4 = customEmcValues.entrySet().iterator();
 

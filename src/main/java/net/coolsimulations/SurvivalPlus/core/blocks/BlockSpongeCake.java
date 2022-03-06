@@ -82,7 +82,7 @@ public class BlockSpongeCake extends Block {
 	
 	protected static InteractionResult cupcake(BlockState state, Level worldIn, BlockPos pos, Player playerIn, InteractionHand hand) {
 		if (!worldIn.isClientSide) {
-			if(playerIn.getItemInHand(hand).getItem() == SPItems.paper_cup) {
+			if(playerIn.getItemInHand(hand).getItem() == SPItems.paper_cup.get()) {
 
 				decrementBites(worldIn, state, pos, playerIn);
 
@@ -90,7 +90,7 @@ public class BlockSpongeCake extends Block {
 
 					ItemStack itemStackIn;
 
-					if (playerIn.getOffhandItem().getItem() == SPItems.paper_cup)
+					if (playerIn.getOffhandItem().getItem() == SPItems.paper_cup.get())
 					{
 						itemStackIn = playerIn.getOffhandItem();
 					}
@@ -102,23 +102,23 @@ public class BlockSpongeCake extends Block {
 					if(itemStackIn.getCount() == 1) {
 						if (ItemStack.isSame(playerIn.getOffhandItem(), itemStackIn))
 						{
-							playerIn.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(SPItems.sponge_cupcake));
+							playerIn.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(SPItems.sponge_cupcake.get()));
 						}
 						else
 						{
-							playerIn.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SPItems.sponge_cupcake));
+							playerIn.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SPItems.sponge_cupcake.get()));
 						}
 					} else  if(itemStackIn.getCount() >= 2){
 						itemStackIn.shrink(1);
-						boolean flag = playerIn.getInventory().add(new ItemStack(SPItems.sponge_cupcake));
+						boolean flag = playerIn.getInventory().add(new ItemStack(SPItems.sponge_cupcake.get()));
 						if(!flag) {
-							playerIn.drop(new ItemStack(SPItems.sponge_cupcake), false);
+							playerIn.drop(new ItemStack(SPItems.sponge_cupcake.get()), false);
 						}
 
 					}
 				}
 				return InteractionResult.SUCCESS;
-			} else if(playerIn.getMainHandItem().getItem() != SPItems.paper_cup && playerIn.getOffhandItem().getItem() != SPItems.paper_cup) {
+			} else if(playerIn.getMainHandItem().getItem() != SPItems.paper_cup.get() && playerIn.getOffhandItem().getItem() != SPItems.paper_cup.get()) {
 				return eat(worldIn, pos, state, playerIn);
 			}
 			return InteractionResult.CONSUME;

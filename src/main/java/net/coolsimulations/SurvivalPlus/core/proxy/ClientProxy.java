@@ -40,7 +40,7 @@ public class ClientProxy extends CommonProxy{
 	@SubscribeEvent
 	public static void registerCutouts(FMLClientSetupEvent event)
 	{
-		ItemBlockRenderTypes.setRenderLayer(SPBlocks.onion, RenderType.cutout());
+		ItemBlockRenderTypes.setRenderLayer(SPBlocks.onion.get(), RenderType.cutout());
 		
 		for(ResourceLocation location : ForgeRegistries.BLOCKS.getKeys()) {
 			Block block = ForgeRegistries.BLOCKS.getValue(location);
@@ -54,9 +54,9 @@ public class ClientProxy extends CommonProxy{
 			}
 		}
 		
-		ItemProperties.register(SPItems.bronze_shield, new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player, seed) -> {
+		ItemProperties.register(SPItems.bronze_shield.get(), new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player, seed) -> {
 	         return player != null && player.isUsingItem() && player.getUseItem() == stack ? 1.0F : 0.0F;});
-		ItemProperties.register(SPItems.titanium_shield, new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player, seed) -> {
+		ItemProperties.register(SPItems.titanium_shield.get(), new ResourceLocation(SPReference.MOD_ID, "blocking"), (stack, world, player, seed) -> {
 	         return player != null && player.isUsingItem() && player.getUseItem() == stack ? 1.0F : 0.0F;});
 	}
 	

@@ -10,37 +10,37 @@ public class SPTabs {
 	public static final CreativeModeTab tabMaterials = (new CreativeModeTab(CreativeModeTab.TABS.length, "tabMaterials") {
 	      @OnlyIn(Dist.CLIENT)
 	      public ItemStack makeIcon() {
-	         return new ItemStack(SPItems.tin_ingot);
+	         return new ItemStack(SPItems.tin_ingot.get());
 	      }
 	   }).setRecipeFolderName("tabMaterials");
 	public static final CreativeModeTab tabBlocks = (new CreativeModeTab(CreativeModeTab.TABS.length, "tabBlocks") {
 	      @OnlyIn(Dist.CLIENT)
 	      public ItemStack makeIcon() {
-	         return new ItemStack(SPBlocks.tin_block);
+	         return new ItemStack(SPBlocks.tin_block.get());
 	      }
 	   }).setRecipeFolderName("tabBlocks");
 	public static final CreativeModeTab tabFood = (new CreativeModeTab(CreativeModeTab.TABS.length, "tabFood") {
 	      @OnlyIn(Dist.CLIENT)
 	      public ItemStack makeIcon() {
-	         return new ItemStack(SPItems.apple_pie);
+	         return new ItemStack(SPItems.apple_pie.get());
 	      }
 	   }).setRecipeFolderName("tabFood");
 	public static final CreativeModeTab tabGem = (new CreativeModeTab(CreativeModeTab.TABS.length, "tabGem") {
 	      @OnlyIn(Dist.CLIENT)
 	      public ItemStack makeIcon() {
-	         return new ItemStack(SPBlocks.sapphire_cluster);
+	         return new ItemStack(SPBlocks.sapphire_cluster.get());
 	      }
 	   }).setRecipeFolderName("tabGem");
 	public static final CreativeModeTab tabCombat = (new CreativeModeTab(CreativeModeTab.TABS.length, "tabCombat") {
 	      @OnlyIn(Dist.CLIENT)
 	      public ItemStack makeIcon() {
-	         return new ItemStack(SPItems.titanium_sword);
+	         return new ItemStack(SPItems.titanium_sword.get());
 	      }
 	   }).setRecipeFolderName("tabCombat");
 	public static final CreativeModeTab tabTools = (new CreativeModeTab(CreativeModeTab.TABS.length, "tabTools") {
 	      @OnlyIn(Dist.CLIENT)
 	      public ItemStack makeIcon() {
-	         return new ItemStack(SPItems.bronze_axe);
+	         return new ItemStack(SPItems.bronze_axe.get());
 	      }
 	   }).setRecipeFolderName("tabTools");
 

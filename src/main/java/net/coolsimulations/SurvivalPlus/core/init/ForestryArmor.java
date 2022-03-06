@@ -1,339 +1,342 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.item.SPArmorMaterial;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings({"unused"})
 public class ForestryArmor {
+	
+	public static final DeferredRegister<Item> ITEMS_FORESTRY_ARMOR = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
+	
+	private static final RegistryObject<Item> desert_acacia_helmet = ITEMS_FORESTRY_ARMOR.register("desert_acacia_helmet", () -> new SPItemArmor(SPArmorMaterial.desertAcaciaArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> desert_acacia_chestplate = ITEMS_FORESTRY_ARMOR.register("desert_acacia_chestplate", () -> new SPItemArmor(SPArmorMaterial.desertAcaciaArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> desert_acacia_leggings = ITEMS_FORESTRY_ARMOR.register("desert_acacia_leggings", () -> new SPItemArmor(SPArmorMaterial.desertAcaciaArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> desert_acacia_boots = ITEMS_FORESTRY_ARMOR.register("desert_acacia_boots", () -> new SPItemArmor(SPArmorMaterial.desertAcaciaArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> balsa_helmet = ITEMS_FORESTRY_ARMOR.register("balsa_helmet", () -> new SPItemArmor(SPArmorMaterial.balsaArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> balsa_chestplate = ITEMS_FORESTRY_ARMOR.register("balsa_chestplate", () -> new SPItemArmor(SPArmorMaterial.balsaArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> balsa_leggings = ITEMS_FORESTRY_ARMOR.register("balsa_leggings", () -> new SPItemArmor(SPArmorMaterial.balsaArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> balsa_boots = ITEMS_FORESTRY_ARMOR.register("balsa_boots", () -> new SPItemArmor(SPArmorMaterial.balsaArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> baobab_helmet = ITEMS_FORESTRY_ARMOR.register("baobab_helmet", () -> new SPItemArmor(SPArmorMaterial.baobabArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> baobab_chestplate = ITEMS_FORESTRY_ARMOR.register("baobab_chestplate", () -> new SPItemArmor(SPArmorMaterial.baobabArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> baobab_leggings = ITEMS_FORESTRY_ARMOR.register("baobab_leggings", () -> new SPItemArmor(SPArmorMaterial.baobabArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> baobab_boots = ITEMS_FORESTRY_ARMOR.register("baobab_boots", () -> new SPItemArmor(SPArmorMaterial.baobabArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> cherry_helmet_forestry = ITEMS_FORESTRY_ARMOR.register("cherry_helmet_forestry", () -> new SPItemArmor(SPArmorMaterial.cherryForestryArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> cherry_chestplate_forestry = ITEMS_FORESTRY_ARMOR.register("cherry_chestplate_forestry", () -> new SPItemArmor(SPArmorMaterial.cherryForestryArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> cherry_leggings_forestry = ITEMS_FORESTRY_ARMOR.register("cherry_leggings_forestry", () -> new SPItemArmor(SPArmorMaterial.cherryForestryArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> cherry_boots_forestry = ITEMS_FORESTRY_ARMOR.register("cherry_boots_forestry", () -> new SPItemArmor(SPArmorMaterial.cherryForestryArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> chestnut_helmet = ITEMS_FORESTRY_ARMOR.register("chestnut_helmet", () -> new SPItemArmor(SPArmorMaterial.chestnutArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> chestnut_chestplate = ITEMS_FORESTRY_ARMOR.register("chestnut_chestplate", () -> new SPItemArmor(SPArmorMaterial.chestnutArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> chestnut_leggings = ITEMS_FORESTRY_ARMOR.register("chestnut_leggings", () -> new SPItemArmor(SPArmorMaterial.chestnutArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> chestnut_boots = ITEMS_FORESTRY_ARMOR.register("chestnut_boots", () -> new SPItemArmor(SPArmorMaterial.chestnutArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> citrus_helmet = ITEMS_FORESTRY_ARMOR.register("citrus_helmet", () -> new SPItemArmor(SPArmorMaterial.citrusArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> citrus_chestplate = ITEMS_FORESTRY_ARMOR.register("citrus_chestplate", () -> new SPItemArmor(SPArmorMaterial.citrusArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> citrus_leggings = ITEMS_FORESTRY_ARMOR.register("citrus_leggings", () -> new SPItemArmor(SPArmorMaterial.citrusArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> citrus_boots = ITEMS_FORESTRY_ARMOR.register("citrus_boots", () -> new SPItemArmor(SPArmorMaterial.citrusArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> cocobolo_helmet = ITEMS_FORESTRY_ARMOR.register("cocobolo_helmet", () -> new SPItemArmor(SPArmorMaterial.cocoboloArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> cocobolo_chestplate = ITEMS_FORESTRY_ARMOR.register("cocobolo_chestplate", () -> new SPItemArmor(SPArmorMaterial.cocoboloArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> cocobolo_leggings = ITEMS_FORESTRY_ARMOR.register("cocobolo_leggings", () -> new SPItemArmor(SPArmorMaterial.cocoboloArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> cocobolo_boots = ITEMS_FORESTRY_ARMOR.register("cocobolo_boots", () -> new SPItemArmor(SPArmorMaterial.cocoboloArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> ebony_helmet_forestry = ITEMS_FORESTRY_ARMOR.register("ebony_helmet_forestry", () -> new SPItemArmor(SPArmorMaterial.ebonyForestryArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> ebony_chestplate_forestry = ITEMS_FORESTRY_ARMOR.register("ebony_chestplate_forestry", () -> new SPItemArmor(SPArmorMaterial.ebonyForestryArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> ebony_leggings_forestry = ITEMS_FORESTRY_ARMOR.register("ebony_leggings_forestry", () -> new SPItemArmor(SPArmorMaterial.ebonyForestryArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> ebony_boots_forestry = ITEMS_FORESTRY_ARMOR.register("ebony_boots_forestry", () -> new SPItemArmor(SPArmorMaterial.ebonyForestryArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> giant_sequoia_helmet = ITEMS_FORESTRY_ARMOR.register("giant_sequoia_helmet", () -> new SPItemArmor(SPArmorMaterial.giantSequoiaArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> giant_sequoia_chestplate = ITEMS_FORESTRY_ARMOR.register("giant_sequoia_chestplate", () -> new SPItemArmor(SPArmorMaterial.giantSequoiaArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> giant_sequoia_leggings = ITEMS_FORESTRY_ARMOR.register("giant_sequoia_leggings", () -> new SPItemArmor(SPArmorMaterial.giantSequoiaArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> giant_sequoia_boots = ITEMS_FORESTRY_ARMOR.register("giant_sequoia_boots", () -> new SPItemArmor(SPArmorMaterial.giantSequoiaArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> greenheart_helmet = ITEMS_FORESTRY_ARMOR.register("greenheart_helmet", () -> new SPItemArmor(SPArmorMaterial.greenheartArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> greenheart_chestplate = ITEMS_FORESTRY_ARMOR.register("greenheart_chestplate", () -> new SPItemArmor(SPArmorMaterial.greenheartArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> greenheart_leggings = ITEMS_FORESTRY_ARMOR.register("greenheart_leggings", () -> new SPItemArmor(SPArmorMaterial.greenheartArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> greenheart_boots = ITEMS_FORESTRY_ARMOR.register("greenheart_boots", () -> new SPItemArmor(SPArmorMaterial.greenheartArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> ipe_helmet = ITEMS_FORESTRY_ARMOR.register("ipe_helmet", () -> new SPItemArmor(SPArmorMaterial.ipeArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> ipe_chestplate = ITEMS_FORESTRY_ARMOR.register("ipe_chestplate", () -> new SPItemArmor(SPArmorMaterial.ipeArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> ipe_leggings = ITEMS_FORESTRY_ARMOR.register("ipe_leggings", () -> new SPItemArmor(SPArmorMaterial.ipeArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> ipe_boots = ITEMS_FORESTRY_ARMOR.register("ipe_boots", () -> new SPItemArmor(SPArmorMaterial.ipeArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> kapok_helmet = ITEMS_FORESTRY_ARMOR.register("kapok_helmet", () -> new SPItemArmor(SPArmorMaterial.kapokArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> kapok_chestplate = ITEMS_FORESTRY_ARMOR.register("kapok_chestplate", () -> new SPItemArmor(SPArmorMaterial.kapokArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> kapok_leggings = ITEMS_FORESTRY_ARMOR.register("kapok_leggings", () -> new SPItemArmor(SPArmorMaterial.kapokArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> kapok_boots = ITEMS_FORESTRY_ARMOR.register("kapok_boots", () -> new SPItemArmor(SPArmorMaterial.kapokArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> larch_helmet = ITEMS_FORESTRY_ARMOR.register("larch_helmet", () -> new SPItemArmor(SPArmorMaterial.larchArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> larch_chestplate = ITEMS_FORESTRY_ARMOR.register("larch_chestplate", () -> new SPItemArmor(SPArmorMaterial.larchArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> larch_leggings = ITEMS_FORESTRY_ARMOR.register("larch_leggings", () -> new SPItemArmor(SPArmorMaterial.larchArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> larch_boots = ITEMS_FORESTRY_ARMOR.register("larch_boots", () -> new SPItemArmor(SPArmorMaterial.larchArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> lime_helmet = ITEMS_FORESTRY_ARMOR.register("lime_helmet", () -> new SPItemArmor(SPArmorMaterial.limeArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> lime_chestplate = ITEMS_FORESTRY_ARMOR.register("lime_chestplate", () -> new SPItemArmor(SPArmorMaterial.limeArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> lime_leggings = ITEMS_FORESTRY_ARMOR.register("lime_leggings", () -> new SPItemArmor(SPArmorMaterial.limeArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> lime_boots = ITEMS_FORESTRY_ARMOR.register("lime_boots", () -> new SPItemArmor(SPArmorMaterial.limeArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> mahoe_helmet = ITEMS_FORESTRY_ARMOR.register("mahoe_helmet", () -> new SPItemArmor(SPArmorMaterial.mahoeArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> mahoe_chestplate = ITEMS_FORESTRY_ARMOR.register("mahoe_chestplate", () -> new SPItemArmor(SPArmorMaterial.mahoeArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> mahoe_leggings = ITEMS_FORESTRY_ARMOR.register("mahoe_leggings", () -> new SPItemArmor(SPArmorMaterial.mahoeArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> mahoe_boots = ITEMS_FORESTRY_ARMOR.register("mahoe_boots", () -> new SPItemArmor(SPArmorMaterial.mahoeArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> mahogany_helmet_forestry = ITEMS_FORESTRY_ARMOR.register("mahogany_helmet_forestry", () -> new SPItemArmor(SPArmorMaterial.mahoganyForestryArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> mahogany_chestplate_forestry = ITEMS_FORESTRY_ARMOR.register("mahogany_chestplate_forestry", () -> new SPItemArmor(SPArmorMaterial.mahoganyForestryArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> mahogany_leggings_forestry = ITEMS_FORESTRY_ARMOR.register("mahogany_leggings_forestry", () -> new SPItemArmor(SPArmorMaterial.mahoganyForestryArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> mahogany_boots_forestry = ITEMS_FORESTRY_ARMOR.register("mahogany_boots_forestry", () -> new SPItemArmor(SPArmorMaterial.mahoganyForestryArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> maple_helmet = ITEMS_FORESTRY_ARMOR.register("maple_helmet", () -> new SPItemArmor(SPArmorMaterial.mapleArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> maple_chestplate = ITEMS_FORESTRY_ARMOR.register("maple_chestplate", () -> new SPItemArmor(SPArmorMaterial.mapleArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> maple_leggings = ITEMS_FORESTRY_ARMOR.register("maple_leggings", () -> new SPItemArmor(SPArmorMaterial.mapleArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> maple_boots = ITEMS_FORESTRY_ARMOR.register("maple_boots", () -> new SPItemArmor(SPArmorMaterial.mapleArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> padauk_helmet = ITEMS_FORESTRY_ARMOR.register("padauk_helmet", () -> new SPItemArmor(SPArmorMaterial.padaukArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> padauk_chestplate = ITEMS_FORESTRY_ARMOR.register("padauk_chestplate", () -> new SPItemArmor(SPArmorMaterial.padaukArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> padauk_leggings = ITEMS_FORESTRY_ARMOR.register("padauk_leggings", () -> new SPItemArmor(SPArmorMaterial.padaukArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> padauk_boots = ITEMS_FORESTRY_ARMOR.register("padauk_boots", () -> new SPItemArmor(SPArmorMaterial.padaukArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> palm_helmet_forestry = ITEMS_FORESTRY_ARMOR.register("palm_helmet_forestry", () -> new SPItemArmor(SPArmorMaterial.palmForestryArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> palm_chestplate_forestry = ITEMS_FORESTRY_ARMOR.register("palm_chestplate_forestry", () -> new SPItemArmor(SPArmorMaterial.palmForestryArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> palm_leggings_forestry = ITEMS_FORESTRY_ARMOR.register("palm_leggings_forestry", () -> new SPItemArmor(SPArmorMaterial.palmForestryArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> palm_boots_forestry = ITEMS_FORESTRY_ARMOR.register("palm_boots_forestry", () -> new SPItemArmor(SPArmorMaterial.palmForestryArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> papaya_helmet = ITEMS_FORESTRY_ARMOR.register("papaya_helmet", () -> new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> papaya_chestplate = ITEMS_FORESTRY_ARMOR.register("papaya_chestplate", () -> new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> papaya_leggings = ITEMS_FORESTRY_ARMOR.register("papaya_leggings", () -> new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> papaya_boots = ITEMS_FORESTRY_ARMOR.register("papaya_boots", () -> new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> pine_helmet_forestry = ITEMS_FORESTRY_ARMOR.register("pine_helmet_forestry", () -> new SPItemArmor(SPArmorMaterial.pineForestryArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> pine_chestplate_forestry = ITEMS_FORESTRY_ARMOR.register("pine_chestplate_forestry", () -> new SPItemArmor(SPArmorMaterial.pineForestryArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> pine_leggings_forestry = ITEMS_FORESTRY_ARMOR.register("pine_leggings_forestry", () -> new SPItemArmor(SPArmorMaterial.pineForestryArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> pine_boots_forestry = ITEMS_FORESTRY_ARMOR.register("pine_boots_forestry", () -> new SPItemArmor(SPArmorMaterial.pineForestryArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> plum_helmet = ITEMS_FORESTRY_ARMOR.register("plum_helmet", () -> new SPItemArmor(SPArmorMaterial.plumArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> plum_chestplate = ITEMS_FORESTRY_ARMOR.register("plum_chestplate", () -> new SPItemArmor(SPArmorMaterial.plumArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> plum_leggings = ITEMS_FORESTRY_ARMOR.register("plum_leggings", () -> new SPItemArmor(SPArmorMaterial.plumArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> plum_boots = ITEMS_FORESTRY_ARMOR.register("plum_boots", () -> new SPItemArmor(SPArmorMaterial.plumArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> poplar_helmet = ITEMS_FORESTRY_ARMOR.register("poplar_helmet", () -> new SPItemArmor(SPArmorMaterial.poplarArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> poplar_chestplate = ITEMS_FORESTRY_ARMOR.register("poplar_chestplate", () -> new SPItemArmor(SPArmorMaterial.poplarArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> poplar_leggings = ITEMS_FORESTRY_ARMOR.register("poplar_leggings", () -> new SPItemArmor(SPArmorMaterial.poplarArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> poplar_boots = ITEMS_FORESTRY_ARMOR.register("poplar_boots", () -> new SPItemArmor(SPArmorMaterial.poplarArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> sequoia_helmet = ITEMS_FORESTRY_ARMOR.register("sequoia_helmet", () -> new SPItemArmor(SPArmorMaterial.sequoiaArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> sequoia_chestplate = ITEMS_FORESTRY_ARMOR.register("sequoia_chestplate", () -> new SPItemArmor(SPArmorMaterial.sequoiaArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> sequoia_leggings = ITEMS_FORESTRY_ARMOR.register("sequoia_leggings", () -> new SPItemArmor(SPArmorMaterial.sequoiaArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> sequoia_boots = ITEMS_FORESTRY_ARMOR.register("sequoia_boots", () -> new SPItemArmor(SPArmorMaterial.sequoiaArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> teak_helmet = ITEMS_FORESTRY_ARMOR.register("teak_helmet", () -> new SPItemArmor(SPArmorMaterial.teakArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> teak_chestplate = ITEMS_FORESTRY_ARMOR.register("teak_chestplate", () -> new SPItemArmor(SPArmorMaterial.teakArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> teak_leggings = ITEMS_FORESTRY_ARMOR.register("teak_leggings", () -> new SPItemArmor(SPArmorMaterial.teakArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> teak_boots = ITEMS_FORESTRY_ARMOR.register("teak_boots", () -> new SPItemArmor(SPArmorMaterial.teakArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> walnut_helmet = ITEMS_FORESTRY_ARMOR.register("walnut_helmet", () -> new SPItemArmor(SPArmorMaterial.walnutArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> walnut_chestplate = ITEMS_FORESTRY_ARMOR.register("walnut_chestplate", () -> new SPItemArmor(SPArmorMaterial.walnutArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> walnut_leggings = ITEMS_FORESTRY_ARMOR.register("walnut_leggings", () -> new SPItemArmor(SPArmorMaterial.walnutArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> walnut_boots = ITEMS_FORESTRY_ARMOR.register("walnut_boots", () -> new SPItemArmor(SPArmorMaterial.walnutArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> wenge_helmet = ITEMS_FORESTRY_ARMOR.register("wenge_helmet", () -> new SPItemArmor(SPArmorMaterial.wengeArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> wenge_chestplate = ITEMS_FORESTRY_ARMOR.register("wenge_chestplate", () -> new SPItemArmor(SPArmorMaterial.wengeArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> wenge_leggings = ITEMS_FORESTRY_ARMOR.register("wenge_leggings", () -> new SPItemArmor(SPArmorMaterial.wengeArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> wenge_boots = ITEMS_FORESTRY_ARMOR.register("wenge_boots", () -> new SPItemArmor(SPArmorMaterial.wengeArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> willow_helmet_forestry = ITEMS_FORESTRY_ARMOR.register("willow_helmet_forestry", () -> new SPItemArmor(SPArmorMaterial.willowForestryArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> willow_chestplate_forestry = ITEMS_FORESTRY_ARMOR.register("willow_chestplate_forestry", () -> new SPItemArmor(SPArmorMaterial.willowForestryArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> willow_leggings_forestry = ITEMS_FORESTRY_ARMOR.register("willow_leggings_forestry", () -> new SPItemArmor(SPArmorMaterial.willowForestryArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> willow_boots_forestry = ITEMS_FORESTRY_ARMOR.register("willow_boots_forestry", () -> new SPItemArmor(SPArmorMaterial.willowForestryArmorMaterial, EquipmentSlot.FEET));
+	
+	private static final RegistryObject<Item> zebrawood_helmet = ITEMS_FORESTRY_ARMOR.register("zebrawood_helmet", () -> new SPItemArmor(SPArmorMaterial.zebrawoodArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> zebrawood_chestplate = ITEMS_FORESTRY_ARMOR.register("zebrawood_chestplate", () -> new SPItemArmor(SPArmorMaterial.zebrawoodArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> zebrawood_leggings = ITEMS_FORESTRY_ARMOR.register("zebrawood_leggings", () -> new SPItemArmor(SPArmorMaterial.zebrawoodArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> zebrawood_boots = ITEMS_FORESTRY_ARMOR.register("zebrawood_boots", () -> new SPItemArmor(SPArmorMaterial.zebrawoodArmorMaterial, EquipmentSlot.FEET));
 	
 	public static void init(){
 		
-		SPItems.desert_acacia_helmet = new SPItemArmor(SPArmorMaterial.desertAcaciaArmorMaterial, EquipmentSlot.HEAD).setRegistryName("desert_acacia_helmet");
-		SPItems.desert_acacia_chestplate = new SPItemArmor(SPArmorMaterial.desertAcaciaArmorMaterial, EquipmentSlot.CHEST).setRegistryName("desert_acacia_chestplate");
-		SPItems.desert_acacia_leggings = new SPItemArmor(SPArmorMaterial.desertAcaciaArmorMaterial, EquipmentSlot.LEGS).setRegistryName("desert_acacia_leggings");
-		SPItems.desert_acacia_boots = new SPItemArmor(SPArmorMaterial.desertAcaciaArmorMaterial, EquipmentSlot.FEET).setRegistryName("desert_acacia_boots");
 		SPItems.desert_acacia = NonNullList.create();
-		SPItems.desert_acacia.add(0, new ItemStack(SPItems.desert_acacia_helmet));
-		SPItems.desert_acacia.add(1, new ItemStack(SPItems.desert_acacia_chestplate));
-		SPItems.desert_acacia.add(2, new ItemStack(SPItems.desert_acacia_leggings));
-		SPItems.desert_acacia.add(3, new ItemStack(SPItems.desert_acacia_boots));
+		SPItems.desert_acacia.add(0, new ItemStack(desert_acacia_helmet.get()));
+		SPItems.desert_acacia.add(1, new ItemStack(desert_acacia_chestplate.get()));
+		SPItems.desert_acacia.add(2, new ItemStack(desert_acacia_leggings.get()));
+		SPItems.desert_acacia.add(3, new ItemStack(desert_acacia_boots.get()));
 		
-		SPItems.balsa_helmet = new SPItemArmor(SPArmorMaterial.balsaArmorMaterial, EquipmentSlot.HEAD).setRegistryName("balsa_helmet");
-		SPItems.balsa_chestplate = new SPItemArmor(SPArmorMaterial.balsaArmorMaterial, EquipmentSlot.CHEST).setRegistryName("balsa_chestplate");
-		SPItems.balsa_leggings = new SPItemArmor(SPArmorMaterial.balsaArmorMaterial, EquipmentSlot.LEGS).setRegistryName("balsa_leggings");
-		SPItems.balsa_boots = new SPItemArmor(SPArmorMaterial.balsaArmorMaterial, EquipmentSlot.FEET).setRegistryName("balsa_boots");
 		SPItems.balsa = NonNullList.create();
-		SPItems.balsa.add(0, new ItemStack(SPItems.balsa_helmet));
-		SPItems.balsa.add(1, new ItemStack(SPItems.balsa_chestplate));
-		SPItems.balsa.add(2, new ItemStack(SPItems.balsa_leggings));
-		SPItems.balsa.add(3, new ItemStack(SPItems.balsa_boots));
+		SPItems.balsa.add(0, new ItemStack(balsa_helmet.get()));
+		SPItems.balsa.add(1, new ItemStack(balsa_chestplate.get()));
+		SPItems.balsa.add(2, new ItemStack(balsa_leggings.get()));
+		SPItems.balsa.add(3, new ItemStack(balsa_boots.get()));
 		
-		SPItems.baobab_helmet = new SPItemArmor(SPArmorMaterial.baobabArmorMaterial, EquipmentSlot.HEAD).setRegistryName("baobab_helmet");
-		SPItems.baobab_chestplate = new SPItemArmor(SPArmorMaterial.baobabArmorMaterial, EquipmentSlot.CHEST).setRegistryName("baobab_chestplate");
-		SPItems.baobab_leggings = new SPItemArmor(SPArmorMaterial.baobabArmorMaterial, EquipmentSlot.LEGS).setRegistryName("baobab_leggings");
-		SPItems.baobab_boots = new SPItemArmor(SPArmorMaterial.baobabArmorMaterial, EquipmentSlot.FEET).setRegistryName("baobab_boots");
 		SPItems.baobab = NonNullList.create();
-		SPItems.baobab.add(0, new ItemStack(SPItems.baobab_helmet));
-		SPItems.baobab.add(1, new ItemStack(SPItems.baobab_chestplate));
-		SPItems.baobab.add(2, new ItemStack(SPItems.baobab_leggings));
-		SPItems.baobab.add(3, new ItemStack(SPItems.baobab_boots));
+		SPItems.baobab.add(0, new ItemStack(baobab_helmet.get()));
+		SPItems.baobab.add(1, new ItemStack(baobab_chestplate.get()));
+		SPItems.baobab.add(2, new ItemStack(baobab_leggings.get()));
+		SPItems.baobab.add(3, new ItemStack(baobab_boots.get()));
 		
-		SPItems.cherry_helmet_forestry = new SPItemArmor(SPArmorMaterial.cherryForestryArmorMaterial, EquipmentSlot.HEAD).setRegistryName("cherry_helmet_forestry");
-		SPItems.cherry_chestplate_forestry = new SPItemArmor(SPArmorMaterial.cherryForestryArmorMaterial, EquipmentSlot.CHEST).setRegistryName("cherry_chestplate_forestry");
-		SPItems.cherry_leggings_forestry = new SPItemArmor(SPArmorMaterial.cherryForestryArmorMaterial, EquipmentSlot.LEGS).setRegistryName("cherry_leggings_forestry");
-		SPItems.cherry_boots_forestry = new SPItemArmor(SPArmorMaterial.cherryForestryArmorMaterial, EquipmentSlot.FEET).setRegistryName("cherry_boots_forestry");
 		SPItems.cherry_forestry = NonNullList.create();
-		SPItems.cherry_forestry.add(0, new ItemStack(SPItems.cherry_helmet_forestry));
-		SPItems.cherry_forestry.add(1, new ItemStack(SPItems.cherry_chestplate_forestry));
-		SPItems.cherry_forestry.add(2, new ItemStack(SPItems.cherry_leggings_forestry));
-		SPItems.cherry_forestry.add(3, new ItemStack(SPItems.cherry_boots_forestry));
+		SPItems.cherry_forestry.add(0, new ItemStack(cherry_helmet_forestry.get()));
+		SPItems.cherry_forestry.add(1, new ItemStack(cherry_chestplate_forestry.get()));
+		SPItems.cherry_forestry.add(2, new ItemStack(cherry_leggings_forestry.get()));
+		SPItems.cherry_forestry.add(3, new ItemStack(cherry_boots_forestry.get()));
 		
-		SPItems.chestnut_helmet = new SPItemArmor(SPArmorMaterial.chestnutArmorMaterial, EquipmentSlot.HEAD).setRegistryName("chestnut_helmet");
-		SPItems.chestnut_chestplate = new SPItemArmor(SPArmorMaterial.chestnutArmorMaterial, EquipmentSlot.CHEST).setRegistryName("chestnut_chestplate");
-		SPItems.chestnut_leggings = new SPItemArmor(SPArmorMaterial.chestnutArmorMaterial, EquipmentSlot.LEGS).setRegistryName("chestnut_leggings");
-		SPItems.chestnut_boots = new SPItemArmor(SPArmorMaterial.chestnutArmorMaterial, EquipmentSlot.FEET).setRegistryName("chestnut_boots");
 		SPItems.chestnut = NonNullList.create();
-		SPItems.chestnut.add(0, new ItemStack(SPItems.chestnut_helmet));
-		SPItems.chestnut.add(1, new ItemStack(SPItems.chestnut_chestplate));
-		SPItems.chestnut.add(2, new ItemStack(SPItems.chestnut_leggings));
-		SPItems.chestnut.add(3, new ItemStack(SPItems.chestnut_boots));
+		SPItems.chestnut.add(0, new ItemStack(chestnut_helmet.get()));
+		SPItems.chestnut.add(1, new ItemStack(chestnut_chestplate.get()));
+		SPItems.chestnut.add(2, new ItemStack(chestnut_leggings.get()));
+		SPItems.chestnut.add(3, new ItemStack(chestnut_boots.get()));
 		
-		SPItems.citrus_helmet = new SPItemArmor(SPArmorMaterial.citrusArmorMaterial, EquipmentSlot.HEAD).setRegistryName("citrus_helmet");
-		SPItems.citrus_chestplate = new SPItemArmor(SPArmorMaterial.citrusArmorMaterial, EquipmentSlot.CHEST).setRegistryName("citrus_chestplate");
-		SPItems.citrus_leggings = new SPItemArmor(SPArmorMaterial.citrusArmorMaterial, EquipmentSlot.LEGS).setRegistryName("citrus_leggings");
-		SPItems.citrus_boots = new SPItemArmor(SPArmorMaterial.citrusArmorMaterial, EquipmentSlot.FEET).setRegistryName("citrus_boots");
 		SPItems.citrus = NonNullList.create();
-		SPItems.citrus.add(0, new ItemStack(SPItems.citrus_helmet));
-		SPItems.citrus.add(1, new ItemStack(SPItems.citrus_chestplate));
-		SPItems.citrus.add(2, new ItemStack(SPItems.citrus_leggings));
-		SPItems.citrus.add(3, new ItemStack(SPItems.citrus_boots));
+		SPItems.citrus.add(0, new ItemStack(citrus_helmet.get()));
+		SPItems.citrus.add(1, new ItemStack(citrus_chestplate.get()));
+		SPItems.citrus.add(2, new ItemStack(citrus_leggings.get()));
+		SPItems.citrus.add(3, new ItemStack(citrus_boots.get()));
 		
-		SPItems.cocobolo_helmet = new SPItemArmor(SPArmorMaterial.cocoboloArmorMaterial, EquipmentSlot.HEAD).setRegistryName("cocobolo_helmet");
-		SPItems.cocobolo_chestplate = new SPItemArmor(SPArmorMaterial.cocoboloArmorMaterial, EquipmentSlot.CHEST).setRegistryName("cocobolo_chestplate");
-		SPItems.cocobolo_leggings = new SPItemArmor(SPArmorMaterial.cocoboloArmorMaterial, EquipmentSlot.LEGS).setRegistryName("cocobolo_leggings");
-		SPItems.cocobolo_boots = new SPItemArmor(SPArmorMaterial.cocoboloArmorMaterial, EquipmentSlot.FEET).setRegistryName("cocobolo_boots");
 		SPItems.cocobolo = NonNullList.create();
-		SPItems.cocobolo.add(0, new ItemStack(SPItems.cocobolo_helmet));
-		SPItems.cocobolo.add(1, new ItemStack(SPItems.cocobolo_chestplate));
-		SPItems.cocobolo.add(2, new ItemStack(SPItems.cocobolo_leggings));
-		SPItems.cocobolo.add(3, new ItemStack(SPItems.cocobolo_boots));
+		SPItems.cocobolo.add(0, new ItemStack(cocobolo_helmet.get()));
+		SPItems.cocobolo.add(1, new ItemStack(cocobolo_chestplate.get()));
+		SPItems.cocobolo.add(2, new ItemStack(cocobolo_leggings.get()));
+		SPItems.cocobolo.add(3, new ItemStack(cocobolo_boots.get()));
 		
-		SPItems.ebony_helmet_forestry = new SPItemArmor(SPArmorMaterial.ebonyForestryArmorMaterial, EquipmentSlot.HEAD).setRegistryName("ebony_helmet_forestry");
-		SPItems.ebony_chestplate_forestry = new SPItemArmor(SPArmorMaterial.ebonyForestryArmorMaterial, EquipmentSlot.CHEST).setRegistryName("ebony_chestplate_forestry");
-		SPItems.ebony_leggings_forestry = new SPItemArmor(SPArmorMaterial.ebonyForestryArmorMaterial, EquipmentSlot.LEGS).setRegistryName("ebony_leggings_forestry");
-		SPItems.ebony_boots_forestry = new SPItemArmor(SPArmorMaterial.ebonyForestryArmorMaterial, EquipmentSlot.FEET).setRegistryName("ebony_boots_forestry");
 		SPItems.ebony_forestry = NonNullList.create();
-		SPItems.ebony_forestry.add(0, new ItemStack(SPItems.ebony_helmet_forestry));
-		SPItems.ebony_forestry.add(1, new ItemStack(SPItems.ebony_chestplate_forestry));
-		SPItems.ebony_forestry.add(2, new ItemStack(SPItems.ebony_leggings_forestry));
-		SPItems.ebony_forestry.add(3, new ItemStack(SPItems.ebony_boots_forestry));
+		SPItems.ebony_forestry.add(0, new ItemStack(ebony_helmet_forestry.get()));
+		SPItems.ebony_forestry.add(1, new ItemStack(ebony_chestplate_forestry.get()));
+		SPItems.ebony_forestry.add(2, new ItemStack(ebony_leggings_forestry.get()));
+		SPItems.ebony_forestry.add(3, new ItemStack(ebony_boots_forestry.get()));
 		
-		SPItems.giant_sequoia_helmet = new SPItemArmor(SPArmorMaterial.giantSequoiaArmorMaterial, EquipmentSlot.HEAD).setRegistryName("giant_sequoia_helmet");
-		SPItems.giant_sequoia_chestplate = new SPItemArmor(SPArmorMaterial.giantSequoiaArmorMaterial, EquipmentSlot.CHEST).setRegistryName("giant_sequoia_chestplate");
-		SPItems.giant_sequoia_leggings = new SPItemArmor(SPArmorMaterial.giantSequoiaArmorMaterial, EquipmentSlot.LEGS).setRegistryName("giant_sequoia_leggings");
-		SPItems.giant_sequoia_boots = new SPItemArmor(SPArmorMaterial.giantSequoiaArmorMaterial, EquipmentSlot.FEET).setRegistryName("giant_sequoia_boots");
 		SPItems.giant_sequoia = NonNullList.create();
-		SPItems.giant_sequoia.add(0, new ItemStack(SPItems.giant_sequoia_helmet));
-		SPItems.giant_sequoia.add(1, new ItemStack(SPItems.giant_sequoia_chestplate));
-		SPItems.giant_sequoia.add(2, new ItemStack(SPItems.giant_sequoia_leggings));
-		SPItems.giant_sequoia.add(3, new ItemStack(SPItems.giant_sequoia_boots));
+		SPItems.giant_sequoia.add(0, new ItemStack(giant_sequoia_helmet.get()));
+		SPItems.giant_sequoia.add(1, new ItemStack(giant_sequoia_chestplate.get()));
+		SPItems.giant_sequoia.add(2, new ItemStack(giant_sequoia_leggings.get()));
+		SPItems.giant_sequoia.add(3, new ItemStack(giant_sequoia_boots.get()));
 		
-		SPItems.greenheart_helmet = new SPItemArmor(SPArmorMaterial.greenheartArmorMaterial, EquipmentSlot.HEAD).setRegistryName("greenheart_helmet");
-		SPItems.greenheart_chestplate = new SPItemArmor(SPArmorMaterial.greenheartArmorMaterial, EquipmentSlot.CHEST).setRegistryName("greenheart_chestplate");
-		SPItems.greenheart_leggings = new SPItemArmor(SPArmorMaterial.greenheartArmorMaterial, EquipmentSlot.LEGS).setRegistryName("greenheart_leggings");
-		SPItems.greenheart_boots = new SPItemArmor(SPArmorMaterial.greenheartArmorMaterial, EquipmentSlot.FEET).setRegistryName("greenheart_boots");
 		SPItems.greenheart = NonNullList.create();
-		SPItems.greenheart.add(0, new ItemStack(SPItems.greenheart_helmet));
-		SPItems.greenheart.add(1, new ItemStack(SPItems.greenheart_chestplate));
-		SPItems.greenheart.add(2, new ItemStack(SPItems.greenheart_leggings));
-		SPItems.greenheart.add(3, new ItemStack(SPItems.greenheart_boots));
+		SPItems.greenheart.add(0, new ItemStack(greenheart_helmet.get()));
+		SPItems.greenheart.add(1, new ItemStack(greenheart_chestplate.get()));
+		SPItems.greenheart.add(2, new ItemStack(greenheart_leggings.get()));
+		SPItems.greenheart.add(3, new ItemStack(greenheart_boots.get()));
 		
-		SPItems.ipe_helmet = new SPItemArmor(SPArmorMaterial.ipeArmorMaterial, EquipmentSlot.HEAD).setRegistryName("ipe_helmet");
-		SPItems.ipe_chestplate = new SPItemArmor(SPArmorMaterial.ipeArmorMaterial, EquipmentSlot.CHEST).setRegistryName("ipe_chestplate");
-		SPItems.ipe_leggings = new SPItemArmor(SPArmorMaterial.ipeArmorMaterial, EquipmentSlot.LEGS).setRegistryName("ipe_leggings");
-		SPItems.ipe_boots = new SPItemArmor(SPArmorMaterial.ipeArmorMaterial, EquipmentSlot.FEET).setRegistryName("ipe_boots");
 		SPItems.ipe = NonNullList.create();
-		SPItems.ipe.add(0, new ItemStack(SPItems.ipe_helmet));
-		SPItems.ipe.add(1, new ItemStack(SPItems.ipe_chestplate));
-		SPItems.ipe.add(2, new ItemStack(SPItems.ipe_leggings));
-		SPItems.ipe.add(3, new ItemStack(SPItems.ipe_boots));
+		SPItems.ipe.add(0, new ItemStack(ipe_helmet.get()));
+		SPItems.ipe.add(1, new ItemStack(ipe_chestplate.get()));
+		SPItems.ipe.add(2, new ItemStack(ipe_leggings.get()));
+		SPItems.ipe.add(3, new ItemStack(ipe_boots.get()));
 		
-		SPItems.kapok_helmet = new SPItemArmor(SPArmorMaterial.kapokArmorMaterial, EquipmentSlot.HEAD).setRegistryName("kapok_helmet");
-		SPItems.kapok_chestplate = new SPItemArmor(SPArmorMaterial.kapokArmorMaterial, EquipmentSlot.CHEST).setRegistryName("kapok_chestplate");
-		SPItems.kapok_leggings = new SPItemArmor(SPArmorMaterial.kapokArmorMaterial, EquipmentSlot.LEGS).setRegistryName("kapok_leggings");
-		SPItems.kapok_boots = new SPItemArmor(SPArmorMaterial.kapokArmorMaterial, EquipmentSlot.FEET).setRegistryName("kapok_boots");
 		SPItems.kapok = NonNullList.create();
-		SPItems.kapok.add(0, new ItemStack(SPItems.kapok_helmet));
-		SPItems.kapok.add(1, new ItemStack(SPItems.kapok_chestplate));
-		SPItems.kapok.add(2, new ItemStack(SPItems.kapok_leggings));
-		SPItems.kapok.add(3, new ItemStack(SPItems.kapok_boots));
+		SPItems.kapok.add(0, new ItemStack(kapok_helmet.get()));
+		SPItems.kapok.add(1, new ItemStack(kapok_chestplate.get()));
+		SPItems.kapok.add(2, new ItemStack(kapok_leggings.get()));
+		SPItems.kapok.add(3, new ItemStack(kapok_boots.get()));
 		
-		SPItems.larch_helmet = new SPItemArmor(SPArmorMaterial.larchArmorMaterial, EquipmentSlot.HEAD).setRegistryName("larch_helmet");
-		SPItems.larch_chestplate = new SPItemArmor(SPArmorMaterial.larchArmorMaterial, EquipmentSlot.CHEST).setRegistryName("larch_chestplate");
-		SPItems.larch_leggings = new SPItemArmor(SPArmorMaterial.larchArmorMaterial, EquipmentSlot.LEGS).setRegistryName("larch_leggings");
-		SPItems.larch_boots = new SPItemArmor(SPArmorMaterial.larchArmorMaterial, EquipmentSlot.FEET).setRegistryName("larch_boots");
 		SPItems.larch = NonNullList.create();
-		SPItems.larch.add(0, new ItemStack(SPItems.larch_helmet));
-		SPItems.larch.add(1, new ItemStack(SPItems.larch_chestplate));
-		SPItems.larch.add(2, new ItemStack(SPItems.larch_leggings));
-		SPItems.larch.add(3, new ItemStack(SPItems.larch_boots));
+		SPItems.larch.add(0, new ItemStack(larch_helmet.get()));
+		SPItems.larch.add(1, new ItemStack(larch_chestplate.get()));
+		SPItems.larch.add(2, new ItemStack(larch_leggings.get()));
+		SPItems.larch.add(3, new ItemStack(larch_boots.get()));
 		
-		SPItems.lime_helmet = new SPItemArmor(SPArmorMaterial.limeArmorMaterial, EquipmentSlot.HEAD).setRegistryName("lime_helmet");
-		SPItems.lime_chestplate = new SPItemArmor(SPArmorMaterial.limeArmorMaterial, EquipmentSlot.CHEST).setRegistryName("lime_chestplate");
-		SPItems.lime_leggings = new SPItemArmor(SPArmorMaterial.limeArmorMaterial, EquipmentSlot.LEGS).setRegistryName("lime_leggings");
-		SPItems.lime_boots = new SPItemArmor(SPArmorMaterial.limeArmorMaterial, EquipmentSlot.FEET).setRegistryName("lime_boots");
 		SPItems.lime = NonNullList.create();
-		SPItems.lime.add(0, new ItemStack(SPItems.lime_helmet));
-		SPItems.lime.add(1, new ItemStack(SPItems.lime_chestplate));
-		SPItems.lime.add(2, new ItemStack(SPItems.lime_leggings));
-		SPItems.lime.add(3, new ItemStack(SPItems.lime_boots));
+		SPItems.lime.add(0, new ItemStack(lime_helmet.get()));
+		SPItems.lime.add(1, new ItemStack(lime_chestplate.get()));
+		SPItems.lime.add(2, new ItemStack(lime_leggings.get()));
+		SPItems.lime.add(3, new ItemStack(lime_boots.get()));
 		
-		SPItems.mahoe_helmet = new SPItemArmor(SPArmorMaterial.mahoeArmorMaterial, EquipmentSlot.HEAD).setRegistryName("mahoe_helmet");
-		SPItems.mahoe_chestplate = new SPItemArmor(SPArmorMaterial.mahoeArmorMaterial, EquipmentSlot.CHEST).setRegistryName("mahoe_chestplate");
-		SPItems.mahoe_leggings = new SPItemArmor(SPArmorMaterial.mahoeArmorMaterial, EquipmentSlot.LEGS).setRegistryName("mahoe_leggings");
-		SPItems.mahoe_boots = new SPItemArmor(SPArmorMaterial.mahoeArmorMaterial, EquipmentSlot.FEET).setRegistryName("mahoe_boots");
 		SPItems.mahoe = NonNullList.create();
-		SPItems.mahoe.add(0, new ItemStack(SPItems.mahoe_helmet));
-		SPItems.mahoe.add(1, new ItemStack(SPItems.mahoe_chestplate));
-		SPItems.mahoe.add(2, new ItemStack(SPItems.mahoe_leggings));
-		SPItems.mahoe.add(3, new ItemStack(SPItems.mahoe_boots));
+		SPItems.mahoe.add(0, new ItemStack(mahoe_helmet.get()));
+		SPItems.mahoe.add(1, new ItemStack(mahoe_chestplate.get()));
+		SPItems.mahoe.add(2, new ItemStack(mahoe_leggings.get()));
+		SPItems.mahoe.add(3, new ItemStack(mahoe_boots.get()));
 		
-		SPItems.mahogany_helmet_forestry = new SPItemArmor(SPArmorMaterial.mahoganyForestryArmorMaterial, EquipmentSlot.HEAD).setRegistryName("mahogany_helmet_forestry");
-		SPItems.mahogany_chestplate_forestry = new SPItemArmor(SPArmorMaterial.mahoganyForestryArmorMaterial, EquipmentSlot.CHEST).setRegistryName("mahogany_chestplate_forestry");
-		SPItems.mahogany_leggings_forestry = new SPItemArmor(SPArmorMaterial.mahoganyForestryArmorMaterial, EquipmentSlot.LEGS).setRegistryName("mahogany_leggings_forestry");
-		SPItems.mahogany_boots_forestry = new SPItemArmor(SPArmorMaterial.mahoganyForestryArmorMaterial, EquipmentSlot.FEET).setRegistryName("mahogany_boots_forestry");
 		SPItems.mahogany_forestry = NonNullList.create();
-		SPItems.mahogany_forestry.add(0, new ItemStack(SPItems.mahogany_helmet_forestry));
-		SPItems.mahogany_forestry.add(1, new ItemStack(SPItems.mahogany_chestplate_forestry));
-		SPItems.mahogany_forestry.add(2, new ItemStack(SPItems.mahogany_leggings_forestry));
-		SPItems.mahogany_forestry.add(3, new ItemStack(SPItems.mahogany_boots_forestry));
+		SPItems.mahogany_forestry.add(0, new ItemStack(mahogany_helmet_forestry.get()));
+		SPItems.mahogany_forestry.add(1, new ItemStack(mahogany_chestplate_forestry.get()));
+		SPItems.mahogany_forestry.add(2, new ItemStack(mahogany_leggings_forestry.get()));
+		SPItems.mahogany_forestry.add(3, new ItemStack(mahogany_boots_forestry.get()));
 		
-		SPItems.maple_helmet = new SPItemArmor(SPArmorMaterial.mapleArmorMaterial, EquipmentSlot.HEAD).setRegistryName("maple_helmet");
-		SPItems.maple_chestplate = new SPItemArmor(SPArmorMaterial.mapleArmorMaterial, EquipmentSlot.CHEST).setRegistryName("maple_chestplate");
-		SPItems.maple_leggings = new SPItemArmor(SPArmorMaterial.mapleArmorMaterial, EquipmentSlot.LEGS).setRegistryName("maple_leggings");
-		SPItems.maple_boots = new SPItemArmor(SPArmorMaterial.mapleArmorMaterial, EquipmentSlot.FEET).setRegistryName("maple_boots");
 		SPItems.maple = NonNullList.create();
-		SPItems.maple.add(0, new ItemStack(SPItems.maple_helmet));
-		SPItems.maple.add(1, new ItemStack(SPItems.maple_chestplate));
-		SPItems.maple.add(2, new ItemStack(SPItems.maple_leggings));
-		SPItems.maple.add(3, new ItemStack(SPItems.maple_boots));
+		SPItems.maple.add(0, new ItemStack(maple_helmet.get()));
+		SPItems.maple.add(1, new ItemStack(maple_chestplate.get()));
+		SPItems.maple.add(2, new ItemStack(maple_leggings.get()));
+		SPItems.maple.add(3, new ItemStack(maple_boots.get()));
 		
-		SPItems.padauk_helmet = new SPItemArmor(SPArmorMaterial.padaukArmorMaterial, EquipmentSlot.HEAD).setRegistryName("padauk_helmet");
-		SPItems.padauk_chestplate = new SPItemArmor(SPArmorMaterial.padaukArmorMaterial, EquipmentSlot.CHEST).setRegistryName("padauk_chestplate");
-		SPItems.padauk_leggings = new SPItemArmor(SPArmorMaterial.padaukArmorMaterial, EquipmentSlot.LEGS).setRegistryName("padauk_leggings");
-		SPItems.padauk_boots = new SPItemArmor(SPArmorMaterial.padaukArmorMaterial, EquipmentSlot.FEET).setRegistryName("padauk_boots");
 		SPItems.padauk = NonNullList.create();
-		SPItems.padauk.add(0, new ItemStack(SPItems.padauk_helmet));
-		SPItems.padauk.add(1, new ItemStack(SPItems.padauk_chestplate));
-		SPItems.padauk.add(2, new ItemStack(SPItems.padauk_leggings));
-		SPItems.padauk.add(3, new ItemStack(SPItems.padauk_boots));
+		SPItems.padauk.add(0, new ItemStack(padauk_helmet.get()));
+		SPItems.padauk.add(1, new ItemStack(padauk_chestplate.get()));
+		SPItems.padauk.add(2, new ItemStack(padauk_leggings.get()));
+		SPItems.padauk.add(3, new ItemStack(padauk_boots.get()));
 		
-		SPItems.palm_helmet_forestry = new SPItemArmor(SPArmorMaterial.palmForestryArmorMaterial, EquipmentSlot.HEAD).setRegistryName("palm_helmet_forestry");
-		SPItems.palm_chestplate_forestry = new SPItemArmor(SPArmorMaterial.palmForestryArmorMaterial, EquipmentSlot.CHEST).setRegistryName("palm_chestplate_forestry");
-		SPItems.palm_leggings_forestry = new SPItemArmor(SPArmorMaterial.palmForestryArmorMaterial, EquipmentSlot.LEGS).setRegistryName("palm_leggings_forestry");
-		SPItems.palm_boots_forestry = new SPItemArmor(SPArmorMaterial.palmForestryArmorMaterial, EquipmentSlot.FEET).setRegistryName("palm_boots_forestry");
 		SPItems.palm_forestry = NonNullList.create();
-		SPItems.palm_forestry.add(0, new ItemStack(SPItems.palm_helmet_forestry));
-		SPItems.palm_forestry.add(1, new ItemStack(SPItems.palm_chestplate_forestry));
-		SPItems.palm_forestry.add(2, new ItemStack(SPItems.palm_leggings_forestry));
-		SPItems.palm_forestry.add(3, new ItemStack(SPItems.palm_boots_forestry));
+		SPItems.palm_forestry.add(0, new ItemStack(palm_helmet_forestry.get()));
+		SPItems.palm_forestry.add(1, new ItemStack(palm_chestplate_forestry.get()));
+		SPItems.palm_forestry.add(2, new ItemStack(palm_leggings_forestry.get()));
+		SPItems.palm_forestry.add(3, new ItemStack(palm_boots_forestry.get()));
 		
-		SPItems.papaya_helmet = new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.HEAD).setRegistryName("papaya_helmet");
-		SPItems.papaya_chestplate = new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.CHEST).setRegistryName("papaya_chestplate");
-		SPItems.papaya_leggings = new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.LEGS).setRegistryName("papaya_leggings");
-		SPItems.papaya_boots = new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.FEET).setRegistryName("papaya_boots");
 		SPItems.papaya = NonNullList.create();
-		SPItems.papaya.add(0, new ItemStack(SPItems.papaya_helmet));
-		SPItems.papaya.add(1, new ItemStack(SPItems.papaya_chestplate));
-		SPItems.papaya.add(2, new ItemStack(SPItems.papaya_leggings));
-		SPItems.papaya.add(3, new ItemStack(SPItems.papaya_boots));
+		SPItems.papaya.add(0, new ItemStack(papaya_helmet.get()));
+		SPItems.papaya.add(1, new ItemStack(papaya_chestplate.get()));
+		SPItems.papaya.add(2, new ItemStack(papaya_leggings.get()));
+		SPItems.papaya.add(3, new ItemStack(papaya_boots.get()));
 		
-		SPItems.pine_helmet_forestry = new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.HEAD).setRegistryName("pine_helmet_forestry");
-		SPItems.pine_chestplate_forestry = new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.CHEST).setRegistryName("pine_chestplate_forestry");
-		SPItems.pine_leggings_forestry = new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.LEGS).setRegistryName("pine_leggings_forestry");
-		SPItems.pine_boots_forestry = new SPItemArmor(SPArmorMaterial.papayaArmorMaterial, EquipmentSlot.FEET).setRegistryName("pine_boots_forestry");
 		SPItems.pine_forestry = NonNullList.create();
-		SPItems.pine_forestry.add(0, new ItemStack(SPItems.pine_helmet_forestry));
-		SPItems.pine_forestry.add(1, new ItemStack(SPItems.pine_chestplate_forestry));
-		SPItems.pine_forestry.add(2, new ItemStack(SPItems.pine_leggings_forestry));
-		SPItems.pine_forestry.add(3, new ItemStack(SPItems.pine_boots_forestry));
+		SPItems.pine_forestry.add(0, new ItemStack(pine_helmet_forestry.get()));
+		SPItems.pine_forestry.add(1, new ItemStack(pine_chestplate_forestry.get()));
+		SPItems.pine_forestry.add(2, new ItemStack(pine_leggings_forestry.get()));
+		SPItems.pine_forestry.add(3, new ItemStack(pine_boots_forestry.get()));
 		
-		SPItems.plum_helmet = new SPItemArmor(SPArmorMaterial.plumArmorMaterial, EquipmentSlot.HEAD).setRegistryName("plum_helmet");
-		SPItems.plum_chestplate = new SPItemArmor(SPArmorMaterial.plumArmorMaterial, EquipmentSlot.CHEST).setRegistryName("plum_chestplate");
-		SPItems.plum_leggings = new SPItemArmor(SPArmorMaterial.plumArmorMaterial, EquipmentSlot.LEGS).setRegistryName("plum_leggings");
-		SPItems.plum_boots = new SPItemArmor(SPArmorMaterial.plumArmorMaterial, EquipmentSlot.FEET).setRegistryName("plum_boots");
 		SPItems.plum = NonNullList.create();
-		SPItems.plum.add(0, new ItemStack(SPItems.plum_helmet));
-		SPItems.plum.add(1, new ItemStack(SPItems.plum_chestplate));
-		SPItems.plum.add(2, new ItemStack(SPItems.plum_leggings));
-		SPItems.plum.add(3, new ItemStack(SPItems.plum_boots));
+		SPItems.plum.add(0, new ItemStack(plum_helmet.get()));
+		SPItems.plum.add(1, new ItemStack(plum_chestplate.get()));
+		SPItems.plum.add(2, new ItemStack(plum_leggings.get()));
+		SPItems.plum.add(3, new ItemStack(plum_boots.get()));
 		
-		SPItems.poplar_helmet = new SPItemArmor(SPArmorMaterial.poplarArmorMaterial, EquipmentSlot.HEAD).setRegistryName("poplar_helmet");
-		SPItems.poplar_chestplate = new SPItemArmor(SPArmorMaterial.poplarArmorMaterial, EquipmentSlot.CHEST).setRegistryName("poplar_chestplate");
-		SPItems.poplar_leggings = new SPItemArmor(SPArmorMaterial.poplarArmorMaterial, EquipmentSlot.LEGS).setRegistryName("poplar_leggings");
-		SPItems.poplar_boots = new SPItemArmor(SPArmorMaterial.poplarArmorMaterial, EquipmentSlot.FEET).setRegistryName("poplar_boots");
 		SPItems.poplar = NonNullList.create();
-		SPItems.poplar.add(0, new ItemStack(SPItems.poplar_helmet));
-		SPItems.poplar.add(1, new ItemStack(SPItems.poplar_chestplate));
-		SPItems.poplar.add(2, new ItemStack(SPItems.poplar_leggings));
-		SPItems.poplar.add(3, new ItemStack(SPItems.poplar_boots));
+		SPItems.poplar.add(0, new ItemStack(poplar_helmet.get()));
+		SPItems.poplar.add(1, new ItemStack(poplar_chestplate.get()));
+		SPItems.poplar.add(2, new ItemStack(poplar_leggings.get()));
+		SPItems.poplar.add(3, new ItemStack(poplar_boots.get()));
 		
-		SPItems.sequoia_helmet = new SPItemArmor(SPArmorMaterial.sequoiaArmorMaterial, EquipmentSlot.HEAD).setRegistryName("sequoia_helmet");
-		SPItems.sequoia_chestplate = new SPItemArmor(SPArmorMaterial.sequoiaArmorMaterial, EquipmentSlot.CHEST).setRegistryName("sequoia_chestplate");
-		SPItems.sequoia_leggings = new SPItemArmor(SPArmorMaterial.sequoiaArmorMaterial, EquipmentSlot.LEGS).setRegistryName("sequoia_leggings");
-		SPItems.sequoia_boots = new SPItemArmor(SPArmorMaterial.sequoiaArmorMaterial, EquipmentSlot.FEET).setRegistryName("sequoia_boots");
 		SPItems.sequoia = NonNullList.create();
-		SPItems.sequoia.add(0, new ItemStack(SPItems.sequoia_helmet));
-		SPItems.sequoia.add(1, new ItemStack(SPItems.sequoia_chestplate));
-		SPItems.sequoia.add(2, new ItemStack(SPItems.sequoia_leggings));
-		SPItems.sequoia.add(3, new ItemStack(SPItems.sequoia_boots));
+		SPItems.sequoia.add(0, new ItemStack(sequoia_helmet.get()));
+		SPItems.sequoia.add(1, new ItemStack(sequoia_chestplate.get()));
+		SPItems.sequoia.add(2, new ItemStack(sequoia_leggings.get()));
+		SPItems.sequoia.add(3, new ItemStack(sequoia_boots.get()));
 		
-		SPItems.teak_helmet = new SPItemArmor(SPArmorMaterial.teakArmorMaterial, EquipmentSlot.HEAD).setRegistryName("teak_helmet");
-		SPItems.teak_chestplate = new SPItemArmor(SPArmorMaterial.teakArmorMaterial, EquipmentSlot.CHEST).setRegistryName("teak_chestplate");
-		SPItems.teak_leggings = new SPItemArmor(SPArmorMaterial.teakArmorMaterial, EquipmentSlot.LEGS).setRegistryName("teak_leggings");
-		SPItems.teak_boots = new SPItemArmor(SPArmorMaterial.teakArmorMaterial, EquipmentSlot.FEET).setRegistryName("teak_boots");
 		SPItems.teak = NonNullList.create();
-		SPItems.teak.add(0, new ItemStack(SPItems.teak_helmet));
-		SPItems.teak.add(1, new ItemStack(SPItems.teak_chestplate));
-		SPItems.teak.add(2, new ItemStack(SPItems.teak_leggings));
-		SPItems.teak.add(3, new ItemStack(SPItems.teak_boots));
+		SPItems.teak.add(0, new ItemStack(teak_helmet.get()));
+		SPItems.teak.add(1, new ItemStack(teak_chestplate.get()));
+		SPItems.teak.add(2, new ItemStack(teak_leggings.get()));
+		SPItems.teak.add(3, new ItemStack(teak_boots.get()));
 		
-		SPItems.walnut_helmet = new SPItemArmor(SPArmorMaterial.walnutArmorMaterial, EquipmentSlot.HEAD).setRegistryName("walnut_helmet");
-		SPItems.walnut_chestplate = new SPItemArmor(SPArmorMaterial.walnutArmorMaterial, EquipmentSlot.CHEST).setRegistryName("walnut_chestplate");
-		SPItems.walnut_leggings = new SPItemArmor(SPArmorMaterial.walnutArmorMaterial, EquipmentSlot.LEGS).setRegistryName("walnut_leggings");
-		SPItems.walnut_boots = new SPItemArmor(SPArmorMaterial.walnutArmorMaterial, EquipmentSlot.FEET).setRegistryName("walnut_boots");
 		SPItems.walnut = NonNullList.create();
-		SPItems.walnut.add(0, new ItemStack(SPItems.walnut_helmet));
-		SPItems.walnut.add(1, new ItemStack(SPItems.walnut_chestplate));
-		SPItems.walnut.add(2, new ItemStack(SPItems.walnut_leggings));
-		SPItems.walnut.add(3, new ItemStack(SPItems.walnut_boots));
+		SPItems.walnut.add(0, new ItemStack(walnut_helmet.get()));
+		SPItems.walnut.add(1, new ItemStack(walnut_chestplate.get()));
+		SPItems.walnut.add(2, new ItemStack(walnut_leggings.get()));
+		SPItems.walnut.add(3, new ItemStack(walnut_boots.get()));
 		
-		SPItems.wenge_helmet = new SPItemArmor(SPArmorMaterial.wengeArmorMaterial, EquipmentSlot.HEAD).setRegistryName("wenge_helmet");
-		SPItems.wenge_chestplate = new SPItemArmor(SPArmorMaterial.wengeArmorMaterial, EquipmentSlot.CHEST).setRegistryName("wenge_chestplate");
-		SPItems.wenge_leggings = new SPItemArmor(SPArmorMaterial.wengeArmorMaterial, EquipmentSlot.LEGS).setRegistryName("wenge_leggings");
-		SPItems.wenge_boots = new SPItemArmor(SPArmorMaterial.wengeArmorMaterial, EquipmentSlot.FEET).setRegistryName("wenge_boots");
 		SPItems.wenge = NonNullList.create();
-		SPItems.wenge.add(0, new ItemStack(SPItems.wenge_helmet));
-		SPItems.wenge.add(1, new ItemStack(SPItems.wenge_chestplate));
-		SPItems.wenge.add(2, new ItemStack(SPItems.wenge_leggings));
-		SPItems.wenge.add(3, new ItemStack(SPItems.wenge_boots));
+		SPItems.wenge.add(0, new ItemStack(wenge_helmet.get()));
+		SPItems.wenge.add(1, new ItemStack(wenge_chestplate.get()));
+		SPItems.wenge.add(2, new ItemStack(wenge_leggings.get()));
+		SPItems.wenge.add(3, new ItemStack(wenge_boots.get()));
 		
-		SPItems.willow_helmet_forestry = new SPItemArmor(SPArmorMaterial.willowForestryArmorMaterial, EquipmentSlot.HEAD).setRegistryName("willow_helmet_forestry");
-		SPItems.willow_chestplate_forestry = new SPItemArmor(SPArmorMaterial.willowForestryArmorMaterial, EquipmentSlot.CHEST).setRegistryName("willow_chestplate_forestry");
-		SPItems.willow_leggings_forestry = new SPItemArmor(SPArmorMaterial.willowForestryArmorMaterial, EquipmentSlot.LEGS).setRegistryName("willow_leggings_forestry");
-		SPItems.willow_boots_forestry = new SPItemArmor(SPArmorMaterial.willowForestryArmorMaterial, EquipmentSlot.FEET).setRegistryName("willow_boots_forestry");
 		SPItems.willow_forestry = NonNullList.create();
-		SPItems.willow_forestry.add(0, new ItemStack(SPItems.willow_helmet_forestry));
-		SPItems.willow_forestry.add(1, new ItemStack(SPItems.willow_chestplate_forestry));
-		SPItems.willow_forestry.add(2, new ItemStack(SPItems.willow_leggings_forestry));
-		SPItems.willow_forestry.add(3, new ItemStack(SPItems.willow_boots_forestry));
+		SPItems.willow_forestry.add(0, new ItemStack(willow_helmet_forestry.get()));
+		SPItems.willow_forestry.add(1, new ItemStack(willow_chestplate_forestry.get()));
+		SPItems.willow_forestry.add(2, new ItemStack(willow_leggings_forestry.get()));
+		SPItems.willow_forestry.add(3, new ItemStack(willow_boots_forestry.get()));
 		
-		SPItems.zebrawood_helmet = new SPItemArmor(SPArmorMaterial.zebrawoodArmorMaterial, EquipmentSlot.HEAD).setRegistryName("zebrawood_helmet");
-		SPItems.zebrawood_chestplate = new SPItemArmor(SPArmorMaterial.zebrawoodArmorMaterial, EquipmentSlot.CHEST).setRegistryName("zebrawood_chestplate");
-		SPItems.zebrawood_leggings = new SPItemArmor(SPArmorMaterial.zebrawoodArmorMaterial, EquipmentSlot.LEGS).setRegistryName("zebrawood_leggings");
-		SPItems.zebrawood_boots = new SPItemArmor(SPArmorMaterial.zebrawoodArmorMaterial, EquipmentSlot.FEET).setRegistryName("zebrawood_boots");
 		SPItems.zebrawood = NonNullList.create();
-		SPItems.zebrawood.add(0, new ItemStack(SPItems.zebrawood_helmet));
-		SPItems.zebrawood.add(1, new ItemStack(SPItems.zebrawood_chestplate));
-		SPItems.zebrawood.add(2, new ItemStack(SPItems.zebrawood_leggings));
-		SPItems.zebrawood.add(3, new ItemStack(SPItems.zebrawood_boots));
-		
-	}
-	
-	public static void register()
-	{
-		SurvivalPlusArmor.registerItem(SPItems.desert_acacia);
-		SurvivalPlusArmor.registerItem(SPItems.balsa);
-		SurvivalPlusArmor.registerItem(SPItems.baobab);
-		SurvivalPlusArmor.registerItem(SPItems.cherry_forestry);
-		SurvivalPlusArmor.registerItem(SPItems.chestnut);
-		SurvivalPlusArmor.registerItem(SPItems.citrus);
-		SurvivalPlusArmor.registerItem(SPItems.cocobolo);
-		SurvivalPlusArmor.registerItem(SPItems.ebony_forestry);
-		SurvivalPlusArmor.registerItem(SPItems.giant_sequoia);
-		SurvivalPlusArmor.registerItem(SPItems.greenheart);
-		SurvivalPlusArmor.registerItem(SPItems.ipe);
-		SurvivalPlusArmor.registerItem(SPItems.kapok);
-		SurvivalPlusArmor.registerItem(SPItems.larch);
-		SurvivalPlusArmor.registerItem(SPItems.lime);
-		SurvivalPlusArmor.registerItem(SPItems.mahoe);
-		SurvivalPlusArmor.registerItem(SPItems.mahogany_forestry);
-		SurvivalPlusArmor.registerItem(SPItems.maple);
-		SurvivalPlusArmor.registerItem(SPItems.padauk);
-		SurvivalPlusArmor.registerItem(SPItems.palm_forestry);
-		SurvivalPlusArmor.registerItem(SPItems.papaya);
-		SurvivalPlusArmor.registerItem(SPItems.pine_forestry);
-		SurvivalPlusArmor.registerItem(SPItems.plum);
-		SurvivalPlusArmor.registerItem(SPItems.poplar);
-		SurvivalPlusArmor.registerItem(SPItems.sequoia);
-		SurvivalPlusArmor.registerItem(SPItems.teak);
-		SurvivalPlusArmor.registerItem(SPItems.walnut);
-		SurvivalPlusArmor.registerItem(SPItems.wenge);
-		SurvivalPlusArmor.registerItem(SPItems.willow_forestry);
-		SurvivalPlusArmor.registerItem(SPItems.zebrawood);
+		SPItems.zebrawood.add(0, new ItemStack(zebrawood_helmet.get()));
+		SPItems.zebrawood.add(1, new ItemStack(zebrawood_chestplate.get()));
+		SPItems.zebrawood.add(2, new ItemStack(zebrawood_leggings.get()));
+		SPItems.zebrawood.add(3, new ItemStack(zebrawood_boots.get()));
 		
 	}
 

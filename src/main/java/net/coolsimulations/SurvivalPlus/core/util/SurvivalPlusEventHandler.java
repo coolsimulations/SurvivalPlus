@@ -147,21 +147,21 @@ public class SurvivalPlusEventHandler {
 		Int2ObjectMap<List<ItemListing>> trades = event.getTrades();
 
 		if(event.getType() == VillagerProfession.BUTCHER) {
-			trades.get(3).add(new BasicItemListing(2, new ItemStack(SPItems.beef_pie, 4), 16, 20));
+			trades.get(3).add(new BasicItemListing(2, new ItemStack(SPItems.beef_pie.get(), 4), 16, 20));
 		}
 
 		if(event.getType() == VillagerProfession.FARMER) {
-			trades.get(1).add(new BasicItemListing(1, new ItemStack(SPItems.onion_seeds, 4), 12, 2)); //temp till forge pull request #6142 is resolved
-			trades.get(2).add(new BasicItemListing(new ItemStack(SPItems.raw_onion, 6), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
+			trades.get(1).add(new BasicItemListing(1, new ItemStack(SPItems.onion_seeds.get(), 4), 12, 2)); //temp till forge pull request #6142 is resolved
+			trades.get(2).add(new BasicItemListing(new ItemStack(SPItems.raw_onion.get(), 6), new ItemStack(Items.EMERALD), 16, 5, 0.05F));
 		}
 
 		if(event.getType() == VillagerProfession.ARMORER) {
-			trades.get(2).add(new BasicItemListing(3, new ItemStack(SPItems.bronze_chestplate), 12, 5, 0.2F));
+			trades.get(2).add(new BasicItemListing(3, new ItemStack(SPItems.bronze_chestplate.get()), 12, 5, 0.2F));
 		}
 
 		if(event.getType() == VillagerProfession.ARMORER  || event.getType() == VillagerProfession.WEAPONSMITH) {
-			trades.get(2).add(new BasicItemListing(new ItemStack(SPItems.bronze_ingot, 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
-			trades.get(2).add(new BasicItemListing(new ItemStack(SPItems.titanium_ingot, 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
+			trades.get(2).add(new BasicItemListing(new ItemStack(SPItems.bronze_ingot.get(), 3), new ItemStack(Items.EMERALD), 12, 5, 0.05F));
+			trades.get(2).add(new BasicItemListing(new ItemStack(SPItems.titanium_ingot.get(), 3), new ItemStack(Items.EMERALD), 12, 10, 0.05F));
 		}
 
 	}
@@ -170,7 +170,7 @@ public class SurvivalPlusEventHandler {
 	public void villagerTrades(WandererTradesEvent event) {
 		List<ItemListing> trades = (List<ItemListing>) event.getGenericTrades();
 
-		trades.add(new BasicItemListing(1, new ItemStack(SPItems.onion_seeds, 4), 12, 20));		
+		trades.add(new BasicItemListing(1, new ItemStack(SPItems.onion_seeds.get(), 4), 12, 20));		
 	}
 
 	@SubscribeEvent
@@ -193,17 +193,17 @@ public class SurvivalPlusEventHandler {
 				if(itemStackIn.getCount() == 1) {
 					if (ItemStack.isSame(entityplayer.getOffhandItem(), itemStackIn))
 					{
-						entityplayer.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(SPItems.charcoal_bucket));
+						entityplayer.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(SPItems.charcoal_bucket.get()));
 					}
 					else
 					{
-						entityplayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SPItems.charcoal_bucket));
+						entityplayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SPItems.charcoal_bucket.get()));
 					}
 				} else  if(itemStackIn.getCount() >= 2){
 					itemStackIn.shrink(1);
-					boolean flag = entityplayer.getInventory().add(new ItemStack(SPItems.charcoal_bucket));
+					boolean flag = entityplayer.getInventory().add(new ItemStack(SPItems.charcoal_bucket.get()));
 					if(!flag) {
-						entityplayer.drop(new ItemStack(SPItems.charcoal_bucket), false);
+						entityplayer.drop(new ItemStack(SPItems.charcoal_bucket.get()), false);
 					}		
 				}
 			}
@@ -211,11 +211,11 @@ public class SurvivalPlusEventHandler {
 
 		if(block == Blocks.CAKE) {
 
-			if((entityplayer.getMainHandItem().getItem() == SPItems.paper_cup || entityplayer.getOffhandItem().getItem() == SPItems.paper_cup) || entityplayer.getMainHandItem().getItem() == SPItems.cupcake || entityplayer.getOffhandItem().getItem() == SPItems.cupcake) {
+			if((entityplayer.getMainHandItem().getItem() == SPItems.paper_cup.get() || entityplayer.getOffhandItem().getItem() == SPItems.paper_cup.get()) || entityplayer.getMainHandItem().getItem() == SPItems.cupcake.get() || entityplayer.getOffhandItem().getItem() == SPItems.cupcake.get()) {
 				event.setCanceled(true);
 			}
 
-			if(entityplayer.getItemInHand(event.getHand()).getItem() == SPItems.paper_cup) {
+			if(entityplayer.getItemInHand(event.getHand()).getItem() == SPItems.paper_cup.get()) {
 
 				if(!world.isClientSide) {
 
@@ -231,17 +231,17 @@ public class SurvivalPlusEventHandler {
 						if(itemStackIn.getCount() == 1) {
 							if (ItemStack.isSame(entityplayer.getOffhandItem(), itemStackIn))
 							{
-								entityplayer.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(SPItems.cupcake));
+								entityplayer.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(SPItems.cupcake.get()));
 							}
 							else
 							{
-								entityplayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SPItems.cupcake));
+								entityplayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SPItems.cupcake.get()));
 							}
 						} else  if(itemStackIn.getCount() >= 2){
 							itemStackIn.shrink(1);
-							boolean flag = entityplayer.getInventory().add(new ItemStack(SPItems.cupcake));
+							boolean flag = entityplayer.getInventory().add(new ItemStack(SPItems.cupcake.get()));
 							if(!flag) {
-								entityplayer.drop(new ItemStack(SPItems.cupcake), false);
+								entityplayer.drop(new ItemStack(SPItems.cupcake.get()), false);
 							}
 						}
 					}
@@ -251,7 +251,7 @@ public class SurvivalPlusEventHandler {
 		
 		if(block instanceof CandleCakeBlock) {
 			
-			if((entityplayer.getMainHandItem().getItem() == SPItems.paper_cup || entityplayer.getOffhandItem().getItem() == SPItems.paper_cup) || entityplayer.getMainHandItem().getItem() == SPItems.cupcake || entityplayer.getOffhandItem().getItem() == SPItems.cupcake) {
+			if((entityplayer.getMainHandItem().getItem() == SPItems.paper_cup.get()|| entityplayer.getOffhandItem().getItem() == SPItems.paper_cup.get()) || entityplayer.getMainHandItem().getItem() == SPItems.cupcake.get() || entityplayer.getOffhandItem().getItem() == SPItems.cupcake.get()) {
 				event.setCanceled(true);
 			}
 			
@@ -269,17 +269,17 @@ public class SurvivalPlusEventHandler {
 					if(itemStackIn.getCount() == 1) {
 						if (ItemStack.isSame(entityplayer.getOffhandItem(), itemStackIn))
 						{
-							entityplayer.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(SPItems.cupcake));
+							entityplayer.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(SPItems.cupcake.get()));
 						}
 						else
 						{
-							entityplayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SPItems.cupcake));
+							entityplayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(SPItems.cupcake.get()));
 						}
 					} else  if(itemStackIn.getCount() >= 2){
 						itemStackIn.shrink(1);
-						boolean flag = entityplayer.getInventory().add(new ItemStack(SPItems.cupcake));
+						boolean flag = entityplayer.getInventory().add(new ItemStack(SPItems.cupcake.get()));
 						if(!flag) {
-							entityplayer.drop(new ItemStack(SPItems.cupcake), false);
+							entityplayer.drop(new ItemStack(SPItems.cupcake.get()), false);
 						}
 					}
 				}
@@ -321,7 +321,7 @@ public class SurvivalPlusEventHandler {
 
 		if(event.getName().equals(BuiltInLootTables.PIGLIN_BARTERING)) {
 
-			LootPoolEntryContainer spinel = LootItem.lootTableItem(SPItems.spinel_shard).setWeight(15).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).build();
+			LootPoolEntryContainer spinel = LootItem.lootTableItem(SPItems.spinel_shard.get()).setWeight(15).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).build();
 
 			LootTable table = event.getTable();
 
