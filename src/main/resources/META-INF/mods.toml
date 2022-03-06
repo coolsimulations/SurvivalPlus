@@ -1,12 +1,12 @@
 modLoader="javafml"
-loaderVersion="[39,]"
+loaderVersion="[40,]"
 issueTrackerURL="http://github.com/coolsimulations/survivalplus/issues/"
 logoFile="logo.png"
 license="All rights reserved"
 
 [[mods]]
     modId="survivalplus_primer"
-    version="0.1.0b"
+    version="0.1.0c"
     displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus-primer"
     displayName="SurvivalPlus Primer"
     credits="To Mojang, for adding in SurvivalPlus content over the years... Beetroot, White Dye, Campfires, and now Copper and Amethysts. Thanks."
@@ -17,13 +17,13 @@ license="All rights reserved"
 [[dependencies.survivalplus_primer]]
     modId="forge"
     mandatory=true
-    versionRange="[39.0.7,]"
+    versionRange="[40.0.3,]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus_primer]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.1,]"
+    versionRange="[1.18.2,]"
     ordering="NONE"
     side="BOTH"
     [[dependencies.survivalplus_primer]]
