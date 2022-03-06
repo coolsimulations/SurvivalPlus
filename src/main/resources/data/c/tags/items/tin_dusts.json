@@ -1,7 +1,10 @@
 
 {
-	"replace": false,
-	"values": [
-		"survivalplus:tin_dust"
-	]
+  "replace": false,
+  "values": [
+    {
+      "id": "survivalplus:tin_dust",
+      "required": false
+    }
+  ]
 }

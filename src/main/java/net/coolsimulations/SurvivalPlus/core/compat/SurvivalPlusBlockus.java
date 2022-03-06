@@ -19,7 +19,7 @@ public class SurvivalPlusBlockus extends BlocksRegistration {
 	
 	public static void init() {
 		
-		SPBlocks.onion_crate = registerCrates("onion");
+		SPBlocks.onion_crate = register("onion_crate", createCrates());
 		
 		SPItems.white_oak_helmet = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, EquipmentSlot.HEAD);
 		SPItems.white_oak_chestplate = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, EquipmentSlot.CHEST);

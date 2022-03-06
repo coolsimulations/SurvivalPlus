@@ -11,10 +11,12 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -211,17 +213,13 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 
 	protected InteractionResult checkDye(Level worldIn, BlockPos pos, BlockState state, Player playerIn, ItemStack stack, String dye_tag, Block dyeBlock) {
 
-		Tag<Item> tag = ItemTags.getAllTags().getTag(new ResourceLocation("c", dye_tag));
-		
-		for(Iterator<Item> acceptableItems = tag.getValues().iterator(); acceptableItems.hasNext(); ){
-			Item dye = acceptableItems.next();
-			if(dye == stack.getItem() && tag != null) {
-				if(!playerIn.isCreative())
-					stack.shrink(1);
-				worldIn.setBlock(pos, dyeBlock.defaultBlockState().setValue(FACING, state.getValue(FACING)).setValue(FLOATING, state.getValue(FLOATING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)), 3);
-				return InteractionResult.SUCCESS;
-			}
+		TagKey<Item> tag = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("c", dye_tag));
 
+		if(stack.is(tag)) {
+			if(!playerIn.isCreative())
+				stack.shrink(1);
+			worldIn.setBlock(pos, dyeBlock.defaultBlockState().setValue(FACING, state.getValue(FACING)).setValue(FLOATING, state.getValue(FLOATING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED)), 3);
+			return InteractionResult.SUCCESS;
 		}
 
 		return InteractionResult.FAIL;
@@ -330,7 +328,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		if(block instanceof HopperBlock) {
 			return false;
 		}
-		
+
 		if(block instanceof SlabBlock) {
 			return isSlabValid(state, direction);
 		}
@@ -345,7 +343,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 	protected static boolean isTrapdoorValid(BlockState state, Direction facing) {
 		return state.getProperties().contains(TrapDoorBlock.HALF) && (facing == Direction.UP && state.getValue(TrapDoorBlock.HALF) == Half.TOP || facing == Direction.DOWN && state.getValue(TrapDoorBlock.HALF) == Half.BOTTOM) && !state.getValue(TrapDoorBlock.OPEN);
 	}
-	
+
 	protected static boolean isSlabValid(BlockState state, Direction facing) {
 		return (state.getProperties().contains(SlabBlock.TYPE) && (facing == Direction.UP && state.getValue(SlabBlock.TYPE) == SlabType.TOP || facing == Direction.DOWN && state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM)) || state.getValue(SlabBlock.TYPE) == SlabType.DOUBLE;
 	}

@@ -6,20 +6,20 @@ import com.google.common.base.Predicate;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
-import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.core.Holder;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.OreFeatures;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
@@ -38,20 +38,20 @@ public class SurvivalPlusOreGenerator {
 	public static void generateOres() {
 
 		if(!SPConfig.disableTinOreGen) {
-			registerOre(BiomeSelectors.includeByKey(Biomes.DRIPSTONE_CAVES), "tin_ore_large", Feature.ORE.configured(new OreConfiguration(ORE_TIN_TARGET_LIST, 20)).placed(commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)))));
-			registerOre(BiomeSelectors.foundInOverworld().and(BiomeSelectors.excludeByKey(Biomes.DRIPSTONE_CAVES)), "tin_ore", Feature.ORE.configured(new OreConfiguration(ORE_TIN_TARGET_LIST, 10)).placed(commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)))));
+			registerOre(BiomeSelectors.includeByKey(Biomes.DRIPSTONE_CAVES), "tin_ore_large", new OreConfiguration(ORE_TIN_TARGET_LIST, 20), commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))));
+			registerOre(BiomeSelectors.foundInOverworld().and(BiomeSelectors.excludeByKey(Biomes.DRIPSTONE_CAVES)), "tin_ore", new OreConfiguration(ORE_TIN_TARGET_LIST, 10), commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))));
 		}
 		if(!SPConfig.disableTitaniumOreGen) {
-			registerOre(BiomeSelectors.foundInOverworld(), "titanium_ore", Feature.ORE.configured(new OreConfiguration(ORE_TITANIUM_TARGET_LIST, 4)).placed(commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(25)))));
-			registerOre(BiomeSelectors.foundInOverworld(), "titanium_ore_large", Feature.ORE.configured(new OreConfiguration(ORE_TITANIUM_TARGET_LIST, 8)).placed(rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-62), VerticalAnchor.aboveBottom(62)))));
+			registerOre(BiomeSelectors.foundInOverworld(), "titanium_ore", new OreConfiguration(ORE_TITANIUM_TARGET_LIST, 4), commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(25))));
+			registerOre(BiomeSelectors.foundInOverworld(), "titanium_ore_large", new OreConfiguration(ORE_TITANIUM_TARGET_LIST, 8), rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-62), VerticalAnchor.aboveBottom(62))));
 
 		}
 	}
 
-	protected static void registerOre(java.util.function.Predicate<BiomeSelectionContext> selector, String id, PlacedFeature config) {
+	protected static void registerOre(java.util.function.Predicate<BiomeSelectionContext> selector, String id, OreConfiguration config, List<PlacementModifier> list) {
 
-		ResourceKey<PlacedFeature> registry = ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, new ResourceLocation(SPReference.MOD_ID, id));
-		Registry.register(BuiltinRegistries.PLACED_FEATURE, registry.location(), config);
+		Holder<ConfiguredFeature<OreConfiguration, ?>> oreConfiguration = FeatureUtils.register(id, Feature.ORE, config);
+		ResourceKey<PlacedFeature> registry = PlacementUtils.register(id, oreConfiguration, list).unwrapKey().get();
 		BiomeModifications.addFeature(selector, GenerationStep.Decoration.UNDERGROUND_DECORATION, registry);
 	}
 	

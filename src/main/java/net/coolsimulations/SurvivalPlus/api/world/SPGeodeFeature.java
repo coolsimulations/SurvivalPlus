@@ -63,8 +63,8 @@ public class SPGeodeFeature extends GeodeFeature {
 				BlockStateProvider.simple(this.calciteBlock.defaultBlockState()),
 				BlockStateProvider.simple(this.outerBlock.defaultBlockState()),
 				buds,
-				BlockTags.FEATURES_CANNOT_REPLACE.getName(),
-				BlockTags.GEODE_INVALID_BLOCKS.getName()
+				BlockTags.FEATURES_CANNOT_REPLACE,
+				BlockTags.GEODE_INVALID_BLOCKS
 				);
 
 		this.geodeConfiguration = new GeodeConfiguration(

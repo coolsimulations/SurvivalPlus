@@ -44,8 +44,8 @@
   },
   
   "suggests": {
-    "cloth-config2": ">=6.1.48",
-    "roughlyenoughitems": ">=7.1.356",
+    "cloth-config2": ">=6.2.57",
+    "roughlyenoughitems": ">=7.3.443",
     "blockus": ">=2.3.3",
     "bambootweaks": ">=1.1.0",
     "bambooeverything": ">=1.4.0",
