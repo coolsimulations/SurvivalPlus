@@ -52,8 +52,7 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_PEARL.func_230234_a_()), 2048);
 		registerCustomEMC(NSSItem.createTag(SPTags.Items.GEMS_SPINEL.func_230234_a_()), 2048);**/
 		
-		registerCustomEMC(NSSItem.createItem(SPItems.raw_tin.get()), 256);
-		registerCustomEMC(NSSItem.createItem(SPItems.raw_titanium.get()), 2048);
+		registerCustomEMC(NSSItem.createItem(SPItems.titanium_ingot.get()), 2048);
 		registerCustomEMC(NSSItem.createItem(SPItems.raw_onion.get()), 64);
 		registerCustomEMC(NSSItem.createItem(SPItems.onion_seeds.get()), 32);
 		registerCustomEMC(NSSItem.createItem(SPItems.ruby_shard.get()), 512);

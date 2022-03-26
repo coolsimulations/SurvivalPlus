@@ -145,11 +145,6 @@ public class SurvivalPlus {
 		
 		proxy.init();
 
-		if (SPCompatibilityManager.isProjectELoaded())
-		{
-			SurvivalPlusEMCValues.init();
-		}
-
 		/**if (SPCompatibilityManager.isJerLoaded())
         {
     			SurvivalPlusJER.init();
@@ -163,6 +158,10 @@ public class SurvivalPlus {
 		FuelHandler.registerArmorFuels();
 		SurvivalPlusDispenserBehavior.init();
         SurvivalPlusComposterRecipes.init();
+        if (SPCompatibilityManager.isProjectELoaded())
+		{
+			SurvivalPlusEMCValues.init();
+		}
     }
 	
 	@SubscribeEvent
