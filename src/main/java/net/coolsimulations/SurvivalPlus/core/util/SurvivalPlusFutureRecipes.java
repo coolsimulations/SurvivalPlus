@@ -4,6 +4,7 @@ import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.compat.ISPFutureRecipes;
 import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusNoTreePunching;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreDictionary;
 import thedarkcolour.futuremc.block.villagepillage.ComposterBlock;
 import thedarkcolour.futuremc.block.villagepillage.ComposterRarity;
@@ -22,7 +23,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 	public void addCampfireRecipe(ItemStack input, ItemStack output, int duration) {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
-			CampfireRecipes.INSTANCE.addRecipe(input, output, duration);
+			CampfireRecipes.INSTANCE.addRecipe(Ingredient.fromStacks(input), output, duration);
 		}
 		
 		if(SPCompatibilityManager.isNoTreePunchingLoaded()) {
@@ -44,7 +45,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 	public void addBlastFurnaceRecipe(ItemStack input, ItemStack output) {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
-			BlastFurnaceRecipes.INSTANCE.addRecipe(input, output);
+			BlastFurnaceRecipes.INSTANCE.addRecipe(Ingredient.fromStacks(input), output);
 		}
 	}
 
@@ -62,7 +63,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 	public void addSmokerRecipe(ItemStack input, ItemStack output) {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
-			SmokerRecipes.INSTANCE.addRecipe(input, output);
+			SmokerRecipes.INSTANCE.addRecipe(Ingredient.fromStacks(input), output);
 		}
 	}
 
@@ -83,7 +84,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 			if(material.getItem() == FItems.INSTANCE.getNETHERITE_INGOT() && !getNetheriteEnabled()) {
 				System.out.println("Cannot Register FutureMC Smithing Recipe for " + input.getItem().getRegistryName().toString() + " due to Netherite being Disabled");
 			} else {
-				SmithingRecipes.INSTANCE.getRecipes().add(new SmithingRecipe(input, material, output));
+				SmithingRecipes.INSTANCE.getRecipes().add(new SmithingRecipe(Ingredient.fromStacks(input), Ingredient.fromStacks(material), output));
 			}
 		}
 	}
@@ -102,7 +103,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 	public void addStonecutterRecipe(ItemStack input, ItemStack output) {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
-			StonecutterRecipes.INSTANCE.addRecipe(input, output);
+			StonecutterRecipes.INSTANCE.addRecipe(Ingredient.fromStacks(input), output);
 		}
 	}
 
@@ -309,7 +310,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 	public int getComposterRarityCommon() {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
-			return ComposterRarity.Companion.getCOMMON();
+			return ComposterRarity.INSTANCE.getCOMMON();
 		}
 
 		return 0;
@@ -319,7 +320,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 	public int getComposterRarityUnCommon() {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
-			return ComposterRarity.Companion.getUNCOMMON();
+			return ComposterRarity.INSTANCE.getUNCOMMON();
 		}
 
 		return 0;
@@ -329,7 +330,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 	public int getComposterRarityRare() {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
-			return ComposterRarity.Companion.getRARE();
+			return ComposterRarity.INSTANCE.getRARE();
 		}
 
 		return 0;
@@ -339,7 +340,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 	public int getComposterRarityEpic() {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
-			return ComposterRarity.Companion.getEPIC();
+			return ComposterRarity.INSTANCE.getEPIC();
 		}
 
 		return 0;
@@ -349,7 +350,7 @@ public class SurvivalPlusFutureRecipes implements ISPFutureRecipes {
 	public int getComposterRarityLegendary() {
 
 		if(SPCompatibilityManager.isFutureMCLoaded()) {
-			return ComposterRarity.Companion.getLEGENDARY();
+			return ComposterRarity.INSTANCE.getLEGENDARY();
 		}
 
 		return 0;
