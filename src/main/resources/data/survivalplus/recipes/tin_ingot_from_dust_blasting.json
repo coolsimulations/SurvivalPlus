@@ -6,5 +6,13 @@
   },
   "result": "survivalplus:tin_ingot",
   "experience": 0.7,
-  "cookingtime": 100
+  "cookingtime": 100,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:item_tags_populated",
+      "values": [
+        "c:tin_dusts"
+      ]
+    }
+  ]
 }

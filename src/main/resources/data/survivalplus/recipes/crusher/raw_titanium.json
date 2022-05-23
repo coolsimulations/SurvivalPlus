@@ -7,5 +7,13 @@
   "result": {
     "tag": "c:titanium_dusts",
     "count" : 2
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "mechanix"
+      ]
+    }
+  ]
 }

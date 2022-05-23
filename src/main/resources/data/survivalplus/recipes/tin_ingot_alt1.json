@@ -13,5 +13,13 @@
   },
   "result": {
     "item": "survivalplus:tin_ingot"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:item_tags_populated",
+      "values": [
+        "c:tin_nuggets"
+      ]
+    }
+  ]
 }

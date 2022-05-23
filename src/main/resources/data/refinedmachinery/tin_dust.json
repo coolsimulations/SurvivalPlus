@@ -5,5 +5,13 @@
   },
   "result": "survivalplus:tin_ingot",
   "experience": 1.5,
-  "cookingtime": 200
+  "cookingtime": 200,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "refinedmachinery"
+      ]
+    }
+  ]
 }

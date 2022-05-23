@@ -1,16 +1,17 @@
 {
   "type": "smelting",
+  "group": "tin_ingot",
   "ingredient": {
-    "item": "refinedmachinery:tin_ore"
+    "tag": "c:tin_dusts"
   },
   "result": "survivalplus:tin_ingot",
-  "experience": 1.5,
+  "experience": 0.7,
   "cookingtime": 200,
   "fabric:load_conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
+      "condition": "fabric:item_tags_populated",
       "values": [
-        "refinedmachinery"
+        "c:tin_dusts"
       ]
     }
   ]

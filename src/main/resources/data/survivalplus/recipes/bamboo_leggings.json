@@ -13,5 +13,18 @@
   },
   "result": {
     "item": "survivalplus:bamboo_leggings"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:any_mod_loaded",
+      "values": [
+        "blockus",
+        "bambootweaks",
+        "bambooeverything",
+        "bamboomod",
+        "bambooexpanded",
+        "vanillaenhanced"
+      ]
+    }
+  ]
 }

@@ -8,5 +8,13 @@
   "result": {
     "item": "survivalplus:tin_ingot",
     "count": 9
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "refinedmachinery"
+      ]
+    }
+  ]
 }

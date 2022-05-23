@@ -15,5 +15,13 @@
       "amount": 1,
       "probability": 0.5
     }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "modern_industrialization"
+      ]
+    }
   ]
 }

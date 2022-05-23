@@ -8,5 +8,13 @@
     "Count": 4
   },
   "pulverizetime": 200,
-  "category": "ore"
+  "category": "ore",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "pulverizer_mod"
+      ]
+    }
+  ]
 }

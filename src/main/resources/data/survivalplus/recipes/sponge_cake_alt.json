@@ -25,5 +25,13 @@
   },
   "result": {
     "item": "survivalplus:sponge_cake"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:item_tags_populated",
+      "values": [
+        "c:flour"
+      ]
+    }
+  ]
 }
