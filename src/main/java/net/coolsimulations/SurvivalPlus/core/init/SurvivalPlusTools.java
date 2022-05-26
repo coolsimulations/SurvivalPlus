@@ -20,7 +20,7 @@ public class SurvivalPlusTools {
 	public static final DeferredRegister<Item> ITEMS_TOOL = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
 	
 	private static final RegistryObject<Item> bronze_pickaxe = ITEMS_TOOL.register("bronze_pickaxe", () -> new SPItemPickaxe(SPItemTier.bronzeToolMaterial));
-	private static final RegistryObject<Item> bronze_axe = ITEMS_TOOL.register("bronze_axe", () -> new SPItemAxe(SPItemTier.bronzeToolMaterial, 7, -3.1F));
+	private static final RegistryObject<Item> bronze_axe = ITEMS_TOOL.register("bronze_axe", () -> new SPItemAxe(SPItemTier.bronzeToolMaterial, 5.5F, -3.1F));
 	private static final RegistryObject<Item> bronze_shovel = ITEMS_TOOL.register("bronze_shovel", () -> new SPItemShovel(SPItemTier.bronzeToolMaterial));
 	private static final RegistryObject<Item> bronze_hoe = ITEMS_TOOL.register("bronze_hoe", () -> new SPItemHoe(SPItemTier.bronzeToolMaterial, -1.5F, -1.5F));
 	private static final RegistryObject<Item> bronze_sword = ITEMS_TOOL.register("bronze_sword", () -> new SPItemSword(SPItemTier.bronzeToolMaterial));
@@ -28,7 +28,7 @@ public class SurvivalPlusTools {
 	private static final RegistryObject<Item> bronze_shield = ITEMS_TOOL.register("bronze_shield", () -> new SPItemShield(274));
 	
 	private static final RegistryObject<Item> titanium_pickaxe = ITEMS_TOOL.register("titanium_pickaxe", () -> new SPItemPickaxe(SPItemTier.titaniumToolMaterial));
-	private static final RegistryObject<Item> titanium_axe = ITEMS_TOOL.register("titanium_axe", () -> new SPItemAxe(SPItemTier.titaniumToolMaterial, 8.0F, -3.0F));
+	private static final RegistryObject<Item> titanium_axe = ITEMS_TOOL.register("titanium_axe", () -> new SPItemAxe(SPItemTier.titaniumToolMaterial, 5.5F, -3.0F));
 	private static final RegistryObject<Item> titanium_shovel = ITEMS_TOOL.register("titanium_shovel", () -> new SPItemShovel(SPItemTier.titaniumToolMaterial));
 	private static final RegistryObject<Item> titanium_hoe = ITEMS_TOOL.register("titanium_hoe", () -> new SPItemHoe(SPItemTier.titaniumToolMaterial, -2.5F, -0.5F));
 	private static final RegistryObject<Item> titanium_sword = ITEMS_TOOL.register("titanium_sword", () -> new SPItemSword(SPItemTier.titaniumToolMaterial));

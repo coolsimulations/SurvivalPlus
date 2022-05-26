@@ -113,6 +113,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 	}
 
 	@OnlyIn(Dist.CLIENT)
+	@Override
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand)
 	{
 		Direction enumfacing = (Direction)stateIn.getValue(FACING);

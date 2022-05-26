@@ -12,7 +12,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 
 def mcVersion = "1.18.2"
-def spVersion = "0.1.6d"
+def spVersion = "0.1.6e"
 version = "${mcVersion}-${spVersion}"
 group = "net.coolsimulations.SurvivalPlus" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SurvivalPlus"

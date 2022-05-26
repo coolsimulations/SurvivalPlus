@@ -42,7 +42,7 @@ public class CommandSleep {
 	}
 
 	private static int sleep(CommandSourceStack sender, Collection<ServerPlayer> players) {
-		Iterator var3 = players.iterator();
+		Iterator<ServerPlayer> var3 = players.iterator();
 
 		while (var3.hasNext()) {
 			ServerPlayer entityplayer = (ServerPlayer) var3.next();
