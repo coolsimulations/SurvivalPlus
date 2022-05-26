@@ -13,5 +13,13 @@
   "result": {
     "item": "blockus:onion_crate",
     "count": 1
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "blockus"
+      ]
+    }
+  ]
 }

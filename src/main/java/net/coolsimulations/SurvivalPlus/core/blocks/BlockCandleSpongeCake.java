@@ -60,14 +60,17 @@ public class BlockCandleSpongeCake extends AbstractCandleBlock {
 		BY_CANDLE.put(block, this);
 	}
 
+	@Override
 	protected Iterable<Vec3> getParticleOffsets(BlockState state) {
 		return PARTICLE_OFFSETS;
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter source, BlockPos pos, CollisionContext context) {
 		return AABB;
 	}
 
+	@Override
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player playerIn, InteractionHand hand, BlockHitResult ray) {
 		ItemStack itemStack = playerIn.getItemInHand(hand);
 		
@@ -114,30 +117,37 @@ public class BlockCandleSpongeCake extends AbstractCandleBlock {
 		return ray.getLocation().y - (double) ray.getBlockPos().getY() > 0.5D;
 	}
 
+	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> stateBuilder) {
 		stateBuilder.add(new Property[]{LIT});
 	}
 
+	@Override
 	public ItemStack getCloneItemStack(BlockGetter reader, BlockPos pos, BlockState state) {
 		return new ItemStack(SPBlocks.sponge_cake);
 	}
 
+	@Override
 	public BlockState updateShape(BlockState state, Direction side, BlockState blockState, LevelAccessor worldIn, BlockPos pos, BlockPos blockPos) {
 		return side == Direction.DOWN && !state.canSurvive(worldIn, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, side, blockState, worldIn, pos, blockPos);
 	}
 
+	@Override
 	public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
 		return worldIn.getBlockState(pos.below()).getMaterial().isSolid();
 	}
 
+	@Override
 	public int getAnalogOutputSignal(BlockState state, Level worldIn, BlockPos pos) {
 		return BlockSpongeCake.FULL_CAKE_SIGNAL;
 	}
 
+	@Override
 	public boolean hasAnalogOutputSignal(BlockState state) {
 		return true;
 	}
 
+	@Override
 	public boolean isPathfindable(BlockState state, BlockGetter reader, BlockPos pos, PathComputationType type) {
 		return false;
 	}

@@ -35,6 +35,7 @@ public class ItemCardboardLantern extends BlockItem {
 	 * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
 	 * {@link #onItemUse}.
 	 */
+	@Override
 	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
 		ItemStack itemStack = playerIn.getItemInHand(handIn);
 		HitResult hitResult = getPlayerPOVHitResult(worldIn, playerIn, ClipContext.Fluid.SOURCE_ONLY);
