@@ -18,6 +18,7 @@ public class SPCompatibilityManager {
 	private static boolean modMoreGemsLoaded;
 	private static boolean modEasyEmeraldLoaded;
 	private static boolean modVanillaEnhancedLoaded;
+	private static boolean modEnrichedLoaded;
 	private static boolean modRobinsEmeraldLoaded;
 	private static boolean modRobinsRubyLoaded;
 	private static boolean modRobinsAmethystLoaded;
@@ -45,6 +46,7 @@ public class SPCompatibilityManager {
 	public static final String MORE_GEMS_MODID = "more_gems";
 	public static final String EASY_EMERALD_MODID = "emerald_tools";
 	public static final String VANILLA_ENHANCED_MODID = "vanillaenhanced";
+	public static final String ENRICHED_MODID = "enriched";
 	public static final String ROBINS_EMERALD_MODID = "emerald_mod";
 	public static final String ROBINS_RUBY_MODID = "ruby_mod";
 	public static final String ROBINS_AMETHYST_MODID = "amethyst_mod";
@@ -122,6 +124,11 @@ public class SPCompatibilityManager {
 		if (FabricLoader.getInstance().isModLoaded(VANILLA_ENHANCED_MODID))
 		{
 			SPCompatibilityManager.modVanillaEnhancedLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(ENRICHED_MODID))
+		{
+			SPCompatibilityManager.modEnrichedLoaded = true;
 		}
 		
 		if (FabricLoader.getInstance().isModLoaded(ROBINS_EMERALD_MODID))
@@ -231,7 +238,7 @@ public class SPCompatibilityManager {
 	}
 	
 	public static boolean isBambooModsLoaded() {
-		return isBlockusLoaded() || isBambooTweaksLoaded() || isBambooEverythingLoaded() || isBetterBambooLoaded() || isBambooExpandedModLoaded() || isVanillaEnhancedLoaded();
+		return isBlockusLoaded() || isBambooTweaksLoaded() || isBambooEverythingLoaded() || isBetterBambooLoaded() || isBambooExpandedModLoaded() || isVanillaEnhancedLoaded() || isEnrichedLoaded();
 	}
 	
 	public static boolean isTraverseLoaded()
@@ -257,6 +264,11 @@ public class SPCompatibilityManager {
 	public static boolean isVanillaEnhancedLoaded()
 	{
 		return SPCompatibilityManager.modVanillaEnhancedLoaded;
+	}
+	
+	public static boolean isEnrichedLoaded()
+	{
+		return SPCompatibilityManager.modEnrichedLoaded;
 	}
 	
 	public static boolean isRobinsEmeraldLoaded()
@@ -291,12 +303,12 @@ public class SPCompatibilityManager {
 	
 	public static boolean isEmeraldMaterialModsLoaded()
 	{
-		return isEasyEmeraldLoaded() || isVanillaEnhancedLoaded() || isRobinsEmeraldLoaded() || isSimpleEmeraldLoaded() || isEmeraldEquipmentLoaded();
+		return isEasyEmeraldLoaded() || isVanillaEnhancedLoaded() || isEnrichedLoaded() || isRobinsEmeraldLoaded() || isSimpleEmeraldLoaded() || isEmeraldEquipmentLoaded();
 	}
 	
 	public static boolean isObsidianMaterialModsLoaded()
 	{
-		return isVanillaEnhancedLoaded() || isEasyEmeraldLoaded() || isObsidianEquipmentLoaded();
+		return isVanillaEnhancedLoaded() || isEnrichedLoaded() || isEasyEmeraldLoaded() || isObsidianEquipmentLoaded();
 	}
 	
 	public static boolean isBambooExpandedModLoaded()

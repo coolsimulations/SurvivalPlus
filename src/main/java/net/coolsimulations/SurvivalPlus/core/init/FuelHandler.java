@@ -31,6 +31,10 @@ public class FuelHandler{
 			FuelRegistry.INSTANCE.add(SPItems.bamboo_leggings, 350);
 			FuelRegistry.INSTANCE.add(SPItems.bamboo_boots, 200);
 		}
+		
+		if(SPCompatibilityManager.isVanillaEnhancedLoaded() || SPCompatibilityManager.isEnrichedLoaded()) {
+			addArmorFuels(SPItems.redwood_vanilla_enhanced);
+		}
 
 		if(SPCompatibilityManager.isTerrestriaLoaded()) {
 			addArmorFuels(SPItems.redwood_terrestria);

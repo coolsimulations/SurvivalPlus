@@ -138,7 +138,7 @@ public class SurvivalPlusArmor {
 			SPItems.bamboo.add(3, new ItemStack(SPItems.bamboo_boots));
 		}
 		
-		if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
+		if(SPCompatibilityManager.isVanillaEnhancedLoaded() || SPCompatibilityManager.isEnrichedLoaded()) {
 			SPItems.redwood_helmet_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.HEAD);
 			SPItems.redwood_chestplate_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.CHEST);
 			SPItems.redwood_leggings_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.LEGS);
@@ -182,7 +182,7 @@ public class SurvivalPlusArmor {
 			registerItem(SPItems.bamboo, "bamboo");
 		}
 		
-		if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
+		if(SPCompatibilityManager.isVanillaEnhancedLoaded() || SPCompatibilityManager.isEnrichedLoaded()) {
 			registerItem(SPItems.redwood_vanilla_enhanced, "redwood", "vanilla_enhanced");
 		}
 		

@@ -1,7 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "wooden_boots",
+  "group": "wooden_leggings",
   "pattern": [
+    "XXX",
     "X X",
     "X X"
   ],
@@ -11,7 +12,7 @@
     }
   },
   "result": {
-    "item": "survivalplus:redwood_boots_vanilla_enhanced"
+    "item": "survivalplus:redwood_leggings_vanilla_enhanced"
   },
   "fabric:load_conditions": [
     {
