@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "survivalplus:tin_ore",
-    "survivalplus:tin_block"
+    "survivalplus:copper_ore",
+    "survivalplus:copper_block"
   ]
 }
