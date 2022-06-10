@@ -6,13 +6,14 @@ import java.util.Iterator;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.commands.CommandRuntimeException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.server.level.ServerPlayer;
 
 public class CommandConfrats {
@@ -25,22 +26,22 @@ public class CommandConfrats {
 	}
 
 	private static int confrats(CommandSourceStack sender, Collection<ServerPlayer> players) {
-		Iterator var3 = players.iterator();
+		Iterator<ServerPlayer> var3 = players.iterator();
 
 		while(var3.hasNext()) {
 			ServerPlayer entityplayer = (ServerPlayer)var3.next();
 
 			if(entityplayer == sender.getEntity()) {
 
-				throw new CommandRuntimeException(new TranslatableComponent("sp.commands.confrats.sameTarget"));
+				throw new CommandRuntimeException(Component.translatable("sp.commands.confrats.sameTarget"));
 
 			} else {
-				TranslatableComponent confrats = new TranslatableComponent("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
+				MutableComponent confrats = Component.translatable("sp.commands.confrats.display", new Object[] {entityplayer.getDisplayName(), sender.getDisplayName()});
 				confrats.withStyle(ChatFormatting.YELLOW);
 				if(sender.getEntity() != null)
-					sender.getServer().getPlayerList().broadcastMessage(confrats, ChatType.CHAT, sender.getEntity().getUUID());
+					sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(confrats, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
 				else
-					sender.getServer().getPlayerList().broadcastMessage(confrats, ChatType.SYSTEM, Util.NIL_UUID);
+					sender.getServer().getPlayerList().broadcastSystemMessage(confrats, ChatType.SYSTEM);
 			}
 		}
 

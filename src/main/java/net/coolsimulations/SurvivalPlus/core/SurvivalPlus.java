@@ -21,6 +21,7 @@ import net.coolsimulations.SurvivalPlus.core.config.SurvivalPlusConfig;
 import net.coolsimulations.SurvivalPlus.core.init.FuelHandler;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusBlocks;
+import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusChatTypes;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusGeodes;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
@@ -32,7 +33,7 @@ import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
 import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.players.UserWhiteList;
@@ -68,8 +69,10 @@ public class SurvivalPlus implements ModInitializer {
 		SPCompatibilityManager.checkForCompatibleMods();
 		SurvivalPlusConfig.init(new File(FabricLoader.getInstance().getConfigDir().toFile(), SPReference.MOD_ID + ".json"));
 		SurvivalPlusUpdateHandler.init();
+		
+		SurvivalPlusChatTypes.register();
 
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
 			CommandConfrats.register(dispatcher);
 			CommandEmportant.register(dispatcher);
 			CommandWoo.register(dispatcher);

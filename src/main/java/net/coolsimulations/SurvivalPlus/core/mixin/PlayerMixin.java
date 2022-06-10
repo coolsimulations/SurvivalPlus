@@ -14,7 +14,7 @@ import net.coolsimulations.SurvivalPlus.api.compat.RainbowComponent;
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -87,7 +87,7 @@ public abstract class PlayerMixin extends LivingEntity {
 		
 		if(this.getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
 			
-			TextComponent alpaca = new TextComponent(new RainbowComponent(this.getName().getString()).getText());
+			MutableComponent alpaca = Component.literal(new RainbowComponent(this.getName().getString()).getText());
 			
 			if(this.getTeam() == null) {
 				cir.setReturnValue(alpaca);

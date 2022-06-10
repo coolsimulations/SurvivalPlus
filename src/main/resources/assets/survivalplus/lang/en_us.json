@@ -217,6 +217,10 @@
   "item.survivalplus.warped_chestplate": "Warped Chestplate",
   "item.survivalplus.warped_leggings": "Warped Leggings",
   "item.survivalplus.warped_boots": "Warped Boots",
+  "item.survivalplus.mangrove_helmet": "Mangrove Helmet",
+  "item.survivalplus.mangrove_chestplate": "Mangrove Chestplate",
+  "item.survivalplus.mangrove_leggings": "Mangrove Leggings",
+  "item.survivalplus.mangrove_boots": "Mangrove Boots",
   
   "item.survivalplus.bamboo_helmet": "Bamboo Helmet",
   "item.survivalplus.bamboo_chestplate": "Bamboo Chestplate",
@@ -408,7 +412,7 @@
   "sp.discord.display1": "Click Here to Join the Official Discord Server for: ",
   "sp.discord.display2": "Click to Join!",
   
-  "sp.coolsim.creator": "[SurvivalPlus Creator] ",
+  "sp.coolsim.creator": "§6[SurvivalPlus Creator]§r <%s> %s",
   "sp.coolsim.joined": "%s the grand creator of SurvivalPlus joined the game",
   "sp.coolsim.left": "%s the grand creator of SurvivalPlus left the game",
   "sp.coolsim.error": "coolsim has been killed too many times in a row and thus has not dropped a head!",

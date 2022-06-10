@@ -1,6 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,26 +13,21 @@ import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.events.EntityAccessor;
 import net.coolsimulations.SurvivalPlus.api.events.SPPlayerDeathEvent;
 import net.coolsimulations.SurvivalPlus.api.events.SPPlayerJoinEvent;
-import net.fabricmc.fabric.api.loot.v1.FabricLootPool;
-import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
-import net.fabricmc.fabric.api.loot.v1.FabricLootSupplier;
-import net.fabricmc.fabric.api.loot.v1.FabricLootSupplierBuilder;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback.LootTableSetter;
+import net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableSource;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerAdvancementManager;
 import net.minecraft.server.level.ServerPlayer;
@@ -105,19 +101,19 @@ public class SurvivalPlusEventHandler {
 
 				if(!player.level.isClientSide) {
 
-					TranslatableComponent installInfo = new TranslatableComponent("advancements.sp.install.display1");
+					MutableComponent installInfo = Component.translatable("advancements.sp.install.display1");
 					installInfo.withStyle(ChatFormatting.GOLD);
-					player.sendMessage(installInfo.setStyle(installInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("advancements.sp.install.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"))), ChatType.SYSTEM, Util.NIL_UUID);
+					player.sendSystemMessage(installInfo.setStyle(installInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("advancements.sp.install.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"))));
 
-					TranslatableComponent discord = new TranslatableComponent("sp.discord.display1");
+					MutableComponent discord = Component.translatable("sp.discord.display1");
 					discord.withStyle(ChatFormatting.DARK_GREEN, ChatFormatting.BOLD);
 
 					for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
 
-						TranslatableComponent formatted = new TranslatableComponent(SPReference.MOD_ADDON_NAMES.get(i));
+						MutableComponent formatted = Component.translatable(SPReference.MOD_ADDON_NAMES.get(i));
 						formatted.withStyle(ChatFormatting.BLUE, ChatFormatting.BOLD);
 
-						TextComponent gap = new TextComponent(", ");
+						MutableComponent gap = Component.literal(", ");
 						gap.withStyle(ChatFormatting.WHITE);
 
 						discord.append(formatted);
@@ -129,7 +125,7 @@ public class SurvivalPlusEventHandler {
 					timer.schedule(new TimerTask() {
 						@Override
 						public void run() {
-							player.sendMessage(discord.setStyle(discord.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.discord.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"))), ChatType.SYSTEM, Util.NIL_UUID);
+							player.sendSystemMessage(discord.setStyle(discord.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("sp.discord.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"))));
 						}
 					}, 30000);
 				}
@@ -139,8 +135,8 @@ public class SurvivalPlusEventHandler {
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						player.sendMessage(SurvivalPlusUpdateHandler.updateInfo.setStyle(SurvivalPlusUpdateHandler.updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"))), ChatType.SYSTEM, Util.NIL_UUID);
-						player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo.setStyle(SurvivalPlusUpdateHandler.updateVersionInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"))), ChatType.SYSTEM, Util.NIL_UUID);
+						player.sendSystemMessage(SurvivalPlusUpdateHandler.updateInfo.setStyle(SurvivalPlusUpdateHandler.updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"))));
+						player.sendSystemMessage(SurvivalPlusUpdateHandler.updateVersionInfo.setStyle(SurvivalPlusUpdateHandler.updateVersionInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus-fabric"))));
 					}
 				}, 15000);
 			}
@@ -188,64 +184,104 @@ public class SurvivalPlusEventHandler {
 	}
 
 	public static void addLootTable() {
-		LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
+		LootTableEvents.REPLACE.register((resourceManager, manager, id, table, source) -> {
 			if(id.equals(BuiltInLootTables.PIGLIN_BARTERING)) {
 
 				LootPoolEntryContainer spinel = LootItem.lootTableItem(SPItems.spinel_shard).setWeight(15).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).build();
 
-				LootTable table = manager.get(id);
+				List<LootPoolEntryContainer> newList = new ArrayList<LootPoolEntryContainer>();
+				newList.add(spinel);
 
-				if(table instanceof FabricLootSupplier) {
-
-					List<LootPoolEntryContainer> newList = new ArrayList<LootPoolEntryContainer>(((FabricLootPool)((FabricLootSupplier) table).getPools().stream().findAny().orElse(null)).getEntries());
-					newList.add(spinel);
-					FabricLootPoolBuilder newBuilder = FabricLootPoolBuilder.builder();
-
-					for(LootPoolEntryContainer pool : newList) {
-						newBuilder.withEntry(pool);
-					}
-
-					setter.set(FabricLootSupplierBuilder.builder().withPool(newBuilder.build()).build());
+				for(LootPoolEntryContainer pool : table.pools[0].entries) {
+					newList.add(pool);
 				}
+
+				LootPool.Builder newBuilder = LootPool.lootPool();
+
+				for(LootPoolEntryContainer pool : newList) {
+					newBuilder.with(pool);
+				}
+
+				return LootTable.lootTable().withPool(newBuilder).build();
 			}
 
 			for(ResourceLocation location : Registry.BLOCK.keySet()) {
 				Block block = Registry.BLOCK.get(location);
+				
+				if(block instanceof LeavesBlock || block == Blocks.OAK_LEAVES) {
+					LootTable check = replaceLootWithShears(block, id, table, manager, source);
+					if(check != null)
+						return check;
+				}
 
-				if(block instanceof LeavesBlock) {
-					replaceLootWithShears(block, id, supplier, manager, setter);
-				}
-				
 				if(block instanceof WebBlock) {
-					replaceLootWithShears(block, id, supplier, manager, setter);
+					LootTable check = replaceLootWithShears(block, id, table, manager, source);
+					if(check != null)
+						return check;
 				}
-				
+
 				if(block instanceof DeadBushBlock) {
-					replaceLootWithShears(block, id, supplier, manager, setter);
+					LootTable check = replaceLootWithShears(block, id, table, manager, source);
+					if(check != null)
+						return check;
 				}
-				
+
 				if(block instanceof NetherSproutsBlock) {
-					replaceLootWithShears(block, id, supplier, manager, setter);
+					LootTable check = replaceLootWithShears(block, id, table, manager, source);
+					if(check != null)
+						return check;
 				}
-				
+
 				if(block instanceof VineBlock) {
-					replaceLootWithShears(block, id, supplier, manager, setter);
+					LootTable check = replaceLootWithShears(block, id, table, manager, source);
+					if(check != null)
+						return check;
 				}
-				
+
 				if(block instanceof SeagrassBlock) {
-					replaceLootWithShears(block, id, supplier, manager, setter);
+					LootTable check = replaceLootWithShears(block, id, table, manager, source);
+					if(check != null)
+						return check;
 				}
-				
+
 				if(block instanceof GlowLichenBlock) {
-					replaceLootWithShears(block, id, supplier, manager, setter);
+					LootTable check = replaceLootWithShears(block, id, table, manager, source);
+					if(check != null)
+						return check;
+				}
+
+				if(block == Blocks.FERN) {
+					LootTable check = replaceLootWithShears(block, id, table, manager, source);
+					if(check != null)
+						return check;
+				}
+
+				if(block == Blocks.LARGE_FERN) {
+					LootTable check = replaceLootWithShears(block, Items.FERN, 2, id, table, manager, source);
+					if(check != null)
+						return check;
+				}
+
+				if(block == Blocks.GRASS) {
+					LootTable check = replaceLootWithShears(block, id, table, manager, source);
+					if(check != null)
+						return check;
+				}
+
+				if(block == Blocks.TALL_GRASS) {
+					LootTable check = replaceLootWithShears(block, Items.GRASS, 2, id, table, manager, source);
+					if(check != null)
+						return check;
+				}
+
+				if(block == Blocks.TALL_SEAGRASS) {
+					LootTable check = replaceLootWithShears(block, Items.SEAGRASS, 2, id, table, manager, source);
+					if(check != null)
+						return check;
 				}
 			}
-			
-			replaceLootWithShears(Blocks.FERN, id, supplier, manager, setter);
-			replaceLootWithShears(Blocks.LARGE_FERN, Items.FERN, 2, id, supplier, manager, setter);
-			replaceLootWithShears(Blocks.GRASS, id, supplier, manager, setter);
-			replaceLootWithShears(Blocks.TALL_GRASS, Items.GRASS, 2, id, supplier, manager, setter);
-			replaceLootWithShears(Blocks.TALL_SEAGRASS, Items.SEAGRASS, 2, id, supplier, manager, setter);
+
+			return null;
 		});
 	}
 
@@ -260,9 +296,9 @@ public class SurvivalPlusEventHandler {
 				if(coolsimHead != null) {
 					dropItem(coolsimHead, attacker);
 				} else {
-					TranslatableComponent error = new TranslatableComponent("sp.coolsim.error");
+					MutableComponent error = Component.translatable("sp.coolsim.error");
 					error.withStyle(ChatFormatting.RED);
-					attacker.sendMessage(error, ChatType.SYSTEM, Util.NIL_UUID);
+					attacker.sendSystemMessage(error);
 				}
 			}
 
@@ -277,7 +313,7 @@ public class SurvivalPlusEventHandler {
 
 		ItemStack playerhead = new ItemStack(Items.PLAYER_HEAD);
 
-		TranslatableComponent headName = new TranslatableComponent("block.minecraft.player_head.named", new Object[] {"coolsim"});
+		MutableComponent headName = Component.translatable("block.minecraft.player_head.named", new Object[] {"coolsim"});
 		headName.withStyle(ChatFormatting.ITALIC);
 		CompoundTag properties = new CompoundTag();
 		ListTag textures = new ListTag();
@@ -312,15 +348,15 @@ public class SurvivalPlusEventHandler {
 			}
 		}
 	}
-	
-	public static void replaceLootWithShears(Block block, ResourceLocation id, FabricLootSupplierBuilder supplier, LootTables manager, LootTableSetter setter) {
-		replaceLootWithShears(block, block.asItem(), 1, id, supplier, manager, setter);
+
+	public static LootTable replaceLootWithShears(Block block, ResourceLocation id, LootTable supplier, LootTables manager, LootTableSource setter) {
+		return replaceLootWithShears(block, block.asItem(), 1, id, supplier, manager, setter);
 	}
-	
-	public static void replaceLootWithShears(Block block, Item item, ResourceLocation id, FabricLootSupplierBuilder supplier, LootTables manager, LootTableSetter setter) {
-		replaceLootWithShears(block, item, 1, id, supplier, manager, setter);
+
+	public static LootTable replaceLootWithShears(Block block, Item item, ResourceLocation id, LootTable supplier, LootTables manager, LootTableSource setter) {
+		return replaceLootWithShears(block, item, 1, id, supplier, manager, setter);
 	}
-	
+
 	/**
 	 * Replaces the shear item of a Loot Table with the fabric tag.
 	 * 
@@ -331,53 +367,48 @@ public class SurvivalPlusEventHandler {
 	 * @param item The item that should be dropped
 	 * @param count The amount of items to be dropped
 	 * @param id The LootTable ResourceLocaiton
-	 * @param supplier The Loot Supplier
+	 * @param table The Loot Supplier
 	 * @param manager The Loot Manager
-	 * @param setter THe Loot Setter
+	 * @param source THe Loot Setter
 	 */
-	public static void replaceLootWithShears(Block block, Item item, int count, ResourceLocation id, FabricLootSupplierBuilder supplier, LootTables manager, LootTableSetter setter) {
-		
+	public static LootTable replaceLootWithShears(Block block, Item item, int count, ResourceLocation id, LootTable table, LootTables manager, LootTableSource source) {
+
 		if (id.equals(block.getLootTable())) {
-			if (supplier != null) {
+			if (table != null) {
 
-				LootTable table = manager.get(id);
-
-				if(table instanceof FabricLootSupplier) {
-
-					FabricLootSupplier extended = (FabricLootSupplier) table;
-
-					LootContextParamSet contextType = supplier.build().getParamSet();
-					List<LootPool> pools = extended.getPools();
-					List<LootItemFunction> functions = extended.getFunctions();
-					FabricLootSupplierBuilder replacement = FabricLootSupplierBuilder.builder()
-							.type(contextType);
-					int i = 0;
-					for (LootPool pool : pools) {
-						i++;
-						if(i == 2) {
-							FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.of(pool)
-									.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("fabric", "shears")))).invert());
-							replacement.withPool(poolBuilder.build());
-						}
-						else if (i == 1){
-							FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.of(pool)
-									.apply(LimitCount.limitCount(IntRange.range(0, 0)).when(InvertedLootItemCondition.invert(AlternativeLootItemCondition.alternative(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("fabric", "shears")))).invert()).or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS))))));
-							replacement.withPool(poolBuilder.build());
-						}
-						else {
-							replacement.withPool(pool);
-						}
+				LootContextParamSet contextType = table.getParamSet();
+				List<LootPool> pools = Arrays.asList(table.pools);
+				List<LootItemFunction> functions = Arrays.asList(table.functions);
+				LootTable.Builder replacement = LootTable.lootTable()
+						.setParamSet(contextType);
+				int i = 0;
+				for (LootPool pool : pools) {
+					i++;
+					if(i == 2) {
+						LootPool.Builder poolBuilder = FabricLootPoolBuilder.copyOf(pool)
+								.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("fabric", "shears")))).invert().build());
+						replacement.withPool(poolBuilder);
 					}
-					FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-							.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("fabric", "shears")))))
-							.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS)).invert())
-							.rolls(ConstantValue.exactly(1))
-							.withEntry(LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(ConstantValue.exactly(count))).build());
-					replacement.withPool(poolBuilder.build());
-					replacement.withFunctions(functions);
-					setter.set(replacement.build());
+					else if (i == 1){
+						LootPool.Builder poolBuilder = FabricLootPoolBuilder.copyOf(pool)
+								.apply(LimitCount.limitCount(IntRange.range(0, 0)).when(InvertedLootItemCondition.invert(AlternativeLootItemCondition.alternative(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("fabric", "shears")))).invert()).or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS))))));
+						replacement.withPool(poolBuilder);
+					}
+					else {
+						replacement.pool(pool);
+					}
 				}
+				LootPool.Builder poolBuilder = LootPool.lootPool()
+						.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("fabric", "shears")))).build())
+						.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS)).invert().build())
+						.setRolls(ConstantValue.exactly(1))
+						.with(LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(ConstantValue.exactly(count))).build());
+				replacement.withPool(poolBuilder);
+				replacement.apply(functions);
+				return replacement.build();
 			}
 		}
+		
+		return null;
 	}
 }

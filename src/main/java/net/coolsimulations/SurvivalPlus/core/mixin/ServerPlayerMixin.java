@@ -19,11 +19,12 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ProfilePublicKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.scores.PlayerTeam;
@@ -31,8 +32,8 @@ import net.minecraft.world.scores.PlayerTeam;
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin extends Player {
 
-	public ServerPlayerMixin(Level world, BlockPos pos, float yaw, GameProfile profile) {
-		super(world, pos, yaw, profile);
+	public ServerPlayerMixin(Level world, BlockPos pos, float yaw, GameProfile profile, ProfilePublicKey key) {
+		super(world, pos, yaw, profile, key);
 	}
 
 	@Inject(at = @At("TAIL"), method = "restoreFrom", cancellable = true)
@@ -57,7 +58,7 @@ public abstract class ServerPlayerMixin extends Player {
 		
 		if(this.getUUID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
 			
-			TextComponent coolsim = new TextComponent("coolsim");
+			MutableComponent coolsim = Component.translatable("coolsim");
 			coolsim.withStyle(ChatFormatting.GOLD);
 			
 			if(this.getTeam() == null) {
@@ -70,7 +71,7 @@ public abstract class ServerPlayerMixin extends Player {
 		
 		if(this.getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
 			
-			TextComponent alpaca = new TextComponent(new RainbowComponent(this.getName().getString()).getText());
+			MutableComponent alpaca = Component.translatable(new RainbowComponent(this.getName().getString()).getText());
 			
 			if(this.getTeam() == null) {
 				cir.setReturnValue(alpaca);

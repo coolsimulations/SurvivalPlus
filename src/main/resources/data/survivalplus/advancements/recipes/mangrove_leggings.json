@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "survivalplus:redwood_helmet_vanilla_enhanced"
+      "survivalplus:mangrove_leggings"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "vanillaenhanced:redwood_logs"
+            "tag": "minecraft:mangrove_logs"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "survivalplus:redwood_helmet_vanilla_enhanced"
+        "recipe": "survivalplus:mangrove_leggings"
       }
     }
   },

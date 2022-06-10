@@ -24,12 +24,17 @@ public class FuelHandler{
 		addArmorFuels(SPItems.dark_oak);
 		addArmorFuels(SPItems.crimson);
 		addArmorFuels(SPItems.warped);
+		addArmorFuels(SPItems.mangrove);
 		
 		if (SPCompatibilityManager.isBambooModsLoaded()) {
 			FuelRegistry.INSTANCE.add(SPItems.bamboo_helmet, 250);
 			FuelRegistry.INSTANCE.add(SPItems.bamboo_chestplate, 400);
 			FuelRegistry.INSTANCE.add(SPItems.bamboo_leggings, 350);
 			FuelRegistry.INSTANCE.add(SPItems.bamboo_boots, 200);
+		}
+		
+		if(SPCompatibilityManager.isEnrichedLoaded()) {
+			addArmorFuels(SPItems.redwood_vanilla_enhanced);
 		}
 
 		if(SPCompatibilityManager.isTerrestriaLoaded()) {

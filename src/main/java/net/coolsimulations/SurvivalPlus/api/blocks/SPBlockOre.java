@@ -1,11 +1,10 @@
 package net.coolsimulations.SurvivalPlus.api.blocks;
 
-import java.util.Random;
-
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.Block;
@@ -34,7 +33,7 @@ public class SPBlockOre extends Block{
 		this.experience = dropsXP;
 	}
 
-	protected int getExperience(Random random) {
+	protected int getExperience(RandomSource random) {
 		if(experience) {
 			if (resource == Resource.TIER_0) {
 				return Mth.nextInt(random, 0, 2);
@@ -50,8 +49,8 @@ public class SPBlockOre extends Block{
 	}
 
 	@Override
-	public void spawnAfterBreak(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack) {
-		super.spawnAfterBreak(state, world, pos, stack);
+	public void spawnAfterBreak(BlockState state, ServerLevel world, BlockPos pos, ItemStack stack, boolean bl) {
+		super.spawnAfterBreak(state, world, pos, stack, bl);
 		int i = this.getExperience(world.random);
 		if (i > 0) {
 			this.popExperience(world, pos, i);

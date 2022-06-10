@@ -6,21 +6,21 @@ import java.util.Scanner;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.minecraft.ChatFormatting;
 import net.minecraft.SharedConstants;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
 public class SurvivalPlusUpdateHandler {
 	
 	private static String latestVersion;
 	private static String latestVersionInfo;
 	public static boolean isOld = false;
-	public static TranslatableComponent updateInfo = null;
-	public static TextComponent updateVersionInfo = null;
+	public static MutableComponent updateInfo = null;
+	public static MutableComponent updateVersionInfo = null;
 	
 	public static void init() {
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus-fabric/versionchecker118.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus-fabric/versionchecker119.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersion = s.next();
             s.close();
@@ -29,7 +29,7 @@ public class SurvivalPlusUpdateHandler {
         }
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus-fabric/updateinfo118.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/survivalplus-fabric/updateinfo119.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersionInfo = s.nextLine();
             s.close();
@@ -43,13 +43,13 @@ public class SurvivalPlusUpdateHandler {
 				
 				isOld = true;
 				
-				TranslatableComponent sp = new TranslatableComponent("sp.name");
+				MutableComponent sp = Component.translatable("sp.name");
 				sp.withStyle(ChatFormatting.BLUE);
 				
-				TextComponent MCVersion = new TextComponent(SharedConstants.getCurrentVersion().getName());
+				MutableComponent MCVersion = Component.literal(SharedConstants.getCurrentVersion().getName());
 				MCVersion.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslatableComponent("sp.update.display3", new Object[] {sp, MCVersion});
+				updateInfo = Component.translatable("sp.update.display3", new Object[] {sp, MCVersion});
 				updateInfo.withStyle(ChatFormatting.YELLOW);
 			}
 			
@@ -57,18 +57,18 @@ public class SurvivalPlusUpdateHandler {
 				
 				isOld = true;
 				
-				TranslatableComponent sp = new TranslatableComponent("sp.name");
+				MutableComponent sp = Component.translatable("sp.name");
 				sp.withStyle(ChatFormatting.BLUE);
 				
-				TextComponent version = new TextComponent(latestVersion);
+				MutableComponent version = Component.literal(latestVersion);
 				version.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslatableComponent("sp.update.display1", new Object[] {sp, version});
+				updateInfo = Component.translatable("sp.update.display1", new Object[] {sp, version});
 				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
 				if(latestVersionInfo != null) {
 					
-					updateVersionInfo = new TextComponent(latestVersionInfo);
+					updateVersionInfo = Component.literal(latestVersionInfo);
 					updateVersionInfo.withStyle(ChatFormatting.DARK_AQUA, ChatFormatting.BOLD);
 				}
 				

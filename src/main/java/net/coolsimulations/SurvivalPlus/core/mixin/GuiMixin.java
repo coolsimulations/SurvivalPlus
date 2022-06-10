@@ -10,26 +10,25 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 
 @Environment(EnvType.CLIENT)
 @Mixin(Gui.class)
 public abstract class GuiMixin {
 
-	@ModifyVariable(at = @At(value = "INVOKE", ordinal = 0), method = "handleChat", ordinal = 0)
-	private Component handleChat(Component message) {
-		TranslatableComponent coolsim = new TranslatableComponent("sp.coolsim.creator");
+	@ModifyVariable(at = @At(value = "INVOKE", ordinal = 0), method = "handleSystemChat", ordinal = 0)
+	private Component handleSystemChat(Component message) {
+		
+		MutableComponent coolsim = Component.translatable("sp.coolsim.creator");
 		coolsim.withStyle(ChatFormatting.GOLD);
 
-		TranslatableComponent playerJoined = new TranslatableComponent("multiplayer.player.joined", new Object[] {"coolsim"});
+		MutableComponent playerJoined = Component.translatable("multiplayer.player.joined", new Object[] {"coolsim"});
 
-		TranslatableComponent playerLeft = new TranslatableComponent("multiplayer.player.left", new Object[] {"coolsim"});
+		MutableComponent playerLeft = Component.translatable("multiplayer.player.left", new Object[] {"coolsim"});
 
-		TranslatableComponent coolsimJoined = new TranslatableComponent("sp.coolsim.joined", new Object[] {"coolsim"});
+		MutableComponent coolsimJoined = Component.translatable("sp.coolsim.joined", new Object[] {"coolsim"});
 		coolsimJoined.withStyle(ChatFormatting.YELLOW);
 
-		TranslatableComponent coolsimLeft = new TranslatableComponent("sp.coolsim.left", new Object[] {"coolsim"});
+		MutableComponent coolsimLeft = Component.translatable("sp.coolsim.left", new Object[] {"coolsim"});
 		coolsimLeft.withStyle(ChatFormatting.YELLOW);
 
 		if(message.getString().equals(playerJoined.getString())) {
@@ -44,7 +43,7 @@ public abstract class GuiMixin {
 			if(message instanceof MutableComponent) {
 				return coolsim.append(((MutableComponent) message).withStyle(ChatFormatting.WHITE));
 			} else {
-				return coolsim.append(new TextComponent("").withStyle(ChatFormatting.WHITE).append(message));
+				return coolsim.append(Component.literal("").withStyle(ChatFormatting.WHITE).append(message));
 			}
 		}
 		

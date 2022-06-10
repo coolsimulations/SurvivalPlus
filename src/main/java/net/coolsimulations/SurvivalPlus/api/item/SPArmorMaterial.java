@@ -48,6 +48,9 @@ public enum SPArmorMaterial implements ArmorMaterial {
     warpedArmorMaterial("warped", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("c", "wood_sticks")));
     }),
+    mangroveArmorMaterial("mangrove", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("c", "wood_sticks")));
+    }),
     bambooArmorMaterial("bamboo", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("c", "bamboos")));
     }),

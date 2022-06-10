@@ -1,6 +1,5 @@
 package net.coolsimulations.SurvivalPlus.core.blocks;
 
-import java.util.Iterator;
 import java.util.Random;
 
 import org.jetbrains.annotations.Nullable;
@@ -14,9 +13,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -116,7 +114,8 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 	}
 
 	@Environment(EnvType.CLIENT)
-	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand)
+	@Override
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand)
 	{
 		Direction enumfacing = (Direction)stateIn.getValue(FACING);
 		boolean isFloating = stateIn.getValue(FLOATING);

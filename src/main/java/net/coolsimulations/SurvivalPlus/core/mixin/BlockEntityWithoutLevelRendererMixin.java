@@ -20,6 +20,7 @@ import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BannerRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.Material;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
@@ -50,7 +51,7 @@ public class BlockEntityWithoutLevelRendererMixin {
 			VertexConsumer vertexConsumer = Material.sprite().wrap(ItemRenderer.getFoilBufferDirect(vertexConsumerProvider, this.shieldModel.renderType(Material.atlasLocation()), true, stack.hasFoil()));
 			this.shieldModel.handle().render(matrix, vertexConsumer, light, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
 			if (bl) {
-				List<Pair<BannerPattern, DyeColor>> list = BannerBlockEntity.createPatterns(ShieldItem.getColor(stack), BannerBlockEntity.getItemPatterns(stack));
+				List<Pair<Holder<BannerPattern>, DyeColor>> list = BannerBlockEntity.createPatterns(ShieldItem.getColor(stack), BannerBlockEntity.getItemPatterns(stack));
 				BannerRenderer.renderPatterns(matrix, vertexConsumerProvider, light, overlay, this.shieldModel.plate(), Material, false, list, stack.hasFoil());
 			} else {
 				this.shieldModel.plate().render(matrix, vertexConsumer, light, overlay, 1.0F, 1.0F, 1.0F, 1.0F);

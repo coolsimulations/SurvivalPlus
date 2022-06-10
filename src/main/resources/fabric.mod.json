@@ -38,15 +38,15 @@
     ],
     
   "depends": {
-    "fabricloader": ">=0.12.11",
+    "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "1.18.x"
+    "minecraft": "1.19.x"
   },
   
   "suggests": {
-    "cloth-config2": ">=6.2.57",
-    "roughlyenoughitems": ">=7.3.443",
-    "blockus": ">=2.3.3",
+    "cloth-config2": ">=7.0.69",
+    "roughlyenoughitems": ">=9.0.472",
+    "blockus": ">=2.5.0",
     "bambootweaks": ">=1.1.0",
     "bambooeverything": ">=1.4.0",
     "bamboomod": ">=0.3.0"

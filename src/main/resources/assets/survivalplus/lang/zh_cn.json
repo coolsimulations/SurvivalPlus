@@ -218,6 +218,10 @@
   "item.survivalplus.warped_chestplate": "\u8be1\u5f02\u80f8\u7532",
   "item.survivalplus.warped_leggings": "\u8be1\u5f02\u62a4\u817f",
   "item.survivalplus.warped_boots": "\u8be1\u5f02\u9774\u5b50",
+  "item.survivalplus.mangrove_helmet": "\u7ea2\u6811\u6728\u5934\u76d4",
+  "item.survivalplus.mangrove_chestplate": "\u7ea2\u6811\u6728\u80f8\u7532",
+  "item.survivalplus.mangrove_leggings": "\u7ea2\u6811\u6728\u62a4\u817f",
+  "item.survivalplus.mangrove_boots": "\u7ea2\u6811\u6728\u9774\u5b50",
   
   "item.survivalplus.bamboo_helmet": "\u7af9\u5b50\u5934\u76d4",
   "item.survivalplus.bamboo_chestplate": "\u7af9\u5b50\u80f8\u7532",
@@ -409,7 +413,7 @@
   "sp.discord.display1": "\u5355\u51fb\u6b64\u5904\u52a0\u5165\u6b63\u5f0f\u7684Discord\u670d\u52a1\u5668\u4ee5\u8fdb\u884c: ",
   "sp.discord.display2": "\u70b9\u51fb\u52a0\u5165\uff01",
   
-  "sp.coolsim.creator": "[\u751f\u5b58\u52a0\u521b\u4f5c\u8005] ",
+  "sp.coolsim.creator": "§6[\u751f\u5b58\u52a0\u521b\u4f5c\u8005]§r <%s> %s",
   "sp.coolsim.joined": "%s\u751f\u5b58\u52a0\u7684\u4f1f\u5927\u521b\u9020\u8005\u52a0\u5165\u4e86\u6e38\u620f",
   "sp.coolsim.left": "%s\u751f\u5b58\u52a0\u7684\u4f1f\u5927\u521b\u9020\u8005\u79bb\u5f00\u4e86\u6e38\u620f",
   "sp.coolsim.error": "coolsim\u5df2\u7ecf\u8fde\u7eed\u88ab\u6740\u6b7b\u4e86\u5f88\u591a\u6b21\u56e0\u6b64\u6ca1\u6709\u4e22\u4e0b\u5934\uff01",

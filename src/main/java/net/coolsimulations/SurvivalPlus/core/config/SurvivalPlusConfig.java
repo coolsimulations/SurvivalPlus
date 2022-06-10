@@ -55,9 +55,8 @@ public class SurvivalPlusConfig {
 	}
 	
 	public static void load(File fileSrc) {
-		JsonParser parser = new JsonParser();
 		try {
-			Object obj = parser.parse(new FileReader(fileSrc));
+			Object obj = JsonParser.parseReader(new FileReader(fileSrc));
 			JsonObject jsonObjectRead = (JsonObject) obj;
 			if(jsonObjectRead.get("disableCopperOreGen") != null) {
 				jsonObjectRead.remove("disableCopperOreGen");

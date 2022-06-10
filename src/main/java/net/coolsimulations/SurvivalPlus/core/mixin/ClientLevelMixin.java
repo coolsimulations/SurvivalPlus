@@ -19,18 +19,18 @@ import net.minecraft.world.level.Level;
 @Mixin(ClientLevel.class)
 public abstract class ClientLevelMixin {
 
-	@Inject(at = @At(value = "HEAD"), method = "playSound", cancellable = true)
-    private void playSound(@Nullable Player player, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, CallbackInfo info) {
-		InteractionResult result = SPPlaySoundAtEntityEvent.EVENT.invoker().playSound((((Level) (Object)this)), player, new BlockPos(x, y, z), sound, category, volume, pitch);
+	@Inject(at = @At(value = "HEAD"), method = "playSeededSound", cancellable = true)
+    private void playSound(@Nullable Player player, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, long seed, CallbackInfo info) {
+		InteractionResult result = SPPlaySoundAtEntityEvent.EVENT.invoker().playSound((((Level) (Object)this)), player, new BlockPos(x, y, z), sound, category, volume, pitch, seed);
 
         if (result == InteractionResult.FAIL) {
             info.cancel();
         }
     }
 	
-	@Inject(at = @At(value = "HEAD"), method = "playSound(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V", cancellable = true)
-    private void playSound(@Nullable Player player, Entity entity, SoundEvent sound, SoundSource category, float volume, float pitch, CallbackInfo info) {
-		InteractionResult result = SPPlaySoundAtEntityEvent.EVENT.invoker().playSound((((Level) (Object)this)), player, entity.blockPosition(), sound, category, volume, pitch);
+	@Inject(at = @At(value = "HEAD"), method = "playSeededSound(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFJ)V", cancellable = true)
+    private void playSound(@Nullable Player player, Entity entity, SoundEvent sound, SoundSource category, float volume, float pitch, long seed, CallbackInfo info) {
+		InteractionResult result = SPPlaySoundAtEntityEvent.EVENT.invoker().playSound((((Level) (Object)this)), player, entity.blockPosition(), sound, category, volume, pitch, seed);
 
         if (result == InteractionResult.FAIL) {
             info.cancel();

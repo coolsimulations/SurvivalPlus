@@ -25,9 +25,10 @@ import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.biome.Biome.BiomeCategory;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
@@ -141,7 +142,7 @@ public class SurvivalPlusGeodes {
 			registerFeatures(SPBlocks.ruby_block, SPBlocks.budding_ruby, Blocks.CALCITE, Blocks.MAGMA_BLOCK, "ruby_geode", BiomeSelectors.foundInTheNether(), VerticalAnchor.bottom(), VerticalAnchor.top(), 24);
 		}
 		if(!SPConfig.disablePearlGen) {
-			registerFeatures(SPBlocks.pearl_block, SPBlocks.budding_pearl, Blocks.CALCITE, Blocks.SMOOTH_BASALT, true, "pearl_geode", BiomeSelectors.categories(BiomeCategory.OCEAN), VerticalAnchor.aboveBottom(64), VerticalAnchor.absolute(63), 24);
+			registerFeatures(SPBlocks.pearl_block, SPBlocks.budding_pearl, Blocks.CALCITE, Blocks.SMOOTH_BASALT, true, "pearl_geode", BiomeSelectors.tag(BiomeTags.IS_OCEAN), VerticalAnchor.aboveBottom(64), VerticalAnchor.absolute(63), 24);
 		}
 		if(!SPConfig.disableTopazGen) {
 			registerFeatures(SPBlocks.topaz_block, SPBlocks.budding_topaz, Blocks.CALCITE, Blocks.MAGMA_BLOCK, "topaz_geode", BiomeSelectors.foundInTheNether(), VerticalAnchor.bottom(), VerticalAnchor.top(), 24);
@@ -151,7 +152,7 @@ public class SurvivalPlusGeodes {
 		}
 		
 		if(!SPConfig.disableSpinelGen) {
-			registerFeatures(SPBlocks.spinel_block, SPBlocks.budding_spinel, Blocks.CALCITE, Blocks.SMOOTH_BASALT, "spinel_geode", BiomeSelectors.categories(BiomeCategory.MUSHROOM), VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(64), 24);
+			registerFeatures(SPBlocks.spinel_block, SPBlocks.budding_spinel, Blocks.CALCITE, Blocks.SMOOTH_BASALT, "spinel_geode", BiomeSelectors.includeByKey(Biomes.MUSHROOM_FIELDS), VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(64), 24);
 		}
 	}
 	

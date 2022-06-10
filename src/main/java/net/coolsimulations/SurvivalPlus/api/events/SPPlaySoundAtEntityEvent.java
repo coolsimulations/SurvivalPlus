@@ -10,9 +10,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 
 public interface SPPlaySoundAtEntityEvent {
-	Event<SPPlaySoundAtEntityEvent> EVENT = EventFactory.createArrayBacked(SPPlaySoundAtEntityEvent.class, (listeners) -> (world, entity, pos, sound, category, volume, pitch) -> {
+	Event<SPPlaySoundAtEntityEvent> EVENT = EventFactory.createArrayBacked(SPPlaySoundAtEntityEvent.class, (listeners) -> (world, entity, pos, sound, category, volume, pitch, seed) -> {
 		for (SPPlaySoundAtEntityEvent listener : listeners) {
-			InteractionResult result = listener.playSound(world, entity, pos, sound, category, volume, pitch);
+			InteractionResult result = listener.playSound(world, entity, pos, sound, category, volume, pitch, seed);
 
 			if (result != InteractionResult.PASS) {
 				return result;
@@ -22,5 +22,5 @@ public interface SPPlaySoundAtEntityEvent {
 		return InteractionResult.PASS;
 	});
 
-	InteractionResult playSound(Level world, Entity entity, BlockPos pos, SoundEvent sound, SoundSource category, float volume, float pitch);
+	InteractionResult playSound(Level world, Entity entity, BlockPos pos, SoundEvent sound, SoundSource category, float volume, float pitch, long seed);
 }

@@ -9,8 +9,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
-import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
@@ -30,7 +30,7 @@ public class SurvivalPlusClient implements ClientModInitializer {
 			Item item = Registry.ITEM.get(location);
 			
 			if(item instanceof SPItemShield) {
-				FabricModelPredicateProviderRegistry.register(item, new ResourceLocation("blocking"),(itemStack, clientWorld, livingEntity, seed) -> {
+				ItemProperties.register(item, new ResourceLocation("blocking"),(itemStack, clientWorld, livingEntity, seed) -> {
 					return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == itemStack ? 1.0F : 0.0F;
 				});
 			}

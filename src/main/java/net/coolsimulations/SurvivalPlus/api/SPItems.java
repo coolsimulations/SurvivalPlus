@@ -147,6 +147,12 @@ public class SPItems {
 	public static Item warped_boots;
 	//public static ItemArmor.ArmorMaterial warpedArmorMaterial;
 	public static NonNullList<ItemStack> warped;
+	public static Item mangrove_helmet;
+	public static Item mangrove_chestplate;
+	public static Item mangrove_leggings;
+	public static Item mangrove_boots;
+	//public static ItemArmor.ArmorMaterial warpedArmorMaterial;
+	public static NonNullList<ItemStack> mangrove;
 	
 	/**
 	 * These are the bamboo armor Items referred to in SurvivalPlusArmor along with the corresponding ArmorMaterial and Armor ItemStack List

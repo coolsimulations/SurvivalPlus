@@ -21,6 +21,7 @@ public class SPShieldRecipes extends CustomRecipe {
 		super(idIn);
 	}
 
+	@Override
 	public boolean matches(CraftingContainer inv, Level worldIn) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		ItemStack itemstack1 = ItemStack.EMPTY;
@@ -59,6 +60,7 @@ public class SPShieldRecipes extends CustomRecipe {
 		}
 	}
 
+	@Override
 	public ItemStack assemble(CraftingContainer inv) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		ItemStack itemstack1 = ItemStack.EMPTY;
@@ -89,6 +91,7 @@ public class SPShieldRecipes extends CustomRecipe {
 	 * Used to determine if this recipe can fit in a grid of the given width/height
 	 */
 	@Environment(EnvType.CLIENT)
+	@Override
 	public boolean canCraftInDimensions(int width, int height) {
 		return width * height >= 2;
 	}

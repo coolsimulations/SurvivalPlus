@@ -1,13 +1,13 @@
 package net.coolsimulations.SurvivalPlus.api.blocks;
 
 import java.util.List;
-import java.util.Random;
 
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BuddingAmethystBlock;
@@ -39,7 +39,7 @@ public class SPBlockCrystalBudding extends BuddingAmethystBlock {
 	}
 	
 	@Override
-	public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
+	public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource random) {
 		if (random.nextInt(5) == 0) {
 			Direction direction = DIRECTIONS[random.nextInt(DIRECTIONS.length)];
 			BlockPos blockPos2 = blockPos.relative(direction);

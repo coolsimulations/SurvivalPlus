@@ -126,6 +126,16 @@ public class SurvivalPlusArmor {
 		SPItems.warped.add(2, new ItemStack(SPItems.warped_leggings));
 		SPItems.warped.add(3, new ItemStack(SPItems.warped_boots));
 		
+		SPItems.mangrove_helmet = new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.HEAD);
+		SPItems.mangrove_chestplate = new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.CHEST);
+		SPItems.mangrove_leggings = new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.LEGS);
+		SPItems.mangrove_boots = new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.FEET);
+		SPItems.mangrove = NonNullList.create();
+		SPItems.mangrove.add(0, new ItemStack(SPItems.mangrove_helmet));
+		SPItems.mangrove.add(1, new ItemStack(SPItems.mangrove_chestplate));
+		SPItems.mangrove.add(2, new ItemStack(SPItems.mangrove_leggings));
+		SPItems.mangrove.add(3, new ItemStack(SPItems.mangrove_boots));
+		
 		if(SPCompatibilityManager.isBambooModsLoaded()) {
 			SPItems.bamboo_helmet = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlot.HEAD);
 			SPItems.bamboo_chestplate = new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlot.CHEST);
@@ -138,7 +148,7 @@ public class SurvivalPlusArmor {
 			SPItems.bamboo.add(3, new ItemStack(SPItems.bamboo_boots));
 		}
 		
-		if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
+		if(SPCompatibilityManager.isEnrichedLoaded()) {
 			SPItems.redwood_helmet_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.HEAD);
 			SPItems.redwood_chestplate_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.CHEST);
 			SPItems.redwood_leggings_vanilla_enhanced = new SPItemArmor(SPArmorMaterial.redwoodVanillaEnhancedArmorMaterial, EquipmentSlot.LEGS);
@@ -177,12 +187,13 @@ public class SurvivalPlusArmor {
 		registerItem(SPItems.dark_oak, "dark_oak");
 		registerItem(SPItems.crimson, "crimson");
 		registerItem(SPItems.warped, "warped");
+		registerItem(SPItems.mangrove, "mangrove");
 		
 		if(SPCompatibilityManager.isBambooModsLoaded()) {
 			registerItem(SPItems.bamboo, "bamboo");
 		}
 		
-		if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
+		if(SPCompatibilityManager.isEnrichedLoaded()) {
 			registerItem(SPItems.redwood_vanilla_enhanced, "redwood", "vanilla_enhanced");
 		}
 		

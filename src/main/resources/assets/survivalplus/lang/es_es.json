@@ -217,6 +217,10 @@
   "item.survivalplus.warped_chestplate": "Peto de Distorsionado",
   "item.survivalplus.warped_leggings": "Grebas de Distorsionado",
   "item.survivalplus.warped_boots": "Botas de Distorsionado",
+  "item.survivalplus.mangrove_helmet": "Casco de Mangle",
+  "item.survivalplus.mangrove_chestplate": "Peto de Mangle",
+  "item.survivalplus.mangrove_leggings": "Grebas de Mangle",
+  "item.survivalplus.mangrove_boots": "Botas de Mangle",
   
   "item.survivalplus.bamboo_helmet": "Casco de Bamb\u00fa",
   "item.survivalplus.bamboo_chestplate": "Peto de Bamb\u00fa",
@@ -408,7 +412,7 @@
   "sp.discord.display1": "Haga Clic Aqu\u00ed Para Unirse al Servidor Oficial de Discord Para: ",
   "sp.discord.display2": "Haga Clic Para Unirse!",
   
-  "sp.coolsim.creator": "[SupervivenciaM\u00e1s Creador] ",
+  "sp.coolsim.creator": "§6[SupervivenciaM\u00e1s Creador]§r <%s> %s",
   "sp.coolsim.joined": "%s el gran creador de SupervivenciaM\u00e1s se uni\u00f3 al juego",
   "sp.coolsim.left": "%s el gran creador de SupervivenciaM\u00e1s dej\u00f3 el juego",
   "sp.coolsim.error": "¡coolsim ha sido asesinado demasiadas veces seguidas y por lo tanto, no se le ha ca\u00eddo la cabeza!",
