@@ -84,11 +84,6 @@ public class BOPArmor {
 	private static final RegistryObject<Item> eucalyptus_leggings = ITEMS_BOP_EXTRAS_ARMOR.register("eucalyptus_leggings", () -> new SPItemArmor(SPArmorMaterial.eucalyptusArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> eucalyptus_boots = ITEMS_BOP_EXTRAS_ARMOR.register("eucalyptus_boots", () -> new SPItemArmor(SPArmorMaterial.eucalyptusArmorMaterial, EquipmentSlot.FEET));
 	
-	private static final RegistryObject<Item> mangrove_helmet = ITEMS_BOP_EXTRAS_ARMOR.register("mangrove_helmet", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.HEAD));
-	private static final RegistryObject<Item> mangrove_chestplate = ITEMS_BOP_EXTRAS_ARMOR.register("mangrove_chestplate", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.CHEST));
-	private static final RegistryObject<Item> mangrove_leggings = ITEMS_BOP_EXTRAS_ARMOR.register("mangrove_leggings", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.LEGS));
-	private static final RegistryObject<Item> mangrove_boots = ITEMS_BOP_EXTRAS_ARMOR.register("mangrove_boots", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.FEET));
-	
 	private static final RegistryObject<Item> pine_helmet = ITEMS_BOP_EXTRAS_ARMOR.register("pine_helmet", () -> new SPItemArmor(SPArmorMaterial.pineArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> pine_chestplate = ITEMS_BOP_EXTRAS_ARMOR.register("pine_chestplate", () -> new SPItemArmor(SPArmorMaterial.pineArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> pine_leggings = ITEMS_BOP_EXTRAS_ARMOR.register("pine_leggings", () -> new SPItemArmor(SPArmorMaterial.pineArmorMaterial, EquipmentSlot.LEGS));
@@ -185,12 +180,6 @@ public class BOPArmor {
 			SPItems.eucalyptus.add(1, new ItemStack(eucalyptus_chestplate.get()));
 			SPItems.eucalyptus.add(2, new ItemStack(eucalyptus_leggings.get()));
 			SPItems.eucalyptus.add(3, new ItemStack(eucalyptus_boots.get()));
-			
-			SPItems.mangrove = NonNullList.create();
-			SPItems.mangrove.add(0, new ItemStack(mangrove_helmet.get()));
-			SPItems.mangrove.add(1, new ItemStack(mangrove_chestplate.get()));
-			SPItems.mangrove.add(2, new ItemStack(mangrove_leggings.get()));
-			SPItems.mangrove.add(3, new ItemStack(mangrove_boots.get()));
 			
 			SPItems.pine = NonNullList.create();
 			SPItems.pine.add(0, new ItemStack(pine_helmet.get()));

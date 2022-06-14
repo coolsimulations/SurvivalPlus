@@ -1,0 +1,6 @@
+{
+  "type": "survivalplus:titanium_ore_modifier",
+  "biomes": "#minecraft:is_overworld",
+  "features": "survivalplus:titanium_ore_large",
+  "generation_stage": "UNDERGROUND_DECORATION"
+}

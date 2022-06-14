@@ -1,0 +1,6 @@
+{
+  "type": "survivalplus:tin_ore_large_modifier",
+  "biomes": "minecraft:dripstone_caves",
+  "features": "survivalplus:tin_ore_large",
+  "generation_stage": "UNDERGROUND_DECORATION"
+}

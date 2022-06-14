@@ -1,0 +1,16 @@
+{
+    "required": true,
+    "package": "net.coolsimulations.SurvivalPlus.core.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "refmap": "survivalplus.refmap.json",
+    "mixins": [
+        "ServerGamePacketListenerImplMixin"
+    ],
+    "client": [
+    	"GuiMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "minVersion": "0.8"
+}

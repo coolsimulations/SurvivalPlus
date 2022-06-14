@@ -1,18 +1,20 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import com.mojang.brigadier.CommandDispatcher;
+
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandRuntimeException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.ChatFormatting;
-
-import java.util.Collection;
-import java.util.Iterator;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.PlayerChatMessage;
+import net.minecraft.server.level.ServerPlayer;
 
 public class CommandWeba {
 
@@ -31,15 +33,15 @@ public class CommandWeba {
 
 			if(entityplayer == sender.getEntity()) {
 
-				throw new CommandRuntimeException(new TranslatableComponent("sp.commands.weba.sameTarget"));
+				throw new CommandRuntimeException(Component.translatable("sp.commands.weba.sameTarget"));
 
 			}else {
-				TranslatableComponent weba = new TranslatableComponent("sp.commands.weba.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
+				MutableComponent weba = Component.translatable("sp.commands.weba.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
 				weba.withStyle(ChatFormatting.GOLD);
 				if (sender.getEntity() != null)
-					sender.getServer().getPlayerList().broadcastMessage(weba, ChatType.CHAT, sender.getEntity().getUUID());
+					sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(weba, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
 				else
-					sender.getServer().getPlayerList().broadcastMessage(weba, ChatType.SYSTEM, Util.NIL_UUID);
+					sender.getServer().getPlayerList().broadcastSystemMessage(weba, ChatType.SYSTEM);
 			}
 		}
 

@@ -1,18 +1,20 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import com.mojang.brigadier.CommandDispatcher;
+
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandRuntimeException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.ChatFormatting;
-
-import java.util.Collection;
-import java.util.Iterator;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.PlayerChatMessage;
+import net.minecraft.server.level.ServerPlayer;
 
 public class CommandMourn {
 
@@ -31,15 +33,15 @@ public class CommandMourn {
 
 			if(entityplayer == sender.getEntity()) {
 
-				throw new CommandRuntimeException(new TranslatableComponent("sp.commands.mourn.sameTarget"));
+				throw new CommandRuntimeException(Component.translatable("sp.commands.mourn.sameTarget"));
 
 			}else {
-				TranslatableComponent mourns = new TranslatableComponent("sp.commands.mourn.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
+				MutableComponent mourns = Component.translatable("sp.commands.mourn.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
 				mourns.withStyle(ChatFormatting.DARK_AQUA);
 				if (sender.getEntity() != null)
-					sender.getServer().getPlayerList().broadcastMessage(mourns, ChatType.CHAT, sender.getEntity().getUUID());
+					sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(mourns, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
 				else
-					sender.getServer().getPlayerList().broadcastMessage(mourns, ChatType.SYSTEM, Util.NIL_UUID);
+					sender.getServer().getPlayerList().broadcastSystemMessage(mourns, ChatType.SYSTEM);
 			}
 		}
 

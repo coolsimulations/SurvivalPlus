@@ -62,6 +62,10 @@ public class SPArmorMaterial implements ArmorMaterial {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
     });
 	
+	public static final ArmorMaterial mangroveArmorMaterial = new SPArmorMaterial("mangrove", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.of(Tags.Items.RODS_WOODEN);
+    });
+	
 	public static final ArmorMaterial rubberArmorMaterial = new SPArmorMaterial("rubber", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(ItemTags.create(new ResourceLocation("minecraft:", "rubber_logs")));
     });
@@ -119,10 +123,6 @@ public class SPArmorMaterial implements ArmorMaterial {
     });
 	
 	public static final ArmorMaterial eucalyptusArmorMaterial = new SPArmorMaterial("eucalyptus", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-    	return Ingredient.of(Tags.Items.RODS_WOODEN);
-    });
-	
-	public static final ArmorMaterial mangroveArmorMaterial = new SPArmorMaterial("mangrove", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Tags.Items.RODS_WOODEN);
     });
 	

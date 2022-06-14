@@ -1,0 +1,6 @@
+{
+  "type": "survivalplus:pearl_geode_modifier",
+  "biomes": "#minecraft:is_ocean",
+  "features": "survivalplus:pearl_geode",
+  "generation_stage": "LOCAL_MODIFICATIONS"
+}

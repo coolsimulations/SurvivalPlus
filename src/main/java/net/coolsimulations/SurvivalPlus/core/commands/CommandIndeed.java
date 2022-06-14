@@ -1,19 +1,21 @@
 package net.coolsimulations.SurvivalPlus.core.commands;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandRuntimeException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.ChatFormatting;
-
-import java.util.Collection;
-import java.util.Iterator;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.PlayerChatMessage;
+import net.minecraft.server.level.ServerPlayer;
 
 public class CommandIndeed {
 
@@ -36,15 +38,15 @@ public class CommandIndeed {
 
 			if (entityplayer == sender.getEntity()) {
 
-				throw new CommandRuntimeException(new TranslatableComponent("sp.commands.indeed.sameTarget"));
+				throw new CommandRuntimeException(Component.translatable("sp.commands.indeed.sameTarget"));
 
 			} else {
-				TranslatableComponent indeed = new TranslatableComponent("sp.commands.indeed.display1", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
+				MutableComponent indeed = Component.translatable("sp.commands.indeed.display1", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
 				indeed.withStyle(ChatFormatting.DARK_GREEN);
 				if (sender.getEntity() != null)
-					sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.CHAT, sender.getEntity().getUUID());
+					sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(indeed, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
 				else
-					sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.SYSTEM, Util.NIL_UUID);
+					sender.getServer().getPlayerList().broadcastSystemMessage(indeed, ChatType.SYSTEM);
 			}
 		}
 
@@ -53,12 +55,12 @@ public class CommandIndeed {
 
 	private static int indeedSingle(CommandSourceStack sender) {
 
-		TranslatableComponent indeed = new TranslatableComponent("sp.commands.indeed.display2", new Object[]{sender.getDisplayName()});
+		MutableComponent indeed = Component.translatable("sp.commands.indeed.display2", new Object[]{sender.getDisplayName()});
 		indeed.withStyle(ChatFormatting.DARK_GREEN);
 		if (sender.getEntity() != null)
-			sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.CHAT, sender.getEntity().getUUID());
+			sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(indeed, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
 		else
-			sender.getServer().getPlayerList().broadcastMessage(indeed, ChatType.SYSTEM, Util.NIL_UUID);
+			sender.getServer().getPlayerList().broadcastSystemMessage(indeed, ChatType.SYSTEM);
 
 		return Command.SINGLE_SUCCESS;
 	}

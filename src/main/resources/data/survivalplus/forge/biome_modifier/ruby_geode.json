@@ -1,0 +1,6 @@
+{
+  "type": "survivalplus:ruby_geode_modifier",
+  "biomes": "#minecraft:is_nether",
+  "features": "survivalplus:ruby_geode",
+  "generation_stage": "LOCAL_MODIFICATIONS"
+}

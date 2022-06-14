@@ -1,66 +1,140 @@
 package net.coolsimulations.SurvivalPlus.core.world;
 
-import java.util.List;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
-import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.data.worldgen.features.OreFeatures;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biome.BiomeCategory;
-import net.minecraft.world.level.biome.BiomeSpecialEffects;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.CountPlacement;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-import net.minecraft.world.level.levelgen.placement.RarityFilter;
-import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
-import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.minecraftforge.common.Tags;
+import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
-import net.minecraftforge.common.world.MobSpawnSettingsBuilder;
+import net.minecraftforge.common.world.BiomeModifier;
+import net.minecraftforge.common.world.ModifiableBiomeInfo.BiomeInfo.Builder;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings({"unused"})
 public class SurvivalPlusOreGenerator {
 
-	public static final RuleTest gravel = new TagMatchTest(Tags.Blocks.GRAVEL);
+	public static final DeferredRegister<Codec<? extends BiomeModifier>> ORE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SPReference.MOD_ID);
 
-	public static final List<OreConfiguration.TargetBlockState> ORE_TIN_TARGET_LIST = List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, SPBlocks.tin_ore.get().defaultBlockState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, SPBlocks.deepslate_tin_ore.get().defaultBlockState()));
-	public static final List<OreConfiguration.TargetBlockState> ORE_TITANIUM_TARGET_LIST = List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, SPBlocks.titanium_ore.get().defaultBlockState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, SPBlocks.deepslate_titanium_ore.get().defaultBlockState()));
+	private static final RegistryObject<Codec<SPTinOreModifier>> TIN_ORE_MODIFIER = ORE_SERIALIZERS.register("tin_ore_modifier", SPTinOreModifier::makeCodec);
+	private static final RegistryObject<Codec<SPTinOreLargeModifier>> TIN_ORE_LARGE_MODIFIER = ORE_SERIALIZERS.register("tin_ore_large_modifier", SPTinOreLargeModifier::makeCodec);
+	private static final RegistryObject<Codec<SPTitaniumOreModifier>> TITANIUM_ORE_MODIFIER = ORE_SERIALIZERS.register("titanium_ore_modifier", SPTitaniumOreModifier::makeCodec);
 
-	public static void generateOres(ResourceLocation name, Biome.ClimateSettings climate, Biome.BiomeCategory category, BiomeSpecialEffects effects, BiomeGenerationSettingsBuilder gen, MobSpawnSettingsBuilder spawns) {
+	public record SPTinOreModifier(HolderSet<Biome> biomes, HolderSet<Biome> biomesExcluded, Decoration generationStage, HolderSet<PlacedFeature> features)
+	implements BiomeModifier
+	{
+		private static final RegistryObject<Codec<? extends BiomeModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "tin_ore_modifier"), ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SPReference.MOD_ID);
 
-		if (category != BiomeCategory.NETHER && category != BiomeCategory.THEEND) {
-			if(!SPConfig.disableTinOreGen.get()) {
-				if(name.toString().equals("minecraft:dripstone_caves")) {
-					gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, PlacementUtils.register("tin_ore_large", FeatureUtils.register("tin_ore_large", Feature.ORE, new OreConfiguration(ORE_TIN_TARGET_LIST, 20)), commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)))));
-				} else {
-					gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, PlacementUtils.register("tin_ore", FeatureUtils.register("tin_ore", Feature.ORE, new OreConfiguration(ORE_TIN_TARGET_LIST, 10)), commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112)))));
+		@Override
+		public void modify(Holder<Biome> biome, Phase phase, Builder builder)
+		{
+			if(!SPConfig.disableTinOreGen.get())
+				if (phase == Phase.ADD && this.biomes.contains(biome) && biome != biomesExcluded)
+				{
+					BiomeGenerationSettingsBuilder generation = builder.getGenerationSettings();
+					this.features.forEach(holder -> generation.addFeature(this.generationStage, holder));
 				}
-			}
-			if(!SPConfig.disableTitaniumOreGen.get()) {
-				gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, PlacementUtils.register("titanium_ore", FeatureUtils.register("titanium_ore", Feature.ORE, new OreConfiguration(ORE_TITANIUM_TARGET_LIST, 4)), commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(25)))));
-				gen.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, PlacementUtils.register("titanium_ore_large", FeatureUtils.register("titanium_ore_large", Feature.ORE, new OreConfiguration(ORE_TITANIUM_TARGET_LIST, 8)), rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-62), VerticalAnchor.aboveBottom(62)))));
-			}
+		}
+
+		@Override
+		public Codec<? extends BiomeModifier> codec()
+		{
+			return SERIALIZER.get();
+		}
+
+		private static Codec<SPTinOreModifier> makeCodec()
+		{
+			return RecordCodecBuilder.create(builder -> builder.group(
+					Biome.LIST_CODEC.fieldOf("biomes").forGetter(SPTinOreModifier::biomes),
+					Biome.LIST_CODEC.fieldOf("biomes_excluded").forGetter(SPTinOreModifier::biomesExcluded),
+					Codec.STRING.comapFlatMap(SurvivalPlusOreGenerator::generationStageFromString, Decoration::toString).fieldOf("generation_stage").forGetter(SPTinOreModifier::generationStage),
+					PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(SPTinOreModifier::features)
+					).apply(builder, SPTinOreModifier::new));
 		}
 	}
+	
+	public record SPTinOreLargeModifier(HolderSet<Biome> biomes, Decoration generationStage, HolderSet<PlacedFeature> features)
+	implements BiomeModifier
+	{
+		private static final RegistryObject<Codec<? extends BiomeModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "tin_ore_large_modifier"), ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SPReference.MOD_ID);
 
-	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {
-		return List.of(p_195347_, InSquarePlacement.spread(), p_195348_, BiomeFilter.biome());
+		@Override
+		public void modify(Holder<Biome> biome, Phase phase, Builder builder)
+		{
+			if(!SPConfig.disableTinOreGen.get())
+				if (phase == Phase.ADD && this.biomes.contains(biome))
+				{
+					BiomeGenerationSettingsBuilder generation = builder.getGenerationSettings();
+					this.features.forEach(holder -> generation.addFeature(this.generationStage, holder));
+				}
+		}
+
+		@Override
+		public Codec<? extends BiomeModifier> codec()
+		{
+			return SERIALIZER.get();
+		}
+
+		private static Codec<SPTinOreLargeModifier> makeCodec()
+		{
+			return RecordCodecBuilder.create(builder -> builder.group(
+					Biome.LIST_CODEC.fieldOf("biomes").forGetter(SPTinOreLargeModifier::biomes),
+					Codec.STRING.comapFlatMap(SurvivalPlusOreGenerator::generationStageFromString, Decoration::toString).fieldOf("generation_stage").forGetter(SPTinOreLargeModifier::generationStage),
+					PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(SPTinOreLargeModifier::features)
+					).apply(builder, SPTinOreLargeModifier::new));
+		}
 	}
+	
+	public record SPTitaniumOreModifier(HolderSet<Biome> biomes, Decoration generationStage, HolderSet<PlacedFeature> features)
+	implements BiomeModifier
+	{
+		private static final RegistryObject<Codec<? extends BiomeModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "titanium_ore_modifier"), ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SPReference.MOD_ID);
 
-	private static List<PlacementModifier> commonOrePlacement(int p_195344_, PlacementModifier p_195345_) {
-		return orePlacement(CountPlacement.of(p_195344_), p_195345_);
+		@Override
+		public void modify(Holder<Biome> biome, Phase phase, Builder builder)
+		{
+			if(!SPConfig.disableTitaniumOreGen.get())
+				if (phase == Phase.ADD && this.biomes.contains(biome))
+				{
+					BiomeGenerationSettingsBuilder generation = builder.getGenerationSettings();
+					this.features.forEach(holder -> generation.addFeature(this.generationStage, holder));
+				}
+		}
+
+		@Override
+		public Codec<? extends BiomeModifier> codec()
+		{
+			return SERIALIZER.get();
+		}
+
+		private static Codec<SPTitaniumOreModifier> makeCodec()
+		{
+			return RecordCodecBuilder.create(builder -> builder.group(
+					Biome.LIST_CODEC.fieldOf("biomes").forGetter(SPTitaniumOreModifier::biomes),
+					Codec.STRING.comapFlatMap(SurvivalPlusOreGenerator::generationStageFromString, Decoration::toString).fieldOf("generation_stage").forGetter(SPTitaniumOreModifier::generationStage),
+					PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(SPTitaniumOreModifier::features)
+					).apply(builder, SPTitaniumOreModifier::new));
+		}
 	}
-
-	private static List<PlacementModifier> rareOrePlacement(int p_195350_, PlacementModifier p_195351_) {
-		return orePlacement(RarityFilter.onAverageOnceEvery(p_195350_), p_195351_);
+	
+	public static DataResult<Decoration> generationStageFromString(String name)
+	{
+		try
+		{
+			return DataResult.success(Decoration.valueOf(name));
+		}
+		catch (Exception e)
+		{
+			return DataResult.error("Not a decoration stage: " + name);
+		}
 	}
 }
 

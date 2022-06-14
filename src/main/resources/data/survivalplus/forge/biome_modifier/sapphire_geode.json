@@ -1,0 +1,6 @@
+{
+  "type": "survivalplus:sapphire_geode_modifier",
+  "biomes": "#minecraft:is_nether",
+  "features": "survivalplus:sapphire_geode",
+  "generation_stage": "LOCAL_MODIFICATIONS"
+}

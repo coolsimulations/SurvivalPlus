@@ -18,8 +18,8 @@ public class BlockCardboard extends Block {
 	}
 
 	@Override
-	public void spawnAfterBreak(BlockState state, ServerLevel worldIn, BlockPos pos, ItemStack stack) {
-		super.spawnAfterBreak(state, worldIn, pos, stack);
+	public void spawnAfterBreak(BlockState state, ServerLevel worldIn, BlockPos pos, ItemStack stack, boolean bl) {
+		super.spawnAfterBreak(state, worldIn, pos, stack, bl);
 	}
 
 	@Override

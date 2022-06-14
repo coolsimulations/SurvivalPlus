@@ -23,6 +23,7 @@ import net.coolsimulations.SurvivalPlus.core.init.ForestryArmor;
 import net.coolsimulations.SurvivalPlus.core.init.FuelHandler;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusBlocks;
+import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusChatTypes;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusGeodes;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
@@ -35,15 +36,13 @@ import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusComposterRecipe
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusDispenserBehavior;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusEventHandler;
 import net.coolsimulations.SurvivalPlus.core.util.SurvivalPlusUpdateHandler;
-import net.minecraft.resources.ResourceLocation;
+import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.players.UserWhiteList;
 import net.minecraft.server.players.UserWhiteListEntry;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.client.ConfigGuiHandler.ConfigGuiFactory;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -51,7 +50,6 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @Mod(value = SPReference.MOD_ID)
 @Mod.EventBusSubscriber(modid = SPReference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -109,7 +107,8 @@ public class SurvivalPlus {
 		}
 
 		SurvivalPlusUpdateHandler.init();
-		FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(RecipeSerializer.class, SurvivalPlus::registerRecipes);;
+		SurvivalPlusChatTypes.register();
+		SPShieldRecipes.CRAFTING_SPECIAL_SPSHIELD_RECIPE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusEventHandler());
 		MinecraftForge.EVENT_BUS.register(new FuelHandler());
 		SurvivalPlusCompatManager.initEventHandler();
@@ -140,6 +139,9 @@ public class SurvivalPlus {
 			TraverseArmor.ITEMS_TRAVERSE_ARMOR.register(FMLJavaModLoadingContext.get().getModEventBus());
 		SurvivalPlusTools.ITEMS_TOOL.register(FMLJavaModLoadingContext.get().getModEventBus());
 		
+		SurvivalPlusOreGenerator.ORE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		SurvivalPlusGeodes.GEODE_SERIALIZERS.register(FMLJavaModLoadingContext.get().getModEventBus());
+		
 		SurvivalPlusCompatManager.init();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		
@@ -148,8 +150,7 @@ public class SurvivalPlus {
 		/**if (SPCompatibilityManager.isJerLoaded())
         {
     			SurvivalPlusJER.init();
-        }
-		 **/
+        }**/
 	}
 	
 	private void setup(final FMLCommonSetupEvent event)
@@ -163,14 +164,4 @@ public class SurvivalPlus {
 			SurvivalPlusEMCValues.init();
 		}
     }
-	
-	@SubscribeEvent
-	public static void registerRecipes(final RegistryEvent.Register<RecipeSerializer<?>> event)
-	{
-		for(IForgeRegistryEntry<?> e : event.getRegistry()) {
-			if(e instanceof RecipeSerializer<?> && !event.getRegistry().containsKey(new ResourceLocation(SPReference.MOD_ID, "crafting_special_spshielddecoration"))) {
-				event.getRegistry().register(SPShieldRecipes.CRAFTING_SPECIAL_SPSHIELD.setRegistryName(SPReference.MOD_ID, "crafting_special_spshielddecoration"));
-			}
-		}
-	}
 }

@@ -35,6 +35,7 @@ public class FuelHandler{
 		addArmorFuels(SPItems.dark_oak);
 		addArmorFuels(SPItems.crimson);
 		addArmorFuels(SPItems.warped);
+		addArmorFuels(SPItems.mangrove);
 		
 		if(SPCompatibilityManager.isBopLoaded()) {
 			
@@ -55,7 +56,6 @@ public class FuelHandler{
 			
 			addArmorFuels(SPItems.ebony);
 			addArmorFuels(SPItems.eucalyptus);
-			addArmorFuels(SPItems.mangrove);
 			addArmorFuels(SPItems.pine);
 			addArmorFuels(SPItems.sacred_oak);
 			addArmorFuels(SPItems.ethereal);

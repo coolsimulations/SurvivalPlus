@@ -1,0 +1,6 @@
+{
+  "type": "survivalplus:spinel_geode_modifier",
+  "biomes": "#forge:is_mushroom",
+  "features": "survivalplus:spinel_geode",
+  "generation_stage": "LOCAL_MODIFICATIONS"
+}

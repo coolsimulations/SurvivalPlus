@@ -1,18 +1,17 @@
 package net.coolsimulations.SurvivalPlus.api.blocks;
 
-import java.util.Random;
-
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tiers;
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.material.Material;
 
 public class SPBlockOre extends Block {
 
@@ -36,11 +35,11 @@ public class SPBlockOre extends Block {
 	}
 
 	@Override
-	public void spawnAfterBreak(BlockState state, ServerLevel worldIn, BlockPos pos, ItemStack stack) {
-		super.spawnAfterBreak(state, worldIn, pos, stack);
+	public void spawnAfterBreak(BlockState state, ServerLevel worldIn, BlockPos pos, ItemStack stack, boolean bl) {
+		super.spawnAfterBreak(state, worldIn, pos, stack, bl);
 	}
 
-	protected int getExperience(Random random) {
+	protected int getExperience(RandomSource random) {
 		if(experience) {
 			if (resource == Resource.TIER_0 || resource == Resource.TIER_0_DEEPSLATE) {
 				return Mth.nextInt(random, 0, 2);
@@ -56,8 +55,8 @@ public class SPBlockOre extends Block {
 	}
 
 	@Override
-	public int getExpDrop(BlockState state, LevelReader reader, BlockPos pos, int p_getExpDrop_4_, int amount) {
-		return amount == 0 ? this.getExperience(this.RANDOM) : 0;
+	public int getExpDrop(BlockState state, LevelReader reader, RandomSource random, BlockPos pos, int p_getExpDrop_4_, int amount) {
+		return amount == 0 ? this.getExperience(random) : 0;
 	}
 
 	public enum Resource {

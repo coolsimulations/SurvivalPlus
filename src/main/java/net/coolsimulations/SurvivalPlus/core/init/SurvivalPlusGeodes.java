@@ -1,45 +1,33 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
-import java.util.List;
-
 import com.google.common.collect.ImmutableList;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystalBudding;
-import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.valueproviders.UniformInt;
+import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biome.BiomeCategory;
 import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.GeodeBlockSettings;
-import net.minecraft.world.level.levelgen.GeodeCrackSettings;
-import net.minecraft.world.level.levelgen.GeodeLayerSettings;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
+import net.minecraftforge.common.world.BiomeModifier;
+import net.minecraftforge.common.world.ModifiableBiomeInfo.BiomeInfo.Builder;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -49,6 +37,8 @@ public class SurvivalPlusGeodes {
 	
 	public static final DeferredRegister<Block> BLOCKS_GEODE = DeferredRegister.create(ForgeRegistries.BLOCKS, SPReference.MOD_ID);
 	public static final DeferredRegister<Item> ITEMS_GEODE = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
+	
+	public static final DeferredRegister<Codec<? extends BiomeModifier>> GEODE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SPReference.MOD_ID);
 	
 	private static final RegistryObject<Block> ruby_block = BLOCKS_GEODE.register("ruby_block", () -> new AmethystBlock(Properties.of(Material.AMETHYST, MaterialColor.COLOR_RED).strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).requiresCorrectToolForDrops()));
 	private static final RegistryObject<Block> ruby_cluster = BLOCKS_GEODE.register("ruby_cluster", () -> new AmethystClusterBlock(7, 3, Properties.of(Material.AMETHYST, MaterialColor.COLOR_RED).noOcclusion().randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5f).lightLevel((blockState) -> 5)));
@@ -122,28 +112,170 @@ public class SurvivalPlusGeodes {
 	private static final RegistryObject<Item> topaz_shard = ITEMS_GEODE.register("topaz_shard", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
 	private static final RegistryObject<Item> sapphire_shard = ITEMS_GEODE.register("sapphire_shard", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
 	private static final RegistryObject<Item> spinel_shard = ITEMS_GEODE.register("spinel_shard", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
+	
+	private static final RegistryObject<Codec<RubyGeodeModifier>> RUBY_GEODE_MODIFIER = GEODE_SERIALIZERS.register("ruby_geode_modifier", RubyGeodeModifier::makeCodec);
+	private static final RegistryObject<Codec<TopazGeodeModifier>> TOPAZ_GEODE_MODIFIER = GEODE_SERIALIZERS.register("topaz_geode_modifier", TopazGeodeModifier::makeCodec);
+	private static final RegistryObject<Codec<SapphireGeodeModifier>> SAPPHIRE_GEODE_MODIFIER = GEODE_SERIALIZERS.register("sapphire_geode_modifier", SapphireGeodeModifier::makeCodec);
+	private static final RegistryObject<Codec<PearlGeodeModifier>> PEARL_GEODE_MODIFIER = GEODE_SERIALIZERS.register("pearl_geode_modifier", PearlGeodeModifier::makeCodec);
+	private static final RegistryObject<Codec<SpinelGeodeModifier>> SPINEL_GEODE_MODIFIER = GEODE_SERIALIZERS.register("spinel_geode_modifier", SpinelGeodeModifier::makeCodec);
+	
+	public record RubyGeodeModifier(HolderSet<Biome> biomes, Decoration generationStage, HolderSet<PlacedFeature> features)
+	implements BiomeModifier
+	{
+		private static final RegistryObject<Codec<? extends BiomeModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "ruby_geode_modifier"), ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SPReference.MOD_ID);
 
-	public static void registerFeature(BiomeGenerationSettingsBuilder gen, Biome.BiomeCategory category) {
+		@Override
+		public void modify(Holder<Biome> biome, Phase phase, Builder builder)
+		{
+			if(!SPConfig.disableRubyGen.get())
+				if (phase == Phase.ADD && this.biomes.contains(biome))
+				{
+					BiomeGenerationSettingsBuilder generation = builder.getGenerationSettings();
+					this.features.forEach(holder -> generation.addFeature(this.generationStage, holder));
+				}
+		}
 
-		if (category == BiomeCategory.NETHER) {
-			if(!SPConfig.disableRubyGen.get()) {
-				gen.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacementUtils.register("ruby_geode", FeatureUtils.register("ruby_geode", Feature.GEODE, new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR.defaultBlockState()), BlockStateProvider.simple(ruby_block.get().defaultBlockState()), BlockStateProvider.simple(budding_ruby.get().defaultBlockState()), BlockStateProvider.simple(Blocks.CALCITE.defaultBlockState()), BlockStateProvider.simple(Blocks.MAGMA_BLOCK.defaultBlockState()), ((SPBlockCrystalBudding) budding_ruby.get()).getStates(), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D), new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1)), List.of(RarityFilter.onAverageOnceEvery(24), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top()), BiomeFilter.biome())));
-			}
-			if(!SPConfig.disableTopazGen.get()) {
-				gen.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacementUtils.register("topaz_geode", FeatureUtils.register("topaz_geode", Feature.GEODE, new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR.defaultBlockState()), BlockStateProvider.simple(topaz_block.get().defaultBlockState()), BlockStateProvider.simple(budding_topaz.get().defaultBlockState()), BlockStateProvider.simple(Blocks.CALCITE.defaultBlockState()), BlockStateProvider.simple(Blocks.MAGMA_BLOCK.defaultBlockState()), ((SPBlockCrystalBudding) budding_topaz.get()).getStates(), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D), new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1)), List.of(RarityFilter.onAverageOnceEvery(24), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top()), BiomeFilter.biome())));
-			}
-			if(!SPConfig.disableSapphireGen.get()) {
-				gen.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacementUtils.register("sapphire_geode", FeatureUtils.register("sapphire_geode", Feature.GEODE, new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR.defaultBlockState()), BlockStateProvider.simple(sapphire_block.get().defaultBlockState()), BlockStateProvider.simple(budding_sapphire.get().defaultBlockState()), BlockStateProvider.simple(Blocks.CALCITE.defaultBlockState()), BlockStateProvider.simple(Blocks.MAGMA_BLOCK.defaultBlockState()), ((SPBlockCrystalBudding) budding_sapphire.get()).getStates(), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D), new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1)), List.of(RarityFilter.onAverageOnceEvery(24), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top()), BiomeFilter.biome())));
-			}
-		} else if (category != BiomeCategory.THEEND) {
+		@Override
+		public Codec<? extends BiomeModifier> codec()
+		{
+			return SERIALIZER.get();
+		}
 
-			if(category == BiomeCategory.OCEAN && !SPConfig.disablePearlGen.get()) {
-				gen.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacementUtils.register("pearl_geode", FeatureUtils.register("pearl_geode", Feature.GEODE, new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.WATER.defaultBlockState()), BlockStateProvider.simple(pearl_block.get().defaultBlockState()), BlockStateProvider.simple(budding_pearl.get().defaultBlockState()), BlockStateProvider.simple(Blocks.CALCITE.defaultBlockState()), BlockStateProvider.simple(Blocks.SMOOTH_BASALT.defaultBlockState()), ImmutableList.of(((SPBlockCrystalBudding) budding_pearl.get()).getStates().get(0).setValue(BlockStateProperties.WATERLOGGED, true), ((SPBlockCrystalBudding) budding_pearl.get()).getStates().get(1).setValue(BlockStateProperties.WATERLOGGED, true), ((SPBlockCrystalBudding) budding_pearl.get()).getStates().get(2).setValue(BlockStateProperties.WATERLOGGED, true), ((SPBlockCrystalBudding) budding_pearl.get()).getStates().get(3).setValue(BlockStateProperties.WATERLOGGED, true)), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D), new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1)), List.of(RarityFilter.onAverageOnceEvery(24), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(64), VerticalAnchor.absolute(63)), BiomeFilter.biome())));
-			}
+		private static Codec<RubyGeodeModifier> makeCodec()
+		{
+			return RecordCodecBuilder.create(builder -> builder.group(
+					Biome.LIST_CODEC.fieldOf("biomes").forGetter(RubyGeodeModifier::biomes),
+					Codec.STRING.comapFlatMap(SurvivalPlusOreGenerator::generationStageFromString, Decoration::toString).fieldOf("generation_stage").forGetter(RubyGeodeModifier::generationStage),
+					PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(RubyGeodeModifier::features)
+					).apply(builder, RubyGeodeModifier::new));
+		}
+	}
+	
+	public record TopazGeodeModifier(HolderSet<Biome> biomes, Decoration generationStage, HolderSet<PlacedFeature> features)
+	implements BiomeModifier
+	{
+		private static final RegistryObject<Codec<? extends BiomeModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "topaz_geode_modifier"), ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SPReference.MOD_ID);
 
-			if(category == BiomeCategory.MUSHROOM && !SPConfig.disableSpinelGen.get()) {
-				gen.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, PlacementUtils.register("spinel_geode", FeatureUtils.register("spinel_geode", Feature.GEODE, new GeodeConfiguration(new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR.defaultBlockState()), BlockStateProvider.simple(spinel_block.get().defaultBlockState()), BlockStateProvider.simple(budding_spinel.get().defaultBlockState()), BlockStateProvider.simple(Blocks.CALCITE.defaultBlockState()), BlockStateProvider.simple(Blocks.SMOOTH_BASALT.defaultBlockState()), ((SPBlockCrystalBudding) budding_spinel.get()).getStates(), BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS), new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D), new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true, UniformInt.of(4, 6), UniformInt.of(3, 4), UniformInt.of(1, 2), -16, 16, 0.05D, 1)), List.of(RarityFilter.onAverageOnceEvery(24), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(64)), BiomeFilter.biome())));
-			}
+		@Override
+		public void modify(Holder<Biome> biome, Phase phase, Builder builder)
+		{
+			if(!SPConfig.disableTopazGen.get())
+				if (phase == Phase.ADD && this.biomes.contains(biome))
+				{
+					BiomeGenerationSettingsBuilder generation = builder.getGenerationSettings();
+					this.features.forEach(holder -> generation.addFeature(this.generationStage, holder));
+				}
+		}
+
+		@Override
+		public Codec<? extends BiomeModifier> codec()
+		{
+			return SERIALIZER.get();
+		}
+
+		private static Codec<TopazGeodeModifier> makeCodec()
+		{
+			return RecordCodecBuilder.create(builder -> builder.group(
+					Biome.LIST_CODEC.fieldOf("biomes").forGetter(TopazGeodeModifier::biomes),
+					Codec.STRING.comapFlatMap(SurvivalPlusOreGenerator::generationStageFromString, Decoration::toString).fieldOf("generation_stage").forGetter(TopazGeodeModifier::generationStage),
+					PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(TopazGeodeModifier::features)
+					).apply(builder, TopazGeodeModifier::new));
+		}
+	}
+	
+	public record SapphireGeodeModifier(HolderSet<Biome> biomes, Decoration generationStage, HolderSet<PlacedFeature> features)
+	implements BiomeModifier
+	{
+		private static final RegistryObject<Codec<? extends BiomeModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "sapphire_geode_modifier"), ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SPReference.MOD_ID);
+
+		@Override
+		public void modify(Holder<Biome> biome, Phase phase, Builder builder)
+		{
+			if(!SPConfig.disableSapphireGen.get())
+				if (phase == Phase.ADD && this.biomes.contains(biome))
+				{
+					BiomeGenerationSettingsBuilder generation = builder.getGenerationSettings();
+					this.features.forEach(holder -> generation.addFeature(this.generationStage, holder));
+				}
+		}
+
+		@Override
+		public Codec<? extends BiomeModifier> codec()
+		{
+			return SERIALIZER.get();
+		}
+
+		private static Codec<SapphireGeodeModifier> makeCodec()
+		{
+			return RecordCodecBuilder.create(builder -> builder.group(
+					Biome.LIST_CODEC.fieldOf("biomes").forGetter(SapphireGeodeModifier::biomes),
+					Codec.STRING.comapFlatMap(SurvivalPlusOreGenerator::generationStageFromString, Decoration::toString).fieldOf("generation_stage").forGetter(SapphireGeodeModifier::generationStage),
+					PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(SapphireGeodeModifier::features)
+					).apply(builder, SapphireGeodeModifier::new));
+		}
+	}
+	
+	public record PearlGeodeModifier(HolderSet<Biome> biomes, Decoration generationStage, HolderSet<PlacedFeature> features)
+	implements BiomeModifier
+	{
+		private static final RegistryObject<Codec<? extends BiomeModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "pearl_geode_modifier"), ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SPReference.MOD_ID);
+
+		@Override
+		public void modify(Holder<Biome> biome, Phase phase, Builder builder)
+		{
+			if(!SPConfig.disablePearlGen.get())
+				if (phase == Phase.ADD && this.biomes.contains(biome))
+				{
+					BiomeGenerationSettingsBuilder generation = builder.getGenerationSettings();
+					this.features.forEach(holder -> generation.addFeature(this.generationStage, holder));
+				}
+		}
+
+		@Override
+		public Codec<? extends BiomeModifier> codec()
+		{
+			return SERIALIZER.get();
+		}
+
+		private static Codec<PearlGeodeModifier> makeCodec()
+		{
+			return RecordCodecBuilder.create(builder -> builder.group(
+					Biome.LIST_CODEC.fieldOf("biomes").forGetter(PearlGeodeModifier::biomes),
+					Codec.STRING.comapFlatMap(SurvivalPlusOreGenerator::generationStageFromString, Decoration::toString).fieldOf("generation_stage").forGetter(PearlGeodeModifier::generationStage),
+					PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(PearlGeodeModifier::features)
+					).apply(builder, PearlGeodeModifier::new));
+		}
+	}
+	
+	public record SpinelGeodeModifier(HolderSet<Biome> biomes, Decoration generationStage, HolderSet<PlacedFeature> features)
+	implements BiomeModifier
+	{
+		private static final RegistryObject<Codec<? extends BiomeModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "spinel_geode_modifier"), ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SPReference.MOD_ID);
+
+		@Override
+		public void modify(Holder<Biome> biome, Phase phase, Builder builder)
+		{
+			if(!SPConfig.disableSpinelGen.get())
+				if (phase == Phase.ADD && this.biomes.contains(biome))
+				{
+					BiomeGenerationSettingsBuilder generation = builder.getGenerationSettings();
+					this.features.forEach(holder -> generation.addFeature(this.generationStage, holder));
+				}
+		}
+
+		@Override
+		public Codec<? extends BiomeModifier> codec()
+		{
+			return SERIALIZER.get();
+		}
+
+		private static Codec<SpinelGeodeModifier> makeCodec()
+		{
+			return RecordCodecBuilder.create(builder -> builder.group(
+					Biome.LIST_CODEC.fieldOf("biomes").forGetter(SpinelGeodeModifier::biomes),
+					Codec.STRING.comapFlatMap(SurvivalPlusOreGenerator::generationStageFromString, Decoration::toString).fieldOf("generation_stage").forGetter(SpinelGeodeModifier::generationStage),
+					PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(SpinelGeodeModifier::features)
+					).apply(builder, SpinelGeodeModifier::new));
 		}
 	}
 

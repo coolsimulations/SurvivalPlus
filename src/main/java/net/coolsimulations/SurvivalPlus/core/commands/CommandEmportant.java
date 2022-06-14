@@ -4,12 +4,13 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.PlayerChatMessage;
 
 public class CommandEmportant {
 
@@ -22,13 +23,13 @@ public class CommandEmportant {
 
 	private static int emportant(CommandSourceStack sender, String announcement) {
 
-		TranslatableComponent emportant = new TranslatableComponent("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), announcement});
+		MutableComponent emportant = Component.translatable("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), announcement});
 		emportant.withStyle(ChatFormatting.BLUE);
 		emportant.withStyle(ChatFormatting.BOLD);
 		if (sender.getEntity() != null)
-			sender.getServer().getPlayerList().broadcastMessage(emportant, ChatType.CHAT, sender.getEntity().getUUID());
+			sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(emportant, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
 		else
-			sender.getServer().getPlayerList().broadcastMessage(emportant, ChatType.SYSTEM, Util.NIL_UUID);
+			sender.getServer().getPlayerList().broadcastSystemMessage(emportant, ChatType.SYSTEM);
 
 		return Command.SINGLE_SUCCESS;
 	}

@@ -75,6 +75,11 @@ public class SurvivalPlusArmor {
 	private static final RegistryObject<Item> warped_leggings = ITEMS_ARMOR.register("warped_leggings", () -> new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> warped_boots = ITEMS_ARMOR.register("warped_boots", () -> new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.FEET));
 	
+	private static final RegistryObject<Item> mangrove_helmet = ITEMS_ARMOR.register("mangrove_helmet", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.HEAD));
+	private static final RegistryObject<Item> mangrove_chestplate = ITEMS_ARMOR.register("mangrove_chestplate", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.CHEST));
+	private static final RegistryObject<Item> mangrove_leggings = ITEMS_ARMOR.register("mangrove_leggings", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.LEGS));
+	private static final RegistryObject<Item> mangrove_boots = ITEMS_ARMOR.register("mangrove_boots", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.FEET));
+	
 	private static final RegistryObject<Item> rubber_helmet = ITEMS_RUBBER_ARMOR.register("rubber_helmet", () -> new SPItemArmor(SPArmorMaterial.rubberArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> rubber_chestplate = ITEMS_RUBBER_ARMOR.register("rubber_chestplate", () -> new SPItemArmor(SPArmorMaterial.rubberArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> rubber_leggings = ITEMS_RUBBER_ARMOR.register("rubber_leggings", () -> new SPItemArmor(SPArmorMaterial.rubberArmorMaterial, EquipmentSlot.LEGS));
@@ -152,6 +157,12 @@ public class SurvivalPlusArmor {
 		SPItems.warped.add(1, new ItemStack(warped_chestplate.get()));
 		SPItems.warped.add(2, new ItemStack(warped_leggings.get()));
 		SPItems.warped.add(3, new ItemStack(warped_boots.get()));
+		
+		SPItems.mangrove = NonNullList.create();
+		SPItems.mangrove.add(0, new ItemStack(mangrove_helmet.get()));
+		SPItems.mangrove.add(1, new ItemStack(mangrove_chestplate.get()));
+		SPItems.mangrove.add(2, new ItemStack(mangrove_leggings.get()));
+		SPItems.mangrove.add(3, new ItemStack(mangrove_boots.get()));
 
 		if (SPCompatibilityManager.isIc2Loaded()) {
 

@@ -1,0 +1,7 @@
+{
+  "type": "survivalplus:tin_ore_modifier",
+  "biomes": "#minecraft:is_overworld",
+  "biomes_excluded": "minecraft:dripstone_caves",
+  "features": "survivalplus:tin_ore",
+  "generation_stage": "UNDERGROUND_DECORATION"
+}

@@ -2,12 +2,14 @@ package net.coolsimulations.SurvivalPlus.core.commands;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.PlayerChatMessage;
 
 public class CommandSmiley {
 
@@ -19,12 +21,12 @@ public class CommandSmiley {
 
 	private static int smiley(CommandSourceStack sender) {
 
-		TranslatableComponent smiley = new TranslatableComponent("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
+		MutableComponent smiley = Component.translatable("sp.commands.smiley.display", new Object[] {sender.getDisplayName()});
 		smiley.withStyle(ChatFormatting.GREEN);
 		if (sender.getEntity() != null)
-			sender.getServer().getPlayerList().broadcastMessage(smiley, ChatType.CHAT, sender.getEntity().getUUID());
+			sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(smiley, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
 		else
-			sender.getServer().getPlayerList().broadcastMessage(smiley, ChatType.SYSTEM, Util.NIL_UUID);
+			sender.getServer().getPlayerList().broadcastSystemMessage(smiley, ChatType.SYSTEM);
 
 		return Command.SINGLE_SUCCESS;
 	}

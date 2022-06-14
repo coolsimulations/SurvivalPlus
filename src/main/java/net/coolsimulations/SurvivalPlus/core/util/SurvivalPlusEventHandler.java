@@ -14,20 +14,16 @@ import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.compat.RainbowComponent;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
-import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusGeodes;
-import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.locale.Language;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerAdvancementManager;
 import net.minecraft.server.level.ServerPlayer;
@@ -50,7 +46,6 @@ import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.CandleCakeBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -68,8 +63,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
@@ -98,22 +91,22 @@ public class SurvivalPlusEventHandler {
 
 			if(!player.level.isClientSide) {
 
-				TranslatableComponent installInfo = new TranslatableComponent("advancements.sp.install.display1");
+				MutableComponent installInfo = Component.translatable("advancements.sp.install.display1");
 				installInfo.withStyle(ChatFormatting.GOLD);
-				player.sendMessage(installInfo.withStyle((style) -> {return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("advancements.sp.install.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.NIL_UUID);
+				player.sendSystemMessage(installInfo.setStyle(installInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("advancements.sp.install.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"))));
 
-				TranslatableComponent discord = new TranslatableComponent("sp.discord.display1");
+				MutableComponent discord = Component.translatable("sp.discord.display1");
 				discord.withStyle(ChatFormatting.DARK_GREEN);
 				discord.withStyle(ChatFormatting.BOLD);
 
 				for(int i = 0; i < SPReference.MOD_ADDON_NAMES.size(); i++) {
 					String name = Language.getInstance().getOrDefault(SPReference.MOD_ADDON_NAMES.get(i));
 
-					TextComponent formatted = new TextComponent(name);
+					MutableComponent formatted = Component.literal(name);
 					formatted.withStyle(ChatFormatting.BLUE);
 					formatted.withStyle(ChatFormatting.BOLD);
 
-					TextComponent gap = new TextComponent(", ");
+					MutableComponent gap = Component.literal(", ");
 					gap.withStyle(ChatFormatting.WHITE);
 
 					discord.append(formatted);
@@ -125,7 +118,7 @@ public class SurvivalPlusEventHandler {
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						player.sendMessage(discord.withStyle((style) -> {return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.discord.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"));}), ChatType.SYSTEM, Util.NIL_UUID);
+						player.sendSystemMessage(discord.setStyle(discord.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("sp.discord.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/7DDsHfQ"))));
 					}
 				}, 30000);
 			}
@@ -135,8 +128,8 @@ public class SurvivalPlusEventHandler {
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
-					player.sendMessage(SurvivalPlusUpdateHandler.updateInfo.withStyle((style) -> {return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.NIL_UUID);
-					player.sendMessage(SurvivalPlusUpdateHandler.updateVersionInfo.withStyle((style) -> {return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"));}), ChatType.SYSTEM, Util.NIL_UUID);
+					player.sendSystemMessage(SurvivalPlusUpdateHandler.updateInfo.setStyle(SurvivalPlusUpdateHandler.updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"))));
+					player.sendSystemMessage(SurvivalPlusUpdateHandler.updateVersionInfo.setStyle(SurvivalPlusUpdateHandler.updateVersionInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/survivalplus"))));
 				}
 			}, 15000);
 		}
@@ -301,19 +294,12 @@ public class SurvivalPlusEventHandler {
 					((LivingEntity) event.getTarget()).heal(((SPItemIngot) item).getGolemHealth());
 					float f1 = 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
 					((LivingEntity) event.getTarget()).playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, f1);
-					event.getTarget().gameEvent(GameEvent.MOB_INTERACT, event.getTarget().eyeBlockPosition());
 					if (!event.getPlayer().getAbilities().instabuild) {
 						itemstack.shrink(1);
 					}
 				}
 			}
 		}
-	}
-
-	@SubscribeEvent(priority =  EventPriority.HIGH)
-	public void genOres(BiomeLoadingEvent event) {
-		SurvivalPlusOreGenerator.generateOres(event.getName(), event.getClimate(), event.getCategory(), event.getEffects(), event.getGeneration(), event.getSpawns());
-		SurvivalPlusGeodes.registerFeature(event.getGeneration(), event.getCategory());
 	}
 
 	@SubscribeEvent
@@ -386,7 +372,7 @@ public class SurvivalPlusEventHandler {
 
 		if(event.getPlayer().getUUID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
 
-			TextComponent coolsim = new TextComponent("coolsim");
+			MutableComponent coolsim = Component.literal("coolsim");
 			coolsim.withStyle(ChatFormatting.GOLD);
 
 			if(event.getPlayer().getTeam() == null) {
@@ -399,7 +385,7 @@ public class SurvivalPlusEventHandler {
 		
 		if(event.getPlayer().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
 
-			TextComponent alpaca = new TextComponent(new RainbowComponent(event.getEntity().getName().getString()).getText());
+			MutableComponent alpaca = Component.literal(new RainbowComponent(event.getEntity().getName().getString()).getText());
 
 			if(event.getPlayer().getTeam() == null) {
 				event.setDisplayName(alpaca);
@@ -415,7 +401,7 @@ public class SurvivalPlusEventHandler {
 		
 		if(event.getPlayer().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
 
-			TextComponent alpaca = new TextComponent(new RainbowComponent(event.getUsername().getString()).getText());
+			MutableComponent alpaca = Component.literal(new RainbowComponent(event.getUsername().getString()).getText());
 
 			if(event.getPlayer().getTeam() == null) {
 				event.setDisplayname(alpaca);
@@ -426,34 +412,35 @@ public class SurvivalPlusEventHandler {
 		}
 	}
 
-	@SubscribeEvent
+	//Replaced with Mixins until Forge adds new events that work with the new 1.19 Chat system
+	/**@SubscribeEvent
 	public void coolsimChat(ServerChatEvent event) {
 
-		TranslatableComponent coolsim = new TranslatableComponent("sp.coolsim.creator");
+		MutableComponent coolsim = Component.translatable("sp.coolsim.creator");
 		coolsim.withStyle(ChatFormatting.GOLD);
 
 		if(event.getPlayer().getUUID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
 			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(event.getUsername()) != null)
-				event.setComponent(new TranslatableComponent("%s <%s> %s", new Object[] {coolsim, ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(event.getUsername()).getDisplayName(), event.getMessage()}));
+				event.setComponent(Component.translatable("%s <%s> %s", new Object[] {coolsim, ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(event.getUsername()).getDisplayName(), event.getMessage()}));
 		}
 	}
 
 	@SubscribeEvent
 	public void coolsimReceivedChat(ClientChatReceivedEvent event) {
 
-		TranslatableComponent coolsim = new TranslatableComponent("sp.coolsim.creator");
+		MutableComponent coolsim = Component.translatable("sp.coolsim.creator");
 		coolsim.withStyle(ChatFormatting.GOLD);
 
-		TranslatableComponent playerJoined = new TranslatableComponent("multiplayer.player.joined", new Object[] {"coolsim"});
+		MutableComponent playerJoined = Component.translatable("multiplayer.player.joined", new Object[] {"coolsim"});
 		playerJoined.withStyle(ChatFormatting.YELLOW);
 
-		TranslatableComponent playerLeft = new TranslatableComponent("multiplayer.player.left", new Object[] {"coolsim"});
+		MutableComponent playerLeft = Component.translatable("multiplayer.player.left", new Object[] {"coolsim"});
 		playerLeft.withStyle(ChatFormatting.YELLOW);
 
-		TranslatableComponent coolsimJoined = new TranslatableComponent("sp.coolsim.joined", new Object[] {"coolsim"});
+		MutableComponent coolsimJoined = Component.translatable("sp.coolsim.joined", new Object[] {"coolsim"});
 		coolsimJoined.withStyle(ChatFormatting.YELLOW);
 
-		TranslatableComponent coolsimLeft = new TranslatableComponent("sp.coolsim.left", new Object[] {"coolsim"});
+		MutableComponent coolsimLeft = Component.translatable("sp.coolsim.left", new Object[] {"coolsim"});
 		coolsimLeft.withStyle(ChatFormatting.YELLOW);
 
 		if(event.getMessage().getString().equals(playerJoined.getString())) {
@@ -465,9 +452,9 @@ public class SurvivalPlusEventHandler {
 		}
 
 		if(event.getMessage().getString().startsWith("[coolsim]")) {
-			event.setMessage(new TranslatableComponent("%s %s", new Object[] {coolsim, event.getMessage()}));
+			event.setMessage(Component.translatable("%s %s", new Object[] {coolsim, event.getMessage()}));
 		}
-	}
+	}**/
 
 	@SubscribeEvent
 	public void coolsimDeath(LivingDeathEvent event) {
@@ -480,9 +467,9 @@ public class SurvivalPlusEventHandler {
 			if(coolsimHead != null) {
 				dropItem(coolsimHead, attacker);
 			} else {
-				TranslatableComponent error = new TranslatableComponent("sp.coolsim.error");
+				MutableComponent error = Component.translatable("sp.coolsim.error");
 				error.withStyle(ChatFormatting.RED);
-				attacker.sendMessage(error, ChatType.SYSTEM, Util.NIL_UUID);
+				attacker.sendSystemMessage(error);
 			}
 		}
 
@@ -494,7 +481,7 @@ public class SurvivalPlusEventHandler {
 
 		ItemStack playerhead = new ItemStack(Items.PLAYER_HEAD);
 
-		TranslatableComponent headName = new TranslatableComponent("block.minecraft.player_head.named", new Object[] {"coolsim"});
+		MutableComponent headName = Component.translatable("block.minecraft.player_head.named", new Object[] {"coolsim"});
 		headName.withStyle(ChatFormatting.ITALIC);
 		CompoundTag properties = new CompoundTag();
 		ListTag textures = new ListTag();

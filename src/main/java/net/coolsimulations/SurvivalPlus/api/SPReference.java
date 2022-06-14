@@ -9,10 +9,10 @@ public class SPReference {
 	public static final String MOD_ID = "survivalplus";
 	public static final String MOD_NAME = "SurvivalPlus";
 	public static final String VERSION = "0.1.6e";
-	public static final String ACCEPTED_VERSIONS = "[1.18, 1.18.1, 1.18.2]";
+	public static final String ACCEPTED_VERSIONS = "[1.19]";
 	public static final String CLIENT_PROXY_CLASS = "net.coolsimulations.SurvivalPlus.core.proxy.ClientProxy";
 	public static final String SERVER_PROXY_CLASS = "net.coolsimulations.SurvivalPlus.core.proxy.ServerProxy";
-	public static final String DEPENDENCIES_FORGE = "required-after:forge@[40.0.3,);";
+	public static final String DEPENDENCIES_FORGE = "required-after:forge@[41.0.1,);";
 
 	public static List<String> MOD_ADDON_NAMES = new ArrayList<String>() {{add("sp.name");}}; 
 

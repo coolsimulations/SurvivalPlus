@@ -7,16 +7,10 @@
   ],
   "key": {
     "X": {
-      "tag": "biomesoplenty:mangrove_logs"
+      "tag": "minecraft:mangrove_logs"
     }
   },
   "result": {
     "item": "survivalplus:mangrove_boots"
-  },
-  "conditions": [
-    {
-      "modid": "biomesoplentyextras",
-      "type": "forge:mod_loaded"
-    }
-  ]
+  }
 }

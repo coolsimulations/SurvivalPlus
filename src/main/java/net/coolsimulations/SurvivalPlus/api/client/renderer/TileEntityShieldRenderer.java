@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.blockentity.BannerRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.Material;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.inventory.InventoryMenu;
@@ -28,6 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.level.block.entity.BannerBlockEntity;
 import net.minecraft.world.level.block.entity.BannerPattern;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class TileEntityShieldRenderer extends BlockEntityWithoutLevelRenderer {
 	
@@ -58,15 +60,15 @@ public class TileEntityShieldRenderer extends BlockEntityWithoutLevelRenderer {
 			matrix.scale(1.0F, -1.0F, -1.0F);
 			Material material = tag
 					? new Material(InventoryMenu.BLOCK_ATLAS,
-							new ResourceLocation(item.getRegistryName().getNamespace(), "entity/" + item.getRegistryName().getPath() + "_base"))
+							new ResourceLocation(ForgeRegistries.ITEMS.getKey(item).getNamespace(), "entity/" + ForgeRegistries.ITEMS.getKey(item).getPath() + "_base"))
 							: new Material(InventoryMenu.BLOCK_ATLAS,
-									new ResourceLocation(item.getRegistryName().getNamespace(), "entity/" + item.getRegistryName().getPath() + "_base_nopattern"));
+									new ResourceLocation(ForgeRegistries.ITEMS.getKey(item).getNamespace(), "entity/" + ForgeRegistries.ITEMS.getKey(item).getPath() + "_base_nopattern"));
 			VertexConsumer lvt_9_3_ = material.sprite().wrap(ItemRenderer.getFoilBuffer(buffer,
 					this.modelShield.renderType(material.atlasLocation()), false, stack.hasFoil()));
 			this.modelShield.handle().render(matrix, lvt_9_3_, combinedLight, combinedOverlay, 1.0F, 1.0F,
 					1.0F, 1.0F);
 			if (tag) {
-				List<Pair<BannerPattern, DyeColor>> colour = BannerBlockEntity.createPatterns(
+				List<Pair<Holder<BannerPattern>, DyeColor>> colour = BannerBlockEntity.createPatterns(
 						ShieldItem.getColor(stack), BannerBlockEntity.getItemPatterns(stack));
 				BannerRenderer.renderPatterns(matrix, buffer, combinedLight, combinedOverlay,
 						this.modelShield.plate(), material, false, colour);

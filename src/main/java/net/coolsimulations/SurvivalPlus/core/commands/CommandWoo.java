@@ -2,12 +2,14 @@ package net.coolsimulations.SurvivalPlus.core.commands;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.PlayerChatMessage;
 
 public class CommandWoo {
 
@@ -19,12 +21,12 @@ public class CommandWoo {
 
 	private static int woo(CommandSourceStack sender) {
 
-		TranslatableComponent woo = new TranslatableComponent("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
+		MutableComponent woo = Component.translatable("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
 		woo.withStyle(ChatFormatting.BLUE);
 		if (sender.getEntity() != null)
-			sender.getServer().getPlayerList().broadcastMessage(woo, ChatType.CHAT, sender.getEntity().getUUID());
+			sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(woo, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
 		else
-			sender.getServer().getPlayerList().broadcastMessage(woo, ChatType.SYSTEM, Util.NIL_UUID);
+			sender.getServer().getPlayerList().broadcastSystemMessage(woo, ChatType.SYSTEM);
 
 		return Command.SINGLE_SUCCESS;
 	}
