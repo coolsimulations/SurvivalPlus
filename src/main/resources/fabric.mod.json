@@ -28,7 +28,7 @@
     "modmenu": [
       "net.coolsimulations.SurvivalPlus.core.config.SPConfigGUI"
     ],
-    "rei_plugins": [
+    "rei_client": [
       "net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusREI"
     ]
   },
