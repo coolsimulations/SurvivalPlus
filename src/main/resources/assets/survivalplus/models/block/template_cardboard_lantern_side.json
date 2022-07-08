@@ -1,6 +1,7 @@
 {
 	"credit": "Made with Blockbench by: coolsim!",
 	"parent": "block/block",
+	"render_type": "cutout",
 	"ambientocclusion": false,
 	"textures": {
 		"grey": "survivalplus:blocks/cardboard_grey",

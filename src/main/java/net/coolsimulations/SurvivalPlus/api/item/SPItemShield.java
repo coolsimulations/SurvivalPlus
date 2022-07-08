@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
-import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
 public class SPItemShield extends ShieldItem {
 
@@ -26,12 +26,12 @@ public class SPItemShield extends ShieldItem {
 
 	@Override
 	@ParametersAreNonnullByDefault
-	public void initializeClient(Consumer<IItemRenderProperties> consumer)
+	public void initializeClient(Consumer<IClientItemExtensions> consumer)
 	{
-		consumer.accept(new IItemRenderProperties()
+		consumer.accept(new IClientItemExtensions()
 		{
 			@Override
-			public BlockEntityWithoutLevelRenderer getItemStackRenderer()
+			public BlockEntityWithoutLevelRenderer getCustomRenderer()
 			{
 				return TileEntityShieldRenderer.instance;
 			}
