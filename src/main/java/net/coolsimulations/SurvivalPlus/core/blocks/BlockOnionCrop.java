@@ -6,6 +6,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.ItemLike;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class BlockOnionCrop extends CropBlock{
 	
 	public BlockOnionCrop() {

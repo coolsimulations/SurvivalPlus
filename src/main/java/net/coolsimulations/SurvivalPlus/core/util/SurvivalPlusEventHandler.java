@@ -68,7 +68,7 @@ public class SurvivalPlusEventHandler {
 	@SubscribeEvent
 	public void onplayerLogin(PlayerEvent.PlayerLoggedInEvent event)
 	{
-		ServerPlayer player = (ServerPlayer) event.getPlayer();
+		ServerPlayer player = (ServerPlayer) event.getEntity();
 		CompoundTag entityData = player.getPersistentData();
 
 		ServerAdvancementManager manager = player.getServer().getAdvancements();
@@ -165,11 +165,11 @@ public class SurvivalPlusEventHandler {
 
 	@SubscribeEvent
 	public void rightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-		Level world = event.getWorld();
+		Level world = event.getLevel();
 		Block block = world.getBlockState(event.getPos()).getBlock();
 		BlockState state = world.getBlockState(event.getPos());
 
-		Player entityplayer = event.getPlayer();
+		Player entityplayer = event.getEntity();
 		ItemStack itemStackIn = entityplayer.getItemInHand(event.getHand());
 		Item item = itemStackIn.getItem();
 		
@@ -291,7 +291,7 @@ public class SurvivalPlusEventHandler {
 					((LivingEntity) event.getTarget()).heal(((SPItemIngot) item).getGolemHealth());
 					float f1 = 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F;
 					((LivingEntity) event.getTarget()).playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, f1);
-					if (!event.getPlayer().getAbilities().instabuild) {
+					if (!event.getEntity().getAbilities().instabuild) {
 						itemstack.shrink(1);
 					}
 				}
@@ -367,27 +367,27 @@ public class SurvivalPlusEventHandler {
 	@SubscribeEvent
 	public void coolsimTabList(PlayerEvent.TabListNameFormat event) {
 
-		if(event.getPlayer().getUUID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
+		if(event.getEntity().getUUID().equals(UUID.fromString("54481257-7b6d-4c8e-8aac-ca6f864e1412"))) {
 
 			MutableComponent coolsim = Component.literal("coolsim");
 			coolsim.withStyle(ChatFormatting.GOLD);
 
-			if(event.getPlayer().getTeam() == null) {
+			if(event.getEntity().getTeam() == null) {
 				event.setDisplayName(coolsim);
-			} else if(event.getPlayer().getTeam() instanceof PlayerTeam) {
-				if(((PlayerTeam) event.getPlayer().getTeam()).getColor() == ChatFormatting.RESET)
+			} else if(event.getEntity().getTeam() instanceof PlayerTeam) {
+				if(((PlayerTeam) event.getEntity().getTeam()).getColor() == ChatFormatting.RESET)
 					event.setDisplayName(coolsim);
 			}
 		}
 		
-		if(event.getPlayer().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+		if(event.getEntity().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
 
 			MutableComponent alpaca = Component.literal(new RainbowComponent(event.getEntity().getName().getString()).getText());
 
-			if(event.getPlayer().getTeam() == null) {
+			if(event.getEntity().getTeam() == null) {
 				event.setDisplayName(alpaca);
-			} else if(event.getPlayer().getTeam() instanceof PlayerTeam) {
-				if(((PlayerTeam) event.getPlayer().getTeam()).getColor() == ChatFormatting.RESET)
+			} else if(event.getEntity().getTeam() instanceof PlayerTeam) {
+				if(((PlayerTeam) event.getEntity().getTeam()).getColor() == ChatFormatting.RESET)
 					event.setDisplayName(alpaca);
 			}
 		}
@@ -396,14 +396,14 @@ public class SurvivalPlusEventHandler {
 	@SubscribeEvent
 	public void coolsimDisplayName(PlayerEvent.NameFormat event) {
 		
-		if(event.getPlayer().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
+		if(event.getEntity().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
 
 			MutableComponent alpaca = Component.literal(new RainbowComponent(event.getUsername().getString()).getText());
 
-			if(event.getPlayer().getTeam() == null) {
+			if(event.getEntity().getTeam() == null) {
 				event.setDisplayname(alpaca);
-			} else if(event.getPlayer().getTeam() instanceof PlayerTeam) {
-				if(((PlayerTeam) event.getPlayer().getTeam()).getColor() == ChatFormatting.RESET)
+			} else if(event.getEntity().getTeam() instanceof PlayerTeam) {
+				if(((PlayerTeam) event.getEntity().getTeam()).getColor() == ChatFormatting.RESET)
 					event.setDisplayname(alpaca);
 			}
 		}

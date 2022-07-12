@@ -40,7 +40,7 @@ import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.players.UserWhiteList;
 import net.minecraft.server.players.UserWhiteListEntry;
-import net.minecraftforge.client.ConfigGuiHandler.ConfigGuiFactory;
+import net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -101,7 +101,7 @@ public class SurvivalPlus {
 		SurvivalPlusConfig.register(ModLoadingContext.get());
 		
 		if(SPCompatibilityManager.isClothConfigLoaded()) {
-			ModLoadingContext.get().registerExtensionPoint(ConfigGuiFactory.class, () -> new ConfigGuiFactory((mc, screen) -> {
+			ModLoadingContext.get().registerExtensionPoint(ConfigScreenFactory.class, () -> new ConfigScreenFactory((mc, screen) -> {
 				return SurvivalPlusConfigGUI.getConfigScreen(screen);
 			}));
 		}
