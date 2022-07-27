@@ -6,10 +6,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.PlayerChatMessage;
 
 public class CommandWail {
 
@@ -23,10 +21,7 @@ public class CommandWail {
 
 		MutableComponent wail = Component.translatable("sp.commands.wail.display", new Object[] {sender.getDisplayName()});
 		wail.withStyle(ChatFormatting.AQUA);
-		if(sender.getEntity() != null)
-			sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(wail, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-		else
-			sender.getServer().getPlayerList().broadcastSystemMessage(wail, ChatType.SYSTEM);
+		sender.getServer().getPlayerList().broadcastSystemMessage(wail, false);
 
 		return Command.SINGLE_SUCCESS;
 	}

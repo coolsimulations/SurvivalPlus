@@ -6,10 +6,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.PlayerChatMessage;
 
 public class CommandWoo {
 
@@ -23,10 +21,7 @@ public class CommandWoo {
 
 		MutableComponent woo = Component.translatable("sp.commands.woo.display", new Object[] {sender.getDisplayName()});
 		woo.withStyle(ChatFormatting.BLUE);
-		if(sender.getEntity() != null)
-			sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(woo, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-		else
-			sender.getServer().getPlayerList().broadcastSystemMessage(woo, ChatType.SYSTEM);
+		sender.getServer().getPlayerList().broadcastSystemMessage(woo, false);
 
 		return Command.SINGLE_SUCCESS;
 	}

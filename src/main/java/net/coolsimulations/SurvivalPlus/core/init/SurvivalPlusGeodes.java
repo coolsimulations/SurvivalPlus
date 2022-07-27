@@ -1,5 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -14,6 +16,7 @@ import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystalBudding;
 import net.coolsimulations.SurvivalPlus.api.world.SPGeodeFeature;
+import net.coolsimulations.SurvivalPlus.core.mixin.AllayAccessor;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -28,6 +31,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.AmethystClusterBlock;
@@ -97,6 +102,14 @@ public class SurvivalPlusGeodes {
 		SPItems.topaz_shard = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
 		SPItems.sapphire_shard = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
 		SPItems.spinel_shard = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+		
+		List<ItemStack> shards = new ArrayList<ItemStack>(Arrays.asList(AllayAccessor.getDupeItem().getItems()));
+		shards.add(new ItemStack(SPItems.ruby_shard));
+		shards.add(new ItemStack(SPItems.pearl));
+		shards.add(new ItemStack(SPItems.topaz_shard));
+		shards.add(new ItemStack(SPItems.sapphire_shard));
+		shards.add(new ItemStack(SPItems.spinel_shard));
+		AllayAccessor.setDupeItem(Ingredient.of(shards.toArray(new ItemStack[] {})));
 	}
 
 	public static void register() {

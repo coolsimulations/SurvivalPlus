@@ -11,10 +11,8 @@ import net.minecraft.commands.CommandRuntimeException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.server.level.ServerPlayer;
 
 public class CommandIndeed {
@@ -43,10 +41,7 @@ public class CommandIndeed {
 			} else {
 				MutableComponent indeed = Component.translatable("sp.commands.indeed.display1", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
 				indeed.withStyle(ChatFormatting.DARK_GREEN);
-				if(sender.getEntity() != null)
-					sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(indeed, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-				else
-					sender.getServer().getPlayerList().broadcastSystemMessage(indeed, ChatType.SYSTEM);
+				sender.getServer().getPlayerList().broadcastSystemMessage(indeed, false);
 			}
 		}
 
@@ -57,10 +52,7 @@ public class CommandIndeed {
 
 		MutableComponent indeed = Component.translatable("sp.commands.indeed.display2", new Object[]{sender.getDisplayName()});
 		indeed.withStyle(ChatFormatting.DARK_GREEN);
-		if(sender.getEntity() != null)
-			sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(indeed, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-		else
-			sender.getServer().getPlayerList().broadcastSystemMessage(indeed, ChatType.SYSTEM);
+		sender.getServer().getPlayerList().broadcastSystemMessage(indeed, false);
 
 		return Command.SINGLE_SUCCESS;
 	}

@@ -13,10 +13,8 @@ import net.minecraft.commands.CommandRuntimeException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -70,17 +68,11 @@ public class CommandSleep {
 							if (dimension == null) {
 								MutableComponent sleep = Component.translatable("sp.commands.sleep.display3", new Object[]{sender.getDisplayName(), sender.getDisplayName(), sender.getLevel().dimension().location()});
 								sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
-								if(sender.getEntity() != null)
-									sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(sleep, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-								else
-									sender.getServer().getPlayerList().broadcastSystemMessage(sleep, ChatType.SYSTEM);
+								sender.getServer().getPlayerList().broadcastSystemMessage(sleep, false);
 							} else {
 								MutableComponent sleep = Component.translatable("sp.commands.sleep.display3", new Object[]{sender.getDisplayName(), dimension});
 								sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
-								if(sender.getEntity() != null)
-									sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(sleep, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-								else
-									sender.getServer().getPlayerList().broadcastSystemMessage(sleep, ChatType.SYSTEM);
+								sender.getServer().getPlayerList().broadcastSystemMessage(sleep, false);
 							}
 						} else {
 							throw new CommandRuntimeException(Component.translatable("sp.commands.sleep.display4", new Object[]{sender.getDisplayName(), dimension}));
@@ -94,17 +86,11 @@ public class CommandSleep {
 								if (dimension == null) {
 									MutableComponent sleep = Component.translatable("sp.commands.sleep.display1", new Object[]{entityplayer.getDisplayName(), sender.getDisplayName(), sender.getLevel().dimension().location()});
 									sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
-									if(sender.getEntity() != null)
-										sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(sleep, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-									else
-										sender.getServer().getPlayerList().broadcastSystemMessage(sleep, ChatType.SYSTEM);
+									sender.getServer().getPlayerList().broadcastSystemMessage(sleep, false);
 								} else {
 									MutableComponent sleep = Component.translatable("sp.commands.sleep.display1", new Object[]{entityplayer.getDisplayName(), sender.getDisplayName(), dimension});
 									sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
-									if(sender.getEntity() != null)
-										sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(sleep, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-									else
-										sender.getServer().getPlayerList().broadcastSystemMessage(sleep, ChatType.SYSTEM);
+									sender.getServer().getPlayerList().broadcastSystemMessage(sleep, false);
 								}
 							}
 						} else {
@@ -144,17 +130,11 @@ public class CommandSleep {
 					if (dimension == null) {
 						MutableComponent sleep = Component.translatable("sp.commands.sleep.display2", new Object[]{sender.getDisplayName(), sender.getLevel().dimension().location()});
 						sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
-						if(sender.getEntity() != null)
-							sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(sleep, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-						else
-							sender.getServer().getPlayerList().broadcastSystemMessage(sleep, ChatType.SYSTEM);
+						sender.getServer().getPlayerList().broadcastSystemMessage(sleep, false);
 					} else {
 						MutableComponent sleep = Component.translatable("sp.commands.sleep.display2", new Object[]{sender.getDisplayName(), dimension});
 						sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
-						if(sender.getEntity() != null)
-							sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(sleep, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-						else
-							sender.getServer().getPlayerList().broadcastSystemMessage(sleep, ChatType.SYSTEM);
+						sender.getServer().getPlayerList().broadcastSystemMessage(sleep, false);
 					}
 				}
 			} else {

@@ -7,20 +7,16 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
 @Environment(EnvType.CLIENT)
-@Mixin(Gui.class)
-public abstract class GuiMixin {
+@Mixin(ChatComponent.class)
+public abstract class ChatComponentMixin {
 
-	@ModifyVariable(at = @At(value = "INVOKE", ordinal = 0), method = "handleSystemChat", ordinal = 0)
-	private Component handleSystemChat(Component message) {
-		
-		MutableComponent coolsim = Component.translatable("sp.coolsim.creator");
-		coolsim.withStyle(ChatFormatting.GOLD);
-
+	@ModifyVariable(method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;ILnet/minecraft/client/GuiMessageTag;Z)V", at = @At("HEAD"), ordinal = 0)
+	private Component addMessage(Component message) { 
 		MutableComponent playerJoined = Component.translatable("multiplayer.player.joined", new Object[] {"coolsim"});
 
 		MutableComponent playerLeft = Component.translatable("multiplayer.player.left", new Object[] {"coolsim"});
@@ -40,11 +36,9 @@ public abstract class GuiMixin {
 		}
 
 		if(message.getString().startsWith("[coolsim]")) {
-			if(message instanceof MutableComponent) {
-				return coolsim.append(((MutableComponent) message).withStyle(ChatFormatting.WHITE));
-			} else {
-				return coolsim.append(Component.literal("").withStyle(ChatFormatting.WHITE).append(message));
-			}
+			MutableComponent coolsim = Component.translatable("sp.coolsim.creator", new Object[] {"", message});
+			coolsim = Component.literal(coolsim.getString().replaceFirst("<", "").replaceFirst("> ", ""));
+			return coolsim;
 		}
 		
 		return message;

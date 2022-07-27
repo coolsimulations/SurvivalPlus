@@ -10,10 +10,8 @@ import net.minecraft.commands.CommandRuntimeException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.server.level.ServerPlayer;
 
 public class CommandMourn {
@@ -38,10 +36,7 @@ public class CommandMourn {
 			}else {
 				MutableComponent mourns = Component.translatable("sp.commands.mourn.display", new Object[]{sender.getDisplayName(), entityplayer.getDisplayName()});
 				mourns.withStyle(ChatFormatting.DARK_AQUA);
-				if(sender.getEntity() != null)
-					sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(mourns, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-				else
-					sender.getServer().getPlayerList().broadcastSystemMessage(mourns, ChatType.SYSTEM);
+				sender.getServer().getPlayerList().broadcastSystemMessage(mourns, false);
 			}
 		}
 

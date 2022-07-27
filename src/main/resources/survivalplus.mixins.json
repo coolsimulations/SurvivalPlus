@@ -15,12 +15,13 @@
         "ServerLevelMixin",
         "CakeBlockMixin", "CandleCakeBlockMixin",
         "DispenserBlockMixin",
+        "AllayAccessor",
         
         "FasterObsidianEnchantmentMixin", "QuickUseEnchantmentMixin"
     ],
     "client": [
     	"BlockEntityWithoutLevelRendererMixin",
-    	"GuiMixin",
+    	"ChatComponentMixin",
     	"MultiPlayerGameModeMixin",
     	"ClientPacketListenerMixin",
     	"LocalPlayerMixin", "ClientLevelMixin",
