@@ -7,10 +7,8 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.PlayerChatMessage;
 
 public class CommandEmportant {
 
@@ -26,10 +24,7 @@ public class CommandEmportant {
 		MutableComponent emportant = Component.translatable("sp.commands.emportant.display", new Object[] {sender.getDisplayName(), announcement});
 		emportant.withStyle(ChatFormatting.BLUE);
 		emportant.withStyle(ChatFormatting.BOLD);
-		if (sender.getEntity() != null)
-			sender.getServer().getPlayerList().broadcastChatMessage(PlayerChatMessage.signed(emportant, sender.getSigningContext().getArgumentSignature("action")), sender.getEntity().asChatSender(), ChatType.SYSTEM);
-		else
-			sender.getServer().getPlayerList().broadcastSystemMessage(emportant, ChatType.SYSTEM);
+		sender.getServer().getPlayerList().broadcastSystemMessage(emportant, false);
 
 		return Command.SINGLE_SUCCESS;
 	}

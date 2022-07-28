@@ -1,5 +1,9 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -12,8 +16,11 @@ import net.coolsimulations.SurvivalPlus.core.world.SurvivalPlusOreGenerator;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.AmethystClusterBlock;
@@ -31,8 +38,6 @@ import net.minecraftforge.common.world.ModifiableBiomeInfo.BiomeInfo.Builder;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import net.minecraftforge.common.world.BiomeModifier.Phase;
 
 @SuppressWarnings({"unused"})
 public class SurvivalPlusGeodes {
@@ -120,6 +125,17 @@ public class SurvivalPlusGeodes {
 	private static final RegistryObject<Codec<SapphireGeodeModifier>> SAPPHIRE_GEODE_MODIFIER = GEODE_SERIALIZERS.register("sapphire_geode_modifier", SapphireGeodeModifier::makeCodec);
 	private static final RegistryObject<Codec<PearlGeodeModifier>> PEARL_GEODE_MODIFIER = GEODE_SERIALIZERS.register("pearl_geode_modifier", PearlGeodeModifier::makeCodec);
 	private static final RegistryObject<Codec<SpinelGeodeModifier>> SPINEL_GEODE_MODIFIER = GEODE_SERIALIZERS.register("spinel_geode_modifier", SpinelGeodeModifier::makeCodec);
+	
+	public static void init() {
+		List<ItemStack> shards = new ArrayList<ItemStack>(Arrays.asList(Allay.DUPLICATION_ITEM.getItems()));
+		shards.add(new ItemStack(ruby_shard.get()));
+		shards.add(new ItemStack(pearl.get()));
+		shards.add(new ItemStack(topaz_shard.get()));
+		shards.add(new ItemStack(sapphire_shard.get()));
+		shards.add(new ItemStack(spinel_shard.get()));
+		Allay.DUPLICATION_ITEM = Ingredient.of(shards.toArray(new ItemStack[] {}));
+
+	}
 	
 	public record RubyGeodeModifier(HolderSet<Biome> biomes, Decoration generationStage, HolderSet<PlacedFeature> features)
 	implements BiomeModifier

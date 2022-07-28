@@ -7,7 +7,7 @@
         "ServerGamePacketListenerImplMixin"
     ],
     "client": [
-    	"GuiMixin"
+    	"ChatComponentMixin"
     ],
     "injectors": {
         "defaultRequire": 1

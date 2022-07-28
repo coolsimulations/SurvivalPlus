@@ -159,6 +159,7 @@ public class SurvivalPlus {
 		FuelHandler.registerArmorFuels();
 		SurvivalPlusDispenserBehavior.init();
         SurvivalPlusComposterRecipes.init();
+        SurvivalPlusGeodes.init();
         if (SPCompatibilityManager.isProjectELoaded())
 		{
 			SurvivalPlusEMCValues.init();
