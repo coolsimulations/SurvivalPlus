@@ -3,7 +3,7 @@
   "modid": "survivalplus",
   "name": "SurvivalPlus",
   "description": "SurvivalPlus enhances the vanilla survival experience of Minecraft whilst interacting with other mods to create seamless gameplay.",
-  "version": "0.1.6c",
+  "version": "0.1.7",
   "mcversion": "${mcversion}",
   "url": "https://curseforge.com/minecraft/mc-mods/survivalplus",
   "authorList": ["coolsim"],

@@ -6,6 +6,7 @@ import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
 import net.coolsimulations.SurvivalPlus.core.SurvivalPlus;
+import net.coolsimulations.SurvivalPlus.core.items.ItemGemStaff;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -30,7 +31,9 @@ public class SurvivalPlusItems {
 		SPItems.paper_cup = new Item().setUnlocalizedName("paper_cup").setRegistryName("paper_cup").setCreativeTab(SPTabs.tabMaterials);
 		SPItems.white_dye = new Item().setUnlocalizedName("white_dye").setRegistryName("white_dye").setCreativeTab(SPTabs.tabMaterials);
 		
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		SPItems.gem_staff = new ItemGemStaff(SPBlocks.gem_staff).setUnlocalizedName("gem_staff").setRegistryName(SPBlocks.gem_staff.getRegistryName()).setCreativeTab(SPTabs.tabBlocks);
+		
+		if((SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) && !SPCompatibilityManager.isTechRebornLoaded())
 		{
 			SPItems.titanium_dust = new Item().setUnlocalizedName("titanium_dust").setRegistryName("titanium_dust").setCreativeTab(SPTabs.tabMaterials);
 		}
@@ -66,7 +69,9 @@ public class SurvivalPlusItems {
 		registerItem(SPItems.paper_cup);
 		registerItem(SPItems.white_dye);
 		
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		registerItem(SPItems.gem_staff);
+		
+		if((SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) && !SPCompatibilityManager.isTechRebornLoaded())
 		{
 			registerItem(SPItems.titanium_dust);
 		}
@@ -103,7 +108,9 @@ public class SurvivalPlusItems {
 		registerRender(SPItems.paper_cup);
 		registerRender(SPItems.white_dye);
 		
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded())
+		registerRender(SPItems.gem_staff);
+		
+		if((SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) && !SPCompatibilityManager.isTechRebornLoaded())
 		{
 			registerRender(SPItems.titanium_dust);
 		}

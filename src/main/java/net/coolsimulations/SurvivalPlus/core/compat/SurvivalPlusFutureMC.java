@@ -49,14 +49,17 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 import scala.reflect.internal.Trees.If;
+import techreborn.api.TechRebornAPI;
 import thedarkcolour.futuremc.block.villagepillage.CampfireBlock;
 import thedarkcolour.futuremc.config.FConfig;
+import thedarkcolour.futuremc.recipe.SimpleRecipe;
+import thedarkcolour.futuremc.recipe.furnace.BlastFurnaceRecipes;
 import thedarkcolour.futuremc.registry.FSounds;
 
 public class SurvivalPlusFutureMC {
 
 	public static void init() {
-		
+
 		SPCompatRecipeManager.futureRecipeManager.addOreDictionaryCampfireRecipe("egg", new ItemStack(SPItems.fried_egg), 600);
 		SPCompatRecipeManager.futureRecipeManager.addOreDictionaryCampfireRecipe("cropCarrot", new ItemStack(SPItems.roast_carrot), 600);
 		SPCompatRecipeManager.futureRecipeManager.addOreDictionaryCampfireRecipe("foodCheesebread", new ItemStack(SPItems.melted_cheese_bread), 600);
@@ -129,7 +132,7 @@ public class SurvivalPlusFutureMC {
 		SPCompatRecipeManager.futureRecipeManager.addOreDictionaryComposterRecipe("foodCheesecake", SPCompatRecipeManager.futureRecipeManager.getComposterRarityLegendary());
 		SPCompatRecipeManager.futureRecipeManager.addOreDictionaryComposterRecipe("foodSpongecake", SPCompatRecipeManager.futureRecipeManager.getComposterRarityLegendary());
 
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) {
+		if((SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) && !SPCompatibilityManager.isTechRebornLoaded()) {
 
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(SPItems.titanium_dust), new ItemStack(SPItems.titanium_ingot));
 		}
@@ -169,7 +172,7 @@ public class SurvivalPlusFutureMC {
 
 			SPCompatRecipeManager.futureRecipeManager.addCampfireRecipe(IC2Items.getItem("mug", "cold_coffee"), IC2Items.getItem("mug", "dark_coffee"), 600);
 			SPCompatRecipeManager.futureRecipeManager.addSmokerRecipe(IC2Items.getItem("mug", "cold_coffee"), IC2Items.getItem("mug", "dark_coffee"));
-			
+
 			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(IC2Items.getItem("sapling"), SPCompatRecipeManager.futureRecipeManager.getComposterRarityCommon());
 
 			if(SPCompatibilityManager.isGCLoaded()) {
@@ -200,19 +203,19 @@ public class SurvivalPlusFutureMC {
 				SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(AsteroidBlocks.blockBasic, 1, 3), new ItemStack(GCItems.basicItem, 1, 5));
 				SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(VenusBlocks.venusBlock, 1, 6), new ItemStack(GCItems.basicItem, 1, 5));
 				SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(VenusBlocks.venusBlock, 1, 9), new ItemStack(Items.QUARTZ));
-				
+
 				if(SPConfig.enableReplaceSmelting && SPCompatibilityManager.isIc2Loaded()) {
-					
+
 					SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(VenusBlocks.venusBlock, 1, 8), IC2Items.getItem("ingot", "lead"));
 				} else {
-					
+
 					SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(VenusBlocks.venusBlock, 1, 8), new ItemStack(VenusItems.basicItem, 1, 1));
 				}
-				
+
 				if(SPCompatibilityManager.isExtraPlanetsLoaded()) {
-					
+
 					SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ExtraPlanets_Blocks.VOLCANIC_ROCK), new ItemStack(ExtraPlanets_Items.TIER_5_ITEMS, 1, 12));
-					
+
 					SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(ExtraPlanets_Blocks.KEPLER22B_MAPLE_SAPLING, 1, 0), SPCompatRecipeManager.futureRecipeManager.getComposterRarityCommon());
 					SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(ExtraPlanets_Blocks.KEPLER22B_MAPLE_SAPLING, 1, 1), SPCompatRecipeManager.futureRecipeManager.getComposterRarityCommon());
 					SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(ExtraPlanets_Blocks.KEPLER22B_MAPLE_SAPLING, 1, 2), SPCompatRecipeManager.futureRecipeManager.getComposterRarityCommon());
@@ -268,19 +271,19 @@ public class SurvivalPlusFutureMC {
 			Item ore_metal_poor = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "ore_metal_poor"));
 			Item ore_metal = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "ore_metal"));
 			Item ingot = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.RAILCRAFT_MODID, "ingot"));
-			
+
 			if(!SPConfig.enableReplaceSmelting) {
-				
+
 				SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal), new ItemStack(ingot, 1, 1));
 				SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal, 1, 1), new ItemStack(ingot, 1, 2));
 			}
-			
+
 			if(SPConfig.enableReplaceSmelting && SPCompatibilityManager.isIc2Loaded()) {
-				
+
 				SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal, 1, 2), IC2Items.getItem("ingot", "lead"));
 				SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal, 1, 3), IC2Items.getItem("ingot", "silver"));
 			} else {
-				
+
 				SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal, 1, 2), new ItemStack(ingot, 1, 3));
 				SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal, 1, 3), new ItemStack(ingot, 1, 4));
 			}
@@ -294,27 +297,27 @@ public class SurvivalPlusFutureMC {
 
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal_poor), new ItemStack(Items.IRON_NUGGET, 3));
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal_poor, 1, 1), new ItemStack(Items.GOLD_NUGGET, 3));
-			
+
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal, 1, 4), new ItemStack(ingot, 1, 6));
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(ore_metal, 1, 5), new ItemStack(ingot, 1, 8));
 		}
-		
+
 		if(SPCompatibilityManager.isGobberLoaded()) {
-			
+
 			Item raw_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot_raw"));
 			Item raw_nether_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot2_raw"));
 			Item raw_end_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot3_raw"));
-			
+
 			Item ingot_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot"));
 			Item ingot_nether_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot2"));
 			Item ingot_end_gobber = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "globot3"));
-			
+
 			Item fresh_skull = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "fresh_wither_skull"));
-			
+
 			Item glob_seed = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_seed"));
 			Item glob2_seed = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob2_seed"));
 			Item glob3_seed = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob3_seed"));
-			
+
 			Item goo = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "goo"));
 			Item glob_bread = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_bread"));
 			Item glob_apple = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "gapple"));
@@ -326,17 +329,17 @@ public class SurvivalPlusFutureMC {
 			Item glob_fish = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_fish"));
 			Item glob_pork = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_pork"));
 			Item glob_rabbit = Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.GOBBER_MODID, "glob_rabbit"));
-			
+
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(raw_gobber), new ItemStack(ingot_gobber));
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(raw_nether_gobber), new ItemStack(ingot_nether_gobber));
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(raw_end_gobber), new ItemStack(ingot_end_gobber));
-			
+
 			SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(fresh_skull), new ItemStack(Items.SKULL, 1, 1));
-			
+
 			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_seed), SPCompatRecipeManager.futureRecipeManager.getComposterRarityRare());
 			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob2_seed), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
 			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob3_seed), SPCompatRecipeManager.futureRecipeManager.getComposterRarityLegendary());
-			
+
 			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(goo), SPCompatRecipeManager.futureRecipeManager.getComposterRarityRare());
 			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_bread), SPCompatRecipeManager.futureRecipeManager.getComposterRarityRare());
 			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_apple), SPCompatRecipeManager.futureRecipeManager.getComposterRarityRare());
@@ -349,20 +352,47 @@ public class SurvivalPlusFutureMC {
 			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_pork), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
 			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(glob_rabbit), SPCompatRecipeManager.futureRecipeManager.getComposterRarityEpic());
 		}
+
+		if (SPCompatibilityManager.isTechRebornLoaded()) {
+
+			if(SPConfig.enableReplaceSmelting) {
+
+				if (SPCompatibilityManager.isIc2Loaded()) {
+					SPCompatRecipeManager.futureRecipeManager.removeBlastFurnaceRecipe(new ItemStack(TechRebornAPI.getItem("INGOTS"), 1, 8));
+					SPCompatRecipeManager.futureRecipeManager.removeBlastFurnaceRecipe(new ItemStack(TechRebornAPI.getItem("INGOTS"), 1, 11));
+					SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(TechRebornAPI.getBlock("ORE"), 1, 12), IC2Items.getItem("ingot", "lead"));
+					SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(TechRebornAPI.getItem("DUSTS"), 1, 29), IC2Items.getItem("ingot", "lead"));
+					SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(TechRebornAPI.getBlock("ORE"), 1, 13), IC2Items.getItem("ingot", "silver"));
+					SPCompatRecipeManager.futureRecipeManager.addBlastFurnaceRecipe(new ItemStack(TechRebornAPI.getItem("DUSTS"), 1, 47), IC2Items.getItem("ingot", "silver"));
+				} else {
+					
+					SPCompatRecipeManager.futureRecipeManager.addOreDictionaryBlastFurnaceRecipe("dustCopper", new ItemStack(SPItems.copper_ingot), true);
+					SPCompatRecipeManager.futureRecipeManager.addOreDictionaryBlastFurnaceRecipe("dustTin", new ItemStack(SPItems.tin_ingot), true);
+					SPCompatRecipeManager.futureRecipeManager.addOreDictionaryBlastFurnaceRecipe("dustBronze", new ItemStack(SPItems.bronze_ingot), true);
+					SPCompatRecipeManager.futureRecipeManager.addOreDictionaryBlastFurnaceRecipe("dustTitanium", new ItemStack(SPItems.titanium_ingot), true);
+				}
+			}
+			
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(TechRebornAPI.getBlock("RUBBER_SAPLING")), SPCompatRecipeManager.futureRecipeManager.getComposterRarityCommon());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(TechRebornAPI.getItem("PARTS"), 1, 31), SPCompatRecipeManager.futureRecipeManager.getComposterRarityUnCommon());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(TechRebornAPI.getItem("PARTS"), 1, 44), SPCompatRecipeManager.futureRecipeManager.getComposterRarityCommon());
+			SPCompatRecipeManager.futureRecipeManager.addComposterRecipe(new ItemStack(TechRebornAPI.getItem("PARTS"), 1, 45), SPCompatRecipeManager.futureRecipeManager.getComposterRarityCommon());
+
+		}
 	}
-	
+
 	public static void registerEventHandler() {
 
 		MinecraftForge.EVENT_BUS.register(new SurvivalPlusFutureMC());
 	}
-	
+
 	@SubscribeEvent
 	public void removeRecipes(RegistryEvent.Register<IRecipe> event) {
 
 		IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) event.getRegistry();
 
 		modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire"));
-		
+
 		if(SPCompatibilityManager.isIc2Loaded()) {
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber"));
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt1"));
@@ -373,7 +403,7 @@ public class SurvivalPlusFutureMC {
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "campfire_rubber_alt6"));
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void rightClickBlock(PlayerInteractEvent.RightClickBlock event) {
 		Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
@@ -414,7 +444,7 @@ public class SurvivalPlusFutureMC {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void golemHealth(EntityInteract event) {
 		ItemStack itemstack = event.getItemStack();

@@ -17,7 +17,8 @@ public class SurvivalPlusSimpleGrinder {
 			OreDictionary.registerOre("dustCopper", new ItemStack(SPItems.copper_dust));
 			OreDictionary.registerOre("dustTin", new ItemStack(SPItems.tin_dust));
 
-			GameRegistry.addSmelting(SPItems.titanium_dust, new ItemStack(SPItems.titanium_ingot), 3.0F);
+			if (!SPCompatibilityManager.isTechRebornLoaded() && !SPCompatibilityManager.isIc2Loaded())
+				GameRegistry.addSmelting(SPItems.titanium_dust, new ItemStack(SPItems.titanium_ingot), 3.0F);
 
 			if(SPConfig.enableReplaceSmelting) {
 				SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("dustCopper", new ItemStack(SPItems.copper_ingot), 3.0F, true);

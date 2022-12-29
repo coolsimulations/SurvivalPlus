@@ -3,6 +3,7 @@ package net.coolsimulations.SurvivalPlus.core.util;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,9 +31,11 @@ public class SurvivalPlusOreDict {
 		OreDictionary.registerOre("nuggetBronze", new ItemStack(SPItems.bronze_nugget));
 		OreDictionary.registerOre("nuggetTitanium", new ItemStack(SPItems.titanium_nugget));
 		
+		OreDictionary.registerOre("barsIron", new ItemStack(Blocks.IRON_BARS));
+		
 		OreDictionary.registerOre("dyeWhite", new ItemStack(SPItems.white_dye));
 		
-		if(SPCompatibilityManager.isSimpleGrinderLoaded() || SPCompatibilityManager.isIc2Loaded()) {
+		if(SPCompatibilityManager.isSimpleGrinderLoaded() || (SPCompatibilityManager.isIc2Loaded() && !SPCompatibilityManager.isTechRebornLoaded())) {
 			OreDictionary.registerOre("dustTitanium", new ItemStack(SPItems.titanium_dust));
 		}
 		

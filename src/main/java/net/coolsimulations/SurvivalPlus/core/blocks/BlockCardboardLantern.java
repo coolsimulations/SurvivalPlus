@@ -3,6 +3,8 @@ package net.coolsimulations.SurvivalPlus.core.blocks;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
@@ -10,6 +12,7 @@ import net.minecraft.block.BlockHopper;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockTrapDoor;
+import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -78,6 +81,12 @@ public class BlockCardboardLantern extends BlockCardboard {
 	public boolean isTopSolid(IBlockState state) {
 		return false;
 	}
+	
+	@Override
+	public EnumPushReaction getMobilityFlag(IBlockState state)
+    {
+        return EnumPushReaction.DESTROY;
+    }
 
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -110,6 +119,17 @@ public class BlockCardboardLantern extends BlockCardboard {
 
 		return CARDBOARD_PAD_AABB;
 	}
+	
+	@Nullable
+	@Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
+		if(!state.getValue(FLOATING) && state.getValue(FACING) != EnumFacing.UP && state.getValue(FACING) != EnumFacing.DOWN)
+			return NULL_AABB;
+		else {
+			return getBoundingBox(state, worldIn, pos);
+		}
+    }
 
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)

@@ -45,6 +45,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
+import techreborn.api.TechRebornAPI;
 
 public class SurvivalPlusIC2 {
 
@@ -93,8 +94,16 @@ public class SurvivalPlusIC2 {
 		//Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(SPBlocks.titanium_ore)), null, false, new ItemStack(SPItems.crushed_titanium_ore, 2));
 
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("oreTitanium"), null, false, new ItemStack(SPItems.crushed_titanium_ore, 2));
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"), null, false, new ItemStack(SPItems.titanium_dust));
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("plateDenseTitanium"), null, false, new ItemStack(SPItems.titanium_dust, 8));
+		if (!SPCompatibilityManager.isTechRebornLoaded()) {
+			Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"), null, false, new ItemStack(SPItems.titanium_dust));
+		} else {
+			Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"), null, false, new ItemStack(TechRebornAPI.getItem("DUSTS"), 1, 54));
+		}
+		if (!SPCompatibilityManager.isTechRebornLoaded()) {
+			Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("plateDenseTitanium"), null, false, new ItemStack(SPItems.titanium_dust, 8));
+		} else {
+			Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("plateDenseTitanium"), null, false, new ItemStack(TechRebornAPI.getItem("DUSTS"), 8, 54));
+		}
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("plateTitanium"), null, false, new ItemStack(SPItems.tiny_titanium_pile, 8));
 
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("cropOnion", 8), null, false, IC2Items.getItem("crafting", "bio_chaff"));
@@ -107,7 +116,11 @@ public class SurvivalPlusIC2 {
 
 	public static void registerCompressor() {
 
-		Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("dustTinyTitanium", 9), null, false, new ItemStack(SPItems.titanium_dust));
+		if (!SPCompatibilityManager.isTechRebornLoaded()) {
+			Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("dustTinyTitanium", 9), null, false, new ItemStack(SPItems.titanium_dust));
+		} else {
+			Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("dustTinyTitanium", 9), null, false, new ItemStack(TechRebornAPI.getItem("DUSTS"), 1, 54));
+		}
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forOreDict("plateTitanium", 9), null, false, new ItemStack(SPItems.titanium_dense_plate));
 
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(Blocks.SAND, 4, 1)), null, false, new ItemStack(Blocks.RED_SANDSTONE));
@@ -198,8 +211,13 @@ public class SurvivalPlusIC2 {
 		centerf = new NBTTagCompound();
 		centerf.setInteger("minHeat", 1500);
 
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forOreDict("crushedPurifiedTitanium"), centerf, false, new ItemStack(SPItems.tiny_titanium_pile), new ItemStack(SPItems.titanium_dust));
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forOreDict("crushedTitanium"), centerf, false, new ItemStack(SPItems.tiny_titanium_pile), new ItemStack(SPItems.titanium_dust), IC2Items.getItem("dust", "stone"));
+		if (!SPCompatibilityManager.isTechRebornLoaded()) {
+			Recipes.centrifuge.addRecipe(Recipes.inputFactory.forOreDict("crushedPurifiedTitanium"), centerf, false, new ItemStack(SPItems.tiny_titanium_pile), new ItemStack(SPItems.titanium_dust));
+			Recipes.centrifuge.addRecipe(Recipes.inputFactory.forOreDict("crushedTitanium"), centerf, false, new ItemStack(SPItems.tiny_titanium_pile), new ItemStack(SPItems.titanium_dust), IC2Items.getItem("dust", "stone"));
+		} else {
+			Recipes.centrifuge.addRecipe(Recipes.inputFactory.forOreDict("crushedPurifiedTitanium"), centerf, false, new ItemStack(SPItems.tiny_titanium_pile), new ItemStack(TechRebornAPI.getItem("DUSTS"), 1 ,54));
+			Recipes.centrifuge.addRecipe(Recipes.inputFactory.forOreDict("crushedTitanium"), centerf, false, new ItemStack(SPItems.tiny_titanium_pile), new ItemStack(TechRebornAPI.getItem("DUSTS"), 1, 54), IC2Items.getItem("dust", "stone"));
+		}
 	}
 
 	public static void registerBlockCutting() {
@@ -240,7 +258,8 @@ public class SurvivalPlusIC2 {
 
 		}
 
-		GameRegistry.addSmelting(SPItems.titanium_dust, new ItemStack(SPItems.titanium_ingot), 3.0F);
+		if (!SPCompatibilityManager.isTechRebornLoaded())
+				GameRegistry.addSmelting(SPItems.titanium_dust, new ItemStack(SPItems.titanium_ingot), 3.0F);
 
 		SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("crushedTitanium", new ItemStack(SPItems.titanium_ingot), 0.7F);
 		SurvivalPlusSmeltingRecipes.addOreDictionaryRecipe("crushedPurifiedTitanium", new ItemStack(SPItems.titanium_ingot), 0.7F);

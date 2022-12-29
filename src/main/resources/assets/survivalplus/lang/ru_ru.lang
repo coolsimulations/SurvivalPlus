@@ -108,6 +108,8 @@ tile.cardboard_lantern_purple.name=Фиолетовый картон Фонар�
 tile.cardboard_lantern_magenta.name=Пурпурный картон Фонарь
 tile.cardboard_lantern_pink.name=Розовый картон Фонарь
 tile.cardboard_lantern_brown.name=Коричневый картон Фонарь
+tile.sconce.name=Бра
+item.gem_staff=Драгоценный камень посох
 
 tile.campfire.name=Костёр
 container.campfire=Костёр

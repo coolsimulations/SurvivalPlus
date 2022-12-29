@@ -51,7 +51,7 @@ public class SurvivalPlusAetherLegacyRecipes {
 		registry.register(new AetherEnchantment(SPItems.titanium_hoe, 2750));
 		registry.register(new AetherEnchantment(SPItems.titanium_pickaxe, 2750));
 		registry.register(new AetherEnchantment(SPItems.titanium_shears, 2750));
-		registry.register(new AetherEnchantment(SPItems.titanium_shovel, 1750));
+		registry.register(new AetherEnchantment(SPItems.titanium_shovel, 2750));
 		
 		registerArmourLists(registry, SPItems.titanium, 6500);
 		

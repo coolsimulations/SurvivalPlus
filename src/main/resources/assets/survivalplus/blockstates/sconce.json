@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=east,powered=false": { "model": "survivalplus:sconce" },
+        "facing=south,powered=false": { "model": "survivalplus:sconce" },
+        "facing=west,powered=false": { "model": "survivalplus:sconce" },
+        "facing=north,powered=false": { "model": "survivalplus:sconce" },
+        "facing=up,powered=false": { "model": "survivalplus:sconce" },
+        "facing=down,powered=false": { "model": "survivalplus:sconce" },
+        "facing=east,powered=true": { "model": "survivalplus:sconce" },
+        "facing=south,powered=true": { "model": "survivalplus:sconce" },
+        "facing=west,powered=true": { "model": "survivalplus:sconce" },
+        "facing=north,powered=true": { "model": "survivalplus:sconce" },
+        "facing=up,powered=true": { "model": "survivalplus:sconce" },
+        "facing=down,powered=true": { "model": "survivalplus:sconce" }
+    }
+}

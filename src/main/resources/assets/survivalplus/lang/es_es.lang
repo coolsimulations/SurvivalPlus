@@ -108,6 +108,8 @@ tile.cardboard_lantern_purple.name=Farolillo de Cartón Morada
 tile.cardboard_lantern_magenta.name=Farolillo de Cartón Magenta
 tile.cardboard_lantern_pink.name=Farolillo de Cartón Rosa
 tile.cardboard_lantern_brown.name=Farolillo de Cartón Marrón
+tile.sconce.name=Candelabro de Pared
+item.gem_staff.name=Bastón de Gemas
 
 
 tile.campfire.name=Hoguera

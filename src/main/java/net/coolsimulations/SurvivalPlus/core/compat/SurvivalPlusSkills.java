@@ -2,6 +2,7 @@ package net.coolsimulations.SurvivalPlus.core.compat;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -25,7 +26,6 @@ import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import scala.actors.threadpool.Arrays;
 
 public class SurvivalPlusSkills {
 	

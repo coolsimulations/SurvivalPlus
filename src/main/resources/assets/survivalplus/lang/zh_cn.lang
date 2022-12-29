@@ -108,6 +108,8 @@ tile.cardboard_lantern_purple.name=紫纸板灯笼
 tile.cardboard_lantern_magenta.name=品红纸板灯笼
 tile.cardboard_lantern_pink.name=粉红纸板灯笼
 tile.cardboard_lantern_brown.name=棕纸板灯笼
+tile.sconce.name=壁灯
+item.gem_staff=宝石法杖
 
 tile.campfire.name=营火
 container.campfire=营火

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "I",
+    "C"
+  ],
+  "key": {
+    "C": {
+      "type": "forge:ore_dict",
+      "ore": "ingotCopper"
+    },
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "barsIron"
+    }
+  },
+  "result": {
+    "item": "survivalplus:sconce"
+  }
+}

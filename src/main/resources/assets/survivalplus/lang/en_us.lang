@@ -108,6 +108,8 @@ tile.cardboard_lantern_purple.name=Purple Cardboard Lantern
 tile.cardboard_lantern_magenta.name=Magenta Cardboard Lantern
 tile.cardboard_lantern_pink.name=Pink Cardboard Lantern
 tile.cardboard_lantern_brown.name=Brown Cardboard Lantern
+tile.sconce.name=Sconce
+item.gem_staff.name=Gem Staff
 
 tile.campfire.name=Campfire
 container.campfire=Campfire

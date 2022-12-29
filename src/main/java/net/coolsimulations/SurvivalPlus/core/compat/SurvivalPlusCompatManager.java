@@ -10,6 +10,8 @@ public class SurvivalPlusCompatManager {
 			SurvivalPlusFutureMC.registerEventHandler();
 		if(SPCompatibilityManager.isIc2Loaded())
 			SurvivalPlusIC2.registerEventHandler();
+		if(SPCompatibilityManager.isTechRebornLoaded())
+			SurvivalPlusTechReborn.registerEventHandler();
 		if(SPCompatibilityManager.isGCLoaded())
 			SurvivalPlusGC.registerEventHandler();
 		if(SPCompatibilityManager.isRailcraftLoaded())
@@ -35,6 +37,8 @@ public class SurvivalPlusCompatManager {
 		
 		if(SPCompatibilityManager.isIc2Loaded())
 			SurvivalPlusIC2.init();
+		if(SPCompatibilityManager.isTechRebornLoaded())
+			SurvivalPlusTechReborn.init();
 		if(SPCompatibilityManager.isBopLoaded())
 			SurvivalPlusBOP.init();
 		if(SPCompatibilityManager.isSimpleGrinderLoaded())

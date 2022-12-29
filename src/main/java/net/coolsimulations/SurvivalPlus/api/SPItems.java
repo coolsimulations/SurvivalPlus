@@ -22,6 +22,11 @@ public class SPItems {
 	public static Item white_dye;
 	
 	/**
+	 * These are the special block items referred to in SurvivalPlusItems
+	 */
+	public static Item gem_staff;
+	
+	/**
 	 * These are the IndustrialCraft 2 and SimpleGrinders Items referred to in SurvivalPlusItems
 	 */
 	public static Item crushed_titanium_ore;

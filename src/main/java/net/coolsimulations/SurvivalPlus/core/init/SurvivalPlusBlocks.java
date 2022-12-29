@@ -1,7 +1,6 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
-import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystal;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockMetal;
@@ -11,17 +10,17 @@ import net.coolsimulations.SurvivalPlus.core.blocks.BlockCampfire;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboard;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCheeseCake;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockGemStaff;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockOnionCrop;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockSconce;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockSpongeCake;
 import net.coolsimulations.SurvivalPlus.core.items.ItemCardboardLantern;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class SurvivalPlusBlocks {
@@ -78,6 +77,8 @@ public class SurvivalPlusBlocks {
 		SPBlocks.cardboard_lantern_magenta = new BlockCardboardLantern(MapColor.MAGENTA, true).setUnlocalizedName("cardboard_lantern_magenta").setRegistryName("cardboard_lantern_magenta").setCreativeTab(SPTabs.tabBlocks);
 		SPBlocks.cardboard_lantern_pink = new BlockCardboardLantern(MapColor.PINK, true).setUnlocalizedName("cardboard_lantern_pink").setRegistryName("cardboard_lantern_pink").setCreativeTab(SPTabs.tabBlocks);
 		SPBlocks.cardboard_lantern_brown = new BlockCardboardLantern(MapColor.BROWN, true).setUnlocalizedName("cardboard_lantern_brown").setRegistryName("cardboard_lantern_brown").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.sconce = new BlockSconce().setUnlocalizedName("sconce").setRegistryName("sconce").setCreativeTab(SPTabs.tabBlocks);
+		SPBlocks.gem_staff = new BlockGemStaff().setUnlocalizedName("gem_staff").setRegistryName("gem_staff").setCreativeTab(SPTabs.tabBlocks);
 
 		SPBlocks.campfire = new BlockCampfire(false).setUnlocalizedName("campfire").setRegistryName("campfire").setCreativeTab(SPTabs.tabBlocks);
 	}
@@ -134,6 +135,8 @@ public class SurvivalPlusBlocks {
 		registerBlock(SPBlocks.cardboard_lantern_magenta);
 		registerBlock(SPBlocks.cardboard_lantern_pink);
 		registerBlock(SPBlocks.cardboard_lantern_brown);
+		registerBlock(SPBlocks.sconce);
+		registerBlock(SPBlocks.gem_staff);
 
 		registerBlock(SPBlocks.campfire);
 	}
@@ -190,6 +193,8 @@ public class SurvivalPlusBlocks {
 		registerRender(SPBlocks.cardboard_lantern_magenta);
 		registerRender(SPBlocks.cardboard_lantern_pink);
 		registerRender(SPBlocks.cardboard_lantern_brown);
+		registerRender(SPBlocks.sconce);
+		registerRender(SPBlocks.gem_staff);
 
 		registerRender(SPBlocks.campfire);
 	}
@@ -200,7 +205,7 @@ public class SurvivalPlusBlocks {
 			SurvivalPlus.ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()).setMaxStackSize(1));
 		} else if (block instanceof BlockCardboardLantern) {
 			SurvivalPlus.ITEMS.add(new ItemCardboardLantern(block).setRegistryName(block.getRegistryName()));
-		} else {
+		} else if (!(block instanceof BlockGemStaff)) {
 			SurvivalPlus.ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 		}
 		SurvivalPlus.BLOCKS.add(block);

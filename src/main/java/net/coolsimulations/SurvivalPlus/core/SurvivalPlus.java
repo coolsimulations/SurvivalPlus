@@ -20,6 +20,7 @@ import net.coolsimulations.SurvivalPlus.core.commands.CommandWail;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWak;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWeba;
 import net.coolsimulations.SurvivalPlus.core.commands.CommandWoo;
+import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusBeaconsForAll;
 import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusCompatManager;
 import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusEMCValues;
 import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusHammerTime;
@@ -33,6 +34,7 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusBlocks;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
+import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTileEntities;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.coolsimulations.SurvivalPlus.core.proxy.CommonProxy;
 import net.coolsimulations.SurvivalPlus.core.recipes.ButcherVillagerTradeHandler;
@@ -114,6 +116,7 @@ public class SurvivalPlus {
 
 		SurvivalPlusBlocks.init();
 		SurvivalPlusBlocks.register();
+		SurvivalPlusTileEntities.register();
 		SurvivalPlusItems.init();
 		SurvivalPlusItems.register();
 		SurvivalPlusFood.init();
@@ -154,6 +157,11 @@ public class SurvivalPlus {
 		if (SPCompatibilityManager.isReskillableLoaded())
 		{
 			SurvivalPlusSkills.initReskillable(event);
+		}
+		
+		if (SPCompatibilityManager.isBeaconsForAllLoaded())
+		{
+			SurvivalPlusBeaconsForAll.initBeaconsForAll(event);
 		}
 	}
 

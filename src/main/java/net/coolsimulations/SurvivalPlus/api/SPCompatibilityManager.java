@@ -49,6 +49,17 @@ public class SPCompatibilityManager {
 	private static boolean modExtraPlanetsLoaded;
 	private static boolean modFluidloggedAPILoaded;
 	private static boolean modGobberLoaded;
+	private static boolean modTechRebornLoaded;
+	private static boolean modBeaconsForAllLoaded;
+	private static boolean modTorcherinoLoaded;
+	private static boolean modBoneTorchLoaded;
+	private static boolean modRealisticTorchesLoaded;
+	private static boolean modStoneTorchesLoaded;
+	private static boolean modJetLoaded;
+	private static boolean modITorchLoaded;
+	private static boolean modMoBendsLoaded;
+	private static boolean modEpicFightLoaded;
+	private static boolean modSimplyPlatinumLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -96,6 +107,17 @@ public class SPCompatibilityManager {
 	public static final String EXTRA_PLANETS_MODID = "extraplanets";
 	public static final String FLUIDLOGGED_API_MODID = "fluidlogged_api";
 	public static final String GOBBER_MODID = "gb";
+	public static final String TECH_REBORN_MODID = "techreborn";
+	public static final String BEACONS_FOR_ALL_MODID = "creaturebeacons";
+	public static final String TORCHERINO_MODID = "torcherino";
+	public static final String BONE_TORCH_MODID = "bonetorch";
+	public static final String REALISTIRC_TORCHES_MODID = "realistictorches";
+	public static final String STONE_TORCHES_MODID = "stone_torches";
+	public static final String JET_MODID = "jetorches";
+	public static final String ITORCH_MODID = "itorch";
+	public static final String MOBENDS_MODID = "mobends";
+	public static final String EPIC_FIGHT_MODID = "epicfight";
+	public static final String SIMPLY_PLATINUM_MODID = "sipl";
 
 	public static void checkForCompatibleMods(){
 
@@ -322,6 +344,61 @@ public class SPCompatibilityManager {
 		if (Loader.isModLoaded(GOBBER_MODID))
 		{
 			SPCompatibilityManager.modGobberLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(TECH_REBORN_MODID))
+		{
+			SPCompatibilityManager.modTechRebornLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(BEACONS_FOR_ALL_MODID))
+		{
+			SPCompatibilityManager.modBeaconsForAllLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(TORCHERINO_MODID))
+		{
+			SPCompatibilityManager.modTorcherinoLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(BONE_TORCH_MODID))
+		{
+			SPCompatibilityManager.modBoneTorchLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(REALISTIRC_TORCHES_MODID))
+		{
+			SPCompatibilityManager.modRealisticTorchesLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(STONE_TORCHES_MODID))
+		{
+			SPCompatibilityManager.modStoneTorchesLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(JET_MODID))
+		{
+			SPCompatibilityManager.modJetLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(ITORCH_MODID))
+		{
+			SPCompatibilityManager.modITorchLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(MOBENDS_MODID))
+		{
+			SPCompatibilityManager.modMoBendsLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(EPIC_FIGHT_MODID))
+		{
+			SPCompatibilityManager.modEpicFightLoaded = true;
+		}
+		
+		if (Loader.isModLoaded(SIMPLY_PLATINUM_MODID))
+		{
+			SPCompatibilityManager.modSimplyPlatinumLoaded = true;
 		}
 	}
 
@@ -562,6 +639,65 @@ public class SPCompatibilityManager {
 	public static boolean isGobberLoaded()
 	{
 		return SPCompatibilityManager.modGobberLoaded;
+	}
+	
+	public static boolean isTechRebornLoaded()
+	{
+		return SPCompatibilityManager.modTechRebornLoaded;
+	}
+	
+	public static boolean isBeaconsForAllLoaded()
+	{
+		return SPCompatibilityManager.modBeaconsForAllLoaded;
+	}
+	
+	public static boolean isUnlitTorchModsLoaded() {
+		return isGCLoaded() || isRealisticTorchesLoaded();
+	}
+	
+	public static boolean isTorcherinoLoaded()
+	{
+		return SPCompatibilityManager.modTorcherinoLoaded;
+	}
+	
+	public static boolean isBoneTorchLoaded()
+	{
+		return SPCompatibilityManager.modBoneTorchLoaded;
+	}
+	
+	public static boolean isRealisticTorchesLoaded()
+	{
+		return SPCompatibilityManager.modRealisticTorchesLoaded;
+	}
+	
+	public static boolean isStoneTorchesLoaded()
+	{
+		return SPCompatibilityManager.modStoneTorchesLoaded;
+	}
+	
+	public static boolean isJetLoaded()
+	{
+		return SPCompatibilityManager.modJetLoaded;
+	}
+	
+	public static boolean isITorchLoaded()
+	{
+		return SPCompatibilityManager.modITorchLoaded;
+	}
+	
+	public static boolean isMoBendsLoaded()
+	{
+		return SPCompatibilityManager.modMoBendsLoaded;
+	}
+	
+	public static boolean isEpicFightLoaded()
+	{
+		return SPCompatibilityManager.modEpicFightLoaded;
+	}
+	
+	public static boolean isSimplyPlatinumLoaded()
+	{
+		return SPCompatibilityManager.modSimplyPlatinumLoaded;
 	}
 
 }

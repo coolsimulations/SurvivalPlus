@@ -108,6 +108,8 @@ tile.cardboard_lantern_purple.name=紫段ボールランタン
 tile.cardboard_lantern_magenta.name=赤紫段ボールランタン
 tile.cardboard_lantern_pink.name=桃段ボールランタン
 tile.cardboard_lantern_brown.name=茶段ボールランタン
+tile.sconce.name=燭台
+item.gem_staff=ジェムスタッフ
 
 tile.campfire.name=焚き火
 container.campfire=焚き火

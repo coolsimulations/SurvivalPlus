@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "T",
+    "T"
+  ],
+  "key": {
+    "C": {
+      "type": "forge:ore_dict",
+      "ore": "ingotCopper"
+    },
+    "T": {
+      "type": "forge:ore_dict",
+      "ore": "ingotTin"
+    }
+  },
+  "result": {
+    "item": "survivalplus:gem_staff"
+  }
+}
