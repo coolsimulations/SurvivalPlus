@@ -139,6 +139,8 @@
   "block.survivalplus.cardboard_lantern_magenta": "Farolillo de Cart\u00f3n Magenta",
   "block.survivalplus.cardboard_lantern_pink": "Farolillo de Cart\u00f3n Rosa",
   "block.survivalplus.cardboard_lantern_brown": "Farolillo de Cart\u00f3n Marr\u00f3n",
+  "block.survivalplus.sconce": "Candelabro de Pared",
+  "block.survivalplus.gem_staff": "Bast\u00f3n de Gemas",
   
   "block.blockus.onion_crate": "Cebolla Caja",
   
@@ -347,6 +349,13 @@
   "item.survivalplus.titanium_shield.magenta": "Escudo de Titanio Magenta",
   "item.survivalplus.titanium_shield.orange": "Escudo de Titanio Narania",
   "item.survivalplus.titanium_shield.white": "Escudo de Titanio Blanco",
+  
+  "item.survivalplus.titanium_knife": "Cuchillo de Titanio",
+  "item.survivalplus.titanium_mattock": "Azada Pico de Titanio",
+  "item.survivalplus.titanium_saw": "Sierra de Titanium",
+  "item.survivalplus.desh_knife": "Cuchillo de Desh",
+  "item.survivalplus.desh_mattock": "Azada Pico de Desh",
+  "item.survivalplus.desh_saw": "Sierra de Desh",
 
   "death.attack.boiled_water": "%1$s fue quemado hasta la muerte",
   "death.attack.boiled_water.player": "%1$s fue quemado hasta la muerte mientras hu\u00eda de %2$s",

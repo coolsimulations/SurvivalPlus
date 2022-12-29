@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "survivalplus:bronze_axe",
+      "required": false
+    },
+    {
+      "id": "survivalplus:titanium_axe",
+      "required": false
+    }
+  ]
+}

@@ -33,6 +33,16 @@ public class SPTags
 
     public static class Items
     {
+    	public static final TagKey<Item> RAW_STORAGE_BLOCKS_TIN = tag("raw_tin_blocks");
+    	public static final TagKey<Item> RAW_STORAGE_BLOCKS_BRONZE = tag("raw_bronze_blocks");
+    	public static final TagKey<Item> RAW_STORAGE_BLOCKS_TITANIUM = tag("raw_titanium_blocks");
+    	
+    	public static final TagKey<Item> ORES_COPPER = tag("copper_ores");
+    	public static final TagKey<Item> ORES_TIN = tag("tin_ores");
+    	public static final TagKey<Item> ORES_TITANIUM = tag("titanium_ores");
+    	
+    	public static final TagKey<Item> CARDBOARD = tag("cardboards");
+    	
     	public static final TagKey<Item> INGOTS_COPPER = tag("copper_ingots");
     	public static final TagKey<Item> INGOTS_TIN = tag("tin_ingots");
     	public static final TagKey<Item> INGOTS_BRONZE = tag("bronze_ingots");

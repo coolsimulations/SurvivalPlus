@@ -87,6 +87,8 @@ public class SPBlocks {
 	public static Block cardboard_lantern_magenta;
 	public static Block cardboard_lantern_pink;
 	public static Block cardboard_lantern_brown;
+	public static Block sconce;
+	public static Block gem_staff;
 	
 	/**
 	 * These are the Blocks referred to in SurvivalPlusGeodes

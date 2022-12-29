@@ -1,0 +1,101 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "survivalplus:gem_staff",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "name": "survivalplus:gem_staff"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:amethyst_shard",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "survivalplus:gem_staff",
+              "properties": {
+                "gem": "amethyst"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "survivalplus:ruby_shard",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "survivalplus:gem_staff",
+              "properties": {
+                "gem": "ruby"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "survivalplus:pearl",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "survivalplus:gem_staff",
+              "properties": {
+                "gem": "pearl"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "survivalplus:topaz_shard",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "survivalplus:gem_staff",
+              "properties": {
+                "gem": "topaz"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "survivalplus:sapphire_shard",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "survivalplus:gem_staff",
+              "properties": {
+                "gem": "sapphire"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "survivalplus:spinel_shard",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "survivalplus:gem_staff",
+              "properties": {
+                "gem": "spinel"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

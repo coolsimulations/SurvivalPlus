@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "I",
+    "C"
+  ],
+  "key": {
+    "C": {
+      "tag": "c:copper_ingots"
+    },
+    "I": {
+      "tag": "c:iron_bars"
+    }
+  },
+  "result": {
+    "item": "survivalplus:sconce"
+  }
+}

@@ -28,12 +28,10 @@ public class SurvivalPlusItems {
 		SPItems.charcoal_bucket = new Item(new FabricItemSettings().group(SPTabs.tabMaterials).maxCount(1).recipeRemainder(Items.BUCKET));
 		SPItems.paper_cup = new Item(new FabricItemSettings().group(SPTabs.tabMaterials)); 
 
-		if(SPCompatibilityManager.isRefinedMachineryLoaded() || SPCompatibilityManager.isMechanixLoaded() || SPCompatibilityManager.isIndustrialRevolutionLoaded())
+		if(SPCompatibilityManager.isIndustrialRevolutionLoaded())
 			SPItems.titanium_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
 
-		if(SPCompatibilityManager.isMechanixLoaded()) {
-			SPItems.tin_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
-		}
+		//SPItems.tin_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
 
 	}
 
@@ -50,12 +48,10 @@ public class SurvivalPlusItems {
 		registerItem(SPItems.charcoal_bucket, "charcoal_bucket");
 		registerItem(SPItems.paper_cup, "paper_cup");
 
-		if(SPCompatibilityManager.isRefinedMachineryLoaded() || SPCompatibilityManager.isMechanixLoaded() || SPCompatibilityManager.isIndustrialRevolutionLoaded())
+		if(SPCompatibilityManager.isIndustrialRevolutionLoaded())
 			registerItem(SPItems.titanium_dust, "titanium_dust");
 
-		if(SPCompatibilityManager.isMechanixLoaded()) {
-			registerItem(SPItems.tin_dust, "tin_dust");
-		}
+		//registerItem(SPItems.tin_dust, "tin_dust");
 	}
 
 	public static void registerItem(Item item, String registryName) {

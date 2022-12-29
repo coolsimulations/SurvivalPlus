@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "survivalplus:titanium_saw"
+    ]
+  },
+  "criteria": {
+    "has_titanium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:titanium_ingots"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "survivalplus:titanium_saw"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_titanium",
+      "has_the_recipe"
+    ]
+  ]
+}

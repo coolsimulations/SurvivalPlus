@@ -10,6 +10,14 @@ public class SurvivalPlusCompatManager {
 			SurvivalPlusBlockus.init();
 			SurvivalPlusBlockus.register();
 		}
+		if(SPCompatibilityManager.isJerLoaded())
+			SurvivalPlusJER.setup();
+		if (SPCompatibilityManager.isTorcherinoLoaded())
+			SurvivalPlusTorcherino.init();
+		if (SPCompatibilityManager.isNoTreePunchingLoaded()) {
+			SurvivalPlusNoTreePunching.init();
+			SurvivalPlusNoTreePunching.register();
+		}
 	}
 
 }

@@ -1,0 +1,36 @@
+{
+  "type": "techreborn:industrial_grinder",
+  "power": 64,
+  "time": 100,
+  "tank": {
+    "fluid": "minecraft:water",
+    "amount": 1000
+  },
+  "ingredients": [
+    {
+      "tag": "c:titanium_ores"
+    }
+  ],
+  "results": [
+    {
+      "item": "survivalplus:raw_titanium",
+      "count": 2
+    },
+    {
+      "item": "minecraft:iron_nugget",
+	  "count": 4
+    },
+    {
+      "item": "techreborn:tin_nugget",
+	  "count": 3
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "techreborn"
+      ]
+    }
+  ]
+}

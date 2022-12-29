@@ -24,8 +24,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
@@ -44,7 +43,6 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -174,14 +172,16 @@ public class SurvivalPlusGeodes {
 	}
 
 	public static void registerFeatures(Block baseBlock, Block buddingBlock, Block calciteBlock, Block outerBlock, boolean waterLogged, String geodeFeatureRegistryName, Predicate<BiomeSelectionContext> category, VerticalAnchor bottom, VerticalAnchor top, int rarity) {
-
+		ResourceLocation location = new ResourceLocation(SPReference.MOD_ID, geodeFeatureRegistryName);
+		
 		SPGeodeFeature geodeFeature = new SPGeodeFeature((@NotNull SPBlockCrystalBudding) buddingBlock, baseBlock, calciteBlock, outerBlock, waterLogged);
-		Registry.register(Registry.FEATURE, geodeFeatureRegistryName, geodeFeature);
+		Registry.register(Registry.FEATURE, location, geodeFeature);
+		
+		ConfiguredFeature<GeodeConfiguration, ?> geodeConfiguration = new ConfiguredFeature<>(Feature.GEODE, geodeFeature.getGeodeConfiguration());
+		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, location, geodeConfiguration);
+		Registry.register(BuiltinRegistries.PLACED_FEATURE, location, new PlacedFeature(Holder.direct(geodeConfiguration), List.of(RarityFilter.onAverageOnceEvery(rarity), InSquarePlacement.spread(), HeightRangePlacement.uniform(bottom, top))));
 
-		Holder<ConfiguredFeature<GeodeConfiguration, ?>> geodeConfiguration = FeatureUtils.register(geodeFeatureRegistryName, Feature.GEODE, geodeFeature.getGeodeConfiguration());
-		ResourceKey<PlacedFeature> registry = PlacementUtils.register(geodeFeatureRegistryName, geodeConfiguration, List.of(RarityFilter.onAverageOnceEvery(rarity), InSquarePlacement.spread(), HeightRangePlacement.uniform(bottom, top), BiomeFilter.biome())).unwrapKey().get();
-
-		BiomeModifications.addFeature(category, GenerationStep.Decoration.UNDERGROUND_ORES, registry);
+		BiomeModifications.addFeature(category, GenerationStep.Decoration.UNDERGROUND_ORES, ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, location));
 	}
 
 	private static void registerBlock(Block block, String registryName) {

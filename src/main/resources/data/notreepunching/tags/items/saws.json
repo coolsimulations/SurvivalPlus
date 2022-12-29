@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "survivalplus:titanium_saw",
+      "required": false
+    }
+  ]
+}

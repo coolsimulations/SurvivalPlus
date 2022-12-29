@@ -25,6 +25,7 @@ import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusChatTypes;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusFood;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusGeodes;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
+import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTileEntities;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTools;
 import net.coolsimulations.SurvivalPlus.core.recipes.SPShieldRecipes;
 import net.coolsimulations.SurvivalPlus.core.recipes.SurvivalPlusComposterRecipes;
@@ -89,6 +90,7 @@ public class SurvivalPlus implements ModInitializer {
 
 		SurvivalPlusBlocks.init();
 		SurvivalPlusBlocks.register();
+		SurvivalPlusTileEntities.init();
 		SurvivalPlusItems.init();
 		SurvivalPlusItems.register();
 		SurvivalPlusFood.init();

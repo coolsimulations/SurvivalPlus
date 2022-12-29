@@ -45,6 +45,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -74,6 +75,12 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		}));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(FLOATING, Boolean.valueOf(false)).setValue(WATERLOGGED, false));
 		this.isDyed = isDyed;
+	}
+	
+	@Override
+	public PushReaction getPistonPushReaction(BlockState state)
+	{
+		return PushReaction.DESTROY;
 	}
 
 	@Override
@@ -112,6 +119,17 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 
 		return CARDBOARD_PAD_AABB;
 	}
+	
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
+	{
+		if(!state.getValue(FLOATING) && state.getValue(FACING) != Direction.UP && state.getValue(FACING) != Direction.DOWN)
+			return Shapes.empty();
+		else {
+			return super.getCollisionShape(state, worldIn, pos, context);
+		}
+
+     }
 
 	@Environment(EnvType.CLIENT)
 	@Override

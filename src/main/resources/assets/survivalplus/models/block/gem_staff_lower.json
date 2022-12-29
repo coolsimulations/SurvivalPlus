@@ -1,0 +1,38 @@
+{
+	"credit": "Made with Blockbench by: coolsim!",
+	"parent": "block/block",
+	"texture_size": [32, 32],
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "survivalplus:blocks/gem_staff",
+		"gem_staff": "survivalplus:blocks/gem_staff"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 6],
+			"to": [10, 1, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 10, 2, 10.5], "texture": "#gem_staff"},
+				"east": {"uv": [2, 10, 4, 10.5], "texture": "#gem_staff"},
+				"south": {"uv": [4, 10, 6, 10.5], "texture": "#gem_staff"},
+				"west": {"uv": [6, 10, 8, 10.5], "texture": "#gem_staff"},
+				"up": {"uv": [2, 8, 4, 10], "texture": "#gem_staff"},
+				"down": {"uv": [4, 8, 6, 10], "texture": "#gem_staff"}
+			}
+		},
+		{
+			"from": [7, 0.5, 7],
+			"to": [9, 16, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 7.75], "texture": "#gem_staff"},
+				"east": {"uv": [1, 0, 2, 7.75], "texture": "#gem_staff"},
+				"south": {"uv": [2, 0, 3, 7.75], "texture": "#gem_staff"},
+				"west": {"uv": [3, 0, 4, 7.75], "texture": "#gem_staff"},
+				"up": {"uv": [4, 0, 5, 1], "texture": "#gem_staff"},
+				"down": {"uv": [4, 1, 5, 2], "texture": "#gem_staff"}
+			}
+		}
+	]
+}

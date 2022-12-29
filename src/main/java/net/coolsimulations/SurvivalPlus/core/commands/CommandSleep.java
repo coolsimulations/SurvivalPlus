@@ -7,7 +7,7 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
-import net.id.aether.world.dimension.AetherDimension;
+import net.id.paradiselost.world.dimension.ParadiseLostDimension;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandRuntimeException;
 import net.minecraft.commands.CommandSourceStack;
@@ -53,8 +53,8 @@ public class CommandSleep {
 			}
 
 			if (SPCompatibilityManager.isAetherRebornLoaded()) {
-				if(sender.getLevel().dimension() == AetherDimension.AETHER_WORLD_KEY) {
-					dimension = Component.translatable("The Aether", new Object[]{});
+				if(sender.getLevel().dimension() == ParadiseLostDimension.PARADISE_LOST_WORLD_KEY) {
+					dimension = Component.translatable("Paradise Lost", new Object[]{});
 				}
 			}
 
@@ -114,8 +114,8 @@ public class CommandSleep {
 		}
 		
 		if (SPCompatibilityManager.isAetherRebornLoaded()) {
-			if(sender.getLevel().dimension() == AetherDimension.AETHER_WORLD_KEY) {
-				dimension = Component.translatable("The Aether", new Object[]{});
+			if(sender.getLevel().dimension() == ParadiseLostDimension.PARADISE_LOST_WORLD_KEY) {
+				dimension = Component.translatable("Paradise Lost", new Object[]{});
 			}
 		}
 

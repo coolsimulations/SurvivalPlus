@@ -139,6 +139,8 @@
   "block.survivalplus.cardboard_lantern_magenta": "Magenta Cardboard Lantern",
   "block.survivalplus.cardboard_lantern_pink": "Pink Cardboard Lantern",
   "block.survivalplus.cardboard_lantern_brown": "Brown Cardboard Lantern",
+  "block.survivalplus.sconce": "Sconce",
+  "block.survivalplus.gem_staff": "Gem Staff",
   
   "block.blockus.onion_crate": "Onion Crate",
   
@@ -347,6 +349,13 @@
   "item.survivalplus.titanium_shield.magenta": "Magenta Titanium Shield",
   "item.survivalplus.titanium_shield.orange": "Orange Titanium Shield",
   "item.survivalplus.titanium_shield.white": "White Titanium Shield",
+  
+  "item.survivalplus.titanium_knife": "Titanium Knife",
+  "item.survivalplus.titanium_mattock": "Titanium Mattock",
+  "item.survivalplus.titanium_saw": "Titanium Saw",
+  "item.survivalplus.desh_knife": "Desh Knife",
+  "item.survivalplus.desh_mattock": "Desh Mattock",
+  "item.survivalplus.desh_saw": "Desh Saw",
   
   "death.attack.boiled_water": "%1$s was scorched to death",
   "death.attack.boiled_water.player": "%1$s was scorched to death whilst trying to escape %2$s",

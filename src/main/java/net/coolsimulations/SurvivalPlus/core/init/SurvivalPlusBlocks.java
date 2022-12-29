@@ -10,7 +10,9 @@ import net.coolsimulations.SurvivalPlus.core.blocks.BlockCandleSpongeCake;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboard;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCheeseCake;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockGemStaff;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockOnionCrop;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockSconce;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockSpongeCake;
 import net.coolsimulations.SurvivalPlus.core.items.ItemCardboardLantern;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -106,7 +108,8 @@ public class SurvivalPlusBlocks {
 		SPBlocks.cardboard_lantern_magenta = new BlockCardboardLantern(MaterialColor.COLOR_MAGENTA, true);
 		SPBlocks.cardboard_lantern_pink = new BlockCardboardLantern(MaterialColor.COLOR_PINK, true);
 		SPBlocks.cardboard_lantern_brown = new BlockCardboardLantern(MaterialColor.COLOR_BROWN, true);
-
+		SPBlocks.sconce = new BlockSconce();
+		SPBlocks.gem_staff = new BlockGemStaff();
 	}
 
 	public static void register()
@@ -191,6 +194,8 @@ public class SurvivalPlusBlocks {
 		registerBlock(SPBlocks.cardboard_lantern_magenta, "cardboard_lantern_magenta");
 		registerBlock(SPBlocks.cardboard_lantern_pink, "cardboard_lantern_pink");
 		registerBlock(SPBlocks.cardboard_lantern_brown, "cardboard_lantern_brown");
+		registerBlock(SPBlocks.sconce, "sconce");
+		registerBlock(SPBlocks.gem_staff, "gem_staff");
 	}
 
 	public static void registerBlock(Block block, String registryName) {

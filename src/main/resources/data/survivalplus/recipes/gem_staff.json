@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "T",
+    "T"
+  ],
+  "key": {
+    "C": {
+      "tag": "c:copper_ingots"
+    },
+    "T": {
+      "tag": "c:tin_ingots"
+    }
+  },
+  "result": {
+    "item": "survivalplus:gem_staff"
+  }
+}

@@ -140,6 +140,8 @@
   "block.survivalplus.cardboard_lantern_magenta": "\u54c1\u7d05\u7d19\u677f\u71c8\u7c60",
   "block.survivalplus.cardboard_lantern_pink": "\u7c89\u7d05\u7d19\u677f\u71c8\u7c60",
   "block.survivalplus.cardboard_lantern_brown": "\u7c89\u7d05\u7d19\u677f\u71c8\u7c60",
+  "block.survivalplus.sconce": "\u58c1\u71c8",
+  "block.survivalplus.gem_staff": "\u5bf6\u77f3\u6cd5\u6756",
 
   "block.blockus.onion_crate": "\u6d0b\u8525\u677f\u689d\u7bb1",
   
@@ -348,6 +350,13 @@
   "item.survivalplus.titanium_shield.magenta": "\u54c1\u7d05\u8272\u949b\u76fe\u724c",
   "item.survivalplus.titanium_shield.orange": "\u6a59\u8272\u949b\u76fe\u724c",
   "item.survivalplus.titanium_shield.white": "\u767d\u8272\u949b\u76fe\u724c",
+  
+  "item.survivalplus.titanium_knife": "Titanium Knife",
+  "item.survivalplus.titanium_mattock": "Titanium Mattock",
+  "item.survivalplus.titanium_saw": "Titanium Saw",
+  "item.survivalplus.desh_knife": "Desh Knife",
+  "item.survivalplus.desh_mattock": "Desh Mattock",
+  "item.survivalplus.desh_saw": "Desh Saw",
 
   "death.attack.boiled_water": "%1$s \u88ab\u71d2\u6b7b",
   "death.attack.boiled_water.player": "%1$s\u5728\u9003\u96e2%2$s\u88ab\u71d2\u6b7b",

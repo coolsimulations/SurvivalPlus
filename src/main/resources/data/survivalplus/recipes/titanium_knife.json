@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I",
+    "S"
+  ],
+  "key": {
+    "I": {
+      "tag": "c:titanium_ingots"
+    },
+    "S": {
+      "tag": "c:wood_sticks"
+    }
+  },
+  "result": {
+    "item": "survivalplus:titanium_knife"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "notreepunching"
+      ]
+    }
+  ]
+}

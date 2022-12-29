@@ -28,13 +28,8 @@ public class SPItems {
 	/**
 	 * These are the Ore Processing Items referred to in SurvivalPlusItems
 	 */
-	//public static Item titanium_crushed_dust;
 	public static Item titanium_dust;
-	//public static Item purified_titanium_ore;
-	//public static Item titanium_tiny_dust;
-	//public static Item titanium_plate;
 	//public static Item titanium_dense_plate;
-	//public static Item titanium_casing;
 	public static Item tin_dust;
 	
 	/**
@@ -77,6 +72,9 @@ public class SPItems {
 	public static Item titanium_sword;
 	public static Item titanium_shears;
 	public static Item titanium_shield;
+	public static Item titanium_knife;
+	public static Item titanium_saw;
+	public static Item titanium_mattock;
 	
 	/**
 	 * These are the armor Items referred to in SurvivalPlusArmor along with the corresponding ArmorMaterial and Armor ItemStack List

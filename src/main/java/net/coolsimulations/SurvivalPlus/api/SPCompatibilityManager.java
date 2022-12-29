@@ -1,14 +1,11 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import org.apache.commons.lang3.StringUtils;
-
 import net.fabricmc.loader.api.FabricLoader;
 
 public class SPCompatibilityManager {
 
 	private static boolean modGCLoaded;
 	private static boolean modShieldLibLoaded;
-	private static boolean modRefinedMachineryLoaded;
 	private static boolean modBlockusLoaded;
 	private static boolean modBambooTweaksLoaded;
 	private static boolean modBambooEverythingLoaded;
@@ -23,8 +20,6 @@ public class SPCompatibilityManager {
 	private static boolean modRobinsAmethystLoaded;
 	private static boolean modSimpleEmeraldLoaded;
 	private static boolean modBambooExpandedLoaded;
-	private static boolean modMechanixLoaded;
-	private static boolean modPulverizerLoaded;
 	private static boolean modIndustrialRevolutionLoaded;
 	private static boolean modModernIndustrializationLoaded;
 	private static boolean modObsidianEquipmentLoaded;
@@ -32,10 +27,16 @@ public class SPCompatibilityManager {
 	private static boolean modAdabraniumLoaded;
 	private static boolean modAetherRebornLoaded;
 	private static boolean modGobberLoaded;
+	private static boolean modBeaconsForAllLoaded;
+	private static boolean modTorcherinoLoaded;
+	private static boolean modBetterCombatLoaded;
+	private static boolean modLuxoreLoaded;
+	private static boolean modJerLoaded;
+	private static boolean modNoTreePunchingLoaded;
+	private static boolean modTechRebornLoaded;
 
 	public static final String GCCORE_MODID = "galacticraft";
 	public static final String FABRIC_SHIELD_LIB_MODID = "fabricshieldlib";
-	public static final String REFINED_MACHINERY_MODID = "refinedmachinery";
 	public static final String BLOCKUS_MODID = "blockus";
 	public static final String BAMBOO_TWEAKS_MODID = "bambootweaks";
 	public static final String BAMBOO_EVERYTHING_MODID = "bambooeverything";
@@ -50,15 +51,20 @@ public class SPCompatibilityManager {
 	public static final String ROBINS_AMETHYST_MODID = "amethyst_mod";
 	public static final String SIMPLE_EMERALD_MODID = "em";
 	public static final String BAMBOO_EXPANDED_MODID = "bambooexpanded";
-	public static final String MECHANIX_MODID = "mechanix";
-	public static final String PULVERIZER_MODID = "pulverizer_mod";
 	public static final String INDUSTRIAL_REVOLUTION_MODID = "indrev";
 	public static final String MODERN_INDUSTRIALIZATION_MODID = "modern_industrialization";
 	public static final String OBSIDIAN_EQUIPMENT_MODID = "obsidianequipment";
 	public static final String EMERALD_EQUIPMENT_MODID = "emeraldequipment";
 	public static final String ADABRANIUM_MODID = "adabraniummod";
-	public static final String AETHER_REBORN_MODID = "the_aether";
+	public static final String AETHER_REBORN_MODID = "paradise_lost";
 	public static final String GOBBER_MODID = "gobber2";
+	public static final String BEACONS_FOR_ALL_MODID = "beaconsforall";
+	public static final String TORCHERINO_MODID = "torcherino";
+	public static final String BETTER_COMBAT_MODID = "epicfight";
+	public static final String LUXORE_MODID = "luxore";
+	public static final String JER_MODID = "jeresources";
+	public static final String NO_TREE_PUNCHING_MODID = "notreepunching";
+	public static final String TECH_REBORN_MODID = "techreborn";
 	
 	public static final String FABRIC_LOADER_MODID = "fabricloader";
 
@@ -72,11 +78,6 @@ public class SPCompatibilityManager {
 		if (FabricLoader.getInstance().isModLoaded(FABRIC_SHIELD_LIB_MODID))
 		{
 			SPCompatibilityManager.modShieldLibLoaded = true;
-		}
-		
-		if (FabricLoader.getInstance().isModLoaded(REFINED_MACHINERY_MODID))
-		{
-			SPCompatibilityManager.modRefinedMachineryLoaded = true;
 		}
 		
 		if (FabricLoader.getInstance().isModLoaded(BLOCKUS_MODID))
@@ -149,16 +150,6 @@ public class SPCompatibilityManager {
 			SPCompatibilityManager.modBambooExpandedLoaded = true;
 		}
 		
-		if (FabricLoader.getInstance().isModLoaded(MECHANIX_MODID))
-		{
-			SPCompatibilityManager.modMechanixLoaded = true;
-		}
-		
-		if (FabricLoader.getInstance().isModLoaded(PULVERIZER_MODID))
-		{
-			SPCompatibilityManager.modPulverizerLoaded = true;
-		}
-		
 		if (FabricLoader.getInstance().isModLoaded(INDUSTRIAL_REVOLUTION_MODID))
 		{
 			SPCompatibilityManager.modIndustrialRevolutionLoaded = true;
@@ -193,6 +184,41 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modGobberLoaded = true;
 		}
+		
+		if (FabricLoader.getInstance().isModLoaded(BEACONS_FOR_ALL_MODID))
+		{
+			SPCompatibilityManager.modBeaconsForAllLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(TORCHERINO_MODID))
+		{
+			SPCompatibilityManager.modTorcherinoLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(BETTER_COMBAT_MODID))
+		{
+			SPCompatibilityManager.modBetterCombatLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(LUXORE_MODID))
+		{
+			SPCompatibilityManager.modLuxoreLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(JER_MODID))
+		{
+			SPCompatibilityManager.modJerLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(NO_TREE_PUNCHING_MODID))
+		{
+			SPCompatibilityManager.modNoTreePunchingLoaded = true;
+		}
+		
+		if (FabricLoader.getInstance().isModLoaded(TECH_REBORN_MODID))
+		{
+			SPCompatibilityManager.modTechRebornLoaded = true;
+		}
 	}
 
 	public static boolean isGCLoaded()
@@ -203,11 +229,6 @@ public class SPCompatibilityManager {
 	public static boolean isShieldLibLoaded()
 	{
 		return SPCompatibilityManager.modShieldLibLoaded;
-	}
-	
-	public static boolean isRefinedMachineryLoaded()
-	{
-		return SPCompatibilityManager.modRefinedMachineryLoaded;
 	}
 	
 	public static boolean isBlockusLoaded()
@@ -304,16 +325,6 @@ public class SPCompatibilityManager {
 		return SPCompatibilityManager.modBambooExpandedLoaded;
 	}
 	
-	public static boolean isMechanixLoaded()
-	{
-		return SPCompatibilityManager.modMechanixLoaded;
-	}
-	
-	public static boolean isPulverizerLoaded()
-	{
-		return SPCompatibilityManager.modPulverizerLoaded;
-	}
-	
 	public static boolean isIndustrialRevolutionLoaded()
 	{
 		return SPCompatibilityManager.modIndustrialRevolutionLoaded;
@@ -339,6 +350,40 @@ public class SPCompatibilityManager {
 		return SPCompatibilityManager.modGobberLoaded;
 	}
 	
+	public static boolean isBeaconsForAllLoaded()
+	{
+		return SPCompatibilityManager.modBeaconsForAllLoaded;
+	}
+	
+	public static boolean isTorcherinoLoaded()
+	{
+		return SPCompatibilityManager.modTorcherinoLoaded;
+	}
+
+	public static boolean isBetterCombatLoaded()
+	{
+		return SPCompatibilityManager.modBetterCombatLoaded;
+	}
+
+	public static boolean isLuxoreLoaded()
+	{
+		return SPCompatibilityManager.modLuxoreLoaded;
+	}
+	
+	public static boolean isJerLoaded()
+	{
+		return SPCompatibilityManager.modJerLoaded;
+	}
+	
+	public static boolean isNoTreePunchingLoaded()
+	{
+		return SPCompatibilityManager.modNoTreePunchingLoaded;
+	}
+	
+	public static boolean isTechRebornLoaded()
+	{
+		return SPCompatibilityManager.modTechRebornLoaded;
+	}
 	
 	public static boolean isFabricLoader12Loaded()
 	{
