@@ -15,6 +15,8 @@ public class SPTags
 		public static final TagKey<Block> STORAGE_BLOCKS_TIN = tag("storage_blocks/tin");
 		public static final TagKey<Block> STORAGE_BLOCKS_BRONZE = tag("storage_blocks/bronze");
 		public static final TagKey<Block> STORAGE_BLOCKS_TITANIUM = tag("storage_blocks/titanium");
+		public static final TagKey<Block> STORAGE_BLOCKS_RAW_TIN = tag("storage_blocks/raw_tin");
+		public static final TagKey<Block> STORAGE_BLOCKS_RAW_TITANIUM = tag("storage_blocks/raw_titanium");
 		
 		public static final TagKey<Block> ORES_TIN = tag("ores/tin");
 		public static final TagKey<Block> ORES_TITANIUM = tag("ores/titanium");
@@ -46,6 +48,33 @@ public class SPTags
 	public static class Items
 	{
 		//private static final TagRegistry<Item> collection = new TagRegistry<>();
+		public static final TagKey<Item> STORAGE_BLOCKS_TIN = tag("storage_blocks/tin");
+		public static final TagKey<Item> STORAGE_BLOCKS_BRONZE = tag("storage_blocks/bronze");
+		public static final TagKey<Item> STORAGE_BLOCKS_TITANIUM = tag("storage_blocks/titanium");
+		public static final TagKey<Item> STORAGE_BLOCKS_RAW_TIN = tag("storage_blocks/raw_tin");
+		public static final TagKey<Item> STORAGE_BLOCKS_RAW_TITANIUM = tag("storage_blocks/raw_titanium");
+		
+		public static final TagKey<Item> ORES_TIN = tag("ores/tin");
+		public static final TagKey<Item> ORES_TITANIUM = tag("ores/titanium");
+
+		public static final TagKey<Item> CARDBOARD = tag("cardboard");
+		public static final TagKey<Item> CARDBOARD_PLAIN = tag("cardboard/plain");
+		public static final TagKey<Item> CARDBOARD_BLACK = tag("cardboard/blue");
+		public static final TagKey<Item> CARDBOARD_BROWN = tag("cardboard/brown");
+		public static final TagKey<Item> CARDBOARD_CYAN = tag("cardboard/cyan");
+		public static final TagKey<Item> CARDBOARD_GREEN = tag("cardboard/green");
+		public static final TagKey<Item> CARDBOARD_GREY = tag("cardboard/grey");
+		public static final TagKey<Item> CARDBOARD_LIGHT_BLUE = tag("cardboard/light_blue");
+		public static final TagKey<Item> CARDBOARD_LIGHT_GREY = tag("cardboard/light_grey");
+		public static final TagKey<Item> CARDBOARD_LIME = tag("cardboard/lime");
+		public static final TagKey<Item> CARDBOARD_MAGENTA = tag("cardboard/magenta");
+		public static final TagKey<Item> CARDBOARD_ORANGE = tag("cardboard/orange");
+		public static final TagKey<Item> CARDBOARD_PINK = tag("cardboard/pink");
+		public static final TagKey<Item> CARDBOARD_PURPLE = tag("cardboard/purple");
+		public static final TagKey<Item> CARDBOARD_RED = tag("cardboard/red");
+		public static final TagKey<Item> CARDBOARD_WHITE = tag("cardboard/white");
+		public static final TagKey<Item> CARDBOARD_YELLOW = tag("cardboard/yellow");
+		
 		public static final TagKey<Item> INGOTS_TIN = tag("ingots/tin");
 		public static final TagKey<Item> INGOTS_BRONZE = tag("ingots/bronze");
 		public static final TagKey<Item> INGOTS_TITANIUM = tag("ingots/titanium");
@@ -59,20 +88,16 @@ public class SPTags
     	public static final TagKey<Item> SHARDS_SPINEL = tag("gems/spinel");
     	public static final TagKey<Item> PEARLS = tag("gems/pearl");
     	
-    	public static final TagKey<Item> RAW_ORES_TIN = tag("raw_ores/tin");
-    	public static final TagKey<Item> RAW_ORES_TITANIUM = tag("raw_ores/titanium");
+    	public static final TagKey<Item> RAW_ORES_TIN = tag("raw_materials/tin");
+    	public static final TagKey<Item> RAW_ORES_TITANIUM = tag("raw_materials/titanium");
 
 		public static final TagKey<Item> DYES_WHITE = tag("dyes/white");
 
+		public static final TagKey<Item> DUSTS_COPPER = tag("dusts/copper");
 		public static final TagKey<Item> DUSTS_TIN = tag("dusts/tin");
 		public static final TagKey<Item> DUSTS_TITANIUM = tag("dusts/titanium");
 
-		/**public static final TagKey<Item> CRUSHED_TITANIUM = tag("crushed/titanium");
-    	public static final TagKey<Item> CRUSHED_PURIFIED_TITANIUM = tag("crushed/purified/titanium");
-    	public static final TagKey<Item> DUSTS_TINY_TITANIUM = tag("dusts/tiny/titanium");
-    	public static final TagKey<Item> PLATES_TITANIUM = tag("plates/titanium");
-    	public static final TagKey<Item> PLATES_DENSE_TITANIUM = tag("plates/dense/titanium");
-    	public static final TagKey<Item> CASINGS_TITANIUM = tag("casings/titanium");**/
+		public static final TagKey<Item> PLATES_DENSE_TITANIUM = tag("plates/dense/titanium");
 
 		public static final TagKey<Item> CROPS_ONION = tag("crops/onion");
 

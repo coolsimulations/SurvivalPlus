@@ -1,0 +1,18 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_boots_repair",
+  "ingredient": {
+    "item": "survivalplus:eucalyptus_boots"
+  },
+  "repairTime": 255,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    },
+    {
+      "modid": "biomesoplentyextras",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

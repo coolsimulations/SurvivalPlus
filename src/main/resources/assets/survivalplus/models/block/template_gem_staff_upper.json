@@ -1,0 +1,143 @@
+{
+	"credit": "Made with Blockbench by: coolsim!",
+	"parent": "block/block",
+	"render_type": "cutout",
+	"texture_size": [32, 32],
+	"ambientocclusion": false,
+	"textures": {
+        "particle": "survivalplus:blocks/gem_staff",
+        "gem_staff": "survivalplus:blocks/gem_staff"
+    },
+	"elements": [
+	   {
+            "from": [7, 0, 7],
+            "to": [9, 7.5, 9],
+            "rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+            "faces": {
+                "north": {"uv": [4, 4.25, 5, 8], "texture": "#gem_staff"},
+                "east": {"uv": [5, 4.25, 6, 8], "texture": "#gem_staff"},
+                "south": {"uv": [6, 4.25, 7, 8], "texture": "#gem_staff"},
+                "west": {"uv": [7, 4.25, 8, 8], "texture": "#gem_staff"},
+                "up": {"uv": [4, 2, 5, 3], "texture": "#gem_staff"},
+                "down": {"uv": [4, 3, 5, 4], "texture": "#gem_staff"}
+            }
+        },
+        {
+            "from": [6, 6, 6],
+            "to": [10, 8, 10],
+            "rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+            "faces": {
+                "north": {"uv": [0, 12.5, 2, 13.5], "texture": "#gem_staff"},
+                "east": {"uv": [2, 12.5, 4, 13.5], "texture": "#gem_staff"},
+                "south": {"uv": [4, 12.5, 6, 13.5], "texture": "#gem_staff"},
+                "west": {"uv": [6, 12.5, 8, 13.5], "texture": "#gem_staff"},
+                "up": {"uv": [2, 10.5, 4, 12.5], "texture": "#gem_staff"},
+                "down": {"uv": [4, 10.5, 6, 12.5], "texture": "#gem_staff"}
+            }
+        },
+        {
+            "from": [6, 8, 6],
+            "to": [10, 9, 10],
+            "rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+            "faces": {
+                "north": {"uv": [0, 15.5, 2, 16], "texture": "#gem_staff"},
+                "east": {"uv": [2, 15.5, 4, 16], "texture": "#gem_staff"},
+                "south": {"uv": [4, 15.5, 6, 16], "texture": "#gem_staff"},
+                "west": {"uv": [6, 15.5, 8, 16], "texture": "#gem_staff"},
+                "up": {"uv": [2, 13.5, 4, 15.5], "texture": "#gem_staff"},
+                "down": {"uv": [4, 13.5, 6, 15.5], "texture": "#gem_staff"}
+            }
+        },
+		{
+			"from": [6.5, 8, 6.5],
+			"to": [9.5, 10, 9.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 5, 3, 7], "texture": "#gem"},
+				"east": {"uv": [3, 5, 6, 7], "texture": "#gem"},
+				"south": {"uv": [6, 5, 9, 7], "texture": "#gem"},
+				"west": {"uv": [9, 5, 12, 7], "texture": "#gem"},
+				"up": {"uv": [0, 2, 3, 5], "texture": "#gem"},
+				"down": {"uv": [3, 2, 6, 5], "texture": "#gem"}
+			}
+		},
+		{
+			"from": [7.25, 10, 7.25],
+			"to": [8.75, 12.5, 8.75],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [8.25, 2, 9.75, 4.5], "texture": "#gem"},
+				"east": {"uv": [10.25, 2, 11.75, 4.5], "texture": "#gem"},
+				"south": {"uv": [12.25, 2, 13.75, 4.5], "texture": "#gem"},
+				"west": {"uv": [14.25, 2, 15.75, 4.5], "texture": "#gem"},
+				"up": {"uv": [10.25, 0.25, 11.75, 1.75], "texture": "#gem"},
+				"down": {"uv": [12.25, 0.25, 13.75, 1.75], "texture": "#gem"}
+			}
+		},
+		{
+			"from": [7.625, 12.5, 7.875],
+			"to": [8.125, 14, 8.375],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [12.25, 6.25, 12.75, 7.75], "texture": "#gem"},
+				"east": {"uv": [13.25, 6.25, 13.75, 7.75], "texture": "#gem"},
+				"south": {"uv": [14.25, 6.25, 14.75, 7.75], "texture": "#gem"},
+				"west": {"uv": [15.25, 6.25, 15.75, 7.75], "texture": "#gem"},
+				"up": {"uv": [13.25, 5.25, 13.75, 5.75], "texture": "#gem"},
+				"down": {"uv": [14.25, 5.25, 14.75, 5.75], "texture": "#gem"}
+			}
+		},
+		{
+			"from": [7, 10, 8.5],
+			"to": [7.5, 11.5, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [12.25, 9.25, 12.75, 10.75], "texture": "#gem"},
+				"east": {"uv": [13.25, 9.25, 13.75, 10.75], "texture": "#gem"},
+				"south": {"uv": [14.25, 9.25, 14.75, 10.75], "texture": "#gem"},
+				"west": {"uv": [15.25, 9.25, 15.75, 10.75], "texture": "#gem"},
+				"up": {"uv": [13.25, 8.25, 13.75, 8.75], "texture": "#gem"},
+				"down": {"uv": [14.25, 8.25, 14.75, 8.75], "texture": "#gem"}
+			}
+		},
+		{
+			"from": [8.5, 10.5, 7.875],
+			"to": [9, 12, 8.375],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [8.25, 9.25, 8.75, 10.75], "texture": "#gem"},
+				"east": {"uv": [9.25, 9.25, 9.75, 10.75], "texture": "#gem"},
+				"south": {"uv": [10.25, 9.25, 10.75, 10.75], "texture": "#gem"},
+				"west": {"uv": [11.25, 9.25, 11.75, 10.75], "texture": "#gem"},
+				"up": {"uv": [9.25, 8.25, 9.75, 8.75], "texture": "#gem"},
+				"down": {"uv": [10.25, 8.25, 10.75, 8.75], "texture": "#gem"}
+			}
+		},
+		{
+			"from": [7.675, 10, 8.425],
+			"to": [8.925, 10.75, 8.925],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [2.375, 10.125, 3.625, 10.875], "texture": "#gem"},
+				"east": {"uv": [4.25, 10.125, 4.75, 10.875], "texture": "#gem"},
+				"south": {"uv": [5.375, 10.125, 6.625, 10.875], "texture": "#gem"},
+				"west": {"uv": [7.25, 10.125, 7.75, 10.875], "texture": "#gem"},
+				"up": {"uv": [2.375, 9.125, 3.625, 9.625], "texture": "#gem"},
+				"down": {"uv": [5.375, 9.125, 6.625, 9.625], "texture": "#gem"}
+			}
+		},
+		{
+			"from": [7.125, 10, 7.125],
+			"to": [8.375, 10.5, 7.625],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [10.375, 12.25, 11.625, 12.75], "texture": "#gem"},
+				"east": {"uv": [12.25, 12.25, 12.75, 12.75], "texture": "#gem"},
+				"south": {"uv": [13.375, 12.25, 14.625, 12.75], "texture": "#gem"},
+				"west": {"uv": [15.25, 12.25, 15.75, 12.75], "texture": "#gem"},
+				"up": {"uv": [10.375, 11.25, 11.625, 11.75], "texture": "#gem"},
+				"down": {"uv": [13.375, 11.25, 14.625, 11.75], "texture": "#gem"}
+			}
+		}
+	]
+}

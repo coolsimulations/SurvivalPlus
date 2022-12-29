@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_chestplate",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "tag": "aether:golden_oak_logs"
+    }
+  },
+  "result": {
+    "item": "survivalplus:golden_oak_chestplate"
+  },
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

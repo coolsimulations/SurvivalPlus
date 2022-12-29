@@ -67,7 +67,7 @@ public class SPArmorMaterial implements ArmorMaterial {
     });
 	
 	public static final ArmorMaterial rubberArmorMaterial = new SPArmorMaterial("rubber", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-    	return Ingredient.of(ItemTags.create(new ResourceLocation("minecraft:", "rubber_logs")));
+    	return Ingredient.of(ItemTags.create(new ResourceLocation("ic2:", "rubber_logs")));
     });
 	
 	public static final ArmorMaterial cherryArmorMaterial = new SPArmorMaterial("cherry", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
@@ -255,6 +255,14 @@ public class SPArmorMaterial implements ArmorMaterial {
 	
 	public static final ArmorMaterial bambooArmorMaterial = new SPArmorMaterial("bamboo", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
     	return Ingredient.of(Blocks.BAMBOO);
+    });
+	
+	public static final ArmorMaterial skyrootArmorMaterial = new SPArmorMaterial("skyroot", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.of(Tags.Items.RODS_WOODEN);
+    });
+	
+	public static final ArmorMaterial goldenOakArmorMaterial = new SPArmorMaterial("golden_oak", 20, new int[] {1, 2, 2, 1}, 20, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, () -> {
+    	return Ingredient.of(Tags.Items.RODS_WOODEN);
     });
 	
 	private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};

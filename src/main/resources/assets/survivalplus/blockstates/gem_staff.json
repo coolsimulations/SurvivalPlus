@@ -1,0 +1,18 @@
+{
+    "variants": {
+        "gem=empty,half=lower": { "model": "survivalplus:block/gem_staff_lower" },
+        "gem=empty,half=upper": { "model": "survivalplus:block/gem_staff_upper" },
+        "gem=amethyst,half=lower": { "model": "survivalplus:block/gem_staff_lower" },
+        "gem=amethyst,half=upper": { "model": "survivalplus:block/amethyst_gem_staff_upper" },
+        "gem=ruby,half=lower": { "model": "survivalplus:block/gem_staff_lower" },
+        "gem=ruby,half=upper": { "model": "survivalplus:block/ruby_gem_staff_upper" },
+        "gem=pearl,half=lower": { "model": "survivalplus:block/gem_staff_lower" },
+        "gem=pearl,half=upper": { "model": "survivalplus:block/pearl_gem_staff_upper" },
+        "gem=topaz,half=lower": { "model": "survivalplus:block/gem_staff_lower" },
+        "gem=topaz,half=upper": { "model": "survivalplus:block/topaz_gem_staff_upper" },
+        "gem=sapphire,half=lower": { "model": "survivalplus:block/gem_staff_lower" },
+        "gem=sapphire,half=upper": { "model": "survivalplus:block/sapphire_gem_staff_upper" },
+        "gem=spinel,half=lower": { "model": "survivalplus:block/gem_staff_lower" },
+        "gem=spinel,half=upper": { "model": "survivalplus:block/spinel_gem_staff_upper" }
+    }
+}

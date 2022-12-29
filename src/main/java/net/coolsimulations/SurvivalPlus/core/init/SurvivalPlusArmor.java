@@ -15,7 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 @SuppressWarnings({"unused"})
 public class SurvivalPlusArmor {
-	
+
 	public static final DeferredRegister<Item> ITEMS_ARMOR = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
 	public static final DeferredRegister<Item> ITEMS_RUBBER_ARMOR = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
 	public static final DeferredRegister<Item> ITEMS_BAMBOO_ARMOR = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
@@ -24,67 +24,67 @@ public class SurvivalPlusArmor {
 	private static final RegistryObject<Item> bronze_chestplate = ITEMS_ARMOR.register("bronze_chestplate", () -> new SPItemArmor(SPArmorMaterial.bronzeArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> bronze_leggings = ITEMS_ARMOR.register("bronze_leggings", () -> new SPItemArmor(SPArmorMaterial.bronzeArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> bronze_boots = ITEMS_ARMOR.register("bronze_boots", () -> new SPItemArmor(SPArmorMaterial.bronzeArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> stone_helmet = ITEMS_ARMOR.register("stone_helmet", () -> new SPItemArmor(SPArmorMaterial.stoneArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> stone_chestplate = ITEMS_ARMOR.register("stone_chestplate", () -> new SPItemArmor(SPArmorMaterial.stoneArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> stone_leggings = ITEMS_ARMOR.register("stone_leggings", () -> new SPItemArmor(SPArmorMaterial.stoneArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> stone_boots = ITEMS_ARMOR.register("stone_boots", () -> new SPItemArmor(SPArmorMaterial.stoneArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> titanium_helmet = ITEMS_ARMOR.register("titanium_helmet", () -> new SPItemArmor(SPArmorMaterial.titaniumArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> titanium_chestplate = ITEMS_ARMOR.register("titanium_chestplate", () -> new SPItemArmor(SPArmorMaterial.titaniumArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> titanium_leggings = ITEMS_ARMOR.register("titanium_leggings", () -> new SPItemArmor(SPArmorMaterial.titaniumArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> titanium_boots = ITEMS_ARMOR.register("titanium_boots", () -> new SPItemArmor(SPArmorMaterial.titaniumArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> oak_helmet = ITEMS_ARMOR.register("oak_helmet", () -> new SPItemArmor(SPArmorMaterial.oakArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> oak_chestplate = ITEMS_ARMOR.register("oak_chestplate", () -> new SPItemArmor(SPArmorMaterial.oakArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> oak_leggings = ITEMS_ARMOR.register("oak_leggings", () -> new SPItemArmor(SPArmorMaterial.oakArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> oak_boots = ITEMS_ARMOR.register("oak_boots", () -> new SPItemArmor(SPArmorMaterial.oakArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> spruce_helmet = ITEMS_ARMOR.register("spruce_helmet", () -> new SPItemArmor(SPArmorMaterial.spruceArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> spruce_chestplate = ITEMS_ARMOR.register("spruce_chestplate", () -> new SPItemArmor(SPArmorMaterial.spruceArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> spruce_leggings = ITEMS_ARMOR.register("spruce_leggings", () -> new SPItemArmor(SPArmorMaterial.spruceArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> spruce_boots = ITEMS_ARMOR.register("spruce_boots", () -> new SPItemArmor(SPArmorMaterial.spruceArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> birch_helmet = ITEMS_ARMOR.register("birch_helmet", () -> new SPItemArmor(SPArmorMaterial.birchArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> birch_chestplate = ITEMS_ARMOR.register("birch_chestplate", () -> new SPItemArmor(SPArmorMaterial.birchArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> birch_leggings = ITEMS_ARMOR.register("birch_leggings", () -> new SPItemArmor(SPArmorMaterial.birchArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> birch_boots = ITEMS_ARMOR.register("birch_boots", () -> new SPItemArmor(SPArmorMaterial.birchArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> jungle_helmet = ITEMS_ARMOR.register("jungle_helmet", () -> new SPItemArmor(SPArmorMaterial.jungleArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> jungle_chestplate = ITEMS_ARMOR.register("jungle_chestplate", () -> new SPItemArmor(SPArmorMaterial.jungleArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> jungle_leggings = ITEMS_ARMOR.register("jungle_leggings", () -> new SPItemArmor(SPArmorMaterial.jungleArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> jungle_boots = ITEMS_ARMOR.register("jungle_boots", () -> new SPItemArmor(SPArmorMaterial.jungleArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> acacia_helmet = ITEMS_ARMOR.register("acacia_helmet", () -> new SPItemArmor(SPArmorMaterial.acaciaArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> acacia_chestplate = ITEMS_ARMOR.register("acacia_chestplate", () -> new SPItemArmor(SPArmorMaterial.acaciaArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> acacia_leggings = ITEMS_ARMOR.register("acacia_leggings", () -> new SPItemArmor(SPArmorMaterial.acaciaArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> acacia_boots = ITEMS_ARMOR.register("acacia_boots", () -> new SPItemArmor(SPArmorMaterial.acaciaArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> dark_oak_helmet = ITEMS_ARMOR.register("dark_oak_helmet", () -> new SPItemArmor(SPArmorMaterial.darkOakArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> dark_oak_chestplate = ITEMS_ARMOR.register("dark_oak_chestplate", () -> new SPItemArmor(SPArmorMaterial.darkOakArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> dark_oak_leggings = ITEMS_ARMOR.register("dark_oak_leggings", () -> new SPItemArmor(SPArmorMaterial.darkOakArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> dark_oak_boots = ITEMS_ARMOR.register("dark_oak_boots", () -> new SPItemArmor(SPArmorMaterial.darkOakArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> crimson_helmet = ITEMS_ARMOR.register("crimson_helmet", () -> new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> crimson_chestplate = ITEMS_ARMOR.register("crimson_chestplate", () -> new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> crimson_leggings = ITEMS_ARMOR.register("crimson_leggings", () -> new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> crimson_boots = ITEMS_ARMOR.register("crimson_boots", () -> new SPItemArmor(SPArmorMaterial.crimsonArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> warped_helmet = ITEMS_ARMOR.register("warped_helmet", () -> new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> warped_chestplate = ITEMS_ARMOR.register("warped_chestplate", () -> new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> warped_leggings = ITEMS_ARMOR.register("warped_leggings", () -> new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> warped_boots = ITEMS_ARMOR.register("warped_boots", () -> new SPItemArmor(SPArmorMaterial.warpedArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> mangrove_helmet = ITEMS_ARMOR.register("mangrove_helmet", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> mangrove_chestplate = ITEMS_ARMOR.register("mangrove_chestplate", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> mangrove_leggings = ITEMS_ARMOR.register("mangrove_leggings", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> mangrove_boots = ITEMS_ARMOR.register("mangrove_boots", () -> new SPItemArmor(SPArmorMaterial.mangroveArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> rubber_helmet = ITEMS_RUBBER_ARMOR.register("rubber_helmet", () -> new SPItemArmor(SPArmorMaterial.rubberArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> rubber_chestplate = ITEMS_RUBBER_ARMOR.register("rubber_chestplate", () -> new SPItemArmor(SPArmorMaterial.rubberArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> rubber_leggings = ITEMS_RUBBER_ARMOR.register("rubber_leggings", () -> new SPItemArmor(SPArmorMaterial.rubberArmorMaterial, EquipmentSlot.LEGS));
 	private static final RegistryObject<Item> rubber_boots = ITEMS_RUBBER_ARMOR.register("rubber_boots", () -> new SPItemArmor(SPArmorMaterial.rubberArmorMaterial, EquipmentSlot.FEET));
-	
+
 	private static final RegistryObject<Item> bamboo_helmet = ITEMS_BAMBOO_ARMOR.register("bamboo_helmet", () -> new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlot.HEAD));
 	private static final RegistryObject<Item> bamboo_chestplate = ITEMS_BAMBOO_ARMOR.register("bamboo_chestplate", () -> new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlot.CHEST));
 	private static final RegistryObject<Item> bamboo_leggings = ITEMS_BAMBOO_ARMOR.register("bamboo_leggings", () -> new SPItemArmor(SPArmorMaterial.bambooArmorMaterial, EquipmentSlot.LEGS));
@@ -157,7 +157,7 @@ public class SurvivalPlusArmor {
 		SPItems.warped.add(1, new ItemStack(warped_chestplate.get()));
 		SPItems.warped.add(2, new ItemStack(warped_leggings.get()));
 		SPItems.warped.add(3, new ItemStack(warped_boots.get()));
-		
+
 		SPItems.mangrove = NonNullList.create();
 		SPItems.mangrove.add(0, new ItemStack(mangrove_helmet.get()));
 		SPItems.mangrove.add(1, new ItemStack(mangrove_chestplate.get()));
@@ -181,18 +181,6 @@ public class SurvivalPlusArmor {
 			SPItems.bamboo.add(1, new ItemStack(bamboo_chestplate.get()));
 			SPItems.bamboo.add(2, new ItemStack(bamboo_leggings.get()));
 			SPItems.bamboo.add(3, new ItemStack(bamboo_boots.get()));
-		}
-
-		if(SPCompatibilityManager.isBopLoaded()){
-			BOPArmor.init();
-		}
-
-		if(SPCompatibilityManager.isForestryLoaded()){
-			ForestryArmor.init();
-		}
-
-		if(SPCompatibilityManager.isTraverseLoaded()) {
-			TraverseArmor.init();
 		}
 
 	}

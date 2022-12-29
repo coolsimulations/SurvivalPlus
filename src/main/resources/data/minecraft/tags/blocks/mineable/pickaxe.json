@@ -37,6 +37,8 @@
     "survivalplus:medium_spinel_bud",
     "survivalplus:large_spinel_bud",
     "#forge:storage_blocks/spinel",
-    "survivalplus:budding_spinel"
+    "survivalplus:budding_spinel",
+    "survivalplus:sconce",
+    "survivalplus:gem_staff"
   ]
 }

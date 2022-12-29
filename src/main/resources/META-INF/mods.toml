@@ -1,12 +1,15 @@
 modLoader="javafml"
-loaderVersion="[42,]"
+loaderVersion="[43,]"
 issueTrackerURL="http://github.com/coolsimulations/survivalplus/issues/"
 logoFile="logo.png"
 license="All rights reserved"
 
+[modproperties.survivalplus]
+    catalogueImageIcon="icon.png"
+
 [[mods]]
     modId="survivalplus"
-    version="0.1.6h"
+    version="0.1.7"
     updateJSONURL="https://coolsimulations.net/mcmods/survivalplus/versionchecker.json"
     displayURL="https://curseforge.com/minecraft/mc-mods/survivalplus"
     displayName="SurvivalPlus"
@@ -18,19 +21,19 @@ license="All rights reserved"
 [[dependencies.survivalplus]]
     modId="forge"
     mandatory=true
-    versionRange="[42.0.0,]"
+    versionRange="[43.2.0,]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.1,]"
+    versionRange="[1.19.2,]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="biomesoplenty"
     mandatory=false
-    versionRange="[1.19.1-10.0.0.294,]"
+    versionRange="[1.19.2-10.0.0.294,]"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.survivalplus]]
@@ -60,8 +63,8 @@ license="All rights reserved"
 [[dependencies.survivalplus]]
     modId="jeresources"
     mandatory=false
-    versionRange="[0.10.1,]"
-    ordering="BEFORE"
+    versionRange="[0.14.1.160,]"
+    ordering="AFTER"
     side="BOTH"
 [[dependencies.survivalplus]]
     modId="silents_mechanisms"
@@ -109,6 +112,12 @@ license="All rights reserved"
     modId="plaingrinder"
     mandatory=false
     versionRange="[1.2.2,]"
+    ordering="AFTER"
+    side="BOTH"
+[[dependencies.survivalplus]]
+    modId="ic2"
+    mandatory=false
+    versionRange="[1.19.2-2.0.2,]"
     ordering="AFTER"
     side="BOTH"
         

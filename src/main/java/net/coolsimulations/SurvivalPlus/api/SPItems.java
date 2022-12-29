@@ -29,15 +29,15 @@ public class SPItems {
 	public static final RegistryObject<Item> spinel_shard = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "spinel_shard"), ForgeRegistries.ITEMS);
 	
 	/**
+	 * These are the special block items referred to in SurvivalPlusItems
+	 */
+	public static final RegistryObject<Item> gem_staff = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "gem_staff"), ForgeRegistries.ITEMS);
+	
+	/**
 	 * These are the IndustrialCraft 2, SimpleGrinders and Silent Mechanisms Items referred to in SurvivalPlusItems
 	 */
-	public static final RegistryObject<Item> crushed_titanium_ore = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "crushed_titanium_ore"), ForgeRegistries.ITEMS);
 	public static final RegistryObject<Item> titanium_dust = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "titanium_dust"), ForgeRegistries.ITEMS);
-	public static final RegistryObject<Item> purified_titanium_ore = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "purified_titanium_ore"), ForgeRegistries.ITEMS);
-	public static final RegistryObject<Item> tiny_titanium_pile = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "tiny_titanium_pile"), ForgeRegistries.ITEMS);
-	public static final RegistryObject<Item> titanium_plate = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "titanium_plate"), ForgeRegistries.ITEMS);
 	public static final RegistryObject<Item> titanium_dense_plate = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "titanium_dense_plate"), ForgeRegistries.ITEMS);
-	public static final RegistryObject<Item> titanium_casing = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "titanium_casing"), ForgeRegistries.ITEMS);
 	public static final RegistryObject<Item> tin_dust = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "tin_dust"), ForgeRegistries.ITEMS);
 	public static final RegistryObject<Item> titanium_chunks = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "titanium_chunks"), ForgeRegistries.ITEMS);
 	
@@ -472,5 +472,21 @@ public class SPItems {
 	public static final RegistryObject<Item> zebrawood_boots = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "zebrawood_boots"), ForgeRegistries.ITEMS);
 	//public static final RegistryObject<Item>Armor.ArmorMaterial zebrawoodArmorMaterial;
 	public static NonNullList<ItemStack> zebrawood;
+	
+	/**
+	 * These are the Aether armor Items referred to in AetherArmor along with the corresponding ArmorMaterial and Armor ItemStack List
+	 */
+	public static final RegistryObject<Item> skyroot_helmet = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "skyroot_helmet"), ForgeRegistries.ITEMS);
+	public static final RegistryObject<Item> skyroot_chestplate = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "skyroot_chestplate"), ForgeRegistries.ITEMS);
+	public static final RegistryObject<Item> skyroot_leggings = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "skyroot_leggings"), ForgeRegistries.ITEMS);
+	public static final RegistryObject<Item> skyroot_boots = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "skyroot_boots"), ForgeRegistries.ITEMS);
+	//public static ItemArmor.ArmorMaterial skyrootArmorMaterial;
+	public static NonNullList<ItemStack> skyroot;
+	public static final RegistryObject<Item> golden_oak_helmet = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "golden_oak_helmet"), ForgeRegistries.ITEMS);
+	public static final RegistryObject<Item> golden_oak_chestplate = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "golden_oak_chestplate"), ForgeRegistries.ITEMS);
+	public static final RegistryObject<Item> golden_oak_leggings = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "golden_oak_leggings"), ForgeRegistries.ITEMS);
+	public static final RegistryObject<Item> golden_oak_boots = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "golden_oak_boots"), ForgeRegistries.ITEMS);
+	//public static ItemArmor.ArmorMaterial goldenOakArmorMaterial;
+	public static NonNullList<ItemStack> golden_oak;
 	
 }

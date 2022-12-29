@@ -1,0 +1,6 @@
+{
+  "parent": "survivalplus:block/template_gem_staff_upper",
+  "textures": {
+    "gem": "minecraft:block/amethyst_block"
+  }
+}

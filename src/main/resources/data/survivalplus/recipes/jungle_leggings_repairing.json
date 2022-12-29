@@ -1,0 +1,14 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_leggings_repair",
+  "ingredient": {
+    "item": "survivalplus:jungle_leggings"
+  },
+  "repairTime": 255,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

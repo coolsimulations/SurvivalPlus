@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cheese",
+  "pattern": [
+    "MSM"
+  ],
+  "key": {
+    "S": {
+      "item": "aether:skyroot_milk_bucket"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    }
+  },
+  "result": {
+    "item": "survivalplus:cheese",
+    "count": 6
+  },
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

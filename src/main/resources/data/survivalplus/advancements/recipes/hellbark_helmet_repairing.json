@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_hellbark_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "survivalplus:hellbark_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "survivalplus:hellbark_helmet_repairing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_hellbark_helmet",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "survivalplus:hellbark_helmet_repairing"
+    ]
+  }
+}

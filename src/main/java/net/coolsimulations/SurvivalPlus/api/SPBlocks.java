@@ -90,6 +90,8 @@ public class SPBlocks {
 	public static final RegistryObject<Block> cardboard_lantern_magenta = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "cardboard_lantern_magenta"), ForgeRegistries.BLOCKS);
 	public static final RegistryObject<Block> cardboard_lantern_pink = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "cardboard_lantern_pink"), ForgeRegistries.BLOCKS);
 	public static final RegistryObject<Block> cardboard_lantern_brown = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "cardboard_lantern_brown"), ForgeRegistries.BLOCKS);
+	public static final RegistryObject<Block> sconce = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "sconce"), ForgeRegistries.BLOCKS);
+	public static final RegistryObject<Block> gem_staff = RegistryObject.create(new ResourceLocation(SPReference.MOD_ID, "gem_staff"), ForgeRegistries.BLOCKS);
 	
 	/**
 	 * These are the Blocks referred to in SurvivalPlusGeodes

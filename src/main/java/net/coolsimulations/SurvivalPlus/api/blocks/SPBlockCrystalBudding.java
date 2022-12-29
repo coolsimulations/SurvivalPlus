@@ -14,8 +14,6 @@ import net.minecraft.world.level.block.BuddingAmethystBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class SPBlockCrystalBudding extends BuddingAmethystBlock {
 	
 	private static final Direction[] DIRECTIONS = Direction.values();

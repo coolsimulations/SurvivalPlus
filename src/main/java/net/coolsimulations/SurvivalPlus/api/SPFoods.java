@@ -17,7 +17,7 @@ public class SPFoods {
 	public static FoodProperties mutton_pie = (new Builder()).nutrition(8).saturationMod(0.75F).meat().build();
 	public static FoodProperties rabbit_pie = (new Builder()).nutrition(8).saturationMod(0.75F).meat().build();
 	public static FoodProperties vegetable_pie = (new Builder()).nutrition(7).saturationMod(1.0F).build();
-	public static FoodProperties raw_onion = (new Builder()).nutrition(2).saturationMod(1.0F).effect(new MobEffectInstance(MobEffects.CONFUSION, 300), 1.0F).build();
+	public static FoodProperties raw_onion = (new Builder()).nutrition(2).saturationMod(1.0F).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 300), 1.0F).build();
 	public static FoodProperties onion_soup = (new Builder()).nutrition(10).saturationMod(0.6F).build();
 	public static FoodProperties fried_egg = (new Builder()).nutrition(2).saturationMod(1.0F).fast().build();
 	public static FoodProperties roast_carrot = (new Builder()).nutrition(5).saturationMod(0.5F).build();

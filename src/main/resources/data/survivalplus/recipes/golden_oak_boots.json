@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_boots",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "tag": "aether:golden_oak_logs"
+    }
+  },
+  "result": {
+    "item": "survivalplus:golden_oak_boots"
+  },
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

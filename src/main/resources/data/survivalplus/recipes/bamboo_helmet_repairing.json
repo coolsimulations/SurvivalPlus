@@ -1,0 +1,18 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_helmet_repair",
+  "ingredient": {
+    "item": "survivalplus:bamboo_helmet"
+  },
+  "repairTime": 255,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    },
+    {
+      "item": "survivalplus:bamboo_helmet",
+      "type": "forge:item_exists"
+    }
+  ]
+}

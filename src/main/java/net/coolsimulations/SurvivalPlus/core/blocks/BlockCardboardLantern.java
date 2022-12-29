@@ -39,6 +39,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -78,7 +79,13 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 		if(!state.getValue(WATERLOGGED))
 			return 14;
 		else
-			return state.getLightEmission();
+			return state.getLightBlock(world, pos);
+	}
+
+	@Override
+	public PushReaction getPistonPushReaction(BlockState state)
+	{
+		return PushReaction.DESTROY;
 	}
 
 	@Override
@@ -112,6 +119,17 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 
 		return CARDBOARD_PAD_AABB;
 	}
+	
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
+	{
+		if(!state.getValue(FLOATING) && state.getValue(FACING) != Direction.UP && state.getValue(FACING) != Direction.DOWN)
+			return Shapes.empty();
+		else {
+			return super.getCollisionShape(state, worldIn, pos, context);
+		}
+
+     }
 
 	@OnlyIn(Dist.CLIENT)
 	@Override

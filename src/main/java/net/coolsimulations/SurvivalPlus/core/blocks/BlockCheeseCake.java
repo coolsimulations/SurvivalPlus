@@ -32,8 +32,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class BlockCheeseCake extends Block {
 	public static final int MAX_BITES = 6;
 	public static final IntegerProperty BITES;

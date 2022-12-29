@@ -1,0 +1,18 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_mattock_repair",
+  "ingredient": {
+    "item": "survivalplus:titanium_mattock"
+  },
+  "repairTime": 2750,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    },
+    {
+      "modid": "notreepunching",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

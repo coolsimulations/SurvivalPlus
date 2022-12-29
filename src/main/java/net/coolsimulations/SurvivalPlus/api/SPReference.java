@@ -8,11 +8,11 @@ import java.util.List;
 public class SPReference {
 	public static final String MOD_ID = "survivalplus";
 	public static final String MOD_NAME = "SurvivalPlus";
-	public static final String VERSION = "0.1.6h";
-	public static final String ACCEPTED_VERSIONS = "[1.19.1]";
+	public static final String VERSION = "0.1.7";
+	public static final String ACCEPTED_VERSIONS = "[1.19.2]";
 	public static final String CLIENT_PROXY_CLASS = "net.coolsimulations.SurvivalPlus.core.proxy.ClientProxy";
 	public static final String SERVER_PROXY_CLASS = "net.coolsimulations.SurvivalPlus.core.proxy.ServerProxy";
-	public static final String DEPENDENCIES_FORGE = "required-after:forge@[42.0.0,);";
+	public static final String DEPENDENCIES_FORGE = "required-after:forge@[43.2.0,);";
 
 	public static List<String> MOD_ADDON_NAMES = new ArrayList<String>() {{add("sp.name");}}; 
 

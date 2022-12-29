@@ -1,6 +1,5 @@
 package net.coolsimulations.SurvivalPlus.core.init;
 
-import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockMetal;
@@ -10,12 +9,14 @@ import net.coolsimulations.SurvivalPlus.core.blocks.BlockCandleSpongeCake;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboard;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCheeseCake;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockGemStaff;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockOnionCrop;
+import net.coolsimulations.SurvivalPlus.core.blocks.BlockSconce;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockSpongeCake;
 import net.coolsimulations.SurvivalPlus.core.items.ItemCardboardLantern;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.AmethystBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MaterialColor;
@@ -109,6 +110,8 @@ public class SurvivalPlusBlocks {
 	private static final RegistryObject<Block> cardboard_lantern_magenta = BLOCKS.register("cardboard_lantern_magenta", () -> new BlockCardboardLantern(MaterialColor.COLOR_MAGENTA, true));
 	private static final RegistryObject<Block> cardboard_lantern_pink = BLOCKS.register("cardboard_lantern_pink", () -> new BlockCardboardLantern(MaterialColor.COLOR_PINK, true));
 	private static final RegistryObject<Block> cardboard_lantern_brown = BLOCKS.register("cardboard_lantern_brown", () -> new BlockCardboardLantern(MaterialColor.COLOR_BROWN, true));
+	private static final RegistryObject<Block> sconce = BLOCKS.register("sconce", () -> new BlockSconce());
+	private static final RegistryObject<Block> gem_staff = BLOCKS.register("gem_staff", () -> new BlockGemStaff());
 	
 	private static final RegistryObject<Item> raw_tin_block_item = BLOCK_ITEMS.register("raw_tin_block", () -> new BlockItem(raw_tin_block.get(), new Item.Properties().tab(SPTabs.tabBlocks)));
 	private static final RegistryObject<Item> tin_block_item = BLOCK_ITEMS.register("tin_block", () -> new BlockItem(tin_block.get(), new Item.Properties().tab(SPTabs.tabBlocks)));
@@ -156,5 +159,7 @@ public class SurvivalPlusBlocks {
 	private static final RegistryObject<Item> cardboard_lantern_magenta_item = BLOCK_ITEMS.register("cardboard_lantern_magenta", () -> new ItemCardboardLantern(cardboard_lantern_magenta.get(), new Item.Properties().tab(SPTabs.tabBlocks)));
 	private static final RegistryObject<Item> cardboard_lantern_pink_item = BLOCK_ITEMS.register("cardboard_lantern_pink", () -> new ItemCardboardLantern(cardboard_lantern_pink.get(), new Item.Properties().tab(SPTabs.tabBlocks)));
 	private static final RegistryObject<Item> cardboard_lantern_brown_item = BLOCK_ITEMS.register("cardboard_lantern_brown", () -> new ItemCardboardLantern(cardboard_lantern_brown.get(), new Item.Properties().tab(SPTabs.tabBlocks)));
+	private static final RegistryObject<Item> sconce_item = BLOCK_ITEMS.register("sconce", () -> new BlockItem(sconce.get(), new Item.Properties().tab(SPTabs.tabBlocks)));
+	private static final RegistryObject<Item> gem_staff_item = BLOCK_ITEMS.register("gem_staff", () -> new DoubleHighBlockItem(gem_staff.get(), new Item.Properties().tab(SPTabs.tabBlocks)));
 
 }

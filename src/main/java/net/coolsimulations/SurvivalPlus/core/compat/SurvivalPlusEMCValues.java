@@ -34,7 +34,7 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
 		return "Adds EMC Values to SurvivalPlus Items.";
 	}
 	
-	public static void init(){
+	public static void setup(){
 		
 		//SurvivalPlus Tags haven't been working in 1.13 or 1.14, however they do work in SurvivalPlus Lightsabers so I'm assuming that it order of loading related
 		//So these lines below do not work, but leaving them there in case other mods tags work
@@ -63,10 +63,8 @@ public class SurvivalPlusEMCValues implements IEMCMapper<NormalizedSimpleStack, 
     		
 		if (SPCompatibilityManager.isIc2Loaded()) {
 			
-			registerCustomEMC(NSSItem.createItem(SPItems.crushed_titanium_ore.get()), 1024);
-			registerCustomEMC(NSSItem.createItem(SPItems.purified_titanium_ore.get()), 1024);
 			registerCustomEMC(NSSItem.createItem(SPItems.titanium_dust.get()), 1024);
-			registerCustomEMC(NSSItem.createItem(SPItems.tiny_titanium_pile.get()), (long) 113.7);
+			registerCustomEMC(NSSItem.createItem(SPItems.titanium_dense_plate.get()), 8192);
 		}
     		
     		/**if(SPConfig.enableSponge) {

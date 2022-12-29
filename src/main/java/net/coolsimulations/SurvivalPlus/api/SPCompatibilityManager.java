@@ -23,7 +23,6 @@ public class SPCompatibilityManager {
 	private static boolean modForestryLoaded;
 	private static boolean modRailcraftLoaded;
 	private static boolean modLumberjackLoaded;
-	private static boolean modHammerTimeLoaded;
 	private static boolean modJerLoaded;
 	private static boolean modSwordBlockingLoaded;
 	private static boolean modSilentMechanismsLoaded;
@@ -43,6 +42,13 @@ public class SPCompatibilityManager {
 	private static boolean modEmeraldEquipmentLoaded;
 	private static boolean modPlainGrinderLoaded;
 	private static boolean modGobberLoaded;
+	private static boolean modBeaconsForAllLoaded;
+	private static boolean modTorcherinoLoaded;
+	private static boolean modBoneTorchLoaded;
+	private static boolean modRealisticTorchesLoaded;
+	private static boolean modEpicFightLoaded;
+	private static boolean modBetterCombatLoaded;
+	private static boolean modAetherLoaded;
 
 	public static final String TE_MODID = "thermalexpansion";
 	public static final String GCCORE_MODID = "galacticraftcore";
@@ -64,7 +70,6 @@ public class SPCompatibilityManager {
 	public static final String FORESTRY_MODID = "forestry";
 	public static final String RAILCRAFT_MODID = "railcraft";
 	public static final String LUMBERJACK_MODID = "lumberjack";
-	public static final String HAMMER_TIME_MODID = "hammertime";
 	public static final String JER_MODID = "jeresources";
 	public static final String SWORD_BLOCKING_MODID = "swordblockingcombat";
 	public static final String SILENT_MECHANISMS_MODID = "silents_mechanisms";
@@ -84,6 +89,13 @@ public class SPCompatibilityManager {
 	public static final String EMERALD_EQUIPMENT_MODID = "emeraldequipment";
 	public static final String PLAIN_GRINDER_MODID = "plaingrinder";
 	public static final String GOBBER_MODID = "gobber2";
+	public static final String BEACONS_FOR_ALL_MODID = "beaconsforall";
+	public static final String TORCHERINO_MODID = "torcherino";
+	public static final String BONE_TORCH_MODID = "bonetorch";
+	public static final String REALISTIRC_TORCHES_MODID = "realistictorches";
+	public static final String EPIC_FIGHT_MODID = "epicfight";
+	public static final String BETTER_COMBAT_MODID = "epicfight";
+	public static final String AETHER_MODID = "aether";
 
 	public static void checkForCompatibleMods(){
 
@@ -116,7 +128,6 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modIc2Loaded = true;
 		}
-
 
 		if (ModList.get().isLoaded(BCRAFTCORE_MODID))
 		{
@@ -181,11 +192,6 @@ public class SPCompatibilityManager {
 		if (ModList.get().isLoaded(LUMBERJACK_MODID))
 		{
 			SPCompatibilityManager.modLumberjackLoaded = true;
-		}
-
-		if (ModList.get().isLoaded(HAMMER_TIME_MODID))
-		{
-			SPCompatibilityManager.modHammerTimeLoaded = true;
 		}
 
 		if (ModList.get().isLoaded(JER_MODID))
@@ -282,6 +288,42 @@ public class SPCompatibilityManager {
 		{
 			SPCompatibilityManager.modGobberLoaded = true;
 		}
+		
+		if (ModList.get().isLoaded(BEACONS_FOR_ALL_MODID))
+		{
+			SPCompatibilityManager.modBeaconsForAllLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(TORCHERINO_MODID))
+		{
+			SPCompatibilityManager.modTorcherinoLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(BONE_TORCH_MODID))
+		{
+			SPCompatibilityManager.modBoneTorchLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(REALISTIRC_TORCHES_MODID))
+		{
+			SPCompatibilityManager.modRealisticTorchesLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(EPIC_FIGHT_MODID))
+		{
+			SPCompatibilityManager.modEpicFightLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(BETTER_COMBAT_MODID))
+		{
+			SPCompatibilityManager.modBetterCombatLoaded = true;
+		}
+		
+		if (ModList.get().isLoaded(AETHER_MODID))
+		{
+			SPCompatibilityManager.modAetherLoaded = true;
+		}
+
 	}
 
 	public static boolean isIc2Loaded()
@@ -377,11 +419,6 @@ public class SPCompatibilityManager {
 	public static boolean isLumberjackLoaded()
 	{
 		return SPCompatibilityManager.modLumberjackLoaded;
-	}
-
-	public static boolean isHammerTimeLoaded()
-	{
-		return SPCompatibilityManager.modHammerTimeLoaded;
 	}
 
 	public static boolean isJerLoaded()
@@ -491,6 +528,45 @@ public class SPCompatibilityManager {
 	public static boolean isGobberLoaded()
 	{
 		return SPCompatibilityManager.modGobberLoaded;
+	}
+	
+	public static boolean isBeaconsForAllLoaded()
+	{
+		return SPCompatibilityManager.modBeaconsForAllLoaded;
+	}
+	
+	public static boolean isUnlitTorchModsLoaded() {
+		return isGCLoaded() || isRealisticTorchesLoaded();
+	}
+	
+	public static boolean isTorcherinoLoaded()
+	{
+		return SPCompatibilityManager.modTorcherinoLoaded;
+	}
+	
+	public static boolean isBoneTorchLoaded()
+	{
+		return SPCompatibilityManager.modBoneTorchLoaded;
+	}
+	
+	public static boolean isRealisticTorchesLoaded()
+	{
+		return SPCompatibilityManager.modRealisticTorchesLoaded;
+	}
+
+	public static boolean isEpicFightLoaded()
+	{
+		return SPCompatibilityManager.modEpicFightLoaded;
+	}
+
+	public static boolean isBetterCombatLoaded()
+	{
+		return SPCompatibilityManager.modBetterCombatLoaded;
+	}
+	
+	public static boolean isAetherLoaded()
+	{
+		return SPCompatibilityManager.modAetherLoaded;
 	}
 
 }

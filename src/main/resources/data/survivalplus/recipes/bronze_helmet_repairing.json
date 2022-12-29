@@ -1,0 +1,14 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_helmet_repair",
+  "ingredient": {
+    "item": "survivalplus:bronze_helmet"
+  },
+  "repairTime": 5500,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

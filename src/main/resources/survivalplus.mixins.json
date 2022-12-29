@@ -3,11 +3,13 @@
     "package": "net.coolsimulations.SurvivalPlus.core.mixin",
     "compatibilityLevel": "JAVA_17",
     "refmap": "survivalplus.refmap.json",
+    "plugin": "net.coolsimulations.SurvivalPlus.core.SurvivalPlusMixinPlugin",
     "mixins": [
-        "ServerGamePacketListenerImplMixin"
+        "ServerGamePacketListenerImplMixin",
+        "ValueUpdateMessageMixin", "ValueUpdateMessageAccessor"
     ],
     "client": [
-    	"ChatComponentMixin"
+    	"OpenScreenMessageMixin", "OpenScreenMessageAccessor"
     ],
     "injectors": {
         "defaultRequire": 1

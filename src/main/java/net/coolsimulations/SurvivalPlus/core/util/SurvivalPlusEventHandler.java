@@ -53,6 +53,7 @@ import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraft.world.scores.PlayerTeam;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -335,10 +336,6 @@ public class SurvivalPlusEventHandler {
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "sponge"));
 		}
 
-		if(SPCompatibilityManager.isIc2Loaded()) {
-			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "bronze_ingot_alt2"));
-		}
-
 				if(SPCompatibilityManager.isHammerTimeLoaded()) {
 			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxediamond"));
 			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.HAMMER_TIME_MODID + ":" + "itemaxegold"));
@@ -409,7 +406,7 @@ public class SurvivalPlusEventHandler {
 		}
 	}
 
-	//Replaced with Mixins until Forge adds new events that work with the new 1.19 Chat system
+	//Replaced with Mixin until Forge adds new events that work with the new 1.19 Chat system
 	/**@SubscribeEvent
 	public void coolsimChat(ServerChatEvent event) {
 
@@ -420,12 +417,12 @@ public class SurvivalPlusEventHandler {
 			if(ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(event.getUsername()) != null)
 				event.setComponent(Component.translatable("%s <%s> %s", new Object[] {coolsim, ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayerByName(event.getUsername()).getDisplayName(), event.getMessage()}));
 		}
-	}
+	}**/
 
 	@SubscribeEvent
 	public void coolsimReceivedChat(ClientChatReceivedEvent event) {
 
-		MutableComponent coolsim = Component.translatable("sp.coolsim.creator");
+		MutableComponent coolsim = Component.translatable("sp.coolsim.creator", new Object[] {"", event.getMessage()});
 		coolsim.withStyle(ChatFormatting.GOLD);
 
 		MutableComponent playerJoined = Component.translatable("multiplayer.player.joined", new Object[] {"coolsim"});
@@ -449,9 +446,9 @@ public class SurvivalPlusEventHandler {
 		}
 
 		if(event.getMessage().getString().startsWith("[coolsim]")) {
-			event.setMessage(Component.translatable("%s %s", new Object[] {coolsim, event.getMessage()}));
+			event.setMessage(Component.literal(coolsim.getString().replaceFirst("<", "").replaceFirst("> ", "")));
 		}
-	}**/
+	}
 
 	@SubscribeEvent
 	public void coolsimDeath(LivingDeathEvent event) {

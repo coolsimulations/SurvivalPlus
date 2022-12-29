@@ -102,6 +102,12 @@ public class FuelHandler{
 
 			addArmorFuels(SPItems.fir_traverse);
 		}
+		
+		if(SPCompatibilityManager.isAetherLoaded()) {
+
+			addArmorFuels(SPItems.skyroot);
+			addArmorFuels(SPItems.golden_oak);
+		}
 	}
 	
 	@SubscribeEvent

@@ -3,6 +3,7 @@ package net.coolsimulations.SurvivalPlus.core.commands;
 import java.util.Collection;
 import java.util.Iterator;
 
+import com.gildedgames.aether.data.resources.AetherDimensions;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
@@ -49,6 +50,12 @@ public class CommandSleep {
 			MutableComponent dimension = null;
 			if (!SPCompatibilityManager.isGCLoaded() && sender.getLevel().dimension() == Level.OVERWORLD) {
 				dimension = Component.translatable("flat_world_preset.minecraft.overworld", new Object[]{});
+			}
+			
+			if (SPCompatibilityManager.isAetherLoaded()) {
+				if(sender.getLevel().dimension() == AetherDimensions.AETHER_LEVEL) {
+					dimension = Component.translatable("The Aether", new Object[]{});
+				}
 			}
 
 			if (sender.getLevel().dimension() == Level.END) {
@@ -103,7 +110,13 @@ public class CommandSleep {
 
 		MutableComponent dimension = null;
 		if(!SPCompatibilityManager.isGCLoaded() && sender.getLevel().dimension() == Level.OVERWORLD) {
-			dimension = Component.translatable("createWorld.customize.preset.overworld", new Object[] {});
+			dimension = Component.translatable("flat_world_preset.minecraft.overworld", new Object[] {});
+		}
+		
+		if (SPCompatibilityManager.isAetherLoaded()) {
+			if(sender.getLevel().dimension() == AetherDimensions.AETHER_LEVEL) {
+				dimension = Component.translatable("The Aether", new Object[]{});
+			}
 		}
 
 		if(sender.getLevel().dimension() == Level.END) {

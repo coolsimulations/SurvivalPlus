@@ -1,0 +1,14 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_shears_repair",
+  "ingredient": {
+    "item": "survivalplus:bronze_shears"
+  },
+  "repairTime": 1750,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

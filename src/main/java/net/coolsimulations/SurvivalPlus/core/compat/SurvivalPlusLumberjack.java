@@ -5,10 +5,10 @@ import java.util.UUID;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 
+import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.doubledoordev.lumberjack.LumberjackConfig;
-import net.doubledoordev.lumberjack.util.EventHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
@@ -33,7 +33,7 @@ import net.minecraftforge.registries.RegistryObject;
 @SuppressWarnings({"unused"})
 public class SurvivalPlusLumberjack {
 	
-	public static final DeferredRegister<Item> ITEMS_LUMBERJACK = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
+	public static final DeferredRegister<Item> ITEMS_LUMBERJACK = DeferredRegister.create(ForgeRegistries.ITEMS, SPCompatibilityManager.LUMBERJACK_MODID);
 	
 	private static final RegistryObject<Item> bronze_lumberaxe = ITEMS_LUMBERJACK.register("bronze_lumberaxe", () -> new SPItemLumberAxe(SPItemTier.bronzeToolMaterial));
 	private static final RegistryObject<Item> titanium_lumberaxe = ITEMS_LUMBERJACK.register("titanium_lumberaxe", () -> new SPItemLumberAxe(SPItemTier.titaniumToolMaterial));
@@ -56,7 +56,7 @@ public class SurvivalPlusLumberjack {
 	    }
 	}
 	
-	public static class SPEventHandler extends EventHandler {
+	public static class SPEventHandler {
 		
 		// Keeps track of the chopped blocks across multiple ticks, until there is no more left. Then gets cleared.
 	    private HashMultimap<UUID, BlockPos> pointMap = HashMultimap.create();

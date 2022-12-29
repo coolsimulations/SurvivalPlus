@@ -1,0 +1,14 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_helmet_repair",
+  "ingredient": {
+    "item": "survivalplus:titanium_helmet"
+  },
+  "repairTime": 6500,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

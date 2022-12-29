@@ -39,10 +39,5 @@ public class SurvivalPlusItems {
 	
 	private static final RegistryObject<Item> titanium_chunks = ITEMS_TITANIUM_CHUNKS.register("titanium_chunks", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
 	
-	private static final RegistryObject<Item> crushed_titanium_ore = ITEMS_IC2.register("crushed_titanium_ore", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
-	private static final RegistryObject<Item> purified_titanium_ore = ITEMS_IC2.register("purified_titanium_ore", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
-	private static final RegistryObject<Item> tiny_titanium_pile = ITEMS_IC2.register("tiny_titanium_pile", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
-	private static final RegistryObject<Item> titanium_plate = ITEMS_IC2.register("titanium_plate", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
 	private static final RegistryObject<Item> titanium_dense_plate = ITEMS_IC2.register("titanium_dense_plate", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
-	private static final RegistryObject<Item> titanium_casing = ITEMS_IC2.register("titanium_casing", () -> new Item(new Item.Properties().tab(SPTabs.tabMaterials)));
 }

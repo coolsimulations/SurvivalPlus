@@ -1,0 +1,14 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_hoe_repair",
+  "ingredient": {
+    "item": "survivalplus:bronze_hoe"
+  },
+  "repairTime": 1750,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}
