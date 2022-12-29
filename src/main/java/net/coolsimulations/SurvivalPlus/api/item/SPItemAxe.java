@@ -1,16 +1,15 @@
 package net.coolsimulations.SurvivalPlus.api.item;
 
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
 
 public class SPItemAxe extends AxeItem {
 
 	public SPItemAxe(Tier tier, float damage, float speed) {
-		super(tier, damage, speed, (new Item.Properties().tab(SPTabs.tabTools)));
+		super(tier, damage, speed, (new Item.Properties()));
 	}
 	
 	@Override

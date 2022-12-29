@@ -1,0 +1,34 @@
+{
+    "sources": [
+        {
+            "type": "directory",
+            "source": "blocks",
+            "prefix": "blocks/"
+        },
+        {
+            "type": "directory",
+            "source": "items",
+            "prefix": "items/"
+        },
+        {
+            "type": "directory",
+            "source": "armor",
+            "prefix": "armor/"
+        },
+        {
+            "type": "directory",
+            "source": "ic2",
+            "prefix": "ic2/"
+        },
+        {
+            "type": "directory",
+            "source": "entity/sconce",
+            "prefix": "entity/sconce/"
+        },
+        {
+            "type": "directory",
+            "source": "entity",
+            "prefix": "entity/"
+        }
+    ]
+}

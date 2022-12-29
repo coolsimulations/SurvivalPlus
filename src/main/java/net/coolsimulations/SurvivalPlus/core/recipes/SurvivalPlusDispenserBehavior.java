@@ -49,7 +49,7 @@ public class SurvivalPlusDispenserBehavior {
 								net.minecraftforge.common.IForgeShearable target = (net.minecraftforge.common.IForgeShearable)entity;
 								if (target.isShearable(stack, world, blockpos)) {
 									java.util.List<ItemStack> drops = target.onSheared(null, stack, entity.level, blockpos,
-											net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel(net.minecraft.world.item.enchantment.Enchantments.BLOCK_FORTUNE, stack));
+											net.minecraft.world.item.enchantment.EnchantmentHelper.getTagEnchantmentLevel(net.minecraft.world.item.enchantment.Enchantments.BLOCK_FORTUNE, stack));
 									java.util.Random rand = new java.util.Random();
 									drops.forEach(d -> {
 										net.minecraft.world.entity.item.ItemEntity ent = entity.spawnAtLocation(d, 1.0F);

@@ -7,9 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.BannerItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
+import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -19,10 +20,10 @@ public class SPShieldRecipes extends CustomRecipe {
 	
 	public static final DeferredRegister<RecipeSerializer<?>> CRAFTING_SPECIAL_SPSHIELD_RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SPReference.MOD_ID);
 	
-	public static final RegistryObject<SimpleRecipeSerializer<SPShieldRecipes>> CRAFTING_SPECIAL_SPSHIELD = CRAFTING_SPECIAL_SPSHIELD_RECIPE_SERIALIZERS.register("crafting_special_spshielddecoration", () -> new SimpleRecipeSerializer<>(SPShieldRecipes::new));
+	public static final RegistryObject<SimpleCraftingRecipeSerializer<SPShieldRecipes>> CRAFTING_SPECIAL_SPSHIELD = CRAFTING_SPECIAL_SPSHIELD_RECIPE_SERIALIZERS.register("crafting_special_spshielddecoration", () -> new SimpleCraftingRecipeSerializer<>(SPShieldRecipes::new));
 	
-	public SPShieldRecipes(ResourceLocation idIn) {
-		super(idIn);
+	public SPShieldRecipes(ResourceLocation idIn, CraftingBookCategory category) {
+		super(idIn, category);
 	}
 
 	@Override

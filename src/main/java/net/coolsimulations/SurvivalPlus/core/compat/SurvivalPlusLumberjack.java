@@ -6,7 +6,6 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
-import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.doubledoordev.lumberjack.LumberjackConfig;
 import net.minecraft.core.BlockPos;
@@ -14,7 +13,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -46,7 +44,7 @@ public class SurvivalPlusLumberjack {
 	public static class SPItemLumberAxe extends AxeItem {
 
 		public SPItemLumberAxe(Tier itemTier) {
-			super(itemTier, itemTier.getAttackDamageBonus(), itemTier.getSpeed(), new Item.Properties().tab(CreativeModeTab.TAB_TOOLS));
+			super(itemTier, itemTier.getAttackDamageBonus(), itemTier.getSpeed(), new Item.Properties());
 		}
 		
 		@Override

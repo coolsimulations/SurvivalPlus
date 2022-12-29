@@ -1,6 +1,5 @@
 package net.coolsimulations.SurvivalPlus.api.item;
 
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.minecraft.world.item.Item;
 
 public class SPItemIngot extends Item {
@@ -9,13 +8,13 @@ public class SPItemIngot extends Item {
 	private float health;
 	
 	public SPItemIngot(boolean healsIronGolem, float golemHealth) {
-		super(new Item.Properties().tab(SPTabs.tabMaterials));
+		super(new Item.Properties());
 		this.golem = healsIronGolem;
 		this.health = golemHealth;
 	}
 	
 	public SPItemIngot() {
-		super(new Item.Properties().tab(SPTabs.tabMaterials));
+		super(new Item.Properties());
 		this.golem = false;
 		this.health = 0.0F;
 	}

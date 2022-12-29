@@ -173,7 +173,7 @@ public class SurvivalPlusEventHandler {
 		Player entityplayer = event.getEntity();
 		ItemStack itemStackIn = entityplayer.getItemInHand(event.getHand());
 		Item item = itemStackIn.getItem();
-		
+
 		if(block instanceof CampfireBlock) {
 			if(state.getValue(CampfireBlock.LIT) && item == Items.BUCKET  && !entityplayer.getAbilities().instabuild) {
 				if (!world.isClientSide()) {
@@ -239,15 +239,15 @@ public class SurvivalPlusEventHandler {
 				}
 			}
 		}
-		
+
 		if(block instanceof CandleCakeBlock) {
-			
+
 			if((entityplayer.getMainHandItem().getItem() == SPItems.paper_cup.get()|| entityplayer.getOffhandItem().getItem() == SPItems.paper_cup.get()) || entityplayer.getMainHandItem().getItem() == SPItems.cupcake.get() || entityplayer.getOffhandItem().getItem() == SPItems.cupcake.get()) {
 				event.setCanceled(true);
 			}
-			
+
 			if(!world.isClientSide) {
-				
+
 				int bites = (Integer)Blocks.CAKE.defaultBlockState().getValue(CakeBlock.BITES);
 
 				if (bites < CakeBlock.MAX_BITES) {
@@ -274,7 +274,7 @@ public class SurvivalPlusEventHandler {
 						}
 					}
 				}
-				
+
 				Block.dropResources(state, world, event.getPos());
 			}
 		}
@@ -312,9 +312,9 @@ public class SurvivalPlusEventHandler {
 			if(event.getTable().getPool("main") != null) {
 				try {
 					List<LootPoolEntryContainer> list = new ArrayList<LootPoolEntryContainer>(Arrays.asList(event.getTable().getPool("main").entries));
-					
+
 					list.add(spinel);
-					
+
 					event.getTable().getPool("main").entries = list.toArray(new LootPoolEntryContainer[0]);
 
 				} catch (IllegalArgumentException e) {
@@ -376,7 +376,7 @@ public class SurvivalPlusEventHandler {
 					event.setDisplayName(coolsim);
 			}
 		}
-		
+
 		if(event.getEntity().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
 
 			MutableComponent alpaca = Component.literal(new RainbowComponent(event.getEntity().getName().getString()).getText());
@@ -389,10 +389,10 @@ public class SurvivalPlusEventHandler {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void coolsimDisplayName(PlayerEvent.NameFormat event) {
-		
+
 		if(event.getEntity().getUUID().equals(UUID.fromString("a07ca1b4-b0c5-4cbf-bf5f-2d9acf0603d2"))) {
 
 			MutableComponent alpaca = Component.literal(new RainbowComponent(event.getUsername().getString()).getText());

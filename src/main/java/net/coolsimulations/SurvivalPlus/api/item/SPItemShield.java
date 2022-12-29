@@ -4,7 +4,6 @@ import java.util.function.Consumer;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.client.renderer.TileEntityShieldRenderer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.Item;
@@ -15,7 +14,7 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 public class SPItemShield extends ShieldItem {
 
 	public SPItemShield(int maxDamage) {
-		super((new Item.Properties()).stacksTo(1).defaultDurability(maxDamage).tab(SPTabs.tabCombat));
+		super((new Item.Properties()).stacksTo(1).defaultDurability(maxDamage));
 	}
 
 	@Override
