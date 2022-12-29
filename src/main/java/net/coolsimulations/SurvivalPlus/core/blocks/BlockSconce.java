@@ -312,9 +312,11 @@ public class BlockSconce extends SPBlockSconce implements EntityBlock, SimpleWat
 				ItemStack drop = te.getTorch().getItemStack();
 				if (getAdditionalDrop(te.getTorch()) != ItemStack.EMPTY)
 					drops.add(getAdditionalDrop(te.getTorch()));
-				if ((te.getTorch() == EnumTorch.TORCH_LIT || te.getTorch() == EnumTorch.TORCH_SMOLDERING || (te.getTorch() == EnumTorch.TORCH && ConfigHandler.vanillaTorchesDropUnlit.get())) && SPCompatibilityManager.isRealisticTorchesLoaded()) {
-					drops.add(new ItemStack(RegistryObject.create(new ResourceLocation(SPCompatibilityManager.REALISTIRC_TORCHES_MODID, "unlit_torch"), ForgeRegistries.ITEMS).orElse(Items.AIR)));
-					return drops;
+				if (SPCompatibilityManager.isRealisticTorchesLoaded()) {
+					if ((te.getTorch() == EnumTorch.TORCH_LIT || te.getTorch() == EnumTorch.TORCH_SMOLDERING || (te.getTorch() == EnumTorch.TORCH && ConfigHandler.vanillaTorchesDropUnlit.get()))) {
+						drops.add(new ItemStack(RegistryObject.create(new ResourceLocation(SPCompatibilityManager.REALISTIRC_TORCHES_MODID, "unlit_torch"), ForgeRegistries.ITEMS).orElse(Items.AIR)));
+						return drops;
+					}
 				}
 				drops.add(drop);
 			}
@@ -483,10 +485,12 @@ public class BlockSconce extends SPBlockSconce implements EntityBlock, SimpleWat
 		TileEntitySconce te = worldIn.getBlockEntity(pos) instanceof TileEntitySconce ? (TileEntitySconce)worldIn.getBlockEntity(pos) : null;
 
 		if (worldIn instanceof ServerLevel && success && !te.getTorch().surviveWaterlogging()) {
-			if ((te.getTorch() == EnumTorch.TORCH_LIT || te.getTorch() == EnumTorch.TORCH_SMOLDERING || (te.getTorch() == EnumTorch.TORCH && ConfigHandler.vanillaTorchesDropUnlit.get())) && SPCompatibilityManager.isRealisticTorchesLoaded()) {
-				popResource((ServerLevel) worldIn, pos, new ItemStack(RegistryObject.create(new ResourceLocation(SPCompatibilityManager.REALISTIRC_TORCHES_MODID, "unlit_torch"), ForgeRegistries.ITEMS).orElse(Items.AIR)));
-				updateTorch(te, (ServerLevel) worldIn, worldIn.getBlockState(pos), pos, EnumTorch.EMPTY, false, false);
-				return success;
+			if (SPCompatibilityManager.isRealisticTorchesLoaded()) {
+				if ((te.getTorch() == EnumTorch.TORCH_LIT || te.getTorch() == EnumTorch.TORCH_SMOLDERING || (te.getTorch() == EnumTorch.TORCH && ConfigHandler.vanillaTorchesDropUnlit.get()))) {
+					popResource((ServerLevel) worldIn, pos, new ItemStack(RegistryObject.create(new ResourceLocation(SPCompatibilityManager.REALISTIRC_TORCHES_MODID, "unlit_torch"), ForgeRegistries.ITEMS).orElse(Items.AIR)));
+					updateTorch(te, (ServerLevel) worldIn, worldIn.getBlockState(pos), pos, EnumTorch.EMPTY, false, false);
+					return success;
+				}
 			}
 			popResource((ServerLevel) worldIn, pos, te.getTorch().getItemStack());
 			if (getAdditionalDrop(te.getTorch()) != ItemStack.EMPTY)
