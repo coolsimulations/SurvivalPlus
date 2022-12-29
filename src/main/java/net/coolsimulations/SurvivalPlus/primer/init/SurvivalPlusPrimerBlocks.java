@@ -1,12 +1,12 @@
 package net.coolsimulations.SurvivalPlus.primer.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockMetal;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockOre;
 import net.coolsimulations.SurvivalPlus.primer.blocks.SPBlockCrystal;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
@@ -55,17 +55,17 @@ public class SurvivalPlusPrimerBlocks {
 
 	public static void registerBlock(Block block, String registryName, boolean registerItem) {
 
-		Registry.register(Registry.BLOCK, new ResourceLocation(SPReference.MOD_ID, registryName), block);
+		Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(SPReference.MOD_ID, registryName), block);
 		
 		if(registerItem) {
 			BlockItem blockItem;
 
 			if(block instanceof SPBlockCrystal) {
-				blockItem = new BlockItem(block, new FabricItemSettings().group(SPTabs.tabGem));	
+				blockItem = new BlockItem(block, new FabricItemSettings());	
 			} else {
-				blockItem = new BlockItem(block, new FabricItemSettings().group(SPTabs.tabBlocks));
+				blockItem = new BlockItem(block, new FabricItemSettings());
 			}
-			Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), blockItem);
+			Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), blockItem);
 		}
 	}
 
