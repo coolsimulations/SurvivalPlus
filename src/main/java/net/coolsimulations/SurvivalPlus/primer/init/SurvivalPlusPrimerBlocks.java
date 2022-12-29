@@ -1,7 +1,6 @@
 package net.coolsimulations.SurvivalPlus.primer.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockMetal;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockOre;
 import net.coolsimulations.SurvivalPlus.primer.blocks.SPBlockCrystal;
@@ -28,12 +27,12 @@ public class SurvivalPlusPrimerBlocks {
 	public static final RegistryObject<Block> sapphire = BLOCKS.register("sapphire", () -> new SPBlockCrystal(MaterialColor.COLOR_BLUE));
 	public static final RegistryObject<Block> spinel = BLOCKS.register("spinel", () -> new SPBlockCrystal(MaterialColor.COLOR_BLACK));
 	
-	private static final RegistryObject<Item> copper_block_item = BLOCK_ITEMS.register("copper_block", () -> new BlockItem(copper_block.get(), new Item.Properties().tab(SPTabs.tabBlocks)));
-	private static final RegistryObject<Item> copper_ore_item = BLOCK_ITEMS.register("copper_ore", () -> new BlockItem(copper_ore.get(), new Item.Properties().tab(SPTabs.tabBlocks)));
-	private static final RegistryObject<Item> amethyst_item = BLOCK_ITEMS.register("amethyst", () -> new BlockItem(amethyst.get(), new Item.Properties().tab(SPTabs.tabGem)));
-	private static final RegistryObject<Item> ruby_item = BLOCK_ITEMS.register("ruby", () -> new BlockItem(ruby.get(), new Item.Properties().tab(SPTabs.tabGem)));
-	private static final RegistryObject<Item> topaz_item = BLOCK_ITEMS.register("topaz", () -> new BlockItem(topaz.get(), new Item.Properties().tab(SPTabs.tabGem)));
-	private static final RegistryObject<Item> sapphire_item = BLOCK_ITEMS.register("sapphire", () -> new BlockItem(sapphire.get(), new Item.Properties().tab(SPTabs.tabGem)));
-	private static final RegistryObject<Item> spinel_item = BLOCK_ITEMS.register("spinel", () -> new BlockItem(spinel.get(), new Item.Properties().tab(SPTabs.tabGem)));
+	private static final RegistryObject<Item> copper_block_item = BLOCK_ITEMS.register("copper_block", () -> new BlockItem(copper_block.get(), new Item.Properties()));
+	private static final RegistryObject<Item> copper_ore_item = BLOCK_ITEMS.register("copper_ore", () -> new BlockItem(copper_ore.get(), new Item.Properties()));
+	private static final RegistryObject<Item> amethyst_item = BLOCK_ITEMS.register("amethyst", () -> new BlockItem(amethyst.get(), new Item.Properties()));
+	private static final RegistryObject<Item> ruby_item = BLOCK_ITEMS.register("ruby", () -> new BlockItem(ruby.get(), new Item.Properties()));
+	private static final RegistryObject<Item> topaz_item = BLOCK_ITEMS.register("topaz", () -> new BlockItem(topaz.get(), new Item.Properties()));
+	private static final RegistryObject<Item> sapphire_item = BLOCK_ITEMS.register("sapphire", () -> new BlockItem(sapphire.get(), new Item.Properties()));
+	private static final RegistryObject<Item> spinel_item = BLOCK_ITEMS.register("spinel", () -> new BlockItem(spinel.get(), new Item.Properties()));
 
 }
