@@ -13,7 +13,6 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockCrystalBudding;
 import net.coolsimulations.SurvivalPlus.api.world.SPGeodeFeature;
 import net.coolsimulations.SurvivalPlus.core.mixin.AllayAccessor;
@@ -22,9 +21,9 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
@@ -40,13 +39,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
@@ -95,11 +87,11 @@ public class SurvivalPlusGeodes {
 				ImmutableList.of(((AmethystClusterBlock) SPBlocks.small_spinel_bud), ((AmethystClusterBlock) SPBlocks.medium_spinel_bud), ((AmethystClusterBlock) SPBlocks.large_spinel_bud), ((AmethystClusterBlock) SPBlocks.spinel_cluster))
 				);
 
-		SPItems.ruby_shard = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
-		SPItems.pearl = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
-		SPItems.topaz_shard = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
-		SPItems.sapphire_shard = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
-		SPItems.spinel_shard = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+		SPItems.ruby_shard = new Item(new FabricItemSettings());
+		SPItems.pearl = new Item(new FabricItemSettings());
+		SPItems.topaz_shard = new Item(new FabricItemSettings());
+		SPItems.sapphire_shard = new Item(new FabricItemSettings());
+		SPItems.spinel_shard = new Item(new FabricItemSettings());
 		
 		List<ItemStack> shards = new ArrayList<ItemStack>(Arrays.asList(AllayAccessor.getDupeItem().getItems()));
 		shards.add(new ItemStack(SPItems.ruby_shard));
@@ -175,25 +167,21 @@ public class SurvivalPlusGeodes {
 		ResourceLocation location = new ResourceLocation(SPReference.MOD_ID, geodeFeatureRegistryName);
 		
 		SPGeodeFeature geodeFeature = new SPGeodeFeature((@NotNull SPBlockCrystalBudding) buddingBlock, baseBlock, calciteBlock, outerBlock, waterLogged);
-		Registry.register(Registry.FEATURE, location, geodeFeature);
-		
-		ConfiguredFeature<GeodeConfiguration, ?> geodeConfiguration = new ConfiguredFeature<>(Feature.GEODE, geodeFeature.getGeodeConfiguration());
-		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, location, geodeConfiguration);
-		Registry.register(BuiltinRegistries.PLACED_FEATURE, location, new PlacedFeature(Holder.direct(geodeConfiguration), List.of(RarityFilter.onAverageOnceEvery(rarity), InSquarePlacement.spread(), HeightRangePlacement.uniform(bottom, top))));
+		Registry.register(BuiltInRegistries.FEATURE, location, geodeFeature);
 
-		BiomeModifications.addFeature(category, GenerationStep.Decoration.UNDERGROUND_ORES, ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, location));
+		BiomeModifications.addFeature(category, GenerationStep.Decoration.UNDERGROUND_ORES, ResourceKey.create(Registries.PLACED_FEATURE, location));
 	}
 
 	private static void registerBlock(Block block, String registryName) {
 
-		BlockItem baseBlockItem = new BlockItem(block, new FabricItemSettings().group(SPTabs.tabGem));
+		BlockItem baseBlockItem = new BlockItem(block, new FabricItemSettings());
 
-		Registry.register(Registry.BLOCK, new ResourceLocation(SPReference.MOD_ID, registryName), block);
-		Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), baseBlockItem);
+		Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(SPReference.MOD_ID, registryName), block);
+		Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), baseBlockItem);
 	}
 
 	private static void registerItem(Item item, String registryName) {
-		Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), item);
+		Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), item);
 	}
 
 }

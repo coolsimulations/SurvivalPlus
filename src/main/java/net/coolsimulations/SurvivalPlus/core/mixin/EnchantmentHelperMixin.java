@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -24,7 +24,7 @@ public abstract class EnchantmentHelperMixin {
 		Item item = stack.getItem();
 		boolean bl2 = item == Items.BOOK;
 
-		for(Enchantment enchantment : Registry.ENCHANTMENT) {
+		for(Enchantment enchantment : BuiltInRegistries.ENCHANTMENT) {
 			if ((!enchantment.isTreasureOnly() || bl) && (((ItemAccessor) stack.getItem()).canApplyAtEnchantingTable(stack, enchantment) || bl2)) {
 				for(int i = enchantment.getMaxLevel(); i > enchantment.getMinLevel() - 1; --i) {
 					if (power >= enchantment.getMinCost(i) && power <= enchantment.getMaxCost(i)) {

@@ -8,17 +8,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.BannerItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SimpleRecipeSerializer;
+import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraft.world.level.Level;
 
 public class SPShieldRecipes extends CustomRecipe {
 	
-	public static final SimpleRecipeSerializer<SPShieldRecipes> CRAFTING_SPECIAL_SPSHIELD = new SimpleRecipeSerializer<>(SPShieldRecipes::new);
+	public static final SimpleCraftingRecipeSerializer<SPShieldRecipes> CRAFTING_SPECIAL_SPSHIELD = new SimpleCraftingRecipeSerializer<>(SPShieldRecipes::new);
 	
-	public SPShieldRecipes(ResourceLocation idIn) {
-		super(idIn);
+	public SPShieldRecipes(ResourceLocation idIn, CraftingBookCategory category) {
+		super(idIn, category);
 	}
 
 	@Override

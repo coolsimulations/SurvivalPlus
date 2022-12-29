@@ -12,12 +12,12 @@
   "death.attack.fall.player": "%1$s\u5728\u9003\u79bb%2$s\u65f6\u662f\u65af\u83ab\u5e0c\u5fb7",
   "sp.name": "\u751f\u5b58\u52a0",
   
-  "itemGroup.survivalplus.tabmaterials": "\u751f\u5b58\u52a0\u6750\u6599",
-  "itemGroup.survivalplus.tabblocks": "\u751f\u5b58\u52a0\u65b9\u5757",
-  "itemGroup.survivalplus.tabfood": "\u751f\u5b58\u52a0\u98df\u7269",
-  "itemGroup.survivalplus.tabgem": "\u751f\u5b58\u52a0\u5b9d\u77f3",
-  "itemGroup.survivalplus.tabcombat": "\u751f\u5b58\u52a0\u6218\u6597\u7528\u54c1",
-  "itemGroup.survivalplus.tabtools": "\u751f\u5b58\u52a0\u5de5\u5177",
+  "item_group.survivalplus.tab_materials": "\u751f\u5b58\u52a0\u6750\u6599",
+  "item_group.survivalplus.tab_blocks": "\u751f\u5b58\u52a0\u65b9\u5757",
+  "item_group.survivalplus.tab_food": "\u751f\u5b58\u52a0\u98df\u7269",
+  "item_group.survivalplus.tab_gem": "\u751f\u5b58\u52a0\u5b9d\u77f3",
+  "item_group.survivalplus.tab_combat": "\u751f\u5b58\u52a0\u6218\u6597\u7528\u54c1",
+  "item_group.survivalplus.tab_tools": "\u751f\u5b58\u52a0\u5de5\u5177",
 
   "item.survivalplus.tin_ingot": "\u9521\u952d",
   "item.survivalplus.raw_tin": "\u7c97\u9521",

@@ -3,6 +3,7 @@ package net.coolsimulations.SurvivalPlus.api.events;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -22,5 +23,5 @@ public interface SPPlaySoundAtEntityEvent {
 		return InteractionResult.PASS;
 	});
 
-	InteractionResult playSound(Level world, Entity entity, BlockPos pos, SoundEvent sound, SoundSource category, float volume, float pitch, long seed);
+	InteractionResult playSound(Level world, Entity entity, BlockPos pos, Holder<SoundEvent> sound, SoundSource category, float volume, float pitch, long seed);
 }

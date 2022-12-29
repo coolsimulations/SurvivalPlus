@@ -6,6 +6,7 @@ import net.coolsimulations.SurvivalPlus.core.blocks.tileentity.TileEntityGemStaf
 import net.coolsimulations.SurvivalPlus.core.blocks.tileentity.TileEntitySconce;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 public class SurvivalPlusTileEntities {
@@ -16,10 +17,10 @@ public class SurvivalPlusTileEntities {
 	
 	public static void init() {
 		
-		SCONCE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new ResourceLocation(SPReference.MOD_ID, "sconce"),
+		SCONCE = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(SPReference.MOD_ID, "sconce"),
 				FabricBlockEntityTypeBuilder.create(TileEntitySconce::new, SPBlocks.sconce).build());
 		
-		GEM_STAFF = Registry.register(Registry.BLOCK_ENTITY_TYPE, new ResourceLocation(SPReference.MOD_ID, "gem_staff"),
+		GEM_STAFF = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(SPReference.MOD_ID, "gem_staff"),
 				FabricBlockEntityTypeBuilder.create(TileEntityGemStaff::new, SPBlocks.gem_staff).build());
 	}
 

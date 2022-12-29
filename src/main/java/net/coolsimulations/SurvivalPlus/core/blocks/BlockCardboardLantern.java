@@ -10,8 +10,8 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
@@ -230,7 +230,7 @@ public class BlockCardboardLantern extends BlockCardboard implements SimpleWater
 
 	protected InteractionResult checkDye(Level worldIn, BlockPos pos, BlockState state, Player playerIn, ItemStack stack, String dye_tag, Block dyeBlock) {
 
-		TagKey<Item> tag = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("c", dye_tag));
+		TagKey<Item> tag = TagKey.create(Registries.ITEM, new ResourceLocation("c", dye_tag));
 
 		if(stack.is(tag)) {
 			if(!playerIn.isCreative())

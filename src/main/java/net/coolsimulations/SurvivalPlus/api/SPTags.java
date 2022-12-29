@@ -1,6 +1,6 @@
 package net.coolsimulations.SurvivalPlus.api;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -27,7 +27,7 @@ public class SPTags
 
     	private static TagKey<Block> tag(String name)
         {
-        	return TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation("c", name));
+        	return TagKey.create(Registries.BLOCK, new ResourceLocation("c", name));
         }
     }
 
@@ -92,7 +92,7 @@ public class SPTags
 
         private static TagKey<Item> tag(String name)
         {
-        	return TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("c", name));
+        	return TagKey.create(Registries.ITEM, new ResourceLocation("c", name));
         }
     }
 }

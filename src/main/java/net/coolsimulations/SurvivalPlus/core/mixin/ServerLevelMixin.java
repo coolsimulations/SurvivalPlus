@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.coolsimulations.SurvivalPlus.api.events.SPPlaySoundAtEntityEvent;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -20,7 +21,7 @@ import net.minecraft.world.level.Level;
 public abstract class ServerLevelMixin {
 
 	@Inject(at = @At(value = "HEAD"), method = "playSeededSound", cancellable = true)
-    private void playSound(@Nullable Player player, double x, double y, double z, SoundEvent sound, SoundSource category, float volume, float pitch, long seed, CallbackInfo info) {
+    private void playSound(@Nullable Player player, double x, double y, double z, Holder<SoundEvent> sound, SoundSource category, float volume, float pitch, long seed, CallbackInfo info) {
 		InteractionResult result = SPPlaySoundAtEntityEvent.EVENT.invoker().playSound((((Level) (Object)this)), player, new BlockPos(x, y, z), sound, category, volume, pitch, seed);
 
         if (result == InteractionResult.FAIL) {
@@ -28,8 +29,8 @@ public abstract class ServerLevelMixin {
         }
     }
 	
-	@Inject(at = @At(value = "HEAD"), method = "playSeededSound(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFJ)V", cancellable = true)
-    private void playSound(@Nullable Player player, Entity entity, SoundEvent sound, SoundSource category, float volume, float pitch, long seed, CallbackInfo info) {
+	@Inject(at = @At(value = "HEAD"), method = "playSeededSound(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;Lnet/minecraft/sounds/SoundSource;FFJ)V", cancellable = true)
+    private void playSound(@Nullable Player player, Entity entity, Holder<SoundEvent> sound, SoundSource category, float volume, float pitch, long seed, CallbackInfo info) {
 		InteractionResult result = SPPlaySoundAtEntityEvent.EVENT.invoker().playSound((((Level) (Object)this)), player, entity.blockPosition(), sound, category, volume, pitch, seed);
 
         if (result == InteractionResult.FAIL) {

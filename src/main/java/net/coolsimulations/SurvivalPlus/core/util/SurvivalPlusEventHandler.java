@@ -20,7 +20,8 @@ import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
@@ -205,8 +206,8 @@ public class SurvivalPlusEventHandler {
 				return LootTable.lootTable().withPool(newBuilder).build();
 			}
 
-			for(ResourceLocation location : Registry.BLOCK.keySet()) {
-				Block block = Registry.BLOCK.get(location);
+			for(ResourceLocation location : BuiltInRegistries.BLOCK.keySet()) {
+				Block block = BuiltInRegistries.BLOCK.get(location);
 				
 				if(block instanceof LeavesBlock || block == Blocks.OAK_LEAVES) {
 					LootTable check = replaceLootWithShears(block, id, table, manager, source);
@@ -386,12 +387,12 @@ public class SurvivalPlusEventHandler {
 					i++;
 					if(i == 2) {
 						LootPool.Builder poolBuilder = FabricLootPoolBuilder.copyOf(pool)
-								.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("fabric", "shears")))).invert().build());
+								.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registries.ITEM, new ResourceLocation("fabric", "shears")))).invert().build());
 						replacement.withPool(poolBuilder);
 					}
 					else if (i == 1){
 						LootPool.Builder poolBuilder = FabricLootPoolBuilder.copyOf(pool)
-								.apply(LimitCount.limitCount(IntRange.range(0, 0)).when(InvertedLootItemCondition.invert(AlternativeLootItemCondition.alternative(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("fabric", "shears")))).invert()).or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS))))));
+								.apply(LimitCount.limitCount(IntRange.range(0, 0)).when(InvertedLootItemCondition.invert(AlternativeLootItemCondition.alternative(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registries.ITEM, new ResourceLocation("fabric", "shears")))).invert()).or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS))))));
 						replacement.withPool(poolBuilder);
 					}
 					else {
@@ -399,7 +400,7 @@ public class SurvivalPlusEventHandler {
 					}
 				}
 				LootPool.Builder poolBuilder = LootPool.lootPool()
-						.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("fabric", "shears")))).build())
+						.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(TagKey.create(Registries.ITEM, new ResourceLocation("fabric", "shears")))).build())
 						.conditionally(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS)).invert().build())
 						.setRolls(ConstantValue.exactly(1))
 						.with(LootItem.lootTableItem(item).apply(SetItemCountFunction.setCount(ConstantValue.exactly(count))).build());

@@ -4,10 +4,10 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemIngot;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
@@ -18,20 +18,20 @@ public class SurvivalPlusItems {
 	public static void init() {
 
 		SPItems.tin_ingot = new SPItemIngot(true, 20.0F);
-		SPItems.raw_tin = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
-		SPItems.onion_seeds = new ItemNameBlockItem(SPBlocks.onion, new FabricItemSettings().group(SPTabs.tabMaterials));
+		SPItems.raw_tin = new Item(new FabricItemSettings());
+		SPItems.onion_seeds = new ItemNameBlockItem(SPBlocks.onion, new FabricItemSettings());
 		SPItems.bronze_ingot = new SPItemIngot();
-		SPItems.bronze_nugget = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+		SPItems.bronze_nugget = new Item(new FabricItemSettings());
 		SPItems.titanium_ingot = new SPItemIngot(true, 50.0F);
-		SPItems.raw_titanium = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
-		SPItems.titanium_nugget = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
-		SPItems.charcoal_bucket = new Item(new FabricItemSettings().group(SPTabs.tabMaterials).maxCount(1).recipeRemainder(Items.BUCKET));
-		SPItems.paper_cup = new Item(new FabricItemSettings().group(SPTabs.tabMaterials)); 
+		SPItems.raw_titanium = new Item(new FabricItemSettings());
+		SPItems.titanium_nugget = new Item(new FabricItemSettings());
+		SPItems.charcoal_bucket = new Item(new FabricItemSettings().maxCount(1).recipeRemainder(Items.BUCKET));
+		SPItems.paper_cup = new Item(new FabricItemSettings()); 
 
 		if(SPCompatibilityManager.isIndustrialRevolutionLoaded())
-			SPItems.titanium_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+			SPItems.titanium_dust = new Item(new FabricItemSettings());
 
-		//SPItems.tin_dust = new Item(new FabricItemSettings().group(SPTabs.tabMaterials));
+		//SPItems.tin_dust = new Item(new FabricItemSettings());
 
 	}
 
@@ -56,7 +56,7 @@ public class SurvivalPlusItems {
 
 	public static void registerItem(Item item, String registryName) {
 
-		Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), item);
+		Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), item);
 	}
 
 }

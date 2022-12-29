@@ -4,7 +4,7 @@ import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -64,8 +64,8 @@ public class SurvivalPlusComposterRecipes {
 	
 	protected static void registerCompostableTag(TagKey<Item> tag, float rarity) {
 		
-		for(ResourceLocation location : Registry.ITEM.keySet()) {
-			Item item = Registry.ITEM.get(location);
+		for(ResourceLocation location : BuiltInRegistries.ITEM.keySet()) {
+			Item item = BuiltInRegistries.ITEM.get(location);
 			if(new ItemStack(item).is(tag))
 				registerCompostable(item, rarity);
 		}

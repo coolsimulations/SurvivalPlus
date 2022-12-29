@@ -11,6 +11,7 @@ import net.coolsimulations.SurvivalPlus.api.item.SPItemShovel;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemSword;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
@@ -59,7 +60,7 @@ public class SurvivalPlusTools {
 	
 	public static void registerItem(Item item, String registryName) {
 
-		Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), item);
+		Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), item);
 	}
 
 }

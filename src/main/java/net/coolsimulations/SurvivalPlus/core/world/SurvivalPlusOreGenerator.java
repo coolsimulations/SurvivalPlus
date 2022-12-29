@@ -10,32 +10,28 @@ import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.data.worldgen.features.OreFeatures;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 public class SurvivalPlusOreGenerator {
 	
-	public static final List<OreConfiguration.TargetBlockState> ORE_TIN_TARGET_LIST = List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, SPBlocks.tin_ore.defaultBlockState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, SPBlocks.deepslate_tin_ore.defaultBlockState()));
-	public static final List<OreConfiguration.TargetBlockState> ORE_TITANIUM_TARGET_LIST = List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, SPBlocks.titanium_ore.defaultBlockState()), OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, SPBlocks.deepslate_titanium_ore.defaultBlockState()));
+	public static final List<OreConfiguration.TargetBlockState> ORE_TIN_TARGET_LIST = List.of(OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), SPBlocks.tin_ore.defaultBlockState()), OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), SPBlocks.deepslate_tin_ore.defaultBlockState()));
+	public static final List<OreConfiguration.TargetBlockState> ORE_TITANIUM_TARGET_LIST = List.of(OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), SPBlocks.titanium_ore.defaultBlockState()), OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES), SPBlocks.deepslate_titanium_ore.defaultBlockState()));
 	
 	public static void generateOres() {
 
@@ -52,10 +48,7 @@ public class SurvivalPlusOreGenerator {
 
 	protected static void registerOre(java.util.function.Predicate<BiomeSelectionContext> selector, String id, OreConfiguration config, List<PlacementModifier> list) {
 		ResourceLocation location = new ResourceLocation(SPReference.MOD_ID, id);
-		ConfiguredFeature<OreConfiguration, ?> oreConfiguration = new ConfiguredFeature<>(Feature.ORE, config);
-		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, location, oreConfiguration);
-		Registry.register(BuiltinRegistries.PLACED_FEATURE, location, new PlacedFeature(Holder.direct(oreConfiguration), list));
-		BiomeModifications.addFeature(selector, GenerationStep.Decoration.UNDERGROUND_DECORATION, ResourceKey.create(Registry.PLACED_FEATURE_REGISTRY, location));
+		BiomeModifications.addFeature(selector, GenerationStep.Decoration.UNDERGROUND_DECORATION, ResourceKey.create(Registries.PLACED_FEATURE, location));
 	}
 	
 	private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {

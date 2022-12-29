@@ -20,10 +20,10 @@ import net.fabricmc.api.Environment;
 import net.id.paradiselost.client.rendering.particle.ParadiseLostParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ChunkHolder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -65,8 +65,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import torcherino.api.TorcherinoAPI;
 import torcherino.TorcherinoImpl;
+import torcherino.api.TorcherinoAPI;
 import torcherino.config.Config;
 
 public class BlockSconce extends SPBlockSconce implements EntityBlock, SimpleWaterloggedBlock {
@@ -435,7 +435,7 @@ public class BlockSconce extends SPBlockSconce implements EntityBlock, SimpleWat
 			}
 			if (Config.INSTANCE.log_placement) {
 				String prefix = playerIn == null ? "Something" : playerIn.getDisplayName().getString() + "(" + playerIn.getStringUUID() + ")";
-				TorcherinoImpl.LOGGER.info("[Torcherino] {} placed a {} at {}, {}, {}.", prefix, Registry.BLOCK.getKey(state.getBlock()), pos.getX(), pos.getY(), pos.getZ());
+				TorcherinoImpl.LOGGER.info("[Torcherino] {} placed a {} at {}, {}, {}.", prefix, BuiltInRegistries.BLOCK.getKey(state.getBlock()), pos.getX(), pos.getY(), pos.getZ());
 			}
 			te.setPoweredByRedstone(worldIn.hasSignal(pos.below(), Direction.UP));
 		}

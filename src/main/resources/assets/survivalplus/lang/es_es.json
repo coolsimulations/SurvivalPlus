@@ -12,12 +12,12 @@
   "death.attack.fall.player": "%1$s ha sido aplastado contra el suelo mientras hu\u00eda de %2$s",
   "sp.name": "SupervivenciaM\u00e1s",
 
-  "itemGroup.survivalplus.tabmaterials": "SupervivenciaM\u00e1s Materiales",
-  "itemGroup.survivalplus.tabblocks": "SupervivenciaM\u00e1s Bloques",
-  "itemGroup.survivalplus.tabfood": "SupervivenciaM\u00e1s Alimentaci\u00f3n",
-  "itemGroup.survivalplus.tabgem": "SupervivenciaM\u00e1s Gemas",
-  "itemGroup.survivalplus.tabcombat": "SupervivenciaM\u00e1s Combate",
-  "itemGroup.survivalplus.tabtools": "SupervivenciaM\u00e1s Herramientas",
+  "item_group.survivalplus.tab_materials": "SupervivenciaM\u00e1s Materiales",
+  "item_group.survivalplus.tab_blocks": "SupervivenciaM\u00e1s Bloques",
+  "item_group.survivalplus.tab_food": "SupervivenciaM\u00e1s Alimentaci\u00f3n",
+  "item_group.survivalplus.tab_gem": "SupervivenciaM\u00e1s Gemas",
+  "item_group.survivalplus.tab_combat": "SupervivenciaM\u00e1s Combate",
+  "item_group.survivalplus.tab_tools": "SupervivenciaM\u00e1s Herramientas",
 
   "item.survivalplus.tin_ingot": "Lingote de Esta\u00f1o",
   "item.survivalplus.raw_tin": "Esta\u00f1o en Bruto",

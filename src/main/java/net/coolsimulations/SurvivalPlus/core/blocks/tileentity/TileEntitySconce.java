@@ -5,7 +5,7 @@ import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.core.compat.SurvivalPlusTorcherino;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusTileEntities;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -307,11 +307,11 @@ public class TileEntitySconce extends BlockEntity {
 		GEM_STAFF_SAPPHIRE(27, "gem_staff_sapphire", true, SoundEvents.AMETHYST_BLOCK_PLACE, 12, new ItemStack(SPBlocks.gem_staff), false, true, true),
 		GEM_STAFF_SPINEL(28, "gem_staff_spinel", true, SoundEvents.AMETHYST_BLOCK_PLACE, 12, new ItemStack(SPBlocks.gem_staff), false, true, true),
 		TORCH_UNLIT(29, "torch_unlit", false, SoundEvents.WOOD_PLACE, 0, ItemStack.EMPTY, false, true, false), //Waiting for GC to Update
-		GLOWSTONE_TORCH(30, "glowstone_torch", SPCompatibilityManager.isGCLoaded(), SoundEvents.WOOD_PLACE, 14, new ItemStack(Registry.ITEM.get(new ResourceLocation(SPCompatibilityManager.GCCORE_MODID, "glowstone_torch"))), true, true, true),
-		AMBROSIUM_TORCH(31, "ambrosium_torch", SPCompatibilityManager.isAetherRebornLoaded(), SoundEvents.WOOD_PLACE, 15, new ItemStack(Registry.ITEM.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "ambrosium_torch"))), true, true, false),
-		TORCHERINO(32, "torcherino", SPCompatibilityManager.isTorcherinoLoaded(), SoundEvents.WOOD_PLACE, 15, new ItemStack(Registry.ITEM.get(new ResourceLocation(SPCompatibilityManager.TORCHERINO_MODID, "torcherino"))), true, true, false),
-		COMPRESSED_TORCHERINO(33, "compressed_torcherino", SPCompatibilityManager.isTorcherinoLoaded(), SoundEvents.WOOD_PLACE, 15, new ItemStack(Registry.ITEM.get(new ResourceLocation(SPCompatibilityManager.TORCHERINO_MODID, "compressed_torcherino"))), true, true, false),
-		DOUBLE_COMPRESSED_TORCHERINO(34, "double_compressed_torcherino", SPCompatibilityManager.isTorcherinoLoaded(), SoundEvents.WOOD_PLACE, 15, new ItemStack(Registry.ITEM.get(new ResourceLocation(SPCompatibilityManager.TORCHERINO_MODID, "double_compressed_torcherino"))), true, true, false);
+		GLOWSTONE_TORCH(30, "glowstone_torch", SPCompatibilityManager.isGCLoaded(), SoundEvents.WOOD_PLACE, 14, new ItemStack(BuiltInRegistries.ITEM.get(new ResourceLocation(SPCompatibilityManager.GCCORE_MODID, "glowstone_torch"))), true, true, true),
+		AMBROSIUM_TORCH(31, "ambrosium_torch", SPCompatibilityManager.isAetherRebornLoaded(), SoundEvents.WOOD_PLACE, 15, new ItemStack(BuiltInRegistries.ITEM.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "ambrosium_torch"))), true, true, false),
+		TORCHERINO(32, "torcherino", SPCompatibilityManager.isTorcherinoLoaded(), SoundEvents.WOOD_PLACE, 15, new ItemStack(BuiltInRegistries.ITEM.get(new ResourceLocation(SPCompatibilityManager.TORCHERINO_MODID, "torcherino"))), true, true, false),
+		COMPRESSED_TORCHERINO(33, "compressed_torcherino", SPCompatibilityManager.isTorcherinoLoaded(), SoundEvents.WOOD_PLACE, 15, new ItemStack(BuiltInRegistries.ITEM.get(new ResourceLocation(SPCompatibilityManager.TORCHERINO_MODID, "compressed_torcherino"))), true, true, false),
+		DOUBLE_COMPRESSED_TORCHERINO(34, "double_compressed_torcherino", SPCompatibilityManager.isTorcherinoLoaded(), SoundEvents.WOOD_PLACE, 15, new ItemStack(BuiltInRegistries.ITEM.get(new ResourceLocation(SPCompatibilityManager.TORCHERINO_MODID, "double_compressed_torcherino"))), true, true, false);
 
 		private static final EnumTorch[] META_LOOKUP = new EnumTorch[values().length];
 		private final int index;

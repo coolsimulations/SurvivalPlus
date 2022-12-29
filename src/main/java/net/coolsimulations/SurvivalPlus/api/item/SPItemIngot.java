@@ -1,6 +1,5 @@
 package net.coolsimulations.SurvivalPlus.api.item;
 
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.world.item.Item;
 
@@ -10,13 +9,13 @@ public class SPItemIngot extends Item {
 	private float health;
 
 	public SPItemIngot(boolean healsIronGolem, float golemHealth) {
-		super(new FabricItemSettings().group(SPTabs.tabMaterials));
+		super(new FabricItemSettings());
 		this.golem = healsIronGolem;
 		this.health = golemHealth;
 	}
 	
 	public SPItemIngot() {
-		super(new FabricItemSettings().group(SPTabs.tabMaterials));
+		super(new FabricItemSettings());
 		this.golem = false;
 		this.health = 0.0F;
 	}

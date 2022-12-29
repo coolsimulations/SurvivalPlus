@@ -3,10 +3,10 @@ package net.coolsimulations.SurvivalPlus.core.init;
 import net.coolsimulations.SurvivalPlus.api.SPFoods;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemCupcake;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -39,25 +39,25 @@ public class SurvivalPlusFood {
 		SPFoods.baked_apple = (new Builder()).nutrition(6).saturationMod(0.5F).build();
 		SPFoods.fried_onion = (new Builder()).nutrition(4).saturationMod(0.8F).fast().build();
 
-		SPItems.apple_pie = new Item(new FabricItemSettings().food(SPFoods.apple_pie).group(SPTabs.tabFood));
-		SPItems.beef_pie = new Item(new FabricItemSettings().food(SPFoods.beef_pie).group(SPTabs.tabFood));
-		SPItems.pork_pie = new Item(new FabricItemSettings().food(SPFoods.pork_pie).group(SPTabs.tabFood));
-		SPItems.chicken_pie = new Item(new FabricItemSettings().food(SPFoods.chicken_pie).group(SPTabs.tabFood));
-		SPItems.mutton_pie = new Item(new FabricItemSettings().food(SPFoods.mutton_pie).group(SPTabs.tabFood));
-		SPItems.rabbit_pie = new Item(new FabricItemSettings().food(SPFoods.rabbit_pie).group(SPTabs.tabFood));
-		SPItems.vegetable_pie = new Item(new FabricItemSettings().food(SPFoods.vegetable_pie).group(SPTabs.tabFood));
-		SPItems.raw_onion = new Item(new FabricItemSettings().food(SPFoods.raw_onion).group(SPTabs.tabFood));
-		SPItems.onion_soup = new BowlFoodItem(new FabricItemSettings().food(SPFoods.onion_soup).maxCount(1).group(SPTabs.tabFood));
-		SPItems.fried_egg = new Item(new FabricItemSettings().food(SPFoods.fried_egg).group(SPTabs.tabFood));
-		SPItems.roast_carrot = new Item(new FabricItemSettings().food(SPFoods.roast_carrot).group(SPTabs.tabFood));
-		SPItems.cheese = new Item(new FabricItemSettings().food(SPFoods.cheese).group(SPTabs.tabFood));
-		SPItems.cheese_bread = new Item(new FabricItemSettings().food(SPFoods.cheese_bread).group(SPTabs.tabFood));
-		SPItems.melted_cheese_bread = new Item(new FabricItemSettings().food(SPFoods.melted_cheese_bread).group(SPTabs.tabFood));
-		SPItems.cupcake = new SPItemCupcake(new FabricItemSettings().food(SPFoods.cupcake).group(SPTabs.tabFood));
-		SPItems.cheese_cupcake = new SPItemCupcake(new FabricItemSettings().food(SPFoods.cheese_cupcake).group(SPTabs.tabFood));
-		SPItems.sponge_cupcake = new SPItemCupcake(new FabricItemSettings().food(SPFoods.sponge_cupcake).group(SPTabs.tabFood));
-		SPItems.baked_apple = new Item(new FabricItemSettings().food(SPFoods.baked_apple).group(SPTabs.tabFood));
-		SPItems.fried_onion = new Item(new FabricItemSettings().food(SPFoods.fried_onion).group(SPTabs.tabFood));
+		SPItems.apple_pie = new Item(new FabricItemSettings().food(SPFoods.apple_pie));
+		SPItems.beef_pie = new Item(new FabricItemSettings().food(SPFoods.beef_pie));
+		SPItems.pork_pie = new Item(new FabricItemSettings().food(SPFoods.pork_pie));
+		SPItems.chicken_pie = new Item(new FabricItemSettings().food(SPFoods.chicken_pie));
+		SPItems.mutton_pie = new Item(new FabricItemSettings().food(SPFoods.mutton_pie));
+		SPItems.rabbit_pie = new Item(new FabricItemSettings().food(SPFoods.rabbit_pie));
+		SPItems.vegetable_pie = new Item(new FabricItemSettings().food(SPFoods.vegetable_pie));
+		SPItems.raw_onion = new Item(new FabricItemSettings().food(SPFoods.raw_onion));
+		SPItems.onion_soup = new BowlFoodItem(new FabricItemSettings().food(SPFoods.onion_soup).maxCount(1));
+		SPItems.fried_egg = new Item(new FabricItemSettings().food(SPFoods.fried_egg));
+		SPItems.roast_carrot = new Item(new FabricItemSettings().food(SPFoods.roast_carrot));
+		SPItems.cheese = new Item(new FabricItemSettings().food(SPFoods.cheese));
+		SPItems.cheese_bread = new Item(new FabricItemSettings().food(SPFoods.cheese_bread));
+		SPItems.melted_cheese_bread = new Item(new FabricItemSettings().food(SPFoods.melted_cheese_bread));
+		SPItems.cupcake = new SPItemCupcake(new FabricItemSettings().food(SPFoods.cupcake));
+		SPItems.cheese_cupcake = new SPItemCupcake(new FabricItemSettings().food(SPFoods.cheese_cupcake));
+		SPItems.sponge_cupcake = new SPItemCupcake(new FabricItemSettings().food(SPFoods.sponge_cupcake));
+		SPItems.baked_apple = new Item(new FabricItemSettings().food(SPFoods.baked_apple));
+		SPItems.fried_onion = new Item(new FabricItemSettings().food(SPFoods.fried_onion));
 
 		//(nutrition) x * 0.5 = a hearts (Max 20)
 	}
@@ -87,7 +87,7 @@ public class SurvivalPlusFood {
 
 	public static void registerItem(Item item, String registryName) {
 
-		Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), item);
+		Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), item);
 	}
 
 	private static FoodProperties buildSoup(int nutrition) {

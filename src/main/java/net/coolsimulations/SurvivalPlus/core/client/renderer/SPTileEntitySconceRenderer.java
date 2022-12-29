@@ -2,7 +2,7 @@ package net.coolsimulations.SurvivalPlus.core.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
@@ -50,11 +50,11 @@ public class SPTileEntitySconceRenderer<T extends BlockEntity> implements BlockE
 			matrix.scale(1.0F, -1.0F, -1.0F);
 			
 			if (blockstate.getValue(SPBlockSconce.FACING) == Direction.EAST)
-				matrix.mulPose(Vector3f.YN.rotationDegrees(180.0F));
+				matrix.mulPose(Axis.YN.rotationDegrees(180.0F));
 			else if (blockstate.getValue(SPBlockSconce.FACING) == Direction.NORTH)
-				matrix.mulPose(Vector3f.YN.rotationDegrees(270.0F));
+				matrix.mulPose(Axis.YN.rotationDegrees(270.0F));
 			else if (blockstate.getValue(SPBlockSconce.FACING) == Direction.SOUTH)
-				matrix.mulPose(Vector3f.YN.rotationDegrees(90.0F));
+				matrix.mulPose(Axis.YN.rotationDegrees(90.0F));
 
 			Material sconce = new Material(InventoryMenu.BLOCK_ATLAS, new ResourceLocation(SPReference.MOD_ID, "entity/sconce/sconce"
 					+ (te.getTorch() == EnumTorch.EMPTY ? "" : "_" + te.getTorch().getSerializedName())

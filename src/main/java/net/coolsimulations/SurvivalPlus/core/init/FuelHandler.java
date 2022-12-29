@@ -6,7 +6,7 @@ import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboard;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
@@ -68,8 +68,8 @@ public class FuelHandler{
 
 		FuelRegistry.INSTANCE.add(SPItems.charcoal_bucket, 4800);
 
-		for(int i = 0; i < Registry.BLOCK.keySet().size(); i++) {
-			Block block = Registry.BLOCK.byId(i);
+		for(int i = 0; i < BuiltInRegistries.BLOCK.keySet().size(); i++) {
+			Block block = BuiltInRegistries.BLOCK.byId(i);
 			if(block instanceof BlockCardboard) {
 				FuelRegistry.INSTANCE.add(block, 800);
 				if(block instanceof BlockCardboardLantern) {

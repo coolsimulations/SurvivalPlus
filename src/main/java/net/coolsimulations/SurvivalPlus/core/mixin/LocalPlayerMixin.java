@@ -11,20 +11,20 @@ import net.coolsimulations.SurvivalPlus.api.events.SPPlaySoundAtEntityEvent;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.ProfilePublicKey;
 
 @Mixin(LocalPlayer.class)
 public abstract class LocalPlayerMixin extends AbstractClientPlayer {
 
-	public LocalPlayerMixin(ClientLevel world, GameProfile profile, ProfilePublicKey key) {
-		super(world, profile, key);
+	public LocalPlayerMixin(ClientLevel world, GameProfile profile) {
+		super(world, profile);
 	}
 
 	@Inject(at = @At(value = "HEAD"), method = "playSound", cancellable = true)
     private void playSound(SoundEvent sound, float volume, float pitch, CallbackInfo info) {
-		InteractionResult result = SPPlaySoundAtEntityEvent.EVENT.invoker().playSound(this.level, (((LocalPlayer) (Object)this)), (((LocalPlayer) (Object)this)).blockPosition(), sound, this.getSoundSource(), volume, pitch, 0);
+		InteractionResult result = SPPlaySoundAtEntityEvent.EVENT.invoker().playSound(this.level, (((LocalPlayer) (Object)this)), (((LocalPlayer) (Object)this)).blockPosition(), Holder.direct(sound), this.getSoundSource(), volume, pitch, 0);
 
         if (result == InteractionResult.FAIL) {
             info.cancel();

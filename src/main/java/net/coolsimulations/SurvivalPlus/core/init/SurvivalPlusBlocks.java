@@ -2,7 +2,6 @@ package net.coolsimulations.SurvivalPlus.core.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockMetal;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockOre;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCandleCheeseCake;
@@ -17,6 +16,7 @@ import net.coolsimulations.SurvivalPlus.core.blocks.BlockSpongeCake;
 import net.coolsimulations.SurvivalPlus.core.items.ItemCardboardLantern;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.AmethystBlock;
@@ -205,7 +205,7 @@ public class SurvivalPlusBlocks {
 
 	public static void registerBlock(Block block, String registryName, boolean regsiterItem) {
 
-		Registry.register(Registry.BLOCK, new ResourceLocation(SPReference.MOD_ID, registryName), block);
+		Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(SPReference.MOD_ID, registryName), block);
 		if(regsiterItem)
 			registerBlockItem(block, registryName);
 	}
@@ -214,18 +214,18 @@ public class SurvivalPlusBlocks {
 
 		BlockItem BlockItem;
 		if(block instanceof AmethystBlock) {
-			BlockItem = new BlockItem(block, new FabricItemSettings().group(SPTabs.tabGem));	
+			BlockItem = new BlockItem(block, new FabricItemSettings());	
 		} else if(block == SPBlocks.onion) {
 			BlockItem = new BlockItem(block, new FabricItemSettings());
 		} else if(block == SPBlocks.cheese_cake || block == SPBlocks.sponge_cake) {
-			BlockItem = new BlockItem(block, new FabricItemSettings().group(SPTabs.tabFood).stacksTo(1));
+			BlockItem = new BlockItem(block, new FabricItemSettings().stacksTo(1));
 		} else if (block instanceof BlockCardboardLantern) {
-			BlockItem = new ItemCardboardLantern(block, new FabricItemSettings().group(SPTabs.tabBlocks));
+			BlockItem = new ItemCardboardLantern(block, new FabricItemSettings());
 		} else {
-			BlockItem = new BlockItem(block, new FabricItemSettings().group(SPTabs.tabBlocks));
+			BlockItem = new BlockItem(block, new FabricItemSettings());
 		}
 
-		Registry.register(Registry.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), BlockItem);
+		Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(SPReference.MOD_ID, registryName), BlockItem);
 	}
 
 }

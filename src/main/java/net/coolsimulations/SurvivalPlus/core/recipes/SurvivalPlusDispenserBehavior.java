@@ -8,9 +8,9 @@ import net.coolsimulations.SurvivalPlus.api.compat.SPBehaviorDispenseItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.ShearsDispenseItemBehavior;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -31,9 +31,9 @@ public class SurvivalPlusDispenserBehavior {
 
 	public static void init() {
 
-		for(int i = 0; i < Registry.ITEM.keySet().size(); i++) {
-			if(Registry.ITEM.byId(i) instanceof ShearsItem) {
-				Item item = Registry.ITEM.byId(i);
+		for(int i = 0; i < BuiltInRegistries.ITEM.keySet().size(); i++) {
+			if(BuiltInRegistries.ITEM.byId(i) instanceof ShearsItem) {
+				Item item = BuiltInRegistries.ITEM.byId(i);
 				DispenserBlock.registerBehavior(item, new ShearsDispenseItemBehavior());
 			}
 		}

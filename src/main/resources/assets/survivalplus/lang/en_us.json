@@ -12,12 +12,12 @@
   "death.attack.fall.player": "%1$s has been smooshed whilst trying to escape %2$s",
   "sp.name": "SurvivalPlus",
   
-  "itemGroup.survivalplus.tabmaterials": "SurvivalPlus Materials",
-  "itemGroup.survivalplus.tabblocks": "SurvivalPlus Blocks",
-  "itemGroup.survivalplus.tabfood": "SurvivalPlus Foodstuffs",
-  "itemGroup.survivalplus.tabgem": "SurvivalPlus Gems",
-  "itemGroup.survivalplus.tabcombat": "SurvivalPlus Combat",
-  "itemGroup.survivalplus.tabtools": "SurvivalPlus Tools",
+  "item_group.survivalplus.tab_materials": "SurvivalPlus Materials",
+  "item_group.survivalplus.tab_blocks": "SurvivalPlus Blocks",
+  "item_group.survivalplus.tab_food": "SurvivalPlus Foodstuffs",
+  "item_group.survivalplus.tab_gem": "SurvivalPlus Gems",
+  "item_group.survivalplus.tab_combat": "SurvivalPlus Combat",
+  "item_group.survivalplus.tab_tools": "SurvivalPlus Tools",
 
   "item.survivalplus.tin_ingot": "Tin Ingot",
   "item.survivalplus.raw_tin": "Raw Tin",

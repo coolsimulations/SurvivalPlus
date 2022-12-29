@@ -21,7 +21,7 @@ import net.minecraft.client.renderer.blockentity.BannerRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.DyeColor;
@@ -47,7 +47,7 @@ public class BlockEntityWithoutLevelRendererMixin {
 			boolean bl = stack.getTagElement("BlockEntityTag") != null;
 			matrix.pushPose();
 			matrix.scale(1.0F, -1.0F, -1.0F);
-			Material Material = bl ? new Material(InventoryMenu.BLOCK_ATLAS, new ResourceLocation(Registry.ITEM.getKey(item).getNamespace(), "entity/" + Registry.ITEM.getKey(item).getPath() + "_base")) : new Material(InventoryMenu.BLOCK_ATLAS, new ResourceLocation(Registry.ITEM.getKey(item).getNamespace(), "entity/" + Registry.ITEM.getKey(item).getPath() + "_base_nopattern"));
+			Material Material = bl ? new Material(InventoryMenu.BLOCK_ATLAS, new ResourceLocation(BuiltInRegistries.ITEM.getKey(item).getNamespace(), "entity/" + BuiltInRegistries.ITEM.getKey(item).getPath() + "_base")) : new Material(InventoryMenu.BLOCK_ATLAS, new ResourceLocation(BuiltInRegistries.ITEM.getKey(item).getNamespace(), "entity/" + BuiltInRegistries.ITEM.getKey(item).getPath() + "_base_nopattern"));
 			VertexConsumer vertexConsumer = Material.sprite().wrap(ItemRenderer.getFoilBufferDirect(vertexConsumerProvider, this.shieldModel.renderType(Material.atlasLocation()), true, stack.hasFoil()));
 			this.shieldModel.handle().render(matrix, vertexConsumer, light, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
 			if (bl) {
