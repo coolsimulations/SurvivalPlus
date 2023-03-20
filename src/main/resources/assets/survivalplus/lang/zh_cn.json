@@ -11,6 +11,7 @@
   "death.attack.fall": "%1$s\u662f\u65af\u83ab\u5e0c\u5fb7",
   "death.attack.fall.player": "%1$s\u5728\u9003\u79bb%2$s\u65f6\u662f\u65af\u83ab\u5e0c\u5fb7",
   "sp.name": "\u751f\u5b58\u52a0",
+  "modmenu.descriptionTranslation.survivalplus": "\u751f\u5b58\u52a0\u589e\u5f3a\u4e86 Minecraft \u7684\u539f\u59cb\u751f\u5b58\u4f53\u9a8c\uff0c\u540c\u65f6\u4e0e\u5176\u4ed6 \u006d\u006f\u0064 \u4ea4\u4e92\u4ee5\u521b\u5efa\u65e0\u7f1d\u6e38\u620f\u3002",
   
   "item_group.survivalplus.tab_materials": "\u751f\u5b58\u52a0\u6750\u6599",
   "item_group.survivalplus.tab_blocks": "\u751f\u5b58\u52a0\u65b9\u5757",

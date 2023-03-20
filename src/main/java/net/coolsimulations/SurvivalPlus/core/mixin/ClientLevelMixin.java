@@ -22,7 +22,7 @@ public abstract class ClientLevelMixin {
 
 	@Inject(at = @At(value = "HEAD"), method = "playSeededSound", cancellable = true)
     private void playSound(@Nullable Player player, double x, double y, double z, Holder<SoundEvent> sound, SoundSource category, float volume, float pitch, long seed, CallbackInfo info) {
-		InteractionResult result = SPPlaySoundAtEntityEvent.EVENT.invoker().playSound((((Level) (Object)this)), player, new BlockPos(x, y, z), sound, category, volume, pitch, seed);
+		InteractionResult result = SPPlaySoundAtEntityEvent.EVENT.invoker().playSound((((Level) (Object)this)), player, new BlockPos((int)x, (int)y, (int)z), sound, category, volume, pitch, seed);
 
         if (result == InteractionResult.FAIL) {
             info.cancel();

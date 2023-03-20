@@ -3,6 +3,8 @@ package net.coolsimulations.SurvivalPlus.core.commands;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 
@@ -15,6 +17,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -66,7 +69,7 @@ public class CommandSleep {
 						if (sender.getEntity() instanceof Player && ((Player) sender.getEntity()).isSleeping()) {
 
 							if (dimension == null) {
-								MutableComponent sleep = Component.translatable("sp.commands.sleep.display3", new Object[]{sender.getDisplayName(), sender.getDisplayName(), sender.getLevel().dimension().location()});
+								MutableComponent sleep = Component.translatable("sp.commands.sleep.display3", new Object[]{sender.getDisplayName(), sender.getDisplayName(), getDimensionName(sender.getLevel().dimension().location())});
 								sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
 								sender.getServer().getPlayerList().broadcastSystemMessage(sleep, false);
 							} else {
@@ -84,7 +87,7 @@ public class CommandSleep {
 								throw new CommandRuntimeException(Component.translatable("sp.commands.sleep.invalid"));
 							} else {
 								if (dimension == null) {
-									MutableComponent sleep = Component.translatable("sp.commands.sleep.display1", new Object[]{entityplayer.getDisplayName(), sender.getDisplayName(), sender.getLevel().dimension().location()});
+									MutableComponent sleep = Component.translatable("sp.commands.sleep.display1", new Object[]{entityplayer.getDisplayName(), sender.getDisplayName(), getDimensionName(sender.getLevel().dimension().location())});
 									sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
 									sender.getServer().getPlayerList().broadcastSystemMessage(sleep, false);
 								} else {
@@ -128,7 +131,7 @@ public class CommandSleep {
 					throw new CommandRuntimeException(Component.translatable("sp.commands.sleep.invalid"));
 				} else {
 					if (dimension == null) {
-						MutableComponent sleep = Component.translatable("sp.commands.sleep.display2", new Object[]{sender.getDisplayName(), sender.getLevel().dimension().location()});
+						MutableComponent sleep = Component.translatable("sp.commands.sleep.display2", new Object[]{sender.getDisplayName(), getDimensionName(sender.getLevel().dimension().location())});
 						sleep.withStyle(ChatFormatting.LIGHT_PURPLE);
 						sender.getServer().getPlayerList().broadcastSystemMessage(sleep, false);
 					} else {
@@ -144,4 +147,9 @@ public class CommandSleep {
 
 		return Command.SINGLE_SUCCESS;
 	}
+	
+	private static String getDimensionName(ResourceLocation location) {
+		return StringUtils.capitalize(location.getPath().replaceAll("_", " "));
+	}
+
 }

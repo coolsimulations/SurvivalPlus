@@ -8,7 +8,7 @@ import net.coolsimulations.SurvivalPlus.api.item.SPArmorMaterial;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.ItemStack;
 
 public class SurvivalPlusBlockus extends BlocksRegistration {
@@ -17,10 +17,10 @@ public class SurvivalPlusBlockus extends BlocksRegistration {
 		
 		SPBlocks.onion_crate = register("onion_crate", createCrates());
 		
-		SPItems.white_oak_helmet = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, EquipmentSlot.HEAD);
-		SPItems.white_oak_chestplate = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, EquipmentSlot.CHEST);
-		SPItems.white_oak_leggings = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, EquipmentSlot.LEGS);
-		SPItems.white_oak_boots = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, EquipmentSlot.FEET);
+		SPItems.white_oak_helmet = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, Type.HELMET);
+		SPItems.white_oak_chestplate = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, Type.CHESTPLATE);
+		SPItems.white_oak_leggings = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, Type.LEGGINGS);
+		SPItems.white_oak_boots = new SPItemArmor(SPArmorMaterial.whiteOakArmorMaterial, Type.BOOTS);
 		SPItems.white_oak = NonNullList.create();
 		SPItems.white_oak.add(0, new ItemStack(SPItems.white_oak_helmet));
 		SPItems.white_oak.add(1, new ItemStack(SPItems.white_oak_chestplate));

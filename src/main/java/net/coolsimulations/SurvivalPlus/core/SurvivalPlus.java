@@ -141,7 +141,7 @@ public class SurvivalPlus implements ModInitializer {
 		SPTabs.tabMaterials = FabricItemGroup.builder(new ResourceLocation(SPReference.MOD_ID, "tab_materials"))
 				.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_materials"))
 				.icon(() -> new ItemStack(SPItems.tin_ingot))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					populator.accept(SPItems.tin_ingot);
 					populator.accept(SPItems.raw_tin);
 					populator.accept(SPItems.onion_seeds);
@@ -164,7 +164,7 @@ public class SurvivalPlus implements ModInitializer {
 		SPTabs.tabBlocks = FabricItemGroup.builder(new ResourceLocation(SPReference.MOD_ID, "tab_blocks"))
 				.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_blocks"))
 				.icon(() -> new ItemStack(SPBlocks.tin_block))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					populator.accept(SPBlocks.raw_tin_block);
 					populator.accept(SPBlocks.tin_block);
 					populator.accept(SPBlocks.tin_ore);
@@ -215,7 +215,7 @@ public class SurvivalPlus implements ModInitializer {
 		SPTabs.tabFood = FabricItemGroup.builder(new ResourceLocation(SPReference.MOD_ID, "tab_food"))
 				.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_food"))
 				.icon(() -> new ItemStack(SPItems.apple_pie))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					populator.accept(SPBlocks.cheese_cake);
 					populator.accept(SPBlocks.sponge_cake);
 					populator.accept(SPItems.apple_pie);
@@ -242,7 +242,7 @@ public class SurvivalPlus implements ModInitializer {
 		SPTabs.tabGem = FabricItemGroup.builder(new ResourceLocation(SPReference.MOD_ID, "tab_gem"))
 				.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_gem"))
 				.icon(() -> new ItemStack(SPBlocks.sapphire_cluster))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					populator.accept(SPBlocks.ruby_block);
 					populator.accept(SPBlocks.ruby_cluster);
 					populator.accept(SPBlocks.large_ruby_bud);
@@ -278,7 +278,7 @@ public class SurvivalPlus implements ModInitializer {
 		SPTabs.tabCombat = FabricItemGroup.builder(new ResourceLocation(SPReference.MOD_ID, "tab_combat"))
 				.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_combat"))
 				.icon(() -> new ItemStack(SPItems.titanium_sword))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					for (ItemStack item : SPItems.bronze)
 						populator.accept(item.getItem());
 					for (ItemStack item : SPItems.stone)
@@ -347,7 +347,7 @@ public class SurvivalPlus implements ModInitializer {
 		SPTabs.tabTools = FabricItemGroup.builder(new ResourceLocation(SPReference.MOD_ID, "tab_tools"))
 				.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_tools"))
 				.icon(() -> new ItemStack(SPItems.bronze_axe))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					populator.accept(SPItems.bronze_pickaxe);
 					populator.accept(SPItems.bronze_axe);
 					populator.accept(SPItems.bronze_shovel);

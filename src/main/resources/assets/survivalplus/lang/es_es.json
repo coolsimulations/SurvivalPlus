@@ -11,6 +11,7 @@
   "death.attack.fall": "%1$s ha sido aplastado",
   "death.attack.fall.player": "%1$s ha sido aplastado contra el suelo mientras hu\u00eda de %2$s",
   "sp.name": "SupervivenciaM\u00e1s",
+  "modmenu.descriptionTranslation.survivalplus": "SupervivenciaM\u00e1s mejora la experiencia de supervivencia vainilla de Minecraft mientras interact\u00faa con otras modificaciones para crear un juego perfecto.",
 
   "item_group.survivalplus.tab_materials": "SupervivenciaM\u00e1s Materiales",
   "item_group.survivalplus.tab_blocks": "SupervivenciaM\u00e1s Bloques",

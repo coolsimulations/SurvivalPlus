@@ -16,7 +16,6 @@ import net.coolsimulations.SurvivalPlus.api.item.SPItemShield;
 import net.minecraft.client.model.ShieldModel;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BannerRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.Material;
@@ -26,6 +25,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.level.block.entity.BannerBlockEntity;
@@ -38,7 +38,7 @@ public class BlockEntityWithoutLevelRendererMixin {
 	private ShieldModel shieldModel;
 
 	@Inject(method = "renderByItem", at = @At("HEAD"), cancellable = true)
-	private void renderByItem(ItemStack stack, ItemTransforms.TransformType mode, PoseStack matrix, MultiBufferSource vertexConsumerProvider, int light, int overlay, CallbackInfo info) {
+	private void renderByItem(ItemStack stack, ItemDisplayContext mode, PoseStack matrix, MultiBufferSource vertexConsumerProvider, int light, int overlay, CallbackInfo info) {
 
 		Item item = stack.getItem();
 

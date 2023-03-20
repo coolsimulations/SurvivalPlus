@@ -345,7 +345,7 @@ public class SurvivalPlusEventHandler {
 			itemEntity = player.drop(stack, false);
 			if (itemEntity != null) {
 				itemEntity.setNoPickUpDelay();
-				itemEntity.setOwner(player.getUUID());
+				itemEntity.setThrower(player.getUUID());
 			}
 		}
 	}

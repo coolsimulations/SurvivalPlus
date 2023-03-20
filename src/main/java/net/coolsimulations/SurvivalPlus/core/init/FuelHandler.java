@@ -7,8 +7,8 @@ import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 
@@ -86,19 +86,19 @@ public class FuelHandler{
 
 				int value;
 
-				EquipmentSlot slotType = ((ArmorItem) item.get(i).getItem()).getSlot();
+				Type slotType = ((ArmorItem) item.get(i).getItem()).getType();
 
 				switch (slotType) {
-				case HEAD:
+				case HELMET:
 					value = 1500;
 					break;
-				case CHEST:
+				case CHESTPLATE:
 					value = 2400;
 					break;
-				case LEGS:
+				case LEGGINGS:
 					value = 2100;
 					break;
-				case FEET:
+				case BOOTS:
 					value = 1200;
 					break;
 				default:
