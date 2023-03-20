@@ -7,6 +7,7 @@ import net.coolsimulations.SurvivalPlus.core.init.ForestryArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
 import net.coolsimulations.SurvivalPlus.core.init.TraverseArmor;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class SurvivalPlusCompatManager {
@@ -60,6 +61,11 @@ public class SurvivalPlusCompatManager {
 			SurvivalPlusEMCValues.setup();
 		if(SPCompatibilityManager.isJerLoaded())
 			SurvivalPlusJER.setup();
+	}
+	
+	public static void postSetup(ServerLevel world) {
+		if(SPCompatibilityManager.isIc2Loaded())
+			SurvivalPlusIC2.postSetup(world);
 	}
 
 }

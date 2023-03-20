@@ -1,5 +1,7 @@
 package net.coolsimulations.SurvivalPlus.core.world;
 
+import java.util.function.Supplier;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -18,8 +20,6 @@ import net.minecraftforge.common.world.ModifiableBiomeInfo.BiomeInfo.Builder;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import net.minecraftforge.common.world.BiomeModifier.Phase;
 
 @SuppressWarnings({"unused"})
 public class SurvivalPlusOreGenerator {
@@ -135,7 +135,10 @@ public class SurvivalPlusOreGenerator {
 		}
 		catch (Exception e)
 		{
-			return DataResult.error("Not a decoration stage: " + name);
+			Supplier<String> supplier = () -> {
+	            return "Not a decoration stage: " + name;
+	         };
+			return DataResult.error(supplier);
 		}
 	}
 }

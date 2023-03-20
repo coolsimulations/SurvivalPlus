@@ -5,7 +5,7 @@ import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.api.item.SPArmorMaterial;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemArmor;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,15 +16,15 @@ public class AetherArmor {
 
 	public static final DeferredRegister<Item> ITEMS_AETHER_ARMOR = DeferredRegister.create(ForgeRegistries.ITEMS, SPReference.MOD_ID);
 
-	private static final RegistryObject<Item> skyroot_helmet = ITEMS_AETHER_ARMOR.register("skyroot_helmet", () -> new SPItemArmor(SPArmorMaterial.skyrootArmorMaterial, EquipmentSlot.HEAD));
-	private static final RegistryObject<Item> skyroot_chestplate = ITEMS_AETHER_ARMOR.register("skyroot_chestplate", () -> new SPItemArmor(SPArmorMaterial.skyrootArmorMaterial, EquipmentSlot.CHEST));
-	private static final RegistryObject<Item> skyroot_leggings = ITEMS_AETHER_ARMOR.register("skyroot_leggings", () -> new SPItemArmor(SPArmorMaterial.skyrootArmorMaterial, EquipmentSlot.LEGS));
-	private static final RegistryObject<Item> skyroot_boots = ITEMS_AETHER_ARMOR.register("skyroot_boots", () -> new SPItemArmor(SPArmorMaterial.skyrootArmorMaterial, EquipmentSlot.FEET));
+	private static final RegistryObject<Item> skyroot_helmet = ITEMS_AETHER_ARMOR.register("skyroot_helmet", () -> new SPItemArmor(SPArmorMaterial.skyrootArmorMaterial, Type.HELMET));
+	private static final RegistryObject<Item> skyroot_chestplate = ITEMS_AETHER_ARMOR.register("skyroot_chestplate", () -> new SPItemArmor(SPArmorMaterial.skyrootArmorMaterial, Type.CHESTPLATE));
+	private static final RegistryObject<Item> skyroot_leggings = ITEMS_AETHER_ARMOR.register("skyroot_leggings", () -> new SPItemArmor(SPArmorMaterial.skyrootArmorMaterial, Type.LEGGINGS));
+	private static final RegistryObject<Item> skyroot_boots = ITEMS_AETHER_ARMOR.register("skyroot_boots", () -> new SPItemArmor(SPArmorMaterial.skyrootArmorMaterial, Type.BOOTS));
 	
-	private static final RegistryObject<Item> golden_oak_helmet = ITEMS_AETHER_ARMOR.register("golden_oak_helmet", () -> new SPItemArmor(SPArmorMaterial.goldenOakArmorMaterial, EquipmentSlot.HEAD));
-	private static final RegistryObject<Item> golden_oak_chestplate = ITEMS_AETHER_ARMOR.register("golden_oak_chestplate", () -> new SPItemArmor(SPArmorMaterial.goldenOakArmorMaterial, EquipmentSlot.CHEST));
-	private static final RegistryObject<Item> golden_oak_leggings = ITEMS_AETHER_ARMOR.register("golden_oak_leggings", () -> new SPItemArmor(SPArmorMaterial.goldenOakArmorMaterial, EquipmentSlot.LEGS));
-	private static final RegistryObject<Item> golden_oak_boots = ITEMS_AETHER_ARMOR.register("golden_oak_boots", () -> new SPItemArmor(SPArmorMaterial.goldenOakArmorMaterial, EquipmentSlot.FEET));
+	private static final RegistryObject<Item> golden_oak_helmet = ITEMS_AETHER_ARMOR.register("golden_oak_helmet", () -> new SPItemArmor(SPArmorMaterial.goldenOakArmorMaterial, Type.HELMET));
+	private static final RegistryObject<Item> golden_oak_chestplate = ITEMS_AETHER_ARMOR.register("golden_oak_chestplate", () -> new SPItemArmor(SPArmorMaterial.goldenOakArmorMaterial, Type.CHESTPLATE));
+	private static final RegistryObject<Item> golden_oak_leggings = ITEMS_AETHER_ARMOR.register("golden_oak_leggings", () -> new SPItemArmor(SPArmorMaterial.goldenOakArmorMaterial, Type.LEGGINGS));
+	private static final RegistryObject<Item> golden_oak_boots = ITEMS_AETHER_ARMOR.register("golden_oak_boots", () -> new SPItemArmor(SPArmorMaterial.goldenOakArmorMaterial, Type.BOOTS));
 
 	public static void init(){
 

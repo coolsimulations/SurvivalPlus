@@ -9,8 +9,8 @@ import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboard;
 import net.coolsimulations.SurvivalPlus.core.blocks.BlockCardboardLantern;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -162,19 +162,19 @@ public class FuelHandler{
 
 				int value;
 
-				EquipmentSlot slotType = ((ArmorItem) item.get(i).getItem()).getSlot();
+				Type slotType = ((ArmorItem) item.get(i).getItem()).getType();
 
 				switch (slotType) {
-				case HEAD:
+				case HELMET:
 					value = 1500;
 					break;
-				case CHEST:
+				case CHESTPLATE:
 					value = 2400;
 					break;
-				case LEGS:
+				case LEGGINGS:
 					value = 2100;
 					break;
-				case FEET:
+				case BOOTS:
 					value = 1200;
 					break;
 				default:

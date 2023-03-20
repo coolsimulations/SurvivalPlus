@@ -43,6 +43,7 @@ import net.minecraft.server.players.UserWhiteList;
 import net.minecraft.server.players.UserWhiteListEntry;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
@@ -54,6 +55,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 @Mod(value = SPReference.MOD_ID)
 @Mod.EventBusSubscriber(modid = SPReference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -149,14 +151,17 @@ public class SurvivalPlus {
 		SurvivalPlusComposterRecipes.init();
 		SurvivalPlusGeodes.init();
 		SurvivalPlusCompatManager.setup();
+		event.enqueueWork(() -> {
+			SurvivalPlusCompatManager.postSetup(ServerLifecycleHooks.getCurrentServer().getLevel(Level.OVERWORLD));
+		});
 		FuelHandler.registerArmorFuels();
 	}
-	
+
 	private void registerTabs(CreativeModeTabEvent.Register event) {
 		event.registerCreativeModeTab(new ResourceLocation(SPReference.MOD_ID, "tab_materials"), builder -> SPTabs.tabMaterials =
 				builder.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_materials"))
 				.icon(() -> new ItemStack(SPItems.tin_ingot.get()))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					populator.accept(SPItems.tin_ingot.get());
 					populator.accept(SPItems.raw_tin.get());
 					populator.accept(SPItems.onion_seeds.get());
@@ -185,7 +190,7 @@ public class SurvivalPlus {
 		event.registerCreativeModeTab(new ResourceLocation(SPReference.MOD_ID, "tab_blocks"), builder -> SPTabs.tabBlocks =
 				builder.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_blocks"))
 				.icon(() -> new ItemStack(SPBlocks.tin_block.get()))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					populator.accept(SPBlocks.raw_tin_block.get());
 					populator.accept(SPBlocks.tin_block.get());
 					populator.accept(SPBlocks.tin_ore.get());
@@ -236,7 +241,7 @@ public class SurvivalPlus {
 		event.registerCreativeModeTab(new ResourceLocation(SPReference.MOD_ID, "tab_food"), builder -> SPTabs.tabFood =
 				builder.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_food"))
 				.icon(() -> new ItemStack(SPItems.apple_pie.get()))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					populator.accept(SPBlocks.cheese_cake.get());
 					populator.accept(SPBlocks.sponge_cake.get());
 					populator.accept(SPItems.apple_pie.get());
@@ -263,7 +268,7 @@ public class SurvivalPlus {
 		event.registerCreativeModeTab(new ResourceLocation(SPReference.MOD_ID, "tab_gem"), builder -> SPTabs.tabGem =
 				builder.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_gem"))
 				.icon(() -> new ItemStack(SPBlocks.sapphire_cluster.get()))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					populator.accept(SPBlocks.ruby_block.get());
 					populator.accept(SPBlocks.ruby_cluster.get());
 					populator.accept(SPBlocks.large_ruby_bud.get());
@@ -299,7 +304,7 @@ public class SurvivalPlus {
 		event.registerCreativeModeTab(new ResourceLocation(SPReference.MOD_ID, "tab_combat"), builder -> SPTabs.tabCombat =
 				builder.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_combat"))
 				.icon(() -> new ItemStack(SPItems.titanium_sword.get()))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					for (ItemStack item : SPItems.bronze)
 						populator.accept(item.getItem());
 					for (ItemStack item : SPItems.stone)
@@ -441,7 +446,7 @@ public class SurvivalPlus {
 		event.registerCreativeModeTab(new ResourceLocation(SPReference.MOD_ID, "tab_tools"), builder -> SPTabs.tabTools =
 				builder.title(Component.translatable("item_group." + SPReference.MOD_ID + ".tab_tools"))
 				.icon(() -> new ItemStack(SPItems.bronze_axe.get()))
-				.displayItems((enabledFlags, populator, hasPermissions) -> {
+				.displayItems((params, populator) -> {
 					populator.accept(SPItems.bronze_pickaxe.get());
 					populator.accept(SPItems.bronze_axe.get());
 					populator.accept(SPItems.bronze_shovel.get());
@@ -454,7 +459,7 @@ public class SurvivalPlus {
 					populator.accept(SPItems.titanium_shears.get());
 				}).build());
 	}
-	
+
 	private void addToTabs(CreativeModeTabEvent.BuildContents event) {
 		if (event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
 			if(SPCompatibilityManager.isLumberjackLoaded()) {

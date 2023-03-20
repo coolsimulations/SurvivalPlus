@@ -28,6 +28,7 @@ import net.coolsimulations.SurvivalPlus.api.SPTags;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusArmor;
 import net.coolsimulations.SurvivalPlus.core.init.SurvivalPlusItems;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
@@ -50,12 +51,16 @@ public class SurvivalPlusIC2 {
 		RecipeRegistry.EXTRACTOR.get(true).registerListener(SurvivalPlusIC2::registerExtractor);
 		RecipeRegistry.RECYCLER.get(true).registerListener(SurvivalPlusIC2::registerRecycler);
 		RecipeRegistry.MIXING_FURNACE.get(true).registerListener(SurvivalPlusIC2::registerAlloySmelter);
-		RecipeRegistry.CRAFTING.registerListener(SurvivalPlusIC2::registerCrafting);
 		IC2.RECIPES.get(true).refining.registerListener(SurvivalPlusIC2::registerRefinery);
 
 		IC2.CONFIG.disableBronzeArmor.set(true);
 		IC2.CONFIG.disableBronzeTools.set(true);
 		IC2.CONFIG.save();
+	}
+	
+	public static void postSetup(ServerLevel world) {
+		
+		RecipeRegistry.CRAFTING.registerListener(registry -> SurvivalPlusIC2.registerCrafting(world, registry));
 	}
 
 	public static void registerMacerator(IMachineRecipeList registry) {
@@ -180,19 +185,19 @@ public class SurvivalPlusIC2 {
 		registry.addRecipe(new ResourceLocation(SPReference.MOD_ID, "titanium_to_raw" + "_alk")).addMod(RecipeMods.RECIPE_TIME, 0.5).catalyst(SPTags.Items.ORES_TITANIUM).mainInput(IC2Fluids.ALCOHOL, 25 * 1).buildRange(new ItemStack(SPItems.raw_titanium.get()), 1 * 5, 1 * 7);
 	}
 
-	public static void registerCrafting(IAdvancedCraftingManager registry) {
+	public static void registerCrafting(ServerLevel world, IAdvancedCraftingManager registry) {
 
-		removeCraftingRecipe(new ItemStack(IC2Items.BRONZE_SIGN_ITEM));
-		removeCraftingRecipe(new ItemStack(IC2Items.TIN_SIGN_ITEM));
-		removeCraftingRecipe(new ItemStack(IC2Items.INGOT_BRONZE));
-		removeSmeltingRecipe(new ItemStack(IC2Items.INGOT_BRONZE));
-		removeCraftingRecipe(new ItemStack(IC2Blocks.BRONZE_BLOCK));
-		removeSmeltingRecipe(new ItemStack(IC2Blocks.BRONZE_BLOCK));
-		removeCraftingRecipe(new ItemStack(IC2Items.INGOT_TIN));
-		removeSmeltingRecipe(new ItemStack(IC2Items.INGOT_TIN));
-		removeCraftingRecipe(new ItemStack(IC2Blocks.TIN_BLOCK));
-		removeSmeltingRecipe(new ItemStack(IC2Blocks.TIN_BLOCK));
-		removeCraftingRecipe(new ItemStack(IC2Blocks.RAW_TIN_BLOCK));
+		removeCraftingRecipe(world, new ItemStack(IC2Items.BRONZE_SIGN_ITEM));
+		removeCraftingRecipe(world, new ItemStack(IC2Items.TIN_SIGN_ITEM));
+		removeCraftingRecipe(world, new ItemStack(IC2Items.INGOT_BRONZE));
+		removeSmeltingRecipe(world, new ItemStack(IC2Items.INGOT_BRONZE));
+		removeCraftingRecipe(world, new ItemStack(IC2Blocks.BRONZE_BLOCK));
+		removeSmeltingRecipe(world, new ItemStack(IC2Blocks.BRONZE_BLOCK));
+		removeCraftingRecipe(world, new ItemStack(IC2Items.INGOT_TIN));
+		removeSmeltingRecipe(world, new ItemStack(IC2Items.INGOT_TIN));
+		removeCraftingRecipe(world, new ItemStack(IC2Blocks.TIN_BLOCK));
+		removeSmeltingRecipe(world, new ItemStack(IC2Blocks.TIN_BLOCK));
+		removeCraftingRecipe(world, new ItemStack(IC2Blocks.RAW_TIN_BLOCK));
 
 		registry.addShapedRecipe(new ResourceLocation(SPReference.MOD_ID, "glass_fiber_2"), new ItemStack(IC2Items.GLASSFIBER_CABLE, 2), new Object[]{"GGG", "ETE", "GGG", Character.valueOf('G'), Tags.Items.GLASS, Character.valueOf('E'), Tags.Items.DUSTS_REDSTONE, Character.valueOf('T'), SPTags.Items.DUSTS_TITANIUM});
 		registry.addShapedIC2Recipe("bronze_sign", new ItemStack(IC2Items.BRONZE_SIGN_ITEM), new Object[]{"XXX", "XXX", " # ", Character.valueOf('#'), Tags.Items.RODS_WOODEN, Character.valueOf('X'), SPTags.Items.INGOTS_BRONZE});	
@@ -205,24 +210,24 @@ public class SurvivalPlusIC2 {
 		registry.addIC2SmeltingRecipe("tin_dust_block_blast", new ItemStack(SPBlocks.tin_block.get()), new ItemStack(IC2Blocks.DUST_TIN_BLOCK), SmeltingType.BLASTFURNACE);
 	}
 
-	public static void removeCraftingRecipe(ItemStack resultItem) {
+	public static void removeCraftingRecipe(ServerLevel world, ItemStack resultItem) {
 
 		Iterable<RecipeIC2Base> recipes = AdvRecipeRegistry.INSTANCE.getRecipes();
 		for(Iterator<RecipeIC2Base> entries = recipes.iterator(); entries.hasNext(); ) {
 			RecipeIC2Base entry = entries.next();
-			ItemStack stackResult = entry.getResultItem();
+			ItemStack stackResult = entry.getResultItem(world.registryAccess());
 			if (ItemStack.isSame(stackResult, resultItem)){ // If the output matches the specified ItemStack,
 				entries.remove(); // Remove the recipe
 			}
 		}
 	}
 
-	public static void removeSmeltingRecipe(ItemStack resultItem) {
+	public static void removeSmeltingRecipe(ServerLevel world, ItemStack resultItem) {
 
 		Iterable<Supplier<AbstractCookingRecipe>> recipes = AdvRecipeRegistry.INSTANCE.getCooking();
 		for(Iterator<Supplier<AbstractCookingRecipe>> entries = recipes.iterator(); entries.hasNext(); ) {
 			Supplier<AbstractCookingRecipe> entry = entries.next();
-			ItemStack stackResult = entry.get().getResultItem();
+			ItemStack stackResult = entry.get().getResultItem(world.registryAccess());
 			if (ItemStack.isSame(stackResult, resultItem)){ // If the output matches the specified ItemStack,
 				entries.remove(); // Remove the recipe
 			}
